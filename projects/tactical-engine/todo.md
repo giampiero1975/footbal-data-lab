@@ -15,6 +15,25 @@
 - [ ] Nessuna cancellazione o migrazione di dati/modelli senza inventario, controllo dipendenze, backup verificato e approvazione.
 - [ ] Non dichiarare un miglioramento sulla base di una singola risposta o di sole citazioni formalmente valide.
 
+
+## PRIORITÀ MASSIMA — Startup: scegliere e configurare la migliore architettura supportata da evidenze
+
+**Obiettivo principale prima di pulizia o nuovi sviluppi:** stabilire se l'architettura RAG sia la più appropriata per DRIBBLING, scegliere i componenti migliori per requisiti e hardware reali e configurarli **secondo documentazione ufficiale aggiornata e fonti tecniche autorevoli verificabili**, non per tentativi arbitrari.
+
+- [ ] Formalizzare requisiti funzionali e non funzionali: precisione tattica e fedeltà alle fonti, italiano, PDF/figure, citazioni verificabili, latenza, memoria, CPU/GPU, manutenzione e costi.
+- [ ] Rilevare versioni e hardware effettivi; identificare la baseline operativa prima di giudicare le alternative.
+- [ ] Confrontare **l'architettura nel suo insieme** con i pattern ufficiali documentati per ingestion, retrieval, reranking, generation, grounding/citazioni e valutazione; non assumere che i componenti già scelti siano necessariamente ottimali.
+- [ ] Per ogni componente confrontare opzioni supportate e alternative pertinenti: Docling/parsing, chunker/tokenizer, embedding, vector store, retriever, reranker, LLM, synthesizer, valutazione; giustificare anche la scelta di mantenerlo.
+- [ ] Per ogni abbinamento verificare versioni compatibili, tokenizer e token budget, API supportate, istruzioni dei modelli, metriche, limiti hardware, parametri raccomandati e documentazione ufficiale/versionata.
+- [ ] Distinguere **raccomandazioni ufficiali**, evidenze di benchmark riproducibili, fonti autorevoli indipendenti e ipotesi ancora da testare; annotare URL, data, versione e grado di attendibilità.
+- [ ] Identificare personalizzazioni e codice scritto autonomamente che aggirano, duplicano o contraddicono funzionalità ufficiali; mantenere soltanto ciò che è necessario e misurabilmente utile.
+- [ ] Produrre una **matrice decisionale architetturale**: requisito → componente/alternative → fonti ufficiali → compatibilità → qualità → risorse → decisione motivata.
+- [ ] Definire una **configurazione di riferimento raccomandata**, versionata e riproducibile (componenti, versioni/digest, parametri, prompt, dipendenze e diagramma), senza sostituire automaticamente la V4.
+- [ ] Validare le scelte su benchmark già disponibili e gold evidence corretti, con confronti controllati e test reversibili; evitare di replicare prove storiche già conclusive.
+- [ ] Soltanto **dopo** la validazione architetturale: consolidare codice e configurazioni, dismettere componenti scartati e ripulire gli indici secondo il piano di rollback.
+
+**Criterio di uscita dalla fase startup:** architettura e abbinamenti motivati da fonti ufficiali e risultati riproducibili; configurazione di riferimento documentata; baseline preservata; componenti non necessari identificati e rimossi in sicurezza.
+
 ## 1. Inventario e stato reale — prima di ottimizzare
 
 - [ ] Confrontare codice GitHub con file e commit effettivamente presenti sulla VPS; verificare branch e modifiche locali non versionate.
