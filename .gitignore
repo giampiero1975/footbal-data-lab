@@ -1,0 +1,27 @@
+# Dati e knowledge base locali
+/datasets/
+/knowledge/
+
+# Ambienti Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Configurazioni e credenziali
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Report e log
+*.log
+*.txt
+!requirements.txt
+
+# File temporanei
+*.tmp
+*.bak
+.DS_Store
