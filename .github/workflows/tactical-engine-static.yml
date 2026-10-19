@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'projects/tactical-engine/scripts/**'
+      - 'projects/tactical-engine/tests/**'
       - '.github/workflows/tactical-engine-static.yml'
   pull_request:
     paths:
@@ -25,6 +26,8 @@ jobs:
           python-version: '3.12'
       - name: Compile every Python script (no dependencies or VPS access)
         run: python -m compileall -q projects/tactical-engine/scripts
+      - name: Offline unit tests (mocked Chroma and Ollama)
+        run: python -m unittest discover -s projects/tactical-engine/tests -v
       - name: Check static inventory (no model loading)
         run: |
           python projects/tactical-engine/scripts/audit_script_dependencies.py > /tmp/tactical-script-inventory.json
