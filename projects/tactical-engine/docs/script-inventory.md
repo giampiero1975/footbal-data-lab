@@ -30,3 +30,28 @@ Data: 2026-10-19. **Verificato su codice GitHub; nessuna esecuzione sulla VPS.**
 ## Prossimo controllo non ripetitivo
 
 Censire i rimanenti script e riferimenti esterni; eseguire lo scanner statico senza accesso ai modelli, poi verificare entry point runtime. Documentazione ufficiale dei componenti e versioni in `components.md`; criteri di rollback in `runtime-checklist.md`.
+
+## Secondo lotto — tutti gli altri script storici censiti dal codice GitHub
+
+**Benchmark retrieval e confronto (non scrivono collection):** `benchmark_llamaindex_mmr.py` (V4 Qwen, mMARCO), `benchmark_postrerank_diversity.py` (V4 Qwen, mMARCO, NumPy), `confronta_indici_dribbling.py` (V1/V2), `confronta_reranker_bge_mmarco.py` (V4 Qwen, BGE/mMARCO), `confronta_reranker_bge_qwen.py` (V4 Qwen, BGE e altro modello), `confronta_retrieval_v2_v3.py` (V2/V3 Nomic), `confronta_retriever.py` (V1 Nomic), `diagnosi_q8_ampiezza.py`, `diagnosi_q8_retrieval.py` (V4 Qwen/mMARCO), `diagnosi_retrieval_dribbling.py` (V3/V4, Nomic/Qwen/BGE), `test_reranker.py` e `valida_bge.py` (V1), `test_retrieval_ibrido.py` (V1+V2). **La classificazione è statica:** query e caricamento modelli possono consumare risorse, e Chroma PersistentClient può effettuare housekeeping interno.
+
+**Benchmark che scrivono report su disco:** `confronta_embedding_v3_v4.py` (V3/V4, Nomic/Qwen, BGE), `test_prompt_fedelta_dribbling_v4.py`, `test_prompt_fedelta_dribbling_v4_corretto.py`, `test_prompt_fedelta_dribbling_v5.py`, `test_risposte_dribbling_v3.py` (V3/Nomic/BGE, `qwen3:4b-instruct` assente nell'ultimo inventario), `verifica_fedelta_dribbling_v4.py` (LLM Qwen3.5 e report). Non considerarli read-only del filesystem.
+
+**Ingestion e immagini, scrivono file:** `ingest_pdfs.py` converte PDF in JSON/Markdown e immagini, crea directory e artefatti; `extract_figures.py` estrae figure da PDF e crea directory/file. Sono strumenti di trasformazione del corpus, non test innocui.
+
+**Altri test di generazione/diagnostica:** `prova_risposta_dribbling.py` usa V1/Nomic/BGE e `qwen3:4b-instruct`; `test_ragionamento_applicato_v4.py`, `test_ragionamento_thinking_v4.py`, `test_ragionamento_thinking_16k_v4.py`, `test_ragionamento_thinking_16k_timeout_v4.py` importano direttamente `test_prompt_fedelta_dribbling_v4_corretto` e ne modificano configurazioni a runtime per esperimenti. **Dipendenza diretta verificata**: non archiviare lo script base finché tali esperimenti devono essere riproducibili.
+
+**Nota sul metodo:** le scritture elencate sono dedotte dalle chiamate visibili e non costituiscono audit dinamico di tutte le librerie. L'inventario riguarda tutti i nomi di script presenti nell'elenco GitHub del 2026-10-19, ma non i chiamanti esterni, cron, systemd, processi, documenti o file non Python. La pulizia fisica resta sospesa.
+
+## Classificazione preliminare per gruppi
+
+| Gruppo | Script | Stato |
+|---|---|---|
+| Costruttori indici | `build_rag_index*.py` | **Scrivono indici**; mantenere, non eseguire come audit |
+| Ingestion | `ingest_pdfs.py`, `extract_figures.py` | **Scrivono artefatti**; mantenere |
+| Legacy V1/V2 | `ask_dribbling.py`, `prova_risposta_dribbling.py`, `confronta_indici_dribbling.py`, `confronta_retriever.py`, `test_reranker.py`, `valida_bge.py`, `test_retrieval_ibrido.py` | Candidati ad archivio **solo dopo** verifica entry point e dipendenze |
+| V3 / confronti | `test_risposte_dribbling_v3.py`, `confronta_retrieval_v2_v3.py`, `confronta_embedding_v3_v4.py`, `diagnosi_retrieval_dribbling.py` | Conservare per regressioni |
+| V4/V5 esperimenti | benchmark, diagnostiche, test fedeltà/ragionamento, confronto reranker | Conservare come esperimenti; consolidamento successivo |
+| Nuovi audit | `audit_script_dependencies.py`, `audit_v4_runtime.py`, `benchmark_qwen_query_instruction.py` | Creati in GitHub, non validati sulla VPS |
+
+**Risultato:** inventario nominale statico di tutti gli script Python nel percorso GitHub completato; **nessuno è dichiarato inutilizzato o eliminabile**.
