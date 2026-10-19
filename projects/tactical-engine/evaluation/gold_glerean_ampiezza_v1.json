@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "case_id": "GLEREAN-334-AMPIEZZA-001",
-  "status": "primary_pdf_text_checked_visual_figures_pending",
+  "status": "primary_pdf_text_verified_figures_pending",
   "language": "it",
   "question": "Come si sviluppa l’ampiezza offensiva nel 3-3-4 di Glerean?",
   "source_document": "334_principi_Glerean",
@@ -15,7 +15,7 @@
       "evidence": "La palla viene conquistata e gestita nella nostra zona difensiva ; la squadra si dispone in questa maniera: gli attaccanti si allungano cercando la linea dei difensori avversari mantenendo tutti e quattro una posizione centrale, i centrocampisti esterni si allargano sulle linee laterali",
       "report_reference": "TOP 10, Source 10",
       "required": true,
-      "primary_pdf_verified": false
+      "primary_pdf_verified": true
     },
     {
       "id": "G2",
@@ -24,7 +24,7 @@
       "evidence": "La palla viene conquistata e gestita nella zona di centrocampo; i difensori si allargano e allungano all'indietro, i centrocampisti non in possesso si allargano, i due attaccanti centrali si allungano sulla linea dei difensori centrali avversari, i due attaccanti esterni si allargano",
       "report_reference": "TOP 10, Source 2 / TOP 5, Source 3",
       "required": true,
-      "primary_pdf_verified": false
+      "primary_pdf_verified": true
     },
     {
       "id": "G3",
@@ -83,10 +83,9 @@
     }
   },
   "limitations": [
-    "Verifica testuale della fonte primaria eseguita; controllo visivo delle figure 15,16,17,21 ancora aperto.",
-    "Il PDF contiene artefatti di estrazione (parole spezzate), quindi le citazioni gold mantengono la versione normalizzata del report.",
-    "Non e' un dataset di valutazione statisticamente rappresentativo.",
-    "Le osservazioni di copertura sono provvisorie e richiedono revisione umana."
+    "All four claims checked against text extracted from the primary PDF in Google Drive.",
+    "Figures 15/a, 16, 17 and 21 still require visual inspection.",
+    "Single case is not representative of overall system quality."
   ],
   "primary_source": {
     "title": "I principi del 3-3-4",
