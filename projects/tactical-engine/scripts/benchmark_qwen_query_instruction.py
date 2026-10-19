@@ -69,7 +69,14 @@ def main() -> None:
     for question, source, _ in TESTS:
         if source not in available_sources:
             raise RuntimeError(f"Source filter {source!r} missing for {question!r}; available: {sorted(map(str, available_sources))}")
-    for question, source, gold in TESTS:\n        for prefix in gold:\n            matches = [item for item in known_ids if item.startswith(prefix)]\n            if len(matches) != 1:\n                raise RuntimeError(f'Gold prefix {prefix} matches {len(matches)} IDs for {question!r}')\n    embed = OllamaEmbedding(model_name=MODEL, base_url=args.ollama_url)
+    for question, source, gold in TESTS:
+        for prefix in gold:
+            matches = [item for item in known_ids if item.startswith(prefix)]
+            if len(matches) != 1:
+                raise RuntimeError(f'Gold prefix {prefix} matches {len(matches)} IDs for {question!r}')
+            if id_sources[matches[0]] != source:
+                raise RuntimeError(f"Gold {prefix} belongs to {id_sources[matches[0]]!r}, not {source!r}")
+    embed = OllamaEmbedding(model_name=MODEL, base_url=args.ollama_url)
     results = []
     for index, (question, source, gold) in enumerate(TESTS):
         row = {"question": question, "source": source, "gold_prefixes": gold}
