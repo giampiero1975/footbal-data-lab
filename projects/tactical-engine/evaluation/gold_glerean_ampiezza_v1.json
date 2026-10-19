@@ -1,11 +1,11 @@
 {
   "schema_version": "1.0",
   "case_id": "GLEREAN-334-AMPIEZZA-001",
-  "status": "evidence_checked_against_v4_report_original_pdf_pending",
+  "status": "primary_pdf_text_checked_visual_figures_pending",
   "language": "it",
   "question": "Come si sviluppa l’ampiezza offensiva nel 3-3-4 di Glerean?",
   "source_document": "334_principi_Glerean",
-  "source_basis": "Passaggi della tesi riportati nel report risposte_v4_top5_top10.txt; riscontro diretto sul PDF originale ancora da effettuare",
+  "source_basis": "Testo estratto dal PDF originale su Google Drive, confrontato con gli estratti del report V4",
   "scope": "Solo comportamento in possesso, secondo la posizione della palla",
   "gold_claims": [
     {
@@ -14,7 +14,8 @@
       "claim": "I quattro attaccanti si allungano verso la linea difensiva avversaria mantenendo posizione centrale; i centrocampisti esterni si allargano sulle linee laterali.",
       "evidence": "La palla viene conquistata e gestita nella nostra zona difensiva ; la squadra si dispone in questa maniera: gli attaccanti si allungano cercando la linea dei difensori avversari mantenendo tutti e quattro una posizione centrale, i centrocampisti esterni si allargano sulle linee laterali",
       "report_reference": "TOP 10, Source 10",
-      "required": true
+      "required": true,
+      "primary_pdf_verified": false
     },
     {
       "id": "G2",
@@ -22,7 +23,8 @@
       "claim": "I due attaccanti centrali si allungano sulla linea dei difensori centrali avversari e i due attaccanti esterni si allargano; anche i centrocampisti non in possesso si allargano.",
       "evidence": "La palla viene conquistata e gestita nella zona di centrocampo; i difensori si allargano e allungano all'indietro, i centrocampisti non in possesso si allargano, i due attaccanti centrali si allungano sulla linea dei difensori centrali avversari, i due attaccanti esterni si allargano",
       "report_reference": "TOP 10, Source 2 / TOP 5, Source 3",
-      "required": true
+      "required": true,
+      "primary_pdf_verified": false
     },
     {
       "id": "G3",
@@ -30,7 +32,8 @@
       "claim": "I laterali attaccano profondità e ampiezza; i centrali attaccano la profondità; le corse sono diagonali rispetto alla palla.",
       "evidence": "Nel caso la palla venga giocata sui centrocampisti o recuperata e gestita dagli stessi, il movimento degli attaccanti è di profondità e ampiezza per i laterali, di profondità per i centrali, tenendo sempre in considerazione che la corsa deve essere fatta sempre in diagonale rispetto alla palla",
       "report_reference": "TOP 10, Source 4 / TOP 5, Source 4",
-      "required": true
+      "required": true,
+      "primary_pdf_verified": true
     },
     {
       "id": "G4",
@@ -38,7 +41,8 @@
       "claim": "Centrocampo e difesa restano in appoggio; gli attaccanti si muovono in diagonale e il giocatore più vicino alla palla avvia il movimento cui gli altri si adeguano.",
       "evidence": "La palla viene conquistata e gestita in zona d'attacco; i giocatori di centrocampo e difesa restano in appoggio. I compagni di reparto si muovono negli spazi con corse in diagonale. L'uomo più vicino alla palla determina sempre il movimento iniziale mentre gli altri agiscono di conseguenza",
       "report_reference": "TOP 10, Source 2 / TOP 5, Source 3",
-      "required": true
+      "required": true,
+      "primary_pdf_verified": true
     }
   ],
   "evaluation_rules": {
@@ -79,8 +83,15 @@
     }
   },
   "limitations": [
-    "Verificati gli estratti del report, non le pagine del PDF originale.",
+    "Verifica testuale della fonte primaria eseguita; controllo visivo delle figure 15,16,17,21 ancora aperto.",
+    "Il PDF contiene artefatti di estrazione (parole spezzate), quindi le citazioni gold mantengono la versione normalizzata del report.",
     "Non e' un dataset di valutazione statisticamente rappresentativo.",
     "Le osservazioni di copertura sono provvisorie e richiedono revisione umana."
-  ]
+  ],
+  "primary_source": {
+    "title": "I principi del 3-3-4",
+    "author": "Ezio Glerean",
+    "url": "https://drive.google.com/file/d/0B6maey1azXc5YnlONlQwd2EtMDA/view?usp=drivesdk&resourcekey=0-BD1AhKI9QCcknzyQdXZDsA",
+    "verification": "Testo estratto dal PDF originale tramite connettore Google Drive; le figure non sono state ancora ispezionate visivamente"
+  }
 }
