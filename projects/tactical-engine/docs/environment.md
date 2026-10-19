@@ -32,3 +32,14 @@ Data: 2026-10-19 (riepilogo delle verifiche comunicate in chat, eseguite nella s
 
 ## Da verificare una sola volta, poi registrare
 Collection Chroma e conteggi, entry point/servizi, versione interprete venv, storage, cache modelli/reranker, config runtime, backup e test rollback V4, benchmark semantici.
+
+## Verifiche runtime aggiuntive — 2026-10-19
+
+**Fonte:** output dei comandi eseguiti dall'utente sulla VPS e riportati nella conversazione. Non è un accesso SSH diretto dell'assistente. Checkout VPS aggiornato con `git pull --ff-only origin main` da `e8242d3` a `075bd1498819d782eea1d4107ca5b9c4c70c0a6e`; aggiornamento fast-forward senza conflitti, nessuna modifica agli indici.
+
+- **Servizi:** `systemctl list-units --type=service --all` ha mostrato `ollama.service loaded active running`; non ha evidenziato un servizio nominato football/dribbling/tactical/surya. Il controllo dei processi ha trovato due helper Surya (`surya.fast_layout.server` e `surya.ocr_error.server`), ma nessun processo con nome dribbling/tactical-engine/uvicorn/gunicorn/streamlit. Questi controlli **non escludono** avvii manuali, cron, unità con nomi diversi o processi terminati.
+- **Modelli installati, confermati con `ollama list`:** `qwen3-embedding:0.6b` ID `ac6da0dfba84` (639 MB), `qwen3.5:9b` ID `56671c2ab938` (6,6 GB), `nomic-embed-text:latest` ID `0a109f422b47` (274 MB). `ollama ps`: nessun modello residente nel campione.
+- **Memoria:** `free -h`: RAM 15 GiB totale, 1,2 GiB usata, 8,6 GiB libera, 14 GiB available; swap 1,5 GiB totale e circa 1,5 GiB occupata. `vmstat 1 5`: nei quattro intervalli misurati `si=0`, `so=0`, CPU idle 100%, `wa=0`. La prima riga di vmstat è una media storica: non attribuirla all'intervallo. Nessuna evidenza di swapping attivo **durante il campione**; non implica che la swap sia inutilizzata in generale o che la latenza sotto carico sia validata.
+- **Architettura:** non è stato ancora identificato un entry point di produzione V4. Ollama attivo non significa che DRIBBLING sia un servizio avviato.
+
+**Nessuna modifica richiesta a RAM/swap o ai servizi.** Ripetere i controlli solo se cambiano risorse, processi, deployment o compaiono sintomi.
