@@ -48,7 +48,8 @@ def main():
     for idx, (cid, doc, meta, dist) in enumerate(candidates, 1):
         if meta.get("chunk_index") in GOLD:
             print(f"DENSE {idx}: chunk {meta['chunk_index']} | id={cid[:12]} | distanza={dist:.4f}", flush=True)
-    rankings = {}\n    for name, model_name in [
+    rankings = {}
+    for name, model_name in [
         ("BGE", "BAAI/bge-reranker-v2-m3"),
         ("mMARCO", "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"),
     ]:
@@ -59,7 +60,8 @@ def main():
                                batch_size=1, show_progress_bar=False)
         ranked = sorted(range(len(candidates)), key=lambda i: float(scores[i]), reverse=True)
         print(f"{name}: reranking {time.perf_counter()-t0:.2f}s", flush=True)
-        rankings[name] = [candidates[i][0] for i in ranked]\n        positions = {candidates[i][2].get("chunk_index"): rank
+        rankings[name] = [candidates[i][0] for i in ranked]
+        positions = {candidates[i][2].get("chunk_index"): rank
                      for rank, i in enumerate(ranked, 1)}
         for chunk, description in GOLD.items():
             pos = positions.get(chunk)
