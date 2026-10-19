@@ -33,3 +33,11 @@ Aggiornamento: 2026-10-19. Fonti: inventario VPS in `docs/environment.md`, scrip
 - **E6 — Consolidamento**: solo dopo benchmark riproducibili, configurazione dichiarativa e pulizia componenti inutilizzati con rollback.
 
 **Stato:** audit statico avviato, nessun benchmark eseguito, nessuna configurazione dichiarata ottimizzata o pronta alla sostituzione. Nessuna modifica alla VPS.
+
+## Riscontri sperimentali e runtime — 2026-10-19
+
+- **Chroma verificato sulla VPS:** V3 `dribbling_tactics_v3_contextualized` = 86 chunk, 768 dimensioni, spazio HNSW cosine; V4 `dribbling_tactics_v4_qwen3_embedding_06b` = 86 chunk, 1024 dimensioni, spazio HNSW L2. Entrambe contengono 49 record `334_principi_Glerean` e 37 `il_3412_Giustinetti`, con ID unici. L'audit V4 su tutti gli 86 vettori ha trovato norme vicine a 1 (deviazione massima circa 5e-7) e nessun valore non finito. La differenza L2/cosine **non giustifica da sola** la ricostruzione della collection: per vettori unitari i ranking esatti sono equivalenti, pur potendo differire le approssimazioni HNSW.
+- **EXP-001 eseguito:** benchmark A/B read-only su nove query, otto con gold ID **provvisori**, top-15, filtro sorgente. Recall@15 = 1,0 per baseline e instruction; MRR del primo gold baseline = 0,6354167, instruction = 0,46875; tempo medio embedding baseline = 0,09533 s, instruction = 0,17956 s. Baseline migliore in quattro domande, parità in quattro, instruction mai migliore. **Decisione provvisoria: mantenere query baseline senza istruzione aggiunta.** Non prova la fedeltà delle risposte né la qualità con reranker e gold validati.
+- **Servizio/modelli:** Ollama attivo e tre modelli installati; nessun servizio DRIBBLING dedicato individuato dai controlli nominali. La pipeline end-to-end V4 con reranker e generazione non è ancora stata validata.
+
+**Aggiornamento rispetto allo stato iniziale:** audit metrica e benchmark query ora eseguiti; le sezioni precedenti restano traccia delle ipotesi e del piano prima delle misurazioni. Non confondere i risultati sperimentali con una configurazione di produzione approvata.
