@@ -61,20 +61,25 @@ def main() -> None:
     collection = chromadb.PersistentClient(path=args.db).get_collection(args.collection)
     if collection.count() != 86:
         raise RuntimeError(f"Expected 86 chunks, found {collection.count()}; aborting")
-    # Verify the provisional IDs before interpreting retrieval metrics.\n    stored = collection.get(include=["metadatas"])
+    # Verify the provisional IDs before interpreting retrieval metrics.
+    stored = collection.get(include=["metadatas"])
     known_ids = stored["ids"]
     id_sources = {i: (m or {}).get("source") for i, m in zip(stored["ids"], stored["metadatas"])}
     available_sources = set(id_sources.values())
     for question, source, _ in TESTS:
         if source not in available_sources:
-            raise RuntimeError(f"Source filter {source!r} missing for {question!r}; available: {sorted(map(str, available_sources))}")\n    for question, source, gold in TESTS:\n        for prefix in gold:\n            matches = [item for item in known_ids if item.startswith(prefix)]\n            if len(matches) != 1:\n                raise RuntimeError(f'Gold prefix {prefix} matches {len(matches)} IDs for {question!r}')\n    embed = OllamaEmbedding(model_name=MODEL, base_url=args.ollama_url)
+            raise RuntimeError(f"Source filter {source!r} missing for {question!r}; available: {sorted(map(str, available_sources))}")
+    for question, source, gold in TESTS:\n        for prefix in gold:\n            matches = [item for item in known_ids if item.startswith(prefix)]\n            if len(matches) != 1:\n                raise RuntimeError(f'Gold prefix {prefix} matches {len(matches)} IDs for {question!r}')\n    embed = OllamaEmbedding(model_name=MODEL, base_url=args.ollama_url)
     results = []
     for index, (question, source, gold) in enumerate(TESTS):
         row = {"question": question, "source": source, "gold_prefixes": gold}
-        for variant, query in (
+        variants = [
             ("baseline", question),
             ("instruct", f"Instruct: {INSTRUCTION}\nQuery:{question}"),
-        ):
+        ]
+        if index % 2:
+            variants.reverse()
+        for variant, query in variants:
             started = time.perf_counter()
             vector = embed.get_query_embedding(query)
             embedding_seconds = time.perf_counter() - started
@@ -111,7 +116,7 @@ def main() -> None:
             "mean_recall_at_k": statistics.mean(r[variant]["gold_prefix_recall"] for r in results if r[variant]["gold_prefix_recall"] is not None),
             "mrr_first_gold": statistics.mean(
                 1 / r[variant]["first_gold_rank"] if r[variant]["first_gold_rank"] else 0
-                for r in results
+                for r in results if r["gold_prefixes"]
             ),
             "mean_embedding_seconds": statistics.mean(
                 r[variant]["embedding_seconds"] for r in results
