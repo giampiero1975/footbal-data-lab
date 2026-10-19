@@ -66,3 +66,11 @@ Conservare su Git solo manifest e report sintetici non sensibili. Indici, PDF, p
 **Gap accertato nel codice degli script V4 esaminati:** `OllamaEmbedding(model_name='qwen3-embedding:0.6b', ...)` non passa `query_instruction`; secondo implementazione ufficiale LlamaIndex corrente, la query non riceve istruzione tramite tale wrapper. **Non ancora verificato** se Ollama applica template o preprocessing lato modello: evitare conclusione assoluta sull'input interno del modello.
 
 **Test reversibili proposti (non eseguiti):** A/B retrieval read-only sulla collection V4 con query senza istruzione vs istruzione Qwen formattata; stesso gold semantico, stesso filtro autore, top-k e reranker. Separatamente A/B `citation_chunk_size=2048/512` e overlap `0/20`, mantenendo retrieval e prompt invariati e verificando claim→passaggio, copertura, latenza. Non mescolare variabili in un unico esperimento. Nessuna modifica della baseline.
+
+## Audit A05 — consolidamento dei rischi e dipendenze (2026-10-19)
+
+**Evidenza GitHub:** `diagnosi_repack_refine_dribbling_v4.py` usa metodi e attributi privati LlamaIndex (`_create_citation_nodes`, `_response_synthesizer`, `_make_compact_text_chunks`, `_prompt_helper`), e `test_retrieval_ibrido.py` contiene una deduplicazione manuale basata su inclusione di testo e soglia fissa di 100 caratteri. Sono script diagnostici/sperimentali, non componenti runtime confermati. Non sostituire né rimuovere prima di sapere se sono invocati.
+
+**Coerenza repository:** `projects/tactical-engine/README.md` rimanda a `docs/decisions.md`, ma al controllo tramite GitHub tale percorso restituisce 404: riferimento documentale da correggere o file da creare, non problema runtime dimostrato.
+
+**Vincoli di sicurezza dell'audit:** non lanciare script che scrivono report su VPS, non aggiornare pacchetti, non ricreare indici, non effettuare `git pull` finché non sono noti deploy, baseline e backup. Rimanenti verifiche runtime richiedono accesso VPS o output mirati, non possono essere dedotte dal repository.
