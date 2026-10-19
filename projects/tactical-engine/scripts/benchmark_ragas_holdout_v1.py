@@ -22,9 +22,10 @@ async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--ids", nargs="+", default=["H07", "H09", "H10", "H06"])
     parser.add_argument("--model", default="qwen3.5:9b")
+    parser.add_argument("--preflight", action="store_true", help="Controlla dataset e API Ragas senza chiamare Ollama")
     parser.add_argument("--output", type=Path, default=ROOT / "benchmark_ragas_holdout_v1.json")
     args = parser.parse_args()
-    if args.output.exists():
+    if args.output.exists() and not args.preflight:
         raise FileExistsError(f"Non sovrascrivo un report esistente: {args.output}")
     from openai import AsyncOpenAI
     from ragas.llms import llm_factory
@@ -32,12 +33,23 @@ async def main():
     import ragas
     import openai
     client = AsyncOpenAI(api_key="ollama", base_url="http://127.0.0.1:11434/v1", timeout=600)
-    llm = llm_factory(args.model, provider="openai", client=client)
+    llm = None if args.preflight else llm_factory(args.model, client=client)
     gold = json.loads(GOLD.read_text(encoding="utf-8"))
     claims = {c["id"]: c for case in gold["cases"] for c in case["gold_claims"]}
     tests = {t["id"]: t for t in TESTS}
     if any(i not in tests for i in args.ids):
         raise ValueError("ID non presente nel benchmark holdout")
+    if args.preflight:
+        import inspect
+        assert hasattr(DiscreteMetric, "ascore"), "API Ragas: ascore assente"
+        assert callable(llm_factory), "API Ragas: llm_factory non disponibile"
+        for ident in args.ids:
+            t = tests[ident]
+            assert t["claim"] in claims and claims[t["claim"]]["evidence"].strip(), ident
+            assert t["expected_fidelity"] in ("coerente", "contraddittorio", "evidenza_insufficiente"), ident
+            assert t["expected_coverage"] in ("completo", "parziale"), ident
+        print(json.dumps({"preflight": "ok", "ragas_version": getattr(ragas, "__version__", "unknown"), "openai_version": getattr(openai, "__version__", "unknown"), "cases": args.ids, "ascore_signature": str(inspect.signature(DiscreteMetric.ascore))}, ensure_ascii=False, indent=2))
+        return
     fidelity = DiscreteMetric(
         name="tactical_fidelity",
         allowed_values=["coerente", "contraddittorio", "evidenza_insufficiente"],
@@ -62,6 +74,7 @@ async def main():
         "framework": "ragas",
         "ragas_version": getattr(ragas, "__version__", "unknown"),
         "openai_version": getattr(openai, "__version__", "unknown"),
+        "evidence_source": str(GOLD.relative_to(ROOT)),
         "model": args.model,
         "method": "ragas_discrete_metric_two_axes",
         "test_ids": args.ids,
