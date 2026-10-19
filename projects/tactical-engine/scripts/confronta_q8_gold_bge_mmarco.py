@@ -19,6 +19,17 @@ GOLD = {
     21: "Palla ai centrocampisti: laterali in ampiezza e profondita",
 }
 
+def reciprocal_rank_fusion(rankings, k=60):
+    """Fusione per ID univoco; posizioni 1-based; nessuna somma dei logits."""
+    if k < 1:
+        raise ValueError("k deve essere >= 1")
+    scores = {}
+    for ranking in rankings.values():
+        for rank, chunk_id in enumerate(ranking, 1):
+            scores[chunk_id] = scores.get(chunk_id, 0.0) + 1.0 / (k + rank)
+    return sorted(scores, key=lambda cid: (-scores[cid], cid))
+
+
 def main():
     coll = chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
     if coll.count() != 86:
@@ -37,7 +48,7 @@ def main():
     for idx, (cid, doc, meta, dist) in enumerate(candidates, 1):
         if meta.get("chunk_index") in GOLD:
             print(f"DENSE {idx}: chunk {meta['chunk_index']} | id={cid[:12]} | distanza={dist:.4f}", flush=True)
-    for name, model_name in [
+    rankings = {}\n    for name, model_name in [
         ("BGE", "BAAI/bge-reranker-v2-m3"),
         ("mMARCO", "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1"),
     ]:
@@ -48,7 +59,7 @@ def main():
                                batch_size=1, show_progress_bar=False)
         ranked = sorted(range(len(candidates)), key=lambda i: float(scores[i]), reverse=True)
         print(f"{name}: reranking {time.perf_counter()-t0:.2f}s", flush=True)
-        positions = {candidates[i][2].get("chunk_index"): rank
+        rankings[name] = [candidates[i][0] for i in ranked]\n        positions = {candidates[i][2].get("chunk_index"): rank
                      for rank, i in enumerate(ranked, 1)}
         for chunk, description in GOLD.items():
             pos = positions.get(chunk)
@@ -62,6 +73,17 @@ def main():
         for rank, i in enumerate(ranked[:10], 1):
             cid, _, meta, _ = candidates[i]
             print(f"    {rank:2d} | {meta.get('chunk_index')} | {cid[:12]} | {float(scores[i]):.3f}", flush=True)
+    lookup = {cid: meta for cid, _, meta, _ in candidates}
+    for k in (1, 10, 60):
+        fused = reciprocal_rank_fusion(rankings, k=k)
+        print(f"RRF k={k}: {len(fused)} ID univoci su {len(candidates)} candidati", flush=True)
+        for limit in (5, 10):
+            selected = fused[:limit]
+            covered = [chunk for chunk in GOLD if any(lookup[cid].get("chunk_index") == chunk for cid in selected)]
+            print(f"  RRF@{limit}: {len(covered)}/{len(GOLD)} gold | chunk={covered}", flush=True)
+        print("  TOP10 RRF (rank | chunk | id):", flush=True)
+        for rank, cid in enumerate(fused[:10], 1):
+            print(f"    {rank:2d} | {lookup[cid].get('chunk_index')} | {cid[:12]}", flush=True)
     print("FINE: benchmark di sola lettura.", flush=True)
 
 if __name__ == "__main__":
