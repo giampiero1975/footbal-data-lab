@@ -35,7 +35,18 @@ def inspect_collection(client, name):
         for chunk_id, meta in zip(batch["ids"], batch["metadatas"] or []):
             ids.add(chunk_id)
             sources[str((meta or {}).get("source", "<missing>"))] += 1
-    # Inspect vector geometry: normalized vectors make L2/cosine rankings comparable.\n    sample = coll.get(limit=min(20, count), include=["embeddings"]) if count else None\n    vectors = sample["embeddings"] if sample is not None else None\n    if vectors is not None and len(vectors):\n        norms = [math.sqrt(sum(float(x) ** 2 for x in vector)) for vector in vectors]\n        data["embedding_sample"] = {\n            "size": len(norms), "dimensions": sorted({len(v) for v in vectors}),\n            "min_l2_norm": round(min(norms), 6),\n            "max_l2_norm": round(max(norms), 6),\n            "max_abs_deviation_from_unit": round(max(abs(n - 1.0) for n in norms), 6),\n        }\n    data.update(source_counts=dict(sorted(sources.items())),
+    # Vector norms are diagnostic; sampling does not prove whole-collection normalization.
+    sample = coll.get(limit=min(20, count), include=["embeddings"]) if count else None
+    vectors = sample["embeddings"] if sample is not None else None
+    if vectors is not None and len(vectors):
+        norms = [math.sqrt(sum(float(x) ** 2 for x in vector)) for vector in vectors]
+        data["embedding_sample"] = {
+            "size": len(norms), "dimensions": sorted({len(v) for v in vectors}),
+            "min_l2_norm": round(min(norms), 6),
+            "max_l2_norm": round(max(norms), 6),
+            "max_abs_deviation_from_unit": round(max(abs(n - 1.0) for n in norms), 6),
+        }
+    data.update(source_counts=dict(sorted(sources.items())),
                 unique_ids=len(ids), expected_count_86=(count == 86))
     return data
 
@@ -52,7 +63,7 @@ def main():
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "db_path": args.db, "chromadb_version": chromadb.__version__,
         "collections": [inspect_collection(client, name) for name in COLLECTIONS],
-        "note": "Collection metadata only, not proof of active runtime pipeline.",
+        "note": "Collection metadata and a 20-vector norm sample; not proof of active runtime pipeline.",
     }, ensure_ascii=False, indent=2, default=str))
 
 
