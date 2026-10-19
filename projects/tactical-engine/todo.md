@@ -27,7 +27,7 @@
 - [ ] Per ogni abbinamento verificare versioni compatibili, tokenizer e token budget, API supportate, istruzioni dei modelli, metriche, limiti hardware, parametri raccomandati e documentazione ufficiale/versionata.
 - [ ] Distinguere **raccomandazioni ufficiali**, evidenze di benchmark riproducibili, fonti autorevoli indipendenti e ipotesi ancora da testare; annotare URL, data, versione e grado di attendibilità.
 - [ ] Identificare personalizzazioni e codice scritto autonomamente che aggirano, duplicano o contraddicono funzionalità ufficiali; mantenere soltanto ciò che è necessario e misurabilmente utile.
-- [ ] Produrre una **matrice decisionale architetturale**: requisito → componente/alternative → fonti ufficiali → compatibilità → qualità → risorse → decisione motivata.
+- [ ] Completare la **matrice decisionale architetturale** con benchmark, compatibilità esatta e decisioni definitive. **Bozza documentale con fonti ufficiali e prove da fare già registrata** in `docs/components.md`.
 - [ ] Definire una **configurazione di riferimento raccomandata**, versionata e riproducibile (componenti, versioni/digest, parametri, prompt, dipendenze e diagramma), senza sostituire automaticamente la V4.
 - [ ] Validare le scelte su benchmark già disponibili e gold evidence corretti, con confronti controllati e test reversibili; evitare di replicare prove storiche già conclusive.
 - [ ] Soltanto **dopo** la validazione architetturale: consolidare codice e configurazioni, dismettere componenti scartati e ripulire gli indici secondo il piano di rollback.
@@ -50,7 +50,7 @@
 **CHECK DI OTTIMIZZAZIONE COMPONENTI — DA ESEGUIRE, NON SPUNTARE IN ANTICIPO:** per ogni componente verificare documentazione ufficiale aggiornata e relativa versione, parametri raccomandati, compatibilità degli abbinamenti, eventuali personalizzazioni ridondanti, impatto su CPU/RAM e test comparativo rispetto alla V4. Registrare URL, data, esito e decisione (mantenere/modificare/sostituire). Solo una verifica documentale **e** sperimentale consente di dichiarare un'ottimizzazione validata.
 
 
-- [ ] Ricostruire la pipeline realmente attiva: PDF → Docling → chunking → embedding → ChromaDB → retrieval → reranking → generazione → citazioni.
+- [ ] Ricostruire la pipeline **realmente attiva sulla VPS**: PDF → Docling → chunking → embedding → ChromaDB → retrieval → reranking → generazione → citazioni. **Ricostruzione statica degli script GitHub completata** in `docs/verification.md` A01–A04 e `docs/components.md`; entry point runtime ancora sconosciuto.
 - [ ] Verificare Docling: conversione PDF, lettura di tabelle/figure, struttura esportata, provenienza/pagine e limiti delle immagini non interpretate.
 - [ ] Verificare HybridChunker e contextualization rispetto alle API ufficiali e alle versioni installate.
 - [ ] Controllare l'allineamento tokenizer/chunking con Qwen3-Embedding 0.6B: V3 usa tokenizer Nomic; V4 riutilizza gli 86 testi V3. **Ipotesi da misurare, non errore dimostrato.**
@@ -61,7 +61,7 @@
 - [ ] Verificare Ollama/Qwen3.5 9B: tag/modello realmente usato, context window effettiva, parametri generation, thinking, timeout, template e limiti hardware.
 - [ ] Verificare reranker mMARCO e alternative BGE: API ufficiali, lingua, truncation/max_length, scoring e compatibilità hardware.
 - [ ] Identificare componenti sviluppati manualmente che duplicano funzionalità ufficiali; valutarne motivazione e impatto prima di sostituirli.
-- [ ] Produrre matrice componente/versione/configurazione/fonte ufficiale/esito/azione.
+- [x] Produrre **prima matrice documentale** componente/versione/configurazione/fonte ufficiale/esito/azione (`docs/components.md`); compatibilità esatta delle release e benchmark restano aperti.
 
 ## 3. Baseline, esperimenti e qualità
 
