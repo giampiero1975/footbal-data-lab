@@ -10,6 +10,7 @@ import argparse
 from collections import Counter
 from datetime import datetime, timezone
 import json
+import math
 from pathlib import Path
 
 import chromadb
@@ -34,7 +35,7 @@ def inspect_collection(client, name):
         for chunk_id, meta in zip(batch["ids"], batch["metadatas"] or []):
             ids.add(chunk_id)
             sources[str((meta or {}).get("source", "<missing>"))] += 1
-    data.update(source_counts=dict(sorted(sources.items())),
+    # Inspect vector geometry: normalized vectors make L2/cosine rankings comparable.\n    sample = coll.get(limit=min(20, count), include=["embeddings"]) if count else None\n    vectors = sample["embeddings"] if sample is not None else None\n    if vectors is not None and len(vectors):\n        norms = [math.sqrt(sum(float(x) ** 2 for x in vector)) for vector in vectors]\n        data["embedding_sample"] = {\n            "size": len(norms), "dimensions": sorted({len(v) for v in vectors}),\n            "min_l2_norm": round(min(norms), 6),\n            "max_l2_norm": round(max(norms), 6),\n            "max_abs_deviation_from_unit": round(max(abs(n - 1.0) for n in norms), 6),\n        }\n    data.update(source_counts=dict(sorted(sources.items())),
                 unique_ids=len(ids), expected_count_86=(count == 86))
     return data
 
