@@ -20,7 +20,7 @@ async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--id", default="H07")
     parser.add_argument("--model", default="qwen3.5:9b")
-    parser.add_argument("--output", type=Path, default=ROOT / "diagnostica_ragas_coverage_h07_v1.json")
+    parser.add_argument("--output", type=Path, default=ROOT / "diagnostica_ragas_coverage_h07_v2.json")
     args = parser.parse_args()
     if args.output.exists():
         raise FileExistsError(f"Non sovrascrivo: {args.output}")
@@ -38,7 +38,7 @@ async def main():
         raise ValueError(f"ID non presente: {args.id}")
     evidence = claims[case["claim"]]["evidence"]
     client = AsyncOpenAI(api_key="ollama", base_url="http://127.0.0.1:11434/v1", timeout=600)
-    llm = llm_factory(args.model, provider="openai", client=client)
+    llm = llm_factory(args.model, client=client)
     coverage = DiscreteMetric(
         name="tactical_coverage",
         allowed_values=["completo", "parziale"],
@@ -70,6 +70,18 @@ async def main():
             "args": [repr(x) for x in exc.args],
             "traceback": "".join(traceback.format_exception(exc))
         }
+        completion = getattr(exc, "last_completion", None)
+        if completion is not None:
+            try:
+                details["last_completion"] = completion.model_dump(mode="json", exclude_none=True)
+            except Exception as dump_exc:
+                details["last_completion_dump_error"] = repr(dump_exc)
+                details["last_completion_repr"] = repr(completion)[:12000]
+            choices = getattr(completion, "choices", None) or []
+            details["finish_reasons"] = [getattr(c, "finish_reason", None) for c in choices]
+            usage = getattr(completion, "usage", None)
+            if usage is not None:
+                details["usage"] = usage.model_dump(mode="json") if hasattr(usage, "model_dump") else repr(usage)
         report["results"].append({"status": "error", "exception": details})
         print(f"RAGAS_COVERAGE_ERROR {details['repr']}\n{details['traceback']}", flush=True)
     finally:
