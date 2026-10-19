@@ -79,9 +79,9 @@
 
 ## 4. Pulizia del codice e Git
 
-- [x] Verificata nel repository la presenza di **36 script Python** in `projects/tactical-engine/scripts/` (inventario GitHub; non prova di utilizzo sulla VPS).
+- [x] Verificata nel repository la presenza di **40 script Python** in `projects/tactical-engine/scripts/` (inventario GitHub; non prova di utilizzo sulla VPS).
 - [ ] Classificare ciascuno script: operativo, baseline, test riproducibile, sperimentale, storico, inutilizzato o stato incerto.
-- [ ] Mappare import e riferimenti incrociati prima di spostare/rinominare file.
+- [x] Mappare staticamente import e riferimenti incrociati degli script Python su GitHub (40 script, CI verde); **invocazioni esterne e runtime VPS ancora da verificare**.
 - [ ] Progettare struttura ordinata (`src/`, `config/`, `tests/`, `experiments/`, `archive/`, documentazione), adattandola alle dipendenze reali.
 - [ ] Centralizzare configurazioni ripetute e documentare entry point ufficiale, senza introdurre nuove differenze di comportamento.
 - [ ] Consolidare funzioni duplicate solo con test di regressione e rollback.
@@ -129,3 +129,14 @@
 - [ ] Solo dopo approvazione e backup, consolidare o archiviare componenti inutilizzati; nessuna cancellazione anticipata.
 
 - [x] Censire **tutti gli script Python presenti su GitHub** per ruolo, collection, modelli, scritture e dipendenze note: `docs/script-inventory.md`. **Inventario statico completato; utilizzo reale e removibilità NON verificati.**
+
+## Esito verificato GitHub Actions — 2026-10-19
+
+- [x] Creato controllo CI `.github/workflows/tactical-engine-static.yml`: compilazione di tutti gli script, test unitari offline con moduli simulati e verifica inventario AST.
+- [x] Esecuzione CI **PASS**: 40 script compilati, 4 test unitari passati, nessun errore sintattico rilevato. Run: https://github.com/giampiero1975/footbal-data-lab/actions/runs/39216515588 (commit `7b83ac8`).
+- [x] Corrette le sequenze di escape che rendevano non valido `audit_v4_runtime.py`; il CI ha verificato la correzione.
+- [x] EXP-001: preflight directory DB, fonti, ID gold e filtro per fonte, alternanza ordine A/B, Q8 senza gold esclusa da recall/MRR. **Test funzionale con Chroma/Ollama reali ancora da eseguire.**
+- [ ] Confrontare VPS e GitHub, rilevare entry point e stato dei servizi, snapshot e backup della baseline.
+- [ ] Eseguire audit Chroma V3/V4 sulla VPS e interpretare configurazione metrica e norma dei vettori.
+- [ ] Validare semanticamente gold, eseguire EXP-001, benchmark reranker e verifiche citazioni/latency con output versionati.
+- [ ] Scegliere configurazione definitiva in base ai risultati, quindi consolidare/archiviare soltanto componenti provati inutilizzati. **Nessuna rimozione autorizzata prima di queste verifiche.**
