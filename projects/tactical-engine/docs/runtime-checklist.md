@@ -22,3 +22,7 @@
 ## Criteri di chiusura
 
 Il controllo è chiuso soltanto quando output, data, versione, fonte ufficiale pertinente e decisione sono registrati. Se un controllo non può essere eseguito, annotare “non verificato”, non inventare il risultato.
+
+## Strumento preparato (non eseguito su VPS)
+
+`../scripts/audit_v4_runtime.py` legge le collection V3/V4 esistenti e stampa JSON con `count`, `metadata`, `configuration` (se esposta dalla release), numero di ID univoci e distribuzione per `source`. Non richiede Ollama e non modifica le collection; `PersistentClient` potrebbe comunque produrre file interni di housekeeping. Rifiuta percorsi Chroma inesistenti. Non legge documenti, non accede ai processi e non certifica quale pipeline sia in uso. Verificare il JSON prima di decidere sulla metrica V4. Eseguire solo dopo controllo della baseline e una volta per configurazione invariata.
