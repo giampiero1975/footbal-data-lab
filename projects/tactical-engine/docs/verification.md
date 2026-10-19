@@ -42,3 +42,15 @@ Conservare su Git solo manifest e report sintetici non sensibili. Indici, PDF, p
 **Raccomandazioni per test successivi:** identificare entry point reale; rendere manifesto di configurazione esplicito; controllare coerenza embedding scrittura/query, filtri autore, reranker e citations; confrontare test con gold semantici corretti. Nessuna modifica runtime, nessuna cancellazione.
 
 **Documentazione ufficiale da consultare/riconfermare per le versioni installate prima di ogni cambio:** https://docs.llamaindex.ai/ ; https://docs.trychroma.com/ ; https://sbert.net/docs/cross_encoder/usage/usage.html ; https://docs.ollama.com/ . Questo audit A02 è **verifica del codice**, non certificazione di ottimizzazione secondo le fonti ufficiali.
+
+## Audit architetturale A03 — citazioni, gold e API ufficiali (2026-10-19)
+
+**Codice verificato:** `test_dribbling_v4_top5_top10.py` usa Qwen embedding V4, filtro autore Glerean, 15 candidati, mMARCO top 5/10, Qwen3.5 9B e `CitationQueryEngine`; controlla solo riferimenti numerici fuori intervallo e annota che lo split dei citation nodes può rendere inaffidabile il confronto dei node ID con i GOLD. `test_dribbling_v5_strutturato.py` genera claim/estratti JSON e verifica la presenza letterale dell'estratto, marcando esplicitamente `ESTRATTO_PRESENTE_SEMANTICA_NON_VERIFICATA`. `test_prompt_fedelta_dribbling_v4_corretto.py` usa una regex per individuare una frase errata specifica: controllo di regressione ristretto, non metrica generale di fedeltà. `diagnosi_q8_retrieval.py` controlla tre gold Q8 per ID nei primi 30 dense e reranking top 15, ma non costituisce validazione semantica completa.
+
+**Documentazione ufficiale effettivamente consultata il 2026-10-19:**
+- Docling: https://docling-project.github.io/docling/concepts/chunking/ — `HybridChunker` parte dalla gerarchia documentale, usa tokenizer scelto dall'utente, split/merge, `contextualize` arricchisce il testo.
+- Docling: https://docling-project.github.io/docling/_generated/examples/hybrid_chunking/ — in retrieval il tokenizer chunker dovrebbe essere coerente con quello del modello embedding; `merge_peers=True` è default documentato.
+
+**Conclusioni supportate:** (a) uso di `HybridChunker` e `contextualize` coerente con API documentata; (b) V4 riusa chunk prodotti con tokenizer Nomic, per cui l'allineamento Qwen non è dimostrato; (c) i controlli citazione/range e substring non dimostrano che le affermazioni siano semanticamente sostenute. Nessun parametro alternativo è ancora validato sperimentalmente.
+
+**Prossime verifiche mirate:** versione installata LlamaIndex 0.14.25 e comportamento effettivo CitationQueryEngine; istruzioni Qwen query vs document; filtro autore per domande multi-autore; gold Q8 manuale; misurazione latenza e risorse sotto carico. Evitare di ripetere inventario hardware.
