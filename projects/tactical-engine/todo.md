@@ -120,3 +120,10 @@
 - **Da completare:** confronto puntuale con documentazione ufficiale aggiornata e changelog delle versioni installate.
 
 > Aggiornare le checkbox solo dopo una verifica concreta, annotando evidenze e data. Non considerare una proposta come lavoro completato.
+
+## Audit dipendenze script — preparato 2026-10-19
+
+- [x] Creare scanner statico standard-library `scripts/audit_script_dependencies.py` per import locali, menzioni collection/modelli, API private, possibili scritture ed errori sintattici. **Codice creato, non eseguito sulla VPS**.
+- [ ] Eseguire scanner su snapshot codice effettivo e salvare output revisionato senza segreti.
+- [ ] Incrociare grafo statico con processi, cron, systemd e invocazioni esterne della VPS; classificare attivo / sperimentale / storico / candidato rimozione.
+- [ ] Solo dopo approvazione e backup, consolidare o archiviare componenti inutilizzati; nessuna cancellazione anticipata.
