@@ -1,0 +1,42 @@
+name: Tactical Engine static checks
+
+on:
+  push:
+    paths:
+      - 'projects/tactical-engine/scripts/**'
+      - '.github/workflows/tactical-engine-static.yml'
+  pull_request:
+    paths:
+      - 'projects/tactical-engine/scripts/**'
+      - '.github/workflows/tactical-engine-static.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Compile every Python script (no dependencies or VPS access)
+        run: python -m compileall -q projects/tactical-engine/scripts
+      - name: Check static inventory (no model loading)
+        run: |
+          python projects/tactical-engine/scripts/audit_script_dependencies.py > /tmp/tactical-script-inventory.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          report = json.loads(Path('/tmp/tactical-script-inventory.json').read_text())
+          assert report['script_count'] >= 35, report['script_count']
+          assert not report['syntax_failures'], report['syntax_failures']
+          names = {s['script'] for s in report['scripts']}
+          assert 'benchmark_qwen_query_instruction.py' in names
+          assert 'audit_v4_runtime.py' in names
+          assert 'test_dribbling_v4_top5_top10.py' in names
+          print(f"Static validation passed: {report['script_count']} scripts")
+          PY
