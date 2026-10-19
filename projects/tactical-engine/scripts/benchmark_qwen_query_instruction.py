@@ -11,6 +11,7 @@ import argparse
 import json
 import statistics
 import time
+from pathlib import Path
 
 import chromadb
 from llama_index.embeddings.ollama import OllamaEmbedding
@@ -55,12 +56,20 @@ def main() -> None:
     if args.top_k < 1:
         ap.error("--top-k must be positive")
 
+    if not Path(args.db).is_dir():
+        ap.error("Chroma directory does not exist: refusing to create a database")
     collection = chromadb.PersistentClient(path=args.db).get_collection(args.collection)
     if collection.count() != 86:
         raise RuntimeError(f"Expected 86 chunks, found {collection.count()}; aborting")
-    # Verify the provisional IDs before interpreting retrieval metrics.\n    known_ids = collection.get(include=[])['ids']\n    for question, source, gold in TESTS:\n        for prefix in gold:\n            matches = [item for item in known_ids if item.startswith(prefix)]\n            if len(matches) != 1:\n                raise RuntimeError(f'Gold prefix {prefix} matches {len(matches)} IDs for {question!r}')\n    embed = OllamaEmbedding(model_name=MODEL, base_url=args.ollama_url)
+    # Verify the provisional IDs before interpreting retrieval metrics.\n    stored = collection.get(include=["metadatas"])
+    known_ids = stored["ids"]
+    id_sources = {i: (m or {}).get("source") for i, m in zip(stored["ids"], stored["metadatas"])}
+    available_sources = set(id_sources.values())
+    for question, source, _ in TESTS:
+        if source not in available_sources:
+            raise RuntimeError(f"Source filter {source!r} missing for {question!r}; available: {sorted(map(str, available_sources))}")\n    for question, source, gold in TESTS:\n        for prefix in gold:\n            matches = [item for item in known_ids if item.startswith(prefix)]\n            if len(matches) != 1:\n                raise RuntimeError(f'Gold prefix {prefix} matches {len(matches)} IDs for {question!r}')\n    embed = OllamaEmbedding(model_name=MODEL, base_url=args.ollama_url)
     results = []
-    for question, source, gold in TESTS:
+    for index, (question, source, gold) in enumerate(TESTS):
         row = {"question": question, "source": source, "gold_prefixes": gold}
         for variant, query in (
             ("baseline", question),
@@ -78,6 +87,8 @@ def main() -> None:
             )
             search_seconds = time.perf_counter() - started
             ids = out["ids"][0]
+            if not ids:
+                raise RuntimeError(f"No retrieval results for source {source!r}; refusing misleading zero scores")
             ranks = [
                 rank for rank, chunk_id in enumerate(ids, 1)
                 if any(chunk_id.startswith(prefix) for prefix in gold)
@@ -111,6 +122,8 @@ def main() -> None:
         "collection": args.collection, "count": collection.count(),
         "model": MODEL, "top_k": args.top_k,
         "instruction": INSTRUCTION,
+        "retrieval_order": "alternating_baseline_instruct",
+        "gold_questions": sum(bool(gold) for _, _, gold in TESTS),
         "warning": "Gold prefixes copied exactly from historical reranker benchmark, still provisional; Q8 excluded from gold metrics; no reranker or semantic assessment.",
         "summary": summary, "questions": results,
     }, ensure_ascii=False, indent=2))
