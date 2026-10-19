@@ -1,0 +1,108 @@
+{
+  "schema_version": "1.0",
+  "status": "primary_pdf_text_verified_figures_pending",
+  "source": {
+    "title": "I principi del 3-3-4",
+    "author": "Ezio Glerean",
+    "drive_url": "https://drive.google.com/file/d/0B6maey1azXc5YnlONlQwd2EtMDA/view",
+    "vps_processed_directory": "/opt/football-data-lab/knowledge/processed/formations-and-systems",
+    "note": "Il percorso della directory e' comunicato dall'utente; il nome esatto del file sulla VPS non e' ancora verificato."
+  },
+  "cases": [
+    {
+      "case_id": "GLEREAN-334-POSSESSO-002",
+      "topic": "Gestione del possesso e sostegno",
+      "question": "Nel 3-3-4 di Glerean, come deve comportarsi il giocatore che conquista palla e quali movimenti compiono i compagni?",
+      "source_section": "Capitolo 2, principi 1-2, figure 10-14",
+      "gold_claims": [
+        {
+          "id": "P1",
+          "claim": "Il portatore privilegia il controllo sicuro a una giocata rapida ma rischiosa, potendo proteggere palla col corpo.",
+          "evidence": "Quando un giocatore entra in possesso della palla, deve farlo con estrema sicurezza, deve cioè privilegiare ad una giocata veloce e non del tutto sicura di successo, la capacità di gestirne il possesso, eventualmente proteggendola con il corpo dagli avversari per guadagnare tempo",
+          "required": true
+        },
+        {
+          "id": "P2",
+          "claim": "La gestione può avvalersi dell'aiuto dei compagni e in zona d'attacco l'attaccante può rischiare una giocata rapida.",
+          "evidence": "La gestione può e deve essere fatta con l’aiuto dei compagni ... Diversa può essere la gestione se in possesso va un attaccante in zona d’attacco, caso in cui si può anche rischiare una giocata rapida.",
+          "required": true
+        },
+        {
+          "id": "P3",
+          "claim": "I compagni senza palla si muovono verso posizioni predeterminate per creare ricezioni negli spazi, uno contro uno e sostegno.",
+          "evidence": "Mentre un giocatore entra in possesso e gestisce, tutti gli altri compagni si muovono nelle direzioni predestinate. Posizioni che poi dovranno determinare per gli attaccanti delle corse negli spazi per ricevere palla o nella posizione assunta per determinare l’uno contro uno",
+          "required": true
+        }
+      ]
+    },
+    {
+      "case_id": "GLEREAN-334-UNO-CONTRO-UNO-003",
+      "topic": "Ricerca dell'uno contro uno",
+      "question": "Quali soluzioni descrive Glerean per ricercare l'uno contro uno nella metà campo avversaria nel 3-3-4?",
+      "source_section": "Capitolo 2, principio 4, figure 18-19",
+      "gold_claims": [
+        {
+          "id": "U1",
+          "claim": "La ricerca dell'uno contro uno nella metà campo avversaria è un riferimento costante in possesso.",
+          "evidence": "Questo principio è un punto di riferimento costante del sistema quando la squadra è in possesso di palla.",
+          "required": true
+        },
+        {
+          "id": "U2",
+          "claim": "Il portiere può avviare rapidamente con palla lunga verso attaccanti avanzati che sfruttano la spizzata di un compagno.",
+          "evidence": "Il portiere inizia l’azione con palla lunga, sia da rimessa dal fondo sia dopo un intervento (parata), con giocata veloce per gli attaccanti che rapidamente si sono allungati sulla linea dei difensori avversari e sfruttano la palla spizzicata da uno dei compagni di reparto",
+          "required": true
+        },
+        {
+          "id": "U3",
+          "claim": "Difensori e centrocampisti possono gestire la palla mentre gli attaccanti si preparano a ricevere negli spazi laterali e centrali, in linea con i difensori avversari.",
+          "evidence": "Gestione della palla da parte dei difensori e centrocampisti con gli attaccanti che si mettono nella condizione di ricevere palla negli spazi laterali e centrali e in linea con i difensori avversari",
+          "required": true
+        }
+      ]
+    },
+    {
+      "case_id": "GLEREAN-334-VERTICALITA-004",
+      "topic": "Priorità delle giocate verticali",
+      "question": "Come interpreta Glerean la verticalità nel 3-3-4 e quali movimenti richiede a difensori, centrocampisti e attaccanti?",
+      "source_section": "Capitolo 2, principio 5, figure 20-21",
+      "gold_claims": [
+        {
+          "id": "V1",
+          "claim": "La verticalità comprende giocate in avanti per centrocampisti e attaccanti e indietro per i difensori.",
+          "evidence": "c’è la ricerca costante del movimento e del passaggio in verticale sia esso in avanti per i centrocampisti e attaccanti o all’indietro per i difensori.",
+          "required": true
+        },
+        {
+          "id": "V2",
+          "claim": "I difensori si muovono indietro in appoggio per guadagnare spazio e gestire meglio il possesso.",
+          "evidence": "Difesa: i movimenti dei 3 difensori è prevalentemente in appoggio ai centrocampisti e agli stessi compagni di reparto. Questo avviene con un movimento all’indietro rispetto al possessore della palla.",
+          "required": true
+        },
+        {
+          "id": "V3",
+          "claim": "I centrocampisti non arretrano in appoggio prima di avere sicurezza del possesso del compagno; possono effettuare brevi inserimenti verticali centrali.",
+          "evidence": "i 3 centrocampisti non fanno movimento di appoggio all’indietro quando uno dei componenti di reparto è in possesso di palla, ma solo quando si sono assicurati del possesso da parte del compagno ... fa una corsa in verticale di solito breve e in uno spazio centrale lasciato libero dall’attaccante.",
+          "required": true
+        },
+        {
+          "id": "V4",
+          "claim": "Gli attaccanti laterali ricercano profondità e ampiezza, quelli centrali profondità, con corse diagonali rispetto alla palla.",
+          "evidence": "il movimento degli attaccanti è di profondità e ampiezza per i laterali, di profondità per i centrali, tenendo sempre in considerazione che la corsa deve essere fatta sempre in diagonale rispetto alla palla",
+          "required": true
+        }
+      ]
+    }
+  ],
+  "evaluation_rules": {
+    "coverage": "Verifica manuale di ciascun claim richiesto",
+    "citations": "Controllare corrispondenza semantica tra claim e fonte, non soltanto numero di citazione",
+    "hallucinations": "Annotare aggiunte non supportate dalla tesi",
+    "figures": "Verifica visiva separata, ancora pendente"
+  },
+  "limitations": [
+    "Le citazioni testuali provengono dall'estrazione del PDF originale su Google Drive.",
+    "La disposizione grafica delle figure non e' stata verificata.",
+    "I casi non sono ancora stati eseguiti sul motore V4."
+  ]
+}
