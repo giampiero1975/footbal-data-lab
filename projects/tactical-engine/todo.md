@@ -38,8 +38,8 @@
 
 - [ ] Confrontare codice GitHub con file e commit effettivamente presenti sulla VPS; verificare branch e modifiche locali non versionate.
 - [ ] Identificare entry point, script invocati, import, servizi systemd, cron, processi e automazioni attive.
-- [ ] Censire Python/venv, dipendenze e versioni di Docling, docling-core, LlamaIndex (core e plugin), ChromaDB, Ollama, Transformers, sentence-transformers, PyMuPDF e PyTorch.
-- [ ] Censire modelli Ollama installati, tag/versioni, modelli caricati, consumo RAM/VRAM/disco.
+- [x] Censire Python/venv, dipendenze e versioni di Docling, docling-core, LlamaIndex (core e plugin), ChromaDB, Ollama, Transformers, sentence-transformers, PyMuPDF e PyTorch. Evidenze in `docs/environment.md`; interprete venv ancora da verificare.
+- [x] Censire modelli Ollama installati, tag/versioni e modelli caricati al momento del controllo. Dimensioni dei modelli registrate; consumo RAM/VRAM **sotto carico** ancora da misurare in un test dedicato.
 - [ ] Censire modelli di embedding/reranking presenti in cache e relativa occupazione.
 - [ ] Censire tutte le collection ChromaDB: nome, numero record, dimensioni, metrica, metadati, modello embedding, sorgente e ultima utilizzazione (quando verificabile).
 - [ ] Censire file temporanei, report, output di test, cache e dataset locali, separando sorgenti originali da artefatti rigenerabili.
@@ -112,7 +112,8 @@
 ## Stato delle verifiche
 
 - **Verificato sul repository GitHub:** esistono pipeline e test V1–V5; 36 script Python; V3 usa tokenizer Nomic e V4 Qwen reindicizza gli stessi testi; alcuni gold del benchmark reranker sono provvisori; la validazione V5 delle citazioni non garantisce correttezza semantica.
-- **Non ancora verificato sulla VPS in questo audit:** versioni effettive, processi attivi, collection presenti, modelli installati, dipendenze runtime, spazio utilizzato e componenti realmente dismessi.
+- **Verificato sulla VPS (output CLI, riepilogo 2026-10-19):** commit/branch e working tree, Python sistema e venv presente, pacchetti Python principali, `pip check`, 6 vCPU KVM AMD EPYC, RAM/swap e `vmstat` a riposo, VGA virtuale QEMU, Ollama server 0.40.5, modelli installati e dettagli `ollama show`, nessun modello caricato al controllo. Evidenze in `docs/environment.md`. **Non ripetere senza variazioni dell'ambiente.**
+- **Ancora da verificare sulla VPS:** entry point e processi/servizi effettivi, collection e record Chroma, disco/cache, backup e configurazioni runtime.
 - **Da completare:** confronto puntuale con documentazione ufficiale aggiornata e changelog delle versioni installate.
 
 > Aggiornare le checkbox solo dopo una verifica concreta, annotando evidenze e data. Non considerare una proposta come lavoro completato.
