@@ -127,3 +127,5 @@
 - [ ] Eseguire scanner su snapshot codice effettivo e salvare output revisionato senza segreti.
 - [ ] Incrociare grafo statico con processi, cron, systemd e invocazioni esterne della VPS; classificare attivo / sperimentale / storico / candidato rimozione.
 - [ ] Solo dopo approvazione e backup, consolidare o archiviare componenti inutilizzati; nessuna cancellazione anticipata.
+
+- [x] Censire **tutti gli script Python presenti su GitHub** per ruolo, collection, modelli, scritture e dipendenze note: `docs/script-inventory.md`. **Inventario statico completato; utilizzo reale e removibilità NON verificati.**
