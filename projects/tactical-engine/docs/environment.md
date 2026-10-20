@@ -90,3 +90,15 @@ Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Ne
 **Affermazioni generate dal modello (NON ancora validate sull'immagine):** numeri rossi 2–11, giocatori gialli, posizioni rosa chiaro 6/8, palla accanto al 4 nel cerchio centrale, frecce arancioni dal 4 verso 6/8 e un avversario, tratteggi neri 6→6 e 8→8, frecce ondulate nere intorno al 4. Alcune attribuzioni di frecce e colori sono da controllare contro il PNG/PDF. La risposta appare tatticamente ricca ma non è un benchmark superato: non sono stati ancora eseguiti audit claim-by-claim, controllo visivo diretto e confronto con il gold indipendente. Non inserire nell'indice V4.
 
 **Decisione:** prima di altri batch, valutare la correttezza delle singole affermazioni e identificare eventuali allucinazioni. Il solo tempo di inferenza non dimostra scalabilità a 200 PDF.
+
+## Audit diretto del PDF originale Glerean — 2026-10-20
+
+**Fonte primaria recuperata autonomamente da Google Drive:** `334_principi_Glerean.pdf` (Drive ID `0B6maey1azXc5YnlONlQwd2EtMDA`), pagina PDF 8 / pagina stampata 13, ispezionata visivamente. La pagina contiene tre schemi distinti: Fig.12 (alto a destra), Fig.13 (basso a sinistra), Fig.14 (basso a destra). **Non è stato ancora ispezionato il PNG specifico Docling `figure_017_page_08.png`: non attribuire con certezza l'errore al ritaglio o al modello senza confronto.**
+
+**Audit claim-by-claim della risposta Qwen indice 17 contro la pagina:**
+- Fig.12: il n.4 porta palla e quattro frecce arancioni puntano verso compagni n.11, 9, 10, 7; corretto il riconoscimento di palla e frecce dal 4, errata la descrizione di frecce dal 4 ai n.6/8 o verso un giocatore giallo.
+- Fig.13: n.6 e 8 nelle posizioni rosa pallido, tratteggi neri di movimento e frecce nere ondulate vicino al 4; elementi reali nella pagina ma **non appartenenti alla Fig.12**.
+- La risposta del modello combina dettagli di Fig.12 e Fig.13; non è fedele se intesa come descrizione esclusiva della Fig.12. Il numero dei giocatori elencati è compatibile con la pagina complessiva, non con il singolo schema.
+- Il testo originale accanto alla Fig.12 specifica: n.4 possesso; n.11 o 7 taglio d'appoggio; n.9 primo movimento in direzione opposta; n.10 occupa spazio del 9. La Fig.13 riguarda allargamento dei n.6/8 e movimento del 4.
+
+**Decisione:** esito del pilot tattico = **non superato per fedeltà di figura singola**, con causa non ancora isolata tra cropping/associazione Docling e interpretazione Qwen. Prossimo controllo mirato: verificare il PNG esatto indice 17 e i suoi confini prima di modificare prompt o pipeline. V4 immutata.
