@@ -110,3 +110,5 @@ Nessuna modifica alla configurazione V4 e nessun download eseguito.
   accesso SSH limitato e credenziali in secrets (richiede configurazione),
   oppure integrazione MCP remota con autenticazione e autorizzazioni ristrette.
 - Ricerca plugin SSH dedicato nella directory ChatGPT: nessun risultato.
+
+- Versione Ollama rilevata dall'operatore con `ollama --version`: **0.40.5**. La compatibilita' specifica del tag Gemma 3 12B con questa versione non e' ancora stata confermata mediante un caricamento effettivo.
