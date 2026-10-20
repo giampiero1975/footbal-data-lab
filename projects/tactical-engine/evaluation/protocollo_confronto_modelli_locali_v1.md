@@ -86,3 +86,6 @@ non sono misurazioni effettuate direttamente dall'assistente via SSH.
 un test isolato di Gemma 3 12B quantizzato, ma la fattibilita' reale
 richiede conferma di modelli caricati, RAM durante inferenza e prestazioni CPU.
 Nessuna modifica alla configurazione V4 e nessun download eseguito.
+
+- Aggiornamento operatore: `ollama ps` non riporta processi/modelli caricati al momento del controllo. Non equivale a dire che il servizio Ollama sia spento.
+- Ricerca directory plugin ChatGPT (termini `SSH` e `SSH remote server terminal command execution`): nessun plugin SSH dedicato trovato tra i risultati disponibili; non e' stato installato nulla.
