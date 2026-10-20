@@ -89,3 +89,24 @@ Nessuna modifica alla configurazione V4 e nessun download eseguito.
 
 - Aggiornamento operatore: `ollama ps` non riporta processi/modelli caricati al momento del controllo. Non equivale a dire che il servizio Ollama sia spento.
 - Ricerca directory plugin ChatGPT (termini `SSH` e `SSH remote server terminal command execution`): nessun plugin SSH dedicato trovato tra i risultati disponibili; non e' stato installato nulla.
+
+## Verifica canale remoto GitHub Actions (20 ottobre 2026)
+
+- Repository `giampiero1975/footbal-data-lab`: visibilita' **public**
+  verificata con GitHub API; accesso amministrativo disponibile.
+- Documentazione ufficiale GitHub sconsiglia self-hosted runner su repository
+  pubblici, specialmente su macchine con servizi e segreti di produzione:
+  https://docs.github.com/en/actions/reference/security/secure-use
+- I runner self-hosted sono tecnicamente supportati su Linux e usano
+  connessioni in uscita HTTPS 443; il supporto non elimina il rischio:
+  https://docs.github.com/en/actions/reference/runners/self-hosted-runners
+- Gli strumenti GitHub collegati consentono lettura di workflow job/log e
+  modifiche al repository, ma non espongono un'azione diretta di
+  workflow_dispatch; l'uso di un workflow su push non sostituisce un
+  terminale SSH interattivo.
+- **Decisione:** NON installare un runner persistente sulla VPS di produzione
+  collegato al repository pubblico. Nessuna modifica al server.
+- Alternative da valutare solo se servono davvero: runner GitHub-hosted con
+  accesso SSH limitato e credenziali in secrets (richiede configurazione),
+  oppure integrazione MCP remota con autenticazione e autorizzazioni ristrette.
+- Ricerca plugin SSH dedicato nella directory ChatGPT: nessun risultato.
