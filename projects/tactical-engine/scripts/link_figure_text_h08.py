@@ -59,11 +59,12 @@ def build(doc, manifest):
                 continue
             try:
                 # Label should lie immediately below the picture.
-                distance = float(pb["b"]) - float(tb["t"])
+                distance = min(abs(float(pb["b"]) - float(tb["t"])),
+                               abs(float(pb["t"]) - float(tb["b"])))
                 horizontal = float(pb["l"]) - 55 <= float(tb["l"]) <= float(pb["r"])
             except (KeyError, ValueError, TypeError):
                 continue
-            if horizontal and 0 <= distance <= 25:
+            if horizontal and distance <= 25:
                 matches.append((m.get("figure_index"), distance))
         if len(matches) == 1:
             proposals.setdefault(matches[0][0], []).append(t)
