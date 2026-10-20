@@ -82,3 +82,11 @@ Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Ne
 **Evidenza VPS comunicata dall'utente:** output di `list_tactical_figure_candidates.py` sul manifest esistente di `334_principi_Glerean.pdf`, pagine PDF 7–13. Trovati 13 ritagli: pagina 7 indici 15–16; pagina 8 indici 17–19; pagina 9 indici 20–21; pagina 10 indici 22–23; pagina 11 indici 24–25; pagina 12 indice 26; pagina 13 indice 27. Le dimensioni sono circa 246–248 punti di larghezza, con altezze variabili 243–392 punti. Caption refs presenti per 11/13 (assenti 20 e 23).
 
 **Candidato al prossimo pilot:** indice Docling 17, pagina PDF 8, presumibilmente figura stampata 12 sulla base dell'ordine delle figure; mappatura ancora da confermare visivamente. Test Qwen isolato, gold consultato soltanto dopo la generazione. Nessuna modifica a V4.
+
+## Pilot vision Glerean, ritaglio tattico indice 17 — 2026-10-20
+
+**Evidenza VPS fornita dall'utente:** `pilot_vision_existing_figure.py --figure-index 17`, `qwen3.5:9b`, `figure_017_page_08.png` (pagina PDF 8). Output `/opt/football-data-lab/knowledge/experiments/vision_pilot/334_principi_Glerean_figure_017_1792530456.json`; tempo **58,64 s**, `eval_count=371`; stato `unreviewed_model_output`.
+
+**Affermazioni generate dal modello (NON ancora validate sull'immagine):** numeri rossi 2–11, giocatori gialli, posizioni rosa chiaro 6/8, palla accanto al 4 nel cerchio centrale, frecce arancioni dal 4 verso 6/8 e un avversario, tratteggi neri 6→6 e 8→8, frecce ondulate nere intorno al 4. Alcune attribuzioni di frecce e colori sono da controllare contro il PNG/PDF. La risposta appare tatticamente ricca ma non è un benchmark superato: non sono stati ancora eseguiti audit claim-by-claim, controllo visivo diretto e confronto con il gold indipendente. Non inserire nell'indice V4.
+
+**Decisione:** prima di altri batch, valutare la correttezza delle singole affermazioni e identificare eventuali allucinazioni. Il solo tempo di inferenza non dimostra scalabilità a 200 PDF.
