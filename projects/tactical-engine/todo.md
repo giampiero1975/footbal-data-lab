@@ -196,3 +196,10 @@
 - [ ] Eseguire audit Chroma V3/V4 sulla VPS e interpretare configurazione metrica e norma dei vettori.
 - [ ] Validare semanticamente gold, eseguire EXP-001, benchmark reranker e verifiche citazioni/latency con output versionati.
 - [ ] Scegliere configurazione definitiva in base ai risultati, quindi consolidare/archiviare soltanto componenti provati inutilizzati. **Nessuna rimozione autorizzata prima di queste verifiche.**
+
+## H09 — Esito Top-1 e obiettivo multi-fonte (2026-10-21)
+
+- [x] Eseguita ablation H09 Top-1 su 3 domande development; report utente `evaluation/reports/h09_top1_context.json` (VPS, non ancora versionato in Git). Risposte coerenti con fig. 15/a, 15/b e 17; ID citazioni 3/3 validi; durate di generazione circa 17.54 s, 16.08 s, 22.41 s. Non equivale a test holdout o ragionamento multi-documento.
+- [ ] Confrontare Top-1 e Top-5 con **identico prompt focalizzato**, stessi modelli/parametri e gold di correttezza semantica; l'attuale report Top-1 confronta anche prompt diversi rispetto alla baseline originaria.
+- [ ] Priorità di prodotto: DRIBBLING deve spiegare **principi, movimenti, tempi, cause e condizioni del calcio** integrando fonti indipendenti; Glerean/3-3-4 è un caso e una fonte, non l'obiettivo. Evitare sia il vincolo permanente Top-1 sia il collage indiscriminato Top-5.
+- [ ] Preparare benchmark multi-documento con fonti Drive primarie indipendenti (es. Glerean, Foscarini, Ussia) e domande su movimenti/contesti; etichettare condizioni tattiche, contributi complementari, divergenze e provenienza. Escludere manuali FOOTBALL-DATA-LAB derivati come conferme indipendenti; conservare V4.
