@@ -16,6 +16,24 @@
 - [ ] Non dichiarare un miglioramento sulla base di una singola risposta o di sole citazioni formalmente valide.
 
 
+## PRIORITÀ MASSIMA — Qualità scientifica e tattica delle risposte
+
+**Obiettivo:** risposte fedeli, complete, correttamente attribuite e verificabili, non soltanto citazioni formalmente valide o codice senza errori. Questa priorità procede insieme all'audit architetturale, non dopo.
+
+- [ ] Definire criteri di accettazione espliciti e distinti per: correttezza/fedeltà tattica, completezza dei nuclei essenziali, recupero delle evidenze, attribuzione autore/fase/ruolo/zona, validità semantica delle citazioni, capacità di astenersi se le fonti non bastano, latenza e riproducibilità.
+- [ ] Consolidare i gold già presenti in evaluation/, distinguendo gold verificati, preliminari e controversi; non correggere i gold per far migliorare artificialmente i punteggi.
+- [ ] Costruire un benchmark rappresentativo di domande reali e avversariali, con evidenze letterali e casi negativi; includere Q8, H05, H07, H09, H10 e altri casi già studiati, senza ripetere prove concluse.
+- [ ] Valutare separatamente retrieval, reranking, contesto finale, generazione e citazioni per localizzare le cause degli errori.
+- [ ] Eseguire audit claim-by-claim: fonte realmente pertinente, implicazione semantica, ruoli, fasi, zone, condizioni, completezza; una citazione numericamente valida non è prova di correttezza.
+- [ ] Calibrare il giudice semantico su risposte RAG reali etichettate e casi difficili, distinguendo fedeltà e copertura; verificare disaccordi H05/H10 e falsi positivi prima di automatizzare l'accettazione.
+- [ ] Confrontare framework di valutazione ufficiali Ragas e DeepEval con la soluzione custom in ambiente isolato, secondo versioni e API ufficiali; non assumere che il framework garantisca qualità.
+- [ ] Definire policy di regressione: non promuovere un componente/configurazione che migliori una metrica ma peggiori errori tattici critici o citazioni.
+- [ ] Eseguire prove su fonti e autori differenti, con domande non viste e documenti nuovi, per misurare generalizzazione e robustezza.
+- [ ] Registrare per ogni benchmark dataset, commit, digest modelli, parametri, gold, metriche, errori, tempi, fonti ufficiali, esito e decisione; riutilizzare i risultati storici.
+- [ ] Stabilire soglie di qualità motivate dai casi d'uso, poi certificare il superamento su holdout indipendente prima di dichiarare DRIBBLING pronto.
+
+**Evidenze già disponibili, non da confondere con qualità validata:** audit Q8 TOP5/TOP10 (errori di attribuzione e omissioni), benchmark due assi fedeltà/completezza, holdout Glerean, diagnosi Ragas H07, metro tattico no-thinking (12/12 fedeltà, 10/12 copertura su piccolo holdout sintetico), gold JSON e report in evaluation/. Consultarli prima di lanciare nuovi test.
+
 ## PRIORITÀ MASSIMA — Startup: scegliere e configurare la migliore architettura supportata da evidenze
 
 **Obiettivo principale prima di pulizia o nuovi sviluppi:** stabilire se l'architettura RAG sia la più appropriata per DRIBBLING, scegliere i componenti migliori per requisiti e hardware reali e configurarli **secondo documentazione ufficiale aggiornata e fonti tecniche autorevoli verificabili**, non per tentativi arbitrari.
