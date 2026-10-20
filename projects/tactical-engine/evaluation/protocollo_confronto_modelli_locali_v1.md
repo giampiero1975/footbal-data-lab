@@ -120,3 +120,9 @@ Nessuna modifica alla configurazione V4 e nessun download eseguito.
 - `ollama ps` dopo smoke test: `gemma3:12b`, ID `b92b218582c5`, SIZE `8.1 GB`, PROCESSOR `100% CPU`, CONTEXT `4096`, RUNNER `llamacpp`, UNTIL `4 minutes from now`. Output comunicato dall'operatore. SIZE non equivale alla misura di picco RSS/RAM. Inferenza esclusivamente CPU: latenza e sostenibilita' benchmark ancora da misurare.
 
 - `free -h` con Gemma 3 12B caricata (output operatore): Mem totale 15 GiB, usata 9.7 GiB, libera 254 MiB, buff/cache 6.0 GiB, **available 5.9 GiB**; swap totale 1.5 GiB, usata 1.5 GiB, libera 212 KiB. Baseline precedente: Mem usata 1.2 GiB, available 14 GiB, swap gia' satura. Delta indicativo RAM usata +8.5 GiB, available -8.1 GiB; non e' una misura isolata di RSS o picco. La swap era gia' piena prima del caricamento, quindi non attribuire il suo stato a Gemma. Non usare il dato `free` (254 MiB) come disponibilita' effettiva perche' cache recuperabile.
+
+## Preparazione benchmark — verifica fonti (20 ottobre 2026)
+- Gold recuperato direttamente dal repository: `evaluation/gold_glerean_principi_v1.json`; 3 casi (`POSSESSO-002`, `UNO-CONTRO-UNO-003`, `VERTICALITA-004`), 10 claim P1-P3/U1-U3/V1-V4.
+- PDF primario `334_principi_Glerean.pdf` individuato direttamente in Google Drive (ID `0B6maey1azXc5YnlONlQwd2EtMDA`).
+- Le due baseline JSON citate dal protocollo (`benchmark_citazioni_stabili_v4.json`, `confronto_risposte_v4_prompt_v2.json`) non sono risultate accessibili ai percorsi `projects/tactical-engine/evaluation/` tentati né dalla ricerca Drive. La loro collocazione effettiva e soprattutto i contesti TOP5 congelati restano da individuare; **non ricostruire contesti a memoria né interrogare Chroma in sostituzione**.
+- Prima di inviare prompt a Gemma, verificare dimensione dei contesti TOP5 in token rispetto a CONTEXT 4096; non troncare silenziosamente. Necessario anche registrare latenza e testo grezzo.
