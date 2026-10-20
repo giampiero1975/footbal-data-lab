@@ -16,6 +16,15 @@
 - [ ] Non dichiarare un miglioramento sulla base di una singola risposta o di sole citazioni formalmente valide.
 
 
+
+## H09 — Decisione BM25 e politica anti-componenti inutilizzati (2026-10-21)
+
+- [x] Confrontare BM25, Qwen3-Embedding e fusione RRF sul medesimo corpus H09 (23 evidenze, 3 query di sviluppo); self-test RRF 3/3. Output VPS 2026-10-20, commit `25c33041b40995bbd671fdfd2db4023acfa7deaa`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`.
+- [x] Decisione provvisoria: Qwen3-Embedding candidato H09; BM25 **escluso dal percorso candidato**, mantenuto solo come baseline di valutazione. MRR BM25 0.696970, dense 0.833333, hybrid RRF 0.733333; nessuna conclusione da 3 query sul corpus completo.
+- [ ] Validare il contributo BM25 su benchmark indipendente, casi negativi e fonti differenti; valutare qualità, latenza e costi senza ottimizzare sui tre casi di sviluppo.
+- [ ] Se BM25 non offre beneficio dimostrato, censire riferimenti runtime, import, script, configurazioni e dipendenze; predisporre backup e rollback; **rimuovere componenti BM25 inutilizzati** senza lasciare codice morto. Conservare risultati e motivazioni in Git, senza toccare la baseline V4 prima della validazione.
+- [ ] Proseguire con Qwen3-Embedding + reranker mMARCO, poi valutazione generazione Qwen3.5 e audit claim-by-claim rispetto a V4, secondo documentazione ufficiale/versioni effettive.
+
 ## PRIORITÀ MASSIMA — Qualità scientifica e tattica delle risposte
 
 **Obiettivo:** risposte fedeli, complete, correttamente attribuite e verificabili, non soltanto citazioni formalmente valide o codice senza errori. Questa priorità procede insieme all'audit architetturale, non dopo.
