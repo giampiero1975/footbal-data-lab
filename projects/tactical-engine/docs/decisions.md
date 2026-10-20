@@ -14,6 +14,8 @@ Aggiornamento 2026-10-19. Stato: **decisioni provvisorie**, basate su audit stat
 | D08 | Evitare uso di API private nei nuovi componenti stabili | Diagnostiche usano metodi interni LlamaIndex, suscettibili a cambi versione | Refactor solo dopo conferma uso |
 | D09 | Separare test per variabile e manifest configurazione | Script con sigla V4 impiegano talvolta collection V3 e reranker differenti | Preparare manifest di benchmark |
 
+| D10 | BM25 non entra nella pipeline candidata H09; resta solo baseline sperimentale | Su 3 query di sviluppo: BM25 MRR 0,696970, Qwen dense 0,833333, hybrid RRF 0,733333; 15/a rank rispettivamente 11, 2, 5 | **Da riesaminare dopo benchmark indipendente e verifica dipendenze**: se non offre miglioramenti misurabili, eliminare codice/configurazioni BM25 non usati, senza lasciare componenti morti. Preservare storico test in Git. Non toccare V4 prima di inventario, backup e rollback. |
+
 ## Documentazione ufficiale di riferimento
 
 - Docling: https://docling-project.github.io/docling/concepts/chunking/
