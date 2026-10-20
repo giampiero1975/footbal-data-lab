@@ -68,7 +68,8 @@ def build(doc, manifest):
                 continue
             if horizontal and distance <= 25:
                 matches.append((m.get("figure_index"), distance))
-        if len(matches) == 1:
+        matches.sort(key=lambda x: x[1])
+        if matches and (len(matches) == 1 or matches[1][1] - matches[0][1] >= 8):
             proposals.setdefault(matches[0][0], []).append(t)
     for item in manifest:
         captions = []
