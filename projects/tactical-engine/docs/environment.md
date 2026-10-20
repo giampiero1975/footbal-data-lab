@@ -76,3 +76,9 @@ Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Ne
 **Evidenza runtime riportata dall'utente:** `pilot_vision_existing_figure.py` ha interrogato `qwen3.5:9b` su `334_principi_Glerean.pdf`, `figure_index=1`, `figure_001_page_01.png` (pagina PDF 1), senza modificare V4. Tempo 24,14 s; `eval_count=64`; output conservato in `knowledge/experiments/vision_pilot/334_principi_Glerean_figure_001_1792530202.json` sulla VPS.
 
 **Risposta del modello:** non identifica un diagramma calcistico, descrive una lettera S bianca su fondo blu. **Non verificata visivamente** l'immagine PNG in questa sessione: non dichiarare che la descrizione sia corretta. Il test conferma soltanto l'esecuzione dell'inferenza visiva, non la comprensione di schemi tattici. **Errore di disegno del pilot:** figura 1 scelta per indice, senza selezione semantica. Prossimo esperimento: selezione deterministica di figure su pagine tattiche, usando metadati preesistenti, poi confronto visivo/semantico con gold esclusivamente in valutazione.
+
+## Candidati figure tattiche Glerean — 2026-10-20
+
+**Evidenza VPS comunicata dall'utente:** output di `list_tactical_figure_candidates.py` sul manifest esistente di `334_principi_Glerean.pdf`, pagine PDF 7–13. Trovati 13 ritagli: pagina 7 indici 15–16; pagina 8 indici 17–19; pagina 9 indici 20–21; pagina 10 indici 22–23; pagina 11 indici 24–25; pagina 12 indice 26; pagina 13 indice 27. Le dimensioni sono circa 246–248 punti di larghezza, con altezze variabili 243–392 punti. Caption refs presenti per 11/13 (assenti 20 e 23).
+
+**Candidato al prossimo pilot:** indice Docling 17, pagina PDF 8, presumibilmente figura stampata 12 sulla base dell'ordine delle figure; mappatura ancora da confermare visivamente. Test Qwen isolato, gold consultato soltanto dopo la generazione. Nessuna modifica a V4.
