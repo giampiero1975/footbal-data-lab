@@ -5,6 +5,9 @@ Uses installed Ollama qwen3-embedding:0.6b via documented /api/embed endpoint.
 Only evaluates figure-linked H09 paragraphs, not V4's full 86-chunk corpus.
 """
 import argparse
+import hashlib
+import datetime
+import subprocess
 import json
 import math
 import time
@@ -88,7 +91,22 @@ def main():
             "hit_at_k": sum(row[method]["hit_at_k"] for row in results),
             "mrr": round(sum(row[method]["reciprocal_rank"] for row in results)/len(results), 6),
         }
-    report = {"experiment": "h09_dense_vs_bm25_dev", "model": args.model,
+    evidence_sha256 = hashlib.sha256(args.evidence.read_bytes()).hexdigest()
+    cases_sha256 = hashlib.sha256(args.cases.read_bytes()).hexdigest() if args.cases else None
+    try:
+        git_commit = subprocess.run(["git", "rev-parse", "HEAD"], capture_output=True,
+                                    text=True, timeout=5, check=True).stdout.strip()
+    except (OSError, subprocess.SubprocessError):
+        git_commit = None
+    report = {"timestamp_utc": datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              "git_commit": git_commit,
+              "evidence_sha256": evidence_sha256, "cases_sha256": cases_sha256,
+              "ollama_url": args.ollama_url, "batch_size": args.batch_size,
+              "timeout_seconds": args.timeout,
+              "api": "/api/embed", "truncate": False, "keep_alive": "0",
+              "official_documentation": ["https://docs.ollama.com/api/embed",
+                                         "https://github.com/QwenLM/Qwen3-Embedding"],
+              "experiment": "h09_dense_vs_bm25_dev", "model": args.model,
               "corpus_records": len(records), "cases": len(cases), "k": args.top_k,
               "embedding_dimensions": len(vectors[0]),
               "elapsed_seconds": round(time.monotonic()-start, 3),
