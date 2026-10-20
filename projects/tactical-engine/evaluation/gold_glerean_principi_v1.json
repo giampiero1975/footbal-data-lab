@@ -120,6 +120,12 @@
       10,
       11
     ],
-    "notes": "Audit visivo successivo alla creazione del gold: verificati ruoli e movimenti per le figure elencate; la figura 18 non identifica con certezza l'autore della spizzata. Non equivale a validazione indipendente di tutti i claim o di tutte le figure."
+    "notes": "Audit visivo successivo alla creazione del gold: verificati ruoli e movimenti per le figure elencate; la figura 18 non identifica con certezza l'autore della spizzata. Non equivale a validazione indipendente di tutti i claim o di tutte le figure.",
+    "verification_method": "Audit visuale registrato nel report storico; in questa sessione verificata separatamente l'accessibilità del PDF originale via Google Drive, non rieseguita ispezione visiva delle pagine.",
+    "next_checks": [
+      "Confrontare figura 10 e 11 con descrizione testuale originale",
+      "Distinguere esplicitamente in ogni claim testo, figura e inferenza combinata",
+      "Non attribuire la spizzata a un numero di maglia senza evidenza certa"
+    ]
   }
 }
