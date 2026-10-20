@@ -32,6 +32,41 @@ def build(doc, manifest):
             "mentions": sorted({figure_id(m) for m in REF.findall(t["text"])})
         })
     figures = []
+    # Geometric recovery is allowed only for an explicit figure label, on the
+    # same page, immediately below a single picture (BOTTOMLEFT coordinates).
+    claimed = {str(x.get("$ref") if isinstance(x, dict) else x)
+               for m in manifest for x in m.get("captions", [])}
+    def bbox_of(t):
+        for prov in t.get("prov", []):
+            if isinstance(prov, dict) and isinstance(prov.get("bbox"), dict):
+                return prov["bbox"]
+        return None
+    proposals = {}
+    for t in texts:
+        if not isinstance(t, dict) or t.get("self_ref") in claimed:
+            continue
+        raw = (t.get("text") or "").strip()
+        if not REF.fullmatch(raw):
+            continue
+        tb = bbox_of(t)
+        if not tb or tb.get("coord_origin", "BOTTOMLEFT") != "BOTTOMLEFT":
+            continue
+        matches = []
+        for m in manifest:
+            pb = m.get("bbox") or {}
+            if (page_of(t) != m.get("page") or
+                    pb.get("coord_origin", "BOTTOMLEFT") != "BOTTOMLEFT"):
+                continue
+            try:
+                # Label should lie immediately below the picture.
+                distance = float(pb["b"]) - float(tb["t"])
+                horizontal = float(pb["l"]) - 55 <= float(tb["l"]) <= float(pb["r"])
+            except (KeyError, ValueError, TypeError):
+                continue
+            if horizontal and 0 <= distance <= 25:
+                matches.append((m.get("figure_index"), distance))
+        if len(matches) == 1:
+            proposals.setdefault(matches[0][0], []).append(t)
     for item in manifest:
         captions = []
         for raw in item.get("captions", []):
@@ -39,6 +74,10 @@ def build(doc, manifest):
             t = by_ref.get(ref)
             if t:
                 captions.append({"ref": ref, "text": t.get("text", "")})
+        recovered = proposals.get(item.get("figure_index"), [])
+        if not captions and len(recovered) == 1:
+            t = recovered[0]
+            captions.append({"ref": t["self_ref"], "text": t["text"]})
         ids = sorted({figure_id(m) for c in captions for m in REF.findall(c["text"])})
         links = []
         caption_refs = {c["ref"] for c in captions}
@@ -55,6 +94,8 @@ def build(doc, manifest):
             "figure_index": item.get("figure_index"), "self_ref": item.get("self_ref"),
             "page": item.get("page"), "image": item.get("file"),
             "caption": captions, "figure_ids_from_caption": ids,
+            "caption_source": "docling" if item.get("captions") else
+                              "geometry_candidate" if captions else "missing",
             "paragraph_candidates": links, "status": "candidates_only" if ids else "requires_review"
         })
     return {"schema_version": "h08.0.1",
