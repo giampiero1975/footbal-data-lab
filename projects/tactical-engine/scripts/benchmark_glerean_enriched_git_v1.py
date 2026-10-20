@@ -58,8 +58,9 @@ def main():
     p.add_argument('--num-ctx',type=int,default=8192)
     p.add_argument('--reserve',type=int,default=1536)
     p.add_argument('--run',action='store_true')
+    p.add_argument('--resume',action='store_true',help='Riprende report esistente senza ripetere i run completati')
     a=p.parse_args()
-    if a.output.exists():p.error('Non sovrascrivo output esistente')
+    if a.output.exists() and not a.resume:p.error('Output esistente: usa --resume per continuare senza sovrascrivere')
     if a.num_ctx<=a.reserve:p.error('num_ctx deve superare reserve')
     baseline=json.loads(a.input.read_text(encoding='utf-8'))
     if len(baseline['runs'])!=6:raise ValueError('Attesi sei run congelati')
@@ -77,7 +78,23 @@ def main():
     for m,r,prompt,sha in jobs:print(m,r['case_id'],r['mode'],sha[:16],len(prompt))
     if not a.run:return
     report={'method':'glerean_figures_sidecar_v1','models':a.models,'num_ctx':a.num_ctx,'num_predict':a.reserve,'temperature':0.1,'runs':[]}
+    if a.resume and a.output.exists():
+        report=json.loads(a.output.read_text(encoding='utf-8'))
+        if report.get('method')!='glerean_figures_sidecar_v1' or report.get('models')!=a.models or report.get('num_ctx')!=a.num_ctx or report.get('num_predict')!=a.reserve or report.get('temperature')!=0.1:
+            raise ValueError('Report esistente non compatibile con parametri richiesti')
+        expected={(m,r['case_id'],r['mode']):sha for m,r,_,sha in jobs}
+        seen=set()
+        for old in report.get('runs',[]):
+            key=(old['model'],old['case_id'],old['mode'])
+            if key in seen or expected.get(key)!=old.get('prompt_sha256') or not old.get('comparable_context'):
+                raise ValueError('Report esistente contiene run duplicati, incompatibili o non comparabili')
+            seen.add(key)
+        print('RESUME: recuperati',len(seen),'run verificati; nessuna ripetizione')
+    completed={(r['model'],r['case_id'],r['mode']) for r in report['runs']}
     for i,(model,r,prompt,sha) in enumerate(jobs,1):
+        if (model,r['case_id'],r['mode']) in completed:
+            print(f'{i}/{len(jobs)} {model} {r["case_id"]} {r["mode"]} SKIP (gia completato)',flush=True)
+            continue
         req=urllib.request.Request('http://127.0.0.1:11434/api/generate',data=json.dumps({'model':model,'prompt':prompt,'stream':False,'think':False,'options':{'temperature':0.1,'num_ctx':a.num_ctx,'num_predict':a.reserve}}).encode(),headers={'Content-Type':'application/json'},method='POST')
         start=time.monotonic()
         with urllib.request.urlopen(req,timeout=1200) as response:result=json.load(response)
