@@ -70,3 +70,9 @@ Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Ne
 | **Totale** | | **48** | **48** | **48** | **nessuno** |
 
 **Interpretazione:** copertura del 100% delle *figure già riconosciute da Docling*, non prova di recall su tutte le figure reali del PDF né di correttezza dei ritagli o della semantica tattica. L'audit ha verificato i conteggi e la presenza dei manifest, non ha aperto singoli PNG. Prossimo passo: analisi isolata e riproducibile dei 48 ritagli, poi test di descrizione su un sottoinsieme, mantenendo intatti pipeline V2 e indice V4.
+
+## Primo pilot vision Qwen — 2026-10-20
+
+**Evidenza runtime riportata dall'utente:** `pilot_vision_existing_figure.py` ha interrogato `qwen3.5:9b` su `334_principi_Glerean.pdf`, `figure_index=1`, `figure_001_page_01.png` (pagina PDF 1), senza modificare V4. Tempo 24,14 s; `eval_count=64`; output conservato in `knowledge/experiments/vision_pilot/334_principi_Glerean_figure_001_1792530202.json` sulla VPS.
+
+**Risposta del modello:** non identifica un diagramma calcistico, descrive una lettera S bianca su fondo blu. **Non verificata visivamente** l'immagine PNG in questa sessione: non dichiarare che la descrizione sia corretta. Il test conferma soltanto l'esecuzione dell'inferenza visiva, non la comprensione di schemi tattici. **Errore di disegno del pilot:** figura 1 scelta per indice, senza selezione semantica. Prossimo esperimento: selezione deterministica di figure su pagine tattiche, usando metadati preesistenti, poi confronto visivo/semantico con gold esclusivamente in valutazione.
