@@ -58,8 +58,10 @@ def build(doc, manifest):
                     pb.get("coord_origin", "BOTTOMLEFT") != "BOTTOMLEFT"):
                 continue
             try:
-                # Label should lie immediately below the picture.
+                # Docling picture bounds can include a label at either edge.
                 distance = min(abs(float(pb["b"]) - float(tb["t"])),
+                               abs(float(pb["b"]) - float(tb["b"])),
+                               abs(float(pb["t"]) - float(tb["t"])),
                                abs(float(pb["t"]) - float(tb["b"])))
                 horizontal = float(pb["l"]) - 55 <= float(tb["l"]) <= float(pb["r"])
             except (KeyError, ValueError, TypeError):
