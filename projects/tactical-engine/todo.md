@@ -41,7 +41,7 @@
 - [x] Censire Python/venv, dipendenze e versioni di Docling, docling-core, LlamaIndex (core e plugin), ChromaDB, Ollama, Transformers, sentence-transformers, PyMuPDF e PyTorch. Evidenze in `docs/environment.md`; interprete venv ancora da verificare.
 - [x] Censire modelli Ollama installati, tag/versioni e modelli caricati al momento del controllo. Dimensioni dei modelli registrate; consumo RAM/VRAM **sotto carico** ancora da misurare in un test dedicato.
 - [ ] Censire modelli di embedding/reranking presenti in cache e relativa occupazione.
-- [ ] Censire tutte le collection ChromaDB: nome, numero record, dimensioni, metrica, metadati, modello embedding, sorgente e ultima utilizzazione (quando verificabile).
+- [ ] Censire tutte le collection ChromaDB: nome, numero record, dimensioni, metrica, metadati, modello embedding, sorgente e ultima utilizzazione (quando verificabile). **Parziale verificato 2026-10-19:** V3 e V4 86 record ciascuna, V3 cosine/768D e V4 L2/1024D; collection ulteriori, spazio e utilizzo da completare.
 - [ ] Censire file temporanei, report, output di test, cache e dataset locali, separando sorgenti originali da artefatti rigenerabili.
 - [x] Registrare **i risultati dell'audit hardware, Python e Ollama già effettuato** nel repository (`docs/environment.md`, 2026-10-19), senza credenziali, dati sensibili, PDF o indici pesanti. **Inventario completo Chroma/cache/servizi ancora aperto.**
 
@@ -67,7 +67,7 @@
 
 - [ ] Identificare senza ambiguità quale pipeline sia la baseline V4 operativa; distinguere script storici, V4 con Nomic/BGE e V4 con Qwen3-Embedding/mMARCO.
 - [ ] Congelare baseline: commit, configurazioni, prompt, parametri, checksum degli input e identificativi delle collection.
-- [ ] Recuperare dai test già eseguiti i risultati utili, evitando di ripetere benchmark già conclusi senza motivo.
+- [x] Recuperare dai test già eseguiti i risultati utili, evitando di ripetere benchmark già conclusi senza motivo. **Primo consolidamento esistente:** docs/status-2026-10-19.md ed evaluation/*, inclusi EXP-001, Q8 TOP5/TOP10, holdout e giudice no-thinking; mantenere aggiornato il registro.
 - [ ] Consolidare un set di domande rappresentative, includendo Q8 ampiezza offensiva e casi con differenze tra fase, zona, ruolo e autore.
 - [ ] Costruire/validare gold evidence con riferimenti ai passaggi reali; correggere gold provvisori e casi senza gold.
 - [ ] Separare metriche di retrieval (es. recall@k, MRR), reranking, fedeltà semantica, completezza, citazioni e latenza.
@@ -80,14 +80,14 @@
 ## 4. Pulizia del codice e Git
 
 - [x] Verificata nel repository la presenza di **40 script Python** in `projects/tactical-engine/scripts/` (inventario GitHub; non prova di utilizzo sulla VPS).
-- [ ] Classificare ciascuno script: operativo, baseline, test riproducibile, sperimentale, storico, inutilizzato o stato incerto.
+- [ ] Classificare ciascuno script: operativo, baseline, test riproducibile, sperimentale, storico, inutilizzato o stato incerto. **Inventario statico storico disponibile** in docs/script-inventory.md; resta da classificare l'utilizzo reale e gli script aggiunti.
 - [x] Mappare staticamente import e riferimenti incrociati degli script Python su GitHub (40 script, CI verde); **invocazioni esterne e runtime VPS ancora da verificare**.
 - [ ] Progettare struttura ordinata (`src/`, `config/`, `tests/`, `experiments/`, `archive/`, documentazione), adattandola alle dipendenze reali.
 - [ ] Centralizzare configurazioni ripetute e documentare entry point ufficiale, senza introdurre nuove differenze di comportamento.
 - [ ] Consolidare funzioni duplicate solo con test di regressione e rollback.
 - [ ] Archiviare prima di eliminare; Git conserva lo storico del codice ma NON sostituisce backup di database, PDF o modelli.
 - [ ] Controllare `.gitignore`, inclusa regola `*.txt`, per evitare esclusioni involontarie di test/requisiti e inclusione di dati pesanti o segreti.
-- [ ] Aggiungere README tecnico, inventario, decision log e procedura riproducibile di esecuzione/valutazione.
+- [ ] Aggiungere README tecnico, inventario, decision log e procedura riproducibile di esecuzione/valutazione. **Parziale:** README, inventario, decision log, checklist runtime e protocollo verifiche già presenti; riproducibilità end-to-end da completare.
 
 ## 5. Dismissione componenti scartati e pulizia dati
 
@@ -111,6 +111,16 @@
 - [ ] Nessun componente scartato rimasto installato **senza motivo documentato**.
 - [ ] Collection, cache e modelli censiti; rimozioni effettuate soltanto in sicurezza.
 - [ ] Decisioni e risultati registrati su Git per evitare di ripetere analisi già svolte.
+
+## Evidenze recuperate il 2026-10-20 (senza ripetere controlli VPS)
+
+- **Inventario software/hardware 2026-10-19:** Python sistema 3.12.3, venv individuata, Docling 2.140.0, ChromaDB 1.5.9, LlamaIndex core 0.14.25, Ollama server 0.40.5, VPS CPU-only con 6 vCPU e 15 GiB RAM. Fonte: docs/environment.md, output CLI precedentemente riportati dall'utente; non riconfermati oggi.
+- **Collection V3/V4 già controllate:** 86 record ciascuna; V3 cosine/768D, V4 L2/1024D; V4 normalizzata. Fonte: docs/status-2026-10-19.md. Non ripetere senza cambio indice o evidenza di problema.
+- **EXP-001 già concluso:** query instruction Qwen3 Embedding 0.6B peggiora MRR provvisorio (0,6354 → 0,4688 su 8 query) senza migliorare recall@15 (1,0); conservare baseline senza instruction per questo set. Fonte: docs/status-2026-10-19.md; gold provvisori.
+- **Test Q8 TOP5/TOP10 già eseguito:** errori semantici di attribuzione delle citazioni, latenza 214,6 s vs 276,8 s. Non confondere validità numerica e correttezza tattica.
+- **Benchmark giudice no-thinking già eseguito:** 12/12 fedeltà, 10/12 completezza su piccolo holdout sintetico; due casi da riesaminare, non certifica qualità end-to-end. Fonte: evaluation/analisi_metro_tattico_no_think_v1_2026-10-20.md.
+- **CI:** workflow statico e test offline già esistenti; ultimo run #46 verificato success, non prova runtime VPS.
+- **Inventario script:** il precedente conteggio di 36 è storico; il repository attuale contiene molti più script e test. Non riutilizzare quel numero come censimento corrente.
 
 ## Stato delle verifiche
 
