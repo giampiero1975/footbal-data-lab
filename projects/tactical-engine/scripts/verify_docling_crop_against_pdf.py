@@ -34,20 +34,29 @@ def main():
     picture = Image.open(manifest.parent / filename).convert("RGB")
     doc = fitz.open(SOURCES / rel)
     page = doc[int(entry["page"]) - 1]
-    bounds = fitz.Rect(*[entry["bbox"][k] for k in ("l", "t", "r", "b")])
+    bbox = entry["bbox"]
+    l, t, rr, b = (float(bbox[k]) for k in ("l", "t", "r", "b"))
+    if bbox.get("coord_origin", "BOTTOMLEFT") == "BOTTOMLEFT":
+        bounds = fitz.Rect(l, page.rect.height - t, rr, page.rect.height - b)
+    elif bbox.get("coord_origin") == "TOPLEFT":
+        bounds = fitz.Rect(l, t, rr, b)
+    else:
+        p.error("Unsupported coordinate origin")
+    bounds = bounds.normalize()
     if bounds.is_empty or bounds.is_infinite:
         p.error("Invalid bounding box")
     bounds = bounds & page.rect
     candidates = []
-    for clip in (bounds, fitz.Rect(bounds.x0, page.rect.height - bounds.y1,
-                                  bounds.x1, page.rect.height - bounds.y0)):
+    for clip in (bounds,):
         pix = page.get_pixmap(clip=clip, matrix=fitz.Matrix(2, 2), alpha=False)
         rendered = Image.frombytes("RGB", (pix.width, pix.height), pix.samples)
         target = picture.resize((256, 256))
         sample = rendered.resize((256, 256))
         diff = ImageChops.difference(target, sample)
         mean = sum(ImageStat.Stat(diff).mean) / 3
-        candidates.append({"clip": list(clip), "mean_rgb_difference": round(mean, 2)})
+        candidates.append({"clip": list(clip), "mean_rgb_difference": round(mean, 2),
+                           "pixel_dimensions_match": picture.size == rendered.size,
+                           "exact_pixel_match": picture.size == rendered.size and ImageChops.difference(picture, rendered).getbbox() is None})
     print(json.dumps({"source": args.source, "figure_index": args.figure_index,
                       "page": entry["page"], "image": filename,
                       "image_pixels": list(picture.size), "bbox": entry["bbox"],
