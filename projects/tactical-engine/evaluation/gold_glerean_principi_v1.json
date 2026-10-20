@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "status": "primary_pdf_text_verified_figures_pending",
+  "status": "primary_pdf_text_verified_partial_figure_audit",
   "source": {
     "title": "I principi del 3-3-4",
     "author": "Ezio Glerean",
@@ -98,11 +98,28 @@
     "coverage": "Verifica manuale di ciascun claim richiesto",
     "citations": "Controllare corrispondenza semantica tra claim e fonte, non soltanto numero di citazione",
     "hallucinations": "Annotare aggiunte non supportate dalla tesi",
-    "figures": "Verifica visiva separata, ancora pendente"
+    "figures": "Audit visivo parziale documentato in evaluation/audit_figure_glerean_v1.md; figure 10-11 ancora da verificare e claim da ricontrollare con testo+figura."
   },
   "limitations": [
     "Le citazioni testuali provengono dall'estrazione del PDF originale su Google Drive.",
-    "La disposizione grafica delle figure non e' stata verificata.",
+    "Le figure 12-14 e 18-21 sono state sottoposte a audit visivo successivo; figure 10-11 non ancora attestate.",
     "I casi non sono ancora stati eseguiti sul motore V4."
-  ]
+  ],
+  "figure_audit": {
+    "reference": "evaluation/audit_figure_glerean_v1.md",
+    "verified_figures": [
+      12,
+      13,
+      14,
+      18,
+      19,
+      20,
+      21
+    ],
+    "not_yet_verified_in_audit": [
+      10,
+      11
+    ],
+    "notes": "Audit visivo successivo alla creazione del gold: verificati ruoli e movimenti per le figure elencate; la figura 18 non identifica con certezza l'autore della spizzata. Non equivale a validazione indipendente di tutti i claim o di tutte le figure."
+  }
 }
