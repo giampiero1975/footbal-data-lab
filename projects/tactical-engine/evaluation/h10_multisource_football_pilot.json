@@ -1,0 +1,140 @@
+{
+  "schema_version": "h10.0.1",
+  "purpose": "Football principles across independent documents; manually curated source-grounded exploratory pilot, not holdout and not a production index",
+  "source_policy": "Exact short extracts from connected Google Drive, author attribution retained. Never treat sources as interchangeable scenarios.",
+  "sources": [
+    {
+      "id": "glerean",
+      "title": "334_principi_Glerean.pdf",
+      "url": "https://drive.google.com/file/d/0B6maey1azXc5YnlONlQwd2EtMDA/view?usp=drivesdk&resourcekey=0-BD1AhKI9QCcknzyQdXZDsA",
+      "author": "Glerean",
+      "provenance": "Drive original PDF"
+    },
+    {
+      "id": "foscarini",
+      "title": "manovre_offensive_vari_sistemi_gioco_Foscarini.pdf",
+      "url": "https://drive.google.com/file/d/0B6maey1azXc5bUJGaV9rak02WjQ/view?usp=drivesdk&resourcekey=0-5YBsKce15gHy5d868kPmUg",
+      "author": "Claudio Foscarini",
+      "provenance": "Drive original PDF"
+    },
+    {
+      "id": "ussia",
+      "title": "Transizioni.Ussia. Master Allenatore PRO.pdf",
+      "url": "https://drive.google.com/file/d/0B6maey1azXc5bUlKVEh4S0JUMjQ/view?usp=drivesdk&resourcekey=0-PHR8-N-2Bu5Lz86jlrzM4g",
+      "author": "Pasquale Ussia",
+      "provenance": "Drive thesis Master Coverciano 2011-12"
+    }
+  ],
+  "evidence": [
+    {
+      "id": "g15a",
+      "source_id": "glerean",
+      "scenario": "possession_won_defensive_zone",
+      "role": "specific_movement",
+      "text": "La palla viene conquistata e gestita nella nostra zona difensiva; la squadra si dispone in questa maniera: gli attaccanti si allungano cercando la linea dei difensori avversari mantenendo tutti e quattro una posizione centrale, i centrocampisti esterni si allargano sulle linee laterali (fig.15\\a).",
+      "note": "Text from existing H09 explicit figure link, not a fresh OCR verification"
+    },
+    {
+      "id": "f_zone",
+      "source_id": "foscarini",
+      "scenario": "offensive_development_by_field_zone",
+      "role": "complementary_general_principle",
+      "text": "Lo sviluppo di una azione offensiva varia notevolmente a seconda delle zone del campo o dei settori in cui essa viene prodotta.",
+      "note": "Drive PDF extract, normalized line-break artifacts"
+    },
+    {
+      "id": "f_start",
+      "source_id": "foscarini",
+      "scenario": "start_offensive_action",
+      "role": "complementary_general_principle",
+      "text": "L’inizio delle azioni, generalmente, presenta due modalità: sviluppo che parte dal portiere; sviluppo che parte dai difensori (centrali od esterni).",
+      "note": "Drive PDF extract, normalized line-break artifacts"
+    },
+    {
+      "id": "u_transition",
+      "source_id": "ussia",
+      "scenario": "positive_transition",
+      "role": "complementary_general_principle",
+      "text": "In questa fase è fondamentale analizzare: in quale punto del campo e in quale situazione si recupera la palla; quali e quanti giocatori partecipano alla riconquista; quanti e quali giocatori devono o possono partecipare al contrattacco; quali sono le zone libere da attaccare con gioco corto o lungo; come organizzarsi nella nuova situazione di fase offensiva; il modo più rapido per concludere a rete; la copertura preventiva a una perdita del possesso palla.",
+      "note": "Drive PDF page 6, list joined with semicolons"
+    },
+    {
+      "id": "u_343",
+      "source_id": "ussia",
+      "scenario": "high_recovery_343",
+      "role": "contrast_not_same_scenario",
+      "text": "In questa figura 6/B vediamo la riconquista della palla in pressione; viene riconquistata una palla nella zona alta, e si cercherà una ripartenza che permetterà, ad esempio, un cambio di gioco per sorprendere la squadra avversaria secondo una strategia tattica che riguarda il proprio sistema, in questo caso è 3-4-3.",
+      "note": "Drive PDF page 18, distinct zone and system"
+    }
+  ],
+  "cases": [
+    {
+      "id": "h10_01",
+      "query": "Quando recuperiamo palla nella nostra zona difensiva, come si muovono gli attaccanti e quali condizioni generali bisogna valutare per la ripartenza?",
+      "evidence_ids": [
+        "g15a",
+        "f_zone",
+        "f_start",
+        "u_transition",
+        "u_343"
+      ],
+      "required_claims": [
+        {
+          "source": "g15a",
+          "claim": "Four forwards lengthen centrally toward opposing back line"
+        },
+        {
+          "source": "u_transition",
+          "claim": "Recovery zone and available spaces are relevant transition conditions"
+        }
+      ],
+      "allowed_optional": [
+        "f_zone",
+        "f_start"
+      ],
+      "forbidden": [
+        "Treat Ussia 3-4-3 high recovery as the same Glerean defensive-zone scenario",
+        "Claim that Foscarini or Ussia independently prescribe Glerean four-forward positioning"
+      ]
+    },
+    {
+      "id": "h10_02",
+      "query": "Il recupero alto e il recupero nella nostra zona difensiva producono necessariamente gli stessi movimenti offensivi?",
+      "evidence_ids": [
+        "g15a",
+        "u_transition",
+        "u_343",
+        "f_zone"
+      ],
+      "required_claims": [
+        {
+          "source": "g15a",
+          "claim": "Glerean scenario is defensive-zone recovery"
+        },
+        {
+          "source": "u_343",
+          "claim": "Ussia 3-4-3 example is high recovery and switch of play"
+        },
+        {
+          "source": "f_zone",
+          "claim": "Offensive development varies by field zone"
+        }
+      ],
+      "forbidden": [
+        "Merge high-recovery 3-4-3 action with defensive-recovery 3-3-4 movement"
+      ]
+    }
+  ],
+  "evaluation": {
+    "dimensions": [
+      "tactical_condition_match",
+      "cross_source_complementarity",
+      "source_attribution",
+      "unsupported_inference",
+      "coverage",
+      "citation_claim_alignment"
+    ],
+    "human_review_required": true,
+    "notes": "Exploratory corpus deliberately includes a negative control. Do not count same-source paraphrases as independent corroboration."
+  }
+}
