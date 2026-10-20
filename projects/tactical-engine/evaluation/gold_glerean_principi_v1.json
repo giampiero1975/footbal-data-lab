@@ -98,16 +98,18 @@
     "coverage": "Verifica manuale di ciascun claim richiesto",
     "citations": "Controllare corrispondenza semantica tra claim e fonte, non soltanto numero di citazione",
     "hallucinations": "Annotare aggiunte non supportate dalla tesi",
-    "figures": "Audit visivo parziale documentato in evaluation/audit_figure_glerean_v1.md; figure 10-11 ancora da verificare e claim da ricontrollare con testo+figura."
+    "figures": "Figure 10-14 e 18-21 verificate visivamente (10-11 direttamente il 2026-10-20; altre da audit precedente). Rimane da validare indipendentemente la semantica dei claim con testo+figura."
   },
   "limitations": [
     "Le citazioni testuali provengono dall'estrazione del PDF originale su Google Drive.",
-    "Le figure 12-14 e 18-21 sono state sottoposte a audit visivo successivo; figure 10-11 non ancora attestate.",
+    "Figure 10-11 ispezionate visivamente in sessione successiva; audit semantico indipendente dei claim ancora pendente.",
     "I casi non sono ancora stati eseguiti sul motore V4."
   ],
   "figure_audit": {
     "reference": "evaluation/audit_figure_glerean_v1.md",
     "verified_figures": [
+      10,
+      11,
       12,
       13,
       14,
@@ -116,16 +118,27 @@
       20,
       21
     ],
-    "not_yet_verified_in_audit": [
-      10,
-      11
-    ],
+    "not_yet_verified_in_audit": [],
     "notes": "Audit visivo successivo alla creazione del gold: verificati ruoli e movimenti per le figure elencate; la figura 18 non identifica con certezza l'autore della spizzata. Non equivale a validazione indipendente di tutti i claim o di tutte le figure.",
-    "verification_method": "Audit visuale registrato nel report storico; in questa sessione verificata separatamente l'accessibilità del PDF originale via Google Drive, non rieseguita ispezione visiva delle pagine.",
+    "verification_method": "Figure 10-11 ispezionate visivamente sul PDF originale in sessione 2026-10-20 (pagina PDF 7, pagina stampata 12); figure 12-14 e 18-21 da audit storico. Non equivale a gold multimodale indipendente.",
     "next_checks": [
-      "Confrontare figura 10 e 11 con descrizione testuale originale",
       "Distinguere esplicitamente in ogni claim testo, figura e inferenza combinata",
       "Non attribuire la spizzata a un numero di maglia senza evidenza certa"
-    ]
+    ],
+    "new_direct_observations": [
+      {
+        "figure": 10,
+        "pdf_page": 7,
+        "printed_page": 12,
+        "evidence": "Didascalia: respinta di difensore avversario, centrocampisti attaccano e conquistano palla, compagni prendono posizione; disegno mostra traiettorie e posizioni numerate."
+      },
+      {
+        "figure": 11,
+        "pdf_page": 7,
+        "printed_page": 12,
+        "evidence": "Testo: n.10 spalle alla porta appoggia al n.4; figura illustra opzioni di gioco e sostegno; non inferire automaticamente l'esecuzione di ogni traiettoria."
+      }
+    ],
+    "original_pdf_sha256": "a2811a747920b35ab1b24768949f9b21e2a813ffd31b85b4eb8b5d0967ae8a17"
   }
 }
