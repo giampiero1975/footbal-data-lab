@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "case_id": "GLEREAN-334-AMPIEZZA-001",
-  "status": "primary_pdf_text_verified_partial_figure_audit",
+  "status": "primary_pdf_text_and_referenced_figures_visually_audited_claim_validation_pending",
   "language": "it",
   "question": "Come si sviluppa l’ampiezza offensiva nel 3-3-4 di Glerean?",
   "source_document": "334_principi_Glerean",
@@ -84,25 +84,52 @@
   },
   "limitations": [
     "All four claims checked against text extracted from the primary PDF in Google Drive.",
-    "Figures 15/a, 16 and 17 remain to be inspected; figure 21 was inspected in the later visual audit.",
+    "Figures 15/a, 15/b, 16, 17 inspected directly on original PDF on 2026-10-20; figure 21 in prior visual audit; independent claim-level validation pending.",
     "Single case is not representative of overall system quality."
   ],
   "primary_source": {
     "title": "I principi del 3-3-4",
     "author": "Ezio Glerean",
     "url": "https://drive.google.com/file/d/0B6maey1azXc5YnlONlQwd2EtMDA/view?usp=drivesdk&resourcekey=0-BD1AhKI9QCcknzyQdXZDsA",
-    "verification": "Testo estratto dal PDF originale; figura 21 verificata in evaluation/audit_figure_glerean_v1.md; figure 15/a,16,17 ancora pendenti."
+    "verification": "Testo estratto dal PDF originale; figure 15/a,15/b,16,17 verificate direttamente su pagine PDF 9-10 il 2026-10-20; figura 21 in audit precedente. Validazione claim-by-claim ancora aperta."
   },
   "figure_audit": {
     "reference": "evaluation/audit_figure_glerean_v1.md",
     "verified": [
+      "15/a",
+      "15/b",
+      16,
+      17,
       21
     ],
-    "pending": [
-      15,
-      16,
-      17
-    ],
-    "note": "Fig.21 verificata nell'audit visivo successivo; Fig.15/a,16,17 restano non attestate. Il gold testuale G1-G4 non diventa automaticamente gold multimodale validato."
+    "pending": [],
+    "note": "Audit visivo di 15/a,15/b,16,17 eseguito direttamente su PDF originale il 2026-10-20; figura 21 da audit storico. Non dimostra automaticamente la validità multimodale di ogni claim.",
+    "original_pdf_sha256": "a2811a747920b35ab1b24768949f9b21e2a813ffd31b85b4eb8b5d0967ae8a17",
+    "direct_visual_audit_2026_10_20": [
+      {
+        "figure": "15/a",
+        "pdf_page": 9,
+        "printed_page": 14,
+        "observation": "Palla in zona difensiva presso n.3; attaccanti n.11,10,9,7 si dispongono centralmente e avanzano; centrocampisti esterni n.6/8 larghi; testo esplicita ruolo del n.4 in diagonale."
+      },
+      {
+        "figure": "15/b",
+        "pdf_page": 9,
+        "printed_page": 14,
+        "observation": "Schieramento successivo: n.3 portatore; difensori non portatori e portiere in appoggio, n.4 in posizione diagonale secondo testo."
+      },
+      {
+        "figure": 16,
+        "pdf_page": 10,
+        "printed_page": 15,
+        "observation": "Possesso centrale n.4; n.11/7 si allargano, n.9/10 centrali avanzati, n.6/8 si allargano, difensori si aprono e arretrano."
+      },
+      {
+        "figure": 17,
+        "pdf_page": 10,
+        "printed_page": 15,
+        "observation": "Palla in zona offensiva presso n.11; attaccanti si muovono diagonalmente; difesa e centrocampo in appoggio."
+      }
+    ]
   }
 }
