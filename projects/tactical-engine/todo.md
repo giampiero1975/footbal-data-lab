@@ -43,7 +43,7 @@
 - [x] Progettare una rappresentazione offline delle figure con pagina, numero, ruoli, movimenti, canali di evidenza e grado di certezza: `evaluation/glerean_figure_evidence_v2.json` (13 figure/sottofigure). La validazione del formato su retrieval reale resta separata.
 - [ ] Integrare e validare le evidenze delle figure nel retrieval senza modificare V4 prima di benchmark e rollback.
 
-**Aggiornamento 2026-10-20:** audit fonte di 14 claim concluso in `evaluation/audit_gold_glerean_14_claims_2026-10-20.md`; tutte le figure dei due gold set sono state esaminate, e il sidecar v2 è stato registrato. I risultati non dimostrano ancora un miglioramento end-to-end del RAG.\n\n**Diagnosi:** la perdita di informazione nei chunk testuali spiega parte degli errori; altri persistono anche nei contesti arricchiti. Non attribuire ogni difetto al modello o esclusivamente al corpus.
+**Decisione architetturale 2026-10-20:** il sidecar Glerean resta esclusivamente gold offline, non componente della produzione. Piano generalizzabile con API native Docling e gate di validazione in `docs/piano_ingestion_multimodale_200_documenti_2026-10-20.md`. Nessun indice modificato.\n\n**Aggiornamento 2026-10-20:** audit fonte di 14 claim concluso in `evaluation/audit_gold_glerean_14_claims_2026-10-20.md`; tutte le figure dei due gold set sono state esaminate, e il sidecar v2 è stato registrato. I risultati non dimostrano ancora un miglioramento end-to-end del RAG.\n\n**Diagnosi:** la perdita di informazione nei chunk testuali spiega parte degli errori; altri persistono anche nei contesti arricchiti. Non attribuire ogni difetto al modello o esclusivamente al corpus.
 
 ## PRIORITÀ MASSIMA — Startup: scegliere e configurare la migliore architettura supportata da evidenze
 
