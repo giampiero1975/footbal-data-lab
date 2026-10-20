@@ -60,3 +60,29 @@ controllo di fattibilita'.
 Le schede dei produttori descrivono capacita' generali, non garantiscono
 fedelta' tattica in italiano. Il Gold copre solo 3 domande e 10 claim:
 utile per screening, insufficiente per dichiarare un vincitore definitivo.
+
+## Rilievi VPS comunicati dall'operatore (20 ottobre 2026)
+I seguenti valori derivano da output di comandi eseguiti dall'utente via PuTTY;
+non sono misurazioni effettuate direttamente dall'assistente via SSH.
+
+- `free -h`: RAM totale 15 GiB; usata 1.2 GiB; libera 13 GiB;
+  disponibile 14 GiB. Swap totale 1.5 GiB, usata 1.5 GiB,
+  libera 72 KiB. Swap piena: causa non ancora diagnosticata.
+- `df -h`: filesystem root `/dev/vda1` 58 GB, usati 27 GB,
+  disponibili 31 GB, occupazione 47%; /boot 881 MB, liberi 703 MB;
+  /boot/efi 105 MB, liberi 99 MB.
+- `ollama list`: `qwen3-embedding:0.6b` (ID ac6da0dfba84,
+  639 MB); `qwen3.5:9b` (ID 56671c2ab938, 6.6 GB);
+  `nomic-embed-text:latest` (ID 0a109f422b47, 274 MB).
+- Gemma 3, Ministral 3 e Granite 4 non figurano tra i modelli
+  installati al momento della rilevazione.
+- `ollama ps`: richiesto, risultato non ancora ricevuto.
+- Versione Ollama, CPU e carichi di inferenza: ancora da verificare.
+- Accesso SSH diretto da ChatGPT: non disponibile negli strumenti
+  connessi in questa conversazione. L'accesso SSH via PuTTY dell'utente
+  e' operativo, ma non trasferibile automaticamente alla sessione ChatGPT.
+
+**Valutazione preliminare:** RAM e spazio disco appaiono compatibili con
+un test isolato di Gemma 3 12B quantizzato, ma la fattibilita' reale
+richiede conferma di modelli caricati, RAM durante inferenza e prestazioni CPU.
+Nessuna modifica alla configurazione V4 e nessun download eseguito.
