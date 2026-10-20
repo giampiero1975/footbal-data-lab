@@ -112,3 +112,5 @@ Nessuna modifica alla configurazione V4 e nessun download eseguito.
 - Ricerca plugin SSH dedicato nella directory ChatGPT: nessun risultato.
 
 - Versione Ollama rilevata dall'operatore con `ollama --version`: **0.40.5**. La compatibilita' specifica del tag Gemma 3 12B con questa versione non e' ancora stata confermata mediante un caricamento effettivo.
+
+- L'operatore conferma completato il download/installazione di `gemma3:12b` tramite `ollama pull gemma3:12b`. Conferma dichiarata dall'operatore; digest e caricamento effettivo ancora da verificare. V4 non modificata.
