@@ -43,3 +43,18 @@ Collection Chroma e conteggi, entry point/servizi, versione interprete venv, sto
 - **Architettura:** non è stato ancora identificato un entry point di produzione V4. Ollama attivo non significa che DRIBBLING sia un servizio avviato.
 
 **Nessuna modifica richiesta a RAM/swap o ai servizi.** Ripetere i controlli solo se cambiano risorse, processi, deployment o compaiono sintomi.
+
+## Verifica runtime Docling — 2026-10-20
+
+Output riportato dall'utente dopo esecuzione sulla VPS con l'interprete `projects/tactical-engine/.venv/bin/python`.
+
+- Versione: `docling 2.140.0`.
+- `generate_picture_images`: disponibile, default `False`.
+- `generate_page_images`: disponibile, default `False`.
+- `do_picture_description`: disponibile, default `False`.
+- `do_picture_classification`: disponibile, default `False`.
+- `picture_description_options`: disponibile; default visualizzato solo parzialmente (`batch_size=8 scale=2.0 picture_area_threshold=0.05 ...`).
+- `images_scale`: disponibile, default `1.0`.
+- `enable_remote_services`: disponibile, default `False`.
+
+Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Nessuna modifica a V4 o agli indici.
