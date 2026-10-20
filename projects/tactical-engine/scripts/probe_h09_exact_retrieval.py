@@ -13,11 +13,27 @@ FIG = re.compile(r"(?i)\b(?:fig(?:ura|ure|g)?\.?|schema|diagramma)\s*(?:n\.?\s*)
 def normalize(value):
     return re.sub(r"\s+", "", value.lower()).replace("\\", "/").replace(".", "/")
 
+def self_test():
+    cases = {"Spiega la Fig.15/a": ["15/a"], "Spiega la Fig.15/b": ["15/b"],
+             "Spiega la Fig.17": ["17"], "Spiega fig.15\\\\a": ["15/a"]}
+    for query, expected in cases.items():
+        actual = [normalize(v) for v in FIG.findall(query)]
+        if actual != expected:
+            raise AssertionError(f"{query!r}: expected {expected}, got {actual}")
+    print("SELF_TEST_OK", len(cases))
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("--evidence", required=True, type=Path)
-    p.add_argument("--query", action="append", required=True)
+    p.add_argument("--evidence", type=Path)
+    p.add_argument("--self-test", action="store_true")
+    p.add_argument("--query", action="append")
     args = p.parse_args()
+    if args.self_test:
+        self_test()
+        return
+    if not args.evidence or not args.query:
+        p.error("--evidence and --query are required unless --self-test")
     data = json.loads(args.evidence.read_text(encoding="utf-8"))
     rows = data.get("records", [])
     for q in args.query:
