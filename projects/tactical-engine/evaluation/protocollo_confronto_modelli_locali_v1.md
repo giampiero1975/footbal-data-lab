@@ -116,3 +116,5 @@ Nessuna modifica alla configurazione V4 e nessun download eseguito.
 - L'operatore conferma completato il download/installazione di `gemma3:12b` tramite `ollama pull gemma3:12b`. Conferma dichiarata dall'operatore; digest e caricamento effettivo ancora da verificare. V4 non modificata.
 
 - Smoke test `ollama run gemma3:12b "Rispondi esclusivamente con la parola OK."`: risposta `OK` confermata dall'operatore. Il modello genera correttamente su VPS; memoria di picco, tempi e fedelta' documentale ancora non misurati. Il test non e' parte del Gold.
+
+- `ollama ps` dopo smoke test: `gemma3:12b`, ID `b92b218582c5`, SIZE `8.1 GB`, PROCESSOR `100% CPU`, CONTEXT `4096`, RUNNER `llamacpp`, UNTIL `4 minutes from now`. Output comunicato dall'operatore. SIZE non equivale alla misura di picco RSS/RAM. Inferenza esclusivamente CPU: latenza e sostenibilita' benchmark ancora da misurare.
