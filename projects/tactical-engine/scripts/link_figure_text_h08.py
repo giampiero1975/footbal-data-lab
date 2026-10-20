@@ -46,14 +46,9 @@ def build(doc, manifest):
             if paragraph["ref"] in caption_refs or paragraph["page"] is None:
                 continue
             exact = bool(set(ids) & set(paragraph["mentions"]))
-            same_page = paragraph["page"] == item.get("page")
-            if exact:
-                reason, status = "explicit_figure_reference", "candidate"
-            elif same_page and not paragraph["mentions"] and paragraph["label"] not in (
-                "caption", "page-header", "page-footer"):
-                reason, status = "same_page_only", "unverified"
-            else:
+            if not exact:
                 continue
+            reason, status = "explicit_figure_reference", "candidate"
             links.append({"paragraph_ref": paragraph["ref"], "page": paragraph["page"],
                           "reason": reason, "status": status})
         figures.append({
