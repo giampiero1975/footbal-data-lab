@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """H10 focused multi-source prompt A/B using saved evidence; preserves prior report and V4."""
-import argparse,datetime,hashlib,json,time,urllib.request
+import argparse,datetime,hashlib,json,re,time,urllib.request
 from pathlib import Path
 from compare_h09_generation_focus_ab import SCHEMA
 
@@ -27,9 +27,10 @@ def generate(question,context,url,model,timeout):
     if not isinstance(result.get("answer"),str) or not isinstance(result.get("citations"),list) or not isinstance(result.get("insufficient_evidence"),bool):
         raise ValueError("Invalid structured response")
     allowed={r["id"] for r in context}
-    valid=bool(result["citations"]) and all(isinstance(c,str) and c in allowed for c in result["citations"])
-    return {"response":result,"citations_valid_ids":valid,
-            "cited_sources":sorted({r["source"] for r in context if r["id"] in result["citations"]}),
+    normalized=[re.sub(r"^\\s*EVIDENZA\\s+", "",c,flags=re.I).strip() if isinstance(c,str) else None for c in result["citations"]]
+    valid=bool(normalized) and all(c in allowed for c in normalized)
+    return {"response":result,"citation_ids_normalized":normalized,"citations_valid_ids":valid,
+            "cited_sources":sorted({r["source"] for r in context if r["id"] in normalized}),
             "ollama_metrics":{k:raw.get(k) for k in ("total_duration","prompt_eval_count","eval_count","done_reason")}}
 
 def main():
