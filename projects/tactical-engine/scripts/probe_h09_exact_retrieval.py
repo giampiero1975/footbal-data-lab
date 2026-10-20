@@ -8,10 +8,10 @@ import json
 import re
 from pathlib import Path
 
-FIG = re.compile(r"(?i)\\b(?:fig(?:ura|ure|g)?\\.?|schema|diagramma)\\s*(?:n\\.?\\s*)?(\\d{1,3}(?:\\s*[/\\\\.-]\\s*[a-z])?)\\b")
+FIG = re.compile(r"(?i)\b(?:fig(?:ura|ure|g)?\.?|schema|diagramma)\s*(?:n\.?\s*)?(\d{1,3}(?:\s*[/\\.-]\s*[a-z])?)\b")
 
 def normalize(value):
-    return re.sub(r"\\s+", "", value.lower()).replace("\\\\", "/").replace(".", "/")
+    return re.sub(r"\s+", "", value.lower()).replace("\\", "/").replace(".", "/")
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
