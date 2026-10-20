@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "case_id": "GLEREAN-334-AMPIEZZA-001",
-  "status": "primary_pdf_text_verified_figures_pending",
+  "status": "primary_pdf_text_verified_partial_figure_audit",
   "language": "it",
   "question": "Come si sviluppa l’ampiezza offensiva nel 3-3-4 di Glerean?",
   "source_document": "334_principi_Glerean",
@@ -84,13 +84,25 @@
   },
   "limitations": [
     "All four claims checked against text extracted from the primary PDF in Google Drive.",
-    "Figures 15/a, 16, 17 and 21 still require visual inspection.",
+    "Figures 15/a, 16 and 17 remain to be inspected; figure 21 was inspected in the later visual audit.",
     "Single case is not representative of overall system quality."
   ],
   "primary_source": {
     "title": "I principi del 3-3-4",
     "author": "Ezio Glerean",
     "url": "https://drive.google.com/file/d/0B6maey1azXc5YnlONlQwd2EtMDA/view?usp=drivesdk&resourcekey=0-BD1AhKI9QCcknzyQdXZDsA",
-    "verification": "Testo estratto dal PDF originale tramite connettore Google Drive; le figure non sono state ancora ispezionate visivamente"
+    "verification": "Testo estratto dal PDF originale; figura 21 verificata in evaluation/audit_figure_glerean_v1.md; figure 15/a,16,17 ancora pendenti."
+  },
+  "figure_audit": {
+    "reference": "evaluation/audit_figure_glerean_v1.md",
+    "verified": [
+      21
+    ],
+    "pending": [
+      15,
+      16,
+      17
+    ],
+    "note": "Fig.21 verificata nell'audit visivo successivo; Fig.15/a,16,17 restano non attestate. Il gold testuale G1-G4 non diventa automaticamente gold multimodale validato."
   }
 }
