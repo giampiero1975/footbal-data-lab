@@ -40,10 +40,10 @@
 - [x] Preparazione offline di descrizioni strutturate delle figure e sei contesti arricchiti; testi originali e hash conservati. Vedi evaluation/preparazione_benchmark_glerean_arricchito_v1.md.
 - [x] Confronto sperimentale con contesti arricchiti, 12 esecuzioni Qwen/Gemma; documentati errori residui di ruoli, movimenti e citazioni. Vedi evaluation/audit_glerean_enriched_v1.md.
 - [ ] Valutare il miglioramento rispetto ai contesti non arricchiti con gold indipendenti, evitando conclusioni causali non dimostrate.
-- [ ] Progettare una rappresentazione delle figure con pagina, numero, attori, movimenti, relazioni e grado di certezza, distinguendo osservazione visiva e inferenza dal testo.
+- [x] Progettare una rappresentazione offline delle figure con pagina, numero, ruoli, movimenti, canali di evidenza e grado di certezza: `evaluation/glerean_figure_evidence_v2.json` (13 figure/sottofigure). La validazione del formato su retrieval reale resta separata.
 - [ ] Integrare e validare le evidenze delle figure nel retrieval senza modificare V4 prima di benchmark e rollback.
 
-**Diagnosi:** la perdita di informazione nei chunk testuali spiega parte degli errori; altri persistono anche nei contesti arricchiti. Non attribuire ogni difetto al modello o esclusivamente al corpus.
+**Aggiornamento 2026-10-20:** audit fonte di 14 claim concluso in `evaluation/audit_gold_glerean_14_claims_2026-10-20.md`; tutte le figure dei due gold set sono state esaminate, e il sidecar v2 è stato registrato. I risultati non dimostrano ancora un miglioramento end-to-end del RAG.\n\n**Diagnosi:** la perdita di informazione nei chunk testuali spiega parte degli errori; altri persistono anche nei contesti arricchiti. Non attribuire ogni difetto al modello o esclusivamente al corpus.
 
 ## PRIORITÀ MASSIMA — Startup: scegliere e configurare la migliore architettura supportata da evidenze
 
