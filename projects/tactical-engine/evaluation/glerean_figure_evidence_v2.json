@@ -1,0 +1,201 @@
+{
+  "schema_version": "2.0",
+  "source": {
+    "title": "I principi del 3-3-4",
+    "author": "Ezio Glerean",
+    "drive_id": "0B6maey1azXc5YnlONlQwd2EtMDA"
+  },
+  "status": "offline_reference_not_ingested",
+  "provenance": "Original PDF visual audits 2026-10-20 plus textual paragraphs; not independent multimodal gold.",
+  "role_map": {
+    "1": "portiere",
+    "2": "difensore",
+    "3": "difensore",
+    "4": "centrocampista centrale",
+    "5": "difensore",
+    "6": "centrocampista",
+    "7": "attaccante esterno",
+    "8": "centrocampista",
+    "9": "attaccante centrale",
+    "10": "attaccante centrale",
+    "11": "attaccante esterno"
+  },
+  "figures": [
+    {
+      "id": "10",
+      "pdf_page": 7,
+      "printed_page": 12,
+      "visual": "Schema della riconquista su respinta e riposizionamento dei compagni.",
+      "text": "I centrocampisti attaccano e conquistano la palla; altri giocatori prendono posizione.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 10"
+    },
+    {
+      "id": "11",
+      "pdf_page": 7,
+      "printed_page": 12,
+      "visual": "Schema di sostegno al portatore.",
+      "text": "Il n.10 spalle alla porta appoggia al n.4 che vede il gioco.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 11"
+    },
+    {
+      "id": "12",
+      "pdf_page": 8,
+      "printed_page": 13,
+      "visual": "N.4 portatore, n.7 e 11 esterni offensivi, n.9 e 10 centrali; quattro opzioni.",
+      "text": "N.7/11 taglio d'appoggio, n.9 parte per primo, n.10 occupa il suo spazio.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 12"
+    },
+    {
+      "id": "13",
+      "pdf_page": 8,
+      "printed_page": 13,
+      "visual": "N.6 e n.8 si allargano a sostegno del n.4.",
+      "text": "N.6/8 corrono dietro le spalle del centrocampista avversario.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 13"
+    },
+    {
+      "id": "14",
+      "pdf_page": 8,
+      "printed_page": 13,
+      "visual": "Difensori n.3,5,2 in appoggio arretrato.",
+      "text": "Movimento rapido all'indietro per guadagnare spazio e tempo di gioco.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 14"
+    },
+    {
+      "id": "15/a",
+      "pdf_page": 9,
+      "printed_page": 14,
+      "visual": "Attaccanti avanzati centralmente; centrocampisti esterni larghi.",
+      "text": "Possesso in zona difensiva.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 15/a"
+    },
+    {
+      "id": "15/b",
+      "pdf_page": 9,
+      "printed_page": 14,
+      "visual": "Difensori non portatori e portiere in sostegno.",
+      "text": "Centrocampista centrale in diagonale rispetto alla palla.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 15/b"
+    },
+    {
+      "id": "16",
+      "pdf_page": 10,
+      "printed_page": 15,
+      "visual": "Attaccanti esterni larghi, centrali avanzati; centrocampisti non portatori larghi.",
+      "text": "Possesso in zona di centrocampo.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 16"
+    },
+    {
+      "id": "17",
+      "pdf_page": 10,
+      "printed_page": 15,
+      "visual": "Attaccanti con traiettorie diagonali.",
+      "text": "In zona offensiva difesa e centrocampo in appoggio; il più vicino alla palla avvia il movimento.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 17"
+    },
+    {
+      "id": "18",
+      "pdf_page": 11,
+      "printed_page": 16,
+      "visual": "Portiere n.1 con rilancio lungo verso settore offensivo.",
+      "text": "Un compagno di reparto spizza la palla.",
+      "certainty": "partial",
+      "uncertain": "La figura non identifica con certezza chi esegue la spizzata.",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 18"
+    },
+    {
+      "id": "19",
+      "pdf_page": 11,
+      "printed_page": 16,
+      "visual": "Centrocampista n.8 gestisce, attaccanti in spazi centrali e laterali.",
+      "text": "Gestione difensori/centrocampisti con attaccanti pronti alla ricezione.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 19"
+    },
+    {
+      "id": "20",
+      "pdf_page": 12,
+      "printed_page": 17,
+      "visual": "Difensori n.3,5,2 arretrano rispetto al n.4.",
+      "text": "Appoggio arretrato e creazione di spazio.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 20"
+    },
+    {
+      "id": "21",
+      "pdf_page": 13,
+      "printed_page": 18,
+      "visual": "Attaccanti esterni n.7/11 e centrali n.9/10, traiettorie in diagonale.",
+      "text": "Laterali profondità e ampiezza, centrali profondità.",
+      "certainty": "high",
+      "evidence_channels": [
+        "visual",
+        "primary_text"
+      ],
+      "figure_reference": "Fig. 21"
+    }
+  ],
+  "guardrails": [
+    "Role map applies only to Glerean 3-3-4.",
+    "Do not infer identity of flick-on player from Fig.18.",
+    "Do not present optional vertical midfield run as universal.",
+    "Figures are not independent source citations: cite original PDF and figure/page."
+  ]
+}
