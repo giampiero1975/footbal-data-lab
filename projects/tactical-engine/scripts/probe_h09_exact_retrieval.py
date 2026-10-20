@@ -15,7 +15,7 @@ def normalize(value):
 
 def self_test():
     cases = {"Spiega la Fig.15/a": ["15/a"], "Spiega la Fig.15/b": ["15/b"],
-             "Spiega la Fig.17": ["17"], "Spiega fig.15\\\\a": ["15/a"]}
+             "Spiega la Fig.17": ["17"], "Spiega fig.15\\a": ["15/a"]}
     for query, expected in cases.items():
         actual = [normalize(v) for v in FIG.findall(query)]
         if actual != expected:
