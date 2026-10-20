@@ -58,3 +58,15 @@ Output riportato dall'utente dopo esecuzione sulla VPS con l'interprete `project
 - `enable_remote_services`: disponibile, default `False`.
 
 Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Nessuna modifica a V4 o agli indici.
+
+## Audit figure già estratte — 2026-10-20
+
+**Evidenza:** output VPS riportato dall'utente dopo esecuzione dello script read-only `projects/tactical-engine/scripts/audit_existing_docling_figures.py` (commit `f702890`). Cartella esaminata: `/opt/football-data-lab/knowledge/processed`.
+
+| Documento | Pipeline | Figure Docling | Manifest | Metadati estratte | JSON/manifest mancanti |
+| --- | ---: | ---: | ---: | ---: | --- |
+| `formations-and-systems/334_principi_Glerean.pdf` | 2 | 27 | 27 | 27 | no/no |
+| `formations-and-systems/il_3412_Giustinetti.pdf` | 2 | 21 | 21 | 21 | no/no |
+| **Totale** | | **48** | **48** | **48** | **nessuno** |
+
+**Interpretazione:** copertura del 100% delle *figure già riconosciute da Docling*, non prova di recall su tutte le figure reali del PDF né di correttezza dei ritagli o della semantica tattica. L'audit ha verificato i conteggi e la presenza dei manifest, non ha aperto singoli PNG. Prossimo passo: analisi isolata e riproducibile dei 48 ritagli, poi test di descrizione su un sottoinsieme, mantenendo intatti pipeline V2 e indice V4.
