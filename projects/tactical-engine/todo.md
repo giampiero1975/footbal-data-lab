@@ -23,7 +23,9 @@
 - [x] Decisione provvisoria: Qwen3-Embedding candidato H09; BM25 **escluso dal percorso candidato**, mantenuto solo come baseline di valutazione. MRR BM25 0.696970, dense 0.833333, hybrid RRF 0.733333; nessuna conclusione da 3 query sul corpus completo.
 - [ ] Validare il contributo BM25 su benchmark indipendente, casi negativi e fonti differenti; valutare qualità, latenza e costi senza ottimizzare sui tre casi di sviluppo.
 - [ ] Se BM25 non offre beneficio dimostrato, censire riferimenti runtime, import, script, configurazioni e dipendenze; predisporre backup e rollback; **rimuovere componenti BM25 inutilizzati** senza lasciare codice morto. Conservare risultati e motivazioni in Git, senza toccare la baseline V4 prima della validazione.
-- [ ] Proseguire con Qwen3-Embedding + reranker mMARCO, poi valutazione generazione Qwen3.5 e audit claim-by-claim rispetto a V4, secondo documentazione ufficiale/versioni effettive.
+- [x] Eseguire benchmark H09 read-only Qwen3-Embedding vs Qwen3-Embedding + mMARCO su 23 evidenze e 3 query di sviluppo: dense Hit@1 2/3, Hit@5 3/3, MRR 0.833333; dense+mMARCO Hit@1 3/3, Hit@5 3/3, MRR 1.0; figura 15/a rank 2→1. Report VPS `/tmp/h09_dense_mmarco.json`, commit `4b4122dcb25ee45bd5884e3eceea3f2c07c14a2b`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`, sentence-transformers 6.1.0, mMARCO CPU max_length=512 batch=1, top-N=15, 22.538 s totali. Riferimenti ufficiali: https://www.sbert.net/docs/cross_encoder/usage/usage.html ; https://sbert.net/docs/package_reference/cross_encoder/model.html ; https://docs.ollama.com/api/embed . Risultato **solo esplorativo**, non validato su holdout né contro V4.
+- [ ] Validare mMARCO su holdout indipendente e altre fonti, misurando anche truncation, latenza per query e impatto sulle evidenze prima di promuoverlo.
+- [ ] Proseguire con generazione Qwen3.5 sulle evidenze H09 recuperate e rerankate, con citazioni e audit claim-by-claim, poi confronto controllato con V4; consultare API/versioni ufficiali prima del test.
 
 ## PRIORITÀ MASSIMA — Qualità scientifica e tattica delle risposte
 
