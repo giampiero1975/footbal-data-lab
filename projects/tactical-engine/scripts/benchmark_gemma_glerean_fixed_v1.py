@@ -29,7 +29,7 @@ FONTI:
 DOMANDA: {question}
 
 RISPOSTA:"""
-CIT = re.compile(r"\\[(?:GLEREAN-C\\d{3}|\\d+)\\]")
+CIT = re.compile(r"\[(?:GLEREAN-C\d{3}|\d+)\]")
 
 def post(endpoint, payload):
     req = urllib.request.Request(
@@ -64,8 +64,8 @@ def main():
         if len(sources) != 5:
             raise ValueError(f"Run {i}: attese 5 fonti, trovate {len(sources)}")
         refs = [s["ref"] for s in sources]
-        context = "\\n\\n".join(
-            f'FONTE {s["ref"]} (pagina {s.get("page_numbers", "?")}):\\n{s["text"]}'
+        context = "\n\n".join(
+            f'FONTE {s["ref"]} (pagina {s.get("page_numbers", "?")}):\n{s["text"]}'
             for s in sources)
         prompt = PROMPT.format(context=context, question=r["question"])
         # Ollama /api/tokenize non e' API ufficiale: usa /api/generate con num_predict=0?
@@ -126,7 +126,7 @@ def main():
             "gold_claims": r.get("gold_claims"), "sources": r["sources"],
         }
         report["runs"].append(entry)
-        args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+        args.output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
         print(f'{i}/6 {r["case_id"]} {r["mode"]}: {elapsed}s, prompt_tokens={prompt_tokens}, '
               f'citazioni_non_valide={invalid}, contesto_comparabile={comparable}', flush=True)
         if not comparable:
