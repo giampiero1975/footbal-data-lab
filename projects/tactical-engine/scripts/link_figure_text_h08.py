@@ -7,11 +7,11 @@ import json
 import re
 from pathlib import Path
 
-REF = re.compile(r"(?i)\b(?:fig(?:ura|ure|g)?\.?|schema|diagramma)\s*(?:n\.?\s*)?(\d{1,3}(?:\s*[/.-]\s*[a-z])?)\b")
+REF = re.compile(r"(?i)\b(?:fig(?:ura|ure|g)?\.?|schema|diagramma)\s*(?:n\.?\s*)?(\d{1,3}(?:\s*[/\\.-]\s*[a-z])?)\b")
 
 
 def figure_id(value):
-    return re.sub(r"\s+", "", value.lower()).replace(".", "/")
+    return re.sub(r"\s+", "", value.lower()).replace(".", "/").replace("\\", "/")
 
 
 def page_of(item):
