@@ -201,6 +201,7 @@
 - [x] Identificare nel codice GitHub la pipeline candidata V5 (`smoke_test_rag_v5_e2e.py`) e il giudice NLI V2 (`benchmark_direct_three_label_nli_v2.py`), distinguendoli dall'entry point storico `ask_dribbling.py` che usa V1.
 - [x] Definire un contratto shadow separato, senza modifiche alle risposte, agli indici o ai prompt, con rischi, fasi offline/replay/live e rollback: [docs/nli-v2-shadow-integration.md](docs/nli-v2-shadow-integration.md).
 - [x] Implementare runner offline-first con claim atomici **annotati manualmente**, citazioni, più fonti e report separato (`scripts/shadow_nli_v2_offline.py`) e quattro test unitari (`scripts/test_shadow_nli_v2_offline.py`). Il prototipo locale ha superato 4/4 test; **i file pubblicati su GitHub non sono ancora stati eseguiti sulla VPS/CI**. Nessuna estrazione automatica claim o chiamata NLI integrata.
+- [x] Implementare adapter NLI V2 opt-in su coppie claim–evidence, con prompt e schema V2 invariati, output separato e gestione errori conservativa (`scripts/shadow_nli_v2_inference.py`). Aggiunti test con giudice simulato (`scripts/test_shadow_nli_v2_inference.py`). **Non ancora eseguiti su VPS/CI; nessuna inferenza reale validata.**
 - [ ] Validare estrazione dei claim e associazione semantica alle fonti su gold indipendente, prima di qualsiasi hook nel generatore.
 - [ ] Eseguire shadow isolato su VPS solo dopo gate documentali, gold e audit runtime; misurare latenza end-to-end e risorse.
 
