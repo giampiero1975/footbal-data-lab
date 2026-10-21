@@ -1,0 +1,162 @@
+{
+  "version": "external_source_holdout_v1",
+  "purpose": "Source-disjoint, bilingual Italian-claim English-evidence evaluation; never tune prompts on these examples before scoring.",
+  "labels": [
+    "supported",
+    "contradicted",
+    "insufficient"
+  ],
+  "source_selection": "Official The FA and UEFA public coaching/technical analysis pages, distinct from the previously evaluated Italian tactical excerpts.",
+  "limitations": [
+    "New external sources and source-disjoint relative to prior cases, but human-authored labels are provisional until independently reviewed.",
+    "Claims are in Italian, evidence in English: cross-lingual generalization challenge.",
+    "Evidence excerpts are curated and supplied directly; retrieval is not tested.",
+    "Some contradiction labels depend on interpreting direct tactical opposites, not statistical inference."
+  ],
+  "cases": [
+    {
+      "id": "ext_01",
+      "claim": "Il pressing del centravanti richiede sostegno da parte dei compagni.",
+      "gold": "supported",
+      "source": "The FA - How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "evidence": "Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others."
+    },
+    {
+      "id": "ext_02",
+      "claim": "Quando il centravanti va in pressione, i compagni non devono sostenerlo.",
+      "gold": "contradicted",
+      "source": "The FA - How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "evidence": "Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others."
+    },
+    {
+      "id": "ext_03",
+      "claim": "Il sostegno al pressing aumenta del 25% i recuperi di palla.",
+      "gold": "insufficient",
+      "source": "The FA - How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "evidence": "Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others."
+    },
+    {
+      "id": "ext_04",
+      "claim": "Chi avvia un contropiede ha bisogno di corse di sostegno.",
+      "gold": "supported",
+      "source": "The FA - How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "evidence": "Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others."
+    },
+    {
+      "id": "ext_05",
+      "claim": "Un contropiede non richiede mai movimenti di supporto.",
+      "gold": "contradicted",
+      "source": "The FA - How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "evidence": "Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others."
+    },
+    {
+      "id": "ext_06",
+      "claim": "Ogni contropiede con sostegno termina necessariamente con un gol.",
+      "gold": "insufficient",
+      "source": "The FA - How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "evidence": "Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others."
+    },
+    {
+      "id": "ext_07",
+      "claim": "Quando la pressione sulla palla diminuisce, la difesa deve posizionarsi più in profondità per proteggere lo spazio alle spalle.",
+      "gold": "supported",
+      "source": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up."
+    },
+    {
+      "id": "ext_08",
+      "claim": "Una minore pressione sulla palla permette alla difesa di salire senza rischi.",
+      "gold": "contradicted",
+      "source": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up."
+    },
+    {
+      "id": "ext_09",
+      "claim": "Con meno pressione sulla palla la linea difensiva arretra esattamente di dieci metri.",
+      "gold": "insufficient",
+      "source": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up."
+    },
+    {
+      "id": "ext_10",
+      "claim": "Quando viene applicata pressione sulla palla, la difesa può avanzare.",
+      "gold": "supported",
+      "source": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up."
+    },
+    {
+      "id": "ext_11",
+      "claim": "La pressione sulla palla obbliga sempre la difesa ad arretrare.",
+      "gold": "contradicted",
+      "source": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up."
+    },
+    {
+      "id": "ext_12",
+      "claim": "Applicare pressione sulla palla garantisce il recupero del possesso entro sei secondi.",
+      "gold": "insufficient",
+      "source": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up."
+    },
+    {
+      "id": "ext_13",
+      "claim": "Il West Ham ha spinto il Friburgo sulle fasce mantenendo compattezza nelle zone centrali.",
+      "gold": "supported",
+      "source": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs."
+    },
+    {
+      "id": "ext_14",
+      "claim": "Il West Ham ha concesso volontariamente il centro del campo al Friburgo anziché indirizzarlo sulle fasce.",
+      "gold": "contradicted",
+      "source": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs."
+    },
+    {
+      "id": "ext_15",
+      "claim": "La compattezza centrale del West Ham ha prodotto esattamente cinque recuperi palla.",
+      "gold": "insufficient",
+      "source": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs."
+    },
+    {
+      "id": "ext_16",
+      "claim": "I centrocampisti del West Ham sostenevano i terzini quando il pallone arrivava sulle fasce.",
+      "gold": "supported",
+      "source": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs."
+    },
+    {
+      "id": "ext_17",
+      "claim": "Quando il pallone arrivava sulle fasce, i centrocampisti del West Ham evitavano di coprire gli spazi.",
+      "gold": "contradicted",
+      "source": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs."
+    },
+    {
+      "id": "ext_18",
+      "claim": "La difesa compatta del West Ham garantisce la vittoria in ogni partita.",
+      "gold": "insufficient",
+      "source": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs."
+    }
+  ]
+}
