@@ -196,6 +196,14 @@
 - [ ] Integrare V2 soltanto in modalità shadow/reversibile, dopo superamento dei gate; valutare fedeltà claim-by-claim, completezza, retrieval, citazioni e latenza sull'intera pipeline.
 - [ ] Qualificare il sistema end-to-end con benchmark indipendente e confronto controllato con baseline V4; soglia NLI di laboratorio >=90% totale e per categoria NON equivale a certificazione RAG.
 
+### Integrazione NLI V2 — contratto shadow (2026-10-21)
+
+- [x] Identificare nel codice GitHub la pipeline candidata V5 (`smoke_test_rag_v5_e2e.py`) e il giudice NLI V2 (`benchmark_direct_three_label_nli_v2.py`), distinguendoli dall'entry point storico `ask_dribbling.py` che usa V1.
+- [x] Definire un contratto shadow separato, senza modifiche alle risposte, agli indici o ai prompt, con rischi, fasi offline/replay/live e rollback: [docs/nli-v2-shadow-integration.md](docs/nli-v2-shadow-integration.md).
+- [ ] Implementare runner offline-first con fixture di claim atomici, citazioni, più fonti e report separato; testare assenza di modifiche agli input.
+- [ ] Validare estrazione dei claim e associazione semantica alle fonti su gold indipendente, prima di qualsiasi hook nel generatore.
+- [ ] Eseguire shadow isolato su VPS solo dopo gate documentali, gold e audit runtime; misurare latenza end-to-end e risorse.
+
 ## 8. Validazione end-to-end e confronto V4/V5
 
 **Gate end-to-end (nuova checklist trasversale):** le attività dettagliate restano nelle sezioni di qualità, baseline e NLI; questa sezione raccoglie le condizioni di promozione.
