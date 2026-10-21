@@ -1,0 +1,262 @@
+{
+  "name": "tactical_transition_independent_v1",
+  "notes": "Frozen V2 prospective evaluation; 32 human-authored adversarial examples across four FA resources. Excerpts are selected passages, not full documents. Gold labels need independent review for deployment qualification. Do not tune on these cases before first run.",
+  "cases": [
+    {
+      "id": "transition_dna_01",
+      "gold": "supported",
+      "claim": "La transizione comprende la risposta immediata alla perdita o al recupero del possesso.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_dna_02",
+      "gold": "supported",
+      "claim": "Nella transizione difensiva, il resto della squadra deve sostenere la decisione iniziale del giocatore più vicino alla palla.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_dna_03",
+      "gold": "contradicted",
+      "claim": "Secondo l'England DNA, la transizione riguarda soltanto il momento in cui si recupera il possesso.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_dna_04",
+      "gold": "contradicted",
+      "claim": "Nella transizione il portiere non ha alcun ruolo organizzativo o comunicativo.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_dna_05",
+      "gold": "insufficient",
+      "claim": "Il sostegno collettivo nelle transizioni garantisce la vittoria di tutte le partite.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_dna_06",
+      "gold": "insufficient",
+      "claim": "La transizione offensiva dura precisamente quattro secondi in ogni situazione.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_dna_07",
+      "gold": "insufficient",
+      "claim": "Il portiere deve sempre iniziare la transizione con un lancio lungo.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_dna_08",
+      "gold": "contradicted",
+      "claim": "Il giocatore più vicino alla palla deve agire senza che i compagni sostengano il suo movimento.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition"
+    },
+    {
+      "id": "transition_england_01",
+      "gold": "supported",
+      "claim": "Nell'esempio inglese i difensori centrali avanzano per sostenere l'attacco, ma arretrano rapidamente dopo la perdita del pallone.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_england_02",
+      "gold": "supported",
+      "claim": "La compattezza centrale dell'Inghilterra indirizza gli avversari verso le fasce.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_england_03",
+      "gold": "contradicted",
+      "claim": "Nell'esempio, i tre difensori centrali inglesi rimangono fermi in avanti quando perdono il possesso.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_england_04",
+      "gold": "contradicted",
+      "claim": "Secondo l'articolo, gli spazi di allenamento piccoli producono meno transizioni rispetto a quelli grandi.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_england_05",
+      "gold": "insufficient",
+      "claim": "L'Inghilterra recupera sempre il pallone entro sei secondi grazie alla compattezza.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_england_06",
+      "gold": "insufficient",
+      "claim": "I difensori centrali inglesi hanno percorso esattamente 45 metri per rientrare.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_england_07",
+      "gold": "insufficient",
+      "claim": "Per ogni categoria giovanile la FA prescrive obbligatoriamente la medesima struttura tattica della nazionale maggiore.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_england_08",
+      "gold": "contradicted",
+      "claim": "Nella strategia descritta, l'Inghilterra cerca di lasciare completamente libero il centro del campo per costringere gli avversari a giocare lì.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition"
+    },
+    {
+      "id": "transition_coaching_01",
+      "gold": "supported",
+      "claim": "La preparazione della transizione inizia anche prima che cambi il possesso.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_coaching_02",
+      "gold": "supported",
+      "claim": "Il controllo emotivo e la capacità decisionale sono indicati come fattori importanti nelle transizioni.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_coaching_03",
+      "gold": "contradicted",
+      "claim": "La FA raccomanda di aspettare il recupero della palla prima di valutare qualsiasi opzione di passaggio.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_coaching_04",
+      "gold": "contradicted",
+      "claim": "Secondo la fonte, il centravanti che pressa non deve ricevere alcun sostegno da dietro.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_coaching_05",
+      "gold": "insufficient",
+      "claim": "Allenare scenari di transizione assicura un miglioramento del 35% della velocità decisionale.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_coaching_06",
+      "gold": "insufficient",
+      "claim": "Un giocatore emotivamente controllato non perderà mai il possesso dopo una riconquista.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_coaching_07",
+      "gold": "insufficient",
+      "claim": "Il centravanti deve iniziare ogni pressing esattamente a 20 metri dalla porta.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_coaching_08",
+      "gold": "contradicted",
+      "claim": "La fonte considera irrilevante il controllo emotivo rispetto alle decisioni in transizione.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition"
+    },
+    {
+      "id": "transition_counter_01",
+      "gold": "supported",
+      "claim": "La sicurezza difensiva va considerata anche mentre la squadra è in possesso.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    },
+    {
+      "id": "transition_counter_02",
+      "gold": "supported",
+      "claim": "Il portiere contribuisce alla sicurezza difensiva con posizionamento e comunicazione.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    },
+    {
+      "id": "transition_counter_03",
+      "gold": "contradicted",
+      "claim": "La sicurezza difensiva diventa importante soltanto dopo aver perso il pallone.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    },
+    {
+      "id": "transition_counter_04",
+      "gold": "contradicted",
+      "claim": "Secondo la fonte, soltanto i difensori di movimento contribuiscono alla sicurezza difensiva.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    },
+    {
+      "id": "transition_counter_05",
+      "gold": "insufficient",
+      "claim": "Il corretto posizionamento del portiere garantisce di non subire alcun contropiede.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    },
+    {
+      "id": "transition_counter_06",
+      "gold": "insufficient",
+      "claim": "La fonte prescrive che il portiere rimanga sempre a 18 metri dalla linea di porta.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    },
+    {
+      "id": "transition_counter_07",
+      "gold": "insufficient",
+      "claim": "Ogni squadra che considera la sicurezza difensiva vincerà automaticamente il campionato.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    },
+    {
+      "id": "transition_counter_08",
+      "gold": "contradicted",
+      "claim": "Secondo il documento, il portiere non contribuisce in alcun modo all'organizzazione della difesa.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx"
+    }
+  ]
+}
