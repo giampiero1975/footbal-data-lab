@@ -1,0 +1,28 @@
+name: Tactical Engine Shadow NLI Offline Tests
+
+on:
+  push:
+    paths:
+      - "projects/tactical-engine/scripts/shadow_nli_v2_offline.py"
+      - "projects/tactical-engine/scripts/shadow_nli_v2_inference.py"
+      - "projects/tactical-engine/scripts/test_shadow_nli_v2_offline.py"
+      - "projects/tactical-engine/scripts/test_shadow_nli_v2_inference.py"
+      - ".github/workflows/tactical-shadow-nli-offline.yml"
+  workflow_dispatch:
+
+jobs:
+  offline-contract:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install lightweight test dependencies
+        run: python -m pip install "pydantic>=2,<3"
+      - name: Run offline contract tests
+        working-directory: projects/tactical-engine/scripts
+        run: python -m unittest -v test_shadow_nli_v2_offline.py test_shadow_nli_v2_inference.py
