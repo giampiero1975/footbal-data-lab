@@ -102,3 +102,15 @@ Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Ne
 - Il testo originale accanto alla Fig.12 specifica: n.4 possesso; n.11 o 7 taglio d'appoggio; n.9 primo movimento in direzione opposta; n.10 occupa spazio del 9. La Fig.13 riguarda allargamento dei n.6/8 e movimento del 4.
 
 **Decisione:** esito del pilot tattico = **non superato per fedeltà di figura singola**, con causa non ancora isolata tra cropping/associazione Docling e interpretazione Qwen. Prossimo controllo mirato: verificare il PNG esatto indice 17 e i suoi confini prima di modificare prompt o pipeline. V4 immutata.
+
+## Capacità filesystem — verifica VPS 2026-10-21
+
+**Evidenza:** output `df -hT` eseguito dall'utente nella seconda sessione PuTTY durante il benchmark NLI. Controllo di sola lettura, non misura l'occupazione per directory o la latenza I/O.
+
+| Mount | Filesystem | Dimensione | Usato | Disponibile | Occupazione |
+| --- | --- | ---: | ---: | ---: | ---: |
+| `/` | ext4 (`/dev/vda1`) | 58G | 27G | 31G | 48% |
+| `/boot` | ext4 (`/dev/vda16`) | 881M | 117M | 703M | 15% |
+| `/boot/efi` | vfat (`/dev/vda15`) | 105M | 6.2M | 99M | 6% |
+
+**Esito:** nessuna saturazione visibile nelle partizioni persistenti riportate. Ancora da censire: dimensioni per directory (Ollama, Chroma, cache, knowledge, report), eventuali mount non visibili nel campione e prestazioni I/O. I valori `tmpfs` sono filesystem temporanei in memoria, non spazio persistente aggiuntivo.
