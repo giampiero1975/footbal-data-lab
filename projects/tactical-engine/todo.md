@@ -234,6 +234,7 @@
 - [ ] Identificare modelli Ollama dismessi e verificare che non siano referenziati da script, servizi, test da mantenere o procedure di rollback.
 - [ ] Identificare pesi di embedding/reranking in cache non più necessari, distinguendo cache condivise e dipendenze indirette.
 - [x] Verifica statica preliminare Alibaba nella seconda PuTTY: nessuna corrispondenza nelle estensioni controllate in `projects/tactical-engine`; `gte-multilingual-reranker-base` ~600 MB, `new-impl` ~92 KB seguendo i link simbolici. **Solo candidato alla rimozione:** prima occorrono controllo servizi/progetti esterni, dipendenze dinamiche, backup e rollback.
+- [x] Estendere la ricerca statica Alibaba all'intero repository tracciato con `git grep -n -i -E 'Alibaba-NLP|gte-multilingual-reranker|new-impl' -- ':!*.lock' ':!*.jsonl' | head -40`: **nessuna corrispondenza** (output seconda PuTTY, 2026-10-21). Il controllo esclude file non tracciati, `.lock`, `.jsonl`, riferimenti dinamici e servizi esterni; non autorizza la rimozione.
 - [ ] Identificare dipendenze Python inutilizzate senza rimuovere dipendenze transitive necessarie.
 - [ ] Identificare collection ChromaDB obsolete e verificare assenza di riferimenti attivi.
 - [ ] Identificare processi/servizi/cron dismessi e possibili consumi di risorse.
