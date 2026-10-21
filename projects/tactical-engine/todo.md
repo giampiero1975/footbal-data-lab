@@ -63,7 +63,7 @@
 - [ ] Identificare entry point, script invocati, import, servizi systemd, cron, processi e automazioni attive.
 - [x] Censire Python/venv, dipendenze e versioni di Docling, docling-core, LlamaIndex (core e plugin), ChromaDB, Ollama, Transformers, sentence-transformers, PyMuPDF e PyTorch. Evidenze in `docs/environment.md`; interprete venv ancora da verificare.
 - [x] Censire modelli Ollama installati, tag/versioni e modelli caricati al momento del controllo. Dimensioni dei modelli registrate; consumo RAM/VRAM **sotto carico** ancora da misurare in un test dedicato.
-- [ ] Censire modelli di embedding/reranking presenti in cache e relativa occupazione.
+- [x] Censire i repository di embedding/reranking presenti nella cache Hugging Face e l'occupazione aggregata (11 repository; Hub 5,0 GB; cache utente 5,2 GB), con verifica specifica Alibaba GTE 600 MB tramite `du -shL`. **Dimensioni reali di tutti gli altri modelli e dipendenze runtime ancora aperte.** Evidenze in `docs/environment.md` (seconda PuTTY, 2026-10-21).
 - [ ] Censire tutte le collection ChromaDB: nome, numero record, dimensioni, metrica, metadati, modello embedding, sorgente e ultima utilizzazione (quando verificabile). **Parziale verificato 2026-10-19:** V3 e V4 86 record ciascuna, V3 cosine/768D e V4 L2/1024D; collection ulteriori, spazio e utilizzo da completare.
 - [ ] Censire file temporanei, report, output di test, cache e dataset locali, separando sorgenti originali da artefatti rigenerabili.
 - [x] Registrare **i risultati dell'audit hardware, Python e Ollama già effettuato** nel repository (`docs/environment.md`, 2026-10-19), senza credenziali, dati sensibili, PDF o indici pesanti. **Inventario completo Chroma/cache/servizi ancora aperto.**
@@ -233,6 +233,7 @@
 
 - [ ] Identificare modelli Ollama dismessi e verificare che non siano referenziati da script, servizi, test da mantenere o procedure di rollback.
 - [ ] Identificare pesi di embedding/reranking in cache non più necessari, distinguendo cache condivise e dipendenze indirette.
+- [x] Verifica statica preliminare Alibaba nella seconda PuTTY: nessuna corrispondenza nelle estensioni controllate in `projects/tactical-engine`; `gte-multilingual-reranker-base` ~600 MB, `new-impl` ~92 KB seguendo i link simbolici. **Solo candidato alla rimozione:** prima occorrono controllo servizi/progetti esterni, dipendenze dinamiche, backup e rollback.
 - [ ] Identificare dipendenze Python inutilizzate senza rimuovere dipendenze transitive necessarie.
 - [ ] Identificare collection ChromaDB obsolete e verificare assenza di riferimenti attivi.
 - [ ] Identificare processi/servizi/cron dismessi e possibili consumi di risorse.
@@ -257,7 +258,8 @@
 
 - **Verificato sul repository GitHub:** esistono pipeline e test V1–V5; 36 script Python; V3 usa tokenizer Nomic e V4 Qwen reindicizza gli stessi testi; alcuni gold del benchmark reranker sono provvisori; la validazione V5 delle citazioni non garantisce correttezza semantica.
 - **Verificato sulla VPS (output CLI, riepilogo 2026-10-19):** commit/branch e working tree, Python sistema e venv presente, pacchetti Python principali, `pip check`, 6 vCPU KVM AMD EPYC, RAM/swap e `vmstat` a riposo, VGA virtuale QEMU, Ollama server 0.40.5, modelli installati e dettagli `ollama show`, nessun modello caricato al controllo. Evidenze in `docs/environment.md`. **Non ripetere senza variazioni dell'ambiente.**
-- **Ancora da verificare sulla VPS:** entry point e processi/servizi effettivi, collection e record Chroma, disco/cache, backup e configurazioni runtime.
+- **Seconda sessione PuTTY (2026-10-21), verificato da output CLI:** `df -hT` root ext4 58 GB, 27 GB utilizzati, 31 GB disponibili (48%); progetto 3,6 GB, cache Ollama 7,0 GB, cache utente 5,2 GB (Hugging Face 5,0 GB; pip 259 MB); 11 repository HF censiti; Alibaba GTE 600 MB reali con `du -shL`, `new-impl` 92 KB. `grep` statico nei file Python/YAML/JSON/TOML del motore tattico senza riferimenti ad Alibaba. **Alibaba candidato alla dismissione, NON autorizzato alla rimozione.** Tutto documentato in `docs/environment.md`; nessuna cancellazione o modifica VPS.
+- **Ancora da verificare sulla VPS:** entry point e processi/servizi effettivi, collection e record Chroma, mappatura dipendenze runtime/esterne dei modelli in cache, dimensioni reali degli altri singoli modelli, backup e configurazioni runtime.
 - **Da completare:** confronto puntuale con documentazione ufficiale aggiornata e changelog delle versioni installate.
 
 > Aggiornare le checkbox solo dopo una verifica concreta, annotando evidenze e data. Non considerare una proposta come lavoro completato.
