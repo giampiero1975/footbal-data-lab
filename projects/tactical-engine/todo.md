@@ -33,6 +33,22 @@
 - [ ] Testare filtro deterministico della condizione tattica prima della generazione (fase/zona/possessore), mantenendo recupero/reranking invariati; confrontare su stesse domande, registrare falsi scarti e omissioni. Evitare ottimizzazione soltanto sulle 3 domande development.
 - [ ] Validare su holdout indipendente, fonti multiple e confronto controllato V4; nessun voto certificato prima di questi passaggi.
 
+## NLI V2 — avanzamento benchmark e prossimi gate (2026-10-21)
+
+**Ambito:** classificazione claim→evidenza in tre etichette (supported / contradicted / insufficient). Questi risultati NON certificano la qualità end-to-end di DRIBBLING V5. V4 e indici restano invariati.
+
+- [x] Congelare la variante sperimentale NLI V2 come candidato da confrontare, conservando V1 e prompt precedenti nel repository; non promuovere automaticamente in produzione.
+- [x] Eseguire confronto V1/V2 sul benchmark di sviluppo da 24 claim: V1 22/24 (91,67%); V2 23/24 (95,83%), con supported 8/8, contradicted 8/8, insufficient 7/8. Evidenza: report benchmark comunicati in chat; verificare archiviazione dei JSON in Git prima di considerarli artefatti riproducibili.
+- [x] Eseguire benchmark successivo da 32 claim su fonti FA: V2 30/32 (93,75%), supported 8/8, contradicted 12/12, insufficient 10/12. Gold non indipendentemente revisionato.
+- [x] Eseguire stress test da 100 claim su estratti già utilizzati: V2 93/100 (93%), supported 28/30, contradicted 29/30, insufficient 36/40. **Non indipendente per fonte**; gold ancora da revisionare. Dataset: `eval/tactical_nli_stress_100_v1.json`.
+- [x] Preparare un ulteriore test prospettico da 30 claim FIGC/FA: `eval/tactical_nli_source_disjoint_30_v1.json`. Due URL nuovi e un passaggio nuovo da URL già usato: **non completamente source-disjoint**.
+- [ ] Acquisire e analizzare il report del test FIGC/FA da 30 claim: non segnare come superato prima di ricevere e verificare il JSON.
+- [ ] Revisionare indipendentemente le gold label, soprattutto quantificatori, numeri non documentati, negazioni e equivalenze semantiche; correggere eventuali ambiguità con motivazione e traccia.
+- [ ] Validare su fonti integralmente nuove, documenti più lunghi e domande reali, senza ottimizzare il prompt sui casi di verifica.
+- [ ] Archiviare report completi, versioni/digest modello, configurazione Ollama, commit, tempi e matrice di confusione per confronti riproducibili.
+- [ ] Integrare V2 soltanto in modalità shadow/reversibile, dopo superamento dei gate; valutare fedeltà claim-by-claim, completezza, retrieval, citazioni e latenza sull'intera pipeline.
+- [ ] Qualificare il sistema end-to-end con benchmark indipendente e confronto controllato con baseline V4; soglia NLI di laboratorio >=90% totale e per categoria NON equivale a certificazione RAG.
+
 ## PRIORITÀ MASSIMA — Qualità scientifica e tattica delle risposte
 
 **Obiettivo:** risposte fedeli, complete, correttamente attribuite e verificabili, non soltanto citazioni formalmente valide o codice senza errori. Questa priorità procede insieme all'audit architetturale, non dopo.
