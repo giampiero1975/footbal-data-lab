@@ -4,7 +4,7 @@ import copy
 import unittest
 
 from shadow_nli_v2_offline import prepare
-from shadow_nli_v2_inference import evaluate
+from shadow_nli_v2_inference import evaluate, load_v2_instruction
 
 
 class InferenceShadowTests(unittest.TestCase):
@@ -16,6 +16,11 @@ class InferenceShadowTests(unittest.TestCase):
             "text": "La squadra pressa alta", "span": answer,
             "start": 0, "end": len(answer)}]}
         self.prepared = prepare(report, claims)
+
+    def test_canonical_v2_prompt(self):
+        prompt = load_v2_instruction()
+        self.assertIn("Regola decisiva:", prompt)
+        self.assertIn("contradicted", prompt)
 
     def test_supported_and_immutable(self):
         before = copy.deepcopy(self.prepared)
