@@ -1,11 +1,40 @@
-# DRIBBLING — TODO audit, qualità RAG e pulizia
+# DRIBBLING V5 — Piano operativo, checklist e registro delle evidenze
 
-> Stato: piano di lavoro, NON attestazione di verifiche completate.
-> Principio: preservare la baseline V4 e i dati prima di ogni intervento.
-> Repository: `giampiero1975/footbal-data-lab`
-> Ambito: `projects/tactical-engine/` e ambiente VPS `/opt/football-data-lab`.
+> **Documento di riferimento operativo** · Aggiornato il 2026-10-21 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
+>
+> **Attenzione:** una casella spuntata documenta l'attività descritta, non la certificazione dell'intero RAG. I risultati riportati come comunicati dalla VPS non equivalgono a un accesso diretto dell'assistente alla VPS. Preservare baseline V4, indici e configurazioni prima di qualunque intervento.
 
-## Regole operative vincolanti
+## Come usare questo documento
+
+1. **Prima di lavorare:** leggere le regole nella sezione 1 e la fotografia dell'ambiente in [docs/environment.md](docs/environment.md), [docs/components.md](docs/components.md), [docs/decisions.md](docs/decisions.md) e [docs/verification.md](docs/verification.md).
+2. **Per scegliere il prossimo lavoro:** seguire le priorità qui sotto e le dipendenze; non ripetere verifiche già documentate senza una modifica effettiva.
+3. **Per chiudere una voce:** annotare fonte ufficiale/versione, commit o report, risultato, limiti, decisione e rollback quando applicabile. `[x]` = evidenza registrata; `[ ]` = aperta o non ancora certificata.
+4. **Per i benchmark:** distinguere *development*, *stress test con fonti riutilizzate*, *holdout prospettico*, *gold revisionato* e *validazione end-to-end*. Un risultato NLI non equivale alla qualità del RAG completo.
+5. **Per la VPS:** il repository non dimostra lo stato runtime corrente; utilizzare soltanto controlli mirati ai dati mancanti o cambiati.
+
+### Priorità operative attuali
+
+| Ordine | Attività | Dipendenza / criterio |
+| --- | --- | --- |
+| P0 | Concludere e verificare il benchmark NLI V2 FIGC/FA da 30 claim | Report JSON completo e analisi degli errori; non ancora dichiarato superato |
+| P0 | Revisionare gold NLI e validare fonti realmente nuove e testi più lunghi | Nessuna ottimizzazione del prompt sui casi di test |
+| P0 | Definire criteri e gold end-to-end, inclusi fedeltà, completezza, citazioni e astensione | Prima di promuovere DRIBBLING V5 |
+| P1 | Validare retrieval/reranking H09 e filtro tattico su holdout indipendente | Baseline V4 intatta; misurare latenza e regressioni |
+| P1 | Integrare NLI V2 in modalità shadow reversibile | Solo dopo i gate di validazione del giudice |
+| P1 | Confrontare V4 e V5 con domande reali, figure e fonti multiple | Stesso gold, condizioni controllate, nessuna modifica in-place |
+| P2 | Consolidare architettura, documentazione e pulizia componenti | Dopo inventario dipendenze, backup e rollback verificati |
+
+### Legenda delle evidenze
+
+- **Ufficiale:** documentazione del produttore/progetto per la versione pertinente.
+- **Codice verificato:** stato letto su GitHub, non necessariamente deployato.
+- **VPS riportata:** output o report di esecuzioni VPS forniti in chat, senza accesso remoto diretto.
+- **Esperimento:** benchmark controllato con limiti espliciti; non implica promozione.
+- **Da verificare:** attività aperta o gold/risultato non sufficientemente indipendente.
+
+## 1. Regole operative e criteri di accettazione
+
+### Regole operative vincolanti
 
 - [ ] Prima di ogni diagnosi o modifica tecnica consultare, nell'ordine: documentazione ufficiale aggiornata, guide installazione/configurazione, best practice, requisiti, changelog e repository ufficiali; solo dopo issue e community.
 - [ ] Rilevare le versioni REALMENTE installate sulla VPS e verificare compatibilità con le indicazioni ufficiali.
@@ -15,70 +44,47 @@
 - [ ] Nessuna cancellazione o migrazione di dati/modelli senza inventario, controllo dipendenze, backup verificato e approvazione.
 - [ ] Non dichiarare un miglioramento sulla base di una singola risposta o di sole citazioni formalmente valide.
 
+### 6. Criteri di completamento
 
+- [ ] Una pipeline operativa chiaramente identificata e documentata.
+- [ ] Configurazioni/versioni tracciate e compatibilità verificata sulle fonti ufficiali.
+- [ ] Baseline V4 ripristinabile e regressioni controllate.
+- [ ] Benchmark riproducibili con gold evidence e valutazione semantica.
+- [ ] Codice storico separato dal codice operativo, senza dipendenze spezzate.
+- [ ] Nessun componente scartato rimasto installato **senza motivo documentato**.
+- [ ] Collection, cache e modelli censiti; rimozioni effettuate soltanto in sicurezza.
+- [ ] Decisioni e risultati registrati su Git per evitare di ripetere analisi già svolte.
 
-## H09 — Decisione BM25 e politica anti-componenti inutilizzati (2026-10-21)
+## 2. Stato attuale, inventario e baseline V4
 
-- [x] Confrontare BM25, Qwen3-Embedding e fusione RRF sul medesimo corpus H09 (23 evidenze, 3 query di sviluppo); self-test RRF 3/3. Output VPS 2026-10-20, commit `25c33041b40995bbd671fdfd2db4023acfa7deaa`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`.
-- [x] Decisione provvisoria: Qwen3-Embedding candidato H09; BM25 **escluso dal percorso candidato**, mantenuto solo come baseline di valutazione. MRR BM25 0.696970, dense 0.833333, hybrid RRF 0.733333; nessuna conclusione da 3 query sul corpus completo.
-- [ ] Validare il contributo BM25 su benchmark indipendente, casi negativi e fonti differenti; valutare qualità, latenza e costi senza ottimizzare sui tre casi di sviluppo.
-- [ ] Se BM25 non offre beneficio dimostrato, censire riferimenti runtime, import, script, configurazioni e dipendenze; predisporre backup e rollback; **rimuovere componenti BM25 inutilizzati** senza lasciare codice morto. Conservare risultati e motivazioni in Git, senza toccare la baseline V4 prima della validazione.
-- [x] Eseguire benchmark H09 read-only Qwen3-Embedding vs Qwen3-Embedding + mMARCO su 23 evidenze e 3 query di sviluppo: dense Hit@1 2/3, Hit@5 3/3, MRR 0.833333; dense+mMARCO Hit@1 3/3, Hit@5 3/3, MRR 1.0; figura 15/a rank 2→1. Report VPS `/tmp/h09_dense_mmarco.json`, commit `4b4122dcb25ee45bd5884e3eceea3f2c07c14a2b`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`, sentence-transformers 6.1.0, mMARCO CPU max_length=512 batch=1, top-N=15, 22.538 s totali. Riferimenti ufficiali: https://www.sbert.net/docs/cross_encoder/usage/usage.html ; https://sbert.net/docs/package_reference/cross_encoder/model.html ; https://docs.ollama.com/api/embed . Risultato **solo esplorativo**, non validato su holdout né contro V4.
-- [ ] Validare mMARCO su holdout indipendente e altre fonti, misurando anche truncation, latenza per query e impatto sulle evidenze prima di promuoverlo.
-- [x] Preparare probe read-only H09 Qwen3-Embedding → mMARCO → Qwen3.5, con contesto/citazioni/provenienza e formato JSON; script `scripts/probe_h09_grounded_generation.py`, commit `9ee562d56d2779b20c853c107f0fd26f2b01688a`. API ufficiali Ollama: https://docs.ollama.com/api/chat e https://docs.ollama.com/capabilities/structured-outputs .
-- [x] Eseguire probe generazione H09 sulla VPS: 3/3 risposte prodotte, 139.366 s complessivi, Qwen3.5 9B, report `/tmp/h09_grounded_generation.json`, commit `3769422e045c01696dbad5ee638d9523db0078d9`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`. `VALID_IDS 0/3` è falso negativo del validatore per prefisso `FIGURA `: tutte le 8 citazioni puntano a figure effettivamente nel contesto dopo normalizzazione. Non equivale a fedeltà semantica.
-- [x] Prima revisione manuale H09: domanda 1 corretta nel nucleo fig.15/a ma mescola situazioni fig.21 e fig.8; domanda 2 corretta ma sintetica fig.15/b,20; domanda 3 corretta nel nucleo fig.17 ma omette appoggio centrocampo/difesa e aggiunge casi fig.12,21. Valutazione preliminare, non benchmark certificato.
-- [ ] Correggere il validatore citazioni con normalizzazione controllata e test unitari, senza riscrivere i risultati originali; impedire la confusione tra identificativi validi e supporto semantico.
-- [x] A/B H09 prompt focalizzato con contesti identici e validatore citazioni normalizzato: report VPS `evaluation/reports/h09_generation_focus_ab.json`, 3/3 ID citazioni validi, test unitari 2/2. Audit: caso 1 migliorato (solo fig.15/a); caso 2 formulazione ambigua sul rapporto portiere/difensore non possessore; caso 3 recupera appoggi fig.17 ma continua a mescolare fig.12 e fig.21. Nessuna promozione V4, voto cumulativo 7/10 provvisorio.
-- [ ] Testare filtro deterministico della condizione tattica prima della generazione (fase/zona/possessore), mantenendo recupero/reranking invariati; confrontare su stesse domande, registrare falsi scarti e omissioni. Evitare ottimizzazione soltanto sulle 3 domande development.
-- [ ] Validare su holdout indipendente, fonti multiple e confronto controllato V4; nessun voto certificato prima di questi passaggi.
+### 1. Inventario e stato reale — prima di ottimizzare
 
-## NLI V2 — avanzamento benchmark e prossimi gate (2026-10-21)
+- [ ] Confrontare codice GitHub con file e commit effettivamente presenti sulla VPS; verificare branch e modifiche locali non versionate.
+- [ ] Identificare entry point, script invocati, import, servizi systemd, cron, processi e automazioni attive.
+- [x] Censire Python/venv, dipendenze e versioni di Docling, docling-core, LlamaIndex (core e plugin), ChromaDB, Ollama, Transformers, sentence-transformers, PyMuPDF e PyTorch. Evidenze in `docs/environment.md`; interprete venv ancora da verificare.
+- [x] Censire modelli Ollama installati, tag/versioni e modelli caricati al momento del controllo. Dimensioni dei modelli registrate; consumo RAM/VRAM **sotto carico** ancora da misurare in un test dedicato.
+- [ ] Censire modelli di embedding/reranking presenti in cache e relativa occupazione.
+- [ ] Censire tutte le collection ChromaDB: nome, numero record, dimensioni, metrica, metadati, modello embedding, sorgente e ultima utilizzazione (quando verificabile). **Parziale verificato 2026-10-19:** V3 e V4 86 record ciascuna, V3 cosine/768D e V4 L2/1024D; collection ulteriori, spazio e utilizzo da completare.
+- [ ] Censire file temporanei, report, output di test, cache e dataset locali, separando sorgenti originali da artefatti rigenerabili.
+- [x] Registrare **i risultati dell'audit hardware, Python e Ollama già effettuato** nel repository (`docs/environment.md`, 2026-10-19), senza credenziali, dati sensibili, PDF o indici pesanti. **Inventario completo Chroma/cache/servizi ancora aperto.**
 
-**Ambito:** classificazione claim→evidenza in tre etichette (supported / contradicted / insufficient). Questi risultati NON certificano la qualità end-to-end di DRIBBLING V5. V4 e indici restano invariati.
+### 3. Baseline, esperimenti e qualità
 
-- [x] Congelare la variante sperimentale NLI V2 come candidato da confrontare, conservando V1 e prompt precedenti nel repository; non promuovere automaticamente in produzione.
-- [x] Eseguire confronto V1/V2 sul benchmark di sviluppo da 24 claim: V1 22/24 (91,67%); V2 23/24 (95,83%), con supported 8/8, contradicted 8/8, insufficient 7/8. Evidenza: report benchmark comunicati in chat; verificare archiviazione dei JSON in Git prima di considerarli artefatti riproducibili.
-- [x] Eseguire benchmark successivo da 32 claim su fonti FA: V2 30/32 (93,75%), supported 8/8, contradicted 12/12, insufficient 10/12. Gold non indipendentemente revisionato.
-- [x] Eseguire stress test da 100 claim su estratti già utilizzati: V2 93/100 (93%), supported 28/30, contradicted 29/30, insufficient 36/40. **Non indipendente per fonte**; gold ancora da revisionare. Dataset: `eval/tactical_nli_stress_100_v1.json`.
-- [x] Preparare un ulteriore test prospettico da 30 claim FIGC/FA: `eval/tactical_nli_source_disjoint_30_v1.json`. Due URL nuovi e un passaggio nuovo da URL già usato: **non completamente source-disjoint**.
-- [ ] Acquisire e analizzare il report del test FIGC/FA da 30 claim: non segnare come superato prima di ricevere e verificare il JSON.
-- [ ] Revisionare indipendentemente le gold label, soprattutto quantificatori, numeri non documentati, negazioni e equivalenze semantiche; correggere eventuali ambiguità con motivazione e traccia.
-- [ ] Validare su fonti integralmente nuove, documenti più lunghi e domande reali, senza ottimizzare il prompt sui casi di verifica.
-- [ ] Archiviare report completi, versioni/digest modello, configurazione Ollama, commit, tempi e matrice di confusione per confronti riproducibili.
-- [ ] Integrare V2 soltanto in modalità shadow/reversibile, dopo superamento dei gate; valutare fedeltà claim-by-claim, completezza, retrieval, citazioni e latenza sull'intera pipeline.
-- [ ] Qualificare il sistema end-to-end con benchmark indipendente e confronto controllato con baseline V4; soglia NLI di laboratorio >=90% totale e per categoria NON equivale a certificazione RAG.
+- [ ] Identificare senza ambiguità quale pipeline sia la baseline V4 operativa; distinguere script storici, V4 con Nomic/BGE e V4 con Qwen3-Embedding/mMARCO.
+- [ ] Congelare baseline: commit, configurazioni, prompt, parametri, checksum degli input e identificativi delle collection.
+- [x] Recuperare dai test già eseguiti i risultati utili, evitando di ripetere benchmark già conclusi senza motivo. **Primo consolidamento esistente:** docs/status-2026-10-19.md ed evaluation/*, inclusi EXP-001, Q8 TOP5/TOP10, holdout e giudice no-thinking; mantenere aggiornato il registro.
+- [ ] Consolidare un set di domande rappresentative, includendo Q8 ampiezza offensiva e casi con differenze tra fase, zona, ruolo e autore.
+- [ ] Costruire/validare gold evidence con riferimenti ai passaggi reali; correggere gold provvisori e casi senza gold.
+- [ ] Separare metriche di retrieval (es. recall@k, MRR), reranking, fedeltà semantica, completezza, citazioni e latenza.
+- [ ] Verificare semanticamente ogni affermazione: citazione presente ≠ affermazione sostenuta.
+- [ ] Diagnosticare se gli errori nascono da estrazione, chunking, retrieval, reranking, assemblaggio contesto o generazione.
+- [ ] Confrontare esperimenti **una variabile alla volta**, a parità di domande, fonti e criteri; conservare report riproducibili.
+- [ ] Testare eventuali alternative in collection/configurazioni separate; non sovrascrivere V4.
+- [ ] Registrare decisioni: ipotesi, test, risultati, costi, regressioni, esito e rollback.
 
-## PRIORITÀ MASSIMA — Qualità scientifica e tattica delle risposte
+## 3. Architettura e componenti
 
-**Obiettivo:** risposte fedeli, complete, correttamente attribuite e verificabili, non soltanto citazioni formalmente valide o codice senza errori. Questa priorità procede insieme all'audit architetturale, non dopo.
-
-- [ ] Definire criteri di accettazione espliciti e distinti per: correttezza/fedeltà tattica, completezza dei nuclei essenziali, recupero delle evidenze, attribuzione autore/fase/ruolo/zona, validità semantica delle citazioni, capacità di astenersi se le fonti non bastano, latenza e riproducibilità.
-- [ ] Consolidare i gold già presenti in evaluation/, distinguendo gold verificati, preliminari e controversi; non correggere i gold per far migliorare artificialmente i punteggi.
-- [ ] Costruire un benchmark rappresentativo di domande reali e avversariali, con evidenze letterali e casi negativi; includere Q8, H05, H07, H09, H10 e altri casi già studiati, senza ripetere prove concluse.
-- [ ] Valutare separatamente retrieval, reranking, contesto finale, generazione e citazioni per localizzare le cause degli errori.
-- [ ] Eseguire audit claim-by-claim: fonte realmente pertinente, implicazione semantica, ruoli, fasi, zone, condizioni, completezza; una citazione numericamente valida non è prova di correttezza.
-- [ ] Calibrare il giudice semantico su risposte RAG reali etichettate e casi difficili, distinguendo fedeltà e copertura; verificare disaccordi H05/H10 e falsi positivi prima di automatizzare l'accettazione.
-- [ ] Confrontare framework di valutazione ufficiali Ragas e DeepEval con la soluzione custom in ambiente isolato, secondo versioni e API ufficiali; non assumere che il framework garantisca qualità.
-- [ ] Definire policy di regressione: non promuovere un componente/configurazione che migliori una metrica ma peggiori errori tattici critici o citazioni.
-- [ ] Eseguire prove su fonti e autori differenti, con domande non viste e documenti nuovi, per misurare generalizzazione e robustezza.
-- [ ] Registrare per ogni benchmark dataset, commit, digest modelli, parametri, gold, metriche, errori, tempi, fonti ufficiali, esito e decisione; riutilizzare i risultati storici.
-- [ ] Stabilire soglie di qualità motivate dai casi d'uso, poi certificare il superamento su holdout indipendente prima di dichiarare DRIBBLING pronto.
-
-**Evidenze già disponibili, non da confondere con qualità validata:** audit Q8 TOP5/TOP10 (errori di attribuzione e omissioni), benchmark due assi fedeltà/completezza, holdout Glerean, diagnosi Ragas H07, metro tattico no-thinking (12/12 fedeltà, 10/12 copertura su piccolo holdout sintetico), gold JSON e report in evaluation/. Consultarli prima di lanciare nuovi test.
-
-## PRIORITÀ MASSIMA — Completezza delle fonti e figure tattiche
-
-- [x] Audit visuale delle figure Glerean 12–14 e 18–21, con riscontro sulle pagine PDF originali. Vedi evaluation/audit_figure_glerean_v1.md.
-- [x] Preparazione offline di descrizioni strutturate delle figure e sei contesti arricchiti; testi originali e hash conservati. Vedi evaluation/preparazione_benchmark_glerean_arricchito_v1.md.
-- [x] Confronto sperimentale con contesti arricchiti, 12 esecuzioni Qwen/Gemma; documentati errori residui di ruoli, movimenti e citazioni. Vedi evaluation/audit_glerean_enriched_v1.md.
-- [ ] Valutare il miglioramento rispetto ai contesti non arricchiti con gold indipendenti, evitando conclusioni causali non dimostrate.
-- [x] Progettare una rappresentazione offline delle figure con pagina, numero, ruoli, movimenti, canali di evidenza e grado di certezza: `evaluation/glerean_figure_evidence_v2.json` (13 figure/sottofigure). La validazione del formato su retrieval reale resta separata.
-- [ ] Integrare e validare le evidenze delle figure nel retrieval senza modificare V4 prima di benchmark e rollback.
-
-**Decisione architetturale 2026-10-20:** il sidecar Glerean resta esclusivamente gold offline, non componente della produzione. Piano generalizzabile con API native Docling e gate di validazione in `docs/piano_ingestion_multimodale_200_documenti_2026-10-20.md`. Nessun indice modificato.\n\n**Aggiornamento 2026-10-20:** audit fonte di 14 claim concluso in `evaluation/audit_gold_glerean_14_claims_2026-10-20.md`; tutte le figure dei due gold set sono state esaminate, e il sidecar v2 è stato registrato. I risultati non dimostrano ancora un miglioramento end-to-end del RAG.\n\n**Diagnosi:** la perdita di informazione nei chunk testuali spiega parte degli errori; altri persistono anche nei contesti arricchiti. Non attribuire ogni difetto al modello o esclusivamente al corpus.
-
-## PRIORITÀ MASSIMA — Startup: scegliere e configurare la migliore architettura supportata da evidenze
+### PRIORITÀ MASSIMA — Startup: scegliere e configurare la migliore architettura supportata da evidenze
 
 **Obiettivo principale prima di pulizia o nuovi sviluppi:** stabilire se l'architettura RAG sia la più appropriata per DRIBBLING, scegliere i componenti migliori per requisiti e hardware reali e configurarli **secondo documentazione ufficiale aggiornata e fonti tecniche autorevoli verificabili**, non per tentativi arbitrari.
 
@@ -96,18 +102,7 @@
 
 **Criterio di uscita dalla fase startup:** architettura e abbinamenti motivati da fonti ufficiali e risultati riproducibili; configurazione di riferimento documentata; baseline preservata; componenti non necessari identificati e rimossi in sicurezza.
 
-## 1. Inventario e stato reale — prima di ottimizzare
-
-- [ ] Confrontare codice GitHub con file e commit effettivamente presenti sulla VPS; verificare branch e modifiche locali non versionate.
-- [ ] Identificare entry point, script invocati, import, servizi systemd, cron, processi e automazioni attive.
-- [x] Censire Python/venv, dipendenze e versioni di Docling, docling-core, LlamaIndex (core e plugin), ChromaDB, Ollama, Transformers, sentence-transformers, PyMuPDF e PyTorch. Evidenze in `docs/environment.md`; interprete venv ancora da verificare.
-- [x] Censire modelli Ollama installati, tag/versioni e modelli caricati al momento del controllo. Dimensioni dei modelli registrate; consumo RAM/VRAM **sotto carico** ancora da misurare in un test dedicato.
-- [ ] Censire modelli di embedding/reranking presenti in cache e relativa occupazione.
-- [ ] Censire tutte le collection ChromaDB: nome, numero record, dimensioni, metrica, metadati, modello embedding, sorgente e ultima utilizzazione (quando verificabile). **Parziale verificato 2026-10-19:** V3 e V4 86 record ciascuna, V3 cosine/768D e V4 L2/1024D; collection ulteriori, spazio e utilizzo da completare.
-- [ ] Censire file temporanei, report, output di test, cache e dataset locali, separando sorgenti originali da artefatti rigenerabili.
-- [x] Registrare **i risultati dell'audit hardware, Python e Ollama già effettuato** nel repository (`docs/environment.md`, 2026-10-19), senza credenziali, dati sensibili, PDF o indici pesanti. **Inventario completo Chroma/cache/servizi ancora aperto.**
-
-## 2. Audit architetturale secondo fonti ufficiali
+### 2. Audit architetturale secondo fonti ufficiali
 
 **CHECK DI OTTIMIZZAZIONE COMPONENTI — DA ESEGUIRE, NON SPUNTARE IN ANTICIPO:** per ogni componente verificare documentazione ufficiale aggiornata e relativa versione, parametri raccomandati, compatibilità degli abbinamenti, eventuali personalizzazioni ridondanti, impatto su CPU/RAM e test comparativo rispetto alla V4. Registrare URL, data, esito e decisione (mantenere/modificare/sostituire). Solo una verifica documentale **e** sperimentale consente di dichiarare un'ottimizzazione validata.
 
@@ -125,21 +120,94 @@
 - [ ] Identificare componenti sviluppati manualmente che duplicano funzionalità ufficiali; valutarne motivazione e impatto prima di sostituirli.
 - [x] Produrre **prima matrice documentale** componente/versione/configurazione/fonte ufficiale/esito/azione (`docs/components.md`); compatibilità esatta delle release e benchmark restano aperti.
 
-## 3. Baseline, esperimenti e qualità
+## 4. Ingestion, documenti e figure tattiche
 
-- [ ] Identificare senza ambiguità quale pipeline sia la baseline V4 operativa; distinguere script storici, V4 con Nomic/BGE e V4 con Qwen3-Embedding/mMARCO.
-- [ ] Congelare baseline: commit, configurazioni, prompt, parametri, checksum degli input e identificativi delle collection.
-- [x] Recuperare dai test già eseguiti i risultati utili, evitando di ripetere benchmark già conclusi senza motivo. **Primo consolidamento esistente:** docs/status-2026-10-19.md ed evaluation/*, inclusi EXP-001, Q8 TOP5/TOP10, holdout e giudice no-thinking; mantenere aggiornato il registro.
-- [ ] Consolidare un set di domande rappresentative, includendo Q8 ampiezza offensiva e casi con differenze tra fase, zona, ruolo e autore.
-- [ ] Costruire/validare gold evidence con riferimenti ai passaggi reali; correggere gold provvisori e casi senza gold.
-- [ ] Separare metriche di retrieval (es. recall@k, MRR), reranking, fedeltà semantica, completezza, citazioni e latenza.
-- [ ] Verificare semanticamente ogni affermazione: citazione presente ≠ affermazione sostenuta.
-- [ ] Diagnosticare se gli errori nascono da estrazione, chunking, retrieval, reranking, assemblaggio contesto o generazione.
-- [ ] Confrontare esperimenti **una variabile alla volta**, a parità di domande, fonti e criteri; conservare report riproducibili.
-- [ ] Testare eventuali alternative in collection/configurazioni separate; non sovrascrivere V4.
-- [ ] Registrare decisioni: ipotesi, test, risultati, costi, regressioni, esito e rollback.
+### PRIORITÀ MASSIMA — Completezza delle fonti e figure tattiche
 
-## 4. Pulizia del codice e Git
+- [x] Audit visuale delle figure Glerean 12–14 e 18–21, con riscontro sulle pagine PDF originali. Vedi evaluation/audit_figure_glerean_v1.md.
+- [x] Preparazione offline di descrizioni strutturate delle figure e sei contesti arricchiti; testi originali e hash conservati. Vedi evaluation/preparazione_benchmark_glerean_arricchito_v1.md.
+- [x] Confronto sperimentale con contesti arricchiti, 12 esecuzioni Qwen/Gemma; documentati errori residui di ruoli, movimenti e citazioni. Vedi evaluation/audit_glerean_enriched_v1.md.
+- [ ] Valutare il miglioramento rispetto ai contesti non arricchiti con gold indipendenti, evitando conclusioni causali non dimostrate.
+- [x] Progettare una rappresentazione offline delle figure con pagina, numero, ruoli, movimenti, canali di evidenza e grado di certezza: `evaluation/glerean_figure_evidence_v2.json` (13 figure/sottofigure). La validazione del formato su retrieval reale resta separata.
+- [ ] Integrare e validare le evidenze delle figure nel retrieval senza modificare V4 prima di benchmark e rollback.
+
+**Decisione architetturale 2026-10-20:** il sidecar Glerean resta esclusivamente gold offline, non componente della produzione. Piano generalizzabile con API native Docling e gate di validazione in `docs/piano_ingestion_multimodale_200_documenti_2026-10-20.md`. Nessun indice modificato.\n\n**Aggiornamento 2026-10-20:** audit fonte di 14 claim concluso in `evaluation/audit_gold_glerean_14_claims_2026-10-20.md`; tutte le figure dei due gold set sono state esaminate, e il sidecar v2 è stato registrato. I risultati non dimostrano ancora un miglioramento end-to-end del RAG.\n\n**Diagnosi:** la perdita di informazione nei chunk testuali spiega parte degli errori; altri persistono anche nei contesti arricchiti. Non attribuire ogni difetto al modello o esclusivamente al corpus.
+
+## 5. Retrieval e reranking — H09
+
+### H09 — Decisione BM25 e politica anti-componenti inutilizzati (2026-10-21)
+
+- [x] Confrontare BM25, Qwen3-Embedding e fusione RRF sul medesimo corpus H09 (23 evidenze, 3 query di sviluppo); self-test RRF 3/3. Output VPS 2026-10-20, commit `25c33041b40995bbd671fdfd2db4023acfa7deaa`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`.
+- [x] Decisione provvisoria: Qwen3-Embedding candidato H09; BM25 **escluso dal percorso candidato**, mantenuto solo come baseline di valutazione. MRR BM25 0.696970, dense 0.833333, hybrid RRF 0.733333; nessuna conclusione da 3 query sul corpus completo.
+- [ ] Validare il contributo BM25 su benchmark indipendente, casi negativi e fonti differenti; valutare qualità, latenza e costi senza ottimizzare sui tre casi di sviluppo.
+- [ ] Se BM25 non offre beneficio dimostrato, censire riferimenti runtime, import, script, configurazioni e dipendenze; predisporre backup e rollback; **rimuovere componenti BM25 inutilizzati** senza lasciare codice morto. Conservare risultati e motivazioni in Git, senza toccare la baseline V4 prima della validazione.
+- [x] Eseguire benchmark H09 read-only Qwen3-Embedding vs Qwen3-Embedding + mMARCO su 23 evidenze e 3 query di sviluppo: dense Hit@1 2/3, Hit@5 3/3, MRR 0.833333; dense+mMARCO Hit@1 3/3, Hit@5 3/3, MRR 1.0; figura 15/a rank 2→1. Report VPS `/tmp/h09_dense_mmarco.json`, commit `4b4122dcb25ee45bd5884e3eceea3f2c07c14a2b`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`, sentence-transformers 6.1.0, mMARCO CPU max_length=512 batch=1, top-N=15, 22.538 s totali. Riferimenti ufficiali: https://www.sbert.net/docs/cross_encoder/usage/usage.html ; https://sbert.net/docs/package_reference/cross_encoder/model.html ; https://docs.ollama.com/api/embed . Risultato **solo esplorativo**, non validato su holdout né contro V4.
+- [ ] Validare mMARCO su holdout indipendente e altre fonti, misurando anche truncation, latenza per query e impatto sulle evidenze prima di promuoverlo.
+- [x] Preparare probe read-only H09 Qwen3-Embedding → mMARCO → Qwen3.5, con contesto/citazioni/provenienza e formato JSON; script `scripts/probe_h09_grounded_generation.py`, commit `9ee562d56d2779b20c853c107f0fd26f2b01688a`. API ufficiali Ollama: https://docs.ollama.com/api/chat e https://docs.ollama.com/capabilities/structured-outputs .
+- [x] Eseguire probe generazione H09 sulla VPS: 3/3 risposte prodotte, 139.366 s complessivi, Qwen3.5 9B, report `/tmp/h09_grounded_generation.json`, commit `3769422e045c01696dbad5ee638d9523db0078d9`, evidence SHA-256 `25bba4d1540124bcd6df54ae54ffd3a526c15b2f8012688df86c46852c60b01b`. `VALID_IDS 0/3` è falso negativo del validatore per prefisso `FIGURA `: tutte le 8 citazioni puntano a figure effettivamente nel contesto dopo normalizzazione. Non equivale a fedeltà semantica.
+- [x] Prima revisione manuale H09: domanda 1 corretta nel nucleo fig.15/a ma mescola situazioni fig.21 e fig.8; domanda 2 corretta ma sintetica fig.15/b,20; domanda 3 corretta nel nucleo fig.17 ma omette appoggio centrocampo/difesa e aggiunge casi fig.12,21. Valutazione preliminare, non benchmark certificato.
+- [ ] Correggere il validatore citazioni con normalizzazione controllata e test unitari, senza riscrivere i risultati originali; impedire la confusione tra identificativi validi e supporto semantico.
+- [x] A/B H09 prompt focalizzato con contesti identici e validatore citazioni normalizzato: report VPS `evaluation/reports/h09_generation_focus_ab.json`, 3/3 ID citazioni validi, test unitari 2/2. Audit: caso 1 migliorato (solo fig.15/a); caso 2 formulazione ambigua sul rapporto portiere/difensore non possessore; caso 3 recupera appoggi fig.17 ma continua a mescolare fig.12 e fig.21. Nessuna promozione V4, voto cumulativo 7/10 provvisorio.
+- [ ] Testare filtro deterministico della condizione tattica prima della generazione (fase/zona/possessore), mantenendo recupero/reranking invariati; confrontare su stesse domande, registrare falsi scarti e omissioni. Evitare ottimizzazione soltanto sulle 3 domande development.
+- [ ] Validare su holdout indipendente, fonti multiple e confronto controllato V4; nessun voto certificato prima di questi passaggi.
+
+### H09 — Esito Top-1 e obiettivo multi-fonte (2026-10-21)
+
+- [x] Eseguita ablation H09 Top-1 su 3 domande development; report utente `evaluation/reports/h09_top1_context.json` (VPS, non ancora versionato in Git). Risposte coerenti con fig. 15/a, 15/b e 17; ID citazioni 3/3 validi; durate di generazione circa 17.54 s, 16.08 s, 22.41 s. Non equivale a test holdout o ragionamento multi-documento.
+- [ ] Confrontare Top-1 e Top-5 con **identico prompt focalizzato**, stessi modelli/parametri e gold di correttezza semantica; l'attuale report Top-1 confronta anche prompt diversi rispetto alla baseline originaria.
+- [ ] Priorità di prodotto: DRIBBLING deve spiegare **principi, movimenti, tempi, cause e condizioni del calcio** integrando fonti indipendenti; Glerean/3-3-4 è un caso e una fonte, non l'obiettivo. Evitare sia il vincolo permanente Top-1 sia il collage indiscriminato Top-5.
+- [ ] Preparare benchmark multi-documento con fonti Drive primarie indipendenti (es. Glerean, Foscarini, Ussia) e domande su movimenti/contesti; etichettare condizioni tattiche, contributi complementari, divergenze e provenienza. Escludere manuali FOOTBALL-DATA-LAB derivati come conferme indipendenti; conservare V4.
+
+## 6. Generazione, citazioni e qualità RAG
+
+### PRIORITÀ MASSIMA — Qualità scientifica e tattica delle risposte
+
+**Obiettivo:** risposte fedeli, complete, correttamente attribuite e verificabili, non soltanto citazioni formalmente valide o codice senza errori. Questa priorità procede insieme all'audit architetturale, non dopo.
+
+- [ ] Definire criteri di accettazione espliciti e distinti per: correttezza/fedeltà tattica, completezza dei nuclei essenziali, recupero delle evidenze, attribuzione autore/fase/ruolo/zona, validità semantica delle citazioni, capacità di astenersi se le fonti non bastano, latenza e riproducibilità.
+- [ ] Consolidare i gold già presenti in evaluation/, distinguendo gold verificati, preliminari e controversi; non correggere i gold per far migliorare artificialmente i punteggi.
+- [ ] Costruire un benchmark rappresentativo di domande reali e avversariali, con evidenze letterali e casi negativi; includere Q8, H05, H07, H09, H10 e altri casi già studiati, senza ripetere prove concluse.
+- [ ] Valutare separatamente retrieval, reranking, contesto finale, generazione e citazioni per localizzare le cause degli errori.
+- [ ] Eseguire audit claim-by-claim: fonte realmente pertinente, implicazione semantica, ruoli, fasi, zone, condizioni, completezza; una citazione numericamente valida non è prova di correttezza.
+- [ ] Calibrare il giudice semantico su risposte RAG reali etichettate e casi difficili, distinguendo fedeltà e copertura; verificare disaccordi H05/H10 e falsi positivi prima di automatizzare l'accettazione.
+- [ ] Confrontare framework di valutazione ufficiali Ragas e DeepEval con la soluzione custom in ambiente isolato, secondo versioni e API ufficiali; non assumere che il framework garantisca qualità.
+- [ ] Definire policy di regressione: non promuovere un componente/configurazione che migliori una metrica ma peggiori errori tattici critici o citazioni.
+- [ ] Eseguire prove su fonti e autori differenti, con domande non viste e documenti nuovi, per misurare generalizzazione e robustezza.
+- [ ] Registrare per ogni benchmark dataset, commit, digest modelli, parametri, gold, metriche, errori, tempi, fonti ufficiali, esito e decisione; riutilizzare i risultati storici.
+- [ ] Stabilire soglie di qualità motivate dai casi d'uso, poi certificare il superamento su holdout indipendente prima di dichiarare DRIBBLING pronto.
+
+**Evidenze già disponibili, non da confondere con qualità validata:** audit Q8 TOP5/TOP10 (errori di attribuzione e omissioni), benchmark due assi fedeltà/completezza, holdout Glerean, diagnosi Ragas H07, metro tattico no-thinking (12/12 fedeltà, 10/12 copertura su piccolo holdout sintetico), gold JSON e report in evaluation/. Consultarli prima di lanciare nuovi test.
+
+## 7. Classificatore NLI V2
+
+### NLI V2 — avanzamento benchmark e prossimi gate (2026-10-21)
+
+**Ambito:** classificazione claim→evidenza in tre etichette (supported / contradicted / insufficient). Questi risultati NON certificano la qualità end-to-end di DRIBBLING V5. V4 e indici restano invariati.
+
+- [x] Congelare la variante sperimentale NLI V2 come candidato da confrontare, conservando V1 e prompt precedenti nel repository; non promuovere automaticamente in produzione.
+- [x] Eseguire confronto V1/V2 sul benchmark di sviluppo da 24 claim: V1 22/24 (91,67%); V2 23/24 (95,83%), con supported 8/8, contradicted 8/8, insufficient 7/8. Evidenza: report benchmark comunicati in chat; verificare archiviazione dei JSON in Git prima di considerarli artefatti riproducibili.
+- [x] Eseguire benchmark successivo da 32 claim su fonti FA: V2 30/32 (93,75%), supported 8/8, contradicted 12/12, insufficient 10/12. Gold non indipendentemente revisionato.
+- [x] Eseguire stress test da 100 claim su estratti già utilizzati: V2 93/100 (93%), supported 28/30, contradicted 29/30, insufficient 36/40. **Non indipendente per fonte**; gold ancora da revisionare. Dataset: `eval/tactical_nli_stress_100_v1.json`.
+- [x] Preparare un ulteriore test prospettico da 30 claim FIGC/FA: `eval/tactical_nli_source_disjoint_30_v1.json`. Due URL nuovi e un passaggio nuovo da URL già usato: **non completamente source-disjoint**.
+- [ ] Acquisire e analizzare il report del test FIGC/FA da 30 claim: non segnare come superato prima di ricevere e verificare il JSON.
+- [ ] Revisionare indipendentemente le gold label, soprattutto quantificatori, numeri non documentati, negazioni e equivalenze semantiche; correggere eventuali ambiguità con motivazione e traccia.
+- [ ] Validare su fonti integralmente nuove, documenti più lunghi e domande reali, senza ottimizzare il prompt sui casi di verifica.
+- [ ] Archiviare report completi, versioni/digest modello, configurazione Ollama, commit, tempi e matrice di confusione per confronti riproducibili.
+- [ ] Integrare V2 soltanto in modalità shadow/reversibile, dopo superamento dei gate; valutare fedeltà claim-by-claim, completezza, retrieval, citazioni e latenza sull'intera pipeline.
+- [ ] Qualificare il sistema end-to-end con benchmark indipendente e confronto controllato con baseline V4; soglia NLI di laboratorio >=90% totale e per categoria NON equivale a certificazione RAG.
+
+## 8. Validazione end-to-end e confronto V4/V5
+
+**Gate end-to-end (nuova checklist trasversale):** le attività dettagliate restano nelle sezioni di qualità, baseline e NLI; questa sezione raccoglie le condizioni di promozione.
+
+- [ ] Definire e congelare il set di domande reali e avversariali con gold indipendenti e fonti documentali, incluse figure tattiche.
+- [ ] Misurare separatamente retrieval, reranking, generazione, fedeltà claim-by-claim, copertura dei nuclei essenziali, citazioni semantiche, astensione e latenza.
+- [ ] Confrontare baseline V4 e candidata V5 sulle stesse domande e sugli stessi criteri, preservando collection e configurazioni originali.
+- [ ] Documentare esito, regressioni critiche, rollback, commit, digest, versioni e decisione finale prima di qualsiasi promozione.
+
+## 9. Pulizia, dismissioni e consolidamento
+
+### 4. Pulizia del codice e Git
 
 - [x] Verificata nel repository la presenza di **40 script Python** in `projects/tactical-engine/scripts/` (inventario GitHub; non prova di utilizzo sulla VPS).
 - [ ] Classificare ciascuno script: operativo, baseline, test riproducibile, sperimentale, storico, inutilizzato o stato incerto. **Inventario statico storico disponibile** in docs/script-inventory.md; resta da classificare l'utilizzo reale e gli script aggiunti.
@@ -151,7 +219,7 @@
 - [ ] Controllare `.gitignore`, inclusa regola `*.txt`, per evitare esclusioni involontarie di test/requisiti e inclusione di dati pesanti o segreti.
 - [ ] Aggiungere README tecnico, inventario, decision log e procedura riproducibile di esecuzione/valutazione. **Parziale:** README, inventario, decision log, checklist runtime e protocollo verifiche già presenti; riproducibilità end-to-end da completare.
 
-## 5. Dismissione componenti scartati e pulizia dati
+### 5. Dismissione componenti scartati e pulizia dati
 
 - [ ] Identificare modelli Ollama dismessi e verificare che non siano referenziati da script, servizi, test da mantenere o procedure di rollback.
 - [ ] Identificare pesi di embedding/reranking in cache non più necessari, distinguendo cache condivise e dipendenze indirette.
@@ -163,18 +231,9 @@
 - [ ] Misurare spazio, RAM/VRAM e prestazioni prima/dopo; distinguere risparmio disco da liberazione di memoria.
 - [ ] Non eliminare PDF sorgenti, dati di knowledge base, gold set o baseline senza esplicita autorizzazione.
 
-## 6. Criteri di completamento
+## 10. Registro storico delle verifiche
 
-- [ ] Una pipeline operativa chiaramente identificata e documentata.
-- [ ] Configurazioni/versioni tracciate e compatibilità verificata sulle fonti ufficiali.
-- [ ] Baseline V4 ripristinabile e regressioni controllate.
-- [ ] Benchmark riproducibili con gold evidence e valutazione semantica.
-- [ ] Codice storico separato dal codice operativo, senza dipendenze spezzate.
-- [ ] Nessun componente scartato rimasto installato **senza motivo documentato**.
-- [ ] Collection, cache e modelli censiti; rimozioni effettuate soltanto in sicurezza.
-- [ ] Decisioni e risultati registrati su Git per evitare di ripetere analisi già svolte.
-
-## Evidenze recuperate il 2026-10-20 (senza ripetere controlli VPS)
+### Evidenze recuperate il 2026-10-20 (senza ripetere controlli VPS)
 
 - **Inventario software/hardware 2026-10-19:** Python sistema 3.12.3, venv individuata, Docling 2.140.0, ChromaDB 1.5.9, LlamaIndex core 0.14.25, Ollama server 0.40.5, VPS CPU-only con 6 vCPU e 15 GiB RAM. Fonte: docs/environment.md, output CLI precedentemente riportati dall'utente; non riconfermati oggi.
 - **Collection V3/V4 già controllate:** 86 record ciascuna; V3 cosine/768D, V4 L2/1024D; V4 normalizzata. Fonte: docs/status-2026-10-19.md. Non ripetere senza cambio indice o evidenza di problema.
@@ -184,7 +243,7 @@
 - **CI:** workflow statico e test offline già esistenti; ultimo run #46 verificato success, non prova runtime VPS.
 - **Inventario script:** il precedente conteggio di 36 è storico; il repository attuale contiene molti più script e test. Non riutilizzare quel numero come censimento corrente.
 
-## Stato delle verifiche
+### Stato delle verifiche
 
 - **Verificato sul repository GitHub:** esistono pipeline e test V1–V5; 36 script Python; V3 usa tokenizer Nomic e V4 Qwen reindicizza gli stessi testi; alcuni gold del benchmark reranker sono provvisori; la validazione V5 delle citazioni non garantisce correttezza semantica.
 - **Verificato sulla VPS (output CLI, riepilogo 2026-10-19):** commit/branch e working tree, Python sistema e venv presente, pacchetti Python principali, `pip check`, 6 vCPU KVM AMD EPYC, RAM/swap e `vmstat` a riposo, VGA virtuale QEMU, Ollama server 0.40.5, modelli installati e dettagli `ollama show`, nessun modello caricato al controllo. Evidenze in `docs/environment.md`. **Non ripetere senza variazioni dell'ambiente.**
@@ -193,7 +252,7 @@
 
 > Aggiornare le checkbox solo dopo una verifica concreta, annotando evidenze e data. Non considerare una proposta come lavoro completato.
 
-## Audit dipendenze script — preparato 2026-10-19
+### Audit dipendenze script — preparato 2026-10-19
 
 - [x] Creare scanner statico standard-library `scripts/audit_script_dependencies.py` per import locali, menzioni collection/modelli, API private, possibili scritture ed errori sintattici. **Codice creato, non eseguito sulla VPS**.
 - [ ] Eseguire scanner su snapshot codice effettivo e salvare output revisionato senza segreti.
@@ -202,7 +261,7 @@
 
 - [x] Censire **tutti gli script Python presenti su GitHub** per ruolo, collection, modelli, scritture e dipendenze note: `docs/script-inventory.md`. **Inventario statico completato; utilizzo reale e removibilità NON verificati.**
 
-## Esito verificato GitHub Actions — 2026-10-19
+### Esito verificato GitHub Actions — 2026-10-19
 
 - [x] Creato controllo CI `.github/workflows/tactical-engine-static.yml`: compilazione di tutti gli script, test unitari offline con moduli simulati e verifica inventario AST.
 - [x] Esecuzione CI **PASS**: 40 script compilati, 4 test unitari passati, nessun errore sintattico rilevato. Run: https://github.com/giampiero1975/footbal-data-lab/actions/runs/39216515588 (commit `7b83ac8`).
@@ -213,9 +272,3 @@
 - [ ] Validare semanticamente gold, eseguire EXP-001, benchmark reranker e verifiche citazioni/latency con output versionati.
 - [ ] Scegliere configurazione definitiva in base ai risultati, quindi consolidare/archiviare soltanto componenti provati inutilizzati. **Nessuna rimozione autorizzata prima di queste verifiche.**
 
-## H09 — Esito Top-1 e obiettivo multi-fonte (2026-10-21)
-
-- [x] Eseguita ablation H09 Top-1 su 3 domande development; report utente `evaluation/reports/h09_top1_context.json` (VPS, non ancora versionato in Git). Risposte coerenti con fig. 15/a, 15/b e 17; ID citazioni 3/3 validi; durate di generazione circa 17.54 s, 16.08 s, 22.41 s. Non equivale a test holdout o ragionamento multi-documento.
-- [ ] Confrontare Top-1 e Top-5 con **identico prompt focalizzato**, stessi modelli/parametri e gold di correttezza semantica; l'attuale report Top-1 confronta anche prompt diversi rispetto alla baseline originaria.
-- [ ] Priorità di prodotto: DRIBBLING deve spiegare **principi, movimenti, tempi, cause e condizioni del calcio** integrando fonti indipendenti; Glerean/3-3-4 è un caso e una fonte, non l'obiettivo. Evitare sia il vincolo permanente Top-1 sia il collage indiscriminato Top-5.
-- [ ] Preparare benchmark multi-documento con fonti Drive primarie indipendenti (es. Glerean, Foscarini, Ussia) e domande su movimenti/contesti; etichettare condizioni tattiche, contributi complementari, divergenze e provenienza. Escludere manuali FOOTBALL-DATA-LAB derivati come conferme indipendenti; conservare V4.
