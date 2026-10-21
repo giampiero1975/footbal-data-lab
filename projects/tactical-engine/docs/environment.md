@@ -127,3 +127,23 @@ Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Ne
 | `/home/football/.cache` | 5.2G |
 
 **Interpretazione:** cache dell'utente `football` rilevante e da classificare prima di eventuali pulizie. La misura della directory Ollama non equivale a inventario dei modelli in uso. Nessun file cancellato; `/var/lib/ollama` non ha prodotto una riga nel campione, senza prova della sua inesistenza. Non sommare queste cifre allo spazio occupato del filesystem come se fossero categorie esaustive.
+
+## Inventario cache Hugging Face — 2026-10-21
+
+Fonte: output dei comandi di sola lettura `du` e `find` riportato dall'utente dalla seconda sessione PuTTY, senza inferenze o modifiche ai file.
+
+- Cache utente totale: **5.2G**; Hugging Face Hub **5.0G**; cache pip **259M**. Le dimensioni sono arrotondate e annidate: non sommarle.
+- Repository presenti nella cache (presenza non equivale a download completo o utilizzo runtime):
+- `Alibaba-NLP/gte-multilingual-reranker-base`
+- `Alibaba-NLP/new-impl`
+- `BAAI/bge-reranker-v2-m3`
+- `Qwen/Qwen3-Reranker-0.6B`
+- `cross-encoder/mmarco-mMiniLMv2-L12-H384-v1`
+- `datalab-to/surya_layout2`
+- `docling-project/docling-layout-heron`
+- `docling-project/docling-models`
+- `nomic-ai/nomic-bert-2048`
+- `nomic-ai/nomic-embed-text-v1.5`
+- `sentence-transformers/all-MiniLM-L6-v2`
+
+**Decisione:** nessuna cancellazione. mMARCO è documentato nei benchmark H09, ma la dipendenza effettiva dei singoli repository dal runtime è ancora da verificare. Il prossimo passo è rilevare le dimensioni delle singole cartelle senza caricare modelli in memoria.
