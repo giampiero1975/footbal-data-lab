@@ -1,0 +1,199 @@
+{
+  "name": "claim_fidelity_fresh_sources_holdout_v1",
+  "purpose": "Prospective evaluation only: do not adjust prompts using these labels before running the frozen direct three-label evaluator.",
+  "sources": 4,
+  "cases": [
+    {
+      "id": "fresh_pressing_01",
+      "gold": "supported",
+      "claim": "Il pressing consiste nell'applicare pressione a chi ha il possesso del pallone.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing"
+    },
+    {
+      "id": "fresh_pressing_02",
+      "gold": "supported",
+      "claim": "Tra gli obiettivi del pressing rientra rallentare gli avversari.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing"
+    },
+    {
+      "id": "fresh_pressing_03",
+      "gold": "contradicted",
+      "claim": "Il pressing viene utilizzato esclusivamente nell'area di rigore.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing"
+    },
+    {
+      "id": "fresh_pressing_04",
+      "gold": "contradicted",
+      "claim": "Il pressing è una tecnica utilizzata soltanto dalla squadra che possiede il pallone.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing"
+    },
+    {
+      "id": "fresh_pressing_05",
+      "gold": "insufficient",
+      "claim": "Applicare pressing garantisce il recupero del pallone entro tre secondi.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing"
+    },
+    {
+      "id": "fresh_pressing_06",
+      "gold": "insufficient",
+      "claim": "Il pressing aumenta esattamente del 30% la probabilità di segnare.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing"
+    },
+    {
+      "id": "fresh_overloads_01",
+      "gold": "supported",
+      "claim": "Una sovrapposizione può creare una superiorità numerica di due attaccanti contro un difensore esterno.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads"
+    },
+    {
+      "id": "fresh_overloads_02",
+      "gold": "supported",
+      "claim": "Le situazioni di superiorità numerica possono verificarsi in diverse zone del campo.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads"
+    },
+    {
+      "id": "fresh_overloads_03",
+      "gold": "contradicted",
+      "claim": "Una situazione di overload richiede che i difensori siano numericamente superiori agli attaccanti nella zona.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads"
+    },
+    {
+      "id": "fresh_overloads_04",
+      "gold": "contradicted",
+      "claim": "Le superiorità numeriche si verificano soltanto nei pressi della propria area di rigore.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads"
+    },
+    {
+      "id": "fresh_overloads_05",
+      "gold": "insufficient",
+      "claim": "Ogni sovrapposizione produce necessariamente un gol.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads"
+    },
+    {
+      "id": "fresh_overloads_06",
+      "gold": "insufficient",
+      "claim": "In una partita si verificano mediamente esattamente quindici overload.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads"
+    },
+    {
+      "id": "fresh_wide_01",
+      "gold": "supported",
+      "claim": "Rimanere compatti in difesa può limitare lo spazio alle spalle della linea.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas"
+    },
+    {
+      "id": "fresh_wide_02",
+      "gold": "supported",
+      "claim": "Uscire in pressione può comportare il rischio di lasciare spazio dietro.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas"
+    },
+    {
+      "id": "fresh_wide_03",
+      "gold": "contradicted",
+      "claim": "Restare compatti dietro aumenta lo spazio alle spalle della difesa.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas"
+    },
+    {
+      "id": "fresh_wide_04",
+      "gold": "contradicted",
+      "claim": "Secondo la fonte il pressing è completamente privo di rischi.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas"
+    },
+    {
+      "id": "fresh_wide_05",
+      "gold": "insufficient",
+      "claim": "La compattezza difensiva garantisce di non subire mai reti.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas"
+    },
+    {
+      "id": "fresh_wide_06",
+      "gold": "insufficient",
+      "claim": "Chiudere gli avversari sulle fasce riduce esattamente del 40% i tiri concessi.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas"
+    },
+    {
+      "id": "fresh_underload_01",
+      "gold": "supported",
+      "claim": "Nell'underloading gli avversari sono numericamente superiori.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle"
+    },
+    {
+      "id": "fresh_underload_02",
+      "gold": "supported",
+      "claim": "Un ambiente di allenamento impegnativo può aumentare intenzionalmente la difficoltà per stimolare la ricerca di soluzioni.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle"
+    },
+    {
+      "id": "fresh_underload_03",
+      "gold": "contradicted",
+      "claim": "Per underloading si intende una situazione in cui gli avversari hanno meno giocatori.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle"
+    },
+    {
+      "id": "fresh_underload_04",
+      "gold": "contradicted",
+      "claim": "Un ambiente di allenamento ostile viene definito come un contesto che elimina ogni difficoltà per i giocatori.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle"
+    },
+    {
+      "id": "fresh_underload_05",
+      "gold": "insufficient",
+      "claim": "L'underloading garantisce la vittoria nella partita successiva.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle"
+    },
+    {
+      "id": "fresh_underload_06",
+      "gold": "insufficient",
+      "claim": "L'allenamento in inferiorità numerica migliora esattamente del 20% la precisione dei passaggi.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle"
+    }
+  ]
+}
