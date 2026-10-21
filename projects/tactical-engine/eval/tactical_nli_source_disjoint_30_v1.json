@@ -1,0 +1,290 @@
+{
+  "name": "tactical_nli_source_disjoint_30_v1",
+  "status": "PROSPECTIVE_GOLD_REVIEW_REQUIRED",
+  "created_from": "Official FIGC and The FA pages checked 2026-10-21",
+  "design": "30 new claims, 3 passages; 2 source URLs never previously used; one new non-overlapping passage from previously used FA article",
+  "limitations": [
+    "Not fully source-disjoint: fa_wide_new shares URL with earlier datasets, although its excerpt differs.",
+    "Gold labels drafted, not independently adjudicated.",
+    "Passages are not full-length documents.",
+    "First run must remain blind: do not tune V2 based on these examples before scoring."
+  ],
+  "counts": {
+    "total": 30,
+    "supported": 9,
+    "contradicted": 9,
+    "insufficient": 12
+  },
+  "cases": [
+    {
+      "id": "novel_fa_roles_01",
+      "gold": "supported",
+      "claim": "Nell'esempio inglese, il giocatore più vicino al pallone avvia la pressione mentre altri compagni possono fornire copertura.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_02",
+      "gold": "supported",
+      "claim": "La fonte attribuisce importanza alle decisioni rapide e ai rapporti tra compagni durante il pressing.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_03",
+      "gold": "supported",
+      "claim": "Nell'episodio descritto, tre giocatori lontani dal pallone contribuiscono all'equilibrio della squadra.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_04",
+      "gold": "contradicted",
+      "claim": "Secondo la fonte, pressare da soli è sempre più efficace di un'azione collettiva.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_05",
+      "gold": "contradicted",
+      "claim": "Nell'esempio, i tre giocatori lontani dal pallone non svolgono alcuna funzione difensiva.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_06",
+      "gold": "contradicted",
+      "claim": "La filosofia descritta è riconquistare il pallone soltanto nella propria area di rigore.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_07",
+      "gold": "insufficient",
+      "claim": "Il pressing coordinato dell'Inghilterra garantisce di recuperare il pallone in ogni azione.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_08",
+      "gold": "insufficient",
+      "claim": "I tre giocatori di copertura devono mantenersi esattamente a cinque metri dal compagno.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_09",
+      "gold": "insufficient",
+      "claim": "La fonte prescrive un modulo 3-5-2 per tutte le squadre giovanili.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_roles_10",
+      "gold": "insufficient",
+      "claim": "I giocatori lontani dalla palla impediscono il cambio di gioco nel 95% delle occasioni.",
+      "evidence": "An aggressive press could disrupt their approach, but it's risky. For the press to work, your players need to make some quick decisions. Who initiates the first movement? Who provides cover? How does the team react? The answers to these questions are heavily influenced by the roles, responsibilities and relationships within a team. Their philosophy is to play on the front foot and to win the ball back in opposition territory. If a player decides to initiate a press, the team needs to be ready to offer support. Pressing in isolation can be ineffective. However, if everyone plays their part, regaining possession is much more likely. The closest England player goes to press the player on the ball, which puts the opposition under pressure. England's wide defender presses the ball while three surrounding players provide cover. The three players away from the ball provide balance – this helps prevent Wales switching play to the other side of the pitch.",
+      "source_title": "The FA - How to defend like England: roles and responsibilities",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-roles-and-responsibilities",
+      "source_group": 1
+    },
+    {
+      "id": "novel_fa_wide_new_01",
+      "gold": "supported",
+      "claim": "La contropressione immediata delle inglesi può costringere l'avversario a giocare all'indietro.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_02",
+      "gold": "supported",
+      "claim": "Nell'episodio con la Germania, il terzino sinistro inglese arretra per proteggere la profondità.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_03",
+      "gold": "supported",
+      "claim": "Un campo corto e largo è suggerito per incoraggiare i cambi di gioco.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_04",
+      "gold": "contradicted",
+      "claim": "Nell'azione descritta, la Germania non riesce mai a superare la prima contropressione inglese.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_05",
+      "gold": "contradicted",
+      "claim": "Il terzino sinistro inglese sale anziché arretrare quando la palla raggiunge la fascia.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_06",
+      "gold": "contradicted",
+      "claim": "La fonte consiglia un campo stretto e lungo per stimolare i cambi di gioco.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_07",
+      "gold": "insufficient",
+      "claim": "La contropressione iniziale inglese recupera il pallone entro tre secondi nel 100% dei casi.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_08",
+      "gold": "insufficient",
+      "claim": "Il terzino sinistro inglese arretra esattamente di 14 metri nell'azione.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_09",
+      "gold": "insufficient",
+      "claim": "Il campo corto e largo deve misurare obbligatoriamente 40 per 60 metri.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_fa_wide_new_10",
+      "gold": "insufficient",
+      "claim": "La Germania ha effettuato nove cambi di gioco durante la partita.",
+      "evidence": "As England lose possession of the ball on one side of the pitch, the nearest player immediately presses the opposition, in a concept known as counter pressing. This forces the ball to be played backwards – delaying the speed of the attack and allowing time for the Lionesses to recover their shape. In this situation, Germany work the ball out of tight areas and bypass the immediate counter press. For England, the focus switches to assessing how to deal with the switch of play and how to defend the space in wide areas. As the ball goes out wide, England’s left back drops off to protect the space in behind their defensive line. This, along with having a recovering wide player tracking back, forces Germany to carry the ball down the wing – rather than threading it through the defence. To encourage switching play, use a pitch that’s short and wide. Space naturally exists within wide areas, so players are more likely to try and exploit this to their advantage.",
+      "source_title": "The FA - How to defend like England: space in wide areas (new passage)",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 2
+    },
+    {
+      "id": "novel_figc_gagliardi_01",
+      "gold": "supported",
+      "claim": "La tesi di Gagliardi esamina diverse tipologie di pressing e include proposte di esercitazione.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_02",
+      "gold": "supported",
+      "claim": "L'autore collega il dominio del gioco anche a una fase di non possesso aggressiva e proattiva.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_03",
+      "gold": "supported",
+      "claim": "La tesi dedica spazio ai dati statistici relativi alle teorie sul pressing.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_04",
+      "gold": "contradicted",
+      "claim": "Secondo l'articolo, la tesi non contiene alcuna proposta di esercitazione.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_05",
+      "gold": "contradicted",
+      "claim": "L'autore sostiene che il gioco dominante dipenda esclusivamente dal possesso offensivo e mai dalla fase difensiva.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_06",
+      "gold": "contradicted",
+      "claim": "Il lavoro di Gagliardi evita completamente l'analisi di diverse forme di pressing.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_07",
+      "gold": "insufficient",
+      "claim": "La tesi dimostra che ogni squadra che pressa alto vince il campionato.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_08",
+      "gold": "insufficient",
+      "claim": "Le esercitazioni proposte durano sempre esattamente 18 minuti.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_09",
+      "gold": "insufficient",
+      "claim": "Il documento stabilisce una percentuale universale del 73% di recuperi alti.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    },
+    {
+      "id": "novel_figc_gagliardi_10",
+      "gold": "insufficient",
+      "claim": "La tesi prescrive obbligatoriamente il modulo 4-2-3-1 per ogni pressing.",
+      "evidence": "‘Pressing e riaggressione, presente e futuro del calcio dominante’ è il titolo della tesi con cui Antonio Gagliardi si è abilitato all’ultimo Master UEFA Pro. L’autore si sofferma su questo tema e già nelle prime pagine della sua opera ne spiega il motivo: ‘Credevo (…) che le grandi squadre dominassero il gioco perché avessero sviluppato un fantastico gioco offensivo. Però, più studiavo le grandi squadre, più mi rendevo conto che il loro dominio del gioco passava per la fase di non possesso. Una fase di non possesso aggressiva e proattiva, volta a togliere tempo e spazio agli avversari ed a recuperare palla il più velocemente ed il più in alto possibile’. Passando in rassegna gli allenatori e le squadre che con il loro imprinting hanno segnato per sempre il gioco del calcio, Gagliardi analizza le varie tipologie di pressing che possono essere adottate, dando quindi ampio spazio ai dati statistici per evidenziare alcune teorie e orizzonti verso cui si sta indirizzando il gioco. Nell’ultima parte della tesi vengono infine mostrate alcune proposte di esercitazione sul tema trattato.",
+      "source_title": "FIGC - Antonio Gagliardi: Pressing e riaggressione (official article)",
+      "source_url": "https://www.figc.it/it/tecnici/news/come-fare-della-difesa-la-prima-arma-offensiva-disponibile-la-tesi-su-pressing-e-riaggressione-csjx7yql",
+      "source_group": 3
+    }
+  ]
+}
