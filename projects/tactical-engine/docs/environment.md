@@ -147,3 +147,9 @@ Fonte: output dei comandi di sola lettura `du` e `find` riportato dall'utente da
 - `sentence-transformers/all-MiniLM-L6-v2`
 
 **Decisione:** nessuna cancellazione. mMARCO è documentato nei benchmark H09, ma la dipendenza effettiva dei singoli repository dal runtime è ancora da verificare. Il prossimo passo è rilevare le dimensioni delle singole cartelle senza caricare modelli in memoria.
+
+## Audit cache Alibaba — verifica PuTTY 2026-10-21
+
+**Fonte:** output dei comandi di sola lettura comunicati dall'utente. `du -shL` riporta circa **600M** per `models--Alibaba-NLP--gte-multilingual-reranker-base` e **92K** per `models--Alibaba-NLP--new-impl`. La ricerca `grep -RInE` su file Python/YAML/JSON/TOML in `projects/tactical-engine` per `gte-multilingual-reranker-base|Alibaba-NLP|new-impl` non ha prodotto risultati.
+
+**Decisione:** modello Alibaba GTE *candidato alla dismissione*, non certificato inutilizzato. Il grep non esclude riferimenti dinamici, file con altre estensioni, processi o progetti esterni. Nessuna eliminazione effettuata. La verifica della cache è chiusa; la rimozione resta sospesa in attesa di una verifica completa delle dipendenze e di un rollback.
