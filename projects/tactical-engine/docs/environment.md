@@ -114,3 +114,16 @@ Questo conferma la presenza delle API, non l'efficacia sui diagrammi tattici. Ne
 | `/boot/efi` | vfat (`/dev/vda15`) | 105M | 6.2M | 99M | 6% |
 
 **Esito:** nessuna saturazione visibile nelle partizioni persistenti riportate. Ancora da censire: dimensioni per directory (Ollama, Chroma, cache, knowledge, report), eventuali mount non visibili nel campione e prestazioni I/O. I valori `tmpfs` sono filesystem temporanei in memoria, non spazio persistente aggiuntivo.
+
+## Occupazione directory principali — verifica VPS 2026-10-21
+
+**Evidenza:** output `sudo du -sh /opt/football-data-lab /var/lib/ollama /usr/share/ollama/.ollama /root/.cache /home/*/.cache 2>/dev/null` comunicato dall'utente dalla seconda sessione PuTTY. Misure arrotondate, senza inventario interno delle directory.
+
+| Directory | Dimensione |
+| --- | ---: |
+| `/opt/football-data-lab` | 3.6G |
+| `/usr/share/ollama/.ollama` | 7.0G |
+| `/root/.cache` | 4.0K |
+| `/home/football/.cache` | 5.2G |
+
+**Interpretazione:** cache dell'utente `football` rilevante e da classificare prima di eventuali pulizie. La misura della directory Ollama non equivale a inventario dei modelli in uso. Nessun file cancellato; `/var/lib/ollama` non ha prodotto una riga nel campione, senza prova della sua inesistenza. Non sommare queste cifre allo spazio occupato del filesystem come se fossero categorie esaustive.
