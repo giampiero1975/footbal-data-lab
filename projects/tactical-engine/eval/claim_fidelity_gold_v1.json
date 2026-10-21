@@ -1,0 +1,139 @@
+{
+  "version": "1.0",
+  "purpose": "Gold set for claim-to-evidence evaluation; human-labeled from Q3/Q5 excerpts; labels entailment/contradiction/insufficient",
+  "labels": [
+    "supported",
+    "contradicted",
+    "insufficient"
+  ],
+  "cases": [
+    {
+      "id": "q3_01",
+      "source": "verticalizzazione_Bonacini",
+      "page": 1,
+      "evidence": "attacchi o in verticale, quando solitamente c'è spazio alle spalle del reparto difensivo avversario, o viceversa, quando l'avversario è rintanato nei pressi dell'area di rigore, sfruttare l'ampiezza in senso orizzontale del campo elaborando una manovra aggirante per arrivare a rifinire l'azione tramite cross.",
+      "claim": "La verticalizzazione è favorita quando c'è spazio dietro la linea difensiva.",
+      "gold": "supported"
+    },
+    {
+      "id": "q3_02",
+      "source": "verticalizzazione_Bonacini",
+      "page": 1,
+      "evidence": "attacchi o in verticale, quando solitamente c'è spazio alle spalle del reparto difensivo avversario, o viceversa, quando l'avversario è rintanato nei pressi dell'area di rigore, sfruttare l'ampiezza in senso orizzontale del campo elaborando una manovra aggirante per arrivare a rifinire l'azione tramite cross.",
+      "claim": "Quando l'avversario è rintanato vicino alla propria area, è indicato verticalizzare in profondità.",
+      "gold": "contradicted"
+    },
+    {
+      "id": "q3_03",
+      "source": "verticalizzazione_Bonacini",
+      "page": 1,
+      "evidence": "attacchi o in verticale, quando solitamente c'è spazio alle spalle del reparto difensivo avversario, o viceversa, quando l'avversario è rintanato nei pressi dell'area di rigore, sfruttare l'ampiezza in senso orizzontale del campo elaborando una manovra aggirante per arrivare a rifinire l'azione tramite cross.",
+      "claim": "Contro un blocco basso è preferibile sfruttare l'ampiezza e rifinire con cross.",
+      "gold": "supported"
+    },
+    {
+      "id": "q3_04",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta.",
+      "claim": "La difesa bassa lascia molto spazio tra la linea difensiva e la porta.",
+      "gold": "contradicted"
+    },
+    {
+      "id": "q3_05",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "contro difese disposte in linea, se non esistono tempi perfetti d'intesa tra chi dà e chi riceve palla è facile, verticalizzando, incappare nella trappola del fuorigioco.",
+      "claim": "Senza sincronizzazione tra passatore e ricevente, la verticalizzazione può esporre al fuorigioco.",
+      "gold": "supported"
+    },
+    {
+      "id": "q3_06",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "contro difese disposte in linea, se non esistono tempi perfetti d'intesa tra chi dà e chi riceve palla è facile, verticalizzando, incappare nella trappola del fuorigioco.",
+      "claim": "Una squadra che verticalizza segna mediamente più gol.",
+      "gold": "insufficient"
+    },
+    {
+      "id": "q3_07",
+      "source": "verticalizzazione_Bonacini",
+      "page": 1,
+      "evidence": "campi pesanti = gioco verticale piuttosto che orizzontale; squadra in svantaggio a pochi minuti dal termine = costruzione immediata del gioco privilegiando profondità ad ampiezza",
+      "claim": "Nel finale in svantaggio, si può privilegiare la profondità rispetto all'ampiezza.",
+      "gold": "supported"
+    },
+    {
+      "id": "q3_08",
+      "source": "movimenti_offensivi_442",
+      "page": 5,
+      "evidence": "la punta di movimento si posiziona tra le linee di centrocampo e di difesa, in verticale con la prima punta, per creare delle difficoltà nelle scalate ai due difensori centrali e favorire di conseguenza gli inserimenti con i tagli degli esterni di centrocampo.",
+      "claim": "Il posizionamento verticale delle punte può favorire gli inserimenti degli esterni.",
+      "gold": "supported"
+    },
+    {
+      "id": "q5_01",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 8,
+      "evidence": "In tutti e tre i sistemi il vantaggio principale è dato dalla presenza del centromediano metodista, che è in grado sia di proteggere la difesa che di costruire il gioco.",
+      "claim": "Nei tre sistemi descritti il centromediano metodista protegge la difesa e costruisce il gioco.",
+      "gold": "supported"
+    },
+    {
+      "id": "q5_02",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 8,
+      "evidence": "In tutti e tre i sistemi il vantaggio principale è dato dalla presenza del centromediano metodista, che è in grado sia di proteggere la difesa che di costruire il gioco.",
+      "claim": "Cambiare sistema durante la partita migliora immediatamente la protezione difensiva.",
+      "gold": "insufficient"
+    },
+    {
+      "id": "q5_03",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 9,
+      "evidence": "Nel secondo e nel terzo sistema lo svantaggio è chiaramente quello di dare campo agli avversari, ma ... si tratta di una scelta precisa, mirata alla ricerca di un contrattacco veloce.",
+      "claim": "Il secondo e il terzo sistema concedono campo per ricercare il contrattacco.",
+      "gold": "supported"
+    },
+    {
+      "id": "q5_04",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 9,
+      "evidence": "Nel secondo e nel terzo sistema lo svantaggio è chiaramente quello di dare campo agli avversari, ma ... si tratta di una scelta precisa, mirata alla ricerca di un contrattacco veloce.",
+      "claim": "Passare al secondo sistema in corso di partita aumenta sicuramente la probabilità di segnare in contropiede.",
+      "gold": "insufficient"
+    },
+    {
+      "id": "q5_05",
+      "source": "Gioco a zona nel calcio",
+      "page": 2,
+      "evidence": "il sistema di gioco a zona può presentare degli svantaggi: più lento avanzamento durante la fase di possesso palla; giocando sempre nelle stesse zone, si può perdere in fantasia ed imprevedibilità.",
+      "claim": "Il gioco a zona può comportare avanzamento più lento e minore imprevedibilità.",
+      "gold": "supported"
+    },
+    {
+      "id": "q5_06",
+      "source": "Gioco a zona nel calcio",
+      "page": 2,
+      "evidence": "il sistema di gioco a zona può presentare degli svantaggi: più lento avanzamento durante la fase di possesso palla; giocando sempre nelle stesse zone, si può perdere in fantasia ed imprevedibilità.",
+      "claim": "Il gioco a zona garantisce un avanzamento più rapido durante il possesso.",
+      "gold": "contradicted"
+    },
+    {
+      "id": "q5_07",
+      "source": "Allegati_45201211489",
+      "page": 14,
+      "evidence": "Ci si potrebbe scoprire sulle ripartenze avversarie e sui cambi di gioco. C'è bisogno di un'ottima condizione fisica da parte dei centrocampisti centrali.",
+      "claim": "Questa disposizione richiede condizione fisica elevata ai centrocampisti centrali.",
+      "gold": "supported"
+    },
+    {
+      "id": "q5_08",
+      "source": "Allegati_45201211489",
+      "page": 14,
+      "evidence": "Ci si potrebbe scoprire sulle ripartenze avversarie e sui cambi di gioco. C'è bisogno di un'ottima condizione fisica da parte dei centrocampisti centrali.",
+      "claim": "Il cambio di modulo durante la gara produce sempre disorganizzazione difensiva.",
+      "gold": "insufficient"
+    }
+  ]
+}
