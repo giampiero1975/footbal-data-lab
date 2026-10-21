@@ -1,0 +1,920 @@
+{
+  "name": "tactical_nli_stress_100_v1",
+  "status": "DRAFT_GOLD_REVIEW_REQUIRED",
+  "purpose": "100 novel claims, but REUSED excerpts from previous benchmarks: source-overlap development stress test, NOT an independent validation or production qualification.",
+  "limitations": [
+    "Gold labels authored once and not independently reviewed.",
+    "Sources and excerpts reused from previous benchmarks; not source-disjoint.",
+    "Short excerpts only; no long-document retrieval or end-to-end RAG evaluation.",
+    "Do not use results as proof of generalization."
+  ],
+  "source_count": 10,
+  "case_count": 100,
+  "label_counts": {
+    "supported": 30,
+    "contradicted": 30,
+    "insufficient": 40
+  },
+  "cases": [
+    {
+      "id": "stress_01_01",
+      "gold": "supported",
+      "claim": "La transizione coinvolge sia le fasi successive alla perdita sia quelle successive alla riconquista del pallone.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_02",
+      "gold": "supported",
+      "claim": "Durante una transizione difensiva, la squadra deve accompagnare la prima decisione del giocatore vicino alla palla.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_03",
+      "gold": "supported",
+      "claim": "Il portiere può partecipare all'avvio di azioni offensive nelle transizioni.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_04",
+      "gold": "contradicted",
+      "claim": "Il documento definisce la transizione come un fenomeno esclusivamente offensivo.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_05",
+      "gold": "contradicted",
+      "claim": "Secondo la fonte, durante la transizione difensiva il portiere non comunica con i compagni.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_06",
+      "gold": "contradicted",
+      "claim": "I compagni devono ignorare il primo movimento del giocatore che interviene nella transizione.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_07",
+      "gold": "insufficient",
+      "claim": "Il portiere avvia esattamente sette transizioni offensive per partita.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_08",
+      "gold": "insufficient",
+      "claim": "Il sostegno dei compagni elimina ogni possibilità di subire un gol in transizione.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_09",
+      "gold": "insufficient",
+      "claim": "Il documento impone un modulo 4-3-3 in ogni transizione.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_01_10",
+      "gold": "insufficient",
+      "claim": "Una reazione rapida aumenta del 18% la probabilità di segnare.",
+      "evidence": "Transition is the process of recognition and response in the first few moments following the regaining or loss of possession. Responding quickly and intelligently to a changeover in possession, will allow England teams to exploit attacking opportunities and effectively re-organise defensively when out of possession. Once the player in possession (or the player closest to the ball in defensive transition) makes a decision, the supporting units and the rest of the team must support the initial movement for transition to be effective. The goalkeeper plays a key role in transition by exploiting opportunities to begin attacking moves as well as positioning, organising and communicating effectively during defensive transition.",
+      "source_title": "The FA — England DNA: Transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/england-dna/how-we-play/transition",
+      "source_group": 1
+    },
+    {
+      "id": "stress_02_01",
+      "gold": "supported",
+      "claim": "I difensori centrali inglesi possono sostenere l'attacco avanzando molto.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_02",
+      "gold": "supported",
+      "claim": "Nell'esempio contro l'Islanda, il ripiegamento dei centrali lascia ai compagni il tempo di recuperare posizione.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_03",
+      "gold": "supported",
+      "claim": "Gli spazi ridotti in allenamento favoriscono più occasioni di contropressione.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_04",
+      "gold": "contradicted",
+      "claim": "Nella strategia descritta la difesa inglese cerca di concedere deliberatamente il corridoio centrale.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_05",
+      "gold": "contradicted",
+      "claim": "Gli spazi di esercitazione ampi impediscono ai giocatori di allenare le corse di recupero.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_06",
+      "gold": "contradicted",
+      "claim": "I tre centrali inglesi proteggono lo spazio dietro restando immobili nella metà campo avversaria.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_07",
+      "gold": "insufficient",
+      "claim": "L'Inghilterra vince sempre quando costringe gli avversari sulle fasce.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_08",
+      "gold": "insufficient",
+      "claim": "Il portiere islandese ha effettuato esattamente quattro rimesse laterali con le mani.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_09",
+      "gold": "insufficient",
+      "claim": "La contropressione inglese recupera il pallone nel 90% dei casi.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_02_10",
+      "gold": "insufficient",
+      "claim": "Le esercitazioni in campo piccolo devono durare obbligatoriamente dodici minuti.",
+      "evidence": "When transition happens, teams are vulnerable. The opposition will exploit whatever space is available. To prevent this, your players need to be comfortable defending in central and wide areas to successfully delay and deny their attacks. England's central defenders push up high to support the attack. This helps them to support the attack by retaining the ball and puts them in a great position to counter press in moments of transition when possession is lost. A key part of England’s out of possession strategy is to be compact within the centre of the pitch and force the opposition out wide. The three England central defenders deny the space behind them by turning and sprinting back to their own half. This tactic forces the Iceland goalkeeper to throw the ball wide and gives the rest of the team more time to make recovery runs. Smaller areas result in more transitions and opportunities to counter press. Larger areas allow players to experience tracking back over bigger distances and getting into shape as they quickly change from attack to defence.",
+      "source_title": "The FA — How to defend like England: transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-transition",
+      "source_group": 2
+    },
+    {
+      "id": "stress_03_01",
+      "gold": "supported",
+      "claim": "La fonte invita i giocatori a pensare alla transizione prima del cambio di possesso.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_02",
+      "gold": "supported",
+      "claim": "Una pressione avviata dal centravanti necessita di appoggio alle sue spalle.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_03",
+      "gold": "supported",
+      "claim": "La capacità di prendere decisioni nelle transizioni può essere allenata ricreando situazioni pertinenti.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_04",
+      "gold": "contradicted",
+      "claim": "Secondo la fonte, l'attaccante che parte in contropiede non deve ricevere corse di sostegno.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_05",
+      "gold": "contradicted",
+      "claim": "La preparazione delle opzioni di gioco può iniziare soltanto dopo che la squadra ha recuperato il pallone.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_06",
+      "gold": "contradicted",
+      "claim": "Il controllo emotivo è descritto come un elemento irrilevante nelle transizioni.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_07",
+      "gold": "insufficient",
+      "claim": "Ogni giocatore che anticipa mentalmente la transizione completa tutti i passaggi.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_08",
+      "gold": "insufficient",
+      "claim": "Le esercitazioni descritte migliorano del 22% il tempo di reazione.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_09",
+      "gold": "insufficient",
+      "claim": "La fonte impone almeno tre compagni dietro il centravanti in pressione.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_03_10",
+      "gold": "insufficient",
+      "claim": "Una squadra che sostiene il contropiede segna necessariamente entro dieci secondi.",
+      "evidence": "Transition is defined as the reaction and response, individually and collectively, to the first few moments between having the ball or not having the ball. Crucially, whatever the first response is to the transition, an individual must be backed up by those around them. For example, if a centre forward goes to press a defender, then they need support from behind. Likewise, an attacker who decides to counter needs supporting runs from others. When possession is lost a team can become extremely vulnerable. Players need to develop their ability to react effectively and think about transition before the ball has changed hands. Emotional control and decision-making are important aspects of successful transitions. Players should know in advance what options they have before possession is regained. Decision-making in transition can be improved by recreating relevant scenarios in training.",
+      "source_title": "The FA — How to coach transition",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-coach-transition",
+      "source_group": 3
+    },
+    {
+      "id": "stress_04_01",
+      "gold": "supported",
+      "claim": "La sicurezza difensiva deve essere tenuta presente anche nelle fasi di possesso.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_02",
+      "gold": "supported",
+      "claim": "La posizione del portiere contribuisce all'organizzazione della sicurezza difensiva.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_03",
+      "gold": "supported",
+      "claim": "Secondo il documento, tutti i giocatori partecipano alla sicurezza difensiva.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_04",
+      "gold": "contradicted",
+      "claim": "La sicurezza difensiva è responsabilità esclusiva dei difensori e non del portiere.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_05",
+      "gold": "contradicted",
+      "claim": "Durante il possesso la fonte consiglia di dimenticare ogni considerazione difensiva.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_06",
+      "gold": "contradicted",
+      "claim": "Il documento esclude la comunicazione del portiere dagli strumenti organizzativi della difesa.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_07",
+      "gold": "insufficient",
+      "claim": "Il portiere deve restare a non più di 16 metri dalla porta.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_08",
+      "gold": "insufficient",
+      "claim": "La sicurezza difensiva evita inevitabilmente qualsiasi rete avversaria.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_09",
+      "gold": "insufficient",
+      "claim": "Il documento stabilisce che tutti i giocatori mantengano distanze di cinque metri.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_04_10",
+      "gold": "insufficient",
+      "claim": "Applicare la sicurezza difensiva fa vincere esattamente il 70% delle gare.",
+      "evidence": "England DNA Principles – Transition: Defending the Counter Attack. During all aspects of the in-possession philosophy, defensive security should be considered. Awareness of defensive security ensures the team remains organised at all times and can react effectively when the ball is lost. All players contribute to ensuring defensive security, in particular the goalkeeper through effective positioning, organisation and communication.",
+      "source_title": "The FA — Developing transition: defending the counter attack",
+      "source_url": "https://www.thefa.com/-/media/cfa/huntsfa/files/coaching/documents/developing-transition.ashx",
+      "source_group": 4
+    },
+    {
+      "id": "stress_05_01",
+      "gold": "supported",
+      "claim": "Il pressing può avere lo scopo di ritardare l'azione avversaria.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_02",
+      "gold": "supported",
+      "claim": "La pressione può essere esercitata sul giocatore che possiede il pallone.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_03",
+      "gold": "supported",
+      "claim": "La fonte descrive il pressing come una capacità utilizzabile in ogni zona del campo.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_04",
+      "gold": "contradicted",
+      "claim": "Il pressing è possibile soltanto nella metà campo offensiva.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_05",
+      "gold": "contradicted",
+      "claim": "Il pressing è definito come la pressione applicata esclusivamente da chi possiede il pallone.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_06",
+      "gold": "contradicted",
+      "claim": "La fonte esclude il recupero del pallone dagli obiettivi del pressing.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_07",
+      "gold": "insufficient",
+      "claim": "Il pressing garantisce la riconquista della palla in ogni occasione.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_08",
+      "gold": "insufficient",
+      "claim": "Un pressing efficace dura sempre meno di due secondi.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_09",
+      "gold": "insufficient",
+      "claim": "La pressione aumenta del 12% il numero di conclusioni in porta.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_05_10",
+      "gold": "insufficient",
+      "claim": "Il documento richiede almeno sei giocatori per eseguire ogni pressing.",
+      "evidence": "Pressing is when pressure is applied on the player or the team that’s in possession. It’s a skill that’s used in all areas of the pitch – with the aim to win the ball back, dictate play or delay the opposition.",
+      "source_title": "The FA — Spotlight on pressing",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/spotlight-on-pressing",
+      "source_group": 5
+    },
+    {
+      "id": "stress_06_01",
+      "gold": "supported",
+      "claim": "Una corsa di sovrapposizione può creare una situazione di due contro uno sulla fascia.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_02",
+      "gold": "supported",
+      "claim": "L'overload si verifica quando gli avversari hanno più giocatori in una determinata zona.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_03",
+      "gold": "supported",
+      "claim": "Le superiorità numeriche possono manifestarsi anche lontano dalla propria area.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_04",
+      "gold": "contradicted",
+      "claim": "La fonte definisce l'overload come una situazione in cui gli avversari sono numericamente inferiori.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_05",
+      "gold": "contradicted",
+      "claim": "Un overload può verificarsi soltanto davanti alla propria porta.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_06",
+      "gold": "contradicted",
+      "claim": "Nell'esempio della sovrapposizione, il difensore esterno ha due compagni contro un solo attaccante.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_07",
+      "gold": "insufficient",
+      "claim": "Ogni overload comporta necessariamente un tiro nello specchio.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_08",
+      "gold": "insufficient",
+      "claim": "Le squadre creano in media venti overload per tempo.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_09",
+      "gold": "insufficient",
+      "claim": "La sovrapposizione deve iniziare esattamente a sette metri dal portatore.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_06_10",
+      "gold": "insufficient",
+      "claim": "L'overload produce un gol in almeno l'80% dei casi.",
+      "evidence": "An opponent makes an overlapping run past the player on the ball – they now outnumber your wide defender, two to one. This is an example of an overload. Put simply, it’s when the opposition have more players than you in an area of the pitch. These don’t just take place near your box though; they can happen all over the pitch.",
+      "source_title": "The FA — How to defend like England: overloads",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-overloads",
+      "source_group": 6
+    },
+    {
+      "id": "stress_07_01",
+      "gold": "supported",
+      "claim": "Una difesa compatta può ridurre lo spazio disponibile alle proprie spalle.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_02",
+      "gold": "supported",
+      "claim": "La scelta di uscire sugli avversari può aumentare il rischio di scoprirsi dietro.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_03",
+      "gold": "supported",
+      "claim": "La fonte riconosce che il pressing comporta un certo rischio.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_04",
+      "gold": "contradicted",
+      "claim": "La fonte presenta il pressing come un comportamento completamente privo di rischi.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_05",
+      "gold": "contradicted",
+      "claim": "Restare compatti dietro amplia necessariamente lo spazio alle spalle dei difensori.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_06",
+      "gold": "contradicted",
+      "claim": "Uscire in pressione elimina per definizione il rischio di lasciare spazi dietro.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_07",
+      "gold": "insufficient",
+      "claim": "Una linea compatta impedisce ogni tiro avversario.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_08",
+      "gold": "insufficient",
+      "claim": "La fonte misura in 25 metri lo spazio lasciato sulle fasce.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_09",
+      "gold": "insufficient",
+      "claim": "Il pressing riduce sempre del 50% i contropiedi subiti.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_07_10",
+      "gold": "insufficient",
+      "claim": "Il sistema difensivo descritto garantisce almeno un punto in ogni partita.",
+      "evidence": "You could remain compact at the back. This limits the space in behind your defence but gives them some freedom out wide. Or you could close them down, but risk being open at the back. A tough choice. Pressing, which is a key part of England’s philosophy, always includes a level of risk.",
+      "source_title": "The FA — How to defend like England: space in wide areas",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/how-to-defend-like-england-space-in-wide-areas",
+      "source_group": 7
+    },
+    {
+      "id": "stress_08_01",
+      "gold": "supported",
+      "claim": "Nella definizione proposta, underloading significa avere meno giocatori rispetto agli avversari.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_02",
+      "gold": "supported",
+      "claim": "L'ambiente di allenamento ostile aumenta volutamente la difficoltà affrontata dai giocatori.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_03",
+      "gold": "supported",
+      "claim": "L'obiettivo di un ambiente impegnativo è aiutare i giocatori a trovare soluzioni in circostanze imprevedibili.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_04",
+      "gold": "contradicted",
+      "claim": "Underloading significa che la propria squadra ha più giocatori degli avversari.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_05",
+      "gold": "contradicted",
+      "claim": "Un ambiente ostile elimina deliberatamente ogni pressione sui giocatori.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_06",
+      "gold": "contradicted",
+      "claim": "L'autore descrive le situazioni imprevedibili come completamente assenti dall'allenamento impegnativo.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_07",
+      "gold": "insufficient",
+      "claim": "L'underloading deve essere sempre giocato con sette calciatori contro undici.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_08",
+      "gold": "insufficient",
+      "claim": "L'ambiente ostile garantisce che ogni giocatore prenda sempre la decisione corretta.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_09",
+      "gold": "insufficient",
+      "claim": "L'allenamento descritto migliora del 15% la precisione dei tiri.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_08_10",
+      "gold": "insufficient",
+      "claim": "La fonte prescrive esattamente quattro ripetizioni per ciascun esercizio.",
+      "evidence": "For the purpose of this article, I’ll use the term underloading, meaning that the opposition have more players. By a hostile practice environment, I mean an environment that stretches and places pressure upon the players, exaggerating the level of difficulty and pressure so that players can find solutions ‘in the moment’ to meet challenges in unpredictable circumstances.",
+      "source_title": "The FA — The underloading principle",
+      "source_url": "https://www.thefa.com/bootroom/resources/coaching/the-underloading-principle",
+      "source_group": 8
+    },
+    {
+      "id": "stress_09_01",
+      "gold": "supported",
+      "claim": "Quando diminuisce la pressione sul pallone, la difesa deve adottare una copertura più profonda.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_02",
+      "gold": "supported",
+      "claim": "Applicare pressione sulla palla può consentire alla linea difensiva di avanzare.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_03",
+      "gold": "supported",
+      "claim": "L'arretramento della difesa con poca pressione mira a evitare spazi alle spalle.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_04",
+      "gold": "contradicted",
+      "claim": "Una pressione minore sul pallone consente sempre di mantenere la difesa più alta senza rischi.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_05",
+      "gold": "contradicted",
+      "claim": "La fonte sostiene che la difesa debba salire quando la pressione sul pallone diminuisce.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_06",
+      "gold": "contradicted",
+      "claim": "L'applicazione di pressione sul pallone impone inevitabilmente di arretrare la difesa.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_07",
+      "gold": "insufficient",
+      "claim": "La linea difensiva arretra di dodici metri ogni volta che manca pressione.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_08",
+      "gold": "insufficient",
+      "claim": "La pressione sul pallone garantisce di non subire alcun contropiede.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_09",
+      "gold": "insufficient",
+      "claim": "La fonte prescrive che i difensori avanzino esattamente dopo due secondi.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_09_10",
+      "gold": "insufficient",
+      "claim": "Una copertura profonda assicura il recupero del pallone nell'85% delle azioni.",
+      "evidence": "So, the less pressure on the ball, the deeper the covering angle and the deeper the defence will need to be to avoid opening up space in behind. As pressure is applied to the ball, then the defence can move up.",
+      "source_title": "The FA - UEFA B coaching day three",
+      "source_url": "https://www.thefa.com/news/2014/mar/21/jamie-bradbury-uefa-b-coaching-day-three",
+      "source_group": 9
+    },
+    {
+      "id": "stress_10_01",
+      "gold": "supported",
+      "claim": "La compattezza del West Ham nelle zone centrali ha indirizzato il Friburgo verso le fasce.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_02",
+      "gold": "supported",
+      "claim": "I centrocampisti del West Ham aiutavano i terzini quando il pallone raggiungeva le corsie esterne.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_03",
+      "gold": "supported",
+      "claim": "Il West Ham viene descritto come organizzato nella difesa del terzo basso del campo.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_04",
+      "gold": "contradicted",
+      "claim": "Il West Ham ha cercato di costringere il Friburgo a giocare prevalentemente nel corridoio centrale.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_05",
+      "gold": "contradicted",
+      "claim": "Quando la palla andava sulle fasce, i centrocampisti del West Ham si rifiutavano di coprire gli spazi.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_06",
+      "gold": "contradicted",
+      "claim": "La fonte descrive il West Ham come disorganizzato nella difesa vicino alla propria porta.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_07",
+      "gold": "insufficient",
+      "claim": "La compattezza centrale del West Ham ha garantito la vittoria della competizione.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_08",
+      "gold": "insufficient",
+      "claim": "Il West Ham ha effettuato esattamente venticinque coperture dei terzini.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_09",
+      "gold": "insufficient",
+      "claim": "Il Friburgo ha concluso il 90% degli attacchi sulle fasce.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    },
+    {
+      "id": "stress_10_10",
+      "gold": "insufficient",
+      "claim": "La squadra inglese ha mantenuto la compattezza per esattamente ottantacinque minuti.",
+      "evidence": "West Ham were very organised and structured when defending around the lower third of the pitch. By remaining compact in central areas, they forced Freiburg wide. When the ball did go wide, there was a positive mentality from the West Ham midfield players to cover space and support their full-backs.",
+      "source_title": "UEFA - Europa League analysis: Spotting the trends",
+      "source_url": "https://www.uefa.com/uefaeuropaleague/news/028d-1ae28750fbcc-a87fb9a6551a-1000--europa-league-analysis-spotting-the-trends/",
+      "source_group": 10
+    }
+  ]
+}
