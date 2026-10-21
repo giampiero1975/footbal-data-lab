@@ -1,0 +1,171 @@
+{
+  "version": "1.0",
+  "purpose": "Adversarial evaluation with new claims, using previously seen evidence excerpts. Not independent by source or prompt-development process.",
+  "labels": [
+    "supported",
+    "contradicted",
+    "insufficient"
+  ],
+  "cases": [
+    {
+      "id": "adv_01",
+      "claim": "La difesa bassa riduce lo spazio disponibile alle spalle della linea difensiva.",
+      "gold": "supported",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta."
+    },
+    {
+      "id": "adv_02",
+      "claim": "Una squadra che difende bassa concede ampio spazio tra difesa e porta.",
+      "gold": "contradicted",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta."
+    },
+    {
+      "id": "adv_03",
+      "claim": "Quando la difesa avversaria è bassa, è sempre impossibile verticalizzare.",
+      "gold": "insufficient",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta."
+    },
+    {
+      "id": "adv_04",
+      "claim": "La verticalizzazione può essere rischiosa per il fuorigioco se manca l'intesa tra chi passa e chi riceve.",
+      "gold": "supported",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "contro difese disposte in linea, se non esistono tempi perfetti d'intesa tra chi dà e chi riceve palla è facile, verticalizzando, incappare nella trappola del fuorigioco."
+    },
+    {
+      "id": "adv_05",
+      "claim": "Il fuorigioco si verifica soltanto quando la squadra avversaria difende in linea.",
+      "gold": "insufficient",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "evidence": "contro difese disposte in linea, se non esistono tempi perfetti d'intesa tra chi dà e chi riceve palla è facile, verticalizzando, incappare nella trappola del fuorigioco."
+    },
+    {
+      "id": "adv_06",
+      "claim": "Con il campo pesante è preferibile il gioco orizzontale a quello verticale.",
+      "gold": "contradicted",
+      "source": "verticalizzazione_Bonacini",
+      "page": 1,
+      "evidence": "campi pesanti = gioco verticale piuttosto che orizzontale; squadra in svantaggio a pochi minuti dal termine = costruzione immediata del gioco privilegiando profondità ad ampiezza"
+    },
+    {
+      "id": "adv_07",
+      "claim": "Quando manca poco al termine e si è in svantaggio, è consigliato privilegiare la profondità.",
+      "gold": "supported",
+      "source": "verticalizzazione_Bonacini",
+      "page": 1,
+      "evidence": "campi pesanti = gioco verticale piuttosto che orizzontale; squadra in svantaggio a pochi minuti dal termine = costruzione immediata del gioco privilegiando profondità ad ampiezza"
+    },
+    {
+      "id": "adv_08",
+      "claim": "Privilegiare la profondità nel finale garantisce il pareggio.",
+      "gold": "insufficient",
+      "source": "verticalizzazione_Bonacini",
+      "page": 1,
+      "evidence": "campi pesanti = gioco verticale piuttosto che orizzontale; squadra in svantaggio a pochi minuti dal termine = costruzione immediata del gioco privilegiando profondità ad ampiezza"
+    },
+    {
+      "id": "adv_09",
+      "claim": "Nei tre sistemi il centromediano svolge sia compiti di costruzione sia di protezione.",
+      "gold": "supported",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 8,
+      "evidence": "In tutti e tre i sistemi il vantaggio principale è dato dalla presenza del centromediano metodista, che è in grado sia di proteggere la difesa che di costruire il gioco."
+    },
+    {
+      "id": "adv_10",
+      "claim": "Il centromediano metodista può costruire il gioco ma non proteggere la difesa.",
+      "gold": "contradicted",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 8,
+      "evidence": "In tutti e tre i sistemi il vantaggio principale è dato dalla presenza del centromediano metodista, che è in grado sia di proteggere la difesa che di costruire il gioco."
+    },
+    {
+      "id": "adv_11",
+      "claim": "La presenza del centromediano riduce del 20% i gol subiti.",
+      "gold": "insufficient",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 8,
+      "evidence": "In tutti e tre i sistemi il vantaggio principale è dato dalla presenza del centromediano metodista, che è in grado sia di proteggere la difesa che di costruire il gioco."
+    },
+    {
+      "id": "adv_12",
+      "claim": "Nel secondo e terzo sistema si concede campo agli avversari per cercare una ripartenza rapida.",
+      "gold": "supported",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 9,
+      "evidence": "Nel secondo e nel terzo sistema lo svantaggio è chiaramente quello di dare campo agli avversari, ma ... si tratta di una scelta precisa, mirata alla ricerca di un contrattacco veloce."
+    },
+    {
+      "id": "adv_13",
+      "claim": "Il secondo sistema impedisce agli avversari di avanzare.",
+      "gold": "contradicted",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 9,
+      "evidence": "Nel secondo e nel terzo sistema lo svantaggio è chiaramente quello di dare campo agli avversari, ma ... si tratta di una scelta precisa, mirata alla ricerca di un contrattacco veloce."
+    },
+    {
+      "id": "adv_14",
+      "claim": "Cercare un contrattacco veloce aumenta necessariamente il numero di reti segnate.",
+      "gold": "insufficient",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 9,
+      "evidence": "Nel secondo e nel terzo sistema lo svantaggio è chiaramente quello di dare campo agli avversari, ma ... si tratta di una scelta precisa, mirata alla ricerca di un contrattacco veloce."
+    },
+    {
+      "id": "adv_15",
+      "claim": "Il gioco a zona può ridurre l'imprevedibilità in possesso.",
+      "gold": "supported",
+      "source": "Gioco a zona nel calcio",
+      "page": 2,
+      "evidence": "il sistema di gioco a zona può presentare degli svantaggi: più lento avanzamento durante la fase di possesso palla; giocando sempre nelle stesse zone, si può perdere in fantasia ed imprevedibilità."
+    },
+    {
+      "id": "adv_16",
+      "claim": "Il gioco a zona rende sempre più veloce l'avanzamento della squadra.",
+      "gold": "contradicted",
+      "source": "Gioco a zona nel calcio",
+      "page": 2,
+      "evidence": "il sistema di gioco a zona può presentare degli svantaggi: più lento avanzamento durante la fase di possesso palla; giocando sempre nelle stesse zone, si può perdere in fantasia ed imprevedibilità."
+    },
+    {
+      "id": "adv_17",
+      "claim": "Il gioco a zona causa inevitabilmente una sconfitta.",
+      "gold": "insufficient",
+      "source": "Gioco a zona nel calcio",
+      "page": 2,
+      "evidence": "il sistema di gioco a zona può presentare degli svantaggi: più lento avanzamento durante la fase di possesso palla; giocando sempre nelle stesse zone, si può perdere in fantasia ed imprevedibilità."
+    },
+    {
+      "id": "adv_18",
+      "claim": "Ai centrocampisti centrali è richiesta un'ottima preparazione fisica.",
+      "gold": "supported",
+      "source": "Allegati_45201211489",
+      "page": 14,
+      "evidence": "Ci si potrebbe scoprire sulle ripartenze avversarie e sui cambi di gioco. C'è bisogno di un'ottima condizione fisica da parte dei centrocampisti centrali."
+    },
+    {
+      "id": "adv_19",
+      "claim": "Questa disposizione non espone mai alle ripartenze avversarie.",
+      "gold": "contradicted",
+      "source": "Allegati_45201211489",
+      "page": 14,
+      "evidence": "Ci si potrebbe scoprire sulle ripartenze avversarie e sui cambi di gioco. C'è bisogno di un'ottima condizione fisica da parte dei centrocampisti centrali."
+    },
+    {
+      "id": "adv_20",
+      "claim": "I centrocampisti centrali devono correre almeno dodici chilometri a partita.",
+      "gold": "insufficient",
+      "source": "Allegati_45201211489",
+      "page": 14,
+      "evidence": "Ci si potrebbe scoprire sulle ripartenze avversarie e sui cambi di gioco. C'è bisogno di un'ottima condizione fisica da parte dei centrocampisti centrali."
+    }
+  ]
+}
