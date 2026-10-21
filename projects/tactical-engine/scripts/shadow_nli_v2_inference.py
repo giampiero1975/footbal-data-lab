@@ -8,21 +8,42 @@ Docs: https://docs.ollama.com/api/chat
 """
 from __future__ import annotations
 import argparse
+import ast
 import copy
 import json
 import time
 import urllib.request
 from pathlib import Path
 
-from benchmark_direct_three_label_nli_v2 import benchmark
+from typing import Literal
+from pydantic import BaseModel
 from shadow_nli_v2_offline import LABELS, apply_verdicts
 
-SCHEMA = benchmark.Verdict.model_json_schema()
+class Verdict(BaseModel):
+    label: Literal["supported", "contradicted", "insufficient"]
+
+SCHEMA = Verdict.model_json_schema()
+
+def load_v2_instruction():
+    """Read the literal instruction from the canonical V2 script, without importing Ragas."""
+    path = Path(__file__).with_name("benchmark_direct_three_label_nli_v2.py")
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    for node in tree.body:
+        if (isinstance(node, ast.Assign) and len(node.targets) == 1
+                and isinstance(node.targets[0], ast.Attribute)
+                and isinstance(node.targets[0].value, ast.Name)
+                and node.targets[0].value.id == "benchmark"
+                and node.targets[0].attr == "INSTRUCTION"):
+            value = ast.literal_eval(node.value)
+            if not isinstance(value, str) or not value.strip():
+                raise ValueError("Invalid V2 instruction")
+            return value
+    raise ValueError("V2 instruction not found; refusing inference")
 
 
 def judge_pair(claim, evidence, *, model="qwen3.5:9b",
                ollama_url="http://127.0.0.1:11434", timeout=180, max_tokens=1024):
-    prompt = benchmark.INSTRUCTION + "\n\nFONTE:\n" + evidence + "\n\nAFFERMAZIONE:\n" + claim
+    prompt = load_v2_instruction() + "\n\nFONTE:\n" + evidence + "\n\nAFFERMAZIONE:\n" + claim
     payload = {
         "model": model, "stream": False, "think": False, "format": SCHEMA,
         "options": {"temperature": 0, "num_predict": max_tokens, "num_ctx": 4096},
@@ -41,7 +62,7 @@ def judge_pair(claim, evidence, *, model="qwen3.5:9b",
     content = message.get("content") or ""
     if result.get("done_reason") != "stop" or not content:
         raise RuntimeError("Ollama output incomplete")
-    label = benchmark.Verdict.model_validate_json(content).label
+    label = Verdict.model_validate_json(content).label
     return label
 
 
