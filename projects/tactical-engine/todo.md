@@ -17,6 +17,8 @@
 - [x] Analizzato report `rag_v5_phase_passage_shadow_v1.json` (holdout_06 e holdout_10, citazioni ID invalide 0/2).
 - [x] Registrata revisione qualitativa e limiti in [docs/rag-v5-phase-passage-shadow-v1-review-20261022.md](docs/rag-v5-phase-passage-shadow-v1-review-20261022.md).
 - [x] Completata revisione atomica **mirata, non indipendente** di 06/10: [docs/rag-v5-phase-passage-atomic-adjudication-20261022.md](docs/rag-v5-phase-passage-atomic-adjudication-20261022.md). 06 REVIEW; 10 FAIL semantico.\n- [ ] Adjudication **indipendente** su nuovo gold, confronto con ablation/baseline e regressione separata; non promuovere V5 sulla sola analisi shadow.
+- [x] Definito gate prospettico e distinta valutazione NLI da qualità end-to-end: [docs/rag-v5-quality-prospective-grounding-gate-20261022.md](docs/rag-v5-quality-prospective-grounding-gate-20261022.md).
+- [ ] Costruire 10 domande realmente nuove con fonti/pagine verificate e manifest congelato; nessuna esecuzione o punteggio prima del gold.
 - [ ] Consultare documentazione ufficiale delle API coinvolte prima di nuovi test implementativi; V4 e Chroma invariati.
 
 ### Priorità operative attuali
