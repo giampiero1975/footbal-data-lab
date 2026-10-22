@@ -47,6 +47,16 @@ class ShadowOfflineTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             prepare(self.report, {"claims": [bad]})
 
+    def test_mismatched_claim_text_and_boolean_offsets_fail_closed(self):
+        bad = self.claim("a", "Pressing alto [F1].")
+        bad["text"] = "Il pressing garantisce ogni recupero"
+        with self.assertRaises(ValueError):
+            prepare(self.report, {"claims": [bad]})
+        bad = self.claim("a", "Pressing alto [F1].")
+        bad["start"] = True
+        with self.assertRaises(ValueError):
+            prepare(self.report, {"claims": [bad]})
+
     def test_multisource_conflict_requires_review(self):
         answer = "Azione combinata [F1] [F2]."
         report = copy.deepcopy(self.report)
