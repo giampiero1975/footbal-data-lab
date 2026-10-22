@@ -51,6 +51,10 @@ def main():
         parser.error("Input, prepared and output paths must be distinct")
     if prepared_path.exists() or output.exists():
         parser.error("Refusing to overwrite existing prepared/output file")
+    if not source.is_file():
+        parser.error(f"Baseline mancante: {source}; nessun benchmark avviato")
+    if not prepared_path.parent.is_dir():
+        parser.error(f"Directory report mancante: {prepared_path.parent}; non viene creata automaticamente")
     report = json.loads(source.read_text(encoding="utf-8"))
     questions = {q["id"]: q for q in report["questions"]}
     annotations = {"claims": []}
@@ -69,7 +73,7 @@ def main():
     pairs = sum(len(c["pairs"]) for c in prepared["claims"])
     if len(prepared["claims"]) != 15 or pairs != 20:
         raise ValueError(f"Unexpected counts: {len(prepared['claims'])} claims, {pairs} pairs")
-    prepared_path.parent.mkdir(parents=True, exist_ok=True)
+
     with prepared_path.open("x", encoding="utf-8") as stream:
         json.dump(prepared, stream, ensure_ascii=False, indent=2)
         stream.write("\n")
