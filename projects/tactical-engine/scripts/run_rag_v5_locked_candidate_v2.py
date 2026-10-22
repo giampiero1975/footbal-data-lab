@@ -19,7 +19,7 @@ def select_runtime():
              "names=('chromadb','llama_index','sentence_transformers'); "
              "sys.exit(0 if all(importlib.util.find_spec(x) for x in names) else 1)")
     candidates = [Path(sys.executable)]
-    for root in (ROOT, ROOT.parent.parent):
+    # Validated on VPS (docs/todo.md): tactical-engine/.venv imports all V5 modules.\n    candidates.insert(0, ROOT / '.venv/bin/python')\n    for root in (ROOT, ROOT.parent.parent):
         candidates.extend(sorted(root.glob('.venv*/bin/python')))
         candidates.extend(sorted(root.glob('venv*/bin/python')))
     seen = set()
