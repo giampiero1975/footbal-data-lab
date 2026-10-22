@@ -1,0 +1,184 @@
+{
+  "schema": "rag_v5_independent_candidate_v2",
+  "created_date": "2026-10-22",
+  "status": "source_verified_candidate_not_frozen",
+  "disclosure": "New questions authored without inspecting model outputs for these exact questions; no claim of independent external review",
+  "policy": {
+    "no_tuning_on_holdout": true,
+    "read_only": true,
+    "freeze_before_generation": true,
+    "score_threshold": "9/10 PASS; per-question rubric in docs/rag-v5-quality-9of10-validation-protocol-v1.md"
+  },
+  "questions": [
+    {
+      "id": "fresh_01",
+      "question": "In Ussia, esercitazione 1/A, come cambiano punteggio e obiettivo delle due squadre dopo la trasmissione della palla agli avversari?",
+      "source_title": "Ussia, Le transizioni nel calcio moderno",
+      "source_page": 8,
+      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "mandatory_claims": [
+        "Chi riceve punta alla zona meta; l'altra squadra ottiene punto recuperando palla"
+      ],
+      "forbidden_claims": [
+        "Non descrivere questa esercitazione come partita regolamentare"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_02",
+      "question": "Nell'esercitazione 2/B di Ussia, cosa devono fare immediatamente i giocatori che perdono il possesso dopo il trasferimento della palla nell'altro spazio?",
+      "source_title": "Ussia, Le transizioni nel calcio moderno",
+      "source_page": 11,
+      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "mandatory_claims": [
+        "Devono raggiungere rapidamente l'altro spazio e impedire i sei passaggi"
+      ],
+      "forbidden_claims": [
+        "Non invertire la squadra che intercetta con quella che perde palla"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_03",
+      "question": "Qual è il ruolo del rientro difensivo nell'8 contro 8 più portiere di Ussia, esercitazione 3/A?",
+      "source_title": "Ussia, Le transizioni nel calcio moderno",
+      "source_page": 12,
+      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "mandatory_claims": [
+        "La squadra che perde palla può e deve rientrare a difesa della porta"
+      ],
+      "forbidden_claims": [
+        "Non presentare la riconquista come unico comportamento ammesso"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_04",
+      "question": "Nell'esercitazione 4/A di Ussia, quale vincolo temporale viene assegnato alla conclusione e perché non costituisce una statistica sulle partite?",
+      "source_title": "Ussia, Le transizioni nel calcio moderno",
+      "source_page": 14,
+      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "mandatory_claims": [
+        "Cinque secondi per concludere dopo riconquista, regola dell'esercitazione"
+      ],
+      "forbidden_claims": [
+        "Non inventare percentuali di gol o tiri"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_05",
+      "question": "Come Ussia limita l'estensione delle esercitazioni di pressione laterale alta a sistemi di gioco diversi nell'esercitazione 6/A?",
+      "source_title": "Ussia, Le transizioni nel calcio moderno",
+      "source_page": 17,
+      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "mandatory_claims": [
+        "Principi generali da adattare a sistemi e organizzazioni, pressione individuale e collettiva"
+      ],
+      "forbidden_claims": [
+        "Non attribuire universalità automatica"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_06",
+      "question": "Nella ripartenza da calcio d'angolo avversario di Ussia, esercitazione 11/A, come si passa dal lavoro senza opposizione a situazioni realistiche?",
+      "source_title": "Ussia, Le transizioni nel calcio moderno",
+      "source_page": 24,
+      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "mandatory_claims": [
+        "Partenza 11 contro 0; aggiunta progressiva di uno/due avversari fino al 10 contro 10, con coperture"
+      ],
+      "forbidden_claims": [
+        "Non trasformare la progressione in obbligo tattico in gara"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_07",
+      "question": "Perché Foscarini considera rischiosa la costruzione tramite laterali nella zona B, e che ruolo ha la pressione a invito?",
+      "source_title": "Foscarini, Manovre offensive nei vari sistemi di gioco",
+      "source_page": 22,
+      "source_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
+      "mandatory_claims": [
+        "Pressioni laterali possono causare perdita in zona pericolosa; playmaker braccati"
+      ],
+      "forbidden_claims": [
+        "Non dire che la costruzione laterale sia sempre errata"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_08",
+      "question": "Quali movimenti iniziali descrive Foscarini nella costruzione dal portiere con difesa a tre?",
+      "source_title": "Foscarini, Manovre offensive nei vari sistemi di gioco",
+      "source_page": 23,
+      "source_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
+      "mandatory_claims": [
+        "Laterali difensivi si allargano; centrocampisti si allungano per ricevere"
+      ],
+      "forbidden_claims": [
+        "Non generalizzare a tutti i sistemi"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_09",
+      "question": "Quali condizioni e rischi considera il manuale interno quando consiglia di consolidare anziché accelerare dopo la riconquista?",
+      "source_title": "FOOTBALL-DATA-LAB, Le transizioni offensive e difensive",
+      "source_page": 4,
+      "source_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
+      "mandatory_claims": [
+        "Inferiorità locale, controllo imperfetto, mancanza riceventi o avversario organizzato; riduce perdita ma concede tempo"
+      ],
+      "forbidden_claims": [
+        "Non presentare il consolidamento come scelta universalmente migliore"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    },
+    {
+      "id": "fresh_10",
+      "question": "Secondo il manuale interno, quali condizioni rendono favorevole la riaggressione dopo perdita e quale rischio emerge se mancano?",
+      "source_title": "FOOTBALL-DATA-LAB, Le transizioni offensive e difensive",
+      "source_page": 5,
+      "source_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
+      "mandatory_claims": [
+        "Vicinanza compagni, orientamento avversario, uscita prevedibile e copertura preventiva; altrimenti spazi scoperti"
+      ],
+      "forbidden_claims": [
+        "Non ridurre la riaggressione a singola pressione"
+      ],
+      "abstention": "Do not infer beyond cited source",
+      "source_verification": "Drive text directly inspected 2026-10-22",
+      "reviewer": null
+    }
+  ],
+  "freeze": {
+    "status": "blocked_pending_independent_reviewer_and_runtime_config",
+    "sha256": null,
+    "reviewer": null
+  },
+  "execution": {
+    "status": "not_run",
+    "v5_report": null,
+    "v4_report": null
+  }
+}
