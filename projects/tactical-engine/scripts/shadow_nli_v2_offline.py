@@ -31,12 +31,18 @@ def prepare(report, annotations):
         seen.add((qid, cid))
         q = questions[qid]
         start, end = item["start"], item["end"]
-        if (not isinstance(start, int) or not isinstance(end, int) or start < 0
+        if (type(start) is not int or type(end) is not int or start < 0
                 or end <= start or q["answer"][start:end] != item["span"]):
             raise ValueError("Claim span mismatch")
         claim = item["text"].strip()
         if not claim:
             raise ValueError("Empty claim")
+        # Manual annotations must retain the cited answer wording; only citation markers may be removed.
+        normalized_span = CITE.sub("", item["span"])
+        normalized_span = " ".join(normalized_span.split()).strip(" .;:,!?")
+        normalized_claim = " ".join(claim.split()).strip(" .;:,!?")
+        if normalized_claim != normalized_span:
+            raise ValueError("Claim text does not match cited answer span")
         citations = sorted(set(CITE.findall(item["span"])), key=int)
         sources = {r["label"]: r for r in q["evidence"]}
         if len(sources) != len(q["evidence"]):
