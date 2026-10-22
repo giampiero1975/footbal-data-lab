@@ -52,19 +52,27 @@
           "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
           "page_label": "Pagina 2",
           "verification": "Direct Drive text: reacting to loss and defensive positioning"
+        },
+        {
+          "title": "FOOTBALL_DATA_LAB_Transizioni_Offensive_e_Difensive_Manuale.pdf",
+          "drive_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
+          "page_label": "sezione 1",
+          "authority": "official_project_complement",
+          "verification": "direct Drive text"
         }
       ],
       "verified_pages": [
         "Ussia, pagina interna 2"
       ],
       "mandatory_claims": [
-        "Dopo la perdita serve reazione rapida e recupero posizione difensiva; il brano non definisce condizioni sufficienti per pressione immediata vs protezione profondità"
+        "Dopo la perdita serve reazione rapida e recupero posizione difensiva; il brano non definisce condizioni sufficienti per pressione immediata vs protezione profondità",
+        "Transizione negativa: scegliere fra recupero immediato e protezione della porta in base alle condizioni, senza regola universale"
       ],
       "forbidden_claims": [
         "Non confondere azioni dopo perdita con dopo recupero"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "source_text_checked_scope_insufficient",
+      "gold_status": "source_text_checked_reviewer_pending",
       "reviewer": null
     },
     {
@@ -166,7 +174,7 @@
     },
     {
       "id": "prospective_06",
-      "question": "Se una squadra passa dal 4-3-3 al 3-4-3 durante la partita, quali rischi emergono nella fase di riassetto e quali evidenze li documentano?",
+      "question": "Quali differenze di equilibrio preventivo descrivono le fonti tra 4-3-3 e 3-5-2 e perché non bastano, da sole, a dimostrare i rischi di un cambio di modulo durante la gara?",
       "category": "cambio_modulo",
       "scenario_constraints": "Proprietà statiche dei moduli non dimostrano causalità del cambio",
       "source_refs": [
@@ -183,6 +191,13 @@
           "page_label": "pagina stampata 10 e seguenti",
           "authority": "coach_thesis",
           "verification": "Google Drive extracted original text"
+        },
+        {
+          "title": "FOOTBALL_DATA_LAB_Transizioni_Offensive_e_Difensive_Manuale.pdf",
+          "drive_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
+          "page_label": "sezione 9",
+          "authority": "official_project_complement",
+          "verification": "direct Drive text"
         }
       ],
       "verified_pages": [
@@ -190,13 +205,14 @@
       ],
       "mandatory_claims": [
         "Caratteristiche statiche dei sistemi non provano rischi causati dal cambio durante la partita",
-        "La variazione di Pane parte da una base fissa di sette giocatori: non dimostra da sola i rischi del passaggio 4-3-3 a 3-4-3 in partita."
+        "La variazione di Pane parte da una base fissa di sette giocatori: non dimostra da sola i rischi del passaggio 4-3-3 a 3-4-3 in partita.",
+        "Nel 4-3-3 il vertice basso sostiene equilibrio, con terzini alti serve copertura di centrale/mezzala; non trasformare descrizione statica in effetto causale del cambio"
       ],
       "forbidden_claims": [
         "Proprietà statiche dei moduli non dimostrano causalità del cambio"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "source_text_checked_specific_scenario_pending",
+      "gold_status": "source_text_checked_reviewer_pending",
       "reviewer": null
     },
     {
@@ -263,7 +279,7 @@
     },
     {
       "id": "prospective_09",
-      "question": "Se un testo descrive tre sistemi difensivi, si può dedurre che la stessa regola valga per qualsiasi sistema? Spiega i limiti delle prove.",
+      "question": "Nel 3-3-4 di Glerean, perché i principi del suo sistema non si possono estendere automaticamente a ogni altro modulo?",
       "category": "quantificatori",
       "scenario_constraints": "Non estendere quantificatori oltre fonte",
       "source_refs": [
@@ -279,13 +295,14 @@
         "Glerean, pagina stampata 6 (estratto Drive)"
       ],
       "mandatory_claims": [
-        "Le osservazioni sul 3-3-4 non giustificano universalità su tutti i sistemi; mancano evidenze per la premessa 'tre sistemi' nella fonte selezionata"
+        "Le osservazioni sul 3-3-4 non giustificano universalità su tutti i sistemi; mancano evidenze per la premessa 'tre sistemi' nella fonte selezionata",
+        "Attribuire esplicitamente le caratteristiche al 3-3-4 di Glerean e non generalizzare a tutti i sistemi"
       ],
       "forbidden_claims": [
         "Non estendere quantificatori oltre fonte"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "source_mismatch_requires_revision",
+      "gold_status": "source_text_checked_reviewer_pending",
       "reviewer": null
     },
     {
@@ -321,6 +338,6 @@
     "sha256": null,
     "reviewer": null
   },
-  "source_verification_note": "Mappatura di 10 domande con riferimenti a PDF originali Google Drive. 03 e 05 integrati con manuali ufficiali interni FOOTBALL-DATA-LAB; 06 con tesi Pane ma specifico cambio in partita non dimostrato. Gold non congelato, pagine/revisione indipendente pendenti.",
+  "source_verification_note": "Mappatura di 10 domande con riferimenti a PDF originali Google Drive. 03 e 05 integrati con manuali ufficiali interni FOOTBALL-DATA-LAB; 06 con tesi Pane ma specifico cambio in partita non dimostrato. Gold non congelato, pagine/revisione indipendente pendenti. 2026-10-22: candidate 02 augmented with official internal transitions manual; 06 and 09 questions corrected to match source scope before freeze. Changes are pre-freeze only.",
   "source_authority_policy": "I manuali FOOTBALL-DATA-LAB sono documentazione ufficiale interna del progetto, complementare alle fonti esterne, creata per esplicitare concetti incompleti. Hanno piena validità come fonti canoniche interne; distinguere la provenienza e non attribuirli a FIGC o Coverciano. In caso di tensione fra fonti, esplicitare differenze di scenario e non appiattirle."
 }
