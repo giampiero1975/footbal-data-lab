@@ -79,19 +79,27 @@
           "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
           "page_label": "Pagina 6",
           "verification": "Direct Drive text: transition positive analysis, but no explicit end-of-transition definition"
+        },
+        {
+          "title": "FOOTBALL_DATA_LAB_Transizioni_Offensive_e_Difensive_Manuale.pdf",
+          "drive_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
+          "page_label": "sezione 1, Definizione e confini",
+          "authority": "official_project_complement",
+          "verification": "Google Drive extracted original text"
         }
       ],
       "verified_pages": [
         "Ussia, pagina interna 6"
       ],
       "mandatory_claims": [
-        "La fonte elenca fattori da valutare dopo riconquista ma non stabilisce criterio osservabile univoco per fine transizione"
+        "La fonte elenca fattori da valutare dopo riconquista ma non stabilisce criterio osservabile univoco per fine transizione",
+        "La transizione termina quando una delle squadre ricostruisce un'organizzazione riconoscibile, non dopo un numero fisso di secondi."
       ],
       "forbidden_claims": [
         "Non equiparare automaticamente passaggio sicuro e possesso consolidato"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "source_text_checked_scope_insufficient",
+      "gold_status": "source_text_checked_page_reviewer_pending",
       "reviewer": null
     },
     {
@@ -133,19 +141,27 @@
           "drive_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
           "page_label": "21–22",
           "verification": "Direct Drive text: zone, risk, pressure in buildup; not a low-block attacking prescription"
+        },
+        {
+          "title": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale.pdf",
+          "drive_file_id": "1I9JZV2iYj_4XKvq4jH-6bZYwt0vORZ5O",
+          "page_label": "sezione Blocco basso",
+          "authority": "official_project_complement",
+          "verification": "Google Drive extracted original text"
         }
       ],
       "verified_pages": [
         "Foscarini, pagine stampate 21–22"
       ],
       "mandatory_claims": [
-        "Il testo discute rischi dello sviluppo in zone e pressione avversaria, non prescrive ampiezza/profondità contro blocco basso"
+        "Il testo discute rischi dello sviluppo in zone e pressione avversaria, non prescrive ampiezza/profondità contro blocco basso",
+        "Contro blocco basso, lato debole libero fuori ma protetto dentro: ricercare uno contro uno, cross preparato o ingresso nel mezzo spazio; non limitarsi a spostare palla."
       ],
       "forbidden_claims": [
         "Non invertire indicazioni senza fonte"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "source_text_checked_scope_insufficient",
+      "gold_status": "source_text_checked_page_reviewer_pending",
       "reviewer": null
     },
     {
@@ -160,19 +176,27 @@
           "drive_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
           "page_label": "22+",
           "verification": "Direct Drive text: system movements, not an in-game switch 4-3-3 to 3-4-3"
+        },
+        {
+          "title": "variazione_sistema_gioco_Pane.pdf",
+          "drive_file_id": "0B6maey1azXc5UUV0ZkxMeklvRHM",
+          "page_label": "pagina stampata 10 e seguenti",
+          "authority": "coach_thesis",
+          "verification": "Google Drive extracted original text"
         }
       ],
       "verified_pages": [
         "Foscarini, capitolo sui sistemi; pagina puntuale da individuare"
       ],
       "mandatory_claims": [
-        "Caratteristiche statiche dei sistemi non provano rischi causati dal cambio durante la partita"
+        "Caratteristiche statiche dei sistemi non provano rischi causati dal cambio durante la partita",
+        "La variazione di Pane parte da una base fissa di sette giocatori: non dimostra da sola i rischi del passaggio 4-3-3 a 3-4-3 in partita."
       ],
       "forbidden_claims": [
         "Proprietà statiche dei moduli non dimostrano causalità del cambio"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "source_text_checked_scope_insufficient",
+      "gold_status": "source_text_checked_specific_scenario_pending",
       "reviewer": null
     },
     {
@@ -297,5 +321,6 @@
     "sha256": null,
     "reviewer": null
   },
-  "source_verification_note": "2026-10-22: all 10 candidates have at least one consulted original Drive PDF reference. Several are deliberately flagged source-scope insufficient; this is NOT a verified independent gold and requires re-sourcing/revising before freeze."
+  "source_verification_note": "Mappatura di 10 domande con riferimenti a PDF originali Google Drive. 03 e 05 integrati con manuali ufficiali interni FOOTBALL-DATA-LAB; 06 con tesi Pane ma specifico cambio in partita non dimostrato. Gold non congelato, pagine/revisione indipendente pendenti.",
+  "source_authority_policy": "I manuali FOOTBALL-DATA-LAB sono documentazione ufficiale interna del progetto, complementare alle fonti esterne, creata per esplicitare concetti incompleti. Hanno piena validità come fonti canoniche interne; distinguere la provenienza e non attribuirli a FIGC o Coverciano. In caso di tensione fra fonti, esplicitare differenze di scenario e non appiattirle."
 }
