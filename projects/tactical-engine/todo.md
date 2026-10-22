@@ -309,3 +309,12 @@
 - **Prossimo gate:** controllo import in `.venv`; solo dopo, smoke RAG V5 con report separato e shadow su claim annotati, mantenendo V4/V5 e Chroma invariati.
 
 - **Gate dipendenze RAG V5 superato (output PuTTY):** l'interprete `projects/tactical-engine/.venv/bin/python` importa correttamente `chromadb` (versione **1.5.9**), `llama_index.embeddings.ollama.OllamaEmbedding` e `sentence_transformers.CrossEncoder`. Nessun pacchetto installato; lo smoke test V5 resta da eseguire con questo interprete.
+
+### Benchmark prospettico RAG V5 — 2026-10-22
+- [x] Dieci domande candidate associate a fonti; corrette premesse non documentate e riferimenti incongrui (`evaluation/rag_v5_prospective_holdout_candidate_v1.json`).
+- [x] Manuali FOOTBALL-DATA-LAB riconosciuti come fonti ufficiali interne complementari; provenienza distinta da fonti federali e tesi esterne.
+- [x] Creato runner `scripts/run_rag_v5_prospective_holdout_v1.py` e corretto import anticipato di Chroma (`022f0c4`).
+- [x] Aggiunta modalità `--diagnostic` per eseguire candidate senza falsificare il gate gold (`613cd45`).
+- [ ] Eseguire sulla VPS in `.venv` il diagnostico E2E con output JSON nuovo; preservare collezione V5 e baseline V4.
+- [ ] Verificare pagina precisa per tutte le fonti, gold atomici e revisione indipendente; solo dopo congelare manifest e misurare PASS/10.
+- **Non attestato:** 9/10 end-to-end. I test diagnostici non sono holdout certificati.
