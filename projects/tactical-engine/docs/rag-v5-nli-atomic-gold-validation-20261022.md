@@ -1,0 +1,10 @@
+# Adjudication against exact frozen evidence — 2026-10-22
+
+Reviewed the *exact* `questions[].evidence[].text` values in `rag_v5_shadow_baseline_20261022.json` for q3/F1, q3/F3, q5/F1, q2/F2, not merely the source PDFs. All 15 Atomic V1 test expectations have supporting rationale, with the following distinctions:
+
+- q3/F1 explicitly contrasts attacking vertically when space is available behind defenders versus using width and crosses against opponents deep near their penalty area. It also says verticalization is **not an absolute means** to score. Hence `low_block_width`, `low_block_cross`, `space_behind` supported; `low_block_reverse`, `vertical_always` contradicted. The excerpt ends before the heavy-pitch example; do not infer heavy-pitch advice from F1.
+- q3/F3 explicitly prefers width/cross against low blocks and warns that imperfect timing may cause offside against a line defense. Thus `offside_conditional` supported, `offside_universal` insufficient (no explicit universal or counterexample).
+- q5/F1 explicitly states that in **all three described systems** the centromediano metodista protects the defense and constructs play; and that conceding space in systems two and three is a deliberate choice for fast counterattacks. Hence `methodist_three`, `methodist_build`, `counterattack_intent` supported; `counterattack_negation` contradicted. `methodist_every` insufficient because it extrapolates from these three systems to all football systems.
+- q2/F2 explicitly identifies exercise 5 as 3>3+jolly, leveraging the extra player to score on two mini-goals. Thus `jolly_exercise`, `jolly_goals` supported; `jolly_official` insufficient because the excerpt concerns training, not official match laws.
+
+**Outcome:** 15 expected labels are defensible *relative to the exact frozen snippets*. The gold labels remain human-adjudicated and the small curated set is not an accuracy estimate for production. The q3/F1 preference contradiction may remain challenging for an NLI classifier, but its expected label is a reasoned benchmark convention. Ready to run Atomic V1 as a shadow-only diagnostic. No mutation of production RAG, canonical NLI V2, or Chroma.
