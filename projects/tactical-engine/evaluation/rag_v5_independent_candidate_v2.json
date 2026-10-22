@@ -12,16 +12,19 @@
   "questions": [
     {
       "id": "fresh_01",
-      "question": "Confrontando le esercitazioni di Ussia sulla riconquista in pressione alta e centrale, quali differenze di obiettivo emergono e perché non si può dedurre una graduatoria quantitativa fra recupero alto, medio e basso?",
+      "question": "Confrontando le esercitazioni 8, 9 e 10 di Ussia, come cambiano la riconquista e la ripartenza nelle tre zone, e quale limite ha la sua affermazione sulla maggiore efficacia della zona alta?",
       "source_title": "Ussia, Le transizioni nel calcio moderno",
       "source_page": "Ussia pagine interne 21-23, esercitazioni 8,9,10",
       "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
       "mandatory_claims": [
-        "La pressione alta e centrale sono trattate in esercitazioni diverse",
-        "La fonte non fornisce dati comparativi sufficienti per graduatoria quantitativa fra tre altezze"
+        "Alta: riconquista e ripartenza organizzata, progressione 10 contro 0 fino a 10 contro 10",
+        "Centrale: squadra compatta, palla avanti-dietro-avanti con inserimenti e tagli",
+        "Bassa: squadra compatta in difesa, pressing e ripartenza con scarico e cambio gioco",
+        "L'autore definisce la zona alta la più efficace, ma non presenta misure comparative o percentuali"
       ],
       "forbidden_claims": [
-        "Non inventare percentuali o efficacia misurata"
+        "Non negare l'affermazione qualitativa dell'autore sulla zona alta",
+        "Non inventare percentuali o un confronto statistico"
       ],
       "abstention": "Do not infer beyond cited source",
       "source_verification": "Direct Drive text checked: exercise 8 page 21, 9 page 22, 10 page 23",
@@ -222,6 +225,10 @@
       "fresh_09 internal transitions manual section 4",
       "fresh_10 Ussia p17 and internal transitions section 5"
     ],
-    "status": "author_review_complete_independent_review_pending"
+    "status": "author_review_complete_independent_review_pending",
+    "notes": [
+      "fresh_01 corrected: Ussia explicitly judges high recovery most effective; unsupported only as quantified comparative result",
+      "fresh_03 asks for non-inference from static module descriptions; not evidence of causal effects"
+    ]
   }
 }
