@@ -1,0 +1,172 @@
+{
+  "schema": "rag_v5_prospective_holdout_candidate_v1",
+  "status": "candidate_not_frozen",
+  "created_date": "2026-10-22",
+  "purpose": "prospective end-to-end RAG V5; not NLI judge",
+  "policy": {
+    "no_tuning_on_holdout": true,
+    "no_chroma_mutation": true,
+    "exclude_prior_holdout_ids": [
+      "holdout_06",
+      "holdout_10"
+    ],
+    "require_source_page_verification_before_freeze": true
+  },
+  "questions": [
+    {
+      "id": "prospective_01",
+      "question": "In una riconquista laterale con avversari ancora in equilibrio, quali informazioni devono guidare la prima scelta del portatore?",
+      "category": "transizione_positiva",
+      "scenario_constraints": "Scenario laterale; non trasformare recupero in prescrizione universale",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Scenario laterale; non trasformare recupero in prescrizione universale"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_02",
+      "question": "Dopo la perdita del pallone vicino alla linea laterale, come distinguere la pressione immediata dalla protezione della profondità?",
+      "category": "transizione_negativa",
+      "scenario_constraints": "Non confondere azioni dopo perdita con dopo recupero",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Non confondere azioni dopo perdita con dopo recupero"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_03",
+      "question": "Quali segnali osservabili permettono di stabilire che la transizione è terminata e che è iniziato un possesso organizzato?",
+      "category": "confine_fasi",
+      "scenario_constraints": "Non equiparare automaticamente passaggio sicuro e possesso consolidato",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Non equiparare automaticamente passaggio sicuro e possesso consolidato"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_04",
+      "question": "Come confrontare una riconquista in fascia centrale con una in fascia laterale senza assumere che una sia sempre più efficace?",
+      "category": "zona_recupero",
+      "scenario_constraints": "Richiedere dati specifici per ogni confronto",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Richiedere dati specifici per ogni confronto"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_05",
+      "question": "Contro un blocco basso compatto, quando l'ampiezza crea condizioni utili e quali limiti ha cercare subito la profondità?",
+      "category": "blocco_basso",
+      "scenario_constraints": "Non invertire indicazioni senza fonte",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Non invertire indicazioni senza fonte"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_06",
+      "question": "Se una squadra passa dal 4-3-3 al 3-4-3 durante la partita, quali rischi emergono nella fase di riassetto e quali evidenze li documentano?",
+      "category": "cambio_modulo",
+      "scenario_constraints": "Proprietà statiche dei moduli non dimostrano causalità del cambio",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Proprietà statiche dei moduli non dimostrano causalità del cambio"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_07",
+      "question": "Due manuali suggeriscono priorità differenti sulla copertura preventiva: come rispondere quando trattano situazioni tattiche non identiche?",
+      "category": "multisorgente",
+      "scenario_constraints": "Non fondere scenari non comparabili",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Non fondere scenari non comparabili"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_08",
+      "question": "Un esercizio 6 contro 0 prevede un passaggio verticale: quali conclusioni si possono trarre sulla scelta del primo passaggio in gara?",
+      "category": "esercitazione_vs_gara",
+      "scenario_constraints": "Non convertire esercitazione in legge universale",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Non convertire esercitazione in legge universale"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_09",
+      "question": "Se un testo descrive tre sistemi difensivi, si può dedurre che la stessa regola valga per qualsiasi sistema? Spiega i limiti delle prove.",
+      "category": "quantificatori",
+      "scenario_constraints": "Non estendere quantificatori oltre fonte",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Non estendere quantificatori oltre fonte"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    },
+    {
+      "id": "prospective_10",
+      "question": "Quale percentuale di recuperi alti produce un tiro entro cinque secondi nei documenti disponibili? Se non è documentata, come rispondi?",
+      "category": "astensione",
+      "scenario_constraints": "Non inventare dati o dichiarare inesistenza globale",
+      "source_refs": [],
+      "verified_pages": [],
+      "mandatory_claims": [],
+      "forbidden_claims": [
+        "Non inventare dati o dichiarare inesistenza globale"
+      ],
+      "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
+      "gold_status": "pending_source_validation",
+      "reviewer": null
+    }
+  ],
+  "freeze": {
+    "status": "blocked_pending_verified_source_pages",
+    "sha256": null,
+    "reviewer": null
+  }
+}
