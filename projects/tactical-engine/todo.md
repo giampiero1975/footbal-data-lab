@@ -13,6 +13,13 @@
 5. **Per la VPS:** il repository non dimostra lo stato runtime corrente; utilizzare soltanto controlli mirati ai dati mancanti o cambiati.
 
 
+
+### Chiusura campagna diagnostica V5 — 2026-10-22
+- [x] Campagna diagnostica V5 chiusa e registrata in [docs/rag-v5-test-campaign-closure-20261022.md](docs/rag-v5-test-campaign-closure-20261022.md), commit `647fb85`.
+- [x] Report prospettico 10/10 generazioni, 0 ID citazioni invalidi, indice 5319→5319; valutazione qualitativa preliminare 9/10, **non PASS gold**. Domanda 02 contestata nella formulazione; non attribuire automaticamente il difetto al modello.
+- [x] Nessun rerun di diagnostici o vecchi holdout: conservare come regressione.
+- [ ] Certificazione **separata**: gold indipendente con pagine/claim/revisore e SHA congelati prima del run; singolo benchmark nuovo, adjudication in cieco, confronto V4/V5, decisione finale. Non dichiarare questi check chiusi senza evidenza.
+
 ### Aggiornamento Passage Shadow V1 — 2026-10-22
 - [x] Analizzato report `rag_v5_phase_passage_shadow_v1.json` (holdout_06 e holdout_10, citazioni ID invalide 0/2).
 - [x] Registrata revisione qualitativa e limiti in [docs/rag-v5-phase-passage-shadow-v1-review-20261022.md](docs/rag-v5-phase-passage-shadow-v1-review-20261022.md).
