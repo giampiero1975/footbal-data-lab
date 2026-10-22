@@ -18,14 +18,26 @@
       "question": "In una riconquista laterale con avversari ancora in equilibrio, quali informazioni devono guidare la prima scelta del portatore?",
       "category": "transizione_positiva",
       "scenario_constraints": "Scenario laterale; non trasformare recupero in prescrizione universale",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Le transizioni nel calcio moderno",
+          "author": "Pasquale Ussia",
+          "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+          "page_label": "Pagina 6",
+          "verification": "Drive text consulted; passage page previously recorded in H10 pilot"
+        }
+      ],
+      "verified_pages": [
+        "Ussia, p. 6 (page attribution from H10 pilot; PDF pagination requires final spot-check)"
+      ],
+      "mandatory_claims": [
+        "Valutare punto e situazione di recupero, partecipanti, spazi liberi, opzioni di gioco corto/lungo e copertura preventiva"
+      ],
       "forbidden_claims": [
         "Scenario laterale; non trasformare recupero in prescrizione universale"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_page_pending",
       "reviewer": null
     },
     {
@@ -63,14 +75,26 @@
       "question": "Come confrontare una riconquista in fascia centrale con una in fascia laterale senza assumere che una sia sempre più efficace?",
       "category": "zona_recupero",
       "scenario_constraints": "Richiedere dati specifici per ogni confronto",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Manovre offensive nei vari sistemi di gioco",
+          "author": "Claudio Foscarini",
+          "drive_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
+          "page_label": "21",
+          "verification": "Direct Drive extracted text, printed page 21"
+        }
+      ],
+      "verified_pages": [
+        "Foscarini, pagina stampata 21 (estratto Drive)"
+      ],
+      "mandatory_claims": [
+        "Lo sviluppo offensivo cambia con la zona; valutare rischi, efficacia e alternative; nessun confronto quantitativo di superiorità centrale/laterale"
+      ],
       "forbidden_claims": [
         "Richiedere dati specifici per ogni confronto"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_reviewer_pending",
       "reviewer": null
     },
     {
@@ -108,14 +132,34 @@
       "question": "Due manuali suggeriscono priorità differenti sulla copertura preventiva: come rispondere quando trattano situazioni tattiche non identiche?",
       "category": "multisorgente",
       "scenario_constraints": "Non fondere scenari non comparabili",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Le transizioni nel calcio moderno",
+          "author": "Pasquale Ussia",
+          "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+          "page_label": "Pagina 2",
+          "verification": "Direct Drive extracted text"
+        },
+        {
+          "title": "Manovre offensive nei vari sistemi di gioco",
+          "author": "Claudio Foscarini",
+          "drive_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
+          "page_label": "21",
+          "verification": "Direct Drive extracted text"
+        }
+      ],
+      "verified_pages": [
+        "Ussia, pagina interna 2",
+        "Foscarini, pagina stampata 21"
+      ],
+      "mandatory_claims": [
+        "Ussia tratta la preparazione difensiva quando si attacca; Foscarini tratta rischi e alternative nello sviluppo offensivo; non equiparare le prescrizioni"
+      ],
       "forbidden_claims": [
         "Non fondere scenari non comparabili"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_reviewer_pending",
       "reviewer": null
     },
     {
@@ -138,14 +182,26 @@
       "question": "Se un testo descrive tre sistemi difensivi, si può dedurre che la stessa regola valga per qualsiasi sistema? Spiega i limiti delle prove.",
       "category": "quantificatori",
       "scenario_constraints": "Non estendere quantificatori oltre fonte",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "I principi del 3-3-4",
+          "author": "Ezio Glerean",
+          "drive_file_id": "0B6maey1azXc5YnlONlQwd2EtMDA",
+          "page_label": "6",
+          "verification": "Direct Drive extracted text; opening discussion explicitly refers to 3-3-4"
+        }
+      ],
+      "verified_pages": [
+        "Glerean, pagina stampata 6 (estratto Drive)"
+      ],
+      "mandatory_claims": [
+        "Le osservazioni sul 3-3-4 non giustificano universalità su tutti i sistemi; mancano evidenze per la premessa 'tre sistemi' nella fonte selezionata"
+      ],
       "forbidden_claims": [
         "Non estendere quantificatori oltre fonte"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_mismatch_requires_revision",
       "reviewer": null
     },
     {
@@ -168,5 +224,6 @@
     "status": "blocked_pending_verified_source_pages",
     "sha256": null,
     "reviewer": null
-  }
+  },
+  "source_verification_note": "2026-10-22: consulted connected Google Drive PDFs for Ussia, Foscarini and Glerean; references are partial and not a completed independent gold. No freeze."
 }
