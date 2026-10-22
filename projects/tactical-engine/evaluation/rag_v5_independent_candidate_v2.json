@@ -14,7 +14,7 @@
       "id": "fresh_01",
       "question": "Confrontando le esercitazioni di Ussia sulla riconquista in pressione alta e centrale, quali differenze di obiettivo emergono e perché non si può dedurre una graduatoria quantitativa fra recupero alto, medio e basso?",
       "source_title": "Ussia, Le transizioni nel calcio moderno",
-      "source_page": "Ussia pagine 21–23",
+      "source_page": "Ussia pagine interne 21-23, esercitazioni 8,9,10",
       "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
       "mandatory_claims": [
         "La pressione alta e centrale sono trattate in esercitazioni diverse",
@@ -24,7 +24,7 @@
         "Non inventare percentuali o efficacia misurata"
       ],
       "abstention": "Do not infer beyond cited source",
-      "source_verification": "Direct Drive extracted text pages 21-23 consulted, 2026-10-22",
+      "source_verification": "Direct Drive text checked: exercise 8 page 21, 9 page 22, 10 page 23",
       "reviewer": null
     },
     {
@@ -47,10 +47,11 @@
       "id": "fresh_03",
       "question": "Perché la descrizione di un assetto difensivo nel manuale interno non basta a dimostrare che cambiare modulo durante una gara aumenti o riduca il rischio?",
       "source_title": "FOOTBALL-DATA-LAB, Le transizioni offensive e difensive",
-      "source_page": "sezione 9",
+      "source_page": "sezione 9, pagina interna 4-5",
       "source_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
       "mandatory_claims": [
-        "Distinguere proprietà statiche di un sistema da effetti causali di una variazione in partita"
+        "Il manuale descrive comportamenti di 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1",
+        "Non quantifica causalmente il rischio di cambiare modulo in partita"
       ],
       "forbidden_claims": [
         "Non attribuire causalità non documentata"
@@ -79,14 +80,14 @@
       "id": "fresh_05",
       "question": "Contro un blocco basso compatto, perché la sola ampiezza non garantisce vantaggio e quando il cambio gioco apre possibilità?",
       "source_title": "FOOTBALL-DATA-LAB, Ampiezza e cambio gioco",
-      "source_page": "sezione Blocco basso",
+      "source_page": "sezione 8 Blocco basso, pagina interna 3-4",
       "source_file_id": "1I9JZV2iYj_4XKvq4jH-6bZYwt0vORZ5O",
       "mandatory_claims": [
-        "L'ampiezza non equivale automaticamente a vantaggio",
-        "Il cambio gioco può creare opportunità se la struttura avversaria scivola e il lato debole è accessibile"
+        "Il lato debole può essere libero all'esterno ma protetto dentro",
+        "Il cambio mira a creare uno contro uno, cross preparato o ingresso nel mezzo spazio, non soltanto spostare palla"
       ],
       "forbidden_claims": [
-        "Non dichiarare che la profondità immediata sia sempre vietata"
+        "Non affermare che ogni cambio gioco superi un blocco basso"
       ],
       "abstention": "Do not infer beyond cited source",
       "source_verification": "Drive text directly inspected 2026-10-22",
@@ -160,7 +161,7 @@
       "id": "fresh_10",
       "question": "Confrontando Ussia e il manuale interno FOOTBALL-DATA-LAB, quali condizioni favoriscono la pressione dopo la perdita e perché l'esercitazione di Ussia non dimostra una regola universale?",
       "source_title": "Ussia, Le transizioni nel calcio moderno; FOOTBALL-DATA-LAB, Le transizioni offensive e difensive",
-      "source_page": "Ussia 17; manuale interno sezione 5",
+      "source_page": "Ussia pagina interna 17; manuale interno sezione 5 pagina interna 3",
       "source_file_id": [
         "0B6maey1azXc5bUlKVEh4S0JUMjQ",
         "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8"
@@ -173,7 +174,7 @@
         "Non confondere pressione alta di riconquista con riaggressione dopo perdita"
       ],
       "abstention": "Do not infer beyond cited source",
-      "source_verification": "Drive text directly inspected 2026-10-22",
+      "source_verification": "Direct Drive text checked: Ussia p17 exercise 6/A and internal manual section 5",
       "reviewer": null
     }
   ],
@@ -205,5 +206,22 @@
     ],
     "missing": [],
     "decision": "Coverage now mapped; independent reviewer and exact source-claim audit still required before freeze"
+  },
+  "source_claim_audit": {
+    "date": "2026-10-22",
+    "type": "author_source_alignment_not_independent_reviewer",
+    "verified": [
+      "fresh_01 Ussia pp21-23",
+      "fresh_02 Ussia p11",
+      "fresh_03 internal manual section 9",
+      "fresh_04 Ussia p14",
+      "fresh_05 internal width manual section 8",
+      "fresh_06 Ussia p24",
+      "fresh_07 Foscarini p22",
+      "fresh_08 Foscarini p22",
+      "fresh_09 internal transitions manual section 4",
+      "fresh_10 Ussia p17 and internal transitions section 5"
+    ],
+    "status": "author_review_complete_independent_review_pending"
   }
 }
