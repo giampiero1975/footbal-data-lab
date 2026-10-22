@@ -57,9 +57,9 @@ def main():
     for qid, cid, start, end in SPECS:
         answer = questions[qid]["answer"]
         span = answer[start:end]
-        if end > len(answer) or not re.search(r"\\[F[1-9][0-9]*\\]", span):
+        if end > len(answer) or not re.search(r"\[F[1-9][0-9]*\]", span):
             raise ValueError(f"Invalid or uncited span {qid}/{cid}")
-        text = re.sub(r"\\[F[1-9][0-9]*\\]", "", span)
+        text = re.sub(r"\[F[1-9][0-9]*\]", "", span)
         text = " ".join(text.split()).strip(" .;:,!?")
         annotations["claims"].append({
             "question_id": qid, "claim_id": cid, "start": start,
@@ -72,7 +72,7 @@ def main():
     prepared_path.parent.mkdir(parents=True, exist_ok=True)
     with prepared_path.open("x", encoding="utf-8") as stream:
         json.dump(prepared, stream, ensure_ascii=False, indent=2)
-        stream.write("\\n")
+        stream.write("\n")
     print(f"PREPARATION_OK 15 claims 20 pairs: {prepared_path}", flush=True)
     command = [
         sys.executable, str(Path(__file__).with_name("shadow_nli_v2_inference.py")),
