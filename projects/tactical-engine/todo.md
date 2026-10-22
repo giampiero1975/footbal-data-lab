@@ -1,3 +1,9 @@
+
+### Nuovo candidato certificazione V5 (2026-10-22)
+- [x] Creato `evaluation/rag_v5_independent_candidate_v2.json` (commit `641f61e`): 10 nuove domande con fonti/pagine verificate direttamente su Drive, criteri obbligatori/vietati; nessun output del RAG generato su questi quesiti.
+- [ ] **Non ancora gold**: revisione indipendente, controllo copertura richiesta (inclusi casi multisorgente e cambio modulo), freeze SHA e configurazione prima di generare.
+- [ ] Esecuzione V5 read-only su VPS, revisione in cieco, confronto V4 e decisione 9/10. Il connettore GitHub non offre accesso SSH alla VPS; non segnare test eseguiti.
+
 # DRIBBLING V5 — Piano operativo, checklist e registro delle evidenze
 
 > **Documento di riferimento operativo** · Aggiornato il 2026-10-21 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
