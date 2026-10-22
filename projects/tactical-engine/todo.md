@@ -290,4 +290,4 @@
 
 - [x] Rafforzato il controllo fail-closed delle annotazioni shadow: il testo della claim deve corrispondere allo span della risposta al netto delle citazioni, e gli offset booleani sono rifiutati; aggiunto test di regressione (commit `815878c`, `cb2dd68`).
 - [x] Aggiornato trigger GitHub Actions shadow per includere modifiche al prompt NLI V2 canonico (commit `483c5cf`).
-- [ ] Verificare dai log GitHub Actions l'esito reale della suite shadow aggiornata; nessun PASS dichiarato senza esecuzione verificata.
+- [x] Verificato dai log GitHub Actions il PASS della suite shadow aggiornata: **10/10 test OK**, Python 3.12, commit `dfb07e40`, run `39750873565` (2026-10-22). Verifica esclusivamente offline; nessuna inferenza Ollama né E2E RAG certificati.
