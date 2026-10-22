@@ -32,6 +32,8 @@ def main():
  a=p.parse_args()
  if not a.execute:p.error("Explicit --execute required")
  if a.source.resolve()==a.output.resolve() or a.output.exists():p.error("Output already exists or overlaps source")
+ if not a.source.is_file():p.error(f"Baseline mancante: {a.source}; nessun benchmark avviato")
+ if not a.output.parent.is_dir():p.error(f"Directory report mancante: {a.output.parent}; nessuna creazione automatica")
  baseline=json.loads(a.source.read_text(encoding="utf-8"))
  qs={q["id"]:q for q in baseline["questions"]}
  rows=[]
@@ -46,7 +48,6 @@ def main():
   rows.append(row)
   print(cid,row["actual"],"expected",expected,flush=True)
  report={"schema":"shadow_nli_atomic_v1","mode":"shadow_only","total":len(rows),"passed":sum(x["pass"] for x in rows),"errors":sum("error" in x for x in rows),"cases":rows,"limitations":["Curated cases; not population accuracy","RAG V5 and Chroma unchanged"]}
- a.output.parent.mkdir(parents=True,exist_ok=True)
  with a.output.open("x",encoding="utf-8") as f:json.dump(report,f,ensure_ascii=False,indent=2);f.write("\n")
  print("ATOMIC",report["passed"],"/",report["total"],"errors",report["errors"],"REPORT",a.output,flush=True)
 if __name__=="__main__":main()
