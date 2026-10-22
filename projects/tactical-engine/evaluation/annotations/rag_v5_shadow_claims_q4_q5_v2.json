@@ -1,0 +1,68 @@
+{
+  "schema": "dribbling_shadow_claim_annotations_v2",
+  "source": "rag_v5_shadow_baseline_20261022_v2.json",
+  "method": "exact verbatim answer spans, manually selected for diagnostic coverage",
+  "scope": "Q4/Q5 diagnostic subset; not a random sample and not an overall fidelity estimate",
+  "claims": [
+    {
+      "question_id": "q4",
+      "claim_id": "q4_diag_01",
+      "start": 1014,
+      "end": 1123
+    },
+    {
+      "question_id": "q4",
+      "claim_id": "q4_diag_02",
+      "start": 1154,
+      "end": 1352
+    },
+    {
+      "question_id": "q4",
+      "claim_id": "q4_diag_03",
+      "start": 1384,
+      "end": 1498
+    },
+    {
+      "question_id": "q4",
+      "claim_id": "q4_diag_04",
+      "start": 1538,
+      "end": 1718
+    },
+    {
+      "question_id": "q5",
+      "claim_id": "q5_diag_01",
+      "start": 148,
+      "end": 302
+    },
+    {
+      "question_id": "q5",
+      "claim_id": "q5_diag_02",
+      "start": 334,
+      "end": 481
+    },
+    {
+      "question_id": "q5",
+      "claim_id": "q5_diag_03",
+      "start": 525,
+      "end": 671
+    },
+    {
+      "question_id": "q5",
+      "claim_id": "q5_diag_04",
+      "start": 737,
+      "end": 860
+    },
+    {
+      "question_id": "q5",
+      "claim_id": "q5_diag_05",
+      "start": 1336,
+      "end": 1593
+    },
+    {
+      "question_id": "q5",
+      "claim_id": "q5_diag_06",
+      "start": 1824,
+      "end": 2006
+    }
+  ]
+}
