@@ -22,10 +22,10 @@ for item in spec["claims"]:
     answer = questions[qid]["answer"]
     start, end = item["start"], item["end"]
     span = answer[start:end]
-    citations = re.findall(r"\\[F([1-9][0-9]*)\\]", span)
+    citations = re.findall(r"\[F([1-9][0-9]*)\]", span)
     if not citations:
         raise ValueError(f"No citations in {item['claim_id']}")
-    claim = " ".join(re.sub(r"\\[F[1-9][0-9]*\\]", "", span).split()).strip(" .;:,!?")
+    claim = " ".join(re.sub(r"\[F[1-9][0-9]*\]", "", span).split()).strip(" .;:,!?")
     claims.append({**item, "span": span, "text": claim})
 prepared = prepare(report, {"claims": claims})
 if len(prepared["claims"]) != 10 or sum(len(c["pairs"]) for c in prepared["claims"]) != 13:
