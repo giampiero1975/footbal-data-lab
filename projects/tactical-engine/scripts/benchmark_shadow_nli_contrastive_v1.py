@@ -33,6 +33,10 @@ def main():
         parser.error("Explicit --execute required")
     if args.output.resolve() == args.source.resolve() or args.output.exists():
         parser.error("Output exists or overlaps input; no overwriting allowed")
+    if not args.source.is_file():
+        parser.error(f"Baseline mancante: {args.source}; nessun benchmark avviato")
+    if not args.output.parent.is_dir():
+        parser.error(f"Directory report mancante: {args.output.parent}; non viene creata automaticamente")
     source = json.loads(args.source.read_text(encoding="utf-8"))
     questions = {q["id"]: q for q in source["questions"]}
     evidence = {}
@@ -49,7 +53,7 @@ def main():
         results.append(item)
         print(case_id, item["actual"], "expected", expected, flush=True)
     report = {"schema": "shadow_nli_contrastive_v1", "mode": "shadow_only", "total": len(results), "passed": sum(r["pass"] for r in results), "errors": sum("error" in r for r in results), "cases": results, "limitations": ["Curated diagnostic; not population accuracy", "Same evidence per family; canonical NLI V2 unchanged", "RAG V5 and Chroma unchanged"]}
-    args.output.parent.mkdir(parents=True, exist_ok=True)
+
     with args.output.open("x", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
         f.write("\n")
