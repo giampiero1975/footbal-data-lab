@@ -1,6 +1,6 @@
 {
   "schema": "rag_v5_prospective_holdout_candidate_v1",
-  "status": "candidate_not_frozen",
+  "status": "candidate_source_aligned_not_frozen",
   "created_date": "2026-10-22",
   "purpose": "prospective end-to-end RAG V5; not NLI judge",
   "policy": {
@@ -179,13 +179,6 @@
       "scenario_constraints": "Proprietà statiche dei moduli non dimostrano causalità del cambio",
       "source_refs": [
         {
-          "title": "Manovre offensive nei vari sistemi di gioco",
-          "author": "Claudio Foscarini",
-          "drive_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
-          "page_label": "22+",
-          "verification": "Direct Drive text: system movements, not an in-game switch 4-3-3 to 3-4-3"
-        },
-        {
           "title": "variazione_sistema_gioco_Pane.pdf",
           "drive_file_id": "0B6maey1azXc5UUV0ZkxMeklvRHM",
           "page_label": "pagina stampata 10 e seguenti",
@@ -201,7 +194,8 @@
         }
       ],
       "verified_pages": [
-        "Foscarini, capitolo sui sistemi; pagina puntuale da individuare"
+        "FOOTBALL-DATA-LAB Transizioni, sezione 9",
+        "Pane, pagina stampata 10 (introduzione al modello)"
       ],
       "mandatory_claims": [
         "Caratteristiche statiche dei sistemi non provano rischi causati dal cambio durante la partita",
@@ -217,7 +211,7 @@
     },
     {
       "id": "prospective_07",
-      "question": "Due manuali suggeriscono priorità differenti sulla copertura preventiva: come rispondere quando trattano situazioni tattiche non identiche?",
+      "question": "Come si integrano le indicazioni di Ussia sulla preparazione difensiva durante l'attacco con quelle di Foscarini sui rischi della costruzione, senza confondere gli scenari?",
       "category": "multisorgente",
       "scenario_constraints": "Non fondere scenari non comparabili",
       "source_refs": [
@@ -252,7 +246,7 @@
     },
     {
       "id": "prospective_08",
-      "question": "Un esercizio 6 contro 0 prevede un passaggio verticale: quali conclusioni si possono trarre sulla scelta del primo passaggio in gara?",
+      "question": "Ussia descrive una progressione di allenamento dal 10 contro 0 al 10 contro 10: quali limiti ha usarla come prova di una scelta obbligata del primo passaggio in partita?",
       "category": "esercitazione_vs_gara",
       "scenario_constraints": "Non convertire esercitazione in legge universale",
       "source_refs": [
@@ -268,7 +262,8 @@
         "Ussia, passaggio prima dell'intestazione Pagina 22; numerazione precisa da verificare"
       ],
       "mandatory_claims": [
-        "10 contro 0 è un passaggio metodologico dell'esercitazione, poi fino al 10 contro 10; non prova scelta obbligata in gara"
+        "Ussia descrive progressione didattica dal 10 contro 0 al 10 contro 10",
+        "L'esercizio non dimostra che una particolare scelta di passaggio sia obbligata in gara"
       ],
       "forbidden_claims": [
         "Non convertire esercitazione in legge universale"
@@ -307,7 +302,7 @@
     },
     {
       "id": "prospective_10",
-      "question": "Quale percentuale di recuperi alti produce un tiro entro cinque secondi nei documenti disponibili? Se non è documentata, come rispondi?",
+      "question": "Nel materiale consultato sulle riconquiste alte, è documentata una percentuale di tiri entro cinque secondi? Quale risposta è giustificata dall'evidenza disponibile?",
       "category": "astensione",
       "scenario_constraints": "Non inventare dati o dichiarare inesistenza globale",
       "source_refs": [
@@ -323,7 +318,8 @@
         "Ussia, passaggio immediatamente precedente intestazione Pagina 22; pagina esatta da confermare"
       ],
       "mandatory_claims": [
-        "Nessuna percentuale sui tiri entro cinque secondi è presente nell'estratto verificato; non dedurre che l'intero corpus non la contenga"
+        "La fonte Ussia esaminata non fornisce la percentuale richiesta dei tiri entro cinque secondi",
+        "Non inventare numeri né dedurre assenza del dato in tutto il corpus"
       ],
       "forbidden_claims": [
         "Non inventare dati o dichiarare inesistenza globale"
@@ -338,6 +334,6 @@
     "sha256": null,
     "reviewer": null
   },
-  "source_verification_note": "Mappatura di 10 domande con riferimenti a PDF originali Google Drive. 03 e 05 integrati con manuali ufficiali interni FOOTBALL-DATA-LAB; 06 con tesi Pane ma specifico cambio in partita non dimostrato. Gold non congelato, pagine/revisione indipendente pendenti. 2026-10-22: candidate 02 augmented with official internal transitions manual; 06 and 09 questions corrected to match source scope before freeze. Changes are pre-freeze only.",
+  "source_verification_note": "Mappatura di 10 domande con riferimenti a PDF originali Google Drive. 03 e 05 integrati con manuali ufficiali interni FOOTBALL-DATA-LAB; 06 con tesi Pane ma specifico cambio in partita non dimostrato. Gold non congelato, pagine/revisione indipendente pendenti. 2026-10-22: candidate 02 augmented with official internal transitions manual; 06 and 09 questions corrected to match source scope before freeze. Changes are pre-freeze only. Questions 07,08,10 aligned with verified source scope; 06 removed irrelevant Foscarini citation. External independent review and runtime test still required.",
   "source_authority_policy": "I manuali FOOTBALL-DATA-LAB sono documentazione ufficiale interna del progetto, complementare alle fonti esterne, creata per esplicitare concetti incompleti. Hanno piena validità come fonti canoniche interne; distinguere la provenienza e non attribuirli a FIGC o Coverciano. In caso di tensione fra fonti, esplicitare differenze di scenario e non appiattirle."
 }
