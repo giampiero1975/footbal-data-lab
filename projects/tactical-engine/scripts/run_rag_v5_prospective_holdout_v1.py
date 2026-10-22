@@ -4,7 +4,6 @@ import argparse
 import json
 import sys
 from pathlib import Path
-import smoke_test_rag_v5_e2e as v5
 
 def main():
     p = argparse.ArgumentParser()
@@ -25,6 +24,7 @@ def main():
         return
     if args.output.exists() or args.output.resolve() == args.manifest.resolve():
         p.error("Refusing to overwrite existing output or manifest")
+    import smoke_test_rag_v5_e2e as v5
     v5.QUESTIONS = [(r["id"], r["question"]) for r in rows]
     sys.argv = [v5.__file__, "--limit", "10", "--output", str(args.output)]
     v5.main()
