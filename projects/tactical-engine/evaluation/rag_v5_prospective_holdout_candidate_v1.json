@@ -45,14 +45,26 @@
       "question": "Dopo la perdita del pallone vicino alla linea laterale, come distinguere la pressione immediata dalla protezione della profondità?",
       "category": "transizione_negativa",
       "scenario_constraints": "Non confondere azioni dopo perdita con dopo recupero",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Le transizioni nel calcio moderno",
+          "author": "Pasquale Ussia",
+          "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+          "page_label": "Pagina 2",
+          "verification": "Direct Drive text: reacting to loss and defensive positioning"
+        }
+      ],
+      "verified_pages": [
+        "Ussia, pagina interna 2"
+      ],
+      "mandatory_claims": [
+        "Dopo la perdita serve reazione rapida e recupero posizione difensiva; il brano non definisce condizioni sufficienti per pressione immediata vs protezione profondità"
+      ],
       "forbidden_claims": [
         "Non confondere azioni dopo perdita con dopo recupero"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_scope_insufficient",
       "reviewer": null
     },
     {
@@ -60,14 +72,26 @@
       "question": "Quali segnali osservabili permettono di stabilire che la transizione è terminata e che è iniziato un possesso organizzato?",
       "category": "confine_fasi",
       "scenario_constraints": "Non equiparare automaticamente passaggio sicuro e possesso consolidato",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Le transizioni nel calcio moderno",
+          "author": "Pasquale Ussia",
+          "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+          "page_label": "Pagina 6",
+          "verification": "Direct Drive text: transition positive analysis, but no explicit end-of-transition definition"
+        }
+      ],
+      "verified_pages": [
+        "Ussia, pagina interna 6"
+      ],
+      "mandatory_claims": [
+        "La fonte elenca fattori da valutare dopo riconquista ma non stabilisce criterio osservabile univoco per fine transizione"
+      ],
       "forbidden_claims": [
         "Non equiparare automaticamente passaggio sicuro e possesso consolidato"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_scope_insufficient",
       "reviewer": null
     },
     {
@@ -102,14 +126,26 @@
       "question": "Contro un blocco basso compatto, quando l'ampiezza crea condizioni utili e quali limiti ha cercare subito la profondità?",
       "category": "blocco_basso",
       "scenario_constraints": "Non invertire indicazioni senza fonte",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Manovre offensive nei vari sistemi di gioco",
+          "author": "Claudio Foscarini",
+          "drive_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
+          "page_label": "21–22",
+          "verification": "Direct Drive text: zone, risk, pressure in buildup; not a low-block attacking prescription"
+        }
+      ],
+      "verified_pages": [
+        "Foscarini, pagine stampate 21–22"
+      ],
+      "mandatory_claims": [
+        "Il testo discute rischi dello sviluppo in zone e pressione avversaria, non prescrive ampiezza/profondità contro blocco basso"
+      ],
       "forbidden_claims": [
         "Non invertire indicazioni senza fonte"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_scope_insufficient",
       "reviewer": null
     },
     {
@@ -117,14 +153,26 @@
       "question": "Se una squadra passa dal 4-3-3 al 3-4-3 durante la partita, quali rischi emergono nella fase di riassetto e quali evidenze li documentano?",
       "category": "cambio_modulo",
       "scenario_constraints": "Proprietà statiche dei moduli non dimostrano causalità del cambio",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Manovre offensive nei vari sistemi di gioco",
+          "author": "Claudio Foscarini",
+          "drive_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
+          "page_label": "22+",
+          "verification": "Direct Drive text: system movements, not an in-game switch 4-3-3 to 3-4-3"
+        }
+      ],
+      "verified_pages": [
+        "Foscarini, capitolo sui sistemi; pagina puntuale da individuare"
+      ],
+      "mandatory_claims": [
+        "Caratteristiche statiche dei sistemi non provano rischi causati dal cambio durante la partita"
+      ],
       "forbidden_claims": [
         "Proprietà statiche dei moduli non dimostrano causalità del cambio"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_scope_insufficient",
       "reviewer": null
     },
     {
@@ -167,14 +215,26 @@
       "question": "Un esercizio 6 contro 0 prevede un passaggio verticale: quali conclusioni si possono trarre sulla scelta del primo passaggio in gara?",
       "category": "esercitazione_vs_gara",
       "scenario_constraints": "Non convertire esercitazione in legge universale",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Le transizioni nel calcio moderno",
+          "author": "Pasquale Ussia",
+          "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+          "page_label": "Pagina 21–22",
+          "verification": "Direct Drive text: progression from 10v0 to 10v10"
+        }
+      ],
+      "verified_pages": [
+        "Ussia, passaggio prima dell'intestazione Pagina 22; numerazione precisa da verificare"
+      ],
+      "mandatory_claims": [
+        "10 contro 0 è un passaggio metodologico dell'esercitazione, poi fino al 10 contro 10; non prova scelta obbligata in gara"
+      ],
       "forbidden_claims": [
         "Non convertire esercitazione in legge universale"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_page_pending",
       "reviewer": null
     },
     {
@@ -209,14 +269,26 @@
       "question": "Quale percentuale di recuperi alti produce un tiro entro cinque secondi nei documenti disponibili? Se non è documentata, come rispondi?",
       "category": "astensione",
       "scenario_constraints": "Non inventare dati o dichiarare inesistenza globale",
-      "source_refs": [],
-      "verified_pages": [],
-      "mandatory_claims": [],
+      "source_refs": [
+        {
+          "title": "Le transizioni nel calcio moderno",
+          "author": "Pasquale Ussia",
+          "drive_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+          "page_label": "Pagina 21–22",
+          "verification": "Direct Drive text: high recovery described qualitatively, no five-second shooting percentage"
+        }
+      ],
+      "verified_pages": [
+        "Ussia, passaggio immediatamente precedente intestazione Pagina 22; pagina esatta da confermare"
+      ],
+      "mandatory_claims": [
+        "Nessuna percentuale sui tiri entro cinque secondi è presente nell'estratto verificato; non dedurre che l'intero corpus non la contenga"
+      ],
       "forbidden_claims": [
         "Non inventare dati o dichiarare inesistenza globale"
       ],
       "abstention_rule": "Astenersi dalle conclusioni non supportate dagli estratti",
-      "gold_status": "pending_source_validation",
+      "gold_status": "source_text_checked_page_pending",
       "reviewer": null
     }
   ],
@@ -225,5 +297,5 @@
     "sha256": null,
     "reviewer": null
   },
-  "source_verification_note": "2026-10-22: consulted connected Google Drive PDFs for Ussia, Foscarini and Glerean; references are partial and not a completed independent gold. No freeze."
+  "source_verification_note": "2026-10-22: all 10 candidates have at least one consulted original Drive PDF reference. Several are deliberately flagged source-scope insufficient; this is NOT a verified independent gold and requires re-sourcing/revising before freeze."
 }
