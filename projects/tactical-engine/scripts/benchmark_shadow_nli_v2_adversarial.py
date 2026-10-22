@@ -28,6 +28,10 @@ def main():
     a=p.parse_args()
     if not a.execute: p.error("Specify --execute")
     if a.output.resolve()==a.source.resolve() or a.output.exists(): p.error("Output exists or overlaps input")
+    if not a.source.is_file():
+        p.error(f"Baseline mancante: {a.source}; nessun benchmark avviato")
+    if not a.output.parent.is_dir():
+        p.error(f"Directory report mancante: {a.output.parent}; non viene creata automaticamente")
     report=json.loads(a.source.read_text(encoding="utf-8"))
     questions={q["id"]:q for q in report["questions"]}
     rows=[]
@@ -42,7 +46,7 @@ def main():
         rows.append(row)
         print(f"{cid}: {row['actual']} expected={expected}",flush=True)
     result={"schema":"shadow_nli_v2_adversarial_v1","mode":"shadow_only","total":len(rows),"passed":sum(r["pass"] for r in rows),"errors":sum("error" in r for r in rows),"cases":rows,"limitations":["Curated expectations are not a population accuracy estimate","No production RAG or Chroma mutation"]}
-    a.output.parent.mkdir(parents=True,exist_ok=True)
+
     with a.output.open("x",encoding="utf-8") as f: json.dump(result,f,ensure_ascii=False,indent=2);f.write("\n")
     print(f"ADVERSARIAL {result['passed']}/{result['total']} errors={result['errors']} REPORT {a.output}",flush=True)
 
