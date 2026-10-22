@@ -29,3 +29,9 @@
 - [ ] Confrontare con baseline V4 su condizioni controllate.
 
 **Stato**: protocollo pronto, dataset end-to-end non ancora congelato né eseguito. Nessuna pretesa di 9/10.
+
+## Autorità documentale del progetto
+I manuali FOOTBALL-DATA-LAB sono **fonti ufficiali interne e complementari**, canoniche per il progetto e utilizzabili come evidenza nei test. La loro origine interna va mantenuta esplicita: non attribuirli a FIGC o Coverciano. I testi ampliano o chiariscono i principi dei documenti esterni, ma ogni claim deve rimanere verificabile nel testo citato.
+
+## Progresso manifest
+Il file `evaluation/rag_v5_prospective_holdout_candidate_v1.json` ora collega tutte le dieci domande a fonti lette su Drive. Le domande 06 e 09 sono state riformulate prima del freeze per evitare richieste non supportate. Rimangono da chiudere paginazione esatta, verifica dei claim obbligatori e revisore indipendente; non è stato eseguito il test 9/10.
