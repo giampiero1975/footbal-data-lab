@@ -12,6 +12,13 @@
 4. **Per i benchmark:** distinguere *development*, *stress test con fonti riutilizzate*, *holdout prospettico*, *gold revisionato* e *validazione end-to-end*. Un risultato NLI non equivale alla qualità del RAG completo.
 5. **Per la VPS:** il repository non dimostra lo stato runtime corrente; utilizzare soltanto controlli mirati ai dati mancanti o cambiati.
 
+
+### Aggiornamento Passage Shadow V1 — 2026-10-22
+- [x] Analizzato report `rag_v5_phase_passage_shadow_v1.json` (holdout_06 e holdout_10, citazioni ID invalide 0/2).
+- [x] Registrata revisione qualitativa e limiti in [docs/rag-v5-phase-passage-shadow-v1-review-20261022.md](docs/rag-v5-phase-passage-shadow-v1-review-20261022.md).
+- [ ] Completare adjudication atomica indipendente, confronto con ablation/baseline e regressione separata; non promuovere V5 sulla sola analisi shadow.
+- [ ] Consultare documentazione ufficiale delle API coinvolte prima di nuovi test implementativi; V4 e Chroma invariati.
+
 ### Priorità operative attuali
 
 | Ordine | Attività | Dipendenza / criterio |
