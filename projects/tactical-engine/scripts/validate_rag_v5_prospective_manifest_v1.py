@@ -22,6 +22,8 @@ def validate(doc):
         if not q.get("mandatory_claims"):errors.append(f"{id}: missing mandatory claims")
         if not q.get("forbidden_claims"):errors.append(f"{id}: missing forbidden claims")
         if not q.get("reviewer"):errors.append(f"{id}: missing independent reviewer")
+        if any(not r.get("drive_file_id") or not r.get("page_label") for r in q.get("source_refs",[])):errors.append(f"{id}: source missing Drive ID or page label")
+        if any("pending" in str(p).lower() or "verificare" in str(p).lower() or "confermare" in str(p).lower() for p in q.get("verified_pages",[])):errors.append(f"{id}: unverified page locator")
         if q.get("gold_status")!="verified":errors.append(f"{id}: gold not verified")
     return errors
 
