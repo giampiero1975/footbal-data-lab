@@ -124,15 +124,15 @@
     },
     {
       "id": "fresh_08",
-      "question": "Quali movimenti iniziali descrive Foscarini nella costruzione dal portiere con difesa a tre?",
+      "question": "Secondo Foscarini, perché il centrocampo è il fulcro della gestione delle ripartenze, e quali rischi corre il portatore centrale nella zona B?",
       "source_title": "Foscarini, Manovre offensive nei vari sistemi di gioco",
-      "source_page": 23,
+      "source_page": 22,
       "source_file_id": "0B6maey1azXc5bUJGaV9rak02WjQ",
       "mandatory_claims": [
-        "Laterali difensivi si allargano; centrocampisti si allungano per ricevere"
+        "Centrocampo fulcro della gestione; playmaker braccati con poco spazio e tempo nella zona B"
       ],
       "forbidden_claims": [
-        "Non generalizzare a tutti i sistemi"
+        "Non presentare la zona B come sempre sicura"
       ],
       "abstention": "Do not infer beyond cited source",
       "source_verification": "Drive text directly inspected 2026-10-22",
@@ -156,15 +156,19 @@
     },
     {
       "id": "fresh_10",
-      "question": "Secondo il manuale interno, quali condizioni rendono favorevole la riaggressione dopo perdita e quale rischio emerge se mancano?",
-      "source_title": "FOOTBALL-DATA-LAB, Le transizioni offensive e difensive",
-      "source_page": 5,
-      "source_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
+      "question": "Confrontando Ussia e il manuale interno FOOTBALL-DATA-LAB, quali condizioni favoriscono la pressione dopo la perdita e perché l'esercitazione di Ussia non dimostra una regola universale?",
+      "source_title": "Ussia, Le transizioni nel calcio moderno; FOOTBALL-DATA-LAB, Le transizioni offensive e difensive",
+      "source_page": "Ussia 17; manuale interno sezione 5",
+      "source_file_id": [
+        "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+        "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8"
+      ],
       "mandatory_claims": [
-        "Vicinanza compagni, orientamento avversario, uscita prevedibile e copertura preventiva; altrimenti spazi scoperti"
+        "Ussia richiede adattamento al sistema e alla pressione individuale e collettiva",
+        "Manuale interno: coperture preventive, vicinanza, orientamento avversario e linee d'uscita determinano opportunità della riaggressione"
       ],
       "forbidden_claims": [
-        "Non ridurre la riaggressione a singola pressione"
+        "Non confondere pressione alta di riconquista con riaggressione dopo perdita"
       ],
       "abstention": "Do not infer beyond cited source",
       "source_verification": "Drive text directly inspected 2026-10-22",
@@ -180,5 +184,24 @@
     "status": "not_run",
     "v5_report": null,
     "v4_report": null
+  },
+  "coverage_audit": {
+    "checked_date": "2026-10-22",
+    "status": "partial",
+    "covered": [
+      "transition positive",
+      "transition negative",
+      "training versus match",
+      "pressing",
+      "source comparison",
+      "multi-source",
+      "abstention on unsupported generalization"
+    ],
+    "missing": [
+      "in-match system switch as a direct question",
+      "low block direct question",
+      "high-mid-low recovery comparison"
+    ],
+    "decision": "Candidate not ready to freeze; do not use as certification holdout until all required categories and independent review complete"
   }
 }
