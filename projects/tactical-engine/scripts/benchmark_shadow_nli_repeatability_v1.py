@@ -26,6 +26,10 @@ def main():
         p.error("--execute required")
     if a.output.exists() or a.source.resolve() == a.output.resolve():
         p.error("Output exists or overlaps source; refusing overwrite")
+    if not a.source.is_file():
+        p.error(f"Baseline mancante: {a.source}; nessun benchmark avviato")
+    if not a.output.parent.is_dir():
+        p.error(f"Directory report mancante: {a.output.parent}; non viene creata automaticamente")
     data = json.loads(a.source.read_text(encoding="utf-8"))
     questions = {q["id"]: q for q in data["questions"]}
     selected = [c for c in CASES if c[2] in IDS]
@@ -62,7 +66,7 @@ def main():
               "cases": results,
               "limitations": ["Two repetitions per claim cannot establish statistical stability",
                               "No production changes; frozen source evidence only"]}
-    a.output.parent.mkdir(parents=True, exist_ok=True)
+
     with a.output.open("x", encoding="utf-8") as stream:
         json.dump(report, stream, ensure_ascii=False, indent=2)
         stream.write("\n")
