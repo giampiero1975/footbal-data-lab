@@ -24,3 +24,12 @@ Entrambe le risposte hanno zero citazioni con ID invalido; questo verifica solo 
 - [ ] Confronto con ablation e baseline usando artefatti originali e manifest; non inventare numeri mancanti.
 - [ ] Preparare regressione separata per fase di gioco, zona e tipo di giocata.
 - [ ] Verificare documentazione ufficiale delle API effettivamente coinvolte prima di implementare il prossimo script.
+
+## Audit deterministico eseguito su report originale (22/10/2026)
+- Input: `rag_v5_phase_passage_shadow_v1.json`; SHA256 del file `2d56c6058459542d5f920c1b93611d677f4f4d2a41ffcfa770f266b1c041ae57`.
+- Script versionato: `scripts/audit_rag_v5_phase_passage_regression_v1.py`, eseguito in ambiente isolato con Python stdlib, non sulla VPS.
+- Output: `rag_v5_phase_passage_regression_audit_v1.json`, schema valido, `QUESTIONS 2`.
+- `holdout_06`: 0 citazioni invalide; 1 segnale positivo euristico; `semantic_pass=not_adjudicated`.
+- `holdout_10`: 0 citazioni invalide; 3 flag `manual_review` (efficacia zone alte, durata zone basse, esercitazione 10 contro 0); `semantic_pass=not_adjudicated`.
+- **Limite**: matching lessicale mirato; non è un giudice NLI né un test completo di regressione generativa. Nessun miglioramento end-to-end certificato.
+- **Prossimo gate**: adjudication claim-by-claim e confronto con ablation originale; non eseguire nuove generazioni sull'holdout pilota per tuning.
