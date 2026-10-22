@@ -15,23 +15,23 @@ def sha(path):
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--shadow", type=Path, required=True)
-    p.add_argument("--audit", type=Path, required=True)
+    p.add_argument("--audit", type=Path, required=False, help="Optional local phase-audit JSON")
     p.add_argument("--output", type=Path, required=True)
     mode=p.add_mutually_exclusive_group(required=True)
     mode.add_argument("--dry-run", action="store_true")
     mode.add_argument("--execute", action="store_true")
     p.add_argument("--timeout", type=int, default=900)
     a=p.parse_args()
-    if a.output.exists() or a.output.resolve() in (a.shadow.resolve(), a.audit.resolve()):
+    if a.output.exists() or a.output.resolve()==a.shadow.resolve() or (a.audit and a.output.resolve()==a.audit.resolve()):
         p.error("Refusing overwrite")
     shadow=json.loads(a.shadow.read_text(encoding="utf-8"))
-    audit=json.loads(a.audit.read_text(encoding="utf-8"))
+    audit=json.loads(a.audit.read_text(encoding="utf-8")) if a.audit else None
     if shadow.get("schema")!="rag_v5_quality_shadow_frozen_evidence_v1":
         p.error("Unexpected shadow schema")
-    flagged={q["id"]:{e["label"] for e in q["evidence"] if e["status"].startswith("REVIEW")} for q in audit["questions"]}
+    flagged={q["id"]:{e["label"] for e in q["evidence"] if e["status"].startswith("REVIEW")} for q in audit["questions"]} if audit else REMOVALS
     questions={q["id"]:q for q in shadow["questions"]}
     report={"schema":"rag_v5_phase_ablation_v1","status":"dry_run" if a.dry_run else "running",
-            "source_sha256":{"shadow":sha(a.shadow),"audit":sha(a.audit)},
+            "source_sha256":{"shadow":sha(a.shadow),"audit":sha(a.audit) if a.audit else None},
             "model":shadow["model"],"system_prompt":shadow["system_prompt"],
             "policy":"Frozen passages; unchanged F labels; no Chroma or production changes",
             "questions":[]}
