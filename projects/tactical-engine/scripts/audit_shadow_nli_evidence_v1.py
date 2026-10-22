@@ -19,6 +19,10 @@ def main():
     a = p.parse_args()
     if a.output.exists() or a.source.resolve() == a.output.resolve():
         p.error("Refusing overwrite")
+    if not a.source.is_file():
+        p.error(f"Baseline assente: {a.source}. Nessun report generato; recuperare il baseline originale, non ricrearlo da risultati aggregati.")
+    if not a.output.parent.is_dir():
+        p.error(f"Directory report inesistente: {a.output.parent}. Nessuna directory viene creata automaticamente.")
     data = json.loads(a.source.read_text(encoding="utf-8"))
     questions = {q["id"]: q for q in data["questions"]}
     instruction = load_v2_instruction()
@@ -35,7 +39,6 @@ def main():
               "num_ctx_configured": 4096,
               "note": "Character counts do not prove token-context fit; check tokenizer and Ollama context separately.",
               "evidence": cases}
-    a.output.parent.mkdir(parents=True, exist_ok=True)
     with a.output.open("x", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=2)
         f.write("\n")
