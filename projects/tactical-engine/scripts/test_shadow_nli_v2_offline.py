@@ -15,7 +15,7 @@ class ShadowOfflineTests(unittest.TestCase):
     def claim(self, cid, span):
         start = self.answer.index(span)
         return {"question_id": "q1", "claim_id": cid,
-                "text": re.sub(r"\\[F[1-9][0-9]*\\]", "", span).strip(),
+                "text": re.sub(r"\[F[1-9][0-9]*\]", "", span).strip(),
                 "span": span, "start": start, "end": start + len(span)}
 
     def test_statuses_and_source_immutability(self):
