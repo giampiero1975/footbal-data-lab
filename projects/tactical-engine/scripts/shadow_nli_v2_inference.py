@@ -124,6 +124,12 @@ def main():
         p.error("Output must not overwrite prepared input")
     if args.timeout < 1 or args.max_tokens < 1 or args.max_pairs < 0:
         p.error("Invalid limits")
+    if not args.prepared.is_file():
+        p.error(f"Prepared input missing: {args.prepared}")
+    if not args.output.parent.is_dir():
+        p.error(f"Report directory missing: {args.output.parent}")
+    if args.output.exists():
+        p.error(f"Output already exists: {args.output}")
     prepared = json.loads(args.prepared.read_text(encoding="utf-8"))
     def call(claim, evidence):
         return judge_pair(claim, evidence, model=args.model,
