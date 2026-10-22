@@ -16,7 +16,7 @@
 ### Aggiornamento Passage Shadow V1 — 2026-10-22
 - [x] Analizzato report `rag_v5_phase_passage_shadow_v1.json` (holdout_06 e holdout_10, citazioni ID invalide 0/2).
 - [x] Registrata revisione qualitativa e limiti in [docs/rag-v5-phase-passage-shadow-v1-review-20261022.md](docs/rag-v5-phase-passage-shadow-v1-review-20261022.md).
-- [ ] Completare adjudication atomica indipendente, confronto con ablation/baseline e regressione separata; non promuovere V5 sulla sola analisi shadow.
+- [x] Completata revisione atomica **mirata, non indipendente** di 06/10: [docs/rag-v5-phase-passage-atomic-adjudication-20261022.md](docs/rag-v5-phase-passage-atomic-adjudication-20261022.md). 06 REVIEW; 10 FAIL semantico.\n- [ ] Adjudication **indipendente** su nuovo gold, confronto con ablation/baseline e regressione separata; non promuovere V5 sulla sola analisi shadow.
 - [ ] Consultare documentazione ufficiale delle API coinvolte prima di nuovi test implementativi; V4 e Chroma invariati.
 
 ### Priorità operative attuali
