@@ -3,6 +3,8 @@
 import argparse
 import hashlib
 import json
+import os
+import subprocess
 import sys
 from pathlib import Path
 
@@ -10,6 +12,30 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_SHA256 = "f0d36bc5b35ddcfd42bfef234db2380db6a684a9b81fb9cd19ab75bea81755c0"
 DEFAULT_MANIFEST = ROOT / "evaluation/rag_v5_independent_candidate_v2.json"
 DEFAULT_OUTPUT = ROOT / "evaluation/rag_v5_candidate_v2_runtime_report.json"
+
+def select_runtime():
+    """Use an existing interpreter with V5 deps; never install or mutate envs."""
+    check = ("import importlib.util,sys; "
+             "names=('chromadb','llama_index','sentence_transformers'); "
+             "sys.exit(0 if all(importlib.util.find_spec(x) for x in names) else 1)")
+    candidates = [Path(sys.executable)]
+    for root in (ROOT, ROOT.parent.parent):
+        candidates.extend(sorted(root.glob('.venv*/bin/python')))
+        candidates.extend(sorted(root.glob('venv*/bin/python')))
+    seen = set()
+    for py in candidates:
+        key = str(py.resolve())
+        if key in seen or not py.exists():
+            continue
+        seen.add(key)
+        result = subprocess.run([str(py), '-c', check], capture_output=True, text=True)
+        if result.returncode == 0:
+            if key != str(Path(sys.executable).resolve()):
+                print(f'V5_RUNTIME {py} (switching from {sys.executable})', flush=True)
+                os.execv(str(py), [str(py), *sys.argv])
+            print(f'V5_RUNTIME {sys.executable}', flush=True)
+            return
+    raise SystemExit('NO_V5_RUNTIME: chromadb, llama_index and sentence_transformers are not installed together in any detected existing venv; no changes made')
 
 def main():
     p = argparse.ArgumentParser()
@@ -35,6 +61,7 @@ def main():
     if not args.execute:
         print("READY: pass --execute to generate the read-only diagnostic report", flush=True)
         return
+    select_runtime()
     import smoke_test_rag_v5_e2e as v5
     v5.QUESTIONS = [(x["id"], x["question"]) for x in rows]
     # --limit refers to retrieved evidence count, not the number of questions.
