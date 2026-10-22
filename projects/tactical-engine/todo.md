@@ -285,3 +285,9 @@
 - [ ] Validare semanticamente gold, eseguire EXP-001, benchmark reranker e verifiche citazioni/latency con output versionati.
 - [ ] Scegliere configurazione definitiva in base ai risultati, quindi consolidare/archiviare soltanto componenti provati inutilizzati. **Nessuna rimozione autorizzata prima di queste verifiche.**
 
+
+## Aggiornamento shadow NLI — 2026-10-22
+
+- [x] Rafforzato il controllo fail-closed delle annotazioni shadow: il testo della claim deve corrispondere allo span della risposta al netto delle citazioni, e gli offset booleani sono rifiutati; aggiunto test di regressione (commit `815878c`, `cb2dd68`).
+- [x] Aggiornato trigger GitHub Actions shadow per includere modifiche al prompt NLI V2 canonico (commit `483c5cf`).
+- [ ] Verificare dai log GitHub Actions l'esito reale della suite shadow aggiornata; nessun PASS dichiarato senza esecuzione verificata.
