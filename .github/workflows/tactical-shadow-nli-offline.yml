@@ -5,6 +5,7 @@ on:
     paths:
       - "projects/tactical-engine/scripts/shadow_nli_v2_offline.py"
       - "projects/tactical-engine/scripts/shadow_nli_v2_inference.py"
+      - "projects/tactical-engine/scripts/benchmark_direct_three_label_nli_v2.py"
       - "projects/tactical-engine/scripts/test_shadow_nli_v2_offline.py"
       - "projects/tactical-engine/scripts/test_shadow_nli_v2_inference.py"
       - ".github/workflows/tactical-shadow-nli-offline.yml"
