@@ -53,6 +53,8 @@ def main():
         parser.error("Refusing to overwrite existing prepared/output file")
     if not source.is_file():
         parser.error(f"Baseline mancante: {source}; nessun benchmark avviato")
+    if not output.parent.is_dir():
+        parser.error(f"Report directory missing: {output.parent}")
     if not prepared_path.parent.is_dir():
         parser.error(f"Directory report mancante: {prepared_path.parent}; non viene creata automaticamente")
     report = json.loads(source.read_text(encoding="utf-8"))
