@@ -12,18 +12,19 @@
   "questions": [
     {
       "id": "fresh_01",
-      "question": "In Ussia, esercitazione 1/A, come cambiano punteggio e obiettivo delle due squadre dopo la trasmissione della palla agli avversari?",
+      "question": "Confrontando le esercitazioni di Ussia sulla riconquista in pressione alta e centrale, quali differenze di obiettivo emergono e perché non si può dedurre una graduatoria quantitativa fra recupero alto, medio e basso?",
       "source_title": "Ussia, Le transizioni nel calcio moderno",
-      "source_page": 8,
+      "source_page": "Ussia pagine 21–23",
       "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
       "mandatory_claims": [
-        "Chi riceve punta alla zona meta; l'altra squadra ottiene punto recuperando palla"
+        "La pressione alta e centrale sono trattate in esercitazioni diverse",
+        "La fonte non fornisce dati comparativi sufficienti per graduatoria quantitativa fra tre altezze"
       ],
       "forbidden_claims": [
-        "Non descrivere questa esercitazione come partita regolamentare"
+        "Non inventare percentuali o efficacia misurata"
       ],
       "abstention": "Do not infer beyond cited source",
-      "source_verification": "Drive text directly inspected 2026-10-22",
+      "source_verification": "Direct Drive extracted text pages 21-23 consulted, 2026-10-22",
       "reviewer": null
     },
     {
@@ -44,15 +45,15 @@
     },
     {
       "id": "fresh_03",
-      "question": "Qual è il ruolo del rientro difensivo nell'8 contro 8 più portiere di Ussia, esercitazione 3/A?",
-      "source_title": "Ussia, Le transizioni nel calcio moderno",
-      "source_page": 12,
-      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "question": "Perché la descrizione di un assetto difensivo nel manuale interno non basta a dimostrare che cambiare modulo durante una gara aumenti o riduca il rischio?",
+      "source_title": "FOOTBALL-DATA-LAB, Le transizioni offensive e difensive",
+      "source_page": "sezione 9",
+      "source_file_id": "1ADTvDfyRdq3cUQFMN3WG1a5BwHlBytl8",
       "mandatory_claims": [
-        "La squadra che perde palla può e deve rientrare a difesa della porta"
+        "Distinguere proprietà statiche di un sistema da effetti causali di una variazione in partita"
       ],
       "forbidden_claims": [
-        "Non presentare la riconquista come unico comportamento ammesso"
+        "Non attribuire causalità non documentata"
       ],
       "abstention": "Do not infer beyond cited source",
       "source_verification": "Drive text directly inspected 2026-10-22",
@@ -76,15 +77,16 @@
     },
     {
       "id": "fresh_05",
-      "question": "Come Ussia limita l'estensione delle esercitazioni di pressione laterale alta a sistemi di gioco diversi nell'esercitazione 6/A?",
-      "source_title": "Ussia, Le transizioni nel calcio moderno",
-      "source_page": 17,
-      "source_file_id": "0B6maey1azXc5bUlKVEh4S0JUMjQ",
+      "question": "Contro un blocco basso compatto, perché la sola ampiezza non garantisce vantaggio e quando il cambio gioco apre possibilità?",
+      "source_title": "FOOTBALL-DATA-LAB, Ampiezza e cambio gioco",
+      "source_page": "sezione Blocco basso",
+      "source_file_id": "1I9JZV2iYj_4XKvq4jH-6bZYwt0vORZ5O",
       "mandatory_claims": [
-        "Principi generali da adattare a sistemi e organizzazioni, pressione individuale e collettiva"
+        "L'ampiezza non equivale automaticamente a vantaggio",
+        "Il cambio gioco può creare opportunità se la struttura avversaria scivola e il lato debole è accessibile"
       ],
       "forbidden_claims": [
-        "Non attribuire universalità automatica"
+        "Non dichiarare che la profondità immediata sia sempre vietata"
       ],
       "abstention": "Do not infer beyond cited source",
       "source_verification": "Drive text directly inspected 2026-10-22",
@@ -187,21 +189,21 @@
   },
   "coverage_audit": {
     "checked_date": "2026-10-22",
-    "status": "partial",
+    "status": "covered_with_source-limited_cases",
     "covered": [
-      "transition positive",
-      "transition negative",
-      "training versus match",
-      "pressing",
-      "source comparison",
+      "positive transition",
+      "negative transition",
+      "transition/possession distinction through exercise boundaries",
+      "high/central/low recovery comparison with abstention",
+      "principle comparison",
+      "low block",
+      "in-match system change causal abstention",
       "multi-source",
-      "abstention on unsupported generalization"
+      "training vs match",
+      "quantifier limits",
+      "abstention"
     ],
-    "missing": [
-      "in-match system switch as a direct question",
-      "low block direct question",
-      "high-mid-low recovery comparison"
-    ],
-    "decision": "Candidate not ready to freeze; do not use as certification holdout until all required categories and independent review complete"
+    "missing": [],
+    "decision": "Coverage now mapped; independent reviewer and exact source-claim audit still required before freeze"
   }
 }
