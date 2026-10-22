@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Pure offline contract tests: no Ollama, Chroma, or production imports."""
 import copy
+import re
 import unittest
 from shadow_nli_v2_offline import prepare, apply_verdicts
 
@@ -13,7 +14,8 @@ class ShadowOfflineTests(unittest.TestCase):
 
     def claim(self, cid, span):
         start = self.answer.index(span)
-        return {"question_id": "q1", "claim_id": cid, "text": span,
+        return {"question_id": "q1", "claim_id": cid,
+                "text": re.sub(r"\\[F[1-9][0-9]*\\]", "", span).strip(),
                 "span": span, "start": start, "end": start + len(span)}
 
     def test_statuses_and_source_immutability(self):
