@@ -10,14 +10,15 @@ def main():
     p.add_argument("--manifest", type=Path, required=True)
     p.add_argument("--output", type=Path, required=True)
     p.add_argument("--execute", action="store_true")
+    p.add_argument("--diagnostic", action="store_true", help="Run candidate questions without claiming holdout certification")
     args = p.parse_args()
     manifest = json.loads(args.manifest.read_text(encoding="utf-8"))
-    if manifest.get("status") != "frozen":
+    if not args.diagnostic and manifest.get("status") != "frozen":
         p.error("Prospective manifest must be frozen before execution")
     rows = manifest.get("questions", [])
     if len(rows) != 10 or len({r["id"] for r in rows}) != 10:
         p.error("Expected ten distinct questions")
-    if any(r.get("gold_status") != "verified" or not r.get("reviewer") for r in rows):
+    if not args.diagnostic and any(r.get("gold_status") != "verified" or not r.get("reviewer") for r in rows):
         p.error("Gold and independent reviewer must be verified")
     if not args.execute:
         print("READY: pass --execute to run")
@@ -28,6 +29,7 @@ def main():
     v5.QUESTIONS = [(r["id"], r["question"]) for r in rows]
     sys.argv = [v5.__file__, "--limit", "10", "--output", str(args.output)]
     v5.main()
+    print("DIAGNOSTIC ONLY" if args.diagnostic else "FROZEN HOLDOUT RUN")
     print("Manual independent adjudication required; no automatic 9/10 claim.")
 
 if __name__ == "__main__":
