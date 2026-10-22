@@ -1,4 +1,11 @@
 
+### Audit copertura gold V5 (2026-10-22)
+- [x] Audit copertura delle 10 domande nuove: inclusi blocco basso, cambio modulo in gara, zone di recupero, multisorgente e astensione; candidate v2 aggiornato (commit `db9abab`).
+- [ ] Verifica puntuale claim→testo di tutte le domande da revisore indipendente; non dichiarare reviewer inesistente.
+- [ ] Freeze del gold prima di qualsiasi run; versione runtime e hash da registrare.
+- [ ] Run read-only VPS V5, blind adjudication e confronto V4/V5; nessun accesso remoto alla VPS disponibile negli strumenti connessi.
+
+
 ### Nuovo candidato certificazione V5 (2026-10-22)
 - [x] Creato `evaluation/rag_v5_independent_candidate_v2.json` (commit `641f61e`): 10 nuove domande con fonti/pagine verificate direttamente su Drive, criteri obbligatori/vietati; nessun output del RAG generato su questi quesiti.
 - [ ] **Non ancora gold**: revisione indipendente, controllo copertura richiesta (inclusi casi multisorgente e cambio modulo), freeze SHA e configurazione prima di generare.
