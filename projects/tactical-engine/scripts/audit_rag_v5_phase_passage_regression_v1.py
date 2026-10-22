@@ -11,7 +11,7 @@ def audit(report):
            "questions":[]}
     for q in report["questions"]:
         allowed = {e["label"] for e in q["evidence"]}
-        cited = set(re.findall(r"\\[F\\d+\\]", q["answer"]))
+        cited = set(re.findall(r"\[F\d+\]", q["answer"]))
         invalid = sorted(cited - {"["+x+"]" for x in allowed})
         answer = q["answer"].lower()
         flags = []
