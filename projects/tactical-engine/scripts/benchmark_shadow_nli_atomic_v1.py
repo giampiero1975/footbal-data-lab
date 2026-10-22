@@ -11,7 +11,7 @@ CASES=[
 ("q3","F1","low_block_cross","Contro un avversario rintanato presso la propria area si può rifinire con un cross.","supported"),
 ("q3","F1","low_block_reverse","Contro un avversario rintanato presso la propria area la verticalizzazione è preferibile alla manovra aggirante.","contradicted"),
 ("q3","F1","space_behind","Quando c'è spazio dietro la difesa avversaria si può attaccare in verticale.","supported"),
-("q3","F1","vertical_always","La verticalizzazione è sempre il mezzo migliore per andare a rete.","insufficient"),
+("q3","F1","vertical_always","La verticalizzazione è sempre il mezzo migliore per andare a rete.","contradicted"),
 ("q3","F3","offside_conditional","Contro una difesa in linea, una cattiva intesa può portare al fuorigioco verticalizzando.","supported"),
 ("q3","F3","offside_universal","Ogni verticalizzazione contro una difesa in linea produce fuorigioco.","insufficient"),
 ("q5","F1","methodist_three","Nei tre sistemi descritti il centromediano metodista protegge la difesa.","supported"),
