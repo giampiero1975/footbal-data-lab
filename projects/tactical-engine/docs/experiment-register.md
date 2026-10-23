@@ -430,3 +430,8 @@ Attività: rettifica perimetro su decisione del titolare. Script: nessuno; modif
 ### V5-LOCKED-CANDIDATE-FAILURE-ANALYSIS-01
 
 Attività: diagnosi read-only dei cinque FAIL `fresh_01/03/07/09/10`. Script: ispezione di `scripts/smoke_test_rag_v5_e2e.py`, nessuna esecuzione nuova. Commit: report `60bc141`, TODO `32cdb95`. Report: `docs/v5-locked-candidate-failure-analysis-01.md`. Risultato: copertura retrieval insufficiente per fresh_03/fresh_10, contaminazione fonti per fresh_07, completezza e astensione per fresh_01/fresh_09. Decisione: diagnostica mirata pre/post rerank prima di qualunque patch; baseline 141 PDF e 5319 chunk invariata, nessun documento Drive aggiuntivo nel perimetro corrente. Stato: ESEGUITO.
+
+
+### V5-RERANK-TRACE-01
+
+Attività: isolare assenza nel pool o perdita nel rerank di estratti per fresh_03 e fresh_10. Script: `scripts/diagnose_v5_rerank_failures_v1.py`. Commit: `e7f9e4b`, correzione normalizzazione `c4ee2b5`. Report: DA FARE (esecuzione VPS non ancora disponibile). Risultato: diagnostica implementata, nessun dato runtime nuovo. Decisione: eseguire sola lettura e analizzare i ranghi prima di patch retrieval. Stato: IMPLEMENTATO.
