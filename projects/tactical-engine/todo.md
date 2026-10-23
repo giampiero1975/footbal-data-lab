@@ -432,3 +432,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** fingerprint statico parziale runner V5 su output VPS (`b4dbaf7`); fingerprint runtime completo DA FARE.
 
 - [x] **VALIDATO** risorse VPS V5 e hash script, senza generazione; registro `65ffe1e`. Nessuna ripetizione richiesta. Commit HEAD VPS non acquisito; freeze BLOCCATO.
+
+- [x] **ESEGUITO** riconciliazione offline report E2E V5 gia prodotto: 4/10 su mandatory gold, non 9/10 (`96fdc9b`). Nessuna nuova inferenza. Interventi mirati DA FARE; certificazione BLOCCATO.
