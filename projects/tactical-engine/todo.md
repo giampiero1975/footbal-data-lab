@@ -403,4 +403,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** audit offline delle citazioni con frammenti letterali ordinati e ellissi esplicite, commit `6a6a4c2`.
 - [x] **VALIDATO** audit documentale fresh_01 v2: 9/9 evidenze, Gemini PASS, zero API; registro b24d0a3. Freeze globale **BLOCCATO**.
 - [x] **ESEGUITO** riconciliazione fresh_02-fresh_10: nessuna revisione indipendente verificata nel registro; fonti Drive accessibili; registro ac98eab.
-- [ ] **DA FARE** preparare bundle originali paginati per fresh_02-fresh_10, poi revisione cieca indipendente; non ripetere fresh_01.
+- [x] **IMPLEMENTATO** script bundle offline per fresh_02-fresh_10 (7ad9ee6; registro c686bb7).
+- [ ] **DA FARE** esecuzione VPS e verifica pagine prima della revisione indipendente.
