@@ -477,4 +477,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-EVIDENCE-DECISION-01: riconciliato il report sulle 22 intestazioni con gli script; i confini non sono validati. Documento `docs/v5-exercise-boundary-evidence-decision.md` (`e114e95`), registro `b9ba79d`.
 - [x] **ESEGUITO** V5-EXERCISE-BODY-INSPECTION-PLAN-01: piano read-only in `docs/v5-exercise-body-inspection-plan.md` (`beb05ba`), registro `6f8f9f0`. Nessun test eseguito.
-- [ ] **DA FARE** implementare solo ispezione differenziale del corpo per i 22 riferimenti gia censiti, senza replay, modifiche V2 o Chroma.
+- [x] **IMPLEMENTATO** V5-EXERCISE-BODY-INSPECTION-IMPLEMENT-01: script `inspect_exercise_body_context_v1.py`, commit `a07ebf2`, registro `287140a`.
+- [ ] **DA FARE** acquisire una sola volta il report `exercise_body_context_v1.json` sulle tre fonti gia selezionate.
