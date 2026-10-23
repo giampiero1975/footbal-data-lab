@@ -13,8 +13,9 @@
 - [x] Recupero e generalizzazione dei riferimenti esatti, reranking e replay di priorità su quattro casi nuovi; commit `21cdb18`, `547da5c`, `eaad637`, `3d10d7f`, `b570abd`.
 - [x] Analizzato report `rag_v5_reference_priority_shadow_v1.json` (2026-10-23): fig.9 F5→F1, Ussia 6/B F1+F2, Ussia 4/B F1, fig.20 F1; invariati gli ID top8 e nessun accesso Chroma.
 - [x] Analizzata nuova risposta figura 20: distingue scambio 4/3, movimento 7 e copertura 6; una lieve ambiguità nell'attribuzione dell'incrocio resta da sorvegliare in regressione. Esito **VALIDATO solo shadow mirato**.
-- [ ] Integrare source-aware + priorità controllata nell'entry point V5 effettivo con rollback.
-- [ ] Eseguire una regressione **mirata e non duplicativa** sull'integrazione, inclusa la figura 20, e registrare report, digest e decisione.
+- [x] Implementare priorità controllata **opt-in** nel percorso di retrieval live source-aware (`rag_v5_fresh_reference_e2e_shadow_v1.py --priority-exact`, commit `bbb9b7b`); **IMPLEMENTATO**, non ancora VALIDATO runtime né INTEGRATO nel candidato locked/produzione. Rollback: omettere il flag.
+- [ ] Validare runtime la priorità opt-in, poi decidere l'eventuale integrazione nel candidato V5 effettivo; non modificare il candidato locked senza evidenza.
+- [ ] Eseguire **una sola verifica mirata non duplicativa** sul nuovo flag live (differenza rispetto al replay offline già validato), inclusa la figura 20; registrare report, digest e decisione.
 
 ### P1 — Gate distinti dalla chiusura del retrieval
 
