@@ -277,3 +277,11 @@ Attivita: progettazione documentale variante gerarchica opt-in per esercitazioni
 ### V5-EXERCISE-EXTRACT-IMPLEMENT-01
 
 Attivita: implementare estrattore Docling gerarchico opt-in e isolato. Script: scripts/extract_exercise_units_v1.py. Commit: b599e3e. Report: read-back GitHub del file; esecuzione VPS DA FARE. Risultato: IMPLEMENTATO; estrazione offline con intestazione, pagine e riferimenti agli elementi, nessuna operazione Chroma o LLM. Decisione: eseguire controllo deterministico nuovo su esercitazioni 3/A, 4/A e 4/B, senza ripetere mapping e benchmark precedenti. Stato: IMPLEMENTATO.
+
+### V5-EXERCISE-EXTRACT-OFFLINE-01
+
+Attivita: analisi output offline estrattore v1. Script: scripts/extract_exercise_units_v1.py (b599e3e). Report: evaluation/ussia_exercise_units_v1.json fornito da VPS. Risultato: ESEGUITO; 33 unita, 4/A pagina 14 con titolo e svolgimento separata da 3/A e 4/B. Anomalie: refuso Esecitazione 10 incorporato nella 9; sezioni psicocinetica e portiere incorporate rispettivamente in 11/B e 21; identificativi 19/B e 20 ricorrenti. Decisione: correggere confini e disambiguazione in v2, senza reindicizzare. Stato: ESEGUITO.
+
+### V5-EXERCISE-EXTRACT-V2-01
+
+Attivita: correggere confini esercitazioni in variante offline isolata. Script: scripts/extract_exercise_units_v2.py. Commit: 23cc0db. Report: codice GitHub; nuovo output VPS DA FARE. Risultato: IMPLEMENTATO; riconoscimento refuso Esecitazione, interruzione su sezioni psicocinetica e portiere, ID hash derivati anche dal riferimento Docling. Decisione: verificare soltanto differenze V1 vs V2, senza ripetere mapping Chroma o benchmark. Stato: IMPLEMENTATO.
