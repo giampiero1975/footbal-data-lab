@@ -385,3 +385,7 @@ Attivita: predisporre retrieval opt-in candidato nel runner effettivo e wrapper.
 ### V5-EXERCISE-CANDIDATE-PARTIAL-RECOVERY-01
 
 Attivita: diagnosi errore primo retrieval opt-in e implementazione recupero parziale. Script: smoke_test_rag_v5_e2e.py (0a7223d), build_rag_v5_exercise_candidate_v1.py (0d98281). Commit: 0d98281. Report: traceback VPS fornito dall'operatore, Unexpected exercise candidate count 12; expected 34. Risultato: ESEGUITO controllo runtime, candidato parziale 12/34, retrieval interrotto prima della query; IMPLEMENTATO --resume-candidate con verifica preventiva di ID, documenti e metadata e completamento dei soli record mancanti, senza sovrascrittura. Decisione: riprendere soltanto la collection candidata e verificare 34/34, baseline 5319; nessun benchmark ripetuto. Stato: IMPLEMENTATO.
+
+### V5-EXERCISE-CANDIDATE-RESUME-01
+
+Attività: completamento collection candidata Ussia parziale. Script: `scripts/build_rag_v5_exercise_candidate_v1.py --resume-candidate` (commit `0d98281`). Commit: `0d98281` (script); report: output shell VPS fornito dall'operatore il 2026-10-23, `RESUME verified_existing=12 missing=22` e `CANDIDATE_COMPLETE rows=34 baseline_unchanged=5319`. Risultato: 22 record mancanti aggiunti; collection candidata 34 record, baseline 5319 invariata. Decisione: autorizzare un singolo probe retrieval-only del nuovo percorso opt-in; nessuna promozione, generazione o benchmark gold. Stato: ESEGUITO.
