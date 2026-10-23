@@ -490,5 +490,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** V5-SMARCAMENTO-ORIGINAL-LAYOUT-REVIEW-01: esaminato PDF originale pagina 6 (stampata 10); i riferimenti 109, 115 e 122 appartengono a una sola esercitazione con esempi illustrativi. Report `docs/v5-smarcamento-original-layout-review.md` (`c7a65b8`), registro `9d24a33`. Nessuna integrazione V2 o Chroma.
 
 - [x] **IMPLEMENTATO** V5-EXERCISE-CANDIDATE-BUILDER-01: builder opt-in isolato `scripts/build_rag_v5_exercise_candidate_v1.py` (`d8e7741`), registro `4748442`. Nessuna esecuzione VPS, nessuna scrittura Chroma, nessuna integrazione nel runner.
-- [ ] **DA FARE** verificare percorso Docling Ussia e dry-run del builder candidato sulla VPS; non ripetere i test Ussia precedenti.
+- [x] **ESEGUITO** V5-EXERCISE-CANDIDATE-DRYRUN-01: VPS `Transizioni.Ussia.json`, 34 unità, dry-run senza Chroma/embedding/scritture; registro `2beef52`. Non equivale a retrieval o certificazione.
 - [ ] **DA FARE** solo dopo verifica dry-run, creare collection candidata isolata con rollback documentato, confrontare con baseline e decidere promozione; non modificare la collection V5 originale.
