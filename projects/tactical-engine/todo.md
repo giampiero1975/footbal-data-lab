@@ -448,3 +448,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-USSIA-4A-MAP-01: Docling pagina 14 e chunk Chroma 10 verificati; intestazione 4/A assente da headings, testo presente; report `evaluation/ussia_4a_chunk_mapping_v1.json`, script commit `6d2930d`; registro aggiornato.
 - [ ] **DA FARE** ispezionare codice chunking V5 per preservare intestazione esercitazione e pagine; non ripetere mapping o benchmark, non reindicizzare senza decisione documentata.
+
+- [x] **ESEGUITO** V5-USSIA-4A-CHUNK-CODE-01: audit statico builder V5 e cause strutturali del mapping intestazioni; report `docs/v5-ussia-4a-chunking-code-audit-2026-10-23.md` (`c67866b`). Nessun test duplicato.
+- [ ] **DA FARE** progettare preservazione gerarchia esercitazioni in variante isolata del chunking, senza `--write` sulla collection V5 corrente; definire prima migrazione e rollback.
