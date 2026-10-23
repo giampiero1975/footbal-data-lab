@@ -321,3 +321,7 @@ Attivita: riconciliazione dei risultati disponibili sui confini. Script: nessuna
 ### V5-EXERCISE-BODY-INSPECTION-PLAN-01
 
 Attivita: progettazione di controllo differenziale del contenuto Docling. Script: non implementato. Commit: beb05ba. Report: docs/v5-exercise-body-inspection-plan.md. Risultato: piano limitato a 22 riferimenti, tre fonti e brevi estratti con provenance. Decisione: solo successiva implementazione read-only, nessun test duplicato o Chroma. Stato: ESEGUITO.
+
+### V5-EXERCISE-BODY-INSPECTION-IMPLEMENT-01
+
+Attivita: implementare ispettore di contenuti Docling. Script: scripts/inspect_exercise_body_context_v1.py. Commit: a07ebf2. Report: da produrre. Risultato: IMPLEMENTATO per 22 riferimenti su tre fonti. Decisione: una sola esecuzione offline, senza reindicizzazione. Stato: IMPLEMENTATO.
