@@ -495,4 +495,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** V5-EXERCISE-CANDIDATE-RETRIEVAL-IMPLEMENT-01: flag opt-in `--exercise-candidate` nel runner V5 (`0a7223d`) e wrapper (`bdd093b`); default invariato, nessun test runtime (`f827797`).
 - [x] **ESEGUITO** primo controllo runtime opt-in: candidato parziale 12/34, arresto prima del retrieval; nessuna generazione. Registro `c6b3ef2`.
 - [x] **IMPLEMENTATO** V5-EXERCISE-CANDIDATE-PARTIAL-RECOVERY-01: `--resume-candidate` verifica record esistenti e aggiunge solo quelli mancanti (`0d98281`), registro `c6b3ef2`.
-- [ ] **DA FARE** riprendere collection candidata, confermare 34/34 e baseline 5319, quindi effettuare un solo retrieval mirato opt-in.
+- [x] **ESEGUITO** V5-EXERCISE-CANDIDATE-RESUME-01: output VPS `verified_existing=12 missing=22`, `CANDIDATE_COMPLETE rows=34 baseline_unchanged=5319`; registro `62ee7f6`. Nessuna promozione.
+- [ ] **DA FARE** un solo probe retrieval-only opt-in sulla nuova collection Ussia, con report JSON e controllo F1–F8; non ripetere benchmark gold.
