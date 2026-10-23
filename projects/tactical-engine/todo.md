@@ -436,11 +436,12 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** riconciliazione offline report E2E V5 gia prodotto: 4/10 su mandatory gold, non 9/10 (`96fdc9b`). Nessuna nuova inferenza. Interventi mirati DA FARE; certificazione BLOCCATO.
 
 - [x] **ESEGUITO** diagnosi top8 dei dieci casi E2E esistenti, report `docs/rag-v5-e2e-failure-analysis-2026-10-23.md` (`374c2cd`), registro `f0d4272`. Nessuna nuova generazione.
-- [ ] **DA FARE** delta tecnico source-aware nel runner V5 effettivo per gap fresh_03/04/07/10, senza ripetere shadow V5-REF-05; usare gold di sviluppo separato e nuovo holdout per certificazione.
+- [x] **IMPLEMENTATO** delta tecnico source-aware opt-in nel runner V5 (`9170f83`, correzione `aa2586e`); resta **DA FARE** la verifica di pertinenza 4/A e degli altri gap, senza ripetere shadow V5-REF-05.
 
 - [x] **IMPLEMENTATO** source-aware opt-in nel runner e wrapper V5 (`9170f83`, `03a5e0f`), read-back GitHub confermato, registro `c6a2ce1`. Default invariato; nessun benchmark ripetuto.
-- [ ] **DA FARE** test differenziale del nuovo flag --source-aware e fingerprint runtime VPS; successivamente valutazione su holdout nuovo e revisione indipendente. Certificazione **BLOCCATO**.
+- [x] **ESEGUITO** test differenziale mirato del flag --source-aware sulla VPS per Ussia 4/A; risultato nel registro V5-SOURCE-AWARE-DIFF-03 (`5a3a0bf`); fingerprint runtime completo resta **DA FARE**. Valutazione holdout nuovo e revisione indipendente **DA FARE**; certificazione **BLOCCATO**.
 
 - [x] **ESEGUITO** differenziale VPS source-aware iniziale: baseline e flag top8 identici, source_hint null, indice 5319 invariato; difetto regex identificato, registro `cd29d2a`.
 - [x] **IMPLEMENTATO** correzione regex boundary autore in runner (`aa2586e`), verifica VPS successiva DA FARE.
-- [ ] **DA FARE** solo nuovo differenziale mirato dopo pull di `aa2586e`; niente replica shadow/benchmark 10 casi. Certificazione BLOCCATO.
+- [x] **ESEGUITO** differenziale mirato dopo pull di `aa2586e`: fonte riconosciuta, 2/8 chunk Ussia (F3 pp. 15-16, F8 pp. 35-37) contro 0/8 baseline, indice invariato; registro V5-SOURCE-AWARE-DIFF-03 (`5a3a0bf`).
+- [ ] **DA FARE** individuare il contenuto esatto di Ussia figura 4/A (F3 riguarda 4/B; F8 riguarda esercizio 19), senza ripetere benchmark. Sistema non INTEGRATO né CERTIFICATO.
