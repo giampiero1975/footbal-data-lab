@@ -408,4 +408,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** mapping esplicito indice PDF Foscarini, commit fba8b96, registro 5cf8f57.
 - [x] **VALIDATO** mapping Foscarini p22 = PDF 2 (b45d01f).
 - [x] **ESEGUITO** nove bundle generati offline, zero API; registro d9b07b6.
-- [ ] **DA FARE** audit completo: 7/9 bundle ricevuti, fresh_09 e fresh_10 mancanti.
+- [x] **ESEGUITO** audit 9/9; correzione fresh_09 IMPLEMENTATO (c3df934).
+- [ ] **DA FARE** aggiornare bundle privato fresh_09.
