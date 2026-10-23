@@ -27,6 +27,8 @@
 - [x] ESEGUITO: audit autore delle 10 domande fresh_01–fresh_10 il 2026-10-22 (source_claim_audit e coverage_audit nel candidato v2); non ripetere.
 - [ ] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente.
 - [x] IMPLEMENTATO: protocollo di revisione indipendente `docs/rag-v5-independent-review-gate-v1.md` (commit `0c79578`); candidato invariato.
+- [x] IMPLEMENTATO: client Gemini separato `scripts/review_rag_v5_gemini.py` (commit `ca8383b`), guida `docs/gemini-independent-review-v1.md` (`25ef94d`), esclusione materiale privato (`24e8ac6`); nessun benchmark eseguito.
+- [ ] DA FARE: acquisire estratti originali verificati Ussia pagine 21–23 e predisporre bundle privato per `fresh_01`; poi preflight e una richiesta Free Tier autorizzata.
 - [ ] BLOCCATO: freeze e certificazione V5 in attesa di revisore indipendente e fingerprint runtime.
 - [ ] Certificazione E2E 9/10 con blind adjudication e confronto controllato V4/V5.
 - [ ] Completare gate NLI V2 e l'eventuale integrazione shadow, riutilizzando i benchmark esistenti.
