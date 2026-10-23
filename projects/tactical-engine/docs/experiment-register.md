@@ -389,3 +389,7 @@ Attivita: diagnosi errore primo retrieval opt-in e implementazione recupero parz
 ### V5-EXERCISE-CANDIDATE-RESUME-01
 
 Attività: completamento collection candidata Ussia parziale. Script: `scripts/build_rag_v5_exercise_candidate_v1.py --resume-candidate` (commit `0d98281`). Commit: `0d98281` (script); report: output shell VPS fornito dall'operatore il 2026-10-23, `RESUME verified_existing=12 missing=22` e `CANDIDATE_COMPLETE rows=34 baseline_unchanged=5319`. Risultato: 22 record mancanti aggiunti; collection candidata 34 record, baseline 5319 invariata. Decisione: autorizzare un singolo probe retrieval-only del nuovo percorso opt-in; nessuna promozione, generazione o benchmark gold. Stato: ESEGUITO.
+
+### V5-EXERCISE-CANDIDATE-PROBE-01
+
+Attività: probe retrieval-only del candidato Ussia nel runner V5. Script: `smoke_test_rag_v5_e2e.py` (commit `0a7223d`); correzione successiva `cf61e33`. Report: `projects/tactical-engine/evaluation/v5_exercise_candidate_probe_v1.json` allegato dall'operatore; output `COMPLETE 1/1; V5 unchanged=True`. Risultato: ESEGUITO; baseline 5319 e candidata 34 invariati; `exercise_candidate_ids=[]`, F8 solo indice Ussia pagina 48, non contenuto 4/A; retrieval NON VALIDATO. Diagnosi codice: regex `r"\\\\bussia\\\\b"` erroneamente cerca backslash letterali invece del confine di parola. Decisione: correggere regex nel runner (`cf61e33`), eseguire soltanto verifica differenziale mirata, non benchmark gold e non promuovere. Stato: ESEGUITO.
