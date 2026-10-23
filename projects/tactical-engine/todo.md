@@ -485,4 +485,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-WINDOWS-OFFLINE-01: quattro finestre analizzate; titoli di esercitazione in `text` e `caption`, esercitazione 16 non vuota. Report `docs/v5-exercise-boundary-windows-findings.md` (`398860d`), registro `187f126`.
 - [x] **ESEGUITO** V5-EXERCISE-SEMANTIC-BOUNDARY-DESIGN-01: regole candidate documentate in `docs/v5-exercise-semantic-boundary-design.md` (`b74c496`), registro `d0302a3`. Nessun test eseguito.
 - [x] **ESEGUITO** V5-EXERCISE-SEMANTIC-BOUNDARY-PROTOTYPE-01: script `propose_semantic_exercise_boundaries_v1.py` (`528d90b`), report operatore con 16 candidati tutti `review_required`; registro `9206a7a`. Nessuna integrazione V2 o Chroma.
-- [ ] **DA FARE** revisionare i 16 candidati semantici senza ripetere la generazione e senza validare automaticamente i confini.
+- [x] **ESEGUITO** V5-EXERCISE-SEMANTIC-CANDIDATE-REVIEW-01: revisionati 16 candidati (8 inizi proposti, 4 sezioni, 1 sottotitolo, 3 ripetizioni ambigue); report `docs/v5-exercise-semantic-candidate-review.md` (`b5eae2b`), registro `b93e2ca`. Confini non validati.
+- [ ] **DA FARE** valutare solo le ambiguita residue di Smarcamento con evidenze tecnicamente nuove, senza ripetere i controlli precedenti.
