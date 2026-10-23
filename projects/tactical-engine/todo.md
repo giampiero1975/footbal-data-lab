@@ -395,4 +395,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** estrazione Ussia originale pp. 21–23: bundle privato `evaluation/fresh_01_sources.json`, PDF SHA-256 `6aa542e55dc88527c4d47c0e7696bb8872c71ee262120509e7dbc0fd2e683772`; registro `19aff49`.
 - [x] **IMPLEMENTATO** import `pymupdf` al posto di `fitz`, commit `34ba249`.
 - [x] **VALIDATO** preflight locale `fresh_01` PASS, manifest e bundle SHA256 verificati, blind=true, zero richieste API; registro commit `eca6203`.
-- [ ] **DA FARE** una singola chiamata Gemini Free Tier per `fresh_01`; freeze **BLOCCATO**.
+- [x] **ESEGUITO** un tentativo Gemini `fresh_01` (ledger 2026-10-23: 1), report `gemini_fresh_01_review_v1.json`: **BLOCCATO** per `UNVERIFIABLE_QUOTE`, nessun verdetto tattico; registro `1e1577b`.
+- [ ] **DA FARE** diagnosi offline e persistenza delle evidenze di validazione; non ripetere la chiamata senza differenza tecnica documentata; freeze **BLOCCATO**.
