@@ -384,4 +384,4 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] IMPLEMENTATO: abilitata domanda singola con generazione nel runner effettivo, commit `00c3a77`.
 - [x] ESEGUITO: risposta figura 20 acquisita; F1 e citazione corretti, Chroma invariato; attribuzione del ruolo al giocatore 7 non supportata.
 - [x] IMPLEMENTATO: correzione prompt per ruoli e soggetti, commit f22ade7.
-- [ ] DA FARE: verifica differenziale della generazione con il prompt modificato; nessun nuovo benchmark gold.
+- [x] VALIDATO: verifica differenziale figura 20 con prompt modificato, report `rag_v5_effective_priority_answer_fig20_promptfix_v1.json`, SHA-256 `d2d071ca77ec43b9132fff19a553f191d0e19f17129466f1a715eafb1e81f05a`; corretto ruolo 7, F1 valido, Chroma 5319 invariato. Restano digressioni F2/F4 non richieste; nessuna certificazione E2E.
