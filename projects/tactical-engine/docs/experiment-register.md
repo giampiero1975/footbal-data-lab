@@ -317,3 +317,7 @@ Attivita: lettura del report sulle intestazioni di tre fonti. Script: scripts/in
 ### V5-EXERCISE-BOUNDARY-EVIDENCE-DECISION-01
 
 Attivita: riconciliazione dei risultati disponibili sui confini. Script: nessuna nuova esecuzione. Commit: e114e95. Report: docs/v5-exercise-boundary-evidence-decision.md. Risultato: 22 intestazioni note, nessuna prova sufficiente sui confini; Stato: ESEGUITO. Decisione: limitare il successivo controllo ai contenuti associati, senza ripetere i test precedenti o modificare Chroma.
+
+### V5-EXERCISE-BODY-INSPECTION-PLAN-01
+
+Attivita: progettazione di controllo differenziale del contenuto Docling. Script: non implementato. Commit: beb05ba. Report: docs/v5-exercise-body-inspection-plan.md. Risultato: piano limitato a 22 riferimenti, tre fonti e brevi estratti con provenance. Decisione: solo successiva implementazione read-only, nessun test duplicato o Chroma. Stato: ESEGUITO.
