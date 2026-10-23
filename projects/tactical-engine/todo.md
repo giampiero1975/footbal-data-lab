@@ -499,10 +499,12 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-EXERCISE-CANDIDATE-PROBE-01: primo probe senza candidati per errore regex; report `v5_exercise_candidate_probe_v1.json`, registro `10922a6`.
 - [x] **VALIDATO** V5-EXERCISE-CANDIDATE-PROBE-FIXED-01: fix `cf61e33`, report `v5_exercise_candidate_probe_fixed_v1.json`; 4/A Ussia pagina 14 F1, 24 ID candidati nel pool, 34/5319 invariati. Registro `a76f554`. Solo retrieval mirato, non generazione né integrazione default.
 - [x] **IMPLEMENTATO** percorso opt-in combinato nel wrapper V5 esistente (`--source-aware --priority-exact --exercise-candidate`); nessun nuovo codice necessario. Registro gate `4718387`; non INTEGRATO di default.
-- [ ] **DA FARE** V5-LOCKED-INTEGRATION-GATE-01: una sola esecuzione diagnostica E2E della configurazione combinata sul candidato locked SHA `c160a8a...`, con report distinto; non equivale a gold approvato né certificazione.
+- [x] **ESEGUITO** V5-LOCKED-INTEGRATION-GATE-01: E2E combinato completato con 10/10 risposte generate, citazioni formalmente valide, baseline 5319 e candidato 34 invariati; report `rag_v5_combined_candidate_v1.json`, registro commit `cda20ed`. Valutazione interna claim-per-claim ancora **DA FARE**; nessun punteggio 9/10 attestato, nessuna integrazione di default o certificazione.
 - [x] **ESEGUITO** approvazione indipendente del gold e adjudication delle risposte; evitare duplicazione dei test storici. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 
 
 ### Decisione vincolante V5 — revisore esterno (2026-10-23)
 
 **ESEGUITO — modifica di governance, non validazione del gold.** Su decisione esplicita del titolare, il revisore indipendente esterno e la blind adjudication esterna NON sono prerequisiti del progetto. Le vecchie voci che li richiedono vanno lette come superate da questa decisione, non come verifiche completate. Non dichiarare mai che un revisore esterno ha approvato il gold. La valutazione V5 procede con rubriche e fonti già verificate internamente, manifest con SHA invariato, giudizio claim-per-claim documentato, confronto con evidenze pregresse e controllo runtime. Soglia 9/10 da dimostrare, non presunta. Non riproporre richieste di revisore esterno nelle prossime attività.
+
+- [ ] **DA FARE** V5-LOCKED-CANDIDATE-INTERNAL-ASSESSMENT-01: valutare le 10 risposte già generate confrontando rubriche, evidenze e fonti; registrare gli esiti senza ripetere il test E2E.
