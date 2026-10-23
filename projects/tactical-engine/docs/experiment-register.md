@@ -337,3 +337,7 @@ Attivita: revisione evidenze. Script: nessuno. Commit: f1118e8. Report: docs/v5-
 ### V5-EXERCISE-BOUNDARY-GAP-PLAN-01
 
 Attivita: analisi delle evidenze mancanti sui confini. Script: nessuna esecuzione. Commit: c2d83bd. Report: docs/v5-exercise-boundary-gap-plan.md. Risultato: quattro finestre Docling mirate con delta rispetto ai report precedenti. Decisione: solo successiva ispezione read-only, senza replay o modifica Chroma. Stato: ESEGUITO.
+
+### V5-EXERCISE-BOUNDARY-WINDOWS-IMPLEMENT-01
+
+Attivita: implementazione ispezione di quattro finestre Docling. Script: scripts/inspect_exercise_boundary_windows_v1.py. Commit: bb02c68. Report previsto: evaluation/exercise_boundary_windows_v1.json. Risultato: IMPLEMENTATO; estratti e provenance, nessuna esecuzione. Decisione: una sola esecuzione offline, senza modifiche agli indici. Stato: IMPLEMENTATO.
