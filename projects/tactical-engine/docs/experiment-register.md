@@ -56,5 +56,7 @@ Uno stato superiore **non** si deduce dal precedente. In particolare VALIDATO sh
 - **Attività:** inserire priorità esatta nel runner richiamato dal candidato V5.
 - **Script:** `scripts/smoke_test_rag_v5_e2e.py`; **commit:** `a0301b6489443ef7ac0a954af981ea09f7704676`.
 - **Report:** non disponibile. **Risultato:** opzione `--priority-exact` aggiunta al runner, disattivata per default; lookup esatto limitato a domande con fonte Ussia/Foscarini esplicita; Chroma non scritto.
-- **Decisione:** IMPLEMENTATO parzialmente. Il forwarding dal wrapper `run_rag_v5_locked_candidate_v2.py` non è stato pubblicato per blocco dello strumento di modifica GitHub; non dichiarare integrazione completata. Verifica statica e regressione runtime mirata ancora mancanti. Il gold candidato resta immutato.
+- **Decisione:** IMPLEMENTATO (runner e wrapper pubblicati). Il forwarding dal wrapper `run_rag_v5_locked_candidate_v2.py` è stato pubblicato nel commit `2a2ceb9409aaa2e35a1ecd7464029037277d575b`; non dichiarare INTEGRATO prima della regressione runtime. Verifica statica e regressione runtime mirata ancora mancanti. Il gold candidato resta immutato.
 - **Rollback:** omettere il flag; nessuna migrazione dell'indice.
+
+- **Sblocco 2026-10-23:** wrapper `scripts/run_rag_v5_locked_candidate_v2.py` aggiornato nel commit `2a2ceb9409aaa2e35a1ecd7464029037277d575b`: il flag opt-in è inoltrato al runner; senza flag comportamento precedente. **Stato:** IMPLEMENTATO. Verifica statica e regressione runtime ancora DA FARE; non ripetere benchmark shadow.
