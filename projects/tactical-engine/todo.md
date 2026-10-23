@@ -406,4 +406,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** script bundle offline per fresh_02-fresh_10 (7ad9ee6; registro c686bb7).
 - [x] **ESEGUITO** preflight VPS: BLOCCATO su Foscarini pagina stampata 22, PDF di 11 pagine.
 - [x] **IMPLEMENTATO** mapping esplicito indice PDF Foscarini, commit fba8b96, registro 5cf8f57.
-- [ ] **BLOCCATO** confermare indice PDF della pagina stampata 22 prima di generare i bundle.
+- [x] **VALIDATO** mapping Foscarini p22 = PDF 2 (b45d01f).
+- [ ] **DA FARE** bundle offline e controllo paginazione altri manuali.
