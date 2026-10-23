@@ -482,4 +482,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-ANOMALY-REVIEW-01: anomalie revisionate nel documento `docs/v5-exercise-boundary-anomaly-review.md` (`f1118e8`), registro `eea96ec`. Confini ancora review_required.
 - [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-GAP-PLAN-01: piano di controllo mirato in `docs/v5-exercise-boundary-gap-plan.md` (`c2d83bd`), registro `0221dc1`. Nessun test eseguito.
 - [x] **IMPLEMENTATO** V5-EXERCISE-BOUNDARY-WINDOWS-IMPLEMENT-01: script `inspect_exercise_boundary_windows_v1.py` (`bb02c68`), registro `cc2ed17`. Nessun test eseguito.
-- [ ] **DA FARE** acquisire una sola volta `evaluation/exercise_boundary_windows_v1.json` sulle quattro finestre documentate.
+- [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-WINDOWS-OFFLINE-01: quattro finestre analizzate; titoli di esercitazione in `text` e `caption`, esercitazione 16 non vuota. Report `docs/v5-exercise-boundary-windows-findings.md` (`398860d`), registro `187f126`.
+- [ ] **DA FARE** progettare regole candidate per confini semantici con revisione manuale, senza modificare V2, Chroma o pipeline.
