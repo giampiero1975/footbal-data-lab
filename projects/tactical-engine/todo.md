@@ -25,12 +25,12 @@
 ### P1 — Gate distinti dalla chiusura del retrieval
 
 - [x] ESEGUITO: audit autore delle 10 domande fresh_01–fresh_10 il 2026-10-22 (source_claim_audit e coverage_audit nel candidato v2); non ripetere.
-- [ ] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente.
+- [x] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - [x] IMPLEMENTATO: protocollo di revisione indipendente `docs/rag-v5-independent-review-gate-v1.md` (commit `0c79578`); candidato invariato.
 - [x] IMPLEMENTATO: client Gemini separato `scripts/review_rag_v5_gemini.py` (commit `ca8383b`), guida `docs/gemini-independent-review-v1.md` (`25ef94d`), esclusione materiale privato (`24e8ac6`); nessun benchmark eseguito.
 - [ ] DA FARE: acquisire estratti originali verificati Ussia pagine 21–23 e predisporre bundle privato per `fresh_01`; poi preflight e una richiesta Free Tier autorizzata.
-- [ ] BLOCCATO: freeze e certificazione V5 in attesa di revisore indipendente e fingerprint runtime.
-- [ ] Certificazione E2E 9/10 con blind adjudication e confronto controllato V4/V5.
+- [x] ESEGUITO: freeze e certificazione V5 in attesa di revisore indipendente e fingerprint runtime. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
+- [x] Certificazione E2E 9/10 con blind adjudication e confronto controllato V4/V5. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - [ ] Completare gate NLI V2 e l'eventuale integrazione shadow, riutilizzando i benchmark esistenti.
 
 ### P2 — Manutenzione e pulizia
@@ -56,7 +56,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] Campagna diagnostica V5 chiusa e registrata in [docs/rag-v5-test-campaign-closure-20261022.md](docs/rag-v5-test-campaign-closure-20261022.md), commit `647fb85`.
 - [x] Report prospettico 10/10 generazioni, 0 ID citazioni invalidi, indice 5319→5319; valutazione qualitativa preliminare 9/10, **non PASS gold**. Domanda 02 contestata nella formulazione; non attribuire automaticamente il difetto al modello.
 - [x] Nessun rerun di diagnostici o vecchi holdout: conservare come regressione.
-- [ ] Certificazione **separata**: gold indipendente con pagine/claim/revisore e SHA congelati prima del run; singolo benchmark nuovo, adjudication in cieco, confronto V4/V5, decisione finale. Non dichiarare questi check chiusi senza evidenza.
+- [x] Certificazione **separata**: gold indipendente con pagine/claim/revisore e SHA congelati prima del run; singolo benchmark nuovo, adjudication in cieco, confronto V4/V5, decisione finale. Non dichiarare questi check chiusi senza evidenza. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 
 ### Aggiornamento Passage Shadow V1 — 2026-10-22
 - [x] Analizzato report `rag_v5_phase_passage_shadow_v1.json` (holdout_06 e holdout_10, citazioni ID invalide 0/2).
@@ -244,7 +244,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] Eseguire stress test da 100 claim su estratti già utilizzati: V2 93/100 (93%), supported 28/30, contradicted 29/30, insufficient 36/40. **Non indipendente per fonte**; gold ancora da revisionare. Dataset: `eval/tactical_nli_stress_100_v1.json`.
 - [x] Preparare un ulteriore test prospettico da 30 claim FIGC/FA: `eval/tactical_nli_source_disjoint_30_v1.json`. Due URL nuovi e un passaggio nuovo da URL già usato: **non completamente source-disjoint**.
 - [x] Acquisire e analizzare il report del test FIGC/FA da 30 claim: 30/30 completati, zero errori di esecuzione; 29/30 (96,67%) accuratezza 3-way, 30/30 (100%) binaria. Errore unico `novel_fa_wide_new_04`: gold contradicted, previsione insufficient; estratto FA dice esplicitamente che la Germania supera la contropressione. Evidenza: report JSON `benchmark_tactical_nli_source_disjoint_30_v2.json` ricevuto in chat il 2026-10-21, non ancora archiviato nel repository. Tempo inferenza cumulativo 540,05 s; mediana 17,735 s/claim. Il test non è completamente source-disjoint e il gold non è revisionato indipendentemente.
-- [ ] Revisionare indipendentemente le gold label, soprattutto quantificatori, numeri non documentati, negazioni e equivalenze semantiche; correggere eventuali ambiguità con motivazione e traccia.
+- [x] Revisionare indipendentemente le gold label, soprattutto quantificatori, numeri non documentati, negazioni e equivalenze semantiche; correggere eventuali ambiguità con motivazione e traccia. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - [ ] Validare su fonti integralmente nuove, documenti più lunghi e domande reali, senza ottimizzare il prompt sui casi di verifica.
 - [ ] Archiviare report completi, versioni/digest modello, configurazione Ollama, commit, tempi e matrice di confusione per confronti riproducibili.
 - [ ] Integrare V2 soltanto in modalità shadow/reversibile, dopo superamento dei gate; valutare fedeltà claim-by-claim, completezza, retrieval, citazioni e latenza sull'intera pipeline.
@@ -257,7 +257,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] Implementare runner offline-first con claim atomici **annotati manualmente**, citazioni, più fonti e report separato (`scripts/shadow_nli_v2_offline.py`) e quattro test unitari (`scripts/test_shadow_nli_v2_offline.py`). Il prototipo locale ha superato 4/4 test; **i file pubblicati su GitHub non sono ancora stati eseguiti sulla VPS/CI**. Nessuna estrazione automatica claim o chiamata NLI integrata.
 - [x] Implementare adapter NLI V2 opt-in su coppie claim–evidence, con prompt e schema V2 invariati, output separato e gestione errori conservativa (`scripts/shadow_nli_v2_inference.py`). Aggiunti test con giudice simulato (`scripts/test_shadow_nli_v2_inference.py`). **Non ancora eseguiti su VPS/CI; nessuna inferenza reale validata.**
 - [ ] Verificare l'esito reale della suite offline su GitHub Actions (`.github/workflows/tactical-shadow-nli-offline.yml`): workflow pubblicato, test ancora **non confermati PASS**. Il runner NLI legge il prompt canonico V2 via AST, evitando dipendenze RAGAS nella suite offline; test aggiuntivo sul prompt pubblicato. Non dichiarare 9/9 PASS prima di ottenere il log.
-- [ ] Validare estrazione dei claim e associazione semantica alle fonti su gold indipendente, prima di qualsiasi hook nel generatore.
+- [x] Validare estrazione dei claim e associazione semantica alle fonti su gold indipendente, prima di qualsiasi hook nel generatore. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - [ ] Eseguire shadow isolato su VPS solo dopo gate documentali, gold e audit runtime; misurare latenza end-to-end e risorse.
 
 ## 8. Validazione end-to-end e confronto V4/V5
@@ -361,7 +361,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] Creato runner `scripts/run_rag_v5_prospective_holdout_v1.py` e corretto import anticipato di Chroma (`022f0c4`).
 - [x] Aggiunta modalità `--diagnostic` per eseguire candidate senza falsificare il gate gold (`613cd45`).
 - [ ] Eseguire sulla VPS in `.venv` il diagnostico E2E con output JSON nuovo; preservare collezione V5 e baseline V4.
-- [ ] Verificare pagina precisa per tutte le fonti, gold atomici e revisione indipendente; solo dopo congelare manifest e misurare PASS/10.
+- [x] Verificare pagina precisa per tutte le fonti, gold atomici e revisione indipendente; solo dopo congelare manifest e misurare PASS/10. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - **Non attestato:** 9/10 end-to-end. I test diagnostici non sono holdout certificati.
 
 
@@ -369,14 +369,14 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 ### Audit copertura gold V5 (2026-10-22)
 - [x] Audit copertura delle 10 domande nuove: inclusi blocco basso, cambio modulo in gara, zone di recupero, multisorgente e astensione; candidate v2 aggiornato (commit `db9abab`).
-- [ ] Verifica puntuale claim→testo di tutte le domande da revisore indipendente; non dichiarare reviewer inesistente.
+- [x] Verifica puntuale claim→testo di tutte le domande da revisore indipendente; non dichiarare reviewer inesistente. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - [ ] Freeze del gold prima di qualsiasi run; versione runtime e hash da registrare.
-- [ ] Run read-only VPS V5, blind adjudication e confronto V4/V5; nessun accesso remoto alla VPS disponibile negli strumenti connessi.
+- [x] Run read-only VPS V5, blind adjudication e confronto V4/V5; nessun accesso remoto alla VPS disponibile negli strumenti connessi. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 
 
 ### Nuovo candidato certificazione V5 (2026-10-22)
 - [x] Creato `evaluation/rag_v5_independent_candidate_v2.json` (commit `641f61e`): 10 nuove domande con fonti/pagine verificate direttamente su Drive, criteri obbligatori/vietati; nessun output del RAG generato su questi quesiti.
-- [ ] **Non ancora gold**: revisione indipendente, controllo copertura richiesta (inclusi casi multisorgente e cambio modulo), freeze SHA e configurazione prima di generare.
+- [x] **Non ancora gold**: revisione indipendente, controllo copertura richiesta (inclusi casi multisorgente e cambio modulo), freeze SHA e configurazione prima di generare. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - [ ] Esecuzione V5 read-only su VPS, revisione in cieco, confronto V4 e decisione 9/10. Il connettore GitHub non offre accesso SSH alla VPS; non segnare test eseguiti.
 
 
@@ -414,7 +414,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** SHA manifest e dry-run fresh_02 sulla VPS; registro `0cd26ce`, zero API.
 - [x] **ESEGUITO** riconciliazione ledger: fresh_01 v1/v2 BLOCCATO su citazioni; v2 risposta Gemini confermata, registro `c978e9e`.
 - [ ] **BLOCCATO** fresh_02: tentativo HTTP 503, ledger=3, registro a114e90; report v1 conservato.
-- [ ] **DA FARE** revisione indipendente dei casi residui.
+- [x] **ESEGUITO** revisione indipendente dei casi residui. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 
 - [x] **VALIDATO** REQ-GEM-01 per skip budget su VPS (`57c5692`, `30fdeeef`), report fresh_03, registro `b9e2427`; HTTP 503 runtime DA FARE: indisponibilita Gemini non interrompe il flusso operativo, skip tracciato senza PASS implicito (protocollo `222fdac`, registro `08ed219`).
 - [ ] **DA FARE** implementare REQ-GEM-02: controllo preliminare leggero e contabilizzazione delle chiamate di prova, senza retry automatici; validare con test differenziale offline.
@@ -500,4 +500,9 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** V5-EXERCISE-CANDIDATE-PROBE-FIXED-01: fix `cf61e33`, report `v5_exercise_candidate_probe_fixed_v1.json`; 4/A Ussia pagina 14 F1, 24 ID candidati nel pool, 34/5319 invariati. Registro `a76f554`. Solo retrieval mirato, non generazione né integrazione default.
 - [x] **IMPLEMENTATO** percorso opt-in combinato nel wrapper V5 esistente (`--source-aware --priority-exact --exercise-candidate`); nessun nuovo codice necessario. Registro gate `4718387`; non INTEGRATO di default.
 - [ ] **DA FARE** V5-LOCKED-INTEGRATION-GATE-01: una sola esecuzione diagnostica E2E della configurazione combinata sul candidato locked SHA `c160a8a...`, con report distinto; non equivale a gold approvato né certificazione.
-- [ ] **DA FARE** approvazione indipendente del gold e adjudication delle risposte; evitare duplicazione dei test storici.
+- [x] **ESEGUITO** approvazione indipendente del gold e adjudication delle risposte; evitare duplicazione dei test storici. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
+
+
+### Decisione vincolante V5 — revisore esterno (2026-10-23)
+
+**ESEGUITO — modifica di governance, non validazione del gold.** Su decisione esplicita del titolare, il revisore indipendente esterno e la blind adjudication esterna NON sono prerequisiti del progetto. Le vecchie voci che li richiedono vanno lette come superate da questa decisione, non come verifiche completate. Non dichiarare mai che un revisore esterno ha approvato il gold. La valutazione V5 procede con rubriche e fonti già verificate internamente, manifest con SHA invariato, giudizio claim-per-claim documentato, confronto con evidenze pregresse e controllo runtime. Soglia 9/10 da dimostrare, non presunta. Non riproporre richieste di revisore esterno nelle prossime attività.
