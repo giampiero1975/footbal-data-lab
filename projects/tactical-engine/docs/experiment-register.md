@@ -64,3 +64,12 @@ Uno stato superiore **non** si deduce dal precedente. In particolare VALIDATO sh
 ### V5-REF-06 preflight mirato
 
 Commit `a8cfef6`: gestione distanze assenti per chunk lessicali e opzioni `--retrieval-only`, `--probe-question` nel runner effettivo. Nessun report runtime disponibile. Stato: IMPLEMENTATO. Prova successiva: una domanda diagnostica, niente gold e niente generazione; verificare F1, indice immutato e assenza errori.
+
+### V5-REF-06 — Esito probe runner effettivo (2026-10-23)
+
+- Attività: regressione mirata del percorso opt-in nel runner effettivo, distinta dai test shadow già conclusi.
+- Script: `scripts/smoke_test_rag_v5_e2e.py`, commit `a8cfef6a84d259a78606524f24a61659ca00cfb1`.
+- Report: `rag_v5_effective_priority_probe_v1.json`, ricevuto in chat; SHA-256 `e52c802051873703c197e8b28123a580a3b56a2268a2309b11e4d5f764f6bbda`.
+- Risultato: Foscarini figura 20 promossa a F1, un candidato esatto, 8 evidenze; Chroma 5319 prima e dopo; retrieval-only, nessuna risposta generata, nessun errore nel report.
+- Decisione: VALIDATO per la sola probe del retrieval nel runner effettivo. Il forwarding wrapper è verificato staticamente, non esercitato in questa probe. Nessuna certificazione E2E o qualità della risposta; mantenere opt-in default off.
+- Stato: VALIDATO (probe retrieval); integrazione end-to-end del candidato locked ancora DA FARE.
