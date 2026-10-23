@@ -493,4 +493,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-EXERCISE-CANDIDATE-DRYRUN-01: VPS `Transizioni.Ussia.json`, 34 unità, dry-run senza Chroma/embedding/scritture; registro `2beef52`. Non equivale a retrieval o certificazione.
 - [x] **ESEGUITO** V5-EXERCISE-CANDIDATE-CREATE-01: operatore conferma creazione collection isolata; output completo non acquisito, conteggi 34/5319 ancora da verificare (`f827797`). Nessuna promozione.
 - [x] **IMPLEMENTATO** V5-EXERCISE-CANDIDATE-RETRIEVAL-IMPLEMENT-01: flag opt-in `--exercise-candidate` nel runner V5 (`0a7223d`) e wrapper (`bdd093b`); default invariato, nessun test runtime (`f827797`).
-- [ ] **DA FARE** verifica mirata runtime nuova modalità opt-in, conteggi baseline 5319 e candidata 34, output JSON e decisione prima di integrazione; nessun benchmark duplicato.
+- [x] **ESEGUITO** primo controllo runtime opt-in: candidato parziale 12/34, arresto prima del retrieval; nessuna generazione. Registro `c6b3ef2`.
+- [x] **IMPLEMENTATO** V5-EXERCISE-CANDIDATE-PARTIAL-RECOVERY-01: `--resume-candidate` verifica record esistenti e aggiunge solo quelli mancanti (`0d98281`), registro `c6b3ef2`.
+- [ ] **DA FARE** riprendere collection candidata, confermare 34/34 e baseline 5319, quindi effettuare un solo retrieval mirato opt-in.
