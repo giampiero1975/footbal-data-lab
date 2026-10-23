@@ -71,6 +71,7 @@ def main():
     ap.add_argument("--limit",type=int,default=8)
     ap.add_argument("--priority-exact",action="store_true",help="Opt-in exact-reference promotion; default off")
     ap.add_argument("--source-aware", action="store_true")
+    ap.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate retrieval")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
     args=ap.parse_args()
@@ -80,12 +81,20 @@ def main():
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
     count=coll.count()
+    candidate=None
+    candidate_count=None
+    if args.exercise_candidate:
+        candidate=chromadb.PersistentClient(path=DB).get_collection("dribbling_tactics_v5_exercise_candidate_v1")
+        candidate_count=candidate.count()
+        if candidate_count!=34:
+            raise RuntimeError(f"Unexpected exercise candidate count {candidate_count}; expected 34")
     if count!=5319:raise RuntimeError(f"V5 record count changed: {count}; refusing test")
     embed=OllamaEmbedding(model_name="qwen3-embedding:0.6b",base_url="http://127.0.0.1:11434")
     rerank=CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
     report={"collection":COLLECTION,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
-            "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,"priority_exact_enabled":args.priority_exact,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
+            "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
+            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -118,6 +127,17 @@ def main():
                             raw = meta.get("raw_text") or doc
                             rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
                             known.add(cid)
+            candidate_ids=[]
+            if candidate is not None and re.search(r"\\bussia\\b",question,re.I):
+                extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
+                known={r["id"] for r in rows}
+                for cid,doc,meta,dist in zip(extra["ids"][0],extra["documents"][0],extra["metadatas"][0],extra["distances"][0]):
+                    if cid not in known:
+                        rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),
+                                     "pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),
+                                     "fingerprint":hashlib.sha256(norm(doc).encode()).hexdigest()})
+                        known.add(cid)
+                        candidate_ids.append(cid)
             priority_ids=set()
             if args.priority_exact:
                 ref=reference(question)
@@ -157,7 +177,8 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
+                   "source_aware_source":source_hint,"exercise_candidate_ids":candidate_ids,
+                   "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
                    "alias_chunks_skipped":dropped,
@@ -170,7 +191,9 @@ def main():
         report["error"]=f"{type(exc).__name__}: {exc}"
         print("ERROR:",report["error"],flush=True)
     report["count_after"]=coll.count()
-    report["index_unchanged"]=(report["count_after"]==count)
+    if candidate is not None:
+        report["exercise_candidate_count_after"]=candidate.count()
+    report["index_unchanged"]=(report["count_after"]==count and (candidate is None or report["exercise_candidate_count_after"]==candidate_count))
     if args.output:
         args.output.parent.mkdir(parents=True,exist_ok=True)
         args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
