@@ -108,7 +108,7 @@ def main():
             source_hint = None
             if args.source_aware:
                 named = {"ussia":"Transizioni.Ussia","foscarini":"manovre_offensive_vari_sistemi_gioco_Foscarini"}
-                matches = [v for k,v in named.items() if re.search(r"\\b"+k+r"\\b",question,re.I)]
+                matches = [v for k,v in named.items() if re.search(r"\b"+k+r"\b",question,re.I)]
                 if len(matches)==1:
                     source_hint = matches[0]
                     filtered = coll.query(query_embeddings=[embedding],n_results=24,where={"source":source_hint},include=["documents","metadatas","distances"])
