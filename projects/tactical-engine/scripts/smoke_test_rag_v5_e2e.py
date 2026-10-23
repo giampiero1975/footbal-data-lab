@@ -74,7 +74,6 @@ def main():
     if args.priority_exact:
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
-    if args.probe_question and not args.retrieval_only:ap.error("--probe-question requires --retrieval-only")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
     count=coll.count()
