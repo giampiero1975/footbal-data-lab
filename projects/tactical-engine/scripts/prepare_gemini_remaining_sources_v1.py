@@ -20,7 +20,7 @@ CASES = {
     "fresh_06": [("ussia", 24)],
     "fresh_07": [("foscarini", 22)],
     "fresh_08": [("foscarini", 22)],
-    "fresh_09": [("transizioni", 4)],
+    "fresh_09": [("transizioni", 3)],
     "fresh_10": [("ussia", 17), ("transizioni", 3)],
 }
 
