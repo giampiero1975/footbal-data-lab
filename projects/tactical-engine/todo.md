@@ -426,3 +426,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** test differenziale offline rollover Pacific e migrazione UTC (`dfc4f37`), VPS 5/5, ledger reale invariato, zero API; registro `840639d`.
 
 - [x] **VALIDATO** hash SHA-256 manifest gold candidato V5 su GitHub e VPS (`c160a8a2128e05eda50842230c5f4aad2bf9a8085f4240c8ee893ed2e3a3fa71`); protocollo corretto `553f050`, registro `5498948`. Manifest invariato; revisione indipendente e freeze BLOCCATO.
+
+- [x] **VALIDATO** revisione tecnico-documentale interna rubriche V5; non equivale a revisione indipendente (`b4dbaf7`).
+- [x] **IMPLEMENTATO** allineamento SHA wrapper al manifest verificato (`2090c10`); verifica VPS DA FARE.
+- [x] **ESEGUITO** fingerprint statico parziale runner V5 su output VPS (`b4dbaf7`); fingerprint runtime completo DA FARE.
