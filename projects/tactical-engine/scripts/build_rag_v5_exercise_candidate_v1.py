@@ -37,8 +37,11 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--input", type=Path, default=ROOT / "knowledge/processed/formations-and-systems/Transizioni.Ussia.json")
     ap.add_argument("--write-candidate", action="store_true")
+    ap.add_argument("--resume-candidate", action="store_true", help="Resume only verified partial candidate records")
     ap.add_argument("--batch-size", type=int, default=4)
     args = ap.parse_args()
+    if args.write_candidate and args.resume_candidate:
+        ap.error("Choose --write-candidate or --resume-candidate, not both")
     if args.batch_size < 1:
         ap.error("batch-size must be positive")
     path = args.input.resolve()
@@ -50,7 +53,7 @@ def main():
     if len({r[0] for r in data}) != len(data):
         raise RuntimeError("Duplicate candidate IDs")
     print(f"PLAN candidate={CANDIDATE} source={path.name} units={len(data)}")
-    if not args.write_candidate:
+    if not (args.write_candidate or args.resume_candidate):
         print("DRY_RUN: no Chroma access, no embeddings, no writes")
         return
     import chromadb
@@ -59,17 +62,38 @@ def main():
     if BASELINE not in [c.name for c in db.list_collections()]:
         raise RuntimeError("Baseline V5 missing; refusing write")
     baseline_before = db.get_collection(BASELINE).count()
-    if CANDIDATE in [c.name for c in db.list_collections()]:
-        raise RuntimeError("Candidate already exists; refusing overwrite or resume")
-    collection = db.create_collection(CANDIDATE, metadata={"embedding_model": MODEL, "pipeline": "v5_exercise_candidate_v1", "source": path.name})
+    names = {c.name for c in db.list_collections()}
+    if args.resume_candidate:
+        if CANDIDATE not in names:
+            raise RuntimeError("No partial candidate exists")
+        collection = db.get_collection(CANDIDATE)
+        if collection.metadata != {"embedding_model": MODEL, "pipeline": "v5_exercise_candidate_v1", "source": path.name}:
+            raise RuntimeError("Candidate metadata mismatch")
+        old = collection.get(include=["documents", "metadatas"])
+        expected = {identifier: (document, metadata) for identifier, document, metadata in data}
+        for i, identifier in enumerate(old["ids"]):
+            if identifier not in expected or old["documents"][i] != expected[identifier][0] or old["metadatas"][i] != expected[identifier][1]:
+                raise RuntimeError("Candidate contains unexpected or changed record: " + identifier)
+        existing = set(old["ids"])
+        print(f"RESUME verified_existing={len(existing)} missing={len(data)-len(existing)}")
+    else:
+        if CANDIDATE in names:
+            raise RuntimeError("Candidate already exists; refusing overwrite")
+        collection = db.create_collection(CANDIDATE, metadata={"embedding_model": MODEL, "pipeline": "v5_exercise_candidate_v1", "source": path.name})
+        existing = set()
     embedder = OllamaEmbedding(model_name=MODEL, base_url="http://127.0.0.1:11434")
     for offset in range(0, len(data), args.batch_size):
-        batch = data[offset:offset + args.batch_size]
+        batch = [row for row in data[offset:offset + args.batch_size] if row[0] not in existing]
+        if not batch:
+            continue
         vectors = embedder.get_text_embedding_batch([r[1] for r in batch], show_progress=False)
         collection.add(ids=[r[0] for r in batch], documents=[r[1] for r in batch], metadatas=[r[2] for r in batch], embeddings=vectors)
     if db.get_collection(BASELINE).count() != baseline_before:
         raise RuntimeError("Baseline count changed; investigate immediately")
-    print(f"CANDIDATE_CREATED rows={collection.count()} baseline_unchanged={baseline_before}")
+    final = collection.get(include=[])
+    if set(final["ids"]) != {r[0] for r in data}:
+        raise RuntimeError("Candidate incomplete after write")
+    print(f"CANDIDATE_COMPLETE rows={collection.count()} baseline_unchanged={baseline_before}")
 
 if __name__ == "__main__":
     main()
