@@ -430,3 +430,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** revisione tecnico-documentale interna rubriche V5; non equivale a revisione indipendente (`b4dbaf7`).
 - [x] **IMPLEMENTATO** allineamento SHA wrapper al manifest verificato (`2090c10`); verifica VPS DA FARE.
 - [x] **ESEGUITO** fingerprint statico parziale runner V5 su output VPS (`b4dbaf7`); fingerprint runtime completo DA FARE.
+
+- [x] **VALIDATO** risorse VPS V5 e hash script, senza generazione; registro `65ffe1e`. Nessuna ripetizione richiesta. Commit HEAD VPS non acquisito; freeze BLOCCATO.
