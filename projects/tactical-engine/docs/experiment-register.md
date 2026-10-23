@@ -365,3 +365,7 @@ Attivita: valutazione residua di Smarcamento. Script: nessuna nuova esecuzione. 
 ### V5-SMARCAMENTO-ORIGINAL-LAYOUT-REVIEW-01
 
 Attivita: esame pagina 6 PDF originale, pagina stampata 10. Script: nessuno. Commit report: c7a65b8. Report: docs/v5-smarcamento-original-layout-review.md. Risultato: i riferimenti 109, 115, 122 rappresentano un'unica esercitazione con due esempi illustrativi; il testo specifica sempre stesso esercizio. Decisione: identita VALIDATO sul documento originale, nessuna integrazione V2 o Chroma. Stato: VALIDATO.
+
+### V5-EXERCISE-CANDIDATE-BUILDER-01
+
+Attivita: preparazione di collection candidata isolata per esercitazioni Ussia. Script: scripts/build_rag_v5_exercise_candidate_v1.py. Commit: d8e7741. Report: nessun report runtime; solo implementazione GitHub. Risultato: builder opt-in con dry-run predefinito, estrattore V2, metadati di provenienza e collection separata. Decisione: prima verificare percorso JSON Ussia e comportamento offline; scrittura candidata solo dopo autorizzazione operativa e verifica rollback. Baseline V5 e runner invariati. Stato: IMPLEMENTATO.
