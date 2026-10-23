@@ -309,3 +309,7 @@ Attivita: definizione campione e criteri di accettazione per futura analisi diff
 ### V5-EXERCISE-HEADING-CONTEXT-IMPLEMENT-01
 
 Attivita: implementare ispezione mirata e read-only delle intestazioni Docling e dei riferimenti per tre fonti selezionate nel piano di accettazione. Script: scripts/inspect_exercise_heading_context_v1.py. Commit: 8dd613f. Report previsto: evaluation/exercise_heading_context_v1.json, non ancora prodotto. Risultato: IMPLEMENTATO; script circoscritto a smarcamento_marcamento, la_punta_centrale_Gritti e Allegati_2832014181753; heading, pagine, self_ref e due intestazioni precedenti/successive, classificazione review_required. Decisione: richiedere singola esecuzione offline su VPS, senza replay dei test Ussia, retrieval, embedding o scrittura Chroma. Stato: IMPLEMENTATO.
+
+### V5-EXERCISE-HEADING-CONTEXT-OFFLINE-01
+
+Attivita: lettura del report sulle intestazioni di tre fonti. Script: scripts/inspect_exercise_heading_context_v1.py. Commit script: 8dd613f. Report: exercise_heading_context_v1.json prodotto sulla VPS e fornito dall'operatore. Risultato: ESEGUITO; 22 candidati, di cui 8 smarcamento_marcamento, 6 la_punta_centrale_Gritti, 8 Allegati_2832014181753. Riferimenti Docling e pagine presenti. Tutte le voci rimangono review_required. Decisione: confini non validati; evitare reindicizzazione e replay di test precedenti. Stato: ESEGUITO.
