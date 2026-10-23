@@ -12,6 +12,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST = ROOT / "evaluation/rag_v5_independent_candidate_v2.json"
@@ -159,11 +160,12 @@ def main():
         raise SystemExit("GEMINI_API_KEY_MISSING")
     # Local persistent budget; refuse on errors rather than retrying blindly.
     ledger = ROOT / "evaluation/.gemini_review_request_ledger.json"
-    today = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    now = dt.datetime.now(dt.timezone.utc)
+    today = now.astimezone(ZoneInfo('America/Los_Angeles')).date().isoformat()
     used = {}
     if ledger.exists():
         used = json.loads(ledger.read_text(encoding="utf-8"))
-    count = int(used.get(today, 0))
+    count = max(int(used.get(now.date().isoformat(), 0)), int(used.get('PT:' + today, 0)))
     if count >= args.max_daily_requests:
         if args.optional:
             meta.update({"status": "BLOCCATO", "skipped": True, "reason": "LOCAL_DAILY_BUDGET_EXHAUSTED"})
@@ -171,7 +173,7 @@ def main():
             print("AUXILIARY_REVIEW_SKIPPED", args.output)
             return
         raise SystemExit("LOCAL_DAILY_BUDGET_EXHAUSTED")
-    used[today] = count + 1
+    used['PT:' + today] = count + 1
     ledger.parent.mkdir(parents=True, exist_ok=True)
     ledger.write_text(json.dumps(used, indent=2), encoding="utf-8")
     endpoint = "https://generativelanguage.googleapis.com/v1beta/models/" + args.model + ":generateContent"
