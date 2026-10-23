@@ -418,3 +418,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [ ] **DA FARE** implementare REQ-GEM-01: indisponibilita Gemini non interrompe il flusso operativo, skip tracciato senza PASS implicito (protocollo `222fdac`, registro `08ed219`).
 - [ ] **DA FARE** implementare REQ-GEM-02: controllo preliminare leggero e contabilizzazione delle chiamate di prova, senza retry automatici; validare con test differenziale offline.
+
+- [x] **VALIDATO** riscontro AI Studio: Free Tier Gemini 3 Flash 3/20 RPD, errore HTTP 503; registro `93af115`.
+- [ ] **DA FARE** adeguare contatore alla giornata Pacific e quota configurabile; preflight read-only senza chiamata di generazione; Gemini resta controllo formale opzionale.
