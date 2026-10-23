@@ -373,3 +373,11 @@ Attivita: preparazione di collection candidata isolata per esercitazioni Ussia. 
 ### V5-EXERCISE-CANDIDATE-DRYRUN-01
 
 Attivita: dry-run VPS del builder candidato isolato Ussia. Script: scripts/build_rag_v5_exercise_candidate_v1.py (commit d8e7741). Report: output shell operatore 2026-10-23, PLAN candidate=dribbling_tactics_v5_exercise_candidate_v1 source=Transizioni.Ussia.json units=34; DRY_RUN no Chroma access, no embeddings, no writes. Risultato: ESEGUITO con 34 unita, coerenti con precedente estrazione V2; non e una verifica della qualita semantica o del retrieval. Decisione: autorizzare solo creazione opt-in della collection candidata separata, con baseline intatta e successiva verifica conteggi; nessuna promozione automatica. Stato: ESEGUITO.
+
+### V5-EXERCISE-CANDIDATE-CREATE-01
+
+Attivita: creazione collection isolata sulla VPS dopo dry-run. Script: build_rag_v5_exercise_candidate_v1.py (d8e7741). Report: conferma dell'operatore dell'esecuzione della shell; output completo non allegato, valori rows e baseline non verificati indipendentemente. Risultato: ESEGUITO secondo conferma operatore; verifica dei conteggi runtime ancora DA FARE. Decisione: mantenere candidata isolata, non promuovere senza riscontro 34/5319. Stato: ESEGUITO.
+
+### V5-EXERCISE-CANDIDATE-RETRIEVAL-IMPLEMENT-01
+
+Attivita: predisporre retrieval opt-in candidato nel runner effettivo e wrapper. Script: smoke_test_rag_v5_e2e.py (0a7223d), run_rag_v5_locked_candidate_v2.py (bdd093b). Report: commit GitHub dei due script; nessun report VPS. Risultato: IMPLEMENTATO flag --exercise-candidate, merge di candidati Ussia prima del rerank, verifica 34 record, baseline 5319, controllo conteggi finali; default invariato. Decisione: verifica runtime mirata su flag nuovo prima di qualsiasi benchmark E2E, nessuna promozione. Stato: IMPLEMENTATO.
