@@ -473,4 +473,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **IMPLEMENTATO** V5-EXERCISE-HEADING-CONTEXT-IMPLEMENT-01: ispezione read-only delle tre fonti del piano in `scripts/inspect_exercise_heading_context_v1.py` (commit `8dd613f`); registro `2a182b2`. Nessuna indicizzazione.
 
-- [ ] **DA FARE** eseguire una sola volta `inspect_exercise_heading_context_v1.py` sulle tre fonti selezionate e acquisire `evaluation/exercise_heading_context_v1.json`; nessun test Ussia o benchmark RAG.
+- [x] **ESEGUITO** V5-EXERCISE-HEADING-CONTEXT-OFFLINE-01: report `exercise_heading_context_v1.json` analizzato su 3 fonti (22 candidati: 8 smarcamento, 6 Gritti, 8 Allegati). Tutti `review_required`, confini non validati. Registro commit `ee72879`; nessun test ripetuto.
+
+- [ ] **DA FARE** determinare se evidenze gia registrate consentono la verifica dei confini per le tre fonti; solo se insufficienti progettare un controllo aggiuntivo distinto, senza modifica Chroma.
