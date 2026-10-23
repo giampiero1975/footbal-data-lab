@@ -467,4 +467,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** V5-EXERCISE-HEADING-COVERAGE-01: inventario statico read-only `scripts/audit_exercise_heading_coverage_v1.py` (`a240657`), registro `9a218b7`. Non equivale a verifica di estrazione su altre fonti.
 - [x] **ESEGUITO** V5-EXERCISE-HEADING-COVERAGE-OFFLINE-01: inventario `evaluation/exercise_heading_coverage_v1.json` su 141 documenti, 3 compatibili V2 e 38 con altre convenzioni (183 intestazioni); registro `994c627`. Nessun benchmark o modifica Chroma.
 
-- [ ] **DA FARE** definire regole documentate per distinguere intestazioni di singole esercitazioni da titoli generici e per delimitare sezioni su famiglie documentali differenti; prima riconciliare eventuali script/report esistenti, senza ripetere test Ussia.
+- [x] **ESEGUITO** V5-EXERCISE-HEADING-FAMILIES-DESIGN-01: tassonomia intestazioni e confini documentata in `docs/v5-exercise-heading-families-design.md` (commit `2ee613a`), registro `806f312`. Nessun test duplicato.
+
+- [ ] **DA FARE** definire campione e criteri di accettazione per analisi offline non duplicata su convenzioni alternative; verificare evidenze pregresse prima di autorizzare lo script. Nessuna modifica Chroma.
