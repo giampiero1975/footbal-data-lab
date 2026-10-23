@@ -460,4 +460,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-EXERCISE-EXTRACT-OFFLINE-01: report V1 `evaluation/ussia_exercise_units_v1.json` esaminato; 4/A preservata, riscontrati refuso esercizio 10, confini sezioni psicocinetica/portiere e ID ricorrenti; registro aggiornato (`61e1c07`). Nessun test ripetuto.
 - [x] **IMPLEMENTATO** V5-EXERCISE-EXTRACT-V2-01: `scripts/extract_exercise_units_v2.py` (`23cc0db`), confini e ID distinti per riferimento Docling. Non integrato nella pipeline.
-- [ ] **DA FARE** verificare esclusivamente le differenze della V2 rispetto al report V1 mediante nuovo output offline `evaluation/ussia_exercise_units_v2.json`; non reindicizzare Chroma.
+- [x] **ESEGUITO** V5-EXERCISE-EXTRACT-V2-OFFLINE-01: report `ussia_exercise_units_v2.json` analizzato (34 unita); corrette separazioni esercizio 10, 11/B e 21, 4/A invariata; registro commit `7327574`. Nessuna reindicizzazione Chroma.
+
+- [ ] **DA FARE** valutare robustezza dei confini dell'estrattore V2 su fonti diverse prima di un indice candidato isolato; non ripetere controlli Ussia gia eseguiti.
