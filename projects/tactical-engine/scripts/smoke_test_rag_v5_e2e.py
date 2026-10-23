@@ -68,10 +68,14 @@ def main():
     ap.add_argument("--timeout",type=int,default=900)
     ap.add_argument("--limit",type=int,default=8)
     ap.add_argument("--priority-exact",action="store_true",help="Opt-in exact-reference promotion; default off")
+    ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
+    ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
     args=ap.parse_args()
     if args.priority_exact:
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
+    if args.probe_question and not args.retrieval_only:ap.error("--probe-question requires --retrieval-only")
+    questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
     count=coll.count()
     if count!=5319:raise RuntimeError(f"V5 record count changed: {count}; refusing test")
@@ -79,12 +83,12 @@ def main():
     rerank=CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
     report={"collection":COLLECTION,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
-            "alias_pairs":ALIASES,"priority_exact_enabled":args.priority_exact,"questions":[],"notes":[
+            "alias_pairs":ALIASES,"priority_exact_enabled":args.priority_exact,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
     try:
-        for qid,question in QUESTIONS:
+        for qid,question in questions:
             start=time.monotonic()
             print(f"START {qid}: {question}",flush=True)
             embedding=embed.get_query_embedding(question)
@@ -130,11 +134,11 @@ def main():
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
-                       "distance":round(r["distance"],5),"text":r["text"]}
+                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"text":r["text"]}
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
-            answer,stats=chat(args.model,question,evidence,args.timeout)
+            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
@@ -156,6 +160,6 @@ def main():
         args.output.parent.mkdir(parents=True,exist_ok=True)
         args.output.write_text(json.dumps(report,ensure_ascii=False,indent=2),encoding="utf-8")
         print("REPORT:",args.output,flush=True)
-    print(f"COMPLETE {len(report['questions'])}/{len(QUESTIONS)}; V5 unchanged={report['index_unchanged']}",flush=True)
+    print(f"COMPLETE {len(report['questions'])}/{len(questions)}; V5 unchanged={report['index_unchanged']}",flush=True)
     if "error" in report:raise SystemExit(1)
 if __name__=="__main__":main()
