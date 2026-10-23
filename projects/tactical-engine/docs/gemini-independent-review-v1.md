@@ -44,3 +44,16 @@ Dopo preflight positivo, verificare Free Tier in Google AI Studio e impostare `G
 ## Decisione e rollback
 
 Freeze BLOCCATO fino a review verificabile delle dieci domande e fingerprint runtime. Non inviare risposte Ollama. Rollback: non eseguire il client, nessun effetto su Chroma/V4/V5. Non committare bundle o ledger. L'archiviazione Git del report richiede controllo e rimozione di eventuali dati sensibili e deve avvenire dopo il test.
+
+## Configurazione locale .env
+
+Il client legge automaticamente `projects/tactical-engine/.env` (non versionato), soltanto per `GEMINI_API_KEY`; una variabile ambiente gia impostata ha precedenza. E disponibile `projects/tactical-engine/.env.example` senza segreti. Dopo `git pull`, sulla VPS:
+
+```bash
+cd /opt/football-data-lab/projects/tactical-engine
+cp -n .env.example .env
+chmod 600 .env
+nano .env
+```
+
+Inserire il valore della chiave **solo** nella riga `GEMINI_API_KEY=`; non inviare la chiave via GitHub, chat o log. Il nome descrittivo `football-data-lab-review-key` non viene usato per autenticarsi. Se la chiave e stata esposta, rigenerarla in Google AI Studio prima dell'uso. Il file `.env` resta ignorato da Git.
