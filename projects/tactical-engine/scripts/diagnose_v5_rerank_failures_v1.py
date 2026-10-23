@@ -20,7 +20,7 @@ ALIASES={
  "Categoria_Tattiche del calcio - Wikipedia(1)":"Categoria_Tattiche del calcio - Wikipedia",
 }
 def norm(s):
- return re.sub(r"\\s+"," ",re.sub(r"[^\\w\\s]"," ",s.casefold())).strip()
+ return re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",s.casefold())).strip()
 def rows_for(coll,embedding,stage,n=24,where=None):
  got=coll.query(query_embeddings=[embedding],n_results=n,where=where,include=["documents","metadatas","distances"])
  out=[]
