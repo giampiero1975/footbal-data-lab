@@ -19,7 +19,7 @@ CASES=[
     ('foscarini_fig9','Che movimenti mostra la fig. 9 di Foscarini?','manovre_offensive_vari_sistemi_gioco_Foscarini'),
     ('foscarini_fig20','Quali movimenti sono illustrati nella figura 20 di Foscarini?','manovre_offensive_vari_sistemi_gioco_Foscarini'),
 ]
-REF_RE=re.compile(r'\b(?:esercitazione|esercizio|figure?|fig)\.?\s*(?:n(?:umero|\.)?\s*)?(\d{1,3})(?:\s*[/\\-]?\s*([a-z]))?\b',re.I)
+REF_RE=re.compile(r'\b(?:esercitazione|esercizio|figura|figure|fig)\.?\s*(?:n(?:umero|\.)?\s*)?(\d{1,3})(?:\s*[/\\-]?\s*([a-z]))?\b',re.I)
 def parse_reference(question):
     m=REF_RE.search(question)
     return (m.group(1),m.group(2).upper() if m.group(2) else None) if m else None
@@ -27,10 +27,10 @@ def parse_reference(question):
 def match_reference(text,ref):
     number,letter=ref
     if letter:
-        pat=rf'\b(?:esercitazione|esercizio|figure?|fig)\.?\s*(?:n(?:umero|\.)?\s*)?{re.escape(number)}\s*[/\\-]?\s*{re.escape(letter)}\b'
+        pat=rf'\b(?:esercitazione|esercizio|figura|figure|fig)\.?\s*(?:n(?:umero|\.)?\s*)?{re.escape(number)}\s*[/\\-]?\s*{re.escape(letter)}\b'
     else:
         # A bare number must not match a numbered suffix such as 20/A.
-        pat=rf'\b(?:esercitazione|esercizio|figure?|fig)\.?\s*(?:n(?:umero|\.)?\s*)?{re.escape(number)}(?!\d)\b'
+        pat=rf'\b(?:esercitazione|esercizio|figura|figure|fig)\.?\s*(?:n(?:umero|\.)?\s*)?{re.escape(number)}(?!\d)\b'
     return len(re.findall(pat,text,re.I))
 
 def toc_like(text):
