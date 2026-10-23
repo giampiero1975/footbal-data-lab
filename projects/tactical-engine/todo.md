@@ -445,3 +445,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** correzione regex boundary autore in runner (`aa2586e`), verifica VPS successiva DA FARE.
 - [x] **ESEGUITO** differenziale mirato dopo pull di `aa2586e`: fonte riconosciuta, 2/8 chunk Ussia (F3 pp. 15-16, F8 pp. 35-37) contro 0/8 baseline, indice invariato; registro V5-SOURCE-AWARE-DIFF-03 (`5a3a0bf`).
 - [ ] **DA FARE** individuare il contenuto esatto di Ussia figura 4/A (F3 riguarda 4/B; F8 riguarda esercizio 19), senza ripetere benchmark. Sistema non INTEGRATO né CERTIFICATO.
+
+- [x] **ESEGUITO** V5-USSIA-4A-MAP-01: Docling pagina 14 e chunk Chroma 10 verificati; intestazione 4/A assente da headings, testo presente; report `evaluation/ussia_4a_chunk_mapping_v1.json`, script commit `6d2930d`; registro aggiornato.
+- [ ] **DA FARE** ispezionare codice chunking V5 per preservare intestazione esercitazione e pagine; non ripetere mapping o benchmark, non reindicizzare senza decisione documentata.
