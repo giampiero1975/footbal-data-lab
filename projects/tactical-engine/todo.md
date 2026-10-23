@@ -18,7 +18,8 @@
 - [ ] Eseguire **una sola verifica mirata non duplicativa** sul nuovo flag live (differenza rispetto al replay offline già validato), inclusa la figura 20; registrare report, digest e decisione.
 
 - [x] **IMPLEMENTATO parzialmente** flag `--priority-exact` nel runner effettivo `smoke_test_rag_v5_e2e.py`, commit `a0301b6`, default off; nessun report runtime di questa nuova modifica.
-- [ ] **BLOCCATO** inoltro del flag dal wrapper `run_rag_v5_locked_candidate_v2.py`: tentativi di aggiornamento respinti dallo strumento. Riprendere dopo sblocco, poi verifica statica e regressione strettamente mirata; nessun benchmark gold anticipato.
+- [x] **IMPLEMENTATO** inoltro opt-in del flag dal wrapper `run_rag_v5_locked_candidate_v2.py` al runner V5, commit `2a2ceb9`; default invariato e rollback omettendo il flag.
+- [ ] **DA FARE** verifica statica del collegamento e regressione runtime strettamente mirata prima dello stato INTEGRATO; nessun benchmark gold anticipato.
 
 ### P1 — Gate distinti dalla chiusura del retrieval
 
