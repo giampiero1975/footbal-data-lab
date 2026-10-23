@@ -265,3 +265,7 @@ Attivita: verifica differenziale VPS del retrieval source-aware dopo correzione 
 ### V5-USSIA-4A-MAP-01
 
 Attivita: mapping Ussia 4/A originale e chunk Chroma. Script: scripts/inspect_ussia_4a_chunk_mapping_v1.py. Commit: 6d2930d. Report: evaluation/ussia_4a_chunk_mapping_v1.json (output VPS fornito). Risultato: ESEGUITO; Docling pagina 14 contiene intestazione e svolgimento; chunk_index 10 ece84a07 contiene svolgimento e pagine [12,13,14], ma headings solo SVOLGIMENTO; chunk 45 contiene riferimento 4/A solo nell'indice; count 5319 invariato. Decisione: esaminare codice di costruzione chunk e progettare correzione circoscritta, senza ripetere test o reindicizzare ora. Stato: ESEGUITO.
+
+### V5-USSIA-4A-CHUNK-CODE-01
+
+Attivita: audit statico codice chunking V5, distinto dal mapping VPS gia eseguito. Script esaminato: scripts/build_rag_index_v5_multisource.py. Commit report: c67866b. Report: docs/v5-ussia-4a-chunking-code-audit-2026-10-23.md. Risultato: ESEGUITO; HybridChunker merge_peers=True, headings da chunk.meta.headings, page_numbers da prov, ID dipendente dal testo; chunk 4/A manca dell'intestazione specifica. Decisione: progettare correzione isolata senza modificare la collection corrente; niente replay di test completati. Stato: ESEGUITO.
