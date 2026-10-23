@@ -390,3 +390,8 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] ESEGUITO: risposta figura 20 acquisita; F1 e citazione corretti, Chroma invariato; attribuzione del ruolo al giocatore 7 non supportata.
 - [x] IMPLEMENTATO: correzione prompt per ruoli e soggetti, commit f22ade7.
 - [x] VALIDATO: verifica differenziale figura 20 con prompt modificato, report `rag_v5_effective_priority_answer_fig20_promptfix_v1.json`, SHA-256 `d2d071ca77ec43b9132fff19a553f191d0e19f17129466f1a715eafb1e81f05a`; corretto ruolo 7, F1 valido, Chroma 5319 invariato. Restano digressioni F2/F4 non richieste; nessuna certificazione E2E.
+
+### V5-GEM-01 — Revisione indipendente Gemini
+- [x] **ESEGUITO** estrazione Ussia originale pp. 21–23: bundle privato `evaluation/fresh_01_sources.json`, PDF SHA-256 `6aa542e55dc88527c4d47c0e7696bb8872c71ee262120509e7dbc0fd2e683772`; registro `19aff49`.
+- [x] **IMPLEMENTATO** import `pymupdf` al posto di `fitz`, commit `34ba249`.
+- [ ] **DA FARE** preflight `fresh_01` con `--dry-run` e poi una singola chiamata Gemini autorizzata; freeze **BLOCCATO**.
