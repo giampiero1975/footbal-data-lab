@@ -498,4 +498,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-EXERCISE-CANDIDATE-RESUME-01: output VPS `verified_existing=12 missing=22`, `CANDIDATE_COMPLETE rows=34 baseline_unchanged=5319`; registro `62ee7f6`. Nessuna promozione.
 - [x] **ESEGUITO** V5-EXERCISE-CANDIDATE-PROBE-01: primo probe senza candidati per errore regex; report `v5_exercise_candidate_probe_v1.json`, registro `10922a6`.
 - [x] **VALIDATO** V5-EXERCISE-CANDIDATE-PROBE-FIXED-01: fix `cf61e33`, report `v5_exercise_candidate_probe_fixed_v1.json`; 4/A Ussia pagina 14 F1, 24 ID candidati nel pool, 34/5319 invariati. Registro `a76f554`. Solo retrieval mirato, non generazione né integrazione default.
-- [ ] **DA FARE** decidere integrazione controllata del retrieval opt-in nel percorso V5 e verificare qualità delle risposte con gold indipendente già predisposto, senza duplicare benchmark.
+- [x] **IMPLEMENTATO** percorso opt-in combinato nel wrapper V5 esistente (`--source-aware --priority-exact --exercise-candidate`); nessun nuovo codice necessario. Registro gate `4718387`; non INTEGRATO di default.
+- [ ] **DA FARE** V5-LOCKED-INTEGRATION-GATE-01: una sola esecuzione diagnostica E2E della configurazione combinata sul candidato locked SHA `c160a8a...`, con report distinto; non equivale a gold approvato né certificazione.
+- [ ] **DA FARE** approvazione indipendente del gold e adjudication delle risposte; evitare duplicazione dei test storici.
