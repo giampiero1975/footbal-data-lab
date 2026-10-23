@@ -404,4 +404,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** audit documentale fresh_01 v2: 9/9 evidenze, Gemini PASS, zero API; registro b24d0a3. Freeze globale **BLOCCATO**.
 - [x] **ESEGUITO** riconciliazione fresh_02-fresh_10: nessuna revisione indipendente verificata nel registro; fonti Drive accessibili; registro ac98eab.
 - [x] **IMPLEMENTATO** script bundle offline per fresh_02-fresh_10 (7ad9ee6; registro c686bb7).
-- [ ] **DA FARE** esecuzione VPS e verifica pagine prima della revisione indipendente.
+- [x] **ESEGUITO** preflight VPS: BLOCCATO su Foscarini pagina stampata 22, PDF di 11 pagine.
+- [x] **IMPLEMENTATO** mapping esplicito indice PDF Foscarini, commit fba8b96, registro 5cf8f57.
+- [ ] **BLOCCATO** confermare indice PDF della pagina stampata 22 prima di generare i bundle.
