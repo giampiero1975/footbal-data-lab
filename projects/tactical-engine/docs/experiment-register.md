@@ -253,3 +253,7 @@ Attivita: diagnosi differenziale delle evidenze del report E2E gia prodotto. Scr
 ### V5-SOURCE-AWARE-IMPLEMENT-01
 
 Attivita: integrazione source-aware opt-in nel runner V5 e wrapper locked. Script: smoke_test_rag_v5_e2e.py, run_rag_v5_locked_candidate_v2.py. Commit: 9170f83, 03a5e0f. Report: verifica read-back GitHub dei due file, opzione --source-aware presente e condizionata in entrambi. Risultato: IMPLEMENTATO filtro Chroma per autore esplicitamente nominato (Ussia/Foscarini), merge candidati senza scritture all'indice, rerank preesistente e default invariato. Decisione: eseguire test differenziale nuovo su opzione e verificare runtime VPS prima di qualsiasi benchmark; gold candidato non modificato. Stato: IMPLEMENTATO.
+
+### V5-SOURCE-AWARE-DIFF-02
+
+Attivita: differenziale VPS baseline vs --source-aware su domanda Ussia 4/A. Script: smoke_test_rag_v5_e2e.py. Commit correzione: aa2586e. Report: v5_source_baseline_v1.json e v5_source_aware_v1.json forniti dall'operatore; 5319 record prima/dopo, top8 identico, source_aware_source=null anche con flag attivo. Risultato: ESEGUITO, nessun delta retrieval; individuata regex con boundary doppiamente escaped nel runner. Decisione: corretta regex nel commit aa2586e; ripetere esclusivamente il caso diagnostico differenziale con nuovo codice, non benchmark shadow. Stato: ESEGUITO.
