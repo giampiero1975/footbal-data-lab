@@ -398,4 +398,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** un tentativo Gemini `fresh_01` (ledger 2026-10-23: 1), report `gemini_fresh_01_review_v1.json`: **BLOCCATO** per `UNVERIFIABLE_QUOTE`, nessun verdetto tattico; registro `1e1577b`.
 - [x] **IMPLEMENTATO** persistenza risposta grezza e diagnosi puntuale delle citazioni senza allentare il gate; commit `16b5a08`, `9cc3a53`, registro `fd7a8d7`.
 - [x] **IMPLEMENTATO** test regressione offline citazioni e report diagnostico, commit `3aefe66`, registro `126151a`.
-- [ ] **DA FARE** esecuzione test offline sulla VPS e verifica del risultato; solo dopo valutare una nuova chiamata Gemini con report v2 e differenza tecnica documentata; freeze **BLOCCATO**.
+- [x] **VALIDATO** test diagnostico offline sulla VPS, conferma utente di esito positivo, API_REQUESTS=0; registro `f51e118` (verifica sintetica, non end-to-end API).
+- [ ] **DA FARE** nuova revisione indipendente Gemini `fresh_01` con report v2 solo dopo controllo del budget giornaliero, differenza tecnica `16b5a08`/`9cc3a53` documentata; freeze **BLOCCATO**.
