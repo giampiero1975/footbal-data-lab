@@ -31,7 +31,7 @@ Uno stato superiore **non** si deduce dal precedente. In particolare VALIDATO sh
 | V5-REF-02 | Generalizzazione / `rag_v5_reference_generalization_shadow_v1.py` | `547da5c`, fix `eaad637` | `rag_v5_reference_generalization_shadow_v1.json`; hash da acquisire | Parser e riferimenti su 4 nuovi casi, senza generazione | VALIDATO (retrieval) |
 | V5-REF-03 | E2E fresh / `rag_v5_fresh_reference_e2e_shadow_v1.py` | `3d10d7f` | `rag_v5_fresh_reference_e2e_shadow_v1.json`; hash da acquisire | Quattro risposte; figura 9 F5, figura 20 con attribuzione imprecisa. Non promuovere | VALIDATO (diagnostica) |
 | V5-REF-04 | Priority replay / `rag_v5_reference_priority_shadow_v1.py` | `b570abd` | `rag_v5_reference_priority_shadow_v1.json` fornito in chat 2026-10-23; SHA-256 allegato: `49c6c81d268bf05a1fc43c398daa6a266a6aea53134199186ea80d7e7ad1fb84` (file ricevuto in chat; non ancora archiviato in Git) | 4/B F1, 6/B F1+F2, fig.9 F1, fig.20 F1; stesso top8, nessuna lettura/scrittura Chroma. Risposta fig.20 cita F1, ma attribuisce esplicitamente l'incrocio ai numeri 4 e 3, mentre il testo dice solo che segue allo scambio 4/3: lieve inferenza non garantita; verificare in regressione. **Accettato solo come replay shadow e generazione mirata**, non come certificazione end-to-end | VALIDATO (shadow) |
-| V5-REF-05 | Integrazione priorità nel percorso V5 effettivo | — | — | Attendere verifica compatibilità, rollback e regressione mirata | DA FARE |
+| V5-REF-05 | Live source-aware retrieval con flag `--priority-exact` in `rag_v5_fresh_reference_e2e_shadow_v1.py` | `bbb9b7b` | Codice Git pubblicato; report live con flag ancora assente | Priorità post-rerank dei riferimenti espliciti già in top8, massimo due, senza rimuovere risultati semantici; modalità senza flag invariata. **Non** cambia entry point locked V5 né pipeline di produzione; prima esecuzione runtime e regressione da verificare | IMPLEMENTATO |
 | V5-CERT-01 | Gold indipendente V5 | `641f61e`, audit `db9abab` | `evaluation/rag_v5_independent_candidate_v2.json` | Candidato predisposto, revisione indipendente/freeze non attestati | IMPLEMENTATO |
 | V5-CERT-02 | Certificazione V5 9/10 e confronto V4 | — | — | Non certificata; non ripetere holdout diagnostici | DA FARE |
 
@@ -42,3 +42,10 @@ Uno stato superiore **non** si deduce dal precedente. In particolare VALIDATO sh
 3. Prima di proporre un comando VPS, verificare che non ripeta un esperimento già concluso.
 4. Documentare regressioni e rollback prima di modificare un entry point funzionante; non alterare Chroma né baseline V4 senza autorizzazione.
 5. Per report disponibili soltanto nella conversazione o sulla VPS, dichiarare esplicitamente la lacuna di archiviazione Git.
+
+## Decisione integrazione controllata — 2026-10-23
+
+- **Attività:** V5-REF-05; **script:** `rag_v5_fresh_reference_e2e_shadow_v1.py --priority-exact`; **commit:** `bbb9b7b`.
+- **Report:** non ancora disponibile. **Risultato:** codice opt-in pubblicato, nessun test VPS attestato. **Decisione:** mantenere il flag disattivato per default e il candidato locked immutato fino a evidenza runtime. **Stato:** IMPLEMENTATO.
+- **Differenza tecnica rispetto ai test già conclusi:** questo script applica la priorità *durante un retrieval live con embedding, filtro fonte e reranker*, non rigioca punteggi salvati. Il successivo test deve limitarsi a verificare questa integrazione, non ripetere la campagna di benchmark.
+- **Rollback:** omettere `--priority-exact`; il comportamento precedente è conservato. Non sono previste scritture Chroma.
