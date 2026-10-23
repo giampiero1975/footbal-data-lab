@@ -465,4 +465,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [ ] **DA FARE** valutare robustezza dei confini dell'estrattore V2 su fonti diverse prima di un indice candidato isolato; non ripetere controlli Ussia gia eseguiti.
 
 - [x] **IMPLEMENTATO** V5-EXERCISE-HEADING-COVERAGE-01: inventario statico read-only `scripts/audit_exercise_heading_coverage_v1.py` (`a240657`), registro `9a218b7`. Non equivale a verifica di estrazione su altre fonti.
-- [ ] **DA FARE** eseguire una sola volta inventario intestazioni Docling `evaluation/exercise_heading_coverage_v1.json`; confrontare il report con le evidenze gia registrate prima di autorizzare altri test.
+- [x] **ESEGUITO** V5-EXERCISE-HEADING-COVERAGE-OFFLINE-01: inventario `evaluation/exercise_heading_coverage_v1.json` su 141 documenti, 3 compatibili V2 e 38 con altre convenzioni (183 intestazioni); registro `994c627`. Nessun benchmark o modifica Chroma.
+
+- [ ] **DA FARE** definire regole documentate per distinguere intestazioni di singole esercitazioni da titoli generici e per delimitare sezioni su famiglie documentali differenti; prima riconciliare eventuali script/report esistenti, senza ripetere test Ussia.
