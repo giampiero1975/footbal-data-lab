@@ -345,3 +345,7 @@ Attivita: implementazione ispezione di quattro finestre Docling. Script: scripts
 ### V5-EXERCISE-BOUNDARY-WINDOWS-OFFLINE-01
 
 Attivita: analisi delle quattro finestre Docling. Script: inspect_exercise_boundary_windows_v1.py (bb02c68). Commit report: 398860d. Report: docs/v5-exercise-boundary-windows-findings.md e JSON operatore. Risultato: individuati titoli in text/caption e confine erroneo su esercitazione 16. Decisione: progettare segmentazione sensibile ai titoli, senza modificare V2 o Chroma. Stato: ESEGUITO.
+
+### V5-EXERCISE-SEMANTIC-BOUNDARY-DESIGN-01
+
+Attivita: progettazione di regole candidate per confini semantici. Script: nessuno. Commit: b74c496. Report: docs/v5-exercise-semantic-boundary-design.md. Risultato: regole per text, caption, sottotitoli, titoli ripetuti e sezioni collettive. Decisione: eventuale prototipo offline read-only con revisione, nessuna modifica V2 o Chroma. Stato: ESEGUITO.
