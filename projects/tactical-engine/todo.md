@@ -509,3 +509,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-LOCKED-CANDIDATE-INTERNAL-ASSESSMENT-01: audit interno delle 10 risposte completato, **5/10 PASS**, soglia 9/10 non raggiunta. Report `docs/v5-locked-candidate-internal-assessment-01.md` (`506c4ba`), registro `4fc880c`. Nessun nuovo test, nessuna integrazione o certificazione.
 - [ ] **DA FARE** V5-LOCKED-CANDIDATE-FAILURE-ANALYSIS-01: analisi read-only delle cinque risposte FAIL (fresh_01/03/07/09/10) per isolare cause tecniche documentate; non ripetere benchmark senza differenza tecnica motivata.
+
+- [x] **ESEGUITO** V5-TACTICAL-CORPUS-RECONCILIATION-01: censimento nominale tattica Drive/VPS/Chroma; 141 PDF VPS, 141 source Chroma, 11 PDF calcistici Drive non trasferiti per decisione storica, file privato escluso. Report `docs/v5-tactical-corpus-reconciliation-2026-10-24.md`, commit `6f08d5a`. Nessuna indicizzazione.
+- [ ] **DA FARE** V5-TACTICAL-CORPUS-CANDIDATE-REVIEW-01: risolvere discrepanza Drive API 153/UI 154; controllare contenuto, duplicati e pertinenza degli 11 PDF calcistici senza modificare baseline; documentazione ufficiale prima di patch.
