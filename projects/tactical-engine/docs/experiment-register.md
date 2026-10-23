@@ -333,3 +333,7 @@ Attivita: analisi report di ispezione del corpo Docling. Script: scripts/inspect
 ### V5-EXERCISE-BOUNDARY-ANOMALY-REVIEW-01
 
 Attivita: revisione evidenze. Script: nessuno. Commit: f1118e8. Report: docs/v5-exercise-boundary-anomaly-review.md. Risultato: anomalie di duplicazione, figure e contenuto assente. Decisione: confini non validati; revisione ulteriore solo sui casi incerti. Stato: ESEGUITO.
+
+### V5-EXERCISE-BOUNDARY-GAP-PLAN-01
+
+Attivita: analisi delle evidenze mancanti sui confini. Script: nessuna esecuzione. Commit: c2d83bd. Report: docs/v5-exercise-boundary-gap-plan.md. Risultato: quattro finestre Docling mirate con delta rispetto ai report precedenti. Decisione: solo successiva ispezione read-only, senza replay o modifica Chroma. Stato: ESEGUITO.
