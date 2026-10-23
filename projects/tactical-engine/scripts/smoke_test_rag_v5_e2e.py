@@ -128,7 +128,7 @@ def main():
                             rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
                             known.add(cid)
             candidate_ids=[]
-            if candidate is not None and re.search(r"\\bussia\\b",question,re.I):
+            if candidate is not None and re.search(r"\bussia\b",question,re.I):
                 extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
                 known={r["id"] for r in rows}
                 for cid,doc,meta,dist in zip(extra["ids"][0],extra["documents"][0],extra["metadatas"][0],extra["distances"][0]):
