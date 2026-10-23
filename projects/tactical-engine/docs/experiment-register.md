@@ -289,3 +289,7 @@ Attivita: correggere confini esercitazioni in variante offline isolata. Script: 
 ### V5-EXERCISE-EXTRACT-V2-OFFLINE-01
 
 Attivita: verifica differenziale V2 rispetto alle anomalie V1, senza replay dei benchmark. Script: scripts/extract_exercise_units_v2.py (commit 23cc0db). Report: ussia_exercise_units_v2.json prodotto su VPS e fornito dall'operatore. Risultato: ESEGUITO; 34 unita contro 33 V1; esercitazione 10 separata dalla 9 (pagina 23), 11/B limitata a pagina 25, 21 limitata a pagina 40; 4/A ancora autonoma a pagina 14. Le etichette 19/B e 20 ricorrono in sezioni diverse con heading_ref e hash distinti. Decisione: correzioni mirate confermate; non dichiarare integrazione, certificazione o miglioramento retrieval. Valutare robustezza dei confini su altre fonti prima di indicizzazione candidata. Stato: ESEGUITO.
+
+### V5-EXERCISE-HEADING-COVERAGE-01
+
+Attivita: inventario statico delle convenzioni delle intestazioni nei JSON Docling, distinto dai controlli Ussia e dai benchmark RAG. Script: scripts/audit_exercise_heading_coverage_v1.py. Commit: a240657. Report previsto: evaluation/exercise_heading_coverage_v1.json, non ancora prodotto. Risultato: IMPLEMENTATO; sola lettura di file locali, nessuna inferenza, embedding o modifica Chroma. Decisione: eseguire una volta l'inventario e selezionare solo successivamente un eventuale controllo differenziale su fonte non gia coperta. Stato: IMPLEMENTATO.
