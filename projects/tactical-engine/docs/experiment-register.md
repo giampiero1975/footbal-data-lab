@@ -273,3 +273,7 @@ Attivita: audit statico codice chunking V5, distinto dal mapping VPS gia eseguit
 ### V5-EXERCISE-CHUNK-DESIGN-01
 
 Attivita: progettazione documentale variante gerarchica opt-in per esercitazioni, distinta da mapping e audit gia eseguiti. Script: nessuno; implementazione DA FARE. Commit: 4fb3f8f. Report: docs/v5-exercise-aware-chunking-design.md. Risultato: ESEGUITO; definiti confini esercitazioni, titoli, provenienza, pagine e controllo sommario. Decisione: implementare estrattore separato e controlli deterministici offline; nessuna scrittura su collection V5 o ripetizione di benchmark. Stato: ESEGUITO.
+
+### V5-EXERCISE-EXTRACT-IMPLEMENT-01
+
+Attivita: implementare estrattore Docling gerarchico opt-in e isolato. Script: scripts/extract_exercise_units_v1.py. Commit: b599e3e. Report: read-back GitHub del file; esecuzione VPS DA FARE. Risultato: IMPLEMENTATO; estrazione offline con intestazione, pagine e riferimenti agli elementi, nessuna operazione Chroma o LLM. Decisione: eseguire controllo deterministico nuovo su esercitazioni 3/A, 4/A e 4/B, senza ripetere mapping e benchmark precedenti. Stato: IMPLEMENTATO.
