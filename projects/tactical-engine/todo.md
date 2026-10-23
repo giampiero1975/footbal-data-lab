@@ -407,4 +407,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** preflight VPS: BLOCCATO su Foscarini pagina stampata 22, PDF di 11 pagine.
 - [x] **IMPLEMENTATO** mapping esplicito indice PDF Foscarini, commit fba8b96, registro 5cf8f57.
 - [x] **VALIDATO** mapping Foscarini p22 = PDF 2 (b45d01f).
-- [ ] **DA FARE** bundle offline e controllo paginazione altri manuali.
+- [x] **ESEGUITO** nove bundle generati offline, zero API; registro d9b07b6.
+- [ ] **DA FARE** audit completo: 7/9 bundle ricevuti, fresh_09 e fresh_10 mancanti.
