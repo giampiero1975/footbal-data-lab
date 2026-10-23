@@ -382,4 +382,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 ### V5-REF-07 — Risposta generata runner effettivo
 - [x] IMPLEMENTATO: abilitata domanda singola con generazione nel runner effettivo, commit `00c3a77`.
-- [ ] DA FARE: acquisire una sola risposta diagnostica Foscarini figura 20 e verificarne fedeltà, citazioni e indice immutato; aggiornare registro e TODO con esito. Nessun benchmark gold.
+- [x] ESEGUITO: risposta figura 20 acquisita; F1 e citazione corretti, Chroma invariato; attribuzione del ruolo al giocatore 7 non supportata.
+- [x] IMPLEMENTATO: correzione prompt per ruoli e soggetti, commit f22ade7.
+- [ ] DA FARE: verifica differenziale della generazione con il prompt modificato; nessun nuovo benchmark gold.
