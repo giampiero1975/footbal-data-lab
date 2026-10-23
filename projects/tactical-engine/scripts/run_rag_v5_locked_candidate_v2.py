@@ -44,6 +44,7 @@ def main():
     p.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     p.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     p.add_argument("--execute", action="store_true")
+    p.add_argument("--priority-exact", action="store_true", help="Opt-in exact reference priority; default unchanged")
     p.add_argument("--approved-gold", action="store_true", help="Only if independent review has approved the locked SHA")
     args = p.parse_args()
     data = args.manifest.read_bytes()
@@ -68,6 +69,8 @@ def main():
     v5.QUESTIONS = [(x["id"], x["question"]) for x in rows]
     # --limit refers to retrieved evidence count, not the number of questions.
     sys.argv = [v5.__file__, "--limit", "8", "--output", str(args.output)]
+    if args.priority_exact:
+        sys.argv.append("--priority-exact")
     v5.main()
     report = json.loads(args.output.read_text(encoding="utf-8"))
     if len(report.get("questions", [])) != 10 or report.get("error") or not report.get("index_unchanged"):
