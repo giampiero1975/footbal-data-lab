@@ -471,4 +471,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-EXERCISE-HEADING-ACCEPTANCE-PLAN-01: piano campione e 8 criteri in `docs/v5-exercise-heading-acceptance-plan.md` (`541ccc3`), registro `8d693ec`; nessun test eseguito.
 
-- [ ] **DA FARE** riconciliare script/report esistenti per le tre fonti del piano; solo in assenza di evidenze equivalenti implementare una ispezione read-only mirata. Nessuna indicizzazione.
+- [x] **IMPLEMENTATO** V5-EXERCISE-HEADING-CONTEXT-IMPLEMENT-01: ispezione read-only delle tre fonti del piano in `scripts/inspect_exercise_heading_context_v1.py` (commit `8dd613f`); registro `2a182b2`. Nessuna indicizzazione.
+
+- [ ] **DA FARE** eseguire una sola volta `inspect_exercise_heading_context_v1.py` sulle tre fonti selezionate e acquisire `evaluation/exercise_heading_context_v1.json`; nessun test Ussia o benchmark RAG.
