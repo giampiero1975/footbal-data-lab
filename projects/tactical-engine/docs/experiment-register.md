@@ -341,3 +341,7 @@ Attivita: analisi delle evidenze mancanti sui confini. Script: nessuna esecuzion
 ### V5-EXERCISE-BOUNDARY-WINDOWS-IMPLEMENT-01
 
 Attivita: implementazione ispezione di quattro finestre Docling. Script: scripts/inspect_exercise_boundary_windows_v1.py. Commit: bb02c68. Report previsto: evaluation/exercise_boundary_windows_v1.json. Risultato: IMPLEMENTATO; estratti e provenance, nessuna esecuzione. Decisione: una sola esecuzione offline, senza modifiche agli indici. Stato: IMPLEMENTATO.
+
+### V5-EXERCISE-BOUNDARY-WINDOWS-OFFLINE-01
+
+Attivita: analisi delle quattro finestre Docling. Script: inspect_exercise_boundary_windows_v1.py (bb02c68). Commit report: 398860d. Report: docs/v5-exercise-boundary-windows-findings.md e JSON operatore. Risultato: individuati titoli in text/caption e confine erroneo su esercitazione 16. Decisione: progettare segmentazione sensibile ai titoli, senza modificare V2 o Chroma. Stato: ESEGUITO.
