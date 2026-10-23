@@ -24,6 +24,7 @@
 
 ### P1 — Gate distinti dalla chiusura del retrieval
 
+- [x] ESEGUITO: audit autore delle 10 domande fresh_01–fresh_10 il 2026-10-22 (source_claim_audit e coverage_audit nel candidato v2); non ripetere.
 - [ ] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente.
 - [x] IMPLEMENTATO: protocollo di revisione indipendente `docs/rag-v5-independent-review-gate-v1.md` (commit `0c79578`); candidato invariato.
 - [ ] BLOCCATO: freeze e certificazione V5 in attesa di revisore indipendente e fingerprint runtime.
