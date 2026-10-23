@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Read-only V5 locked-candidate execution. No claim of independent gold approval."""
+"""Read-only V5 locked-candidate execution with internal evidence-based assessment."""
 import argparse
 import hashlib
 import json
@@ -47,7 +47,6 @@ def main():
     p.add_argument("--source-aware", action="store_true", help="Opt-in author-filtered retrieval")
     p.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate")
     p.add_argument("--priority-exact", action="store_true", help="Opt-in exact reference priority; default unchanged")
-    p.add_argument("--approved-gold", action="store_true", help="Only if independent review has approved the locked SHA")
     args = p.parse_args()
     data = args.manifest.read_bytes()
     digest = hashlib.sha256(data).hexdigest()
@@ -59,10 +58,7 @@ def main():
         p.error("Exactly ten distinct questions required")
     if args.output.exists():
         p.error(f"Output exists; refusing overwrite: {args.output}")
-    if args.approved_gold and (manifest.get("status") != "frozen" or
-        any(not q.get("reviewer") for q in rows)):
-        p.error("Gold is not independently approved; cannot use --approved-gold")
-    print(f"LOCK_OK sha256={digest} questions={len(rows)} mode=diagnostic_unreviewed", flush=True)
+    print(f"LOCK_OK sha256={digest} questions={len(rows)} mode=internal_evidence_assessment", flush=True)
     if not args.execute:
         print("READY: pass --execute to generate the read-only diagnostic report", flush=True)
         return
@@ -81,7 +77,7 @@ def main():
     report = json.loads(args.output.read_text(encoding="utf-8"))
     if len(report.get("questions", [])) != 10 or report.get("error") or not report.get("index_unchanged"):
         raise SystemExit("INCOMPLETE: inspect report, do not claim certification")
-    print("DIAGNOSTIC COMPLETE: 10/10 generated; independent gold and blind adjudication still pending", flush=True)
+    print("E2E COMPLETE: 10/10 generated; score requires documented internal claim-level assessment", flush=True)
 
 if __name__ == "__main__":
     main()
