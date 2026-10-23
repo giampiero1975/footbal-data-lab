@@ -397,4 +397,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** preflight locale `fresh_01` PASS, manifest e bundle SHA256 verificati, blind=true, zero richieste API; registro commit `eca6203`.
 - [x] **ESEGUITO** un tentativo Gemini `fresh_01` (ledger 2026-10-23: 1), report `gemini_fresh_01_review_v1.json`: **BLOCCATO** per `UNVERIFIABLE_QUOTE`, nessun verdetto tattico; registro `1e1577b`.
 - [x] **IMPLEMENTATO** persistenza risposta grezza e diagnosi puntuale delle citazioni senza allentare il gate; commit `16b5a08`, `9cc3a53`, registro `fd7a8d7`.
-- [ ] **DA FARE** verifica della correzione e solo dopo eventuale nuova chiamata Gemini con report v2, differenza tecnica documentata e quota controllata; freeze **BLOCCATO**.
+- [x] **IMPLEMENTATO** test regressione offline citazioni e report diagnostico, commit `3aefe66`, registro `126151a`.
+- [ ] **DA FARE** esecuzione test offline sulla VPS e verifica del risultato; solo dopo valutare una nuova chiamata Gemini con report v2 e differenza tecnica documentata; freeze **BLOCCATO**.
