@@ -16,11 +16,11 @@ def main():
     if args.output.exists():
         raise SystemExit("REFUSING_OVERWRITE")
     try:
-        import fitz
+        import pymupdf
     except ImportError:
         raise SystemExit("MISSING_DEPENDENCY: install PyMuPDF in a dedicated venv")
     pdfbytes = args.pdf.read_bytes()
-    doc = fitz.open(stream=pdfbytes, filetype="pdf")
+    doc = pymupdf.open(stream=pdfbytes, filetype="pdf")
     pages = []
     for page in doc:
         text = page.get_text("text", sort=True)
