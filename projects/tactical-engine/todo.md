@@ -25,6 +25,8 @@
 ### P1 — Gate distinti dalla chiusura del retrieval
 
 - [ ] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente.
+- [x] IMPLEMENTATO: protocollo di revisione indipendente `docs/rag-v5-independent-review-gate-v1.md` (commit `0c79578`); candidato invariato.
+- [ ] BLOCCATO: freeze e certificazione V5 in attesa di revisore indipendente e fingerprint runtime.
 - [ ] Certificazione E2E 9/10 con blind adjudication e confronto controllato V4/V5.
 - [ ] Completare gate NLI V2 e l'eventuale integrazione shadow, riutilizzando i benchmark esistenti.
 
