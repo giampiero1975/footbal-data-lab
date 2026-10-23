@@ -36,3 +36,10 @@ Solo dopo approvazione indipendente e verifica della configurazione: predisporre
 - **REQ-GEM-02 — Prova preliminare:** prima della revisione, effettuare un controllo leggero della raggiungibilita del servizio e del modello. Se non disponibile, saltare la revisione e proseguire. Il controllo di rete non garantisce la successiva inferenza; una chiamata generateContent di prova consumerebbe quota e va contabilizzata. Evitare richieste diagnostiche ridondanti e retry illimitati.
 
 Questi requisiti sono **DA FARE** a livello di implementazione e test; non modificano retroattivamente i report. Il gate di approvazione indipendente resta obbligatorio per il freeze, anche quando il flusso operativo non viene bloccato.
+
+## Precisazione requisiti Gemini (23 ottobre 2026)
+
+- **REQ-GEM-01 (revisione):** Gemini e' soltanto supporto di controllo formale, non e' revisore tecnico obbligatorio ne' fonte di certificazione della qualita' RAG. Se assente, il flusso tecnico continua. L'eventuale requisito di revisione indipendente del benchmark resta distinto e va soddisfatto con evidenze autonome prima del freeze; nessun PASS implicito.
+- **REQ-GEM-02 (revisione):** preflight minimale: leggere prima il budget residuo locale e, se esiste un endpoint ufficiale autorizzato, la quota effettiva residua Google. Non confondere budget locale e quota Google. Non effettuare una generazione di prova soltanto per verificare disponibilita', salvo autorizzazione esplicita e contabilizzazione. Se disponibilita' o quota non sono verificabili, non inventare esiti; il controllo formale puo' essere saltato senza bloccare il flusso tecnico.
+
+La precedente formulazione della prova preliminare resta storica; questa precisazione prevale per l'implementazione. Stato: DA FARE.
