@@ -440,3 +440,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **IMPLEMENTATO** source-aware opt-in nel runner e wrapper V5 (`9170f83`, `03a5e0f`), read-back GitHub confermato, registro `c6a2ce1`. Default invariato; nessun benchmark ripetuto.
 - [ ] **DA FARE** test differenziale del nuovo flag --source-aware e fingerprint runtime VPS; successivamente valutazione su holdout nuovo e revisione indipendente. Certificazione **BLOCCATO**.
+
+- [x] **ESEGUITO** differenziale VPS source-aware iniziale: baseline e flag top8 identici, source_hint null, indice 5319 invariato; difetto regex identificato, registro `cd29d2a`.
+- [x] **IMPLEMENTATO** correzione regex boundary autore in runner (`aa2586e`), verifica VPS successiva DA FARE.
+- [ ] **DA FARE** solo nuovo differenziale mirato dopo pull di `aa2586e`; niente replica shadow/benchmark 10 casi. Certificazione BLOCCATO.
