@@ -401,4 +401,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** test diagnostico offline sulla VPS, conferma utente di esito positivo, API_REQUESTS=0; registro `f51e118` (verifica sintetica, non end-to-end API).
 - [x] **ESEGUITO** seconda richiesta Gemini `fresh_01` v2, ledger=2, `raw_review.decision=PASS`, ma validatore **BLOCCATO** su ellissi nella citazione; registro `32c8d63`.
 - [x] **IMPLEMENTATO** audit offline delle citazioni con frammenti letterali ordinati e ellissi esplicite, commit `6a6a4c2`.
-- [ ] **DA FARE** eseguire audit offline su report v2 e bundle originale, verificare evidenze e registrare decisione; nessuna nuova chiamata API; freeze **BLOCCATO**.
+- [x] **VALIDATO** audit documentale fresh_01 v2: 9/9 evidenze, Gemini PASS, zero API; registro b24d0a3. Freeze globale **BLOCCATO**.
+- [ ] **DA FARE** riconciliare e revisionare fresh_02-fresh_10 senza ripetere casi gia validati.
