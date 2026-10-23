@@ -19,7 +19,8 @@
 
 - [x] **IMPLEMENTATO parzialmente** flag `--priority-exact` nel runner effettivo `smoke_test_rag_v5_e2e.py`, commit `a0301b6`, default off; nessun report runtime di questa nuova modifica.
 - [x] **IMPLEMENTATO** inoltro opt-in del flag dal wrapper `run_rag_v5_locked_candidate_v2.py` al runner V5, commit `2a2ceb9`; default invariato e rollback omettendo il flag.
-- [ ] **DA FARE** verifica statica del collegamento e regressione runtime strettamente mirata prima dello stato INTEGRATO; nessun benchmark gold anticipato.
+- [x] **VALIDATO** probe retrieval-only nel runner effettivo: Foscarini figura 20 F1, 5319→5319, nessuna generazione; commit `a8cfef6`, report `rag_v5_effective_priority_probe_v1.json`, SHA-256 `e52c802051873703c197e8b28123a580a3b56a2268a2309b11e4d5f764f6bbda`. Preflight wrapper superato; non è test E2E del wrapper.
+- [ ] **DA FARE** decisione su integrazione E2E del wrapper opt-in e valutazione qualità risposta, senza ripetere benchmark gold.
 
 ### P1 — Gate distinti dalla chiusura del retrieval
 
