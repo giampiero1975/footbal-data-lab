@@ -484,4 +484,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** V5-EXERCISE-BOUNDARY-WINDOWS-IMPLEMENT-01: script `inspect_exercise_boundary_windows_v1.py` (`bb02c68`), registro `cc2ed17`. Nessun test eseguito.
 - [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-WINDOWS-OFFLINE-01: quattro finestre analizzate; titoli di esercitazione in `text` e `caption`, esercitazione 16 non vuota. Report `docs/v5-exercise-boundary-windows-findings.md` (`398860d`), registro `187f126`.
 - [x] **ESEGUITO** V5-EXERCISE-SEMANTIC-BOUNDARY-DESIGN-01: regole candidate documentate in `docs/v5-exercise-semantic-boundary-design.md` (`b74c496`), registro `d0302a3`. Nessun test eseguito.
-- [ ] **DA FARE** valutare prototipo offline read-only per candidati semantici, previa riconciliazione delle evidenze; nessuna integrazione V2 o Chroma.
+- [x] **ESEGUITO** V5-EXERCISE-SEMANTIC-BOUNDARY-PROTOTYPE-01: script `propose_semantic_exercise_boundaries_v1.py` (`528d90b`), report operatore con 16 candidati tutti `review_required`; registro `9206a7a`. Nessuna integrazione V2 o Chroma.
+- [ ] **DA FARE** revisionare i 16 candidati semantici senza ripetere la generazione e senza validare automaticamente i confini.
