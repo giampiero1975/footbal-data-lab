@@ -17,6 +17,9 @@
 - [ ] Validare runtime la priorità opt-in, poi decidere l'eventuale integrazione nel candidato V5 effettivo; non modificare il candidato locked senza evidenza.
 - [ ] Eseguire **una sola verifica mirata non duplicativa** sul nuovo flag live (differenza rispetto al replay offline già validato), inclusa la figura 20; registrare report, digest e decisione.
 
+- [x] **IMPLEMENTATO parzialmente** flag `--priority-exact` nel runner effettivo `smoke_test_rag_v5_e2e.py`, commit `a0301b6`, default off; nessun report runtime di questa nuova modifica.
+- [ ] **BLOCCATO** inoltro del flag dal wrapper `run_rag_v5_locked_candidate_v2.py`: tentativi di aggiornamento respinti dallo strumento. Riprendere dopo sblocco, poi verifica statica e regressione strettamente mirata; nessun benchmark gold anticipato.
+
 ### P1 — Gate distinti dalla chiusura del retrieval
 
 - [ ] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente.
