@@ -111,6 +111,7 @@ def main():
     ap.add_argument("--max-daily-requests", type=int, default=1)
     ap.add_argument("--confirm-free-tier", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--optional", action="store_true", help="Skip unavailable auxiliary review without failing the caller")
     args = ap.parse_args()
     if args.question_id not in {"fresh_%02d" % n for n in range(2, 11)}:
         raise SystemExit("REMAINING_CASES_ONLY")
@@ -184,6 +185,9 @@ def main():
     atomic_write(args.output, meta)
     print("REPORT", args.output, "STATUS", meta["status"])
     if meta["status"] != "ESEGUITO":
+        if args.optional and meta.get("error_type") in ("HTTPError", "URLError"):
+            print("AUXILIARY_REVIEW_UNAVAILABLE; no independent approval")
+            return
         raise SystemExit(2)
 
 if __name__ == "__main__":
