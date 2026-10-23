@@ -409,4 +409,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** mapping Foscarini p22 = PDF 2 (b45d01f).
 - [x] **ESEGUITO** nove bundle generati offline, zero API; registro d9b07b6.
 - [x] **ESEGUITO** audit 9/9; correzione fresh_09 IMPLEMENTATO (c3df934).
-- [ ] **DA FARE** aggiornare bundle privato fresh_09.
+- [x] **VALIDATO** fresh_09 pagina 3: bundle aggiornato e verificato, backup conservato, zero API.
+- [ ] **DA FARE** revisione indipendente dei casi residui.
