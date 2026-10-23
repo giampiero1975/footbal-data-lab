@@ -454,3 +454,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-EXERCISE-CHUNK-DESIGN-01: progettazione variante gerarchica opt-in documentata in `docs/v5-exercise-aware-chunking-design.md` (commit `4fb3f8f`), registro aggiornato (`724c2c5`). Nessuna scrittura su Chroma e nessun test ripetuto.
 - [ ] **DA FARE** implementare estrattore gerarchico isolato e controlli offline deterministici su 3/A, 4/A e 4/B; collection V5, runner e gold invariati.
+
+- [x] **IMPLEMENTATO** V5-EXERCISE-EXTRACT-IMPLEMENT-01: estrattore Docling isolato `scripts/extract_exercise_units_v1.py` (`b599e3e`); registro aggiornato (`c459a3f`). Nessun indice o runner modificato.
+- [ ] **DA FARE** controllo offline deterministico del nuovo estrattore su 3/A, 4/A, 4/B e sommario; acquisire report in `evaluation/`, senza ripetere test esistenti.
