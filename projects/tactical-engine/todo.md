@@ -434,3 +434,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** risorse VPS V5 e hash script, senza generazione; registro `65ffe1e`. Nessuna ripetizione richiesta. Commit HEAD VPS non acquisito; freeze BLOCCATO.
 
 - [x] **ESEGUITO** riconciliazione offline report E2E V5 gia prodotto: 4/10 su mandatory gold, non 9/10 (`96fdc9b`). Nessuna nuova inferenza. Interventi mirati DA FARE; certificazione BLOCCATO.
+
+- [x] **ESEGUITO** diagnosi top8 dei dieci casi E2E esistenti, report `docs/rag-v5-e2e-failure-analysis-2026-10-23.md` (`374c2cd`), registro `f0d4272`. Nessuna nuova generazione.
+- [ ] **DA FARE** delta tecnico source-aware nel runner V5 effettivo per gap fresh_03/04/07/10, senza ripetere shadow V5-REF-05; usare gold di sviluppo separato e nuovo holdout per certificazione.
