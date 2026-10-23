@@ -514,3 +514,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [ ] **BLOCCATO** V5-TACTICAL-CORPUS-CANDIDATE-REVIEW-01: escluso dal perimetro corrente per decisione esplicita del titolare. Non analizzare, scaricare o indicizzare PDF aggiuntivi da Drive. Priorità: diagnosi dei cinque FAIL V5 sul corpus VPS/Chroma invariato.
 
 - [x] **ESEGUITO** V5-RERANK-TRACE-01: diagnostica read-only VPS fresh_03/fresh_10, script `scripts/diagnose_v5_rerank_failures_v1.py` (`c4ee2b5`), report `docs/v5-rerank-trace-01.md` (`adf47ee`); fresh_03 manuale Transizioni assente da dense24; fresh_10 Ussia pagina 17 al rango 9 del reranker, fuori top8. 5319/34 invariati. Nessun nuovo benchmark.
+
+- [x] **IMPLEMENTATO** V5-SOURCE-COVERAGE-SHADOW-01: script isolato `scripts/v5_source_coverage_shadow_v1.py` (`c400bf0`) per selezionare evidenze da trace già esistente, senza modifica del runner principale, Chroma o generazione. Per fresh_03 segnala fonte assente dal pool; per fresh_10 promuove pagina 17 quando presente. Esecuzione VPS DA FARE; nessuna variazione al benchmark locked 5/10.
