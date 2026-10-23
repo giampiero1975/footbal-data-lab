@@ -457,3 +457,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **IMPLEMENTATO** V5-EXERCISE-EXTRACT-IMPLEMENT-01: estrattore Docling isolato `scripts/extract_exercise_units_v1.py` (`b599e3e`); registro aggiornato (`c459a3f`). Nessun indice o runner modificato.
 - [ ] **DA FARE** controllo offline deterministico del nuovo estrattore su 3/A, 4/A, 4/B e sommario; acquisire report in `evaluation/`, senza ripetere test esistenti.
+
+- [x] **ESEGUITO** V5-EXERCISE-EXTRACT-OFFLINE-01: report V1 `evaluation/ussia_exercise_units_v1.json` esaminato; 4/A preservata, riscontrati refuso esercizio 10, confini sezioni psicocinetica/portiere e ID ricorrenti; registro aggiornato (`61e1c07`). Nessun test ripetuto.
+- [x] **IMPLEMENTATO** V5-EXERCISE-EXTRACT-V2-01: `scripts/extract_exercise_units_v2.py` (`23cc0db`), confini e ID distinti per riferimento Docling. Non integrato nella pipeline.
+- [ ] **DA FARE** verificare esclusivamente le differenze della V2 rispetto al report V1 mediante nuovo output offline `evaluation/ussia_exercise_units_v2.json`; non reindicizzare Chroma.
