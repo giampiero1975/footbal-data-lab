@@ -511,4 +511,4 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [ ] **DA FARE** V5-LOCKED-CANDIDATE-FAILURE-ANALYSIS-01: analisi read-only delle cinque risposte FAIL (fresh_01/03/07/09/10) per isolare cause tecniche documentate; non ripetere benchmark senza differenza tecnica motivata.
 
 - [x] **ESEGUITO** V5-TACTICAL-CORPUS-RECONCILIATION-01: censimento nominale tattica Drive/VPS/Chroma; 141 PDF VPS, 141 source Chroma, 11 PDF calcistici Drive non trasferiti per decisione storica, file privato escluso. Report `docs/v5-tactical-corpus-reconciliation-2026-10-24.md`, commit `6f08d5a`. Nessuna indicizzazione.
-- [ ] **DA FARE** V5-TACTICAL-CORPUS-CANDIDATE-REVIEW-01: risolvere discrepanza Drive API 153/UI 154; controllare contenuto, duplicati e pertinenza degli 11 PDF calcistici senza modificare baseline; documentazione ufficiale prima di patch.
+- [ ] **BLOCCATO** V5-TACTICAL-CORPUS-CANDIDATE-REVIEW-01: escluso dal perimetro corrente per decisione esplicita del titolare. Non analizzare, scaricare o indicizzare PDF aggiuntivi da Drive. Priorità: diagnosi dei cinque FAIL V5 sul corpus VPS/Chroma invariato.
