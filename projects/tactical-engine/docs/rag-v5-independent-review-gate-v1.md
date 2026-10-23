@@ -29,3 +29,10 @@ Per ciascun caso: ID, PASS/REVISIONE, pagina verificata, rilievo specifico, iden
 ## Decisione
 
 Solo dopo approvazione indipendente e verifica della configurazione: predisporre un manifest congelato versionato, preservando il candidato originale, poi eseguire una sola volta il gate 10/10 read-only. Il wrapper attuale rifiuta correttamente `--approved-gold` sul candidato non congelato. Nessuna generazione o certificazione anticipata.
+
+## Requisiti di resilienza del revisore ausiliario (23 ottobre 2026)
+
+- **REQ-GEM-01 — Non bloccante:** l'indisponibilita di Gemini (inclusi HTTP 503, timeout e limiti di quota) non interrompe il flusso operativo RAG. Registrare causa, data, modello e revisione saltata; proseguire con le fasi indipendenti dal revisore. Nessun PASS implicito e nessuna certificazione senza evidenze.
+- **REQ-GEM-02 — Prova preliminare:** prima della revisione, effettuare un controllo leggero della raggiungibilita del servizio e del modello. Se non disponibile, saltare la revisione e proseguire. Il controllo di rete non garantisce la successiva inferenza; una chiamata generateContent di prova consumerebbe quota e va contabilizzata. Evitare richieste diagnostiche ridondanti e retry illimitati.
+
+Questi requisiti sono **DA FARE** a livello di implementazione e test; non modificano retroattivamente i report. Il gate di approvazione indipendente resta obbligatorio per il freeze, anche quando il flusso operativo non viene bloccato.
