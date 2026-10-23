@@ -424,3 +424,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** contatore Pacific nel revisore principale (`ad08e57`); preflight VPS ESEGUITO 3/20, rollover offline 5/5 VALIDATO, zero API (registro `840639d`).
 
 - [x] **VALIDATO** test differenziale offline rollover Pacific e migrazione UTC (`dfc4f37`), VPS 5/5, ledger reale invariato, zero API; registro `840639d`.
+
+- [x] **VALIDATO** hash SHA-256 manifest gold candidato V5 su GitHub e VPS (`c160a8a2128e05eda50842230c5f4aad2bf9a8085f4240c8ee893ed2e3a3fa71`); protocollo corretto `553f050`, registro `5498948`. Manifest invariato; revisione indipendente e freeze BLOCCATO.
