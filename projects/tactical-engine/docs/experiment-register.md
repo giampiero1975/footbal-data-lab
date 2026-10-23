@@ -357,3 +357,7 @@ Attivita: prototipo offline per proposte di confini. Script: scripts/propose_sem
 ### V5-EXERCISE-SEMANTIC-CANDIDATE-REVIEW-01
 
 Attivita: revisione dei 16 candidati semantici. Script: propose_semantic_exercise_boundaries_v1.py (528d90b), nessun replay. Commit report: b5eae2b. Report: docs/v5-exercise-semantic-candidate-review.md. Risultato: 8 inizi proposti, 4 sezioni, 1 sottotitolo e 3 duplicazioni ambigue. Decisione: mantenere review_required, non modificare V2 o Chroma. Stato: ESEGUITO.
+
+### V5-SMARCAMENTO-RESIDUAL-BOUNDARY-DECISION-01
+
+Attivita: valutazione residua di Smarcamento. Script: nessuna nuova esecuzione. Commit report: 7b7525d. Report: docs/v5-smarcamento-residual-boundary-decision.md. Risultato: 109 inizio candidato, 115 possibile ripresa, 122 indeterminato. Decisione: tutti review_required; nessuna deduplicazione e nessuna modifica V2 o Chroma. Stato: ESEGUITO.
