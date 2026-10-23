@@ -305,3 +305,7 @@ Attivita: specifica documentale delle famiglie di intestazioni e dei confini di 
 ### V5-EXERCISE-HEADING-ACCEPTANCE-PLAN-01
 
 Attivita: definizione campione e criteri di accettazione per futura analisi differenziale delle intestazioni non coperte da V2. Script: nessuno (piano documentale). Commit: 541ccc3. Report: docs/v5-exercise-heading-acceptance-plan.md. Risultato: ESEGUITO; tre fonti con delta documentato (smarcamento_marcamento, la_punta_centrale_Gritti, Allegati_2832014181753) e otto criteri, senza test o modifiche alla pipeline. Decisione: prima di ogni ispezione nuova verificare che non esistano evidenze equivalenti; solo poi autorizzare una singola raccolta read-only del contesto. Stato: ESEGUITO.
+
+### V5-EXERCISE-HEADING-CONTEXT-IMPLEMENT-01
+
+Attivita: implementare ispezione mirata e read-only delle intestazioni Docling e dei riferimenti per tre fonti selezionate nel piano di accettazione. Script: scripts/inspect_exercise_heading_context_v1.py. Commit: 8dd613f. Report previsto: evaluation/exercise_heading_context_v1.json, non ancora prodotto. Risultato: IMPLEMENTATO; script circoscritto a smarcamento_marcamento, la_punta_centrale_Gritti e Allegati_2832014181753; heading, pagine, self_ref e due intestazioni precedenti/successive, classificazione review_required. Decisione: richiedere singola esecuzione offline su VPS, senza replay dei test Ussia, retrieval, embedding o scrittura Chroma. Stato: IMPLEMENTATO.
