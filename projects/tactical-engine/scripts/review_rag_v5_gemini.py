@@ -83,6 +83,25 @@ def validate_review(result, row, docs):
         raise ValueError("UNSUPPORTED_PASS")
     return result
 
+def load_local_env(path):
+    """Load only GEMINI_API_KEY from a local untracked env file."""
+    if not path.is_file():
+        return
+    for line in path.read_text(encoding="utf-8").splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        if line.startswith("export "):
+            line = line[7:].strip()
+        if not line.startswith("GEMINI_API_KEY="):
+            continue
+        value = line.split("=", 1)[1].strip()
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in ("'", '"'):
+            value = value[1:-1]
+        if value:
+            os.environ.setdefault("GEMINI_API_KEY", value)
+        return
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--question-id", default="fresh_01")
@@ -128,6 +147,7 @@ def main():
         return
     if not args.confirm_free_tier:
         raise SystemExit("FREE_TIER_CONFIRMATION_REQUIRED")
+    load_local_env(ROOT / ".env")
     key = os.environ.get("GEMINI_API_KEY", "")
     if not key:
         raise SystemExit("GEMINI_API_KEY_MISSING")
