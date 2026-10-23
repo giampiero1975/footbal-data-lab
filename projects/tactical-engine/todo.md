@@ -411,5 +411,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** audit 9/9; correzione fresh_09 IMPLEMENTATO (c3df934).
 - [x] **VALIDATO** fresh_09 pagina 3: bundle aggiornato e verificato, backup conservato, zero API.
 - [x] **IMPLEMENTATO** reviewer fresh_02-fresh_10 `954cfd4`; registro `39fe1c3`.
-- [ ] **DA FARE** verificare SHA manifest e dry-run offline sulla VPS.
+- [x] **VALIDATO** SHA manifest e dry-run fresh_02 sulla VPS; registro `0cd26ce`, zero API.
 - [ ] **DA FARE** revisione indipendente dei casi residui.
