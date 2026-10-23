@@ -74,7 +74,7 @@ def validate_review(result, row, docs):
             matches = [d for d in docs if str(d["source_file_id"]) == str(ev.get("source_file_id")) and str(d["page"]) == str(ev.get("page"))]
             quote = ev.get("quote", "")
             if not isinstance(quote, str) or not quote.strip() or not any(quote.strip() in d["text"] for d in matches):
-                raise ValueError("UNVERIFIABLE_QUOTE")
+                raise ValueError("UNVERIFIABLE_QUOTE: page=" + str(ev.get("page")) + " claim=" + str(check.get("claim", ""))[:100] + " quote=" + str(quote)[:120])
     claims = row["mandatory_claims"] + row["forbidden_claims"]
     covered = {c.get("claim") for c in checks}
     if not all(c in covered for c in claims):
