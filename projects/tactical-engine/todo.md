@@ -481,4 +481,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-EXERCISE-BODY-INSPECTION-OFFLINE-01: report `exercise_body_context_v1.json` analizzato, 22 su 22 candidati; Allegati esercitazione 16 con zero elementi intermedi. Registro `c186120`. Confini non validati.
 - [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-ANOMALY-REVIEW-01: anomalie revisionate nel documento `docs/v5-exercise-boundary-anomaly-review.md` (`f1118e8`), registro `eea96ec`. Confini ancora review_required.
 - [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-GAP-PLAN-01: piano di controllo mirato in `docs/v5-exercise-boundary-gap-plan.md` (`c2d83bd`), registro `0221dc1`. Nessun test eseguito.
-- [ ] **DA FARE** implementare ispezione read-only delle sole quattro finestre Docling anomale, senza replay dei 22 casi o modifica Chroma.
+- [x] **IMPLEMENTATO** V5-EXERCISE-BOUNDARY-WINDOWS-IMPLEMENT-01: script `inspect_exercise_boundary_windows_v1.py` (`bb02c68`), registro `cc2ed17`. Nessun test eseguito.
+- [ ] **DA FARE** acquisire una sola volta `evaluation/exercise_boundary_windows_v1.json` sulle quattro finestre documentate.
