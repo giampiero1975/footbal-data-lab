@@ -475,4 +475,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-EXERCISE-HEADING-CONTEXT-OFFLINE-01: report `exercise_heading_context_v1.json` analizzato su 3 fonti (22 candidati: 8 smarcamento, 6 Gritti, 8 Allegati). Tutti `review_required`, confini non validati. Registro commit `ee72879`; nessun test ripetuto.
 
-- [ ] **DA FARE** determinare se evidenze gia registrate consentono la verifica dei confini per le tre fonti; solo se insufficienti progettare un controllo aggiuntivo distinto, senza modifica Chroma.
+- [x] **ESEGUITO** V5-EXERCISE-BOUNDARY-EVIDENCE-DECISION-01: riconciliato il report sulle 22 intestazioni con gli script; i confini non sono validati. Documento `docs/v5-exercise-boundary-evidence-decision.md` (`e114e95`), registro `b9ba79d`.
+- [ ] **DA FARE** progettare solo ispezione differenziale read-only del corpo associato alle intestazioni gia censite nelle tre fonti, evitando replay e modifiche Chroma.
