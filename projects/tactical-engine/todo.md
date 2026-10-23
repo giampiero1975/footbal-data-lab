@@ -413,5 +413,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** reviewer fresh_02-fresh_10 `954cfd4`; registro `39fe1c3`.
 - [x] **VALIDATO** SHA manifest e dry-run fresh_02 sulla VPS; registro `0cd26ce`, zero API.
 - [x] **ESEGUITO** riconciliazione ledger: fresh_01 v1/v2 BLOCCATO su citazioni; v2 risposta Gemini confermata, registro `c978e9e`.
-- [ ] **BLOCCATO** fresh_02 fino a nuova giornata UTC per budget locale; nessuna nuova API.
+- [ ] **BLOCCATO** fresh_02: tentativo HTTP 503, ledger=3, registro a114e90; report v1 conservato.
 - [ ] **DA FARE** revisione indipendente dei casi residui.
