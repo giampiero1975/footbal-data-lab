@@ -151,6 +151,11 @@ def main():
     load_local_env(ROOT / ".env")
     key = os.environ.get("GEMINI_API_KEY", "")
     if not key:
+        if args.optional:
+            meta.update({"status": "BLOCCATO", "skipped": True, "reason": "GEMINI_API_KEY_MISSING"})
+            atomic_write(args.output, meta)
+            print("AUXILIARY_REVIEW_SKIPPED", args.output)
+            return
         raise SystemExit("GEMINI_API_KEY_MISSING")
     # Local persistent budget; refuse on errors rather than retrying blindly.
     ledger = ROOT / "evaluation/.gemini_review_request_ledger.json"
@@ -160,6 +165,11 @@ def main():
         used = json.loads(ledger.read_text(encoding="utf-8"))
     count = int(used.get(today, 0))
     if count >= args.max_daily_requests:
+        if args.optional:
+            meta.update({"status": "BLOCCATO", "skipped": True, "reason": "LOCAL_DAILY_BUDGET_EXHAUSTED"})
+            atomic_write(args.output, meta)
+            print("AUXILIARY_REVIEW_SKIPPED", args.output)
+            return
         raise SystemExit("LOCAL_DAILY_BUDGET_EXHAUSTED")
     used[today] = count + 1
     ledger.parent.mkdir(parents=True, exist_ok=True)
