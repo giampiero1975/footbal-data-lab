@@ -469,4 +469,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-EXERCISE-HEADING-FAMILIES-DESIGN-01: tassonomia intestazioni e confini documentata in `docs/v5-exercise-heading-families-design.md` (commit `2ee613a`), registro `806f312`. Nessun test duplicato.
 
-- [ ] **DA FARE** definire campione e criteri di accettazione per analisi offline non duplicata su convenzioni alternative; verificare evidenze pregresse prima di autorizzare lo script. Nessuna modifica Chroma.
+- [x] **ESEGUITO** V5-EXERCISE-HEADING-ACCEPTANCE-PLAN-01: piano campione e 8 criteri in `docs/v5-exercise-heading-acceptance-plan.md` (`541ccc3`), registro `8d693ec`; nessun test eseguito.
+
+- [ ] **DA FARE** riconciliare script/report esistenti per le tre fonti del piano; solo in assenza di evidenze equivalenti implementare una ispezione read-only mirata. Nessuna indicizzazione.
