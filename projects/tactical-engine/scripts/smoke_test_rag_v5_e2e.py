@@ -67,7 +67,10 @@ def main():
     ap.add_argument("--output",type=Path)
     ap.add_argument("--timeout",type=int,default=900)
     ap.add_argument("--limit",type=int,default=8)
+    ap.add_argument("--priority-exact",action="store_true",help="Opt-in exact-reference promotion; default off")
     args=ap.parse_args()
+    if args.priority_exact:
+        from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
     count=coll.count()
@@ -76,7 +79,7 @@ def main():
     rerank=CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
     report={"collection":COLLECTION,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
-            "alias_pairs":ALIASES,"questions":[],"notes":[
+            "alias_pairs":ALIASES,"priority_exact_enabled":args.priority_exact,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -96,6 +99,21 @@ def main():
                              "pages":meta.get("page_numbers"),"text":doc,
                              "distance":float(dist),
                              "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+            priority_ids=set()
+            if args.priority_exact:
+                ref=reference(question)
+                named={"ussia":"Transizioni.Ussia","foscarini":"manovre_offensive_vari_sistemi_gioco_Foscarini"}
+                matches=[v for k,v in named.items() if k in question.casefold()]
+                if ref and len(matches)==1:
+                    candidates=exact(coll,matches[0],ref)
+                    priority_ids={r["id"] for r in candidates}
+                    existing={r["id"] for r in rows}
+                    for r in candidates:
+                        if r["id"] not in existing:
+                            rows.append({"id":r["id"],"source":r["source"],"source_relative":None,
+                                         "pages":r["pages"],"text":r["text"],"distance":None,
+                                         "fingerprint":hashlib.sha256(norm(r["text"]).encode()).hexdigest()})
+                            existing.add(r["id"])
             scores=rerank.predict([(question,r["text"]) for r in rows],
                                   batch_size=1,show_progress_bar=False)
             selected=[];seen=set();dropped=0
@@ -114,10 +132,13 @@ def main():
                        "source_relative":r["source_relative"],"pages":r["pages"],
                        "distance":round(r["distance"],5),"text":r["text"]}
                       for i,r in enumerate(selected,1)]
+            if args.priority_exact and priority_ids:
+                evidence=prioritize_exact(evidence,priority_ids)
             answer,stats=chat(args.model,question,evidence,args.timeout)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
+                   "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
                    "alias_chunks_skipped":dropped,
