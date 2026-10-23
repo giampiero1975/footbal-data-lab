@@ -412,4 +412,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** fresh_09 pagina 3: bundle aggiornato e verificato, backup conservato, zero API.
 - [x] **IMPLEMENTATO** reviewer fresh_02-fresh_10 `954cfd4`; registro `39fe1c3`.
 - [x] **VALIDATO** SHA manifest e dry-run fresh_02 sulla VPS; registro `0cd26ce`, zero API.
+- [ ] **BLOCCATO** fresh_02: ledger UTC 2026-10-23 conta 2, limite locale 1; riconciliare report fresh_01 v1/v2, registro `22a96c8`.
 - [ ] **DA FARE** revisione indipendente dei casi residui.
