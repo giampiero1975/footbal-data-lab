@@ -379,3 +379,7 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **VALIDATO** retrieval live source-aware con flag `--priority-exact`, script `scripts/rag_v5_fresh_reference_e2e_shadow_v1.py`, commit `bbb9b7b`. Report `rag_v5_live_priority_integration_v1.json` (allegato chat, non ancora archiviato Git), SHA-256 `0503e2dcc94be563a7176f0768b869360a6a2465411d4e454688f06fa21512fc`. Ussia 4/B F1→F1, Ussia 6/B F1+F5→F1+F2, Foscarini fig9 F5→F1, fig20 F1→F1. Tutti i top8 preservati come insieme; Chroma 5319→5319, zero scritture, zero generazioni.
 - [ ] **DA FARE** verificare la correttezza della risposta generata per fig20 con evidenza specifica (il report live non genera risposte); non ripetere retrieval/benchmark già validati.
 - [ ] **DA FARE** identificare e aggiornare l'entry point V5 effettivo, dopo regressione controllata e rollback. La modalità opt-in shadow è VALIDATA, **non INTEGRATA** nel candidato locked/produzione; V4 e indice invariati.
+
+### V5-REF-07 — Risposta generata runner effettivo
+- [x] IMPLEMENTATO: abilitata domanda singola con generazione nel runner effettivo, commit `00c3a77`.
+- [ ] DA FARE: acquisire una sola risposta diagnostica Foscarini figura 20 e verificarne fedeltà, citazioni e indice immutato; aggiornare registro e TODO con esito. Nessun benchmark gold.
