@@ -437,3 +437,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** diagnosi top8 dei dieci casi E2E esistenti, report `docs/rag-v5-e2e-failure-analysis-2026-10-23.md` (`374c2cd`), registro `f0d4272`. Nessuna nuova generazione.
 - [ ] **DA FARE** delta tecnico source-aware nel runner V5 effettivo per gap fresh_03/04/07/10, senza ripetere shadow V5-REF-05; usare gold di sviluppo separato e nuovo holdout per certificazione.
+
+- [x] **IMPLEMENTATO** source-aware opt-in nel runner e wrapper V5 (`9170f83`, `03a5e0f`), read-back GitHub confermato, registro `c6a2ce1`. Default invariato; nessun benchmark ripetuto.
+- [ ] **DA FARE** test differenziale del nuovo flag --source-aware e fingerprint runtime VPS; successivamente valutazione su holdout nuovo e revisione indipendente. Certificazione **BLOCCATO**.
