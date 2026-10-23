@@ -435,3 +435,8 @@ Attività: diagnosi read-only dei cinque FAIL `fresh_01/03/07/09/10`. Script: is
 ### V5-RERANK-TRACE-01
 
 Attività: isolare assenza nel pool o perdita nel rerank di estratti per fresh_03 e fresh_10. Script: `scripts/diagnose_v5_rerank_failures_v1.py`. Commit: `e7f9e4b`, correzione normalizzazione `c4ee2b5`. Report: `docs/v5-rerank-trace-01.md` (commit `adf47ee`), dati VPS `diagnostica_v5_rerank_failures_v1.json`. Risultato: collection 5319/34 invariata; fresh_03 manuale Transizioni assente dai 24 candidati dense; fresh_10 Ussia pagina 17 presente nel pool filtrato ma al rango 9, fuori dalla top8. Decisione: preservare corpus e Chroma, progettare correzioni motivate di recupero e selezione senza ripetere il benchmark equivalente. TODO aggiornato `26154a0`. Stato: ESEGUITO.
+
+
+### V5-SOURCE-COVERAGE-SHADOW-01
+
+Attività: prototipo opt-in della selezione di evidenze per fresh_03/fresh_10 senza modificare il runner V5. Script: `scripts/v5_source_coverage_shadow_v1.py`. Commit: `c400bf0`; TODO `8af0a1b`. Report: non disponibile, esecuzione VPS DA FARE. Risultato: codice IMPLEMENTATO, nessun benchmark o retrieval ripetuto; sul trace esistente fresh_03 richiede recupero aggiuntivo della fonte prima della selezione, fresh_10 contiene Ussia pagina 17 in posizione 9. Decisione: valutare lo shadow offline sui dati di trace senza modificare Chroma; solo dopo progettare un recupero mirato distinto e giustificato. Stato: IMPLEMENTATO.
