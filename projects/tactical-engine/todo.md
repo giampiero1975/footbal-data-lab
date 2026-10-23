@@ -399,4 +399,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** persistenza risposta grezza e diagnosi puntuale delle citazioni senza allentare il gate; commit `16b5a08`, `9cc3a53`, registro `fd7a8d7`.
 - [x] **IMPLEMENTATO** test regressione offline citazioni e report diagnostico, commit `3aefe66`, registro `126151a`.
 - [x] **VALIDATO** test diagnostico offline sulla VPS, conferma utente di esito positivo, API_REQUESTS=0; registro `f51e118` (verifica sintetica, non end-to-end API).
-- [ ] **DA FARE** nuova revisione indipendente Gemini `fresh_01` con report v2 solo dopo controllo del budget giornaliero, differenza tecnica `16b5a08`/`9cc3a53` documentata; freeze **BLOCCATO**.
+- [x] **ESEGUITO** seconda richiesta Gemini `fresh_01` v2, ledger=2, `raw_review.decision=PASS`, ma validatore **BLOCCATO** su ellissi nella citazione; registro `32c8d63`.
+- [x] **IMPLEMENTATO** audit offline delle citazioni con frammenti letterali ordinati e ellissi esplicite, commit `6a6a4c2`.
+- [ ] **DA FARE** eseguire audit offline su report v2 e bundle originale, verificare evidenze e registrare decisione; nessuna nuova chiamata API; freeze **BLOCCATO**.
