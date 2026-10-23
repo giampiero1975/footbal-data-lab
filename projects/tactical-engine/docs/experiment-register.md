@@ -325,3 +325,7 @@ Attivita: progettazione di controllo differenziale del contenuto Docling. Script
 ### V5-EXERCISE-BODY-INSPECTION-IMPLEMENT-01
 
 Attivita: implementare ispettore di contenuti Docling. Script: scripts/inspect_exercise_body_context_v1.py. Commit: a07ebf2. Report: da produrre. Risultato: IMPLEMENTATO per 22 riferimenti su tre fonti. Decisione: una sola esecuzione offline, senza reindicizzazione. Stato: IMPLEMENTATO.
+
+### V5-EXERCISE-BODY-INSPECTION-OFFLINE-01
+
+Attivita: analisi report di ispezione del corpo Docling. Script: scripts/inspect_exercise_body_context_v1.py. Commit script: a07ebf2. Report: exercise_body_context_v1.json fornito dall'operatore. Risultato: 22 su 22, 8 smarcamento, 6 Gritti, 8 Allegati; esercitazione 16 in Allegati con zero elementi intermedi. Decisione: conservare review_required e verificare anomalie prima di validare confini; nessuna modifica Chroma. Stato: ESEGUITO.
