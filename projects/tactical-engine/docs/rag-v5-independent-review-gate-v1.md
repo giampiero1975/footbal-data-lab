@@ -5,7 +5,7 @@ Data: 2026-10-23. Stato: DA FARE.
 ## Artefatti immutabili da esaminare
 
 - Manifest: `evaluation/rag_v5_independent_candidate_v2.json`
-- SHA-256 atteso: `f0d36bc5b35ddcfd42bfef234db2380db6a684a9b81fb9cd19ab75bea81755c0`
+- SHA-256 atteso: `c160a8a2128e05eda50842230c5f4aad2bf9a8085f4240c8ee893ed2e3a3fa71`
 - Protocollo: `docs/rag-v5-quality-9of10-validation-protocol-v1.md`
 - Wrapper read-only: `scripts/run_rag_v5_locked_candidate_v2.py`
 - Baseline V4, indice Chroma e manifest originali: non modificare.
