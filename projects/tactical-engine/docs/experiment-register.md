@@ -261,3 +261,7 @@ Attivita: differenziale VPS baseline vs --source-aware su domanda Ussia 4/A. Scr
 ### V5-SOURCE-AWARE-DIFF-03
 
 Attivita: verifica differenziale VPS del retrieval source-aware dopo correzione regex. Script: projects/tactical-engine/scripts/smoke_test_rag_v5_e2e.py con --retrieval-only e --source-aware. Commit implementazione/correzione: 9170f83, aa2586e. Report: v5_source_baseline_v1.json e v5_source_aware_fixed_v1.json; output F3/F8 fornito dall'operatore. Risultato: ESEGUITO; la baseline aveva 0/8 chunk di Transizioni.Ussia, la prova corretta ne recupera 2/8 (F3 pp. 15-16, F8 pp. 35-37), fonte riconosciuta come Transizioni.Ussia, indice Chroma invariato. F3 descrive la continuazione 4/B e la conclusione entro 5 secondi; F8 riguarda esercitazione 19, non 4/A. Decisione: cercare il riferimento esatto 4/A nell'indice; pertinenza specifica ancora DA FARE; nessun benchmark ripetuto, nessuna integrazione o certificazione attestata. Stato: ESEGUITO.
+
+### V5-USSIA-4A-MAP-01
+
+Attivita: mapping Ussia 4/A originale e chunk Chroma. Script: scripts/inspect_ussia_4a_chunk_mapping_v1.py. Commit: 6d2930d. Report: evaluation/ussia_4a_chunk_mapping_v1.json (output VPS fornito). Risultato: ESEGUITO; Docling pagina 14 contiene intestazione e svolgimento; chunk_index 10 ece84a07 contiene svolgimento e pagine [12,13,14], ma headings solo SVOLGIMENTO; chunk 45 contiene riferimento 4/A solo nell'indice; count 5319 invariato. Decisione: esaminare codice di costruzione chunk e progettare correzione circoscritta, senza ripetere test o reindicizzare ora. Stato: ESEGUITO.
