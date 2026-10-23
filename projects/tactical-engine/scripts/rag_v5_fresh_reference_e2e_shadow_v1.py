@@ -60,6 +60,14 @@ def select(q,rows,reranker):
                     'text':r['text']})
         if len(out)==8:break
     return out
+def prioritize_exact(rows, exact_ids, cap=2):
+    """Stable promotion of at most cap explicit, non-TOC references already in top8."""
+    chosen=[r for r in rows if r['id'] in exact_ids and not toc(r['text'])][:cap]
+    chosen_ids={r['id'] for r in chosen}
+    ordered=chosen+[r for r in rows if r['id'] not in chosen_ids]
+    assert len(ordered)==len(rows) and {r['id'] for r in ordered}=={r['id'] for r in rows}
+    return [dict(r,label=f'F{i}') for i,r in enumerate(ordered,1)]
+
 def chat(q,evidence,timeout):
     context='\n\n'.join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                         for i,r in enumerate(evidence,1))
@@ -83,6 +91,7 @@ def main():
     p.add_argument('--db',type=Path,default=DB)
     p.add_argument('--timeout',type=int,default=900)
     p.add_argument('--generate',action='store_true',help='Run one generated answer per fresh case')
+    p.add_argument('--priority-exact',action='store_true',help='Opt-in exact-reference priority after live retrieval and rerank; baseline unchanged')
     args=p.parse_args()
     if args.output.exists():p.error(f'Refusing overwrite: {args.output}')
     assert reference('figura 9')==('9',None)
@@ -100,7 +109,8 @@ def main():
     embed=OllamaEmbedding(model_name='qwen3-embedding:0.6b',base_url='http://127.0.0.1:11434')
     reranker=CrossEncoder('cross-encoder/mmarco-mMiniLMv2-L12-H384-v1',device='cpu',max_length=512)
     report={'schema':'rag_v5_fresh_reference_e2e_shadow_v1','count_before':before,
-            'generation_requested':args.generate,'index_writes':False,'cases':[]}
+            'generation_requested':args.generate,'priority_exact_enabled':args.priority_exact,
+            'index_writes':False,'cases':[]}
     try:
         for cid,q,source in CASES:
             start=time.monotonic()
@@ -116,12 +126,18 @@ def main():
                 if r['id'] not in seen:merged.append(r);seen.add(r['id'])
             base=select(q,dense,reranker); augmented=select(q,merged,reranker)
             exact_ids={r['id'] for r in lexical}
+            raw_augmented=augmented
+            if args.priority_exact:
+                augmented=prioritize_exact(raw_augmented,exact_ids)
             item={'id':cid,'question':q,'source':source,'reference':ref,
                 'dense_count':len(dense),'exact_non_toc_count':len(lexical),
                 'new_candidates':len(merged)-len(dense),
                 'exact_ranks_baseline':[r['label'] for r in base if r['id'] in exact_ids],
                 'exact_ranks_augmented':[r['label'] for r in augmented if r['id'] in exact_ids],
-                'baseline_top8':base,'augmented_top8':augmented}
+                'baseline_top8':base,'augmented_top8':augmented,
+                'priority_exact_enabled':args.priority_exact,
+                'pre_priority_exact_ranks':[r['label'] for r in raw_augmented if r['id'] in exact_ids],
+                'top8_same_ids_after_priority':{r['id'] for r in raw_augmented}=={r['id'] for r in augmented}}
             if args.generate:item['generation']=chat(q,augmented,args.timeout)
             item['elapsed_seconds']=round(time.monotonic()-start,2)
             report['cases'].append(item)
