@@ -451,3 +451,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **ESEGUITO** V5-USSIA-4A-CHUNK-CODE-01: audit statico builder V5 e cause strutturali del mapping intestazioni; report `docs/v5-ussia-4a-chunking-code-audit-2026-10-23.md` (`c67866b`). Nessun test duplicato.
 - [ ] **DA FARE** progettare preservazione gerarchia esercitazioni in variante isolata del chunking, senza `--write` sulla collection V5 corrente; definire prima migrazione e rollback.
+
+- [x] **ESEGUITO** V5-EXERCISE-CHUNK-DESIGN-01: progettazione variante gerarchica opt-in documentata in `docs/v5-exercise-aware-chunking-design.md` (commit `4fb3f8f`), registro aggiornato (`724c2c5`). Nessuna scrittura su Chroma e nessun test ripetuto.
+- [ ] **DA FARE** implementare estrattore gerarchico isolato e controlli offline deterministici su 3/A, 4/A e 4/B; collection V5, runner e gold invariati.
