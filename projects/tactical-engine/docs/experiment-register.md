@@ -329,3 +329,7 @@ Attivita: implementare ispettore di contenuti Docling. Script: scripts/inspect_e
 ### V5-EXERCISE-BODY-INSPECTION-OFFLINE-01
 
 Attivita: analisi report di ispezione del corpo Docling. Script: scripts/inspect_exercise_body_context_v1.py. Commit script: a07ebf2. Report: exercise_body_context_v1.json fornito dall'operatore. Risultato: 22 su 22, 8 smarcamento, 6 Gritti, 8 Allegati; esercitazione 16 in Allegati con zero elementi intermedi. Decisione: conservare review_required e verificare anomalie prima di validare confini; nessuna modifica Chroma. Stato: ESEGUITO.
+
+### V5-EXERCISE-BOUNDARY-ANOMALY-REVIEW-01
+
+Attivita: revisione evidenze. Script: nessuno. Commit: f1118e8. Report: docs/v5-exercise-boundary-anomaly-review.md. Risultato: anomalie di duplicazione, figure e contenuto assente. Decisione: confini non validati; revisione ulteriore solo sui casi incerti. Stato: ESEGUITO.
