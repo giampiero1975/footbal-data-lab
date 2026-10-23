@@ -170,8 +170,12 @@ def main():
         with urllib.request.urlopen(req, timeout=120) as resp:
             payload = json.loads(resp.read())
         txt = "".join(p.get("text", "") for p in payload["candidates"][0]["content"]["parts"])
-        review = validate_review(json.loads(txt), row, docs)
-        meta.update({"status": "ESEGUITO", "review": review, "usage_metadata": payload.get("usageMetadata", {})})
+        parsed = json.loads(txt)
+        meta["raw_review"] = parsed
+        meta["raw_response_sha256"] = hashlib.sha256(txt.encode("utf-8")).hexdigest()
+        meta["usage_metadata"] = payload.get("usageMetadata", {})
+        review = validate_review(parsed, row, docs)
+        meta.update({"status": "ESEGUITO", "review": review})
     except (urllib.error.HTTPError, urllib.error.URLError, KeyError, ValueError, json.JSONDecodeError) as exc:
         # No automatic retry: prevent extra billed/limited requests and preserve diagnostic.
         meta.update({"status": "BLOCCATO", "error_type": type(exc).__name__,
