@@ -297,3 +297,7 @@ Attivita: inventario statico delle convenzioni delle intestazioni nei JSON Docli
 ### V5-EXERCISE-HEADING-COVERAGE-OFFLINE-01
 
 Attivita: inventario unico delle intestazioni Docling nel corpus formations-and-systems. Script: scripts/audit_exercise_heading_coverage_v1.py (a240657). Report: evaluation/exercise_heading_coverage_v1.json prodotto sulla VPS e fornito dall'operatore. Risultato: 141 documenti, 3 con intestazioni compatibili V2 (Ussia 34, DeRosa 8, Allegati_2832014181753 5); 38 documenti con 183 intestazioni di altri tipi. Il rilevamento di intestazioni non prova che siano esercitazioni autonome. Decisione: non eseguire extraction benchmark indiscriminati o reindicizzazione; definire criteri di riconoscimento e confini per famiglie documentali prima di test mirati non duplicati. Stato: ESEGUITO.
+
+### V5-EXERCISE-HEADING-FAMILIES-DESIGN-01
+
+Attivita: specifica documentale delle famiglie di intestazioni e dei confini di esercitazione, senza duplicare controlli precedenti. Script: nessuno (progettazione). Commit: 2ee613a. Report: docs/v5-exercise-heading-families-design.md. Risultato: ESEGUITO; distinte intestazioni numerate, alternative, descrittive, collettive e ambigue; section_boundary distinto da exercise_start, con provenance Docling e review_required. Decisione: definire casi mirati basati su evidenza insufficiente prima di nuova implementazione; nessuna variazione Chroma, runner, gold o benchmark. Stato: ESEGUITO.
