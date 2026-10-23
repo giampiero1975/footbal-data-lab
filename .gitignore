@@ -25,3 +25,8 @@ __pycache__/
 *.tmp
 *.bak
 .DS_Store
+
+# Private Gemini review material (never commit)
+projects/tactical-engine/evaluation/.gemini_review_request_ledger.json
+projects/tactical-engine/evaluation/*_sources.json
+projects/tactical-engine/evaluation/gemini_*_review_v*.json
