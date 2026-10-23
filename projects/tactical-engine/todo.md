@@ -463,3 +463,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-EXERCISE-EXTRACT-V2-OFFLINE-01: report `ussia_exercise_units_v2.json` analizzato (34 unita); corrette separazioni esercizio 10, 11/B e 21, 4/A invariata; registro commit `7327574`. Nessuna reindicizzazione Chroma.
 
 - [ ] **DA FARE** valutare robustezza dei confini dell'estrattore V2 su fonti diverse prima di un indice candidato isolato; non ripetere controlli Ussia gia eseguiti.
+
+- [x] **IMPLEMENTATO** V5-EXERCISE-HEADING-COVERAGE-01: inventario statico read-only `scripts/audit_exercise_heading_coverage_v1.py` (`a240657`), registro `9a218b7`. Non equivale a verifica di estrazione su altre fonti.
+- [ ] **DA FARE** eseguire una sola volta inventario intestazioni Docling `evaluation/exercise_heading_coverage_v1.json`; confrontare il report con le evidenze gia registrate prima di autorizzare altri test.
