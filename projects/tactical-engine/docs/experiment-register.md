@@ -420,3 +420,8 @@ Attività: valutazione interna claim-per-claim delle dieci risposte del report c
 ### V5-TACTICAL-CORPUS-RECONCILIATION-01
 
 Attività: inventario PDF tattica Drive/VPS/Chroma. Script: comandi di sola lettura già eseguiti e ricerca Drive. Commit: `6f08d5a`. Report: `docs/v5-tactical-corpus-reconciliation-2026-10-24.md`. Risultato: 141 PDF VPS, 141 fonti Chroma, 5319 chunk, 11 PDF calcistici non trasferiti; discrepanza Drive 153/154 ancora da chiarire. Decisione: mantenere la baseline invariata e valutare i candidati prima di una collection isolata. Stato: ESEGUITO.
+
+
+### V5-CORPUS-SCOPE-DECISION-01
+
+Attività: rettifica perimetro su decisione del titolare. Script: nessuno; modifica documentale. Commit: aggiornamento TODO `329613b`. Report: riconciliazione già archiviata, senza nuovi test. Risultato: corpus operativo limitato ai 141 PDF VPS e ai 5319 chunk Chroma; fonti aggiuntive Drive escluse dall'analisi corrente. Decisione: non analizzare né acquisire PDF Drive; procedere con diagnosi dei cinque FAIL sul corpus invariato. Stato: ESEGUITO.
