@@ -416,8 +416,9 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [ ] **BLOCCATO** fresh_02: tentativo HTTP 503, ledger=3, registro a114e90; report v1 conservato.
 - [ ] **DA FARE** revisione indipendente dei casi residui.
 
-- [ ] **DA FARE** implementare REQ-GEM-01: indisponibilita Gemini non interrompe il flusso operativo, skip tracciato senza PASS implicito (protocollo `222fdac`, registro `08ed219`).
+- [x] **IMPLEMENTATO** REQ-GEM-01 (`57c5692`, `30fdeeef`), test VPS DA FARE: indisponibilita Gemini non interrompe il flusso operativo, skip tracciato senza PASS implicito (protocollo `222fdac`, registro `08ed219`).
 - [ ] **DA FARE** implementare REQ-GEM-02: controllo preliminare leggero e contabilizzazione delle chiamate di prova, senza retry automatici; validare con test differenziale offline.
 
 - [x] **VALIDATO** riscontro AI Studio: Free Tier Gemini 3 Flash 3/20 RPD, errore HTTP 503; registro `93af115`.
-- [ ] **DA FARE** adeguare contatore alla giornata Pacific e quota configurabile; preflight read-only senza chiamata di generazione; Gemini resta controllo formale opzionale.
+- [x] **VALIDATO** preflight locale quota Pacific read-only (`1456abf`), VPS 3/20, zero API; registro `d553188`.
+- [ ] **DA FARE** integrare contatore Pacific nel revisore principale e validare comportamento opzionale.
