@@ -1,21 +1,35 @@
-
-### Audit copertura gold V5 (2026-10-22)
-- [x] Audit copertura delle 10 domande nuove: inclusi blocco basso, cambio modulo in gara, zone di recupero, multisorgente e astensione; candidate v2 aggiornato (commit `db9abab`).
-- [ ] Verifica puntuale claim→testo di tutte le domande da revisore indipendente; non dichiarare reviewer inesistente.
-- [ ] Freeze del gold prima di qualsiasi run; versione runtime e hash da registrare.
-- [ ] Run read-only VPS V5, blind adjudication e confronto V4/V5; nessun accesso remoto alla VPS disponibile negli strumenti connessi.
-
-
-### Nuovo candidato certificazione V5 (2026-10-22)
-- [x] Creato `evaluation/rag_v5_independent_candidate_v2.json` (commit `641f61e`): 10 nuove domande con fonti/pagine verificate direttamente su Drive, criteri obbligatori/vietati; nessun output del RAG generato su questi quesiti.
-- [ ] **Non ancora gold**: revisione indipendente, controllo copertura richiesta (inclusi casi multisorgente e cambio modulo), freeze SHA e configurazione prima di generare.
-- [ ] Esecuzione V5 read-only su VPS, revisione in cieco, confronto V4 e decisione 9/10. Il connettore GitHub non offre accesso SSH alla VPS; non segnare test eseguiti.
-
 # DRIBBLING V5 — Piano operativo, checklist e registro delle evidenze
 
-> **Documento di riferimento operativo** · Aggiornato il 2026-10-21 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
+> **Documento di riferimento operativo** · Riconciliato il 2026-10-23 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
 >
 > **Attenzione:** una casella spuntata documenta l'attività descritta, non la certificazione dell'intero RAG. I risultati riportati come comunicati dalla VPS non equivalgono a un accesso diretto dell'assistente alla VPS. Preservare baseline V4, indici e configurazioni prima di qualunque intervento.
+
+## Stato operativo corrente — 2026-10-23
+
+**Fonte autorevole:** [Registro esperimenti](docs/experiment-register.md). Prima di proporre un test, consultare attività → script → commit → report → risultato → decisione → stato. Nessun rerun equivalente senza una motivazione tecnica registrata. **VALIDATO shadow non significa INTEGRATO né CERTIFICATO.**
+
+### P0 — Uniche attività residue per chiudere il filone exact-reference V5
+
+- [x] Recupero e generalizzazione dei riferimenti esatti, reranking e replay di priorità su quattro casi nuovi; commit `21cdb18`, `547da5c`, `eaad637`, `3d10d7f`, `b570abd`.
+- [x] Analizzato report `rag_v5_reference_priority_shadow_v1.json` (2026-10-23): fig.9 F5→F1, Ussia 6/B F1+F2, Ussia 4/B F1, fig.20 F1; invariati gli ID top8 e nessun accesso Chroma.
+- [x] Analizzata nuova risposta figura 20: distingue scambio 4/3, movimento 7 e copertura 6; una lieve ambiguità nell'attribuzione dell'incrocio resta da sorvegliare in regressione. Esito **VALIDATO solo shadow mirato**.
+- [ ] Integrare source-aware + priorità controllata nell'entry point V5 effettivo con rollback.
+- [ ] Eseguire una regressione **mirata e non duplicativa** sull'integrazione, inclusa la figura 20, e registrare report, digest e decisione.
+
+### P1 — Gate distinti dalla chiusura del retrieval
+
+- [ ] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente.
+- [ ] Certificazione E2E 9/10 con blind adjudication e confronto controllato V4/V5.
+- [ ] Completare gate NLI V2 e l'eventuale integrazione shadow, riutilizzando i benchmark esistenti.
+
+### P2 — Manutenzione e pulizia
+
+- [ ] Riconciliare inventario runtime, report VPS non versionati, dipendenze e classificazione degli script.
+- [ ] Consolidare soltanto dopo test reversibili, backup e autorizzazioni necessarie.
+
+## Archivio storico e checklist dettagliate
+
+Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nelle sezioni storiche **non costituiscono una seconda lista operativa**: il piano attivo è quello sopra, con stato puntuale nel registro. Non rieseguire attività storiche senza identificare una nuova differenza tecnica.
 
 ## Come usare questo documento
 
@@ -41,7 +55,7 @@
 - [x] Create 10 domande candidate nuove: [evaluation/rag_v5_prospective_holdout_candidate_v1.json](evaluation/rag_v5_prospective_holdout_candidate_v1.json).\n- [x] Creato gate di validazione manifest: [scripts/validate_rag_v5_prospective_manifest_v1.py](scripts/validate_rag_v5_prospective_manifest_v1.py).\n- [ ] Associare fonti e pagine effettivamente verificate, claim obbligatori e revisore indipendente; congelare il manifest soltanto dopo il gate. Nessuna esecuzione o punteggio prima del gold.
 - [ ] Consultare documentazione ufficiale delle API coinvolte prima di nuovi test implementativi; V4 e Chroma invariati.
 
-### Priorità operative attuali
+### Priorità storiche (2026-10-21; sostituite dal piano corrente)
 
 | Ordine | Attività | Dipendenza / criterio |
 | --- | --- | --- |
@@ -338,3 +352,18 @@
 - [ ] Eseguire sulla VPS in `.venv` il diagnostico E2E con output JSON nuovo; preservare collezione V5 e baseline V4.
 - [ ] Verificare pagina precisa per tutte le fonti, gold atomici e revisione indipendente; solo dopo congelare manifest e misurare PASS/10.
 - **Non attestato:** 9/10 end-to-end. I test diagnostici non sono holdout certificati.
+
+
+## Appendice — aggiornamenti preesistenti del 2026-10-22 (conservati)
+
+### Audit copertura gold V5 (2026-10-22)
+- [x] Audit copertura delle 10 domande nuove: inclusi blocco basso, cambio modulo in gara, zone di recupero, multisorgente e astensione; candidate v2 aggiornato (commit `db9abab`).
+- [ ] Verifica puntuale claim→testo di tutte le domande da revisore indipendente; non dichiarare reviewer inesistente.
+- [ ] Freeze del gold prima di qualsiasi run; versione runtime e hash da registrare.
+- [ ] Run read-only VPS V5, blind adjudication e confronto V4/V5; nessun accesso remoto alla VPS disponibile negli strumenti connessi.
+
+
+### Nuovo candidato certificazione V5 (2026-10-22)
+- [x] Creato `evaluation/rag_v5_independent_candidate_v2.json` (commit `641f61e`): 10 nuove domande con fonti/pagine verificate direttamente su Drive, criteri obbligatori/vietati; nessun output del RAG generato su questi quesiti.
+- [ ] **Non ancora gold**: revisione indipendente, controllo copertura richiesta (inclusi casi multisorgente e cambio modulo), freeze SHA e configurazione prima di generare.
+- [ ] Esecuzione V5 read-only su VPS, revisione in cieco, confronto V4 e decisione 9/10. Il connettore GitHub non offre accesso SSH alla VPS; non segnare test eseguiti.
