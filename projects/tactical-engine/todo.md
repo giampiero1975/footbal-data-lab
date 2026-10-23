@@ -415,3 +415,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** riconciliazione ledger: fresh_01 v1/v2 BLOCCATO su citazioni; v2 risposta Gemini confermata, registro `c978e9e`.
 - [ ] **BLOCCATO** fresh_02: tentativo HTTP 503, ledger=3, registro a114e90; report v1 conservato.
 - [ ] **DA FARE** revisione indipendente dei casi residui.
+
+- [ ] **DA FARE** implementare REQ-GEM-01: indisponibilita Gemini non interrompe il flusso operativo, skip tracciato senza PASS implicito (protocollo `222fdac`, registro `08ed219`).
+- [ ] **DA FARE** implementare REQ-GEM-02: controllo preliminare leggero e contabilizzazione delle chiamate di prova, senza retry automatici; validare con test differenziale offline.
