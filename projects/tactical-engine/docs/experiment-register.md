@@ -349,3 +349,7 @@ Attivita: analisi delle quattro finestre Docling. Script: inspect_exercise_bound
 ### V5-EXERCISE-SEMANTIC-BOUNDARY-DESIGN-01
 
 Attivita: progettazione di regole candidate per confini semantici. Script: nessuno. Commit: b74c496. Report: docs/v5-exercise-semantic-boundary-design.md. Risultato: regole per text, caption, sottotitoli, titoli ripetuti e sezioni collettive. Decisione: eventuale prototipo offline read-only con revisione, nessuna modifica V2 o Chroma. Stato: ESEGUITO.
+
+### V5-EXERCISE-SEMANTIC-BOUNDARY-PROTOTYPE-01
+
+Attivita: prototipo offline per proposte di confini. Script: scripts/propose_semantic_exercise_boundaries_v1.py. Commit: 528d90b. Report: exercise_semantic_boundary_proposals_v1.json fornito dall'operatore. Risultato: 16 candidati da quattro finestre, tutti review_required. Decisione: analizzare gli esiti prima di validare confini; nessuna modifica Chroma o V2. Stato: ESEGUITO.
