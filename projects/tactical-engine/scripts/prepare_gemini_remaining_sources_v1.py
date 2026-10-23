@@ -28,6 +28,8 @@ def main():
     ap = argparse.ArgumentParser()
     for key in IDS:
         ap.add_argument("--" + key, type=Path, required=True)
+    ap.add_argument("--foscarini-page-22-pdf-index", type=int, required=True,
+                    help="1-based PDF index independently verified as printed page 22")
     ap.add_argument("--output-dir", type=Path, default=ROOT / "evaluation")
     args = ap.parse_args()
     import pymupdf
@@ -47,6 +49,8 @@ def main():
                 text = page.get_text("text", sort=True).strip()
                 if key == "ussia":
                     found = ("Pasquale Ussia Pagina " + str(page_no)) in " ".join(text.split())
+                elif key == "foscarini":
+                    found = index + 1 == args.foscarini_page_22_pdf_index
                 else:
                     found = index + 1 == page_no
                 if found:
@@ -60,6 +64,7 @@ def main():
                 "origin_url": "https://drive.google.com/file/d/" + sid + "/view",
                 "page": str(page_no),
                 "pdf_page_index": pdf_index,
+                "page_mapping_method": ("manual_pdf_index_confirmation" if key == "foscarini" else "printed_header" if key == "ussia" else "pdf_index_pending_printed_page_check"),
                 "text": text,
             }
     for qid, pages in CASES.items():
