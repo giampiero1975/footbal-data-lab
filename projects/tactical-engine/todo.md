@@ -402,4 +402,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** seconda richiesta Gemini `fresh_01` v2, ledger=2, `raw_review.decision=PASS`, ma validatore **BLOCCATO** su ellissi nella citazione; registro `32c8d63`.
 - [x] **IMPLEMENTATO** audit offline delle citazioni con frammenti letterali ordinati e ellissi esplicite, commit `6a6a4c2`.
 - [x] **VALIDATO** audit documentale fresh_01 v2: 9/9 evidenze, Gemini PASS, zero API; registro b24d0a3. Freeze globale **BLOCCATO**.
-- [ ] **DA FARE** riconciliare e revisionare fresh_02-fresh_10 senza ripetere casi gia validati.
+- [x] **ESEGUITO** riconciliazione fresh_02-fresh_10: nessuna revisione indipendente verificata nel registro; fonti Drive accessibili; registro ac98eab.
+- [ ] **DA FARE** preparare bundle originali paginati per fresh_02-fresh_10, poi revisione cieca indipendente; non ripetere fresh_01.
