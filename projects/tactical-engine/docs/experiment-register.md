@@ -49,3 +49,12 @@ Uno stato superiore **non** si deduce dal precedente. In particolare VALIDATO sh
 - **Report acquisito:** `rag_v5_live_priority_integration_v1.json`, SHA-256 `0503e2dcc94be563a7176f0768b869360a6a2465411d4e454688f06fa21512fc` (allegato in chat, non archiviato Git). **Risultato:** 4/B F1→F1; 6/B F1,F5→F1,F2; fig9 F5→F1; fig20 F1→F1; top8 stesso insieme di ID in 4/4; Chroma 5319→5319, `index_writes=false`, `generation_requested=false`. **Decisione:** VALIDATO limitatamente al riordino live source-aware opt-in. Conservare flag disattivato per default; candidato locked invariato. La qualità della risposta fig20 non è stata valutata da questo report. **Stato:** VALIDATO.
 - **Differenza tecnica rispetto ai test già conclusi:** questo script applica la priorità *durante un retrieval live con embedding, filtro fonte e reranker*, non rigioca punteggi salvati. Il successivo test deve limitarsi a verificare questa integrazione, non ripetere la campagna di benchmark.
 - **Rollback:** omettere `--priority-exact`; il comportamento precedente è conservato. Non sono previste scritture Chroma.
+
+
+## V5-REF-06 — Trasferimento nel runner effettivo (2026-10-23)
+
+- **Attività:** inserire priorità esatta nel runner richiamato dal candidato V5.
+- **Script:** `scripts/smoke_test_rag_v5_e2e.py`; **commit:** `a0301b6489443ef7ac0a954af981ea09f7704676`.
+- **Report:** non disponibile. **Risultato:** opzione `--priority-exact` aggiunta al runner, disattivata per default; lookup esatto limitato a domande con fonte Ussia/Foscarini esplicita; Chroma non scritto.
+- **Decisione:** IMPLEMENTATO parzialmente. Il forwarding dal wrapper `run_rag_v5_locked_candidate_v2.py` non è stato pubblicato per blocco dello strumento di modifica GitHub; non dichiarare integrazione completata. Verifica statica e regressione runtime mirata ancora mancanti. Il gold candidato resta immutato.
+- **Rollback:** omettere il flag; nessuna migrazione dell'indice.
