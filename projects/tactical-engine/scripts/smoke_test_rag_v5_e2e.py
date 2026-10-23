@@ -70,6 +70,7 @@ def main():
     ap.add_argument("--timeout",type=int,default=900)
     ap.add_argument("--limit",type=int,default=8)
     ap.add_argument("--priority-exact",action="store_true",help="Opt-in exact-reference promotion; default off")
+    ap.add_argument("--source-aware", action="store_true")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
     args=ap.parse_args()
@@ -84,7 +85,7 @@ def main():
     rerank=CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
     report={"collection":COLLECTION,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
-            "alias_pairs":ALIASES,"priority_exact_enabled":args.priority_exact,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
+            "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,"priority_exact_enabled":args.priority_exact,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -104,6 +105,19 @@ def main():
                              "pages":meta.get("page_numbers"),"text":doc,
                              "distance":float(dist),
                              "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+            source_hint = None
+            if args.source_aware:
+                named = {"ussia":"Transizioni.Ussia","foscarini":"manovre_offensive_vari_sistemi_gioco_Foscarini"}
+                matches = [v for k,v in named.items() if re.search(r"\\b"+k+r"\\b",question,re.I)]
+                if len(matches)==1:
+                    source_hint = matches[0]
+                    filtered = coll.query(query_embeddings=[embedding],n_results=24,where={"source":source_hint},include=["documents","metadatas","distances"])
+                    known = {r["id"] for r in rows}
+                    for cid,doc,meta,dist in zip(filtered["ids"][0],filtered["documents"][0],filtered["metadatas"][0],filtered["distances"][0]):
+                        if cid not in known:
+                            raw = meta.get("raw_text") or doc
+                            rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+                            known.add(cid)
             priority_ids=set()
             if args.priority_exact:
                 ref=reference(question)
@@ -143,7 +157,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
+                   "source_aware_source":source_hint,"priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
                    "alias_chunks_skipped":dropped,
