@@ -421,6 +421,6 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 
 - [x] **VALIDATO** riscontro AI Studio: Free Tier Gemini 3 Flash 3/20 RPD, errore HTTP 503; registro `93af115`.
 - [x] **VALIDATO** preflight locale quota Pacific read-only (`1456abf`), VPS 3/20, zero API; registro `d553188`.
-- [x] **IMPLEMENTATO** contatore Pacific nel revisore principale (`ad08e57`); preflight VPS ESEGUITO 3/20, zero API; rollover differenziale DA FARE (registro `fd00c7b`).
+- [x] **VALIDATO** contatore Pacific nel revisore principale (`ad08e57`); preflight VPS ESEGUITO 3/20, rollover offline 5/5 VALIDATO, zero API (registro `840639d`).
 
-- [x] **IMPLEMENTATO** test differenziale offline rollover Pacific e migrazione UTC (`dfc4f37`), esecuzione VPS DA FARE; registro `0ea9782`.
+- [x] **VALIDATO** test differenziale offline rollover Pacific e migrazione UTC (`dfc4f37`), VPS 5/5, ledger reale invariato, zero API; registro `840639d`.
