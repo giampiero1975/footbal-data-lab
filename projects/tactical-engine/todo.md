@@ -394,4 +394,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 ### V5-GEM-01 — Revisione indipendente Gemini
 - [x] **ESEGUITO** estrazione Ussia originale pp. 21–23: bundle privato `evaluation/fresh_01_sources.json`, PDF SHA-256 `6aa542e55dc88527c4d47c0e7696bb8872c71ee262120509e7dbc0fd2e683772`; registro `19aff49`.
 - [x] **IMPLEMENTATO** import `pymupdf` al posto di `fitz`, commit `34ba249`.
-- [ ] **DA FARE** preflight `fresh_01` con `--dry-run` e poi una singola chiamata Gemini autorizzata; freeze **BLOCCATO**.
+- [x] **VALIDATO** preflight locale `fresh_01` PASS, manifest e bundle SHA256 verificati, blind=true, zero richieste API; registro commit `eca6203`.
+- [ ] **DA FARE** una singola chiamata Gemini Free Tier per `fresh_01`; freeze **BLOCCATO**.
