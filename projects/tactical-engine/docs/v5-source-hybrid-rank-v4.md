@@ -32,6 +32,12 @@ Report VPS retrieval-only:
 SHA-256:
 `51f01a0280434501b6eb2f1d6fedc6adcd92198f88a7c6c26c19c7c145367ab2`.
 
+Report VPS generativo:
+`evaluation/v5_source_hybrid_generation_fresh03_v1.json`.
+
+SHA-256 generazione:
+`d446a18cf18ed9b7ec4fd7b6e8f751188b82fc222adda12927982e6196bf4a6e`.
+
 ## Risultato
 
 - Test offline V3/V4: `5/5` superati.
@@ -44,15 +50,22 @@ SHA-256:
 - Heading riservati: `3-4-2-1`, `3-5-2`, `4-3-3`, `4-4-2`.
 - Le sole fonti competitive entro il margine sono il leader semantico con tre
   heading e la fonte selezionata con quattro heading.
-- Nessuna generazione eseguita.
+- Generazione differenziale completata `1/1` in `138.78 s`.
+- La risposta nomina `3-4-2-1`, `3-5-2`, `4-3-3`, `4-4-2` e associa
+  rispettivamente le citazioni F1–F4.
+- La risposta separa le condizioni operative di ciascun modulo dalla prova
+  causale e conclude che servono evidenze comparative.
+- Citazioni emesse F1, F2, F3, F4, F7, F8; citazioni invalide `0`.
+- Chroma invariato anche dopo la generazione: `5319 -> 5319`.
 
 ## Decisione
 
-Il retrieval V4 è validato per `fresh_03`. La differenza tecnica rispetto a V3
-è verificata e consente una sola generazione differenziale con
-`--heading-routing`, senza targeted coverage. Non modificare Chroma o benchmark
-prima della valutazione claim-level della risposta.
+Retrieval e generazione V4 sono validati per `fresh_03`. Non ripetere questi
+test. Prima di integrare il comportamento di default, eseguire una verifica di
+regressione sulla configurazione completa tecnicamente distinta; il benchmark
+ufficiale resta `5/10` fino a quella valutazione complessiva.
 
 ## Stato
 
-`VALIDATO` limitatamente al retrieval. Non `INTEGRATO` o `CERTIFICATO`.
+`VALIDATO` per retrieval e generazione `fresh_03`. Non `INTEGRATO` o
+`CERTIFICATO`.
