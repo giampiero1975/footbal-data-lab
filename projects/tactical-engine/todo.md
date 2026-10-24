@@ -19,6 +19,8 @@
   senza variazioni di codice, modelli, dipendenze o collection.
 - [x] **INTEGRATO** merge fast-forward in `main`; locale, GitHub e VPS allineati
   al commit `b1040da`. Rami sviluppo e debug chiusi.
+- [x] **VALIDATO** TODO operativo riconciliato dopo la certificazione; commit
+  `5b9f9b1`, report `docs/todo-reconciliation-post-certification-01.md`.
 
 Non restano attività aperte per il closeout del RAG V5 locked. Le caselle non
 spuntate nell'archivio storico sotto questa sezione sono fotografie di fasi

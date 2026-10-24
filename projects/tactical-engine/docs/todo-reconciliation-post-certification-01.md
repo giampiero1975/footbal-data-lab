@@ -12,6 +12,10 @@ merge in `main`, senza cancellare la cronologia degli esperimenti.
 Nessuno. Revisione documentale di `todo.md`, registro esperimenti, closeout e
 stato Git locale/GitHub/VPS.
 
+## Commit
+
+`5b9f9b1` — `docs: reconcile TODO after V5 certification`.
+
 ## Risultato
 
 La sezione operativa ora distingue:
