@@ -52,7 +52,7 @@ def main():
     p.add_argument("--heading-routing",action="store_true",help="Opt-in generic heading metadata routing; default unchanged")
     p.add_argument("--source-ranking-trace",action="store_true",help="Record source semantic scores; requires heading routing and retrieval-only")
     p.add_argument("--retrieval-only",action="store_true",help="Skip generation for targeted diagnostic")
-    p.add_argument("--only-ids",nargs="+",choices=["fresh_03","fresh_10"],help="Restrict diagnostic to specified locked cases")
+    p.add_argument("--only-ids",nargs="+",choices=[f"fresh_{i:02d}" for i in range(1,11)],help="Restrict diagnostic to specified locked cases")
     args = p.parse_args()
     data = args.manifest.read_bytes()
     digest = hashlib.sha256(data).hexdigest()
