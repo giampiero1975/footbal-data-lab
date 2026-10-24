@@ -65,6 +65,12 @@ class State:
     def submit(self, question: str) -> dict:
         job_id = uuid.uuid4().hex
         job = {"id": job_id, "status": "queued", "created_at": int(time.time())}
+        request_path = self.config["output_dir"] / f"{job_id}.request.json"
+        temporary_path = self.config["output_dir"] / f".{job_id}.request.tmp"
+        temporary_path.write_text(
+            json.dumps({"id": job_id, "question": question}, ensure_ascii=False) + "\n", encoding="utf-8"
+        )
+        os.replace(temporary_path, request_path)
         with self.lock:
             self.jobs[job_id] = job
         try:
@@ -72,34 +78,36 @@ class State:
         except queue.Full:
             with self.lock:
                 del self.jobs[job_id]
+            request_path.unlink(missing_ok=True)
             raise
-        (self.config["output_dir"] / f"{job_id}.request.json").write_text(
-            json.dumps({"id": job_id, "question": question}, ensure_ascii=False) + "\n", encoding="utf-8"
-        )
         return dict(job)
 
     def worker(self) -> None:
         while True:
             job_id = self.queue.get()
-            request_path = self.config["output_dir"] / f"{job_id}.request.json"
-            output_path = self.config["output_dir"] / f"{job_id}.result.json"
-            request = json.loads(request_path.read_text(encoding="utf-8"))
-            with self.lock:
-                self.jobs[job_id].update(status="running", started_at=int(time.time()))
-            command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id,
-                       "--output", str(output_path), "--collection", self.config["collection"],
-                       "--expected-count", str(self.config["expected_count"])]
             try:
-                result = subprocess.run(command, cwd=ROOT.parent.parent, capture_output=True, text=True, timeout=self.config["timeout"])
-                status = "succeeded" if result.returncode == 0 and output_path.exists() else "failed"
-                detail = result.stderr[-2000:] if status == "failed" else None
-            except subprocess.TimeoutExpired:
-                status, detail = "timed_out", "runner timeout"
-            with self.lock:
-                self.jobs[job_id].update(status=status, finished_at=int(time.time()))
-                if detail:
-                    self.jobs[job_id]["error"] = detail
-            self.queue.task_done()
+                request_path = self.config["output_dir"] / f"{job_id}.request.json"
+                output_path = self.config["output_dir"] / f"{job_id}.result.json"
+                request = json.loads(request_path.read_text(encoding="utf-8"))
+                with self.lock:
+                    self.jobs[job_id].update(status="running", started_at=int(time.time()))
+                command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id,
+                           "--output", str(output_path), "--collection", self.config["collection"],
+                           "--expected-count", str(self.config["expected_count"])]
+                try:
+                    result = subprocess.run(command, cwd=ROOT.parent.parent, capture_output=True, text=True, timeout=self.config["timeout"])
+                    status = "succeeded" if result.returncode == 0 and output_path.exists() else "failed"
+                    detail = result.stderr[-2000:] if status == "failed" else None
+                except subprocess.TimeoutExpired:
+                    status, detail = "timed_out", "runner timeout"
+            except Exception as exc:
+                status, detail = "failed", f"worker error: {type(exc).__name__}: {exc}"
+            finally:
+                with self.lock:
+                    self.jobs[job_id].update(status=status, finished_at=int(time.time()))
+                    if detail:
+                        self.jobs[job_id]["error"] = detail
+                self.queue.task_done()
 
 
 class Handler(BaseHTTPRequestHandler):
@@ -137,7 +145,7 @@ class Handler(BaseHTTPRequestHandler):
         if not self.authenticated():
             return
         if self.path == "/readyz":
-            ready = PYTHON.exists() and RUNNER.exists()
+            ready = PYTHON.exists() and RUNNER.exists() and self.state.worker_thread.is_alive()
             try:
                 urllib.request.urlopen("http://127.0.0.1:11434/api/tags", timeout=2).close()
             except Exception:
@@ -195,7 +203,8 @@ def main() -> None:
     os.umask(0o077)
     config = load_config()
     state = State(config)
-    threading.Thread(target=state.worker, daemon=True, name="rag-worker").start()
+    state.worker_thread = threading.Thread(target=state.worker, daemon=True, name="rag-worker")
+    state.worker_thread.start()
     server = ThreadingHTTPServer((config["host"], config["port"]), Handler)
     server.state = state  # type: ignore[attr-defined]
     print(json.dumps({"event": "startup", "host": config["host"], "port": config["port"]}), flush=True)
