@@ -56,7 +56,8 @@ def discover_named_sources(collection, question):
     sources=sorted({m.get("source", "") for m in catalog["metadatas"] if m.get("source")})
     matches=[]
     for source in sources:
-        tokens={t for t in norm(source).split() if len(t)>=5 and t not in SOURCE_STOPWORDS and not t.isdigit()}
+        tokens={t for t in norm(source.replace("_", " ").replace("-", " ")).split()
+                if len(t)>=5 and t not in SOURCE_STOPWORDS and not t.isdigit()}
         overlap=tokens & qtokens
         if overlap and (len(overlap)>=2 or any(len(t)>=6 for t in overlap)):
             matches.append((len(overlap),source))
