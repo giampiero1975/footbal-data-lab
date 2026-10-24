@@ -72,6 +72,20 @@ def filter_post_loss_context(question, selected, promoted_ids):
         return selected, []
     kept_ids={row["id"] for row in kept}
     return kept, [row["id"] for row in selected if row["id"] not in kept_ids]
+def filter_named_source_context(question, selected):
+    """Keep one explicitly named author's evidence out of unrelated taxonomies."""
+    q=question.casefold()
+    if any(term in q for term in ("confront", "manuale interno")):
+        return selected, []
+    named={"ussia":"Transizioni.Ussia","foscarini":"manovre_offensive_vari_sistemi_gioco_Foscarini"}
+    matches=[source for author,source in named.items() if re.search(r"\b"+author+r"\b",q)]
+    if len(matches)!=1:
+        return selected, []
+    kept=[row for row in selected if ALIASES.get(row["source"],row["source"])==matches[0]]
+    if not kept:
+        return selected, []
+    kept_ids={row["id"] for row in kept}
+    return kept, [row["id"] for row in selected if row["id"] not in kept_ids]
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
@@ -223,6 +237,9 @@ def main():
             if targeted_source:
                 selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
             selected,post_loss_excluded=filter_post_loss_context(question,selected,targeted_promoted)
+            source_scope_excluded=[]
+            if args.source_aware:
+                selected,source_scope_excluded=filter_named_source_context(question,selected)
             heading_reserved=[]
             source_ranking_trace=[]
             source_selection_trace={}
@@ -245,7 +262,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"post_loss_excluded_ids":post_loss_excluded,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),

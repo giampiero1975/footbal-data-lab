@@ -106,6 +106,28 @@ class ScopedGuidanceTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in kept], ["promoted", "manual"])
         self.assertEqual(excluded, ["offside", "throw"])
 
+    def test_named_source_context_omits_foreign_taxonomy(self):
+        rows = [
+            {"id": "fos", "source": "manovre_offensive_vari_sistemi_gioco_Foscarini", "text": "zona B mediana"},
+            {"id": "ind", "source": "palle_inattive_Indiani", "text": "zona B area di porta"},
+        ]
+        kept, excluded = self.module.filter_named_source_context(
+            "Perché Foscarini considera rischiosa la zona B?", rows
+        )
+        self.assertEqual([row["id"] for row in kept], ["fos"])
+        self.assertEqual(excluded, ["ind"])
+
+    def test_named_source_context_preserves_comparisons(self):
+        rows = [
+            {"id": "ussia", "source": "Transizioni.Ussia", "text": "pressione"},
+            {"id": "manual", "source": "Manuale", "text": "copertura"},
+        ]
+        kept, excluded = self.module.filter_named_source_context(
+            "Confrontando Ussia e il manuale interno, quali condizioni valgono?", rows
+        )
+        self.assertEqual(kept, rows)
+        self.assertEqual(excluded, [])
+
 
 if __name__ == "__main__":
     unittest.main()
