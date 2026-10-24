@@ -18,6 +18,7 @@ from urllib.error import HTTPError, URLError
 import chromadb
 from llama_index.embeddings.ollama import OllamaEmbedding
 from sentence_transformers import CrossEncoder
+from v5_heading_routing_v1 import expand as heading_expand, headings as metadata_headings, should_expand as heading_applicable, generation_guidance
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -50,11 +51,11 @@ def scoped_guidance(question):
     return (" Elenca esplicitamente i moduli 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1 con le rispettive citazioni. "
             "Distingui le descrizioni tattiche dalle prove causali: senza dati comparativi non si può dimostrare "
             "che cambiare modulo durante la partita aumenti o diminuisca il rischio.")
-def chat(model,question,evidence,timeout,targeted_coverage=False):
+def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
     payload={"model":model,"stream":False,"think":False,
-             "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")},
+             "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")+(generation_guidance(question) if heading_routing else "")},
                          {"role":"user","content":f"DOMANDA:\n{question}\n\nFONTI:\n{context}"}],
              "options":{"temperature":0,"num_ctx":8192}}
     request=Request("http://127.0.0.1:11434/api/chat",
@@ -79,6 +80,7 @@ def main():
     ap.add_argument("--source-aware", action="store_true")
     ap.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate retrieval")
     ap.add_argument("--targeted-coverage",action="store_true")
+    ap.add_argument("--heading-routing",action="store_true",help="Opt-in generic metadata heading expansion; no benchmark ID rules")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
     args=ap.parse_args()
@@ -87,7 +89,7 @@ def main():
     if args.targeted_coverage:
         from v5_targeted_coverage_v1 import target, promote, formation_rows, heading_list, MANUAL
     else:
-        heading_list = lambda value: []
+        heading_list = metadata_headings if args.heading_routing else lambda value: []
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
@@ -105,7 +107,7 @@ def main():
     report={"collection":COLLECTION,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
-            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
+            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -151,6 +153,9 @@ def main():
             if args.targeted_coverage and qid == "fresh_03" and targeted_source == MANUAL:
                 known = {r["id"] for r in rows}
                 rows.extend(formation_rows(coll, known))
+            if args.heading_routing:
+                known_rows={r["id"]:r for r in rows}
+                rows.extend(heading_expand(coll,question,known_rows,norm))
             candidate_ids=[]
             if candidate is not None and re.search(r"\bussia\b",question,re.I):
                 extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
@@ -177,7 +182,7 @@ def main():
                                          "pages":r["pages"],"text":r["text"],"distance":None,
                                          "fingerprint":hashlib.sha256(norm(r["text"]).encode()).hexdigest()})
                             existing.add(r["id"])
-            scores=rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if args.targeted_coverage and qid == "fresh_03" else r["text"]) for r in rows],
+            scores=rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if (args.targeted_coverage and qid == "fresh_03") or (args.heading_routing and heading_applicable(question)) else r["text"]) for r in rows],
                                   batch_size=1,show_progress_bar=False)
             selected=[];seen=set();dropped=0
             for index in sorted(range(len(rows)),key=lambda i:float(scores[i]),reverse=True):
@@ -196,11 +201,11 @@ def main():
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
-                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"headings":r.get("headings",[]) if args.targeted_coverage and qid == "fresh_03" else [],"text":(((" / ".join(r.get("headings") or []) + "\n") if not r["text"].lstrip().startswith(" / ".join(r.get("headings") or [])) else "") if args.targeted_coverage and qid == "fresh_03" and r.get("headings") else "") + r["text"]}
+                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"headings":r.get("headings",[]) if (args.targeted_coverage and qid == "fresh_03") or args.heading_routing else [],"text":(((" / ".join(r.get("headings") or []) + "\n") if not r["text"].lstrip().startswith(" / ".join(r.get("headings") or [])) else "") if ((args.targeted_coverage and qid == "fresh_03") or args.heading_routing) and r.get("headings") else "") + r["text"]}
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
-            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout,args.targeted_coverage)
+            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout,args.targeted_coverage,args.heading_routing)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
