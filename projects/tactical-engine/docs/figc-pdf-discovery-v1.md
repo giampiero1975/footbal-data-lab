@@ -25,4 +25,15 @@ La revisione delle prime quindici pagine e dell'indice mostra un contenuto centr
 
 La normalizzazione del nome e la deduplica interna sono state validate nell'ambiente VPS: una sola copia fisica, rerun `duplicate_existing`, test 5/5. Il timer utente esegue giornalmente un crawl massimo di 30 pagine con ritardo casuale fino a 30 minuti; il job rimane fail-closed e non può modificare gli indici.
 
+## Collaudo dell'unit installata
+
+L'avvio manuale della stessa unit usata dal timer ha completato 30 pagine con `Result=success`, 10 PDF verificati, due duplicati e otto nuovi candidati, zero errori. Spazio VPS dopo i download: 38G liberi, utilizzo 34%. La prima revisione separa:
+
+- tattica evidente: Soncin sul blocco basso; Di Camillo/Iraola; Rausse/Red Bull; Gagliardi-Bordin sul calcio relazionale;
+- traduzione duplicata: `a-new-era_eng.pdf`, da non indicizzare insieme all'edizione italiana;
+- match/player analysis da valutare rispetto allo scope: Pica, Venturini, Mastroianni;
+- non pertinente: Maresi, già escluso.
+
+Nessuno degli otto nuovi file è stato ancora passato a Docling o Chroma. La prossima attività tecnicamente distinta è una selezione editoriale documentata, seguita da ingestion in collection candidata isolata e regressione; la collection operativa resta 6196.
+
 Flusso: Attività = discovery FIGC; Script = `figc_pdf_discovery.py`; Commit = `be0c7f2`, `fa893b9`, `266d8a8`, `5f38313`, `9232e25`; Report = questo documento e JSON runtime; Risultato = shadow superato; Decisione = integrare solo discovery/download candidato, mantenere review e ingestion separate; Stato = VALIDATO per discovery, INTEGRATO per scheduling, non CERTIFICATO per il censimento storico completo.

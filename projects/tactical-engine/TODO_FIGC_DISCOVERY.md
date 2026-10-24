@@ -18,7 +18,7 @@ Stato: **VALIDATO** monitor v1; scheduling giornaliero IMPLEMENTATO. Non modific
 - [x] Deduplicare binariamente per SHA-256 contro corpus e download del monitor.
 - [ ] Aggiungere similarità testuale per revisioni quasi duplicate.
 - Ingestion Docling → chunk → embedding → ChromaDB solo dopo test reversibili, integrità e regressione RAG; preservare V5 attuale.
-- [ ] Ampliare gradualmente il censimento storico; il primo crawl bounded di otto pagine è completato.
+- [ ] Ampliare gradualmente il censimento storico; collaudo unit completato su 30 pagine (10 PDF, 2 duplicati, 8 candidati, 0 errori).
 
 ## Implementazione v1
 
@@ -34,6 +34,12 @@ Stato: **VALIDATO** monitor v1; scheduling giornaliero IMPLEMENTATO. Non modific
 - crawl bounded: otto pagine, zero errori, un nuovo PDF ufficiale (Maresi, SHA-256 `59eca1b...52bd1`);
 - revisione contenuto: scouting/psicologia/organizzazione, non pertinente al corpus tattico; escluso dall'ingestion;
 - API RAG invariata sulla collection Drive11 a 6196 record; `/healthz` e `/readyz` restituiscono 200.
+
+## Prossimo incremento autorizzato
+
+- [ ] Concludere la review dei tre documenti match/player analysis e registrare la decisione nel catalogo.
+- [ ] Escludere dall'ingestion la traduzione inglese del documento relazionale italiano.
+- [ ] Creare una collection candidata isolata con i soli PDF pertinenti, quindi verificare integrità, deduplica, retrieval e regressione prima di qualsiasi promozione.
 
 ## Esempi di URL da validare nel collaudo
 
