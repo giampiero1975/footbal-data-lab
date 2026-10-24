@@ -76,6 +76,20 @@ class HybridSourceSelectionTests(unittest.TestCase):
         self.assertEqual(promoted,["conditions","tradeoff"])
         self.assertEqual([row["id"] for row in selected[:2]],promoted)
 
+    def test_consolidation_filter_omits_defensive_phase(self):
+        module=load_module("v5_targeted_coverage_v1")
+        candidate_rows=[
+            {"id":"conditions","source":module.MANUAL,"text":"palla non controllata"},
+            {"id":"choice","source":module.MANUAL,"text":"consolidare se il recuperatore è pressato"},
+            {"id":"defence","source":module.MANUAL,"text":"pressione organizzata e protezione linee"},
+            {"id":"foreign","source":"Other","text":"consolidare la difesa"},
+        ]
+        kept,excluded=module.filter_consolidation_context(
+            "Consolidare anziché accelerare dopo la riconquista?",candidate_rows,["conditions"]
+        )
+        self.assertEqual([row["id"] for row in kept],["conditions","choice"])
+        self.assertEqual(excluded,["defence","foreign"])
+
 
 class ScopedGuidanceTests(unittest.TestCase):
     def setUp(self):

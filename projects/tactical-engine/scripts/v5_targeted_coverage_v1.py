@@ -102,6 +102,16 @@ def reserve_consolidation(rows, scores, aliases, question, limit):
         if len(selected)>=limit: break
     return [rows[i] for i in selected],[rows[i]["id"] for i in reserved]
 
+def filter_consolidation_context(question, selected, promoted_ids):
+    if not consolidation_applicable(question):
+        return selected, []
+    promoted=set(promoted_ids)
+    markers=("consolidare", "riconquista", "recuperatore")
+    kept=[row for row in selected if row["id"] in promoted or
+          (row["source"]==MANUAL and any(marker in row["text"].casefold() for marker in markers))]
+    kept_ids={row["id"] for row in kept}
+    return kept,[row["id"] for row in selected if row["id"] not in kept_ids]
+
 def promote(rows, scores, aliases, source, page, limit):
     """Reserve highest-ranked source passage and a distinct target-page passage."""
     ordering = sorted(range(len(rows)), key=lambda i: float(scores[i]), reverse=True)

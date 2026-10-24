@@ -130,7 +130,7 @@ def main():
     if args.priority_exact:
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if args.targeted_coverage:
-        from v5_targeted_coverage_v1 import target, promote, formation_rows, heading_list, MANUAL, consolidation_applicable, consolidation_rows, reserve_consolidation
+        from v5_targeted_coverage_v1 import target, promote, formation_rows, heading_list, MANUAL, consolidation_applicable, consolidation_rows, reserve_consolidation, filter_consolidation_context
     else:
         heading_list = metadata_headings if args.heading_routing else lambda value: []
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
@@ -246,6 +246,9 @@ def main():
                 selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
             if args.targeted_coverage and consolidation_applicable(question):
                 selected,targeted_promoted=reserve_consolidation(rows,scores,ALIASES,question,args.limit)
+            consolidation_excluded=[]
+            if args.targeted_coverage and consolidation_applicable(question):
+                selected,consolidation_excluded=filter_consolidation_context(question,selected,targeted_promoted)
             selected,post_loss_excluded=filter_post_loss_context(question,selected,targeted_promoted)
             source_scope_excluded=[]
             if args.source_aware:
@@ -272,7 +275,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"consolidation_excluded_ids":consolidation_excluded,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
