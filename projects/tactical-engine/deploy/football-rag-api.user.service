@@ -1,0 +1,21 @@
+[Unit]
+Description=FOOTBALL-DATA-LAB RAG V5 API (user service)
+After=default.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/football-data-lab
+EnvironmentFile=/home/football/.config/football-data-lab/rag-api.env
+ExecStart=/opt/football-data-lab/projects/tactical-engine/.venv/bin/python /opt/football-data-lab/projects/tactical-engine/api/rag_v5_api.py
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/football-data-lab/projects/tactical-engine/evaluation/api-runs
+
+[Install]
+WantedBy=default.target
