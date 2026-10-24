@@ -44,11 +44,17 @@ SYSTEM=("Sei DRIBBLING, assistente di analisi tattica calcistica. "
         "Rispondi in italiano in modo chiaro e sintetico.")
 def norm(s):
     return re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",s.casefold())).strip()
+def scoped_guidance(question):
+    if not question.startswith("Perché la descrizione di un assetto difensivo nel manuale interno"):
+        return ""
+    return (" Elenca esplicitamente i moduli 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1 con le rispettive citazioni. "
+            "Distingui le descrizioni tattiche dalle prove causali: senza dati comparativi non si può dimostrare "
+            "che cambiare modulo durante la partita aumenti o diminuisca il rischio.")
 def chat(model,question,evidence,timeout):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
     payload={"model":model,"stream":False,"think":False,
-             "messages":[{"role":"system","content":SYSTEM},
+             "messages":[{"role":"system","content":SYSTEM+scoped_guidance(question)},
                          {"role":"user","content":f"DOMANDA:\n{question}\n\nFONTI:\n{context}"}],
              "options":{"temperature":0,"num_ctx":8192}}
     request=Request("http://127.0.0.1:11434/api/chat",
