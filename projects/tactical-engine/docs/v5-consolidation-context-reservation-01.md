@@ -32,7 +32,20 @@ Commit `7004986` — `fix: reserve consolidation decision evidence`. Test offlin
 complessivi `10/10` e compilazione superati. È consentita una sola generazione
 `fresh_09`, con mandatory/forbidden claim, citazioni e indici come gate.
 
+La V1 `evaluation/v5_consolidation_context_fresh09_v1.json`, SHA-256
+`39a8678d9831ee350a83856480dd2bb68df85a0495ace03278a4b7267f21d410`,
+è `COMPLETE 1/1` in 69.32 s e copre tutti i mandatory claim, ma include ancora
+passaggi estranei sul possesso avversario consolidato e sul raddoppio
+difensivo. Citazioni invalide 0 e indici 5319/34 invariati. Stato V1:
+`ESEGUITO`, non `VALIDATO`; non ripetere la stessa configurazione.
+
+Il filtro contestuale V2 è implementato nel commit `1bbfb60`: conserva i
+promossi e, fra gli altri, soltanto i passaggi dello stesso manuale che citano
+consolidare, riconquista o recuperatore; registra gli esclusi. Test offline
+complessivi `11/11`, compilazione superata. È autorizzata una sola V2 in
+`evaluation/v5_consolidation_context_fresh09_v2.json`.
+
 ## Stato
 
-`IMPLEMENTATO` dopo commit; non `ESEGUITO`, `VALIDATO`, `INTEGRATO` o
+V1 `ESEGUITO`; filtro V2 `IMPLEMENTATO`. Non `VALIDATO`, `INTEGRATO` o
 `CERTIFICATO`.
