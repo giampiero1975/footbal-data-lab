@@ -45,6 +45,16 @@ consolidare, riconquista o recuperatore; registra gli esclusi. Test offline
 complessivi `11/11`, compilazione superata. È autorizzata una sola V2 in
 `evaluation/v5_consolidation_context_fresh09_v2.json`.
 
+La V2, SHA-256
+`b73e17b767d913a6230c0d76b974ea563f03554640778068e90a3d9aa4169e55`,
+è `COMPLETE 1/1` in 60.23 s, mandatory claim completi, citazioni invalide 0 e
+indici 5319/34 invariati. Rimane però un falso positivo: il marker generico
+`riconquista` conserva il passaggio difensivo «riconquista del territorio» e
+la risposta lo trasforma in rischio accessorio. Stato V2: `ESEGUITO`, non
+`VALIDATO`. La V3 restringe il marker a «dopo una riconquista», commit
+`c9a41e8`; test offline 11/11 e compilazione superati. È autorizzata una sola
+V3 in `evaluation/v5_consolidation_context_fresh09_v3.json`.
+
 ## Stato
 
 V1 `ESEGUITO`; filtro V2 `IMPLEMENTATO`. Non `VALIDATO`, `INTEGRATO` o
