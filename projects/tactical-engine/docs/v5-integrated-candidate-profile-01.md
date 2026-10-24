@@ -45,9 +45,18 @@ Adjudication claim-by-claim sul manifest locked:
 
 ## Decisione
 
-Il profilo è `INTEGRATO` nel wrapper locked e `VALIDATO` sull'intero manifest.
-Non ripetere la regressione. Non è `CERTIFICATO` come sistema generale e non è
-un confronto V4; `fresh_01` resta il solo FAIL documentato.
+Questo esito V1 a 9/10 è storico ed è superato dall'aggiornamento finale
+seguente. Il profilo era già `INTEGRATO` nel wrapper locked; la certificazione
+restava distinta.
+
+## Aggiornamento finale 10/10
+
+Dopo la correzione generica `77e568c`, la regressione V2
+`evaluation/rag_v5_integrated_candidate_full_v2.json` (SHA-256
+`f2d54944085b1586067679ac76fb6e2696e5ab24d36d40e84cd3ffb2d4f76a55`)
+è `COMPLETE 10/10` in 824.35 s, citazioni invalide 0 e indici 5319/34
+invariati. `fresh_01` è l'unica risposta cambiata; gli altri nove output e le
+evidenze sono identici alla V1. Adjudication ufficiale: **10/10 PASS**.
 
 ## Stato
 
