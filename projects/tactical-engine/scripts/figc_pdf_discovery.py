@@ -10,7 +10,7 @@ import os
 from pathlib import Path
 import re
 import tempfile
-from urllib.parse import urljoin, urlparse
+from urllib.parse import unquote, urljoin, urlparse
 from urllib.request import Request, urlopen
 
 QUERIES = [
@@ -110,7 +110,7 @@ def verify(item, download_dir, timeout, max_bytes, write, existing):
             digest.update(chunk)
             if write: chunks.append(chunk)
     if prefix != b"%PDF-": raise ValueError("Missing PDF signature")
-    name=Path(urlparse(final_url).path).name or digest.hexdigest()+".pdf"
+    name=Path(unquote(urlparse(final_url).path)).name or digest.hexdigest()+".pdf"
     row={**item,"final_url":final_url,"file_name":name,"content_type":content_type,
          "size_bytes":total,"sha256":digest.hexdigest(),"category":classify(name+" "+item.get("anchor","")),"status":"verified"}
     if row["sha256"] in existing:
@@ -141,6 +141,32 @@ def append_events(path, events):
         for event in events: h.write(json.dumps(event,ensure_ascii=False,sort_keys=True)+"\n")
 
 
+def update_catalog(path, documents, errors, observed_at):
+    """Atomically merge the latest observations into the current-state catalog."""
+    catalog={"schema":"figc_pdf_catalog_v1","documents":{},"errors":{}}
+    if path.exists():
+        catalog=json.loads(path.read_text(encoding="utf-8"))
+    for row in documents:
+        key=row["sha256"]
+        previous=catalog["documents"].get(key,{})
+        catalog["documents"][key]={**previous,**row,
+            "first_seen":previous.get("first_seen",observed_at),"last_seen":observed_at}
+    for row in errors:
+        key=row["url"]
+        previous=catalog["errors"].get(key,{})
+        catalog["errors"][key]={**previous,**row,
+            "first_seen":previous.get("first_seen",observed_at),"last_seen":observed_at}
+    path.parent.mkdir(parents=True,exist_ok=True)
+    fd,tmp=tempfile.mkstemp(prefix=f".{path.name}.",dir=path.parent)
+    try:
+        with os.fdopen(fd,"w",encoding="utf-8") as h:
+            json.dump(catalog,h,ensure_ascii=False,indent=2,sort_keys=True); h.write("\n")
+        os.replace(tmp,path)
+    finally:
+        if os.path.exists(tmp): os.unlink(tmp)
+    return catalog
+
+
 def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument("--seed",action="append",default=[])
@@ -151,6 +177,7 @@ def main():
     p.add_argument("--write",action="store_true")
     p.add_argument("--download-dir",type=Path,default=Path("knowledge/candidates/figc-discovery/downloads"))
     p.add_argument("--events",type=Path,default=Path("knowledge/candidates/figc-discovery/events.jsonl"))
+    p.add_argument("--catalog",type=Path,default=Path("knowledge/candidates/figc-discovery/catalog.json"))
     p.add_argument("--report",type=Path)
     p.add_argument("--known-root",action="append",type=Path,default=[])
     a=p.parse_args()
@@ -174,7 +201,10 @@ def main():
             "documents":verified,"errors":errors,"duplicate_sha256":{k:v for k,v in duplicates.items() if len(v)>1}}
     print(json.dumps(report,ensure_ascii=False,indent=2))
     if a.write:
-        append_events(a.events,[{"event":"discovery",**row} for row in verified]+[{"event":"error",**row} for row in errors])
+        from datetime import datetime, timezone
+        observed_at=datetime.now(timezone.utc).isoformat()
+        append_events(a.events,[{"event":"discovery","observed_at":observed_at,**row} for row in verified]+[{"event":"error","observed_at":observed_at,**row} for row in errors])
+        update_catalog(a.catalog,verified,errors,observed_at)
         if a.report:
             a.report.parent.mkdir(parents=True,exist_ok=True)
             a.report.write_text(json.dumps(report,ensure_ascii=False,indent=2)+"\n",encoding="utf-8")
