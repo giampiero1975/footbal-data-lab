@@ -22,20 +22,31 @@ fonte è codificato.
 
 ## Report
 
-Output VPS previsto: `evaluation/v5_post_loss_context_fresh10_v2.json`.
+Output VPS: `evaluation/v5_post_loss_context_fresh10_v2.json`.
+SHA-256: `25c19cf4497ff4205d016a24e14a55e24c164ddaa8c988d78bed61541c92dc60`.
 
 ## Risultato
 
 - Test offline complessivi: `8/8` superati.
 - Compilazione sintattica: superata.
-- Esecuzione VPS: `DA FARE`.
+- Esecuzione VPS: `COMPLETE 1/1` in 93.89 s.
+- Evidenze finali: Ussia F1-F2 e manuale interno F3; cinque evidenze di
+  pressing generale escluse e registrate in `post_loss_excluded_ids`.
+- Mandatory claim Ussia: presenti adattamento al sistema e rapporto fra
+  pressione individuale/collettiva.
+- Mandatory claim manuale: presenti prossimità, orientamento avversario,
+  prevedibilità dell'uscita e copertura preventiva.
+- Forbidden claim: assente; rimessa laterale, fuorigioco e pressing alto
+  generico non compaiono come condizioni post-perdita.
+- Citazioni invalide: 0. Chroma baseline 5319 -> 5319; candidate 34 -> 34.
 
 ## Decisione
 
-Consentire una sola generazione fresh_10 con la configurazione targeted già
-verificata. Validare soltanto se mandatory claim presenti, forbidden claim
-assente, citazioni valide e indice invariato.
+La differenza tecnica risolve il difetto osservato nella V1. `fresh_10` è
+validato nel perimetro della configurazione opt-in testata. Non ripetere la
+generazione; il risultato non implica integrazione di default o certificazione
+del sistema.
 
 ## Stato
 
-`IMPLEMENTATO`. Non `ESEGUITO`, `VALIDATO`, `INTEGRATO` o `CERTIFICATO`.
+`VALIDATO`. Non `INTEGRATO` o `CERTIFICATO`.
