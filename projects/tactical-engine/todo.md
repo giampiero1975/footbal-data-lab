@@ -1,46 +1,70 @@
 # DRIBBLING V5 — Piano operativo, checklist e registro delle evidenze
 
-> **Documento di riferimento operativo** · Riconciliato il 2026-10-23 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
+> **Documento di riferimento operativo** · Riconciliato il 2026-10-24 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
 >
 > **Attenzione:** una casella spuntata documenta l'attività descritta, non la certificazione dell'intero RAG. I risultati riportati come comunicati dalla VPS non equivalgono a un accesso diretto dell'assistente alla VPS. Preservare baseline V4, indici e configurazioni prima di qualunque intervento.
 
-## Stato operativo corrente — 2026-10-23
+## Stato operativo corrente — 2026-10-24
 
 **Fonte autorevole:** [Registro esperimenti](docs/experiment-register.md). Prima di proporre un test, consultare attività → script → commit → report → risultato → decisione → stato. Nessun rerun equivalente senza una motivazione tecnica registrata. **VALIDATO shadow non significa INTEGRATO né CERTIFICATO.**
 
-### P0 — Uniche attività residue per chiudere il filone exact-reference V5
+### P0 — RAG V5 locked e pipeline CLI
 
-- [x] Recupero e generalizzazione dei riferimenti esatti, reranking e replay di priorità su quattro casi nuovi; commit `21cdb18`, `547da5c`, `eaad637`, `3d10d7f`, `b570abd`.
-- [x] Analizzato report `rag_v5_reference_priority_shadow_v1.json` (2026-10-23): fig.9 F5→F1, Ussia 6/B F1+F2, Ussia 4/B F1, fig.20 F1; invariati gli ID top8 e nessun accesso Chroma.
-- [x] Analizzata nuova risposta figura 20: distingue scambio 4/3, movimento 7 e copertura 6; una lieve ambiguità nell'attribuzione dell'incrocio resta da sorvegliare in regressione. Esito **VALIDATO solo shadow mirato**.
-- [x] Implementare priorità controllata **opt-in** nel percorso di retrieval live source-aware (`rag_v5_fresh_reference_e2e_shadow_v1.py --priority-exact`, commit `bbb9b7b`); **IMPLEMENTATO**, non ancora VALIDATO runtime né INTEGRATO nel candidato locked/produzione. Rollback: omettere il flag.
-- [ ] Validare runtime la priorità opt-in, poi decidere l'eventuale integrazione nel candidato V5 effettivo; non modificare il candidato locked senza evidenza.
-- [ ] Eseguire **una sola verifica mirata non duplicativa** sul nuovo flag live (differenza rispetto al replay offline già validato), inclusa la figura 20; registrare report, digest e decisione.
+- [x] **CERTIFICATO** benchmark locked V5: 10/10, zero citazioni invalide e
+  collection 5319/34 invariate; evidenza e limiti in
+  `docs/v5-certification-closeout-01.md`.
+- [x] **INTEGRATO** profilo V5 come default del wrapper CLI; rollback esplicito
+  disponibile con `--legacy-profile`.
+- [x] **VALIDATO** fingerprint runtime definitivo post-promozione; non ripetere
+  senza variazioni di codice, modelli, dipendenze o collection.
+- [x] **INTEGRATO** merge fast-forward in `main`; locale, GitHub e VPS allineati
+  al commit `b1040da`. Rami sviluppo e debug chiusi.
 
-- [x] **IMPLEMENTATO parzialmente** flag `--priority-exact` nel runner effettivo `smoke_test_rag_v5_e2e.py`, commit `a0301b6`, default off; nessun report runtime di questa nuova modifica.
-- [x] **IMPLEMENTATO** inoltro opt-in del flag dal wrapper `run_rag_v5_locked_candidate_v2.py` al runner V5, commit `2a2ceb9`; default invariato e rollback omettendo il flag.
-- [x] **VALIDATO** probe retrieval-only nel runner effettivo: Foscarini figura 20 F1, 5319→5319, nessuna generazione; commit `a8cfef6`, report `rag_v5_effective_priority_probe_v1.json`, SHA-256 `e52c802051873703c197e8b28123a580a3b56a2268a2309b11e4d5f764f6bbda`. Preflight wrapper superato; non è test E2E del wrapper.
-- [ ] **DA FARE** decisione su integrazione E2E del wrapper opt-in e valutazione qualità risposta, senza ripetere benchmark gold.
+Non restano attività aperte per il closeout del RAG V5 locked. Le caselle non
+spuntate nell'archivio storico sotto questa sezione sono fotografie di fasi
+precedenti e non riaprono attività assorbite dalla certificazione.
 
-### P1 — Gate distinti dalla chiusura del retrieval
+### P1 — Prossima fase applicativa
 
-- [x] ESEGUITO: audit autore delle 10 domande fresh_01–fresh_10 il 2026-10-22 (source_claim_audit e coverage_audit nel candidato v2); non ripetere.
-- [x] Revisione indipendente e freeze del candidato gold V5 già preparato (commit `641f61e`, audit `db9abab`); non rigenerare un gold equivalente. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
-- [x] IMPLEMENTATO: protocollo di revisione indipendente `docs/rag-v5-independent-review-gate-v1.md` (commit `0c79578`); candidato invariato.
-- [x] IMPLEMENTATO: client Gemini separato `scripts/review_rag_v5_gemini.py` (commit `ca8383b`), guida `docs/gemini-independent-review-v1.md` (`25ef94d`), esclusione materiale privato (`24e8ac6`); nessun benchmark eseguito.
-- [ ] DA FARE: acquisire estratti originali verificati Ussia pagine 21–23 e predisporre bundle privato per `fresh_01`; poi preflight e una richiesta Free Tier autorizzata.
-- [x] ESEGUITO: freeze e certificazione V5 in attesa di revisore indipendente e fingerprint runtime. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
-- [x] Certificazione E2E 9/10 con blind adjudication e confronto controllato V4/V5. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
-- [ ] Completare gate NLI V2 e l'eventuale integrazione shadow, riutilizzando i benchmark esistenti.
+- [ ] **DA FARE** definire perimetro e contratto dell'API HTTP che espone il
+  wrapper V5 certificato, senza modificarne implicitamente il comportamento.
+- [ ] **DA FARE** progettare autenticazione, autorizzazione, rate limit, timeout,
+  code/concorrenza e gestione degli errori.
+- [ ] **DA FARE** definire deployment reversibile (`systemd` o container), health
+  check, logging, metriche, backup e rollback.
+- [ ] **DA FARE** collegare l'applicazione all'API e predisporre test end-to-end
+  applicativi distinti dal benchmark locked già concluso.
+- [ ] **DA FARE** definire criteri di accettazione operativi: latenza, carico,
+  disponibilità, sicurezza e osservabilità.
 
-### P2 — Manutenzione e pulizia
+### P2 — Ordine e manutenzione del repository
 
-- [ ] Riconciliare inventario runtime, report VPS non versionati, dipendenze e classificazione degli script.
-- [ ] Consolidare soltanto dopo test reversibili, backup e autorizzazioni necessarie.
+- [ ] **DA FARE** censire e classificare script come operativo, test,
+  sperimentale, storico o candidato all'archiviazione.
+- [ ] **DA FARE** riconciliare report VPS non versionati, collection, modelli,
+  cache, dipendenze, servizi e spazio occupato.
+- [ ] **DA FARE** proporre un piano di archiviazione/rimozione con prova di non
+  utilizzo, backup e rollback; nessuna cancellazione anticipata.
+- [ ] **DA FARE** aggiornare README tecnico ed entry point ufficiale dopo la
+  scelta dell'architettura applicativa.
+
+### P3 — Miglioramenti opzionali, fuori dal closeout V5
+
+- [ ] **DA FARE** decidere se mantenere o archiviare il gate NLI V2 e il client
+  Gemini; non sono prerequisiti della certificazione corrente.
+- [ ] **DA FARE** pianificare, solo se utile al prodotto, un nuovo benchmark su
+  documenti e domande realmente nuovi. Deve avere un gold indipendente e una
+  differenza tecnica documentata; non ripetere il locked 10/10.
+- [ ] **DA FARE** valutare robustezza, latenza e concorrenza nel futuro servizio
+  applicativo, separandole dalla qualità già certificata del wrapper CLI.
 
 ## Archivio storico e checklist dettagliate
 
-Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nelle sezioni storiche **non costituiscono una seconda lista operativa**: il piano attivo è quello sopra, con stato puntuale nel registro. Non rieseguire attività storiche senza identificare una nuova differenza tecnica.
+Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate
+nelle sezioni storiche **non costituiscono una seconda lista operativa**: il
+piano attivo è esclusivamente quello sopra, con stato puntuale nel registro.
+Non rieseguire attività storiche senza identificare una nuova differenza
+tecnica.
 
 ## Come usare questo documento
 
