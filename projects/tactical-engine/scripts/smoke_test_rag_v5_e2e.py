@@ -48,6 +48,19 @@ SYSTEM=("Sei DRIBBLING, assistente di analisi tattica calcistica. "
         "Rispondi in italiano in modo chiaro e sintetico.")
 def norm(s):
     return re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",s.casefold())).strip()
+SOURCE_STOPWORDS={"football","data","lab","manuale","manual","tesi","uefa","pro","master","allegati","pdf"}
+def discover_named_sources(collection, question):
+    """Resolve authors/titles mentioned in a question from source metadata."""
+    qtokens=set(norm(question).split())
+    catalog=collection.get(include=["metadatas"])
+    sources=sorted({m.get("source", "") for m in catalog["metadatas"] if m.get("source")})
+    matches=[]
+    for source in sources:
+        tokens={t for t in norm(source).split() if len(t)>=5 and t not in SOURCE_STOPWORDS and not t.isdigit()}
+        overlap=tokens & qtokens
+        if overlap and (len(overlap)>=2 or any(len(t)>=6 for t in overlap)):
+            matches.append(source)
+    return matches
 def scoped_guidance(question):
     q=question.casefold()
     guidance=[]
@@ -209,12 +222,13 @@ def main():
                              "distance":float(dist),
                              "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
             source_hint = None
+            named_sources=[]
             if args.source_aware:
-                named = {"ussia":"Transizioni.Ussia","foscarini":"manovre_offensive_vari_sistemi_gioco_Foscarini"}
-                matches = [v for k,v in named.items() if re.search(r"\b"+k+r"\b",question,re.I)]
-                if len(matches)==1:
-                    source_hint = matches[0]
-                    filtered = coll.query(query_embeddings=[embedding],n_results=24,where={"source":source_hint},include=["documents","metadatas","distances"])
+                named_sources=discover_named_sources(coll,question)
+                if len(named_sources)==1:
+                    source_hint = named_sources[0]
+                for named_source in named_sources:
+                    filtered = coll.query(query_embeddings=[embedding],n_results=24,where={"source":named_source},include=["documents","metadatas","distances"])
                     known = {r["id"] for r in rows}
                     for cid,doc,meta,dist in zip(filtered["ids"][0],filtered["documents"][0],filtered["metadatas"][0],filtered["distances"][0]):
                         if cid not in known:
@@ -292,8 +306,12 @@ def main():
                 selected,consolidation_excluded=filter_consolidation_context(question,selected,targeted_promoted)
             selected,post_loss_excluded=filter_post_loss_context(question,selected,targeted_promoted)
             source_scope_excluded=[]
-            if args.source_aware:
-                selected,source_scope_excluded=filter_named_source_context(question,selected)
+            if args.source_aware and len(named_sources)==1 and not any(term in question.casefold() for term in ("confront", "manuale interno")):
+                kept=[row for row in selected if row["source"]==named_sources[0]]
+                if kept:
+                    kept_ids={row["id"] for row in kept}
+                    source_scope_excluded=[row["id"] for row in selected if row["id"] not in kept_ids]
+                    selected=kept
             selected,explicit_manual_reserved=reserve_explicit_manual(question,rows,scores,selected,args.limit)
             heading_reserved=[]
             source_ranking_trace=[]
@@ -317,7 +335,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"consolidation_excluded_ids":consolidation_excluded,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"explicit_manual_reserved_ids":explicit_manual_reserved,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"source_aware_sources":named_sources,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"consolidation_excluded_ids":consolidation_excluded,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"explicit_manual_reserved_ids":explicit_manual_reserved,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
