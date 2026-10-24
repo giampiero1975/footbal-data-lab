@@ -1,6 +1,6 @@
 # TODO — Acquisizione automatica FIGC per DRIBBLING
 
-Stato: requisito raccolto, **non implementato**. Non modificare la collection V5 validata prima dei test di ingestione incrementale e deduplicazione.
+Stato: **IMPLEMENTATO** monitor v1; collaudo shadow VPS DA FARE. Non modificare la collection V5 integrata prima dei test di ingestione incrementale e deduplicazione.
 
 ## Query giornaliere da conservare esattamente
 
@@ -18,6 +18,13 @@ Stato: requisito raccolto, **non implementato**. Non modificare la collection V5
 - Deduplicare per contenuto e somiglianza, non solo URL/nome. Evitare download e reindicizzazione superflui.
 - Ingestion Docling → chunk → embedding → ChromaDB solo dopo test reversibili, integrità e regressione RAG; preservare V5 attuale.
 - Censimento iniziale dell'archivio storico FIGC e successivo monitoraggio incrementale.
+
+## Implementazione v1
+
+- `scripts/figc_pdf_discovery.py`: dry-run predefinito, allowlist HTTPS FIGC, crawl limitato della categoria Tesi e delle pagine news, URL candidati espliciti, verifica MIME/firma PDF/limite dimensione/SHA-256.
+- `--write` abilita download atomico in area candidata, report JSON e storico JSONL append-only; nessuna ingestion o scrittura Chroma.
+- Classificazione prudente: `tattica`, `tecnica`, `allenamenti`, `review_required`; nessuna categoria incerta viene indicizzata automaticamente.
+- Deduplica binaria segnalata per SHA-256; similarità testuale e scheduling giornaliero restano DA FARE dopo il collaudo shadow.
 
 ## Esempi di URL da validare nel collaudo
 
