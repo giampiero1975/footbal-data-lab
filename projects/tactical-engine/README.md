@@ -26,6 +26,11 @@ Il comando esegue il manifest locked; non è ancora un servizio HTTP. Prima di
 un uso diverso consultare `docs/v5-certification-closeout-01.md`. Non ripetere
 il benchmark certificato senza una differenza tecnica documentata.
 
+API locale candidata: `127.0.0.1:8088`, unità utente
+`football-rag-api.service`. Contratto e limiti in
+`docs/rag-v5-http-api-contract-01.md`; il token è conservato esclusivamente
+nella configurazione privata VPS.
+
 ## Punto di partenza (evitare controlli ripetuti)
 1. Leggere [todo.md](todo.md) per priorità e attività aperte.
 2. Leggere [docs/environment.md](docs/environment.md) per l'ultima fotografia verificata della VPS e la sua validità.

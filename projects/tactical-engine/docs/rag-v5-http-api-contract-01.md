@@ -1,6 +1,6 @@
 # RAG-V5-HTTP-API-CONTRACT-01
 
-Data: 2026-10-24. Stato: IMPLEMENTATO.
+Data: 2026-10-24. Stato: VALIDATO.
 
 ## Perimetro
 
@@ -38,4 +38,5 @@ indipendenti. Nessuna modifica a Chroma o ai modelli.
 
 ## Stato
 
-IMPLEMENTATO nel repository; test offline e verifica VPS ancora da eseguire.
+VALIDATO con test offline, smoke HTTP e una domanda applicativa nuova. Evidenze
+in `docs/rag-v5-http-api-validation-01.md`.

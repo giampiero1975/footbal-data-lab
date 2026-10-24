@@ -28,16 +28,21 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 
 ### P1 — Prossima fase applicativa
 
-- [ ] **DA FARE** definire perimetro e contratto dell'API HTTP che espone il
-  wrapper V5 certificato, senza modificarne implicitamente il comportamento.
-- [ ] **DA FARE** progettare autenticazione, autorizzazione, rate limit, timeout,
-  code/concorrenza e gestione degli errori.
-- [ ] **DA FARE** definire deployment reversibile (`systemd` o container), health
-  check, logging, metriche, backup e rollback.
+- [x] **VALIDATO** contratto API HTTP asincrona a job, separato dal benchmark
+  locked e documentato in `docs/rag-v5-http-api-contract-01.md`.
+- [x] **VALIDATO** Bearer token, rate limit, body limit, coda limitata, singolo
+  worker, timeout ed errori; test offline 3/3 e smoke HTTP VPS superati.
+- [x] **INTEGRATO** servizio `systemd --user` locale su `127.0.0.1:8088`, health,
+  readiness, log, directory private e rollback verificati. Persistenza al boot
+  ancora **DA FARE** perché `Linger=no` e l'utente non dispone di sudo non
+  interattivo.
 - [ ] **DA FARE** collegare l'applicazione all'API e predisporre test end-to-end
   applicativi distinti dal benchmark locked già concluso.
-- [ ] **DA FARE** definire criteri di accettazione operativi: latenza, carico,
-  disponibilità, sicurezza e osservabilità.
+- [x] **VALIDATO** primo E2E applicativo distinto: risposta 3001 caratteri,
+  8 evidenze, citazioni F1–F8 valide, indici 5319/34 invariati; SHA-256 nel
+  report `docs/rag-v5-http-api-validation-01.md`.
+- [ ] **DA FARE** completare criteri operativi con persistenza boot, test di
+  carico/concorrenza e monitoraggio prolungato prima dell'esposizione esterna.
 
 ### P2 — Ordine e manutenzione del repository
 

@@ -30,3 +30,6 @@ __pycache__/
 projects/tactical-engine/evaluation/.gemini_review_request_ledger.json
 projects/tactical-engine/evaluation/*_sources.json
 projects/tactical-engine/evaluation/gemini_*_review_v*.json
+
+# Private application runtime requests/results (hash evidence only in Git)
+projects/tactical-engine/evaluation/api-runs/
