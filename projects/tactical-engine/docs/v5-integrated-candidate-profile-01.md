@@ -26,7 +26,29 @@ Dopo pubblicazione e deploy, eseguire una sola regressione completa dei dieci
 casi locked con output nuovo. Non riusare il punteggio composito come sostituto
 del test integrato.
 
+## Regressione completa e adjudication
+
+Report VPS `evaluation/rag_v5_integrated_candidate_full_v1.json`, SHA-256
+`20ec77d22cb5bb4548d6589a41aecd01e529ee53fd45fb199631d766c471c86d`.
+Esecuzione `COMPLETE 10/10`, 814.98 s complessivi; citazioni invalide 0 in
+tutti i casi, baseline 5319 -> 5319 e candidate 34 -> 34.
+
+Adjudication claim-by-claim sul manifest locked:
+
+- PASS: `fresh_02`, `fresh_03`, `fresh_04`, `fresh_05`, `fresh_06`,
+  `fresh_07`, `fresh_08`, `fresh_09`, `fresh_10`.
+- FAIL: `fresh_01`. La risposta descrive correttamente alta/centrale/bassa e
+  conserva l'affermazione qualitativa di Ussia, ma non esplicita che mancano
+  misure comparative o percentuali; propone invece come limite la progressione
+  didattica e il tempo di allenamento.
+- Risultato ufficiale del profilo locked integrato: `9/10`.
+
+## Decisione
+
+Il profilo è `INTEGRATO` nel wrapper locked e `VALIDATO` sull'intero manifest.
+Non ripetere la regressione. Non è `CERTIFICATO` come sistema generale e non è
+un confronto V4; `fresh_01` resta il solo FAIL documentato.
+
 ## Stato
 
-`IMPLEMENTATO` dopo commit; non `ESEGUITO`, `VALIDATO`, `INTEGRATO` o
-`CERTIFICATO`.
+`INTEGRATO` e `VALIDATO` nel perimetro locked. Non `CERTIFICATO`.
