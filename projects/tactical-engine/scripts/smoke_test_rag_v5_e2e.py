@@ -65,6 +65,11 @@ def scoped_guidance(question):
                         "playmaker braccati con poco tempo/spazio e laterali esposti alla pressione a invito con rischio di perdita. "
                         "Non attribuire il pericolo all'avversario se la fonte non lo dice e non trasformare un rischio situazionale "
                         "in un divieto universale della costruzione laterale.")
+    if "efficacia" in q and "limite" in q and any(term in q for term in ("maggiore", "più efficace", "piu efficace")):
+        guidance.append(" Conserva l'eventuale giudizio qualitativo dell'autore sulla maggiore efficacia, ma distinguilo "
+                        "esplicitamente da una prova comparativa: se gli estratti non riportano misure o percentuali, "
+                        "dichiara questa assenza. Non sostituire tale limite probatorio con un diverso limite didattico "
+                        "o temporale e non inventare confronti statistici.")
     return "".join(guidance)
 def filter_post_loss_context(question, selected, promoted_ids):
     q=question.casefold()

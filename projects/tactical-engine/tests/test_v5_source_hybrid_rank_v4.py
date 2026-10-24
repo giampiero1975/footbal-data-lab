@@ -135,6 +135,14 @@ class ScopedGuidanceTests(unittest.TestCase):
         self.assertIn("non attribuire il pericolo all'avversario", guidance.casefold())
         self.assertIn("divieto universale", guidance)
 
+    def test_qualitative_efficacy_guidance_requires_comparative_limit(self):
+        guidance=self.module.scoped_guidance(
+            "Quale limite ha l'affermazione sulla maggiore efficacia della zona alta?"
+        )
+        self.assertIn("giudizio qualitativo",guidance)
+        self.assertIn("misure o percentuali",guidance)
+        self.assertIn("non sostituire",guidance.casefold())
+
     def test_post_loss_context_omits_general_pressing(self):
         rows = [
             {"id": "promoted", "text": "pressione individuale e collettiva"},
