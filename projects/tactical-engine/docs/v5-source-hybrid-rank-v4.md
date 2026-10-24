@@ -26,23 +26,33 @@ oltre il margine non possono vincere per sola copertura.
 
 ## Report
 
-Questo documento registra l'implementazione. Il primo report VPS autorizzato è
-`evaluation/v5_source_hybrid_rank_fresh03_v1.json`, esclusivamente retrieval-only.
+Report VPS retrieval-only:
+`evaluation/v5_source_hybrid_rank_fresh03_v1.json`.
+
+SHA-256:
+`51f01a0280434501b6eb2f1d6fedc6adcd92198f88a7c6c26c19c7c145367ab2`.
 
 ## Risultato
 
 - Test offline V3/V4: `5/5` superati.
 - Compilazione sintattica: superata.
 - `git diff --check`: superato.
-- Esecuzione VPS: `DA FARE`.
+- Esecuzione VPS retrieval-only: completata `1/1` in `7.21 s`.
+- Chroma invariato: `5319 -> 5319`.
+- Fonte selezionata:
+  `FOOTBALL_DATA_LAB_Transizioni_Offensive_e_Difensive_Manuale`.
+- Heading riservati: `3-4-2-1`, `3-5-2`, `4-3-3`, `4-4-2`.
+- Le sole fonti competitive entro il margine sono il leader semantico con tre
+  heading e la fonte selezionata con quattro heading.
+- Nessuna generazione eseguita.
 
 ## Decisione
 
-Consentire una sola verifica VPS con `--heading-routing --source-ranking-trace
---retrieval-only --only-ids fresh_03`. Generazione consentita soltanto se la
-fonte selezionata e gli heading recuperati risultano corretti e Chroma resta
-invariato.
+Il retrieval V4 è validato per `fresh_03`. La differenza tecnica rispetto a V3
+è verificata e consente una sola generazione differenziale con
+`--heading-routing`, senza targeted coverage. Non modificare Chroma o benchmark
+prima della valutazione claim-level della risposta.
 
 ## Stato
 
-`IMPLEMENTATO`. Non `ESEGUITO`, `VALIDATO`, `INTEGRATO` o `CERTIFICATO`.
+`VALIDATO` limitatamente al retrieval. Non `INTEGRATO` o `CERTIFICATO`.
