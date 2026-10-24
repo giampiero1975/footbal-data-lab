@@ -84,7 +84,19 @@ def discover(seeds, max_pages, timeout):
     return list(pdfs.values()),errors,sorted(seen)
 
 
-def verify(item, download_dir, timeout, max_bytes, write):
+def known_hashes(roots):
+    result={}
+    for root in roots:
+        if not root.is_dir(): continue
+        for path in root.rglob("*.pdf"):
+            digest=hashlib.sha256()
+            with path.open("rb") as h:
+                for chunk in iter(lambda:h.read(1024*1024),b""): digest.update(chunk)
+            result.setdefault(digest.hexdigest(),str(path))
+    return result
+
+
+def verify(item, download_dir, timeout, max_bytes, write, existing):
     url=item["url"]
     digest=hashlib.sha256(); total=0; prefix=b""; chunks=[]
     with request(url,timeout) as r:
@@ -101,6 +113,10 @@ def verify(item, download_dir, timeout, max_bytes, write):
     name=Path(urlparse(final_url).path).name or digest.hexdigest()+".pdf"
     row={**item,"final_url":final_url,"file_name":name,"content_type":content_type,
          "size_bytes":total,"sha256":digest.hexdigest(),"category":classify(name+" "+item.get("anchor","")),"status":"verified"}
+    if row["sha256"] in existing:
+        row["status"]="duplicate_existing"
+        row["existing_path"]=existing[row["sha256"]]
+        return row
     if write:
         download_dir.mkdir(parents=True,exist_ok=True)
         target=download_dir/name
@@ -136,21 +152,25 @@ def main():
     p.add_argument("--download-dir",type=Path,default=Path("knowledge/candidates/figc-discovery/downloads"))
     p.add_argument("--events",type=Path,default=Path("knowledge/candidates/figc-discovery/events.jsonl"))
     p.add_argument("--report",type=Path)
+    p.add_argument("--known-root",action="append",type=Path,default=[])
     a=p.parse_args()
     if a.max_pages<1 or a.timeout<1 or a.max_mib<1: p.error("limits must be positive")
     seeds=DEFAULT_SEEDS+a.seed
     for url in seeds+a.candidate_url:
         if not allowed(url): p.error(f"URL outside FIGC allowlist: {url}")
     found,errors,pages=discover(seeds,a.max_pages,a.timeout)
+    roots=a.known_root or [Path("knowledge/sources"),Path("knowledge/candidates/drive11/sources")]
+    existing=known_hashes(roots)
     known={x["url"]:x for x in found}
     for url in a.candidate_url: known.setdefault(url,{"url":url,"discovered_from":"candidate","anchor":""})
     verified=[]
     for item in sorted(known.values(),key=lambda x:x["url"]):
-        try: verified.append(verify(item,a.download_dir,a.timeout,a.max_mib*1024*1024,a.write))
+        try: verified.append(verify(item,a.download_dir,a.timeout,a.max_mib*1024*1024,a.write,existing))
         except Exception as exc: errors.append({**item,"status":"failed","error":f"{type(exc).__name__}: {exc}"})
     duplicates={}
     for row in verified: duplicates.setdefault(row["sha256"],[]).append(row["url"])
     report={"schema":"figc_pdf_discovery_v1","queries":QUERIES,"write":a.write,"pages_scanned":pages,
+            "known_roots":[str(x) for x in roots],"known_pdf_hashes":len(existing),
             "documents":verified,"errors":errors,"duplicate_sha256":{k:v for k,v in duplicates.items() if len(v)>1}}
     print(json.dumps(report,ensure_ascii=False,indent=2))
     if a.write:
