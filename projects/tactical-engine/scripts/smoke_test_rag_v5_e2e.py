@@ -79,7 +79,7 @@ def main():
     if args.priority_exact:
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if args.targeted_coverage:
-        from v5_targeted_coverage_v1 import target, promote
+        from v5_targeted_coverage_v1 import target, promote, formation_rows, heading_list, MANUAL
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
@@ -114,7 +114,7 @@ def main():
                 raw=meta.get("raw_text") or doc
                 rows.append({"id":cid,"source":meta["source"],
                              "source_relative":meta.get("source_relative"),
-                             "pages":meta.get("page_numbers"),"text":doc,
+                             "pages":meta.get("page_numbers"),"text":doc,"headings":heading_list(meta.get("headings")),
                              "distance":float(dist),
                              "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
             source_hint = None
@@ -128,7 +128,7 @@ def main():
                     for cid,doc,meta,dist in zip(filtered["ids"][0],filtered["documents"][0],filtered["metadatas"][0],filtered["distances"][0]):
                         if cid not in known:
                             raw = meta.get("raw_text") or doc
-                            rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+                            rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"headings":heading_list(meta.get("headings")),"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
                             known.add(cid)
             targeted_source, targeted_page = target(qid, question) if args.targeted_coverage else (None, None)
             if targeted_source:
@@ -140,6 +140,9 @@ def main():
                     raw=meta.get("raw_text") or doc
                     rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
                     known.add(cid)
+            if args.targeted_coverage and qid == "fresh_03" and targeted_source == MANUAL:
+                known = {r["id"] for r in rows}
+                rows.extend(formation_rows(coll, known))
             candidate_ids=[]
             if candidate is not None and re.search(r"\bussia\b",question,re.I):
                 extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
@@ -166,7 +169,7 @@ def main():
                                          "pages":r["pages"],"text":r["text"],"distance":None,
                                          "fingerprint":hashlib.sha256(norm(r["text"]).encode()).hexdigest()})
                             existing.add(r["id"])
-            scores=rerank.predict([(question,r["text"]) for r in rows],
+            scores=rerank.predict([(question,(" / ".join(r.get("headings") or []) + " " + r["text"]).strip()) for r in rows],
                                   batch_size=1,show_progress_bar=False)
             selected=[];seen=set();dropped=0
             for index in sorted(range(len(rows)),key=lambda i:float(scores[i]),reverse=True):
@@ -185,7 +188,7 @@ def main():
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
-                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"text":r["text"]}
+                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"headings":r.get("headings",[]),"text":(" / ".join(r.get("headings") or []) + "\n" + r["text"]).strip()}
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
