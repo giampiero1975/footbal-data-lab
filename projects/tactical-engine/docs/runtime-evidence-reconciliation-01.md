@@ -27,9 +27,18 @@ I contenuti non sono stati copiati in Git. I 2.7M complessivi non giustificano
 una cancellazione che renderebbe non verificabili report e decisioni. Il
 manifest consente controllo duplicati e integrità senza esporre estratti.
 
+## Riordino fisico
+
+Quindici JSON sperimentali e diagnostici presenti direttamente nella radice
+`projects/tactical-engine/` sono stati spostati in
+`evaluation/runtime-archive/`. La radice ora contiene zero JSON. L'unico
+default di output che puntava ancora alla radice è stato corretto; i riferimenti
+documentali sono stati aggiornati e il manifest rigenerato.
+
 ## Decisione
 
-Conservare i JSON in sede sulla VPS e trattarli come archivio runtime. Prima di
+Conservare i JSON in sede sulla VPS e trattarli come archivio runtime. Ogni
+nuovo report deve essere scritto sotto `evaluation/`, mai nella radice. Prima di
 pubblicare, spostare o eliminare un file, verificarne hash e riferimenti nel
 registro. Non considerarli working tree sorgente.
 

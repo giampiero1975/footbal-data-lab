@@ -29,7 +29,7 @@ def rows_for(coll,embedding,stage,n=24,where=None):
  return out
 def main():
  ap=argparse.ArgumentParser()
- ap.add_argument("--output",type=Path,default=Path("projects/tactical-engine/diagnostica_v5_rerank_failures_v1.json"))
+ ap.add_argument("--output",type=Path,default=Path("projects/tactical-engine/evaluation/runtime-archive/diagnostica_v5_rerank_failures_v1.json"))
  args=ap.parse_args()
  client=chromadb.PersistentClient(path=DB)
  main=client.get_collection(MAIN)

@@ -53,6 +53,9 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** 87 JSON runtime (2.72M) catalogati per percorso, dimensione,
   SHA-256 e sensibilità senza pubblicarne il contenuto. Manifest
   `evaluation/runtime_evidence_manifest_v1.json`.
+- [x] **VALIDATO** 15 JSON sparsi rimossi dalla root e consolidati in
+  `evaluation/runtime-archive/`; default dello script generatore e riferimenti
+  documentali aggiornati. Root del motore: zero JSON.
 - [x] **VALIDATO** piano di archiviazione: 161 script storici conservati in
   sede come archivio logico, 87 JSON runtime preservati e indicizzati per hash;
   nessuno spostamento fisico che rompa import o riferimenti. Report
@@ -281,7 +284,7 @@ tecnica.
 - [x] Eseguire benchmark successivo da 32 claim su fonti FA: V2 30/32 (93,75%), supported 8/8, contradicted 12/12, insufficient 10/12. Gold non indipendentemente revisionato.
 - [x] Eseguire stress test da 100 claim su estratti già utilizzati: V2 93/100 (93%), supported 28/30, contradicted 29/30, insufficient 36/40. **Non indipendente per fonte**; gold ancora da revisionare. Dataset: `eval/tactical_nli_stress_100_v1.json`.
 - [x] Preparare un ulteriore test prospettico da 30 claim FIGC/FA: `eval/tactical_nli_source_disjoint_30_v1.json`. Due URL nuovi e un passaggio nuovo da URL già usato: **non completamente source-disjoint**.
-- [x] Acquisire e analizzare il report del test FIGC/FA da 30 claim: 30/30 completati, zero errori di esecuzione; 29/30 (96,67%) accuratezza 3-way, 30/30 (100%) binaria. Errore unico `novel_fa_wide_new_04`: gold contradicted, previsione insufficient; estratto FA dice esplicitamente che la Germania supera la contropressione. Evidenza: report JSON `benchmark_tactical_nli_source_disjoint_30_v2.json` ricevuto in chat il 2026-10-21, non ancora archiviato nel repository. Tempo inferenza cumulativo 540,05 s; mediana 17,735 s/claim. Il test non è completamente source-disjoint e il gold non è revisionato indipendentemente.
+- [x] Acquisire e analizzare il report del test FIGC/FA da 30 claim: 30/30 completati, zero errori di esecuzione; 29/30 (96,67%) accuratezza 3-way, 30/30 (100%) binaria. Errore unico `novel_fa_wide_new_04`: gold contradicted, previsione insufficient; estratto FA dice esplicitamente che la Germania supera la contropressione. Evidenza: report JSON `evaluation/runtime-archive/benchmark_tactical_nli_source_disjoint_30_v2.json` ricevuto in chat il 2026-10-21, non ancora archiviato nel repository. Tempo inferenza cumulativo 540,05 s; mediana 17,735 s/claim. Il test non è completamente source-disjoint e il gold non è revisionato indipendentemente.
 - [x] Revisionare indipendentemente le gold label, soprattutto quantificatori, numeri non documentati, negazioni e equivalenze semantiche; correggere eventuali ambiguità con motivazione e traccia. — Requisito di revisore esterno ritirato per decisione del titolare il 2026-10-23; non è attestata una revisione esterna. Restano obbligatori audit interno tracciato, evidenze e verifica 9/10.
 - [ ] Validare su fonti integralmente nuove, documenti più lunghi e domande reali, senza ottimizzare il prompt sui casi di verifica.
 - [ ] Archiviare report completi, versioni/digest modello, configurazione Ollama, commit, tempi e matrice di confusione per confronti riproducibili.

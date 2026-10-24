@@ -4,7 +4,7 @@
 **Campagna diagnostica V5: CHIUSA.** **Certificazione holdout indipendente: NON SUPERATA / NON ESEGUITA**; non dichiarare PASS 9/10 certificato, non promuovere automaticamente V5 in produzione. Giudizio esperto orientativo discusso in chat: **9/10 qualitativo**, non metrica gold.
 
 ## Evidenze e risultati già acquisiti
-- Diagnostico prospettico: `rag_v5_prospective_diagnostic_v1.json`, 10 risposte generate, 0 identificativi citazione invalidi; collection `dribbling_tactics_v5_multisource` 5319 record prima e dopo; circa 1240,64 s totali. Report fornito in chat, non attestato come artefatto committato né come accesso diretto SSH.
+- Diagnostico prospettico: `evaluation/runtime-archive/rag_v5_prospective_diagnostic_v1.json`, 10 risposte generate, 0 identificativi citazione invalidi; collection `dribbling_tactics_v5_multisource` 5319 record prima e dopo; circa 1240,64 s totali. Report fornito in chat, non attestato come artefatto committato né come accesso diretto SSH.
 - Pipeline dichiarata nel report: dense24 → reranker mMARCO CPU → collapse exact-alias → top8; modello `qwen3.5:9b`.
 - Revisione qualitativa preliminare delle 10 risposte eseguita in chat: esiti coerenti per 03,05,10; attenzione a pertinenza/attribuzione 01,04,07,09; astensione prudente 06,08. La domanda 02 è stata contestata come formulazione di benchmark e **non va trattata come FAIL del RAG senza revisione del quesito**. Questa è una valutazione preliminare, non un'audizione claim-by-claim indipendente.
 - Revisione atomica storica già conclusa in `docs/rag-v5-phase-passage-atomic-adjudication-20261022.md`: holdout_06 REVIEW, holdout_10 FAIL. **Casi development, non ripetere e non riutilizzare come gold indipendente.**

@@ -28,6 +28,11 @@ Tutti da **conservare temporaneamente** fino a verifica dei riferimenti e confro
 11. benchmark_two_stage_external_holdout_v1.json
 12. benchmark_two_stage_tactical_nli_v1.json
 
+**Aggiornamento 2026-10-24:** questi dodici file e altri tre output JSON
+successivamente comparsi nella radice sono stati riconciliati e spostati in
+`evaluation/runtime-archive/`. La radice `tactical-engine/` non contiene più
+JSON. Manifest corrente: `evaluation/runtime_evidence_manifest_v1.json`.
+
 ## Dataset da proteggere
 `eval/`: claim_fidelity_adversarial_v1.json, claim_fidelity_external_sources_holdout_v1.json, claim_fidelity_fresh_sources_holdout_v1.json, claim_fidelity_gold_v1.json, tactical_nli_source_disjoint_30_v1.json, tactical_nli_stress_100_v1.json, tactical_transition_independent_v1.json. `claim_fidelity_results_v1.json` sembra invece un risultato, da verificare.
 
