@@ -1,6 +1,6 @@
 # SCRIPT-CLASSIFICATION-V2
 
-Data: 2026-10-24. Stato: IMPLEMENTATO.
+Data: 2026-10-24. Stato: VALIDATO.
 
 ## Attività
 
@@ -35,5 +35,5 @@ test di import/regressione e aggiornamento atomico dei link.
 
 ## Stato
 
-IMPLEMENTATO; verifica sulla VPS e manifest delle evidenze runtime ancora da
-completare.
+VALIDATO sulla VPS: compilazione dei due scanner superata e classificazione
+completa senza errori sintattici.

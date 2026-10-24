@@ -47,14 +47,16 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** pulizia runtime rigenerabile: rimossi `.venv-ragas-eval`,
   cache pip, BGE, Qwen3-Reranker e 629M di blob non referenziati; arrestati due
   processi Surya orfani. Disco 48%→33%, collection 5319/34 e runner invariati.
-- [ ] **DA FARE** censire e classificare script come operativo, test,
-  sperimentale, storico o candidato all'archiviazione.
-- [ ] **DA FARE** riconciliare report VPS non versionati, collection, modelli,
-  cache, dipendenze, servizi e spazio occupato.
+- [x] **VALIDATO** 200 script classificati: 32 `keep`, 7 `keep_guarded`, 161
+  `archive_in_place`; zero errori sintattici. Manifest
+  `evaluation/script_inventory_v2.json`.
+- [x] **VALIDATO** 87 JSON runtime (2.72M) catalogati per percorso, dimensione,
+  SHA-256 e sensibilità senza pubblicarne il contenuto. Manifest
+  `evaluation/runtime_evidence_manifest_v1.json`.
 - [ ] **DA FARE** proporre un piano di archiviazione/rimozione con prova di non
   utilizzo, backup e rollback; nessuna cancellazione anticipata.
-- [ ] **DA FARE** aggiornare README tecnico ed entry point ufficiale dopo la
-  scelta dell'architettura applicativa.
+- [x] **VALIDATO** README tecnico aggiornato con entry point CLI certificato,
+  modelli, collection, comando ordinario e rollback.
 
 ### P3 — Miglioramenti opzionali, fuori dal closeout V5
 

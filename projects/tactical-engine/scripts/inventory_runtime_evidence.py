@@ -19,7 +19,7 @@ def digest(path: Path) -> str:
 
 def classify(relative: str) -> str:
     lowered = relative.lower()
-    if "gemini" in lowered or "source" in Path(relative).name.lower():
+    if "gemini" in lowered or Path(relative).name.lower().endswith("_sources.json"):
         return "restricted_review"
     if any(token in lowered for token in ("integrated_candidate_full_v2", "runtime_fingerprint_v2", "default_promotion_smoke", "v4_v5_locked_source_coverage")):
         return "certification_evidence"
