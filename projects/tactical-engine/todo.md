@@ -541,3 +541,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **ESEGUITO** V5-FRESH03-HEADING-AWARE-ANSWER-01: generazione mirata VPS, report `docs/v5-fresh03-heading-aware-answer-v1-review.md` (`1c16f88`); 4 moduli recuperati e heading deduplicati, ma risposta non cita esplicitamente i 4 moduli né dichiara l'assenza di evidenza causale sul cambio modulo. Non VALIDATO; benchmark 5/10 invariato.
 
 - [x] **VALIDATO** V5-FRESH03-GENERATION-GUIDANCE-01 (solo generazione mirata): quattro moduli espliciti, citazioni F1–F4 corrette, limiti causali esplicitati, zero citazioni invalide, Chroma 5319 invariato; report `docs/v5-fresh03-generation-guidance-v1-review.md` (`064f120`). Benchmark locked 5/10 invariato; non INTEGRATO né CERTIFICATO.
+
+- [ ] **IMPLEMENTATO** V5-HEADING-ROUTING-INTEGRATION-01: routing generico opt-in tramite --heading-routing, senza ID fresh_03 o lista gold; commit 0476123, 52499ca, d69d4b7, 8392e6c; report docs/v5-heading-routing-integration-01.md (9f2bf7c). **DA FARE** un solo test differenziale VPS senza --targeted-coverage; benchmark locked 5/10 invariato, non INTEGRATO né CERTIFICATO.
