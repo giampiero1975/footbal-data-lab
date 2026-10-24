@@ -186,7 +186,11 @@ def main():
     for url in seeds+a.candidate_url:
         if not allowed(url): p.error(f"URL outside FIGC allowlist: {url}")
     found,errors,pages=discover(seeds,a.max_pages,a.timeout)
-    roots=a.known_root or [Path("knowledge/sources"),Path("knowledge/candidates/drive11/sources")]
+    roots=a.known_root or [
+        Path("knowledge/sources"),
+        Path("knowledge/candidates/drive11/sources"),
+        a.download_dir,
+    ]
     existing=known_hashes(roots)
     known={x["url"]:x for x in found}
     for url in a.candidate_url: known.setdefault(url,{"url":url,"discovered_from":"candidate","anchor":""})
