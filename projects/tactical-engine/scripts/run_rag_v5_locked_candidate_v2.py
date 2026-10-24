@@ -15,12 +15,13 @@ DEFAULT_OUTPUT = ROOT / "evaluation/rag_v5_candidate_v2_runtime_report.json"
 
 def select_runtime():
     """Use an existing interpreter with V5 deps; never install or mutate envs."""
-    check = ("import importlib.util,sys; "
-             "names=('chromadb','llama_index','sentence_transformers'); "
-             "sys.exit(0 if all(importlib.util.find_spec(x) for x in names) else 1)")
+    check = ("import chromadb; "
+             "from llama_index.embeddings.ollama import OllamaEmbedding; "
+             "from sentence_transformers import CrossEncoder")
     candidates = [Path(sys.executable)]
     # Validated on VPS (docs/todo.md): tactical-engine/.venv imports all V5 modules.
     candidates.insert(0, ROOT / '.venv/bin/python')
+    candidates.insert(1, Path("/opt/football-data-lab/projects/tactical-engine/.venv/bin/python"))
     for root in (ROOT, ROOT.parent.parent):
         candidates.extend(sorted(root.glob('.venv*/bin/python')))
         candidates.extend(sorted(root.glob('venv*/bin/python')))
@@ -37,7 +38,7 @@ def select_runtime():
                 os.execv(str(py), [str(py), *sys.argv])
             print(f'V5_RUNTIME {sys.executable}', flush=True)
             return
-    raise SystemExit('NO_V5_RUNTIME: chromadb, llama_index and sentence_transformers are not installed together in any detected existing venv; no changes made')
+    raise SystemExit("NO_V5_RUNTIME: no interpreter passed actual imports for chromadb, OllamaEmbedding and CrossEncoder; check existing venvs; no changes made")
 
 def main():
     p = argparse.ArgumentParser()
