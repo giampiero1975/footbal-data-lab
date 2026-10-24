@@ -96,6 +96,12 @@ class HybridSourceSelectionTests(unittest.TestCase):
         self.assertEqual(module.target("arbitrary_id",question),(module.USSIA,17))
         self.assertEqual(module.target("fresh_03","Cosa dice il manuale interno sui moduli?"),(None,None))
 
+    def test_integrated_profile_is_default_with_explicit_rollback(self):
+        module=load_module("run_rag_v5_locked_candidate_v2")
+        self.assertTrue(module.use_integrated_profile())
+        self.assertTrue(module.use_integrated_profile(explicit_integrated=True))
+        self.assertFalse(module.use_integrated_profile(legacy_profile=True))
+
 
 class ScopedGuidanceTests(unittest.TestCase):
     def setUp(self):

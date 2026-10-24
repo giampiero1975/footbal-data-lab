@@ -13,6 +13,10 @@ EXPECTED_SHA256 = "c160a8a2128e05eda50842230c5f4aad2bf9a8085f4240c8ee893ed2e3a3f
 DEFAULT_MANIFEST = ROOT / "evaluation/rag_v5_independent_candidate_v2.json"
 DEFAULT_OUTPUT = ROOT / "evaluation/rag_v5_candidate_v2_runtime_report.json"
 
+def use_integrated_profile(explicit_integrated=False, legacy_profile=False):
+    """Integrated is the operational default; legacy remains an explicit rollback."""
+    return explicit_integrated or not legacy_profile
+
 def select_runtime():
     """Use an existing interpreter with V5 deps; never install or mutate envs."""
     check = ("import chromadb; "
@@ -45,7 +49,9 @@ def main():
     p.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     p.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
     p.add_argument("--execute", action="store_true")
-    p.add_argument("--integrated-candidate",action="store_true",help="Use the versioned unified V5 candidate profile")
+    profile=p.add_mutually_exclusive_group()
+    profile.add_argument("--integrated-candidate",action="store_true",help="Use the unified V5 profile (operational default)")
+    profile.add_argument("--legacy-profile",action="store_true",help="Rollback: use the pre-integration flag profile")
     p.add_argument("--source-aware", action="store_true", help="Opt-in author-filtered retrieval")
     p.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate")
     p.add_argument("--priority-exact", action="store_true", help="Opt-in exact reference priority; default unchanged")
@@ -55,12 +61,14 @@ def main():
     p.add_argument("--retrieval-only",action="store_true",help="Skip generation for targeted diagnostic")
     p.add_argument("--only-ids",nargs="+",choices=[f"fresh_{i:02d}" for i in range(1,11)],help="Restrict diagnostic to specified locked cases")
     args = p.parse_args()
-    if args.integrated_candidate:
+    integrated=use_integrated_profile(args.integrated_candidate,args.legacy_profile)
+    if integrated:
         args.source_aware=True
         args.exercise_candidate=True
         args.priority_exact=True
         args.targeted_coverage=True
         args.heading_routing=True
+    print(f"PROFILE {'integrated' if integrated else 'legacy'}",flush=True)
     data = args.manifest.read_bytes()
     digest = hashlib.sha256(data).hexdigest()
     if digest != EXPECTED_SHA256:
