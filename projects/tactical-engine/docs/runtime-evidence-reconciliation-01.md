@@ -19,9 +19,9 @@ potenzialmente riservati o perdere evidenze richiamate dai report Git.
 | Classe | File | Decisione |
 |---|---:|---|
 | certificazione | 4 | mantenere sulla VPS; hash pubblicabile |
-| diagnostica | 48 | mantenere come archivio runtime |
-| storica | 24 | mantenere come archivio runtime |
-| review riservata | 11 | non pubblicare senza revisione privacy |
+| diagnostica | 55 | mantenere come archivio runtime |
+| storica | 26 | mantenere come archivio runtime |
+| review riservata | 2 | non pubblicare senza revisione privacy |
 
 I contenuti non sono stati copiati in Git. I 2.7M complessivi non giustificano
 una cancellazione che renderebbe non verificabili report e decisioni. Il
