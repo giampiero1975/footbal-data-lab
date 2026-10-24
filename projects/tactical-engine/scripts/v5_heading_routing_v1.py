@@ -30,7 +30,13 @@ def expand(collection, question, known, normalizer):
     """
     if not should_expand(question):
         return []
-    sources = sorted({row["source"] for row in known.values()})
+    sources = {row["source"] for row in known.values()}
+    if "manuale" in question.casefold():
+        # Source-name discovery is read-only and independent of locked question IDs.
+        catalog = collection.get(include=["metadatas"])
+        sources.update(meta.get("source", "") for meta in catalog["metadatas"]
+                       if "manual" in meta.get("source", "").casefold())
+    sources = sorted(source for source in sources if source)
     explicit = set(FORMATION.findall(question))
     added = []
     for source in sources:
