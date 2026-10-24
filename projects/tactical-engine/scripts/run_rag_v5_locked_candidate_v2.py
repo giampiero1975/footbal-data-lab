@@ -48,6 +48,8 @@ def main():
     p.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate")
     p.add_argument("--priority-exact", action="store_true", help="Opt-in exact reference priority; default unchanged")
     p.add_argument("--targeted-coverage",action="store_true",help="Opt-in two-case diagnostic; default unchanged")
+    p.add_argument("--retrieval-only",action="store_true",help="Skip generation for targeted diagnostic")
+    p.add_argument("--only-ids",nargs="+",choices=["fresh_03","fresh_10"],help="Restrict diagnostic to specified locked cases")
     args = p.parse_args()
     data = args.manifest.read_bytes()
     digest = hashlib.sha256(data).hexdigest()
@@ -65,22 +67,25 @@ def main():
         return
     select_runtime()
     import smoke_test_rag_v5_e2e as v5
-    v5.QUESTIONS = [(x["id"], x["question"]) for x in rows]
+    v5.QUESTIONS = [(x["id"], x["question"]) for x in rows if not args.only_ids or x["id"] in args.only_ids]
     # --limit refers to retrieved evidence count, not the number of questions.
     sys.argv = [v5.__file__, "--limit", "8", "--output", str(args.output)]
     if args.priority_exact:
         sys.argv.append("--priority-exact")
     if args.targeted_coverage:
         sys.argv.append("--targeted-coverage")
+    if args.retrieval_only:
+        sys.argv.append("--retrieval-only")
     if args.source_aware:
         sys.argv.append("--source-aware")
     if args.exercise_candidate:
         sys.argv.append("--exercise-candidate")
     v5.main()
     report = json.loads(args.output.read_text(encoding="utf-8"))
-    if len(report.get("questions", [])) != 10 or report.get("error") or not report.get("index_unchanged"):
+    expected = len(v5.QUESTIONS)
+    if len(report.get("questions", [])) != expected or report.get("error") or not report.get("index_unchanged"):
         raise SystemExit("INCOMPLETE: inspect report, do not claim certification")
-    print("E2E COMPLETE: 10/10 generated; score requires documented internal claim-level assessment", flush=True)
+    print(f"V5 COMPLETE: {expected}/{expected}; retrieval_only={args.retrieval_only}; no certification", flush=True)
 
 if __name__ == "__main__":
     main()
