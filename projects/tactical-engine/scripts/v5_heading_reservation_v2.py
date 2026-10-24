@@ -20,7 +20,8 @@ def reserve(rows, scores, question, aliases, limit, reranker=None):
     def rank(source):
         topical = len(terms & set(re.findall(r"[a-zà-ÿ]{5,}", source.casefold())))
         return (topical, len(groups[source]))
-    source = max(sorted(groups), key=rank)
+    semantic = semantic_source_scores(question, rows, reranker) if reranker is not None else {}
+    source = max(sorted(groups), key=lambda name: (semantic.get(name, -1e9), rank(name)))
     chosen = []
     seen = set()
     def append(i):
