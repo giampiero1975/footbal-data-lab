@@ -59,8 +59,11 @@ def discover_named_sources(collection, question):
         tokens={t for t in norm(source).split() if len(t)>=5 and t not in SOURCE_STOPWORDS and not t.isdigit()}
         overlap=tokens & qtokens
         if overlap and (len(overlap)>=2 or any(len(t)>=6 for t in overlap)):
-            matches.append(source)
-    return matches
+            matches.append((len(overlap),source))
+    if not matches:
+        return []
+    best=max(score for score,_ in matches)
+    return [source for score,source in matches if score==best]
 def scoped_guidance(question):
     q=question.casefold()
     guidance=[]
