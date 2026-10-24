@@ -201,7 +201,7 @@ def main():
                 selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
             heading_reserved=[]
             if args.heading_routing and not args.targeted_coverage:
-                revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit)
+                revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit,reranker=rerank)
                 if revised is not None:
                     selected=revised
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
