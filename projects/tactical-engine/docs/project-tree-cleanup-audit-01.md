@@ -16,7 +16,8 @@ percorsi cache/lock Hugging Face Alibaba verificati.
 
 ## Commit
 
-`957f350` — `docs: audit project tree and retire Alibaba cache`.
+- `957f350` — `docs: audit project tree and retire Alibaba cache`.
+- `66d877d` — `docs: record VPS runtime cleanup`.
 
 ## Alberatura sintetica
 
