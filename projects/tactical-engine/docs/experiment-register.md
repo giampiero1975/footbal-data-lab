@@ -445,3 +445,8 @@ Attività: prototipo opt-in della selezione di evidenze per fresh_03/fresh_10 se
 ### V5-TARGETED-COVERAGE-IMPLEMENTATION-01
 
 Attività: introdurre differenza tecnica opt-in per fresh_03 e fresh_10 senza duplicare i test storici. Script: `scripts/v5_targeted_coverage_v1.py` e flag `--targeted-coverage` in `scripts/smoke_test_rag_v5_e2e.py`, inoltrato da `scripts/run_rag_v5_locked_candidate_v2.py`. Commit: helper `e75d3ca`, runner `71994e9`, wrapper `d70856f`, diagnostica scoped `b4d1ebf`, report implementazione `413bf4d`, TODO `6c2ec8e`. Report: `docs/v5-targeted-coverage-implementation-01.md`; runtime DA FARE. Risultato: modifica GitHub implementata; nessuna esecuzione VPS, nessuna evidenza di miglioramento delle risposte. Decisione: sola verifica retrieval-only con variante opt-in, fonte manuale fresh_03 e pagina 17 Ussia fresh_10, baseline 5319/34 invariata; mantenere default e corpus invariati. Stato: IMPLEMENTATO.
+
+
+### V5-RUNTIME-IMPORT-FAILURE-01
+
+Attività: diagnosi `ModuleNotFoundError: chromadb` dopo `V5_RUNTIME /usr/bin/python3` nella prova scoped fresh_03/fresh_10. Script: `scripts/run_rag_v5_locked_candidate_v2.py`. Commit: fix `779f4c3`, report `1a70278`. Report: `docs/v5-runtime-import-failure-01.md` e log console VPS. Risultato: esecuzione interrotta prima del retrieval, nessun JSON di prova prodotto; precedente check con `find_spec` sostituito da import reali delle tre dipendenze. Decisione: riusare venv esistenti, nessuna installazione o modifica Chroma, riprovare solo la prova precedentemente bloccata. Stato: IMPLEMENTATO.
