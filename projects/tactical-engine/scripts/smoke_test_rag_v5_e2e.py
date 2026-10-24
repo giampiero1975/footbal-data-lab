@@ -96,6 +96,37 @@ def filter_named_source_context(question, selected):
         return selected, []
     kept_ids={row["id"] for row in kept}
     return kept, [row["id"] for row in selected if row["id"] not in kept_ids]
+def explicit_manual_candidates(collection, embedding, question, known):
+    """Fetch bounded candidates when a question explicitly asks for a manual.
+
+    Discovery is metadata-driven and contains no benchmark IDs or fixed titles.
+    """
+    q=question.casefold()
+    if "manual" not in q or not any(cue in q for cue in ("confront", "secondo", "rispetto", "insieme")):
+        return []
+    catalog=collection.get(include=["metadatas"])
+    sources=sorted({m.get("source", "") for m in catalog["metadatas"] if "manual" in m.get("source", "").casefold()})
+    added=[]
+    for source in sources:
+        got=collection.query(query_embeddings=[embedding],n_results=4,where={"source":source},include=["documents","metadatas","distances"])
+        for cid,doc,meta,dist in zip(got["ids"][0],got["documents"][0],got["metadatas"][0],got["distances"][0]):
+            if cid in known:
+                continue
+            raw=meta.get("raw_text") or doc
+            added.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),
+                          "pages":meta.get("page_numbers"),"text":doc,"headings":metadata_headings(meta.get("headings")),
+                          "distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+            known.add(cid)
+    return added
+def reserve_explicit_manual(question, rows, scores, selected, limit):
+    if "manual" not in question.casefold() or any("manual" in r["source"].casefold() for r in selected):
+        return selected, []
+    candidates=[i for i,r in enumerate(rows) if "manual" in r["source"].casefold()]
+    if not candidates:
+        return selected, []
+    winner=max(candidates,key=lambda i:float(scores[i]))
+    revised=list(selected[:max(0,limit-1)])+[rows[winner]]
+    return revised,[rows[winner]["id"]]
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
@@ -209,6 +240,9 @@ def main():
             if args.heading_routing:
                 known_rows={r["id"]:r for r in rows}
                 rows.extend(heading_expand(coll,question,known_rows,norm))
+            if args.source_aware:
+                known={r["id"] for r in rows}
+                rows.extend(explicit_manual_candidates(coll,embedding,question,known))
             candidate_ids=[]
             if candidate is not None and re.search(r"\bussia\b",question,re.I):
                 extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
@@ -260,6 +294,7 @@ def main():
             source_scope_excluded=[]
             if args.source_aware:
                 selected,source_scope_excluded=filter_named_source_context(question,selected)
+            selected,explicit_manual_reserved=reserve_explicit_manual(question,rows,scores,selected,args.limit)
             heading_reserved=[]
             source_ranking_trace=[]
             source_selection_trace={}
@@ -282,7 +317,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"consolidation_excluded_ids":consolidation_excluded,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"consolidation_excluded_ids":consolidation_excluded,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"explicit_manual_reserved_ids":explicit_manual_reserved,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),

@@ -1,6 +1,6 @@
 # Espansione corpus tattico Drive11 — candidato V5
 
-Stato: IMPLEMENTATO; esecuzione e validazione DA FARE.
+Stato: ESEGUITO; validazione e promozione DA FARE.
 
 ## Motivazione e isolamento
 
@@ -18,3 +18,12 @@ La prova è tecnicamente nuova perché aggiunge documenti al corpus. Le fonti so
 6. promuovere solo in assenza di regressioni e con evidenze registrate.
 
 Flusso: Attività = espansione corpus; Script = pipeline V5 parametrizzata; Commit = DA FARE; Report = questo documento; Risultato = IMPLEMENTATO; Decisione = esecuzione candidata isolata; Stato = IMPLEMENTATO.
+
+## Risultato runtime
+
+- 11/11 PDF con hash coerente, testo non vuoto e metadata Docling pipeline v2.
+- 877 nuovi chunk; candidato `dribbling_tactics_v5_multisource_drive11_candidate_v1` a 6196 record; baseline certificata invariata a 5319.
+- Benchmark locked: 10/10 esecuzioni completate, indice invariato e nessuna citazione inesistente.
+- Audit qualitativo: 9/10. `fresh_10` ha recuperato Ussia ma non il manuale FOOTBALL-DATA-LAB esplicitamente richiesto.
+
+Decisione: candidato non promosso. È stata implementata una correzione generale, basata sui metadata e non sugli ID del benchmark, che scopre candidati fra le fonti con nome `manual` quando la domanda richiede esplicitamente un confronto e riserva il manuale semanticamente migliore se il top-k ne è privo. Verifica differenziale e regressione finale DA FARE.

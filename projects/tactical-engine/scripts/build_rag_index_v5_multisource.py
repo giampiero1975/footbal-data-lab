@@ -97,7 +97,7 @@ def main() -> int:
     if not paths:
         ap.error(f"No Docling JSON found under {root}")
 
-    print(f"Documents: {len(paths)}; target: {COLLECTION}; model: {EMBED_MODEL}", flush=True)
+    print(f"Documents: {len(paths)}; target: {args.collection}; model: {EMBED_MODEL}", flush=True)
     if not args.write:
         total = sum(1 for _ in build_rows(paths, root, source_root))
         if not total:
