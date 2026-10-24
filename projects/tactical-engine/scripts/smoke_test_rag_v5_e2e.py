@@ -50,11 +50,11 @@ def scoped_guidance(question):
     return (" Elenca esplicitamente i moduli 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1 con le rispettive citazioni. "
             "Distingui le descrizioni tattiche dalle prove causali: senza dati comparativi non si può dimostrare "
             "che cambiare modulo durante la partita aumenti o diminuisca il rischio.")
-def chat(model,question,evidence,timeout):
+def chat(model,question,evidence,timeout,targeted_coverage=False):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
     payload={"model":model,"stream":False,"think":False,
-             "messages":[{"role":"system","content":SYSTEM+scoped_guidance(question)},
+             "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")},
                          {"role":"user","content":f"DOMANDA:\n{question}\n\nFONTI:\n{context}"}],
              "options":{"temperature":0,"num_ctx":8192}}
     request=Request("http://127.0.0.1:11434/api/chat",
@@ -200,7 +200,7 @@ def main():
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
-            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout)
+            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout,args.targeted_coverage)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
