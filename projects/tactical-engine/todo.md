@@ -53,8 +53,11 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** 87 JSON runtime (2.72M) catalogati per percorso, dimensione,
   SHA-256 e sensibilità senza pubblicarne il contenuto. Manifest
   `evaluation/runtime_evidence_manifest_v1.json`.
-- [ ] **DA FARE** proporre un piano di archiviazione/rimozione con prova di non
-  utilizzo, backup e rollback; nessuna cancellazione anticipata.
+- [x] **VALIDATO** piano di archiviazione: 161 script storici conservati in
+  sede come archivio logico, 87 JSON runtime preservati e indicizzati per hash;
+  nessuno spostamento fisico che rompa import o riferimenti. Report
+  `docs/script-classification-v2.md` e
+  `docs/runtime-evidence-reconciliation-01.md`.
 - [x] **VALIDATO** README tecnico aggiornato con entry point CLI certificato,
   modelli, collection, comando ordinario e rollback.
 
