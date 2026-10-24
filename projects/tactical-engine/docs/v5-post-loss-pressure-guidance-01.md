@@ -23,21 +23,32 @@ benchmark o nome fonte è codificato.
 
 ## Report
 
-Report runtime previsto:
+Report runtime:
 `evaluation/v5_post_loss_pressure_fresh10_v1.json`.
+
+SHA-256:
+`d1cdad96dcdb7f5cd37fbd69e04f04f47807f2a4c6449a3c2898688d8bf321aa`.
 
 ## Risultato
 
 - Test offline complessivi: `7/7` superati.
 - Compilazione sintattica: superata.
-- Esecuzione VPS: `DA FARE`.
+- Esecuzione VPS completata `1/1` in `150.02 s`.
+- Mandatory claim presenti: Ussia sistema + pressione individuale/collettiva
+  (F2); manuale interno vicinanza, orientamento, uscita prevedibile e copertura
+  preventiva (F7).
+- La conclusione distingue pressing generale e riaggressione post-perdita.
+- La risposta include però ancora la rimessa laterale F8 fra le condizioni
+  favorevoli post-perdita: forbidden claim non risolto completamente.
+- Citazioni invalide `0`; Chroma `5319 -> 5319`.
 
 ## Decisione
 
-Consentire una sola generazione `fresh_10` con la copertura targeted già
-verificata e la nuova guida. Valutare mandatory e forbidden claim senza
-equiparare citazioni valide a fedeltà.
+Non validare e non ripetere lo stesso test. La prossima variante è consentita
+solo con una differenza tecnica più forte: omettere dalla risposta post-perdita
+le evidenze di pressing generale, fuorigioco e rimesse laterali, anziché
+limitarne verbalmente l'equivalenza.
 
 ## Stato
 
-`IMPLEMENTATO`. Non `ESEGUITO`, `VALIDATO`, `INTEGRATO` o `CERTIFICATO`.
+`ESEGUITO`. Non `VALIDATO`, `INTEGRATO` o `CERTIFICATO`.
