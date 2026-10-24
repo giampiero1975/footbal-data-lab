@@ -537,3 +537,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** V5-FRESH03-HEADING-AWARE-RETRIEVAL-01: lettura metadata headings e quattro chunk modulo fuori dalla top24, commit `cfffe6a`, `68ca18d`; report `docs/v5-fresh03-heading-aware-retrieval-01.md` (`8d510f2`). Verifica VPS DA FARE; benchmark 5/10 invariato.
 
 - [x] **VALIDATO** V5-FRESH03-HEADING-AWARE-RETRIEVAL-01 (solo retrieval): V2 recupera F1–F4 per i moduli 4-3-3, 4-4-2, 3-5-2, 3-4-2-1, tutti pagina 4; 5319 record invariati; report `docs/v5-fresh03-heading-aware-retrieval-v2-result.md` (`a5811c5`). Heading duplicati nel testo, generazione DA FARE; benchmark 5/10 invariato.
+
+- [x] **ESEGUITO** V5-FRESH03-HEADING-AWARE-ANSWER-01: generazione mirata VPS, report `docs/v5-fresh03-heading-aware-answer-v1-review.md` (`1c16f88`); 4 moduli recuperati e heading deduplicati, ma risposta non cita esplicitamente i 4 moduli né dichiara l'assenza di evidenza causale sul cambio modulo. Non VALIDATO; benchmark 5/10 invariato.
