@@ -54,7 +54,13 @@ La differenza è implementata in `9a1a903`; i test offline complessivi sono ora
 `9/9` e la compilazione è superata. È autorizzata una sola generazione V2 in
 `evaluation/v5_named_source_context_fresh07_v2.json`.
 
+La V2 è `COMPLETE 1/1` in 78.5 s, SHA-256
+`9da89f8287a02504445501800fbf73df6c752603f30b9a043216ae51ee40b371`.
+La risposta include playmaker braccati con poco tempo/spazio, laterali esposti
+alla pressione a invito e perdita in zona pericolosa; presenta il rischio come
+situazionale. Tutte le quattro evidenze appartengono a Foscarini, quattro fonti
+estranee risultano escluse, citazioni invalide 0 e indici 5319/34 invariati.
+
 ## Stato
 
-Filtro V1 `ESEGUITO`; guida V2 `IMPLEMENTATO`. Non `VALIDATO`, `INTEGRATO` o
-`CERTIFICATO`.
+`VALIDATO` per `fresh_07`. Non `INTEGRATO` o `CERTIFICATO`.
