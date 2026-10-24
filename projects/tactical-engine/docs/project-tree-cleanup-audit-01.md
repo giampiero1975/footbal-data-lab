@@ -14,6 +14,10 @@ Nessuno. Audit read-only con Git, `du`, `find`, `grep`, `ps`, `systemctl`, cron,
 `lsof`, inventario Ollama e fingerprint V5. Rimozione limitata a quattro
 percorsi cache/lock Hugging Face Alibaba verificati.
 
+## Commit
+
+`957f350` — `docs: audit project tree and retire Alibaba cache`.
+
 ## Alberatura sintetica
 
 ```text
