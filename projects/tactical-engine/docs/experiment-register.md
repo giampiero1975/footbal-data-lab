@@ -480,3 +480,20 @@ Attività: verifica claim-level delle risposte fresh_03/fresh_10 dopo generazion
 ### V5-FRESH03-MANUAL-INVENTORY-01
 
 Attività: censimento diretto dei chunk Chroma del manuale fresh_03; differenza dai test precedenti: lettura di tutte le evidenze della source senza retrieval vettoriale o generazione. Script: `scripts/inspect_v5_fresh03_manual_v1.py`. Commit: `dc28977`; report `docs/v5-fresh03-manual-inventory-01.md` (`4e3eb53`). Risultato: VPS ESEGUITA, 62 chunk della fonte, Chroma 5319 invariato; zero etichette letterali dei quattro moduli, pagina 4 contiene descrizioni senza nomi. Report aggiornato `54af77a`. Decisione: riconciliare intestazioni del documento sorgente con la segmentazione prima di cambiare retrieval; nessuna reindicizzazione o benchmark duplicato. Stato: ESEGUITO.
+
+
+### V5-FRESH03-HEADING-LOSS-TRACE-01
+
+Attività: confrontare la pagina 4 del PDF originale con i quattro chunk e isolare il confine in cui si perde l'associazione heading-paragrafo, senza ripetere retrieval o generazione. Script: confronto del PDF e dell'inventario VPS esistente; ispezione statica `scripts/ingest_pdfs.py` e `scripts/build_rag_index_v5_multisource.py`; nuovo trace read-only `scripts/inspect_v5_fresh03_heading_loss_v1.py`. Commit script `1019592`. Report: `docs/v5-fresh03-heading-loss-trace-01.md`; trace VPS DA FARE. Risultato: il PDF conferma la sezione `9. Differenze tra moduli` e i quattro heading immediatamente prima dei rispettivi paragrafi; l'inventario precedente mostra i quattro chunk privi di intestazione. `ingest_pdfs.py` esporta la gerarchia Docling senza trasformazioni; il builder si affida a `HybridChunker.contextualize` e salva `chunk.meta.headings`. Gli artefatti registrati non distinguono se Docling abbia mancato la classificazione o il chunker abbia mancato l'associazione. Compilazione sintattica locale dello script OK; dipendenze Docling/Chroma non disponibili localmente; nessun accesso o scrittura alla collection in questa sessione. Decisione: nessuna patch comportamentale finché il trace read-only sulla VPS non mostri quale passaggio è responsabile; eseguire solo quel trace sul JSON Docling esistente, quindi applicare la patch mirata e valutarla su shadow separato. Stato: DIAGNOSI PARZIALE ESEGUITA; causa DA CONFERMARE; fix NON IMPLEMENTATO; nessuna validazione/integrazione/certificazione.
+
+### V5-FRESH03-HEADING-AWARE-RETRIEVAL-01
+
+Attività: recupero heading dei quattro moduli per fresh_03. Script: `v5_targeted_coverage_v1.py`, `smoke_test_rag_v5_e2e.py`, wrapper locked in modalità retrieval-only. Commit: `cfffe6a`, `68ca18d`, `95d4917`, `a9334bb`. Report: `docs/v5-fresh03-heading-aware-retrieval-v2-result.md` (`a5811c5`), evidenza VPS `evaluation/v5_fresh03_heading_aware_retrieval_v2.json` fornita dall'operatore. Risultato: F1–F4 contengono rispettivamente 4-3-3, 4-4-2, 3-5-2, 3-4-2-1, pagina 4, 5319 record invariati, nessuna generazione. Decisione: retrieval VALIDATO; correggere duplicazione heading prima della generazione; nessuna integrazione o certificazione, benchmark 5/10 invariato. Stato: VALIDATO.
+
+### V5-FRESH03-HEADING-AWARE-ANSWER-01
+
+Attività: generazione fresh_03 dopo heading dedup. Script: wrapper locked con --targeted-coverage --only-ids fresh_03. Commit: 1e3dfbe. Report: docs/v5-fresh03-heading-aware-answer-v1-review.md (1c16f88), JSON VPS fornito dall'operatore. Risultato: quattro evidenze corrette e zero citazioni invalide; risposta non nomina i quattro moduli e non delimita la causalità del cambio di modulo. Decisione: risposta non VALIDATA, benchmark 5/10 invariato. Stato: ESEGUITO.
+
+### V5-FRESH03-GENERATION-GUIDANCE-01
+
+Attività: generazione mirata fresh_03 con istruzioni circoscritte. Script: smoke_test_rag_v5_e2e.py e wrapper locked. Commit: c08ba43, 44a2b78. Report: docs/v5-fresh03-generation-guidance-v1-review.md (064f120), JSON VPS fornito dall'operatore. Risultato: 4 moduli citati F1–F4, assenza di prova causale esplicitata, zero citazioni invalide, Chroma 5319 invariato. Decisione: generazione mirata VALIDATA; benchmark locked ancora 5/10; non INTEGRATO né CERTIFICATO. Stato: VALIDATO.
