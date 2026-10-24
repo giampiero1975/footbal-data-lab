@@ -1,6 +1,6 @@
 # RAG-V5-HTTP-API-VALIDATION-01
 
-Data: 2026-10-24. Stato: VALIDATO; deployment utente INTEGRATO con limite boot.
+Data: 2026-10-24. Stato: VALIDATO; deployment utente INTEGRATO.
 
 ## Attività
 
@@ -29,9 +29,10 @@ qualità e non estende la certificazione 10/10 a domande arbitrarie.
 ## Deployment
 
 `football-rag-api.service` utente è `active` e `enabled`, circa 12M a riposo.
-Il token casuale resta fuori da Git. `Linger=no`: il servizio non è garantito
-al boot prima di `sudo loginctl enable-linger football`, oppure installazione
-dell'unità di sistema da parte di un amministratore.
+Il token casuale resta fuori da Git. Il 2026-10-24 il titolare ha eseguito
+`sudo loginctl enable-linger football`; verifica successiva: `Linger=yes`.
+Riavvio controllato dell'unità e nuova sessione SSH hanno confermato servizio
+attivo, health/readiness e bind localhost. Non è stato riavviato l'intero host.
 
 ## Rollback
 
@@ -40,6 +41,6 @@ Ollama, modelli e Chroma non vengono modificati.
 
 ## Decisione
 
-API VALIDATA e integrata come servizio locale di sessione. Non esporre la porta
-direttamente su Internet. Persistenza boot e collegamento dell'applicazione
-restano attività separate.
+API VALIDATA e integrata come servizio utente persistente locale. Non esporre
+la porta direttamente su Internet. Un reboot completo resta una verifica
+operativa futura; collegamento dell'applicazione è attività separata.

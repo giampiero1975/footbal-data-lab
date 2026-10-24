@@ -33,16 +33,17 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** Bearer token, rate limit, body limit, coda limitata, singolo
   worker, timeout ed errori; test offline 3/3 e smoke HTTP VPS superati.
 - [x] **INTEGRATO** servizio `systemd --user` locale su `127.0.0.1:8088`, health,
-  readiness, log, directory private e rollback verificati. Persistenza al boot
-  ancora **DA FARE** perché `Linger=no` e l'utente non dispone di sudo non
-  interattivo.
+  readiness, log, directory private e rollback verificati. Persistenza utente
+  configurata e VALIDATA con `Linger=yes`; riavvio unità superato. Reboot host
+  completo non eseguito.
 - [ ] **DA FARE** collegare l'applicazione all'API e predisporre test end-to-end
   applicativi distinti dal benchmark locked già concluso.
 - [x] **VALIDATO** primo E2E applicativo distinto: risposta 3001 caratteri,
   8 evidenze, citazioni F1–F8 valide, indici 5319/34 invariati; SHA-256 nel
   report `docs/rag-v5-http-api-validation-01.md`.
-- [ ] **DA FARE** completare criteri operativi con persistenza boot, test di
-  carico/concorrenza e monitoraggio prolungato prima dell'esposizione esterna.
+- [ ] **DA FARE** completare criteri operativi con test di carico/concorrenza e
+  monitoraggio prolungato prima dell'esposizione esterna; reboot host da
+  verificare alla prossima finestra di manutenzione, senza riavvio dedicato.
 
 ### P2 — Ordine e manutenzione del repository
 

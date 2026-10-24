@@ -26,10 +26,9 @@ Bind predefinito `127.0.0.1:8088`; nessuna esposizione Internet diretta.
 Configurazione segreta in `/etc/football-data-lab/rag-api.env`, fuori da Git.
 Unit file candidata `deploy/football-rag-api.service` con utente non root,
 filesystem protetto e unica directory scrivibile `evaluation/api-runs`.
-È disponibile anche `deploy/football-rag-api.user.service` per verifica senza
-privilegi. Sulla VPS `Linger=no`: il servizio utente può essere validato ma non
-considerato persistente al boot finché un amministratore non abilita il linger
-o installa l'unità di sistema.
+È disponibile anche `deploy/football-rag-api.user.service` per deployment senza
+privilegi. Sulla VPS il linger dell'utente `football` è stato abilitato e
+verificato (`Linger=yes`) il 2026-10-24.
 
 ## Rollback
 
