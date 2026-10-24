@@ -31,6 +31,9 @@ API locale candidata: `127.0.0.1:8088`, unità utente
 `docs/rag-v5-http-api-contract-01.md`; il token è conservato esclusivamente
 nella configurazione privata VPS.
 
+Client Python applicativo: `api/rag_v5_client.py`. Richiede `RAG_API_URL` e
+`RAG_API_TOKEN`; esegue submit e polling del job senza dipendenze esterne.
+
 ## Punto di partenza (evitare controlli ripetuti)
 1. Leggere [todo.md](todo.md) per priorità e attività aperte.
 2. Leggere [docs/environment.md](docs/environment.md) per l'ultima fotografia verificata della VPS e la sua validità.

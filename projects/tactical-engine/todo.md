@@ -44,6 +44,15 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [ ] **DA FARE** completare criteri operativi con test di carico/concorrenza e
   monitoraggio prolungato prima dell'esposizione esterna; reboot host da
   verificare alla prossima finestra di manutenzione, senza riavvio dedicato.
+- [x] **VALIDATO** carico control-plane: 500/500 richieste con concorrenza 25,
+  mediana 3.36 ms; readiness 200. Recovery systemd dopo kill superato,
+  `NRestarts=1`. Nessuna inferenza duplicata.
+- [x] **IMPLEMENTATO** client applicativo stdlib `api/rag_v5_client.py` con
+  submit, polling e deadline. Collegamento al consumer reale resta DA FARE:
+  nessun codice applicativo consumer è presente nel repository.
+- [x] **IMPLEMENTATO** template reverse proxy HTTPS Nginx con TLS, redirect,
+  rate/body limit e timeout. Deploy **BLOCCATO** fino a disponibilità di un
+  dominio DNS pubblico e certificato valido; porta 8088 resta solo localhost.
 
 ### P2 — Ordine e manutenzione del repository
 
