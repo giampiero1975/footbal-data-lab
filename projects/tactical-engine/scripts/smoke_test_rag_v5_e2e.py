@@ -20,6 +20,7 @@ from llama_index.embeddings.ollama import OllamaEmbedding
 from sentence_transformers import CrossEncoder
 from v5_heading_routing_v1 import expand as heading_expand, headings as metadata_headings, should_expand as heading_applicable, generation_guidance
 from v5_heading_reservation_v2 import reserve as heading_reserve
+from v5_source_semantic_rank_v3 import semantic_source_ranking
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -82,9 +83,12 @@ def main():
     ap.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate retrieval")
     ap.add_argument("--targeted-coverage",action="store_true")
     ap.add_argument("--heading-routing",action="store_true",help="Opt-in generic metadata heading expansion; no benchmark ID rules")
+    ap.add_argument("--source-ranking-trace",action="store_true",help="Record source-level semantic scores; requires heading routing and retrieval-only")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
     args=ap.parse_args()
+    if args.source_ranking_trace and not (args.heading_routing and args.retrieval_only):
+        ap.error("--source-ranking-trace requires --heading-routing and --retrieval-only")
     if args.priority_exact:
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if args.targeted_coverage:
@@ -108,7 +112,7 @@ def main():
     report={"collection":COLLECTION,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
-            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"questions":[],"notes":[
+            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -200,10 +204,13 @@ def main():
             if targeted_source:
                 selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
             heading_reserved=[]
+            source_ranking_trace=[]
             if args.heading_routing and not args.targeted_coverage:
                 revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit,reranker=rerank)
                 if revised is not None:
                     selected=revised
+                if args.source_ranking_trace:
+                    source_ranking_trace=semantic_source_ranking(question,rows,rerank)
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
@@ -215,7 +222,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"heading_reserved_ids":heading_reserved,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),

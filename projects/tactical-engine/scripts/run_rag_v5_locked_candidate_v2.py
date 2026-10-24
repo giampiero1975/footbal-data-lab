@@ -50,6 +50,7 @@ def main():
     p.add_argument("--priority-exact", action="store_true", help="Opt-in exact reference priority; default unchanged")
     p.add_argument("--targeted-coverage",action="store_true",help="Opt-in two-case diagnostic; default unchanged")
     p.add_argument("--heading-routing",action="store_true",help="Opt-in generic heading metadata routing; default unchanged")
+    p.add_argument("--source-ranking-trace",action="store_true",help="Record source semantic scores; requires heading routing and retrieval-only")
     p.add_argument("--retrieval-only",action="store_true",help="Skip generation for targeted diagnostic")
     p.add_argument("--only-ids",nargs="+",choices=["fresh_03","fresh_10"],help="Restrict diagnostic to specified locked cases")
     args = p.parse_args()
@@ -78,6 +79,8 @@ def main():
         sys.argv.append("--targeted-coverage")
     if args.heading_routing:
         sys.argv.append("--heading-routing")
+    if args.source_ranking_trace:
+        sys.argv.append("--source-ranking-trace")
     if args.retrieval_only:
         sys.argv.append("--retrieval-only")
     if args.source_aware:
