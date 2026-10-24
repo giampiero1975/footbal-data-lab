@@ -1,7 +1,7 @@
 # PROJECT-TREE-CLEANUP-AUDIT-01
 
-Data: 2026-10-24. Stato: VALIDATO per la rimozione Alibaba; ESEGUITO per
-l'inventario iniziale.
+Data: 2026-10-24. Stato: VALIDATO per la pulizia dei componenti rigenerabili;
+ESEGUITO per l'inventario iniziale.
 
 ## Attività
 
@@ -88,6 +88,49 @@ Hugging Face; non sono stati rimossi codice, configurazioni, indici o sorgenti.
 ## Decisione
 
 Pulizia fase 1 conclusa limitatamente ad Alibaba. Prima di altre rimozioni:
-classificare i 199 file di script, i 77 percorsi non tracciati, l'ambiente
-Ragas e le collection storiche. Non eliminare `.venv`, knowledge base,
-benchmark, indici o modelli attivi.
+classificare i 199 file di script, i 77 percorsi non tracciati e le collection
+storiche. Non eliminare `.venv`, knowledge base, benchmark, indici o modelli
+attivi.
+
+## Pulizia fase 2
+
+Controlli preliminari:
+
+- `.venv-ragas-eval` senza file aperti e fuori dal runtime certificato;
+- cache pip interamente rigenerabile;
+- processi Surya con `PPID 1`, attivi da otto giorni, senza connessioni client
+  e privi di unità systemd associata;
+- BGE 2.3G e Qwen3-Reranker 1.2G assenti dai file del runtime V5 corrente;
+- mMARCO, modelli Docling/Surya, Qwen Ollama e `.venv` operativo preservati.
+
+Rimozioni eseguite:
+
+- `.venv-ragas-eval`: 766M;
+- cache pip utente: 259M;
+- cache Hugging Face `BAAI/bge-reranker-v2-m3`: 2.3G;
+- cache Hugging Face `Qwen/Qwen3-Reranker-0.6B`: 1.2G;
+- due blob condivisi non referenziati: 629M, rimossi con `hf cache prune`;
+- due processi Surya orfani arrestati ordinatamente, liberando circa 565M RAM.
+
+Lo strumento ufficiale `hf cache rm` ha gestito riferimenti e blob dei modelli;
+non sono stati rimossi manualmente file dal pool condiviso. BGE, Qwen3-Reranker
+e Ragas restano ripristinabili tramite download/reinstallazione. I server Surya
+restano installati nella `.venv` e possono essere riavviati per una futura
+ingestion.
+
+## Risultato finale
+
+- filesystem root: 27G usati / 31G liberi / 48% prima; 19G usati / 39G liberi
+  / 33% dopo;
+- repository VPS: da 3.6G a 2.9G;
+- cache Hugging Face: da 5.0G a 1.1G;
+- swap: da circa 1.5G occupati a 4.8M;
+- processi Surya non più attivi;
+- import runtime riusciti: Chroma 1.5.9, sentence-transformers 6.1.0,
+  torch 2.6.0+cpu;
+- collection V5 ancora 5319/34;
+- hash runner ancora
+  `bafb61c30474e4946ba0a8d91b733363e3e7830fda0cb196cc37c5ed2130780e`.
+
+Test, script e report JSON non sono stati cancellati: occupano pochi MB e sono
+necessari per riproducibilità, audit e ricostruzione delle decisioni.

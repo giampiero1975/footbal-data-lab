@@ -160,3 +160,13 @@ circa 152K fisici. Storage condiviso preservato. Report:
 `docs/project-tree-cleanup-audit-01.md`.
 
 **Controllo statico esteso (seconda PuTTY, 2026-10-21):** ricerca `git grep -n -i -E` dei riferimenti `Alibaba-NLP|gte-multilingual-reranker|new-impl` sull'intero repository tracciato, escludendo `*.lock` e `*.jsonl`: nessun risultato riportato. I limiti di quella verifica sono stati chiusi dall'audit runtime del 2026-10-24; rimozione eseguita e validata.
+
+## Pulizia componenti rigenerabili — 2026-10-24
+
+Rimossi dopo audit: `.venv-ragas-eval` 766M, cache pip 259M, cache BGE 2.3G,
+cache Qwen3-Reranker 1.2G e 629M di blob Hugging Face non referenziati tramite
+CLI ufficiale. Arrestati due processi Surya orfani senza client, liberando
+circa 565M RAM; pacchetti e modelli Surya restano installati. Root filesystem
+da 48% a 33%, 39G liberi. Runtime V5 verificato dopo la pulizia: import riusciti,
+collection 5319/34 e hash runner invariato. Dettagli e rollback in
+`docs/project-tree-cleanup-audit-01.md`.

@@ -44,6 +44,9 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** audit alberatura e rimozione cache Alibaba inutilizzata;
   runner e collection V5 invariati. Report
   `docs/project-tree-cleanup-audit-01.md`.
+- [x] **VALIDATO** pulizia runtime rigenerabile: rimossi `.venv-ragas-eval`,
+  cache pip, BGE, Qwen3-Reranker e 629M di blob non referenziati; arrestati due
+  processi Surya orfani. Disco 48%→33%, collection 5319/34 e runner invariati.
 - [ ] **DA FARE** censire e classificare script come operativo, test,
   sperimentale, storico o candidato all'archiviazione.
 - [ ] **DA FARE** riconciliare report VPS non versionati, collection, modelli,
@@ -55,8 +58,9 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 
 ### P3 — Miglioramenti opzionali, fuori dal closeout V5
 
-- [ ] **DA FARE** decidere se mantenere o archiviare il gate NLI V2 e il client
-  Gemini; non sono prerequisiti della certificazione corrente.
+- [x] **VALIDATO** ambiente Ragas rimosso come artefatto rigenerabile e fuori
+  dal runtime certificato; script, report NLI e client Gemini conservati come
+  archivio riproducibile, non come prerequisiti della certificazione corrente.
 - [ ] **DA FARE** pianificare, solo se utile al prodotto, un nuovo benchmark su
   documenti e domande realmente nuovi. Deve avere un gold indipendente e una
   differenza tecnica documentata; non ripetere il locked 10/10.
