@@ -1,6 +1,6 @@
 """Evidence reservation for metadata heading groups (opt-in)."""
 import re
-from v5_source_semantic_rank_v3 import semantic_source_scores
+from v5_source_hybrid_rank_v4 import select_source
 from v5_heading_routing_v1 import headings, FORMATION, should_expand
 
 def reserve(rows, scores, question, aliases, limit, reranker=None):
@@ -20,8 +20,14 @@ def reserve(rows, scores, question, aliases, limit, reranker=None):
     def rank(source):
         topical = len(terms & set(re.findall(r"[a-zà-ÿ]{5,}", source.casefold())))
         return (topical, len(groups[source]))
-    semantic = semantic_source_scores(question, rows, reranker) if reranker is not None else {}
-    source = max(sorted(groups), key=lambda name: (semantic.get(name, -1e9), rank(name)))
+    if reranker is not None:
+        source, _ = select_source(question, rows, reranker)
+        if source not in groups:
+            source = None
+    else:
+        source = None
+    if source is None:
+        source = max(sorted(groups), key=lambda name: rank(name))
     chosen = []
     seen = set()
     def append(i):

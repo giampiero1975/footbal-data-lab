@@ -21,6 +21,7 @@ from sentence_transformers import CrossEncoder
 from v5_heading_routing_v1 import expand as heading_expand, headings as metadata_headings, should_expand as heading_applicable, generation_guidance
 from v5_heading_reservation_v2 import reserve as heading_reserve
 from v5_source_semantic_rank_v3 import semantic_source_ranking
+from v5_source_hybrid_rank_v4 import select_source as hybrid_source_select
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -205,12 +206,15 @@ def main():
                 selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
             heading_reserved=[]
             source_ranking_trace=[]
+            source_selection_trace={}
             if args.heading_routing and not args.targeted_coverage:
                 revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit,reranker=rerank)
                 if revised is not None:
                     selected=revised
                 if args.source_ranking_trace:
                     source_ranking_trace=semantic_source_ranking(question,rows,rerank)
+                    selected_source, hybrid_trace=hybrid_source_select(question,rows,rerank)
+                    source_selection_trace={"selected_source":selected_source,"semantic_margin":1.5,"candidates":hybrid_trace}
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
@@ -222,7 +226,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
