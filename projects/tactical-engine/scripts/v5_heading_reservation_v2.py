@@ -1,5 +1,6 @@
 """Evidence reservation for metadata heading groups (opt-in)."""
 import re
+from v5_source_semantic_rank_v3 import semantic_source_scores
 from v5_heading_routing_v1 import headings, FORMATION, should_expand
 
 def reserve(rows, scores, question, aliases, limit):
