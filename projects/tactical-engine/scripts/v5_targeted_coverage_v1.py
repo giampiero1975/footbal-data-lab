@@ -21,7 +21,12 @@ def promote(rows, scores, aliases, source, page, limit):
     reserved = []
     source_matches = [i for i in ordering if rows[i]["source"] == source]
     if source_matches:
-        reserved.append(max(source_matches,key=lambda i: (sum(x in rows[i]["text"] for x in ("4-3-3","4-4-2","3-5-2","3-4-2-1")),float(scores[i]))) if source==MANUAL and page is None else reserved.append(source_matches[0])
+        if source == MANUAL and page is None:
+            forms = ("4-3-3", "4-4-2", "3-5-2", "3-4-2-1")
+            chosen = max(source_matches, key=lambda j: (sum(form in rows[j]["text"] for form in forms), float(scores[j])))
+            reserved.append(chosen)
+        else:
+            reserved.append(source_matches[0])
     if page is not None:
         page_matches = [i for i in source_matches if contains_page(rows[i].get("pages"), page)]
         if page_matches and page_matches[0] not in reserved:
