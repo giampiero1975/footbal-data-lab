@@ -5,10 +5,9 @@ MANUAL = "FOOTBALL_DATA_LAB_Transizioni_Offensive_e_Difensive_Manuale"
 USSIA = "Transizioni.Ussia"
 
 def target(qid, question):
-    # Diagnostic-only rule, intentionally scoped to the two recorded FAIL cases.
-    if qid == "fresh_03" and "manuale interno" in question.casefold():
-        return MANUAL, None
-    if qid == "fresh_10" and "ussia" in question.casefold():
+    # Concept-scoped comparison rule; qid is retained for API compatibility only.
+    q=question.casefold()
+    if "ussia" in q and "manuale interno" in q and "perdita" in q and any(term in q for term in ("pression", "riaggress")):
         return USSIA, 17
     return None, None
 

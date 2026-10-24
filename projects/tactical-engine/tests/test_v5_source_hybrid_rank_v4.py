@@ -90,6 +90,12 @@ class HybridSourceSelectionTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in kept],["conditions","choice"])
         self.assertEqual(excluded,["defence","foreign"])
 
+    def test_targeting_uses_question_concepts_not_locked_id(self):
+        module=load_module("v5_targeted_coverage_v1")
+        question="Confrontando Ussia e il manuale interno, quali condizioni favoriscono la pressione dopo la perdita?"
+        self.assertEqual(module.target("arbitrary_id",question),(module.USSIA,17))
+        self.assertEqual(module.target("fresh_03","Cosa dice il manuale interno sui moduli?"),(None,None))
+
 
 class ScopedGuidanceTests(unittest.TestCase):
     def setUp(self):
