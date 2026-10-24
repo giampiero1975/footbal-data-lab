@@ -52,9 +52,7 @@ def expand(collection, question, known, normalizer):
             raw = meta.get("raw_text") or doc
             candidates.append((forms[0], cid, doc, meta, hs, raw))
         # Do not force arbitrary formations into context when no names were requested.
-        if not explicit and len(candidates) > 8:
-            continue
-        for _, cid, doc, meta, hs, raw in sorted(candidates)[:8]:
+        for _, cid, doc, meta, hs, raw in sorted(candidates)[:24]:
             added.append({"id": cid, "source": meta["source"],
                 "source_relative": meta.get("source_relative"),
                 "pages": meta.get("page_numbers"), "text": doc,
