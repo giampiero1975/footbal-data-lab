@@ -10,84 +10,6 @@
   },
   "entries": [
     {
-      "path": "projects/tactical-engine/audit_two_stage_tactical_nli_v1.json",
-      "bytes": 2078,
-      "sha256": "e80f1c659ac3f78f137ac52778aef0c8da5caae3ed47ccc297ce1f26ff3a9f22",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_direct_three_label_external_v1.json",
-      "bytes": 11943,
-      "sha256": "45aac88c9a4bd840ae65142fd110e82721e12bc65c613c1e6b19f36f425c3f67",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_direct_three_label_fresh_v1.json",
-      "bytes": 16847,
-      "sha256": "7910a4459b344293eb0656cf783449a95756768ec2545d92b53f5a21ff8f4fde",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_direct_three_label_v2_fresh_v1.json",
-      "bytes": 17290,
-      "sha256": "a7f478dba549ccf83302a8d2a45b492582975adb2bfba6799240d8e4433682eb",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_minimal_verdict_external_v1.json",
-      "bytes": 13765,
-      "sha256": "035cecd32ef7f9f84d2060e7a1a76a157deeeb23e275bdfd7a3b089edb51425f",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_strict_tactical_adversarial_v1.json",
-      "bytes": 23505,
-      "sha256": "c9edc701c3f9a4f652ade05503209cf31662e26835e95adbad5ae52f99fb6d7a",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_strict_tactical_nli_v1.json",
-      "bytes": 19913,
-      "sha256": "bf02ffe6e39357293f228a369ae93fb2ef6e0e490ee9ce7ca734630512cc9bac",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_tactical_nli_source_disjoint_30_v2.json",
-      "bytes": 42977,
-      "sha256": "f3ef699c3aaa69ced2d802b4f5fb4af5cbcbf7033139eb25780b0d0a0f338c81",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_tactical_nli_stress_100_v2.json",
-      "bytes": 83135,
-      "sha256": "8109e1bf1562a62a84c37e2a73ed74f2a5879309ea06cf8bd539a8542ef6140e",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_transition_independent_v2.json",
-      "bytes": 38335,
-      "sha256": "364842d15f586f72070024fe5d78f06d20995e181ca4e6df2dc867b31495d7b0",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_two_stage_external_holdout_v1.json",
-      "bytes": 30519,
-      "sha256": "ff3f1cb4869a55f6ffed4f99e56a60ca4d2d9078141725a572a397d6b41c3d6e",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/benchmark_two_stage_tactical_nli_v1.json",
-      "bytes": 31655,
-      "sha256": "3c4538be9f16cff6aad407e915aa147db8aa1f9d70a1b0eab13216df881765ed",
-      "classification": "historical_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/diagnostica_v5_rerank_failures_v1.json",
-      "bytes": 116790,
-      "sha256": "ee9b45e3e2c9a509815ab09b627ef284049ebc15e3fdcfb675cab3b9483ca24b",
-      "classification": "diagnostic_evidence"
-    },
-    {
       "path": "projects/tactical-engine/eval/claim_fidelity_results_v1.json",
       "bytes": 13537,
       "sha256": "956c8864222d389a812bf46ee3649a99345d5d82912befbd5d85afb9a9832f92",
@@ -310,6 +232,96 @@
       "classification": "historical_evidence"
     },
     {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/audit_two_stage_tactical_nli_v1.json",
+      "bytes": 2078,
+      "sha256": "e80f1c659ac3f78f137ac52778aef0c8da5caae3ed47ccc297ce1f26ff3a9f22",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_direct_three_label_external_v1.json",
+      "bytes": 11943,
+      "sha256": "45aac88c9a4bd840ae65142fd110e82721e12bc65c613c1e6b19f36f425c3f67",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_direct_three_label_fresh_v1.json",
+      "bytes": 16847,
+      "sha256": "7910a4459b344293eb0656cf783449a95756768ec2545d92b53f5a21ff8f4fde",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_direct_three_label_v2_fresh_v1.json",
+      "bytes": 17290,
+      "sha256": "a7f478dba549ccf83302a8d2a45b492582975adb2bfba6799240d8e4433682eb",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_minimal_verdict_external_v1.json",
+      "bytes": 13765,
+      "sha256": "035cecd32ef7f9f84d2060e7a1a76a157deeeb23e275bdfd7a3b089edb51425f",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_strict_tactical_adversarial_v1.json",
+      "bytes": 23505,
+      "sha256": "c9edc701c3f9a4f652ade05503209cf31662e26835e95adbad5ae52f99fb6d7a",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_strict_tactical_nli_v1.json",
+      "bytes": 19913,
+      "sha256": "bf02ffe6e39357293f228a369ae93fb2ef6e0e490ee9ce7ca734630512cc9bac",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_tactical_nli_source_disjoint_30_v2.json",
+      "bytes": 42977,
+      "sha256": "f3ef699c3aaa69ced2d802b4f5fb4af5cbcbf7033139eb25780b0d0a0f338c81",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_tactical_nli_stress_100_v2.json",
+      "bytes": 83135,
+      "sha256": "8109e1bf1562a62a84c37e2a73ed74f2a5879309ea06cf8bd539a8542ef6140e",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_transition_independent_v2.json",
+      "bytes": 38335,
+      "sha256": "364842d15f586f72070024fe5d78f06d20995e181ca4e6df2dc867b31495d7b0",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_two_stage_external_holdout_v1.json",
+      "bytes": 30519,
+      "sha256": "ff3f1cb4869a55f6ffed4f99e56a60ca4d2d9078141725a572a397d6b41c3d6e",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/benchmark_two_stage_tactical_nli_v1.json",
+      "bytes": 31655,
+      "sha256": "3c4538be9f16cff6aad407e915aa147db8aa1f9d70a1b0eab13216df881765ed",
+      "classification": "historical_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/diagnostica_v5_rerank_failures_v1.json",
+      "bytes": 116790,
+      "sha256": "ee9b45e3e2c9a509815ab09b627ef284049ebc15e3fdcfb675cab3b9483ca24b",
+      "classification": "diagnostic_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/rag_v5_prospective_diagnostic_v1.json",
+      "bytes": 129354,
+      "sha256": "da67b460ae3a77dc0c20a4333d76e863dcb98fb2a659e7d2c2335761176fb13b",
+      "classification": "diagnostic_evidence"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/v5_source_coverage_shadow_v1.json",
+      "bytes": 3910,
+      "sha256": "cf17b0a7405651129810d9e01e1b552187d6dad39a27d4da1a46cf499750455b",
+      "classification": "diagnostic_evidence"
+    },
+    {
       "path": "projects/tactical-engine/evaluation/ussia_4a_chunk_mapping_v1.json",
       "bytes": 9358,
       "sha256": "d661ec2d738928c5594a470e660acee4bb11803f15983407ce1d823f9a5020a5",
@@ -517,18 +529,6 @@
       "path": "projects/tactical-engine/evaluation/v5_targeted_coverage_retrieval_v1.json",
       "bytes": 25951,
       "sha256": "53bc4674bcd12210590c378c3229556f8f31d984014d42b19b8856fa58a80f81",
-      "classification": "diagnostic_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/rag_v5_prospective_diagnostic_v1.json",
-      "bytes": 129354,
-      "sha256": "da67b460ae3a77dc0c20a4333d76e863dcb98fb2a659e7d2c2335761176fb13b",
-      "classification": "diagnostic_evidence"
-    },
-    {
-      "path": "projects/tactical-engine/v5_source_coverage_shadow_v1.json",
-      "bytes": 3910,
-      "sha256": "cf17b0a7405651129810d9e01e1b552187d6dad39a27d4da1a46cf499750455b",
       "classification": "diagnostic_evidence"
     }
   ],
