@@ -80,6 +80,8 @@ def main():
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if args.targeted_coverage:
         from v5_targeted_coverage_v1 import target, promote, formation_rows, heading_list, MANUAL
+    else:
+        heading_list = lambda value: []
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
@@ -169,7 +171,7 @@ def main():
                                          "pages":r["pages"],"text":r["text"],"distance":None,
                                          "fingerprint":hashlib.sha256(norm(r["text"]).encode()).hexdigest()})
                             existing.add(r["id"])
-            scores=rerank.predict([(question,(" / ".join(r.get("headings") or []) + " " + r["text"]).strip()) for r in rows],
+            scores=rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if args.targeted_coverage and qid == "fresh_03" else r["text"]) for r in rows],
                                   batch_size=1,show_progress_bar=False)
             selected=[];seen=set();dropped=0
             for index in sorted(range(len(rows)),key=lambda i:float(scores[i]),reverse=True):
@@ -188,7 +190,7 @@ def main():
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
-                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"headings":r.get("headings",[]),"text":(" / ".join(r.get("headings") or []) + "\n" + r["text"]).strip()}
+                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"headings":r.get("headings",[]) if args.targeted_coverage and qid == "fresh_03" else [],"text":((" / ".join(r.get("headings") or []) + "\n") if args.targeted_coverage and qid == "fresh_03" and r.get("headings") else "") + r["text"]}
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
