@@ -475,3 +475,8 @@ Attività: correggere SyntaxError import helper prima della generazione scoped. 
 ### V5-TARGETED-ANSWERS-REVIEW-01
 
 Attività: verifica claim-level delle risposte fresh_03/fresh_10 dopo generazione scoped. Script: wrapper locked, smoke V5 e helper targeted coverage. Commit: fix `0c89b47`, report `dbdb7ca`. Report: `docs/v5-targeted-answers-review-01.md`, JSON VPS `evaluation/v5_targeted_answers_v1.json` fornito dall'operatore. Risultato: fresh_03 incompleta e non validata; fresh_10 soddisfa mandatory claims ma revisione finale sospesa per digressione fuorigioco e possibile confusione pressing/riaggressione. Tempi 132.23s e 138.54s; Chroma 5319/34 invariati. Decisione: non ripetere test equivalenti, non integrare, benchmark locked 5/10 invariato. Stato: ESEGUITO.
+
+
+### V5-FRESH03-MANUAL-INVENTORY-01
+
+Attività: censimento diretto dei chunk Chroma del manuale fresh_03; differenza dai test precedenti: lettura di tutte le evidenze della source senza retrieval vettoriale o generazione. Script: `scripts/inspect_v5_fresh03_manual_v1.py`. Commit: `dc28977`; report `docs/v5-fresh03-manual-inventory-01.md` (`4e3eb53`). Risultato: diagnostica read-only implementata, esecuzione VPS DA FARE. Decisione: verificare presenza sezione 9 nei chunk prima di ogni modifica mirata al recupero. Stato: IMPLEMENTATO.
