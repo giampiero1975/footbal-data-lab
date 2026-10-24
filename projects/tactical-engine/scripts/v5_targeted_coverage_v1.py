@@ -16,6 +16,11 @@ def contains_page(value, page):
     return str(page) in re.findall(r"\d+", str(value))
 
 FORMS = ("4-3-3", "4-4-2", "3-5-2", "3-4-2-1")
+CONSOLIDATION_HEADINGS = ("Quando è opportuno", "Pro e contro")
+
+def consolidation_applicable(question):
+    q=question.casefold()
+    return "consolid" in q and "riconquist" in q and "acceler" in q
 
 def heading_list(value):
     import json
@@ -53,6 +58,49 @@ def formation_rows(collection, known):
                           re.sub(r"\\s+", " ", re.sub(r"[^\\w\\s]", " ", raw.casefold())).strip().encode()
                       ).hexdigest()})
     return added
+
+def consolidation_rows(collection, known):
+    """Read the two decision/trade-off passages for consolidation questions."""
+    import hashlib
+    data=collection.get(where={"source":MANUAL},include=["documents","metadatas"])
+    found={}
+    for cid,doc,meta in zip(data["ids"],data["documents"],data["metadatas"]):
+        headings=heading_list(meta.get("headings"))
+        for heading in CONSOLIDATION_HEADINGS:
+            if heading in headings:
+                if heading in found:
+                    raise RuntimeError(f"Duplicate heading {heading}")
+                found[heading]=(cid,doc,meta)
+    if set(found)!=set(CONSOLIDATION_HEADINGS):
+        raise RuntimeError(f"Missing consolidation headings: {set(CONSOLIDATION_HEADINGS)-set(found)}")
+    added=[]
+    for heading in CONSOLIDATION_HEADINGS:
+        cid,doc,meta=found[heading]
+        if cid in known:
+            continue
+        raw=meta.get("raw_text") or doc
+        added.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),
+                      "pages":meta.get("page_numbers"),"text":doc,"headings":[heading],"distance":None,
+                      "fingerprint":hashlib.sha256(re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",raw.casefold())).strip().encode()).hexdigest()})
+    return added
+
+def reserve_consolidation(rows, scores, aliases, question, limit):
+    if not consolidation_applicable(question):
+        return None, []
+    ordering=sorted(range(len(rows)),key=lambda i:float(scores[i]),reverse=True)
+    reserved=[]
+    for heading in CONSOLIDATION_HEADINGS:
+        matches=[i for i in ordering if rows[i]["source"]==MANUAL and heading in heading_list(rows[i].get("headings"))]
+        if len(matches)!=1:
+            raise RuntimeError(f"Expected one candidate for {heading}; got {len(matches)}")
+        reserved.append(matches[0])
+    selected=[]; seen=set()
+    for i in reserved+ordering:
+        row=rows[i]; key=(aliases.get(row["source"],row["source"]),row["fingerprint"])
+        if key in seen: continue
+        seen.add(key); selected.append(i)
+        if len(selected)>=limit: break
+    return [rows[i] for i in selected],[rows[i]["id"] for i in reserved]
 
 def promote(rows, scores, aliases, source, page, limit):
     """Reserve highest-ranked source passage and a distinct target-page passage."""

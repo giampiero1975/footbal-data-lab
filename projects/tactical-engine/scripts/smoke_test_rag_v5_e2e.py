@@ -130,7 +130,7 @@ def main():
     if args.priority_exact:
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
     if args.targeted_coverage:
-        from v5_targeted_coverage_v1 import target, promote, formation_rows, heading_list, MANUAL
+        from v5_targeted_coverage_v1 import target, promote, formation_rows, heading_list, MANUAL, consolidation_applicable, consolidation_rows, reserve_consolidation
     else:
         heading_list = metadata_headings if args.heading_routing else lambda value: []
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
@@ -196,6 +196,9 @@ def main():
             if args.targeted_coverage and qid == "fresh_03" and targeted_source == MANUAL:
                 known = {r["id"] for r in rows}
                 rows.extend(formation_rows(coll, known))
+            if args.targeted_coverage and consolidation_applicable(question):
+                known={r["id"] for r in rows}
+                rows.extend(consolidation_rows(coll,known))
             if args.heading_routing:
                 known_rows={r["id"]:r for r in rows}
                 rows.extend(heading_expand(coll,question,known_rows,norm))
@@ -241,6 +244,8 @@ def main():
             targeted_promoted=[]
             if targeted_source:
                 selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
+            if args.targeted_coverage and consolidation_applicable(question):
+                selected,targeted_promoted=reserve_consolidation(rows,scores,ALIASES,question,args.limit)
             selected,post_loss_excluded=filter_post_loss_context(question,selected,targeted_promoted)
             source_scope_excluded=[]
             if args.source_aware:

@@ -62,6 +62,20 @@ class HybridSourceSelectionTests(unittest.TestCase):
         )
         self.assertEqual(source, "Manuale_C")
 
+    def test_consolidation_reservation_keeps_conditions_and_tradeoff(self):
+        module=load_module("v5_targeted_coverage_v1")
+        candidate_rows=[
+            {"id":"noise","source":"Other","headings":[],"fingerprint":"n"},
+            {"id":"conditions","source":module.MANUAL,"headings":["Quando è opportuno"],"fingerprint":"c"},
+            {"id":"tradeoff","source":module.MANUAL,"headings":["Pro e contro"],"fingerprint":"t"},
+        ]
+        selected,promoted=module.reserve_consolidation(
+            candidate_rows,[10.0,0.2,0.1],{},
+            "Quando consolidare anziché accelerare dopo la riconquista?",3
+        )
+        self.assertEqual(promoted,["conditions","tradeoff"])
+        self.assertEqual([row["id"] for row in selected[:2]],promoted)
+
 
 class ScopedGuidanceTests(unittest.TestCase):
     def setUp(self):
