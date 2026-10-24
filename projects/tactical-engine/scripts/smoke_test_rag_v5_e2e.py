@@ -190,7 +190,7 @@ def main():
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
-                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"headings":r.get("headings",[]) if args.targeted_coverage and qid == "fresh_03" else [],"text":((" / ".join(r.get("headings") or []) + "\n") if args.targeted_coverage and qid == "fresh_03" and r.get("headings") else "") + r["text"]}
+                       "distance":round(r["distance"],5) if r["distance"] is not None else None,"headings":r.get("headings",[]) if args.targeted_coverage and qid == "fresh_03" else [],"text":(((" / ".join(r.get("headings") or []) + "\n") if not r["text"].lstrip().startswith(" / ".join(r.get("headings") or [])) else "") if args.targeted_coverage and qid == "fresh_03" and r.get("headings") else "") + r["text"]}
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
