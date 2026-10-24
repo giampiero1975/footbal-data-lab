@@ -15,6 +15,45 @@ def target(qid, question):
 def contains_page(value, page):
     return str(page) in re.findall(r"\d+", str(value))
 
+FORMS = ("4-3-3", "4-4-2", "3-5-2", "3-4-2-1")
+
+def heading_list(value):
+    import json
+    if isinstance(value, str):
+        try:
+            value = json.loads(value)
+        except (ValueError, TypeError):
+            value = [value]
+    return value if isinstance(value, list) else []
+
+def formation_rows(collection, known):
+    """Read exact source chunks by heading; scoped fresh_03 only."""
+    import hashlib
+    data = collection.get(where={"source": MANUAL}, include=["documents", "metadatas"])
+    found = {}
+    for cid, doc, meta in zip(data["ids"], data["documents"], data["metadatas"]):
+        for form in FORMS:
+            if form in heading_list(meta.get("headings")):
+                if form in found:
+                    raise RuntimeError(f"Duplicate heading {form}")
+                found[form] = (cid, doc, meta)
+    if set(found) != set(FORMS):
+        raise RuntimeError(f"Missing formation headings: {set(FORMS)-set(found)}")
+    added = []
+    for form in FORMS:
+        cid, doc, meta = found[form]
+        if cid in known:
+            continue
+        raw = meta.get("raw_text") or doc
+        added.append({"id": cid, "source": meta["source"],
+                      "source_relative": meta.get("source_relative"),
+                      "pages": meta.get("page_numbers"),
+                      "text": doc, "headings": [form], "distance": None,
+                      "fingerprint": hashlib.sha256(
+                          re.sub(r"\\s+", " ", re.sub(r"[^\\w\\s]", " ", raw.casefold())).strip().encode()
+                      ).hexdigest()})
+    return added
+
 def promote(rows, scores, aliases, source, page, limit):
     """Reserve highest-ranked source passage and a distinct target-page passage."""
     ordering = sorted(range(len(rows)), key=lambda i: float(scores[i]), reverse=True)
@@ -22,9 +61,11 @@ def promote(rows, scores, aliases, source, page, limit):
     source_matches = [i for i in ordering if rows[i]["source"] == source]
     if source_matches:
         if source == MANUAL and page is None:
-            forms = ("4-3-3", "4-4-2", "3-5-2", "3-4-2-1")
-            chosen = max(source_matches, key=lambda j: (sum(form in rows[j]["text"] for form in forms), float(scores[j])))
-            reserved.append(chosen)
+            for form in FORMS:
+                matches = [i for i in source_matches if form in heading_list(rows[i].get("headings"))]
+                if len(matches) != 1:
+                    raise RuntimeError(f"Expected one candidate for {form}; got {len(matches)}")
+                reserved.append(matches[0])
         else:
             reserved.append(source_matches[0])
     if page is not None:
@@ -41,5 +82,5 @@ def promote(rows, scores, aliases, source, page, limit):
         selected.append(i)
         if len(selected) >= limit:
             break
-    selected.sort(key=lambda i: float(scores[i]), reverse=True)
+    # Preserve reserved formation order, then score-ranked remaining evidence.
     return [rows[i] for i in selected], [rows[i]["id"] for i in reserved if i in selected]
