@@ -528,3 +528,5 @@ Le sezioni seguenti preservano la storia tecnica. Le caselle non aggiornate nell
 - [x] **IMPLEMENTATO** V5-TARGETED-ANSWER-CORRECTNESS-01: fresh_03 preferenza per chunk del manuale contenenti moduli 4-3-3/4-4-2/3-5-2/3-4-2-1 (`e0018bf`); fresh_10 conserva Ussia p17. Piano di valutazione claim-level `docs/v5-targeted-answer-correctness-01.md` (`2a5707e`). Generazione scoped VPS DA FARE, benchmark 5/10 invariato.
 
 - [x] **IMPLEMENTATO** V5-TARGETED-ANSWER-SYNTAX-FIX-01: SyntaxError import helper prima della generazione; corretto ramo fresh_03 in `scripts/v5_targeted_coverage_v1.py` (`0c89b47`), report `docs/v5-targeted-answer-syntax-fix-01.md` (`c0f6c63`). Parsing del ramo SYNTAX_OK, verifica VPS DA FARE. Benchmark 5/10 invariato.
+
+- [x] **ESEGUITO** V5-TARGETED-ANSWERS-REVIEW-01: generazione scoped fresh_03/fresh_10 completata, report `docs/v5-targeted-answers-review-01.md` (`dbdb7ca`). fresh_03 NON VALIDATO: manca copertura moduli e limite causale; fresh_10 mandatory claims presenti ma revisione completa sospesa per digressione fuorigioco e distinzione pressing/riaggressione. 132.23s/138.54s, 5319/34 invariati. Baseline 5/10 invariata.
