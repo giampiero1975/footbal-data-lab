@@ -152,6 +152,11 @@ Fonte: output dei comandi di sola lettura `du` e `find` riportato dall'utente da
 
 **Fonte:** output dei comandi di sola lettura comunicati dall'utente. `du -shL` riporta circa **600M** per `models--Alibaba-NLP--gte-multilingual-reranker-base` e **92K** per `models--Alibaba-NLP--new-impl`. La ricerca `grep -RInE` su file Python/YAML/JSON/TOML in `projects/tactical-engine` per `gte-multilingual-reranker-base|Alibaba-NLP|new-impl` non ha prodotto risultati.
 
-**Decisione:** modello Alibaba GTE *candidato alla dismissione*, non certificato inutilizzato. Il grep non esclude riferimenti dinamici, file con altre estensioni, processi o progetti esterni. Nessuna eliminazione effettuata. La verifica della cache è chiusa; la rimozione resta sospesa in attesa di una verifica completa delle dipendenze e di un rollback.
+**Decisione aggiornata 2026-10-24:** audit completato su repository, processi,
+servizi, cron, unit file e file aperti; nessuna dipendenza operativa rilevata.
+Cache modello, `new-impl` e lock Alibaba rimossi. Il valore 600M ottenuto con
+`du -L` dereferenziava storage condiviso; le directory eliminate occupavano
+circa 152K fisici. Storage condiviso preservato. Report:
+`docs/project-tree-cleanup-audit-01.md`.
 
-**Controllo statico esteso (seconda PuTTY, 2026-10-21):** ricerca `git grep -n -i -E` dei riferimenti `Alibaba-NLP|gte-multilingual-reranker|new-impl` sull'intero repository tracciato, escludendo `*.lock` e `*.jsonl`: nessun risultato riportato. La verifica copre file Git tracciati, non file non tracciati, riferimenti dinamici, servizi esterni o dipendenze runtime. **Decisione invariata:** candidato alla dismissione, nessuna rimozione.
+**Controllo statico esteso (seconda PuTTY, 2026-10-21):** ricerca `git grep -n -i -E` dei riferimenti `Alibaba-NLP|gte-multilingual-reranker|new-impl` sull'intero repository tracciato, escludendo `*.lock` e `*.jsonl`: nessun risultato riportato. I limiti di quella verifica sono stati chiusi dall'audit runtime del 2026-10-24; rimozione eseguita e validata.

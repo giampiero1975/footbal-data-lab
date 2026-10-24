@@ -41,6 +41,9 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 
 ### P2 — Ordine e manutenzione del repository
 
+- [x] **VALIDATO** audit alberatura e rimozione cache Alibaba inutilizzata;
+  runner e collection V5 invariati. Report
+  `docs/project-tree-cleanup-audit-01.md`.
 - [ ] **DA FARE** censire e classificare script come operativo, test,
   sperimentale, storico o candidato all'archiviazione.
 - [ ] **DA FARE** riconciliare report VPS non versionati, collection, modelli,
@@ -313,8 +316,8 @@ tecnica.
 
 - [ ] Identificare modelli Ollama dismessi e verificare che non siano referenziati da script, servizi, test da mantenere o procedure di rollback.
 - [ ] Identificare pesi di embedding/reranking in cache non più necessari, distinguendo cache condivise e dipendenze indirette.
-- [x] Verifica statica preliminare Alibaba nella seconda PuTTY: nessuna corrispondenza nelle estensioni controllate in `projects/tactical-engine`; `gte-multilingual-reranker-base` ~600 MB, `new-impl` ~92 KB seguendo i link simbolici. **Solo candidato alla rimozione:** prima occorrono controllo servizi/progetti esterni, dipendenze dinamiche, backup e rollback.
-- [x] Estendere la ricerca statica Alibaba all'intero repository tracciato con `git grep -n -i -E 'Alibaba-NLP|gte-multilingual-reranker|new-impl' -- ':!*.lock' ':!*.jsonl' | head -40`: **nessuna corrispondenza** (output seconda PuTTY, 2026-10-21). Il controllo esclude file non tracciati, `.lock`, `.jsonl`, riferimenti dinamici e servizi esterni; non autorizza la rimozione.
+- [x] Verifica statica preliminare Alibaba nella seconda PuTTY: nessuna corrispondenza nelle estensioni controllate in `projects/tactical-engine`; controllo completato il 2026-10-24 su processi, servizi, cron, file aperti e progetti. Cache e lock Alibaba rimossi; dettagli e verifica post-rimozione in `docs/project-tree-cleanup-audit-01.md`.
+- [x] Ricerca statica Alibaba estesa all'intero repository tracciato e successivo audit runtime VPS: nessuna dipendenza operativa. **Rimozione VALIDATA** il 2026-10-24; rollback tramite nuovo download Hugging Face.
 - [ ] Identificare dipendenze Python inutilizzate senza rimuovere dipendenze transitive necessarie.
 - [ ] Identificare collection ChromaDB obsolete e verificare assenza di riferimenti attivi.
 - [ ] Identificare processi/servizi/cron dismessi e possibili consumi di risorse.
@@ -339,7 +342,7 @@ tecnica.
 
 - **Verificato sul repository GitHub:** esistono pipeline e test V1–V5; 36 script Python; V3 usa tokenizer Nomic e V4 Qwen reindicizza gli stessi testi; alcuni gold del benchmark reranker sono provvisori; la validazione V5 delle citazioni non garantisce correttezza semantica.
 - **Verificato sulla VPS (output CLI, riepilogo 2026-10-19):** commit/branch e working tree, Python sistema e venv presente, pacchetti Python principali, `pip check`, 6 vCPU KVM AMD EPYC, RAM/swap e `vmstat` a riposo, VGA virtuale QEMU, Ollama server 0.40.5, modelli installati e dettagli `ollama show`, nessun modello caricato al controllo. Evidenze in `docs/environment.md`. **Non ripetere senza variazioni dell'ambiente.**
-- **Seconda sessione PuTTY (2026-10-21), verificato da output CLI:** `df -hT` root ext4 58 GB, 27 GB utilizzati, 31 GB disponibili (48%); progetto 3,6 GB, cache Ollama 7,0 GB, cache utente 5,2 GB (Hugging Face 5,0 GB; pip 259 MB); 11 repository HF censiti; Alibaba GTE 600 MB reali con `du -shL`, `new-impl` 92 KB. `grep` statico nei file Python/YAML/JSON/TOML del motore tattico senza riferimenti ad Alibaba. **Alibaba candidato alla dismissione, NON autorizzato alla rimozione.** Tutto documentato in `docs/environment.md`; nessuna cancellazione o modifica VPS.
+- **Seconda sessione PuTTY (2026-10-21), verificato da output CLI:** `df -hT` root ext4 58 GB, 27 GB utilizzati, 31 GB disponibili (48%); progetto 3,6 GB, cache Ollama 7,0 GB, cache utente 5,2 GB (Hugging Face 5,0 GB; pip 259 MB); 11 repository HF censiti. Il conteggio Alibaba GTE 600 MB usava `du -L` su link verso storage condiviso. **Aggiornamento 2026-10-24:** dipendenze runtime escluse e cache/lock Alibaba rimossi; spazio fisico diretto circa 152K, storage condiviso preservato. Report `docs/project-tree-cleanup-audit-01.md`.
 - **Ancora da verificare sulla VPS:** entry point e processi/servizi effettivi, collection e record Chroma, mappatura dipendenze runtime/esterne dei modelli in cache, dimensioni reali degli altri singoli modelli, backup e configurazioni runtime.
 - **Da completare:** confronto puntuale con documentazione ufficiale aggiornata e changelog delle versioni installate.
 
