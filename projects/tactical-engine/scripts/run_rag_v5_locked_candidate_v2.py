@@ -47,6 +47,7 @@ def main():
     p.add_argument("--source-aware", action="store_true", help="Opt-in author-filtered retrieval")
     p.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate")
     p.add_argument("--priority-exact", action="store_true", help="Opt-in exact reference priority; default unchanged")
+    p.add_argument("--targeted-coverage",action="store_true",help="Opt-in two-case diagnostic; default unchanged")
     args = p.parse_args()
     data = args.manifest.read_bytes()
     digest = hashlib.sha256(data).hexdigest()
@@ -69,6 +70,8 @@ def main():
     sys.argv = [v5.__file__, "--limit", "8", "--output", str(args.output)]
     if args.priority_exact:
         sys.argv.append("--priority-exact")
+    if args.targeted_coverage:
+        sys.argv.append("--targeted-coverage")
     if args.source_aware:
         sys.argv.append("--source-aware")
     if args.exercise_candidate:
