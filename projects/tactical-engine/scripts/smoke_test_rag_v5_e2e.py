@@ -118,6 +118,8 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--model",default="qwen3.5:9b")
+    ap.add_argument("--collection",default=COLLECTION)
+    ap.add_argument("--expected-count",type=int,default=5319)
     ap.add_argument("--output",type=Path)
     ap.add_argument("--timeout",type=int,default=900)
     ap.add_argument("--limit",type=int,default=8)
@@ -140,7 +142,7 @@ def main():
         heading_list = metadata_headings if args.heading_routing else lambda value: []
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
-    coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
+    coll=chromadb.PersistentClient(path=DB).get_collection(args.collection)
     count=coll.count()
     candidate=None
     candidate_count=None
@@ -149,10 +151,10 @@ def main():
         candidate_count=candidate.count()
         if candidate_count!=34:
             raise RuntimeError(f"Unexpected exercise candidate count {candidate_count}; expected 34")
-    if count!=5319:raise RuntimeError(f"V5 record count changed: {count}; refusing test")
+    if count!=args.expected_count:raise RuntimeError(f"V5 record count changed: {count}; expected {args.expected_count}; refusing test")
     embed=OllamaEmbedding(model_name="qwen3-embedding:0.6b",base_url="http://127.0.0.1:11434")
     rerank=CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
-    report={"collection":COLLECTION,"count_before":count,"model":args.model,
+    report={"collection":args.collection,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
             "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[

@@ -30,6 +30,8 @@ def main() -> None:
     parser.add_argument("--request-id", required=True, type=validate_request_id)
     parser.add_argument("--output", required=True, type=Path)
     parser.add_argument("--legacy-profile", action="store_true")
+    parser.add_argument("--collection", default="dribbling_tactics_v5_multisource")
+    parser.add_argument("--expected-count", type=int, default=5319)
     args = parser.parse_args()
     if args.output.exists():
         parser.error(f"output exists; refusing overwrite: {args.output}")
@@ -39,7 +41,8 @@ def main() -> None:
     import smoke_test_rag_v5_e2e as v5
 
     v5.QUESTIONS = [(args.request_id, args.question)]
-    argv = [v5.__file__, "--limit", "8", "--output", str(args.output)]
+    argv = [v5.__file__, "--limit", "8", "--output", str(args.output),
+            "--collection", args.collection, "--expected-count", str(args.expected_count)]
     if not args.legacy_profile:
         argv.extend([
             "--source-aware", "--exercise-candidate", "--priority-exact",

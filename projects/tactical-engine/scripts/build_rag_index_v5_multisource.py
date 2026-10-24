@@ -31,7 +31,7 @@ def inputs_under(root: Path) -> list[Path]:
     )
 
 
-def build_rows(paths: list[Path], root: Path):
+def build_rows(paths: list[Path], root: Path, source_root: Path):
     from docling_core.types.doc import DoclingDocument
     from docling_core.transforms.chunker.hybrid_chunker import HybridChunker
     from docling_core.transforms.chunker.tokenizer.huggingface import HuggingFaceTokenizer
@@ -65,7 +65,7 @@ def build_rows(paths: list[Path], root: Path):
                 "source": path.stem,
                 "source_json": str(path),
                 "source_relative": relative,
-                "source_pdf": str((ROOT / "knowledge/sources" / relative).with_suffix(".pdf")),
+                "source_pdf": str((source_root / relative).with_suffix(".pdf")),
                 "page_numbers": json.dumps(pages),
                 "headings": json.dumps(chunk.meta.headings or [], ensure_ascii=False),
                 "raw_text": chunk.text,
@@ -82,11 +82,15 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--write", action="store_true", help="Create/resume V5 (default: dry-run)")
     ap.add_argument("--processed", type=Path, default=PROCESSED)
+    ap.add_argument("--source-root", type=Path, default=ROOT / "knowledge/sources")
+    ap.add_argument("--collection", default=COLLECTION)
+    ap.add_argument("--baseline-collection", help="Copy an immutable baseline into a new candidate before adding inputs")
     ap.add_argument("--batch-size", type=int, default=4)
     args = ap.parse_args()
     if args.batch_size < 1:
         ap.error("--batch-size must be >= 1")
     root = args.processed.expanduser().resolve()
+    source_root = args.source_root.expanduser().resolve()
     if not root.is_dir():
         ap.error(f"Missing processed directory: {root}")
     paths = inputs_under(root)
@@ -95,7 +99,7 @@ def main() -> int:
 
     print(f"Documents: {len(paths)}; target: {COLLECTION}; model: {EMBED_MODEL}", flush=True)
     if not args.write:
-        total = sum(1 for _ in build_rows(paths, root))
+        total = sum(1 for _ in build_rows(paths, root, source_root))
         if not total:
             raise RuntimeError("No chunks generated")
         print(f"DRY RUN PASS: {len(paths)} documents, {total} chunks. Chroma untouched.", flush=True)
@@ -106,14 +110,16 @@ def main() -> int:
 
     db = chromadb.PersistentClient(path=str(CHROMA))
     existing_names = {c.name for c in db.list_collections()}
-    if COLLECTION in existing_names:
-        collection = db.get_collection(COLLECTION)
+    if args.baseline_collection == args.collection:
+        ap.error("baseline and target collection must differ")
+    if args.collection in existing_names:
+        collection = db.get_collection(args.collection)
         meta = collection.metadata or {}
         if meta.get("embedding_model") != EMBED_MODEL or meta.get("pipeline") != "v5_multisource":
             raise RuntimeError("Existing V5 metadata incompatible; refusing to modify")
     else:
         collection = db.create_collection(
-            COLLECTION,
+            args.collection,
             metadata={"hnsw:space": "cosine", "embedding_model": EMBED_MODEL,
                       "pipeline": "v5_multisource"},
         )
@@ -123,6 +129,23 @@ def main() -> int:
     skipped = 0
     inserted = 0
     expected_ids = set()
+    if args.baseline_collection:
+        if args.baseline_collection not in existing_names:
+            raise RuntimeError(f"Missing baseline collection: {args.baseline_collection}")
+        baseline = db.get_collection(args.baseline_collection)
+        baseline_rows = baseline.get(include=["documents", "metadatas", "embeddings"])
+        expected_ids.update(baseline_rows["ids"])
+        target_ids = set(collection.get(include=[])["ids"])
+        missing = [i for i, identifier in enumerate(baseline_rows["ids"]) if identifier not in target_ids]
+        for start in range(0, len(missing), 64):
+            positions = missing[start:start + 64]
+            collection.add(
+                ids=[baseline_rows["ids"][i] for i in positions],
+                documents=[baseline_rows["documents"][i] for i in positions],
+                metadatas=[baseline_rows["metadatas"][i] for i in positions],
+                embeddings=[baseline_rows["embeddings"][i] for i in positions],
+            )
+        print(f"[BASELINE] source={args.baseline_collection} expected={len(baseline_rows['ids'])} copied={len(missing)}", flush=True)
 
     def flush():
         nonlocal inserted
@@ -143,7 +166,7 @@ def main() -> int:
         print(f"[INDEXED] new={inserted} skipped={skipped}", flush=True)
         batch.clear()
 
-    for identifier, document, metadata in build_rows(paths, root):
+    for identifier, document, metadata in build_rows(paths, root, source_root):
         expected_ids.add(identifier)
         previous = collection.get(ids=[identifier], include=["documents", "metadatas"])
         if previous["ids"]:

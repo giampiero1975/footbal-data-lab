@@ -48,6 +48,8 @@ def main():
     p = argparse.ArgumentParser()
     p.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST)
     p.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    p.add_argument("--collection", default="dribbling_tactics_v5_multisource")
+    p.add_argument("--expected-count", type=int, default=5319)
     p.add_argument("--execute", action="store_true")
     profile=p.add_mutually_exclusive_group()
     profile.add_argument("--integrated-candidate",action="store_true",help="Use the unified V5 profile (operational default)")
@@ -87,7 +89,8 @@ def main():
     import smoke_test_rag_v5_e2e as v5
     v5.QUESTIONS = [(x["id"], x["question"]) for x in rows if not args.only_ids or x["id"] in args.only_ids]
     # --limit refers to retrieved evidence count, not the number of questions.
-    sys.argv = [v5.__file__, "--limit", "8", "--output", str(args.output)]
+    sys.argv = [v5.__file__, "--limit", "8", "--output", str(args.output),
+                "--collection", args.collection, "--expected-count", str(args.expected_count)]
     if args.priority_exact:
         sys.argv.append("--priority-exact")
     if args.targeted_coverage:

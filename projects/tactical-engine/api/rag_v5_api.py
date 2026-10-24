@@ -33,6 +33,8 @@ def load_config(env=os.environ) -> dict:
         "queue_size": int(env.get("RAG_API_QUEUE_SIZE", "8")),
         "rate_limit": int(env.get("RAG_API_RATE_LIMIT_PER_MINUTE", "10")),
         "output_dir": Path(env.get("RAG_API_OUTPUT_DIR", str(ROOT / "evaluation/api-runs"))),
+        "collection": env.get("RAG_COLLECTION", "dribbling_tactics_v5_multisource"),
+        "expected_count": int(env.get("RAG_EXPECTED_COUNT", "5319")),
     }
 
 
@@ -84,7 +86,9 @@ class State:
             request = json.loads(request_path.read_text(encoding="utf-8"))
             with self.lock:
                 self.jobs[job_id].update(status="running", started_at=int(time.time()))
-            command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id, "--output", str(output_path)]
+            command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id,
+                       "--output", str(output_path), "--collection", self.config["collection"],
+                       "--expected-count", str(self.config["expected_count"])]
             try:
                 result = subprocess.run(command, cwd=ROOT.parent.parent, capture_output=True, text=True, timeout=self.config["timeout"])
                 status = "succeeded" if result.returncode == 0 and output_path.exists() else "failed"
