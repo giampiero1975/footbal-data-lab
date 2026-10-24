@@ -63,5 +63,36 @@ class HybridSourceSelectionTests(unittest.TestCase):
         self.assertEqual(source, "Manuale_C")
 
 
+class ScopedGuidanceTests(unittest.TestCase):
+    def setUp(self):
+        import types
+        from unittest.mock import patch
+        fake_modules = {
+            "chromadb": types.ModuleType("chromadb"),
+            "llama_index": types.ModuleType("llama_index"),
+            "llama_index.embeddings": types.ModuleType("llama_index.embeddings"),
+            "llama_index.embeddings.ollama": types.ModuleType("llama_index.embeddings.ollama"),
+            "sentence_transformers": types.ModuleType("sentence_transformers"),
+        }
+        fake_modules["llama_index.embeddings.ollama"].OllamaEmbedding = object
+        fake_modules["sentence_transformers"].CrossEncoder = object
+        self.patch = patch.dict(sys.modules, fake_modules)
+        self.patch.start()
+        self.module = load_module("smoke_test_rag_v5_e2e")
+
+    def tearDown(self):
+        self.patch.stop()
+
+    def test_post_loss_guidance_separates_general_pressing(self):
+        guidance = self.module.scoped_guidance(
+            "Quali condizioni favoriscono la pressione dopo la perdita?"
+        )
+        self.assertIn("riaggressione immediata dopo perdita", guidance)
+        self.assertIn("non usare fuorigioco", guidance)
+
+    def test_unrelated_question_has_no_guidance(self):
+        self.assertEqual(self.module.scoped_guidance("Come creare ampiezza?"), "")
+
+
 if __name__ == "__main__":
     unittest.main()

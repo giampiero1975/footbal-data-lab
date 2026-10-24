@@ -49,11 +49,18 @@ SYSTEM=("Sei DRIBBLING, assistente di analisi tattica calcistica. "
 def norm(s):
     return re.sub(r"\s+"," ",re.sub(r"[^\w\s]"," ",s.casefold())).strip()
 def scoped_guidance(question):
-    if not question.startswith("Perché la descrizione di un assetto difensivo nel manuale interno"):
-        return ""
-    return (" Elenca esplicitamente i moduli 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1 con le rispettive citazioni. "
-            "Distingui le descrizioni tattiche dalle prove causali: senza dati comparativi non si può dimostrare "
-            "che cambiare modulo durante la partita aumenti o diminuisca il rischio.")
+    q=question.casefold()
+    guidance=[]
+    if question.startswith("Perché la descrizione di un assetto difensivo nel manuale interno"):
+        guidance.append(" Elenca esplicitamente i moduli 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1 con le rispettive citazioni. "
+                        "Distingui le descrizioni tattiche dalle prove causali: senza dati comparativi non si può dimostrare "
+                        "che cambiare modulo durante la partita aumenti o diminuisca il rischio.")
+    if "perdita" in q and any(term in q for term in ("pression", "riaggress")):
+        guidance.append(" Distingui rigorosamente la riaggressione immediata dopo perdita dal pressing generale o alto. "
+                        "Per le condizioni post-perdita usa solo estratti che le collegano esplicitamente alla perdita; "
+                        "non usare fuorigioco, rimesse laterali o condizioni generiche di pressing come prova equivalente. "
+                        "Se una fonte descrive principi da adattare, indica sistema e pressione individuale/collettiva senza universalizzarli.")
+    return "".join(guidance)
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
