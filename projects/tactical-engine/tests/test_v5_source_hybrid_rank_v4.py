@@ -93,6 +93,19 @@ class ScopedGuidanceTests(unittest.TestCase):
     def test_unrelated_question_has_no_guidance(self):
         self.assertEqual(self.module.scoped_guidance("Come creare ampiezza?"), "")
 
+    def test_post_loss_context_omits_general_pressing(self):
+        rows = [
+            {"id": "promoted", "text": "pressione individuale e collettiva"},
+            {"id": "manual", "text": "palla persa vicino e copertura preventiva"},
+            {"id": "offside", "text": "pressing alto e fuorigioco"},
+            {"id": "throw", "text": "rimessa laterale"},
+        ]
+        kept, excluded = self.module.filter_post_loss_context(
+            "pressione dopo la perdita", rows, ["promoted"]
+        )
+        self.assertEqual([row["id"] for row in kept], ["promoted", "manual"])
+        self.assertEqual(excluded, ["offside", "throw"])
+
 
 if __name__ == "__main__":
     unittest.main()

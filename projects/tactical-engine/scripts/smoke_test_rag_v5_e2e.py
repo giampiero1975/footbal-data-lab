@@ -61,6 +61,17 @@ def scoped_guidance(question):
                         "non usare fuorigioco, rimesse laterali o condizioni generiche di pressing come prova equivalente. "
                         "Se una fonte descrive principi da adattare, indica sistema e pressione individuale/collettiva senza universalizzarli.")
     return "".join(guidance)
+def filter_post_loss_context(question, selected, promoted_ids):
+    q=question.casefold()
+    if "perdita" not in q or not any(term in q for term in ("pression", "riaggress")):
+        return selected, []
+    promoted=set(promoted_ids)
+    markers=("perdita", "palla persa", "riaggress", "copertura preventiva")
+    kept=[row for row in selected if row["id"] in promoted or any(marker in row["text"].casefold() for marker in markers)]
+    if not kept:
+        return selected, []
+    kept_ids={row["id"] for row in kept}
+    return kept, [row["id"] for row in selected if row["id"] not in kept_ids]
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
@@ -211,6 +222,7 @@ def main():
             targeted_promoted=[]
             if targeted_source:
                 selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
+            selected,post_loss_excluded=filter_post_loss_context(question,selected,targeted_promoted)
             heading_reserved=[]
             source_ranking_trace=[]
             source_selection_trace={}
@@ -233,7 +245,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"post_loss_excluded_ids":post_loss_excluded,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
