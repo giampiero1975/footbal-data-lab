@@ -55,7 +55,14 @@ la risposta lo trasforma in rischio accessorio. Stato V2: `ESEGUITO`, non
 `c9a41e8`; test offline 11/11 e compilazione superati. È autorizzata una sola
 V3 in `evaluation/v5_consolidation_context_fresh09_v3.json`.
 
+La V3 è `COMPLETE 1/1` in 47.44 s, SHA-256
+`56d4dd6bc68a0056adcc438e87f704ebfd113802953be9d03e8de92d1b0d1bc3`.
+Copre inferiorità locale, controllo imperfetto, assenza di riceventi, avversario
+organizzato, pressione sul recuperatore, riduzione delle perdite, tempo
+concesso e costo della finestra offensiva. Non universalizza il consolidamento;
+quattro evidenze di fase estranea sono escluse, citazioni invalide 0 e indici
+5319/34 invariati.
+
 ## Stato
 
-V1 `ESEGUITO`; filtro V2 `IMPLEMENTATO`. Non `VALIDATO`, `INTEGRATO` o
-`CERTIFICATO`.
+`VALIDATO` per `fresh_09`. Non `INTEGRATO` o `CERTIFICATO`.
