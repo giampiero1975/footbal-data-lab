@@ -18,7 +18,7 @@ QUERIES = [
     'site:figc.it/media/ tesi (tattica OR "modello di gioco" OR "sistemi di gioco" OR modulo OR moduli) filetype:pdf',
 ]
 DEFAULT_SEEDS = ["https://www.figc.it/category/Tesi"]
-ALLOWED_HOSTS = {"figc.it", "www.figc.it"}
+ALLOWED_HOSTS = {"figc.it", "www.figc.it", "api.figc.atexcloud.io"}
 TACTICAL = ("tattic", "modello di gioco", "sistema di gioco", "pressing", "riaggress", "possesso", "transizion", "costruzion", "uefa pro")
 TECHNICAL = ("tecnic", "gesto", "passaggio", "tiro", "controllo")
 TRAINING = ("allenament", "esercitaz", "metodologia")

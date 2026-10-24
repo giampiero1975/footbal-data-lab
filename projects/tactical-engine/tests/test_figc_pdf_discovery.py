@@ -10,6 +10,7 @@ m=importlib.util.module_from_spec(spec); spec.loader.exec_module(m)
 class FigcDiscoveryTests(unittest.TestCase):
     def test_allowlist(self):
         self.assertTrue(m.allowed("https://www.figc.it/media/1/a.pdf"))
+        self.assertTrue(m.allowed("https://api.figc.atexcloud.io/file-delivery-service/version/x/a.pdf"))
         self.assertFalse(m.allowed("http://figc.it/media/1/a.pdf"))
         self.assertFalse(m.allowed("https://figc.it.evil.example/a.pdf"))
     def test_classification(self):

@@ -8,7 +8,7 @@ Individuare e verificare PDF tattici pubblicati sui domini ufficiali FIGC senza 
 
 ## Sicurezza e dati
 
-- solo HTTPS e host `figc.it`/`www.figc.it`, inclusi redirect;
+- solo HTTPS e host `figc.it`/`www.figc.it`, più l'endpoint allegati ufficiale collegato dalle pagine FIGC `api.figc.atexcloud.io`, inclusi redirect;
 - timeout, massimo pagine e massimo byte configurabili;
 - verifica firma `%PDF-`, MIME osservato, SHA-256 e dimensione;
 - dry-run predefinito; `--write` usa file temporaneo e rename atomico;
