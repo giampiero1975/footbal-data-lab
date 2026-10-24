@@ -81,7 +81,7 @@ class HybridSourceSelectionTests(unittest.TestCase):
         candidate_rows=[
             {"id":"conditions","source":module.MANUAL,"text":"palla non controllata"},
             {"id":"choice","source":module.MANUAL,"text":"consolidare se il recuperatore è pressato"},
-            {"id":"defence","source":module.MANUAL,"text":"pressione organizzata e protezione linee"},
+            {"id":"defence","source":module.MANUAL,"text":"pressione organizzata e riconquista del territorio"},
             {"id":"foreign","source":"Other","text":"consolidare la difesa"},
         ]
         kept,excluded=module.filter_consolidation_context(

@@ -106,7 +106,7 @@ def filter_consolidation_context(question, selected, promoted_ids):
     if not consolidation_applicable(question):
         return selected, []
     promoted=set(promoted_ids)
-    markers=("consolidare", "riconquista", "recuperatore")
+    markers=("consolidar", "dopo una riconquista", "recuperatore")
     kept=[row for row in selected if row["id"] in promoted or
           (row["source"]==MANUAL and any(marker in row["text"].casefold() for marker in markers))]
     kept_ids={row["id"] for row in kept}
