@@ -93,6 +93,14 @@ class ScopedGuidanceTests(unittest.TestCase):
     def test_unrelated_question_has_no_guidance(self):
         self.assertEqual(self.module.scoped_guidance("Come creare ampiezza?"), "")
 
+    def test_lateral_zone_guidance_requires_complete_prudent_attribution(self):
+        guidance = self.module.scoped_guidance(
+            "Perché sono rischiosi i laterali nella zona B e che ruolo ha la pressione a invito?"
+        )
+        self.assertIn("playmaker braccati", guidance)
+        self.assertIn("non attribuire il pericolo all'avversario", guidance.casefold())
+        self.assertIn("divieto universale", guidance)
+
     def test_post_loss_context_omits_general_pressing(self):
         rows = [
             {"id": "promoted", "text": "pressione individuale e collettiva"},

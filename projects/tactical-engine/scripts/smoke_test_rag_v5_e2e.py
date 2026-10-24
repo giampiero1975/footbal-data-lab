@@ -60,6 +60,11 @@ def scoped_guidance(question):
                         "Per le condizioni post-perdita usa solo estratti che le collegano esplicitamente alla perdita; "
                         "non usare fuorigioco, rimesse laterali o condizioni generiche di pressing come prova equivalente. "
                         "Se una fonte descrive principi da adattare, indica sistema e pressione individuale/collettiva senza universalizzarli.")
+    if "laterali" in q and "zona b" in q and "pression" in q:
+        guidance.append(" Se gli estratti distinguono giocatori centrali e laterali, esponi entrambe le difficoltà: "
+                        "playmaker braccati con poco tempo/spazio e laterali esposti alla pressione a invito con rischio di perdita. "
+                        "Non attribuire il pericolo all'avversario se la fonte non lo dice e non trasformare un rischio situazionale "
+                        "in un divieto universale della costruzione laterale.")
     return "".join(guidance)
 def filter_post_loss_context(question, selected, promoted_ids):
     q=question.casefold()
