@@ -1,6 +1,6 @@
 # Espansione corpus tattico Drive11 — candidato V5
 
-Stato: ESEGUITO; validazione e promozione DA FARE.
+Stato: INTEGRATO; non CERTIFICATO per domande arbitrarie.
 
 ## Motivazione e isolamento
 
@@ -27,3 +27,14 @@ Flusso: Attività = espansione corpus; Script = pipeline V5 parametrizzata; Comm
 - Audit qualitativo: 9/10. `fresh_10` ha recuperato Ussia ma non il manuale FOOTBALL-DATA-LAB esplicitamente richiesto.
 
 Decisione: candidato non promosso. È stata implementata una correzione generale, basata sui metadata e non sugli ID del benchmark, che scopre candidati fra le fonti con nome `manual` quando la domanda richiede esplicitamente un confronto e riserva il manuale semanticamente migliore se il top-k ne è privo. Verifica differenziale e regressione finale DA FARE.
+
+## Validazione finale e integrazione
+
+- `fresh_10` differenziale: Ussia più manuale Transizioni, condizioni post-perdita complete e citate.
+- Regressione generativa finale: 10/10; fresh_01-09 identici al run precedente, fresh_10 corretto; report SHA-256 `f48adb4fc9d6e82b87bcb413fae9846044ecd0df5c33c5a5bcc5ebf72f401947`.
+- Routing nomi fonte generalizzato dai metadata e verificato retrieval-only su 10/10 casi.
+- API configurata con `RAG_COLLECTION=dribbling_tactics_v5_multisource_drive11_candidate_v1` e `RAG_EXPECTED_COUNT=6196`.
+- Query HTTP reale su Vincenzo Italiano: job completato, routing ed evidenze esclusivamente `vincenzo-italiano_tesi`, citazioni invalide zero, indice 6196→6196; risultato canonicalizzato SHA-256 `f0a4466cbf8280550fa6b554944b2a150ab0c244c10f81dd2fdd9464d20effd6`.
+- Nel collaudo è stata rilevata una race API fra accodamento e scrittura request. Correzione: file atomico prima della coda, gestione eccezioni per-job e readiness vincolata al worker vivo; test unitari 3/3.
+
+Decisione finale: Drive11 INTEGRATO nell'API persistente; collection storica 5319 preservata come rollback. La validazione copre il manifest locked e la query nuova verificata, non certifica qualunque domanda futura.
