@@ -24,6 +24,20 @@ post-promozione senza `--integrated-candidate`, limitato a `fresh_03`, per
 verificare profilo, generazione, citazioni e indici. Rollback: ripetere un
 eventuale uso operativo con `--legacy-profile`; non modificare le collection.
 
+## Risultato
+
+Smoke VPS `evaluation/v5_default_promotion_smoke_fresh03_v1.json`, SHA-256
+`81481332bac25ab6cfdac60f72060e1dcb4f2cdff93fe95c402c69989deee472`.
+Il wrapper senza flag dichiara `PROFILE integrated`; tutti i cinque flag del
+profilo sono attivi. Risposta ed evidenze `fresh_03` sono identiche alla
+regressione 10/10; citazioni invalide 0, indici 5319/34 invariati, 164.81 s.
+Rollback verificato offline tramite `--legacy-profile` e test 14/14.
+
+## Decisione
+
+Promozione VALIDATA e profilo ordinario INTEGRATO nell'entry point CLI. Non
+esiste un servizio RAG attivo sulla VPS da riavviare o riconfigurare.
+
 ## Stato
 
-`IMPLEMENTATO`; non ancora `ESEGUITO`, `VALIDATO`, `INTEGRATO` o `CERTIFICATO`.
+`INTEGRATO`. La certificazione complessiva è registrata nel closeout separato.
