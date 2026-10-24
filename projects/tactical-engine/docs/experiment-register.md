@@ -455,3 +455,8 @@ Attività: diagnosi `ModuleNotFoundError: chromadb` dopo `V5_RUNTIME /usr/bin/py
 ### V5-RUNTIME-SYMLINK-FIX-01
 
 Attività: riconciliazione log VPS con symlink del venv e import chromadb riuscito. Script: `scripts/run_rag_v5_locked_candidate_v2.py`. Commit: `6faa907`; report `docs/v5-runtime-symlink-fix-01.md` (`d37c1c8`). Report: output operatore con symlink `.venv/bin/python3 -> /usr/bin/python3` e import chromadb da site-packages virtualenv. Risultato: causa individuata nel confronto `Path.resolve()` che elimina la distinzione tra interprete venv e sistema; sostituito con `Path.absolute()`. Decisione: nessuna installazione; ritentare soltanto il retrieval scoped mai partito. Stato: IMPLEMENTATO.
+
+
+### V5-TARGETED-COVERAGE-RETRIEVAL-01
+
+Attività: verifica VPS della differenza tecnica opt-in fresh_03/fresh_10 con manifest locked SHA256 c160a8a2128e05eda50842230c5f4aad2bf9a8085f4240c8ee893ed2e3a3fa71. Script: `scripts/run_rag_v5_locked_candidate_v2.py`, `scripts/smoke_test_rag_v5_e2e.py`, `scripts/v5_targeted_coverage_v1.py`. Commit: codice `e75d3ca`, `71994e9`, `b4d1ebf`, runtime `6faa907`; report `62e71fc`; TODO `75f33c2`. Report: `docs/v5-targeted-coverage-retrieval-01.md`, output VPS `evaluation/v5_targeted_coverage_retrieval_v1.json` fornito dall'operatore. Risultato: COMPLETE 2/2, index_unchanged true, 5319/34; fresh_03 manuale F8 p5 (pertinenza insufficiente da verificare), fresh_10 manuale F5 p3 e Ussia F8 p17; nessuna generazione e nessuna citazione attesa. Decisione: retrieval diagnostico ESEGUITO, nessuna validazione del benchmark, nessuna integrazione o certificazione; intervenire sulla pertinenza fresh_03 prima di generare. Stato: ESEGUITO.
