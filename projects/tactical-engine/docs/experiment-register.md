@@ -465,3 +465,8 @@ Attività: verifica VPS della differenza tecnica opt-in fresh_03/fresh_10 con ma
 ### V5-TARGETED-ANSWER-CORRECTNESS-01
 
 Attività: valutare correttezza fresh_03/fresh_10. Script: v5_targeted_coverage_v1.py. Commit: e0018bf. Report: docs/v5-targeted-answer-correctness-01.md (2a5707e). Risultato: modifica implementata; generazione VPS non ancora eseguita. Decisione: controllo scoped claim-level, senza modificare Chroma o benchmark. Stato: IMPLEMENTATO.
+
+
+### V5-TARGETED-ANSWER-SYNTAX-FIX-01
+
+Attività: correggere SyntaxError import helper prima della generazione scoped. Script: `scripts/v5_targeted_coverage_v1.py`. Commit: `0c89b47`. Report: `docs/v5-targeted-answer-syntax-fix-01.md` (`c0f6c63`), log VPS operatore. Risultato: ramo if/else corretto, parsing locale del ramo SYNTAX_OK, generazione VPS non eseguita. Decisione: riprendere la generazione interrotta dopo git pull, nessuna nuova baseline. Stato: IMPLEMENTATO.
