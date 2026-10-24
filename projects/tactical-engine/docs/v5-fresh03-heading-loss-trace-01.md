@@ -15,7 +15,7 @@ Confrontare la pagina 4 del manuale sorgente con i chunk già censiti, localizza
 
 ## Commit
 
-- Script diagnostico read-only: `391baf6023461f5184be6598196d1210b14046f3`.
+- Script diagnostico read-only: `1019592db6405753555d5916f7c5bf07fe59f858`.
 - La raccolta `dribbling_tactics_v5_multisource` non è stata aperta o modificata dall'ambiente locale.
 
 ## Report
