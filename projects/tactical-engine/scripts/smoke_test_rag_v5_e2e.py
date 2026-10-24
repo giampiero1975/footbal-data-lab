@@ -72,11 +72,14 @@ def main():
     ap.add_argument("--priority-exact",action="store_true",help="Opt-in exact-reference promotion; default off")
     ap.add_argument("--source-aware", action="store_true")
     ap.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate retrieval")
+    ap.add_argument("--targeted-coverage",action="store_true")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
     args=ap.parse_args()
     if args.priority_exact:
         from rag_v5_fresh_reference_e2e_shadow_v1 import reference, exact, prioritize_exact
+    if args.targeted_coverage:
+        from v5_targeted_coverage_v1 import target, promote
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(COLLECTION)
@@ -94,7 +97,7 @@ def main():
     report={"collection":COLLECTION,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
-            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
+            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -127,6 +130,16 @@ def main():
                             raw = meta.get("raw_text") or doc
                             rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
                             known.add(cid)
+            targeted_source, targeted_page = target(qid, question) if args.targeted_coverage else (None, None)
+            if targeted_source:
+                filtered=coll.query(query_embeddings=[embedding],n_results=24,where={"source":targeted_source},include=["documents","metadatas","distances"])
+                known={r["id"] for r in rows}
+                for cid,doc,meta,dist in zip(filtered["ids"][0],filtered["documents"][0],filtered["metadatas"][0],filtered["distances"][0]):
+                    if cid in known:
+                        continue
+                    raw=meta.get("raw_text") or doc
+                    rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+                    known.add(cid)
             candidate_ids=[]
             if candidate is not None and re.search(r"\bussia\b",question,re.I):
                 extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
@@ -166,6 +179,9 @@ def main():
                 seen.add(key)
                 selected.append(r)
                 if len(selected)>=args.limit:break
+            targeted_promoted=[]
+            if targeted_source:
+                selected, targeted_promoted=promote(rows,scores,ALIASES,targeted_source,targeted_page,args.limit)
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
@@ -177,7 +193,7 @@ def main():
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
-                   "source_aware_source":source_hint,"exercise_candidate_ids":candidate_ids,
+                   "source_aware_source":source_hint,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
