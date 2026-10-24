@@ -1,0 +1,6010 @@
+{
+  "audit": "STATIC-SCRIPT-INVENTORY",
+  "generated_utc": "2026-10-24T18:54:29.265494+00:00",
+  "script_count": 200,
+  "category_counts": {
+    "benchmark_or_experiment": 51,
+    "diagnostic_or_validator": 61,
+    "external_review_optional": 6,
+    "historical_rag_runner": 14,
+    "historical_support_tool": 26,
+    "ingestion_or_index_builder": 7,
+    "legacy_entrypoint_or_probe": 3,
+    "maintenance_and_freeze": 4,
+    "operational_core": 7,
+    "test_or_regression": 21
+  },
+  "action_counts": {
+    "archive_in_place": 161,
+    "keep": 32,
+    "keep_guarded": 7
+  },
+  "syntax_failures": [],
+  "scripts": [
+    {
+      "script": "ablazione_bge_strutturali_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "ablazione_chunk_brevi_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "ask_dribbling.py",
+      "lifecycle_class": "legacy_entrypoint_or_probe",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "pathlib",
+        "requests",
+        "sys"
+      ],
+      "model_mentions": [
+        "nomic-embed-text",
+        "qwen3:4b"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v1"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_citazioni_glerean_v4.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 57,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "test_audit_citazioni_glerean_v4.py"
+      ]
+    },
+    {
+      "script": "audit_citazioni_v4.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "csv",
+        "pathlib",
+        "re",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 53,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_exercise_heading_coverage_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 45,
+          "call": "mkdir"
+        },
+        {
+          "line": 46,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_existing_docling_figures.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_figure_text_h08.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_gemini_fresh01_v2_offline.py",
+      "lifecycle_class": "external_review_optional",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "review_rag_v5_gemini"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "review_rag_v5_gemini.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_h08_link_evidence.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_h08_reference.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "json",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 4,
+          "call": "open (mode requires review)"
+        },
+        {
+          "line": 5,
+          "call": "open (mode requires review)"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_h10_report.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_rag_v5_phase_passage_regression_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 50,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_rag_v5_prompt_ab.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 58,
+          "call": "mkdir"
+        },
+        {
+          "line": 59,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_rag_v5_tactical_consistency.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 75,
+          "call": "mkdir"
+        },
+        {
+          "line": 76,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_rag_v5_tactical_consistency_v2.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 48,
+          "call": "mkdir"
+        },
+        {
+          "line": 49,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_ragas_environment_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "datetime",
+        "importlib.metadata",
+        "importlib.util",
+        "json",
+        "os",
+        "pathlib",
+        "platform",
+        "sys",
+        "urllib.error",
+        "urllib.request"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 74,
+          "call": "mkdir"
+        },
+        {
+          "line": 75,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_risposte_reali_v4_no_think_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 86,
+          "call": "write_text"
+        },
+        {
+          "line": 78,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_script_dependencies.py",
+      "lifecycle_class": "maintenance_and_freeze",
+      "repository_action": "keep",
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "collections",
+        "datetime",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "cross-encoder/mmarco",
+        "nomic-embed-text",
+        "qwen3-embedding",
+        "qwen3.5",
+        "qwen3:4b"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 165,
+          "call": "mkdir"
+        },
+        {
+          "line": 166,
+          "call": "write_text"
+        },
+        {
+          "line": 85,
+          "call": "add"
+        },
+        {
+          "line": 89,
+          "call": "add"
+        },
+        {
+          "line": 93,
+          "call": "add"
+        },
+        {
+          "line": 100,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": true,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_shadow_nli_evidence_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "shadow_nli_v2_inference"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_inference.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_two_stage_tactical_nli_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 80,
+          "call": "mkdir"
+        },
+        {
+          "line": 81,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_two_stage_tactical_nli_v2.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 84,
+          "call": "mkdir"
+        },
+        {
+          "line": 85,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_v4_runtime.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "collections",
+        "datetime",
+        "json",
+        "math",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized",
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [
+        {
+          "line": 36,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_v5_duplicates_75.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 37,
+          "call": "add"
+        },
+        {
+          "line": 38,
+          "call": "add"
+        },
+        {
+          "line": 59,
+          "call": "mkdir"
+        },
+        {
+          "line": 60,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_v5_fulltext_candidates.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "docling_core.types.doc",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 61,
+          "call": "mkdir"
+        },
+        {
+          "line": 62,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_v5_source_metadata.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "collections",
+        "datetime",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 74,
+          "call": "mkdir"
+        },
+        {
+          "line": 75,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "audit_v5_target_passages_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 54,
+          "call": "mkdir"
+        },
+        {
+          "line": 55,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_citazioni_stabili_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.llms.ollama",
+        "pathlib",
+        "re",
+        "test_dribbling_v4_top5_top10",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 73,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_direct_three_label_nli_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "asyncio",
+        "json",
+        "os",
+        "pathlib",
+        "pydantic",
+        "smoke_ragas_043_native_ollama_v1",
+        "time",
+        "typing"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 76,
+          "call": "mkdir"
+        },
+        {
+          "line": 78,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_ragas_043_native_ollama_v1.py"
+      ],
+      "imported_by_scripts": [
+        "benchmark_direct_three_label_nli_v2.py"
+      ]
+    },
+    {
+      "script": "benchmark_direct_three_label_nli_v2.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "benchmark_direct_three_label_nli_v1"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_direct_three_label_nli_v1.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_espansione_adiacenti_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "sentence_transformers"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_espansione_prioritaria_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "sentence_transformers"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_gemma_glerean_fixed_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 129,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_generazione_contesti_q8_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.query_engine",
+        "llama_index.core.retrievers",
+        "llama_index.core.schema",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "test_dribbling_v4_top5_top10",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 113,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": [
+        "benchmark_generazione_glerean_3casi_v4.py"
+      ]
+    },
+    {
+      "script": "benchmark_generazione_glerean_3casi_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "benchmark_generazione_contesti_q8_v4",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.query_engine",
+        "llama_index.core.schema",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "test_dribbling_v4_top5_top10",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 92,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_generazione_contesti_q8_v4.py",
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_glerean_enriched_git_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 105,
+          "call": "mkdir"
+        },
+        {
+          "line": 106,
+          "call": "write_text"
+        },
+        {
+          "line": 91,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_holdout_glerean_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 112,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "benchmark_metro_tattico_no_think_v1.py",
+        "benchmark_ragas_holdout_v1.py",
+        "diagnostica_coverage_no_think_h07_v1.py",
+        "diagnostica_ragas_coverage_v1.py",
+        "diagnostica_ragas_discrete_v1.py",
+        "diagnostica_ragas_no_think_h07_v1.py",
+        "diagnostica_ragas_output_v1.py"
+      ]
+    },
+    {
+      "script": "benchmark_llamaindex_mmr.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.core.vector_stores.types",
+        "llama_index.embeddings.ollama",
+        "llama_index.vector_stores.chroma",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_metro_tattico_no_think_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "benchmark_holdout_glerean_v4",
+        "json",
+        "pathlib",
+        "sys",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 83,
+          "call": "write_text"
+        },
+        {
+          "line": 72,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_holdout_glerean_v4.py"
+      ],
+      "imported_by_scripts": [
+        "valutazione_risposte_reali_v4_v1.py"
+      ]
+    },
+    {
+      "script": "benchmark_minimal_verdict_nli_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "benchmark_two_stage_tactical_nli_v1",
+        "json",
+        "os",
+        "pathlib",
+        "pydantic",
+        "smoke_ragas_043_native_ollama_v1",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 25,
+          "call": "mkdir"
+        },
+        {
+          "line": 27,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_two_stage_tactical_nli_v1.py",
+        "smoke_ragas_043_native_ollama_v1.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_mmr_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "numpy",
+        "pathlib"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_postrerank_diversity.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.embeddings.ollama",
+        "numpy",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_qwen_query_instruction.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "statistics",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_rag_v5_concise_prompt.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "benchmark_rag_v5_prompt_ab",
+        "json",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 60,
+          "call": "mkdir"
+        },
+        {
+          "line": 61,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_rag_v5_prompt_ab.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_rag_v5_evidence_count_ab.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "benchmark_rag_v5_prompt_ab",
+        "chromadb",
+        "json",
+        "pathlib",
+        "re",
+        "sys",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 43,
+          "call": "mkdir"
+        },
+        {
+          "line": 44,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_rag_v5_prompt_ab.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_rag_v5_prompt_ab.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 85,
+          "call": "mkdir"
+        },
+        {
+          "line": 86,
+          "call": "write_text"
+        },
+        {
+          "line": 105,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "benchmark_rag_v5_concise_prompt.py",
+        "benchmark_rag_v5_evidence_count_ab.py",
+        "benchmark_rag_v5_targeted_prompt.py"
+      ]
+    },
+    {
+      "script": "benchmark_rag_v5_targeted_prompt.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "benchmark_rag_v5_prompt_ab",
+        "json",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 51,
+          "call": "mkdir"
+        },
+        {
+          "line": 52,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_rag_v5_prompt_ab.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_ragas_holdout_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "asyncio",
+        "benchmark_holdout_glerean_v4",
+        "inspect",
+        "json",
+        "openai",
+        "pathlib",
+        "ragas",
+        "ragas.llms",
+        "ragas.metrics",
+        "sys",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 110,
+          "call": "mkdir"
+        },
+        {
+          "line": 111,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_holdout_glerean_v4.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_ragas_native_holdout_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "collections",
+        "json",
+        "math",
+        "os",
+        "pathlib",
+        "ragas.metrics.collections",
+        "smoke_ragas_043_native_ollama_v1",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 24,
+          "call": "mkdir"
+        },
+        {
+          "line": 26,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_ragas_043_native_ollama_v1.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_ruoli_tattici_due_assi_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 95,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_ruoli_tattici_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 92,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_shadow_nli_atomic_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "shadow_nli_v2_inference",
+        "time"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_inference.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_shadow_nli_contrastive_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "shadow_nli_v2_inference",
+        "time"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_inference.py"
+      ],
+      "imported_by_scripts": [
+        "benchmark_shadow_nli_repeatability_v1.py"
+      ]
+    },
+    {
+      "script": "benchmark_shadow_nli_repeatability_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "benchmark_shadow_nli_contrastive_v1",
+        "hashlib",
+        "json",
+        "pathlib",
+        "shadow_nli_v2_inference",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_shadow_nli_contrastive_v1.py",
+        "shadow_nli_v2_inference.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_shadow_nli_v2_adversarial.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "shadow_nli_v2_inference",
+        "time"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_inference.py"
+      ],
+      "imported_by_scripts": [
+        "benchmark_shadow_nli_v3_adversarial.py"
+      ]
+    },
+    {
+      "script": "benchmark_shadow_nli_v3_adversarial.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "benchmark_shadow_nli_v2_adversarial",
+        "pathlib",
+        "shadow_nli_v2_inference",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_shadow_nli_v2_adversarial.py",
+        "shadow_nli_v2_inference.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_strict_tactical_nli_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "json",
+        "math",
+        "os",
+        "pathlib",
+        "pydantic",
+        "smoke_ragas_043_native_ollama_v1",
+        "time",
+        "typing"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 35,
+          "call": "mkdir"
+        },
+        {
+          "line": 37,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_ragas_043_native_ollama_v1.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_two_stage_tactical_nli_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "json",
+        "os",
+        "pathlib",
+        "pydantic",
+        "smoke_ragas_043_native_ollama_v1",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 36,
+          "call": "mkdir"
+        },
+        {
+          "line": 38,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_ragas_043_native_ollama_v1.py"
+      ],
+      "imported_by_scripts": [
+        "benchmark_minimal_verdict_nli_v1.py"
+      ]
+    },
+    {
+      "script": "benchmark_v5_exact_aliases.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "collections",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 39,
+          "call": "add"
+        },
+        {
+          "line": 80,
+          "call": "mkdir"
+        },
+        {
+          "line": 81,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_verificatore_semantico_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 102,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "benchmark_verificatore_semantico_v4_bis.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 80,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_h09_evidence.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 88,
+          "call": "mkdir"
+        },
+        {
+          "line": 89,
+          "call": "write_text"
+        },
+        {
+          "line": 46,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_index.py",
+      "lifecycle_class": "ingestion_or_index_builder",
+      "repository_action": "keep_guarded",
+      "imports": [
+        "__future__",
+        "chromadb",
+        "collections",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "requests",
+        "sys"
+      ],
+      "model_mentions": [
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v1"
+      ],
+      "possible_mutations": [
+        {
+          "line": 150,
+          "call": "mkdir"
+        },
+        {
+          "line": 152,
+          "call": "get_or_create_collection"
+        },
+        {
+          "line": 50,
+          "call": "add"
+        },
+        {
+          "line": 194,
+          "call": "delete"
+        },
+        {
+          "line": 171,
+          "call": "add"
+        },
+        {
+          "line": 184,
+          "call": "upsert"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_index_v2.py",
+      "lifecycle_class": "ingestion_or_index_builder",
+      "repository_action": "keep_guarded",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "docling.chunking",
+        "docling_core.transforms.chunker.tokenizer.huggingface",
+        "docling_core.types.doc",
+        "hashlib",
+        "json",
+        "llama_index.core",
+        "llama_index.embeddings.ollama",
+        "llama_index.node_parser.docling",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "pydantic",
+        "statistics",
+        "transformers"
+      ],
+      "model_mentions": [
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v2"
+      ],
+      "possible_mutations": [
+        {
+          "line": 114,
+          "call": "get_or_create_collection"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_index_v3.py",
+      "lifecycle_class": "ingestion_or_index_builder",
+      "repository_action": "keep_guarded",
+      "imports": [
+        "chromadb",
+        "docling_core.transforms.chunker.hybrid_chunker",
+        "docling_core.transforms.chunker.tokenizer.huggingface",
+        "docling_core.types.doc",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "transformers"
+      ],
+      "model_mentions": [
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized"
+      ],
+      "possible_mutations": [
+        {
+          "line": 34,
+          "call": "get_or_create_collection"
+        },
+        {
+          "line": 62,
+          "call": "upsert"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_index_v4_qwen_embedding.py",
+      "lifecycle_class": "ingestion_or_index_builder",
+      "repository_action": "keep_guarded",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "llama_index.embeddings.ollama",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized",
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [
+        {
+          "line": 48,
+          "call": "create_collection"
+        },
+        {
+          "line": 70,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_index_v5_multisource.py",
+      "lifecycle_class": "ingestion_or_index_builder",
+      "repository_action": "keep_guarded",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "docling_core.transforms.chunker.hybrid_chunker",
+        "docling_core.transforms.chunker.tokenizer.huggingface",
+        "docling_core.types.doc",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "sys",
+        "transformers"
+      ],
+      "model_mentions": [
+        "nomic-embed-text",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 115,
+          "call": "create_collection"
+        },
+        {
+          "line": 136,
+          "call": "add"
+        },
+        {
+          "line": 147,
+          "call": "add"
+        },
+        {
+          "line": 63,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_v5_alignment_controls_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_v5_exercise_candidate_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "extract_exercise_units_v2",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_exercise_candidate_v1",
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 82,
+          "call": "create_collection"
+        },
+        {
+          "line": 90,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "extract_exercise_units_v2.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_v5_quality_adjudication_worksheet_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 67,
+          "call": "mkdir"
+        },
+        {
+          "line": 24,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "build_rag_v5_quality_holdout_pilot_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "compare_h09_dense_bm25.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "datetime",
+        "evaluate_h09_lexical",
+        "hashlib",
+        "json",
+        "math",
+        "pathlib",
+        "probe_h09_lexical_retrieval",
+        "subprocess",
+        "time",
+        "urllib.error",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 119,
+          "call": "mkdir"
+        },
+        {
+          "line": 120,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "evaluate_h09_lexical.py",
+        "probe_h09_lexical_retrieval.py"
+      ],
+      "imported_by_scripts": [
+        "compare_h09_dense_mmarco.py",
+        "compare_h09_hybrid_rrf.py",
+        "probe_h09_grounded_generation.py"
+      ]
+    },
+    {
+      "script": "compare_h09_dense_mmarco.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "compare_h09_dense_bm25",
+        "datetime",
+        "evaluate_h09_lexical",
+        "hashlib",
+        "importlib.metadata",
+        "json",
+        "pathlib",
+        "sentence_transformers",
+        "subprocess",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 78,
+          "call": "mkdir"
+        },
+        {
+          "line": 79,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "compare_h09_dense_bm25.py",
+        "evaluate_h09_lexical.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "compare_h09_generation_focus_ab.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 69,
+          "call": "mkdir"
+        },
+        {
+          "line": 70,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "compare_h09_top1_context.py",
+        "compare_h10_multisource_prompt.py",
+        "probe_h10_multisource.py",
+        "test_h09_citation_ids.py"
+      ]
+    },
+    {
+      "script": "compare_h09_hybrid_rrf.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "compare_h09_dense_bm25",
+        "datetime",
+        "evaluate_h09_lexical",
+        "hashlib",
+        "json",
+        "pathlib",
+        "probe_h09_lexical_retrieval",
+        "subprocess",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 103,
+          "call": "mkdir"
+        },
+        {
+          "line": 104,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "compare_h09_dense_bm25.py",
+        "evaluate_h09_lexical.py",
+        "probe_h09_lexical_retrieval.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "compare_h09_top1_context.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "compare_h09_generation_focus_ab",
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 37,
+          "call": "mkdir"
+        },
+        {
+          "line": 38,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "compare_h09_generation_focus_ab.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "compare_h10_multisource_prompt.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "compare_h09_generation_focus_ab",
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 68,
+          "call": "mkdir"
+        },
+        {
+          "line": 69,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "compare_h09_generation_focus_ab.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "compare_ollama_transports_equivalent_v1.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.error",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 127,
+          "call": "mkdir"
+        },
+        {
+          "line": 128,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "compare_rag_v5_evidence_dedup.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 113,
+          "call": "mkdir"
+        },
+        {
+          "line": 114,
+          "call": "write_text"
+        },
+        {
+          "line": 44,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "compare_v4_v5_locked_source_coverage.py",
+      "lifecycle_class": "maintenance_and_freeze",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b",
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 63,
+          "call": "mkdir"
+        },
+        {
+          "line": 64,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronta_embedding_v3_v4.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core.schema",
+        "llama_index.embeddings.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized",
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [
+        {
+          "line": 106,
+          "call": "write_text"
+        },
+        {
+          "line": 103,
+          "call": "mkdir"
+        },
+        {
+          "line": 104,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronta_indici_dribbling.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronta_q8_gold_bge_mmarco.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.embeddings.ollama",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronta_reranker_bge_mmarco.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "collections",
+        "json",
+        "llama_index.embeddings.ollama",
+        "sentence_transformers",
+        "statistics",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronta_reranker_bge_qwen.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "collections",
+        "json",
+        "llama_index.embeddings.ollama",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronta_retrieval_v2_v3.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core.schema",
+        "llama_index.embeddings.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v2",
+        "dribbling_tactics_v3_contextualized"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronta_retriever.py",
+      "lifecycle_class": "benchmark_or_experiment",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.retrievers",
+        "llama_index.core.schema",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.retrievers.bm25",
+        "llama_index.vector_stores.chroma"
+      ],
+      "model_mentions": [
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v1"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronto_contesti_bge_v4.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "sentence_transformers"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "confronto_risposte_v4_prompt_v2.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "llama_index.llms.ollama",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 65,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnose_h08_missing_labels.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnose_ollama_native_json_256_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 60,
+          "call": "mkdir"
+        },
+        {
+          "line": 61,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnose_ollama_openai_json_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "json",
+        "openai",
+        "pathlib",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 61,
+          "call": "mkdir"
+        },
+        {
+          "line": 62,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnose_ollama_openai_think_off_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "asyncio",
+        "json",
+        "openai",
+        "pathlib",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 56,
+          "call": "mkdir"
+        },
+        {
+          "line": 57,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnose_rag_v5.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "collections",
+        "difflib",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 140,
+          "call": "mkdir"
+        },
+        {
+          "line": 141,
+          "call": "write_text"
+        },
+        {
+          "line": 38,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnose_rag_v5_question_alignment_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "collections",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnose_v5_rerank_failures_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_exercise_candidate_v1",
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 62,
+          "call": "mkdir"
+        },
+        {
+          "line": 63,
+          "call": "write_text"
+        },
+        {
+          "line": 57,
+          "call": "add"
+        },
+        {
+          "line": 50,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnosi_chunk_dominanti_v4.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [
+        {
+          "line": 42,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnosi_compact_dribbling_v4.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.query_engine",
+        "llama_index.core.schema",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "sys",
+        "test_dribbling_v4_top5_top10"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": true,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnosi_entrypoint_generazione_v4.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "ast",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnosi_q8_ampiezza.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnosi_q8_retrieval.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.embeddings.ollama",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnosi_repack_refine_dribbling_v4.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.query_engine",
+        "llama_index.core.response_synthesizers.refine",
+        "llama_index.core.schema",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "sys",
+        "test_dribbling_v4_top5_top10"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": true,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnosi_retrieval_dribbling.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "collections",
+        "json",
+        "llama_index.core.schema",
+        "llama_index.embeddings.ollama",
+        "llama_index.postprocessor.sbert_rerank"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized",
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnostica_coverage_no_think_h07_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "benchmark_holdout_glerean_v4",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 55,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_holdout_glerean_v4.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnostica_ragas_coverage_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "asyncio",
+        "benchmark_holdout_glerean_v4",
+        "json",
+        "openai",
+        "pathlib",
+        "ragas",
+        "ragas.llms",
+        "ragas.metrics",
+        "sys",
+        "time",
+        "traceback"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 89,
+          "call": "mkdir"
+        },
+        {
+          "line": 90,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_holdout_glerean_v4.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnostica_ragas_discrete_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "asyncio",
+        "benchmark_holdout_glerean_v4",
+        "json",
+        "openai",
+        "pathlib",
+        "ragas",
+        "ragas.llms",
+        "ragas.metrics",
+        "sys",
+        "time",
+        "traceback"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 98,
+          "call": "mkdir"
+        },
+        {
+          "line": 99,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_holdout_glerean_v4.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnostica_ragas_no_think_h07_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "asyncio",
+        "benchmark_holdout_glerean_v4",
+        "httpx",
+        "json",
+        "openai",
+        "pathlib",
+        "ragas",
+        "ragas.llms",
+        "ragas.metrics",
+        "sys",
+        "time",
+        "traceback"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 81,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_holdout_glerean_v4.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "diagnostica_ragas_output_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "asyncio",
+        "benchmark_holdout_glerean_v4",
+        "json",
+        "openai",
+        "pathlib",
+        "ragas",
+        "sys",
+        "time",
+        "traceback"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 82,
+          "call": "mkdir"
+        },
+        {
+          "line": 83,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_holdout_glerean_v4.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "evaluate_claim_fidelity_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "collections",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 104,
+          "call": "mkdir"
+        },
+        {
+          "line": 105,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "evaluate_h09_lexical.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "probe_h09_lexical_retrieval"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "probe_h09_lexical_retrieval.py"
+      ],
+      "imported_by_scripts": [
+        "compare_h09_dense_bm25.py",
+        "compare_h09_dense_mmarco.py",
+        "compare_h09_hybrid_rrf.py",
+        "probe_h09_grounded_generation.py"
+      ]
+    },
+    {
+      "script": "extract_exercise_units_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 58,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "extract_exercise_units_v2.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 57,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "build_rag_v5_exercise_candidate_v1.py"
+      ]
+    },
+    {
+      "script": "extract_figures.py",
+      "lifecycle_class": "ingestion_or_index_builder",
+      "repository_action": "keep_guarded",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 25,
+          "call": "mkdir"
+        },
+        {
+          "line": 53,
+          "call": "save"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "fingerprint_v5_integrated_runtime.py",
+      "lifecycle_class": "maintenance_and_freeze",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "importlib",
+        "json",
+        "pathlib",
+        "platform",
+        "subprocess",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_exercise_candidate_v1",
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 61,
+          "call": "mkdir"
+        },
+        {
+          "line": 62,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "gate_rag_v5_evidence_offline.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 44,
+          "call": "mkdir"
+        },
+        {
+          "line": 45,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "gemini_optional_preflight_v1.py",
+      "lifecycle_class": "external_review_optional",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "datetime",
+        "json",
+        "pathlib",
+        "zoneinfo"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "ingest_pdfs.py",
+      "lifecycle_class": "ingestion_or_index_builder",
+      "repository_action": "keep_guarded",
+      "imports": [
+        "argparse",
+        "datetime",
+        "docling.document_converter",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "pymupdf",
+        "sys",
+        "tempfile",
+        "torch",
+        "traceback"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 39,
+          "call": "mkdir"
+        },
+        {
+          "line": 55,
+          "call": "mkdir"
+        },
+        {
+          "line": 126,
+          "call": "mkdir"
+        },
+        {
+          "line": 47,
+          "call": "unlink"
+        },
+        {
+          "line": 91,
+          "call": "save"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_exercise_body_context_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 48,
+          "call": "mkdir"
+        },
+        {
+          "line": 49,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_exercise_boundary_windows_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 37,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_exercise_heading_context_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 40,
+          "call": "mkdir"
+        },
+        {
+          "line": 41,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_ragas_043_adapter_contract.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "importlib",
+        "inspect",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 53,
+          "call": "mkdir"
+        },
+        {
+          "line": 54,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_ragas_043_api.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "importlib",
+        "importlib.metadata",
+        "inspect",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 43,
+          "call": "mkdir"
+        },
+        {
+          "line": 44,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_ussia_4a_chunk_mapping_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_ussia_4a_index_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 24,
+          "call": "mkdir"
+        },
+        {
+          "line": 25,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_v5_fresh03_heading_loss_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 91,
+          "call": "mkdir"
+        },
+        {
+          "line": 105,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inspect_v5_fresh03_manual_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 29,
+          "call": "mkdir"
+        },
+        {
+          "line": 31,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "inventory_runtime_evidence.py",
+      "lifecycle_class": "maintenance_and_freeze",
+      "repository_action": "keep",
+      "imports": [
+        "__future__",
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "subprocess"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 64,
+          "call": "mkdir"
+        },
+        {
+          "line": 65,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "judge_rag_v5_alignment_controls_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "pydantic",
+        "time",
+        "typing",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "judge_rag_v5_alignment_controls_v2_ab.py"
+      ]
+    },
+    {
+      "script": "judge_rag_v5_alignment_controls_v2_ab.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "judge_rag_v5_alignment_controls_v1",
+        "pathlib"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "judge_rag_v5_alignment_controls_v1.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "link_figure_text_h08.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 123,
+          "call": "mkdir"
+        },
+        {
+          "line": 124,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "lint_glerean_answers_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "list_tactical_figure_candidates.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "pilot_vision_existing_figure.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "base64",
+        "datetime",
+        "json",
+        "pathlib",
+        "time",
+        "urllib.error",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 77,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "prepara_revisione_semantica_glerean_v4.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 73,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "prepare_gemini_fresh01_sources.py",
+      "lifecycle_class": "external_review_optional",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 39,
+          "call": "mkdir"
+        },
+        {
+          "line": 40,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "prepare_gemini_remaining_sources_v1.py",
+      "lifecycle_class": "external_review_optional",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "pymupdf"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 77,
+          "call": "mkdir"
+        },
+        {
+          "line": 78,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "prepare_rag_v5_shadow_q4_q5_v2.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "json",
+        "pathlib",
+        "re",
+        "shadow_nli_v2_offline",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_offline.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "probe_docling_multimodal_capabilities.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "docling.datamodel.pipeline_options",
+        "importlib.metadata",
+        "json"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "probe_h09_exact_retrieval.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "probe_h09_grounded_generation.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "compare_h09_dense_bm25",
+        "datetime",
+        "evaluate_h09_lexical",
+        "hashlib",
+        "json",
+        "pathlib",
+        "sentence_transformers",
+        "subprocess",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 85,
+          "call": "mkdir"
+        },
+        {
+          "line": 86,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "compare_h09_dense_bm25.py",
+        "evaluate_h09_lexical.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "probe_h09_lexical_retrieval.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "collections",
+        "json",
+        "math",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "compare_h09_dense_bm25.py",
+        "compare_h09_hybrid_rrf.py",
+        "evaluate_h09_lexical.py"
+      ]
+    },
+    {
+      "script": "probe_h10_multisource.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "compare_h09_generation_focus_ab",
+        "datetime",
+        "hashlib",
+        "json",
+        "pathlib",
+        "sys",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 32,
+          "call": "mkdir"
+        },
+        {
+          "line": 33,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "compare_h09_generation_focus_ab.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "propose_semantic_exercise_boundaries_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 51,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "prova_risposta_dribbling.py",
+      "lifecycle_class": "legacy_entrypoint_or_probe",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.query_engine",
+        "llama_index.core.retrievers",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text",
+        "qwen3:4b"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v1"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "rag_v5_evidence_gate_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 43,
+          "call": "mkdir"
+        },
+        {
+          "line": 44,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "rag_v5_exact_reference_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 92,
+          "call": "mkdir"
+        },
+        {
+          "line": 93,
+          "call": "write_text"
+        },
+        {
+          "line": 40,
+          "call": "add"
+        },
+        {
+          "line": 76,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "rag_v5_fresh_reference_e2e_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 149,
+          "call": "mkdir"
+        },
+        {
+          "line": 150,
+          "call": "write_text"
+        },
+        {
+          "line": 57,
+          "call": "add"
+        },
+        {
+          "line": 126,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "smoke_test_rag_v5_e2e.py"
+      ]
+    },
+    {
+      "script": "rag_v5_reference_generalization_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 91,
+          "call": "mkdir"
+        },
+        {
+          "line": 92,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "rag_v5_reference_priority_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 77,
+          "call": "mkdir"
+        },
+        {
+          "line": 78,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "rag_v5_source_rerank_shadow_v2.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "re",
+        "sentence_transformers",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 112,
+          "call": "mkdir"
+        },
+        {
+          "line": 113,
+          "call": "write_text"
+        },
+        {
+          "line": 54,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "rag_v5_source_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 64,
+          "call": "mkdir"
+        },
+        {
+          "line": 65,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "review_rag_v5_gemini.py",
+      "lifecycle_class": "external_review_optional",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "datetime",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "random",
+        "re",
+        "sys",
+        "time",
+        "urllib.error",
+        "urllib.request"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 32,
+          "call": "mkdir"
+        },
+        {
+          "line": 164,
+          "call": "mkdir"
+        },
+        {
+          "line": 165,
+          "call": "write_text"
+        },
+        {
+          "line": 37,
+          "call": "write_text"
+        },
+        {
+          "line": 57,
+          "call": "add"
+        },
+        {
+          "line": 41,
+          "call": "unlink"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "audit_gemini_fresh01_v2_offline.py",
+        "test_gemini_quote_diagnostics_offline.py"
+      ]
+    },
+    {
+      "script": "review_rag_v5_gemini_remaining_v1.py",
+      "lifecycle_class": "external_review_optional",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "datetime",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "random",
+        "re",
+        "sys",
+        "time",
+        "urllib.error",
+        "urllib.request",
+        "zoneinfo"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 33,
+          "call": "mkdir"
+        },
+        {
+          "line": 177,
+          "call": "mkdir"
+        },
+        {
+          "line": 178,
+          "call": "write_text"
+        },
+        {
+          "line": 38,
+          "call": "write_text"
+        },
+        {
+          "line": 58,
+          "call": "add"
+        },
+        {
+          "line": 42,
+          "call": "unlink"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "run_rag_v5_locked_candidate_v2.py",
+      "lifecycle_class": "operational_core",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "os",
+        "pathlib",
+        "smoke_test_rag_v5_e2e",
+        "subprocess",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 37,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_test_rag_v5_e2e.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "run_rag_v5_phase_ablation_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 72,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "run_rag_v5_phase_passage_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 69,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "run_rag_v5_prospective_holdout_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "smoke_test_rag_v5_e2e",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_test_rag_v5_e2e.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "run_rag_v5_quality_holdout_pilot_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "smoke_test_rag_v5_e2e",
+        "sys"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_test_rag_v5_e2e.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "run_rag_v5_quality_shadow_frozen_evidence_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 79,
+          "call": "mkdir"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "run_rag_v5_shadow_nli_baseline.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "json",
+        "pathlib",
+        "re",
+        "shadow_nli_v2_offline",
+        "subprocess",
+        "sys"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_offline.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "shadow_nli_v2_inference.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "ast",
+        "copy",
+        "json",
+        "pathlib",
+        "pydantic",
+        "shadow_nli_v2_offline",
+        "time",
+        "typing",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_offline.py"
+      ],
+      "imported_by_scripts": [
+        "audit_shadow_nli_evidence_v1.py",
+        "benchmark_shadow_nli_atomic_v1.py",
+        "benchmark_shadow_nli_contrastive_v1.py",
+        "benchmark_shadow_nli_repeatability_v1.py",
+        "benchmark_shadow_nli_v2_adversarial.py",
+        "benchmark_shadow_nli_v3_adversarial.py",
+        "test_shadow_nli_v2_inference.py"
+      ]
+    },
+    {
+      "script": "shadow_nli_v2_offline.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "copy",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 31,
+          "call": "add"
+        },
+        {
+          "line": 88,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "prepare_rag_v5_shadow_q4_q5_v2.py",
+        "run_rag_v5_shadow_nli_baseline.py",
+        "shadow_nli_v2_inference.py",
+        "test_shadow_nli_v2_inference.py",
+        "test_shadow_nli_v2_offline.py"
+      ]
+    },
+    {
+      "script": "simulate_rag_v5_evidence_dedup.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 52,
+          "call": "mkdir"
+        },
+        {
+          "line": 53,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "smoke_ragas_043_faithfulness_ollama.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "json",
+        "openai",
+        "pathlib",
+        "ragas.llms",
+        "ragas.metrics.collections",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 63,
+          "call": "mkdir"
+        },
+        {
+          "line": 64,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "smoke_ragas_043_native_ollama_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "json",
+        "pathlib",
+        "ragas.llms",
+        "ragas.metrics.collections",
+        "time",
+        "urllib.request"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 85,
+          "call": "mkdir"
+        },
+        {
+          "line": 86,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "benchmark_direct_three_label_nli_v1.py",
+        "benchmark_minimal_verdict_nli_v1.py",
+        "benchmark_ragas_native_holdout_v1.py",
+        "benchmark_strict_tactical_nli_v1.py",
+        "benchmark_two_stage_tactical_nli_v1.py",
+        "trace_ragas_faithfulness_errors_v1.py"
+      ]
+    },
+    {
+      "script": "smoke_test_rag_v5.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "chromadb",
+        "collections",
+        "llama_index.embeddings.ollama"
+      ],
+      "model_mentions": [
+        "qwen3-embedding"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "smoke_test_rag_v5_e2e.py",
+      "lifecycle_class": "operational_core",
+      "repository_action": "keep",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "collections",
+        "hashlib",
+        "json",
+        "llama_index.embeddings.ollama",
+        "pathlib",
+        "rag_v5_fresh_reference_e2e_shadow_v1",
+        "re",
+        "sentence_transformers",
+        "time",
+        "urllib.error",
+        "urllib.request",
+        "v5_heading_reservation_v2",
+        "v5_heading_routing_v1",
+        "v5_source_hybrid_rank_v4",
+        "v5_source_semantic_rank_v3",
+        "v5_targeted_coverage_v1"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v5_exercise_candidate_v1",
+        "dribbling_tactics_v5_multisource"
+      ],
+      "possible_mutations": [
+        {
+          "line": 301,
+          "call": "mkdir"
+        },
+        {
+          "line": 302,
+          "call": "write_text"
+        },
+        {
+          "line": 246,
+          "call": "add"
+        },
+        {
+          "line": 200,
+          "call": "add"
+        },
+        {
+          "line": 219,
+          "call": "add"
+        },
+        {
+          "line": 190,
+          "call": "add"
+        },
+        {
+          "line": 235,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "rag_v5_fresh_reference_e2e_shadow_v1.py",
+        "v5_heading_reservation_v2.py",
+        "v5_heading_routing_v1.py",
+        "v5_source_hybrid_rank_v4.py",
+        "v5_source_semantic_rank_v3.py",
+        "v5_targeted_coverage_v1.py"
+      ],
+      "imported_by_scripts": [
+        "run_rag_v5_locked_candidate_v2.py",
+        "run_rag_v5_prospective_holdout_v1.py",
+        "run_rag_v5_quality_holdout_pilot_v1.py"
+      ]
+    },
+    {
+      "script": "test_audit_citazioni_glerean_v4.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "audit_citazioni_glerean_v4",
+        "unittest"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "audit_citazioni_glerean_v4.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_dribbling_v4_top5_top10.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.prompts",
+        "llama_index.core.query_engine",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [
+        {
+          "line": 101,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "benchmark_citazioni_stabili_v4.py",
+        "benchmark_generazione_contesti_q8_v4.py",
+        "benchmark_generazione_glerean_3casi_v4.py",
+        "diagnosi_compact_dribbling_v4.py",
+        "diagnosi_repack_refine_dribbling_v4.py",
+        "test_prompt_fedelta_dribbling_v4.py",
+        "test_prompt_fedelta_dribbling_v4_corretto.py",
+        "test_prompt_fedelta_dribbling_v5.py"
+      ]
+    },
+    {
+      "script": "test_dribbling_v5_strutturato.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.schema",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v4_qwen3_embedding_06b"
+      ],
+      "possible_mutations": [
+        {
+          "line": 126,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_gemini_pacific_rollover_offline_v1.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "ast",
+        "datetime",
+        "json",
+        "pathlib",
+        "zoneinfo"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_gemini_quote_diagnostics_offline.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "json",
+        "pathlib",
+        "review_rag_v5_gemini",
+        "tempfile"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "review_rag_v5_gemini.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_h09_citation_ids.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "compare_h09_generation_focus_ab",
+        "unittest"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "compare_h09_generation_focus_ab.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_prompt_fedelta_dribbling_v4.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.prompts",
+        "llama_index.core.query_engine",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "test_dribbling_v4_top5_top10",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 122,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_prompt_fedelta_dribbling_v4_corretto.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.prompts",
+        "llama_index.core.query_engine",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "test_dribbling_v4_top5_top10",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 106,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": [
+        "test_ragionamento_applicato_v4.py",
+        "test_ragionamento_thinking_16k_timeout_v4.py",
+        "test_ragionamento_thinking_16k_v4.py",
+        "test_ragionamento_thinking_v4.py"
+      ]
+    },
+    {
+      "script": "test_prompt_fedelta_dribbling_v5.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.prompts",
+        "llama_index.core.query_engine",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "test_dribbling_v4_top5_top10",
+        "time"
+      ],
+      "model_mentions": [
+        "cross-encoder/mmarco",
+        "qwen3-embedding",
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 138,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_dribbling_v4_top5_top10.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_ragionamento_applicato_v4.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "pathlib",
+        "sys",
+        "test_prompt_fedelta_dribbling_v4_corretto"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_prompt_fedelta_dribbling_v4_corretto.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_ragionamento_thinking_16k_timeout_v4.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "pathlib",
+        "sys",
+        "test_prompt_fedelta_dribbling_v4_corretto"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_prompt_fedelta_dribbling_v4_corretto.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_ragionamento_thinking_16k_v4.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "pathlib",
+        "sys",
+        "test_prompt_fedelta_dribbling_v4_corretto"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_prompt_fedelta_dribbling_v4_corretto.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_ragionamento_thinking_v4.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "pathlib",
+        "sys",
+        "test_prompt_fedelta_dribbling_v4_corretto"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "test_prompt_fedelta_dribbling_v4_corretto.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_reranker.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.retrievers",
+        "llama_index.core.schema",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v1"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_retrieval_ibrido.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_risposte_dribbling_v3.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.prompts",
+        "llama_index.core.query_engine",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text",
+        "qwen3:4b"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized"
+      ],
+      "possible_mutations": [
+        {
+          "line": 143,
+          "call": "mkdir"
+        },
+        {
+          "line": 144,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_risposte_dribbling_v4_1.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.prompts",
+        "llama_index.core.query_engine",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text",
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized"
+      ],
+      "possible_mutations": [
+        {
+          "line": 152,
+          "call": "mkdir"
+        },
+        {
+          "line": 153,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_risposte_dribbling_v4_qwen35.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "__future__",
+        "argparse",
+        "chromadb",
+        "json",
+        "llama_index.core",
+        "llama_index.core.prompts",
+        "llama_index.core.query_engine",
+        "llama_index.embeddings.ollama",
+        "llama_index.llms.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text",
+        "qwen3.5"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v3_contextualized"
+      ],
+      "possible_mutations": [
+        {
+          "line": 145,
+          "call": "mkdir"
+        },
+        {
+          "line": 146,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_shadow_nli_v2_inference.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "copy",
+        "shadow_nli_v2_inference",
+        "shadow_nli_v2_offline",
+        "unittest"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_inference.py",
+        "shadow_nli_v2_offline.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "test_shadow_nli_v2_offline.py",
+      "lifecycle_class": "test_or_regression",
+      "repository_action": "keep",
+      "imports": [
+        "copy",
+        "re",
+        "shadow_nli_v2_offline",
+        "unittest"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "shadow_nli_v2_offline.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "trace_ragas_faithfulness_errors_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "__future__",
+        "argparse",
+        "asyncio",
+        "json",
+        "os",
+        "pathlib",
+        "ragas.metrics.collections",
+        "smoke_ragas_043_native_ollama_v1",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 39,
+          "call": "mkdir"
+        },
+        {
+          "line": 41,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "smoke_ragas_043_native_ollama_v1.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "v5_heading_reservation_v2.py",
+      "lifecycle_class": "operational_core",
+      "repository_action": "keep",
+      "imports": [
+        "re",
+        "v5_heading_routing_v1",
+        "v5_source_hybrid_rank_v4"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 38,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "v5_heading_routing_v1.py",
+        "v5_source_hybrid_rank_v4.py"
+      ],
+      "imported_by_scripts": [
+        "smoke_test_rag_v5_e2e.py"
+      ]
+    },
+    {
+      "script": "v5_heading_routing_v1.py",
+      "lifecycle_class": "operational_core",
+      "repository_action": "keep",
+      "imports": [
+        "hashlib",
+        "json",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "smoke_test_rag_v5_e2e.py",
+        "v5_heading_reservation_v2.py"
+      ]
+    },
+    {
+      "script": "v5_source_coverage_shadow_v1.py",
+      "lifecycle_class": "historical_rag_runner",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 40,
+          "call": "mkdir"
+        },
+        {
+          "line": 41,
+          "call": "write_text"
+        },
+        {
+          "line": 15,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "v5_source_hybrid_rank_v4.py",
+      "lifecycle_class": "operational_core",
+      "repository_action": "keep",
+      "imports": [
+        "v5_source_semantic_rank_v3"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "v5_source_semantic_rank_v3.py"
+      ],
+      "imported_by_scripts": [
+        "smoke_test_rag_v5_e2e.py",
+        "v5_heading_reservation_v2.py"
+      ]
+    },
+    {
+      "script": "v5_source_semantic_rank_v3.py",
+      "lifecycle_class": "operational_core",
+      "repository_action": "keep",
+      "imports": [
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 17,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "smoke_test_rag_v5_e2e.py",
+        "v5_source_hybrid_rank_v4.py"
+      ]
+    },
+    {
+      "script": "v5_targeted_coverage_v1.py",
+      "lifecycle_class": "operational_core",
+      "repository_action": "keep",
+      "imports": [
+        "hashlib",
+        "json",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 100,
+          "call": "add"
+        },
+        {
+          "line": 138,
+          "call": "add"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": [
+        "smoke_test_rag_v5_e2e.py"
+      ]
+    },
+    {
+      "script": "valida_bge.py",
+      "lifecycle_class": "legacy_entrypoint_or_probe",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "chromadb",
+        "llama_index.core",
+        "llama_index.core.retrievers",
+        "llama_index.core.schema",
+        "llama_index.core.vector_stores",
+        "llama_index.embeddings.ollama",
+        "llama_index.postprocessor.sbert_rerank",
+        "llama_index.vector_stores.chroma",
+        "time"
+      ],
+      "model_mentions": [
+        "BAAI/bge-reranker",
+        "nomic-embed-text"
+      ],
+      "collection_mentions": [
+        "dribbling_tactics_v1"
+      ],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "validate_glerean_report_v2.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "json",
+        "pathlib",
+        "re"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 47,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "validate_rag_v5_prospective_manifest_v1.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "hashlib",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "valutazione_risposte_reali_v4_v1.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "argparse",
+        "benchmark_metro_tattico_no_think_v1",
+        "json",
+        "pathlib",
+        "re",
+        "sys",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 52,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [
+        "benchmark_metro_tattico_no_think_v1.py"
+      ],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "verifica_fedelta_dribbling_v4.py",
+      "lifecycle_class": "diagnostic_or_validator",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "llama_index.llms.ollama",
+        "pathlib",
+        "re",
+        "time"
+      ],
+      "model_mentions": [
+        "qwen3.5"
+      ],
+      "collection_mentions": [],
+      "possible_mutations": [
+        {
+          "line": 58,
+          "call": "write_text"
+        }
+      ],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    },
+    {
+      "script": "verify_docling_crop_against_pdf.py",
+      "lifecycle_class": "historical_support_tool",
+      "repository_action": "archive_in_place",
+      "imports": [
+        "PIL",
+        "argparse",
+        "fitz",
+        "json",
+        "pathlib"
+      ],
+      "model_mentions": [],
+      "collection_mentions": [],
+      "possible_mutations": [],
+      "uses_private_llamaindex_api": false,
+      "syntax_valid": true,
+      "local_imports": [],
+      "imported_by_scripts": []
+    }
+  ],
+  "limitations": [
+    "AST-only: dynamic imports, shell references, service calls and external dependents not detected",
+    "Possible mutations are syntactic warnings, not proof of execution or destructive behavior",
+    "Archive-in-place preserves imports and documentation links; it is not physical relocation",
+    "No script is classified for deletion because scripts occupy little space and preserve reproducibility"
+  ]
+}
