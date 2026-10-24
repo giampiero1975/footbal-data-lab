@@ -27,13 +27,13 @@ def select_runtime():
         candidates.extend(sorted(root.glob('venv*/bin/python')))
     seen = set()
     for py in candidates:
-        key = str(py.resolve())
+        key = str(py.absolute())
         if key in seen or not py.exists():
             continue
         seen.add(key)
         result = subprocess.run([str(py), '-c', check], capture_output=True, text=True)
         if result.returncode == 0:
-            if key != str(Path(sys.executable).resolve()):
+            if key != str(Path(sys.executable).absolute()):
                 print(f'V5_RUNTIME {py} (switching from {sys.executable})', flush=True)
                 os.execv(str(py), [str(py), *sys.argv])
             print(f'V5_RUNTIME {sys.executable}', flush=True)
