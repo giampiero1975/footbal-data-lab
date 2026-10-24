@@ -22,26 +22,39 @@ pagina o tassonomia tattica è codificato.
 
 - `33749bf` — `fix: isolate explicitly named source context`.
 - `8404495` — `fix: allow scoped locked diagnostics`.
+- `9a1a903` — `fix: complete lateral-zone attribution`.
 
 ## Report
 
-Output VPS previsto: `evaluation/v5_named_source_context_fresh07_v1.json`.
+Output VPS: `evaluation/v5_named_source_context_fresh07_v1.json`.
+SHA-256: `4298e32bdff76615fa1cd0369e2bb36ee928a96c611b8bb70245b2c1d812230f`.
 
 ## Risultato
 
 - Test offline complessivi: `8/8` superati.
 - Compilazione sintattica: superata.
-- Runtime VPS: `DA FARE`.
+- Runtime VPS: `COMPLETE 1/1` in 97.32 s.
+- Quattro evidenze estranee escluse; contesto finale composto da quattro
+  estratti Foscarini, citazioni invalide 0, indici 5319/34 invariati.
+- Pressioni laterali e perdita in zona pericolosa presenti.
+- Mandatory claim incompleto: la risposta non menziona i playmaker braccati.
+- Formulazione non supportata/ambigua: definisce la zona «molto pericolosa per
+  l'avversario», mentre la fonte non attribuisce così il destinatario del
+  pericolo.
 
 ## Decisione
 
-Consentire una sola generazione differenziale `fresh_07` dopo test offline e
-deploy. Validare soltanto se la risposta usa la tassonomia Foscarini, copre
-pressioni laterali/perdita pericolosa/playmaker braccati, non universalizza il
-divieto di costruzione laterale, non cita fonti estranee e lascia gli indici
-invariati.
+Il filtro di fonte è verificato, ma la risposta V1 non è validata. Non ripetere
+la stessa configurazione. La prossima variante è consentita soltanto con una
+differenza tecnica che richieda completezza fra difficoltà dei playmaker e dei
+laterali, mantenga neutra l'attribuzione del pericolo e impedisca di trasformare
+il rischio situazionale in divieto universale.
+
+La differenza è implementata in `9a1a903`; i test offline complessivi sono ora
+`9/9` e la compilazione è superata. È autorizzata una sola generazione V2 in
+`evaluation/v5_named_source_context_fresh07_v2.json`.
 
 ## Stato
 
-`IMPLEMENTATO` dopo commit; non `ESEGUITO`, `VALIDATO`, `INTEGRATO` o
+Filtro V1 `ESEGUITO`; guida V2 `IMPLEMENTATO`. Non `VALIDATO`, `INTEGRATO` o
 `CERTIFICATO`.
