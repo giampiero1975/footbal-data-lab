@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily FOOTBALL-DATA-LAB FIGC PDF discovery
+
+[Timer]
+OnCalendar=daily
+RandomizedDelaySec=30m
+Persistent=true
+Unit=football-figc-discovery.service
+
+[Install]
+WantedBy=timers.target

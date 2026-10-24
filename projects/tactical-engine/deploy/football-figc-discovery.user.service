@@ -1,0 +1,16 @@
+[Unit]
+Description=FOOTBALL-DATA-LAB FIGC PDF discovery monitor
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/football-data-lab
+ExecStart=/opt/football-data-lab/projects/tactical-engine/.venv/bin/python /opt/football-data-lab/projects/tactical-engine/scripts/figc_pdf_discovery.py --write --max-pages 30 --report /opt/football-data-lab/projects/tactical-engine/evaluation/runtime-archive/figc_discovery_latest.json
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/football-data-lab/knowledge/candidates/figc-discovery /opt/football-data-lab/projects/tactical-engine/evaluation/runtime-archive
+
