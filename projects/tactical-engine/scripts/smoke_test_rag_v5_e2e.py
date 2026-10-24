@@ -140,7 +140,7 @@ def main():
                     if cid in known:
                         continue
                     raw=meta.get("raw_text") or doc
-                    rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+                    rows.append({"id":cid,"source":meta["source"],"source_relative":meta.get("source_relative"),"pages":meta.get("page_numbers"),"text":doc,"headings":heading_list(meta.get("headings")),"distance":float(dist),"fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
                     known.add(cid)
             if args.targeted_coverage and qid == "fresh_03" and targeted_source == MANUAL:
                 known = {r["id"] for r in rows}
