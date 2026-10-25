@@ -19,6 +19,14 @@ I default restano otto evidenze e nessun limite, quindi il runner locked e i ben
 
 Un solo confronto sulla medesima domanda Coverciano già misurata è autorizzato dalla differenza tecnica sopra documentata. La promozione richiede: risposta completa ai due quesiti, citazioni presenti e valide, `done_reason=stop`, indice 6196 invariato e miglioramento materiale della latenza. In caso contrario il profilo resta non integrato.
 
+## Primo gate VPS
+
+Test offline 9/9. Il primo confronto ha ridotto la latenza da 292,61 a 193,54 secondi (-33,8%), il prompt da 3.155 a 2.588 token e l'output da 1.310 a 700 token; sei evidenze, citazioni F1–F5 valide e indice 6196 invariato. Il risultato non supera il gate: `done_reason=length` e la seconda parte è troncata.
+
+## Correzione
+
+La guida viene resa vincolante sul formato: nessuna premessa, massimo 350 parole, una sezione per ogni punto e priorità alla copertura completa prima dei dettagli. Il limite tecnico resta 700 token. Un secondo confronto è ammesso perché corregge direttamente il failure mode osservato.
+
 ## Stato
 
-**IMPLEMENTATO**. Test offline e confronto VPS DA FARE.
+Primo profilo **ESEGUITO** e non validato; correzione **IMPLEMENTATO**, secondo confronto VPS DA FARE. Nessuna integrazione API.

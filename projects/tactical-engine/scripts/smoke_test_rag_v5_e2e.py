@@ -147,8 +147,9 @@ def reserve_explicit_manual(question, rows, scores, selected, limit):
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,num_predict=0):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
-    concise=("\nRispondi in modo completo e strutturato ma conciso, entro 500 parole; "
-             "evita ripetizioni e non omettere parti della domanda.\n") if num_predict else ""
+    concise=("\nRispondi direttamente, senza premessa né riepilogo della domanda, entro 350 parole. "
+             "Crea una sezione numerata per ogni punto richiesto, tratta tutti i punti prima di aggiungere dettagli, "
+             "usa frasi operative ed evita ripetizioni.\n") if num_predict else ""
     options={"temperature":0,"num_ctx":8192}
     if num_predict:
         options["num_predict"]=num_predict
