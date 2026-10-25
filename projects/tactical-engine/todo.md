@@ -45,6 +45,8 @@ l'archivio conservano gli stati storici senza riaprirli.
   preventiva errata e fonti generiche rilevate; report
   `gemini_coverciano_runtime_case01_stable36_v6.json`. Modello predefinito del
   reviewer migrato a 3.6 stabile; 3.1 Flash-Lite ammesso come fallback.
+- [x] **IMPLEMENTATO** generatore fail-closed delle 100 tracce Gemini:
+  `scripts/generate_coverciano_100_gemini_v1.py`; manifest runtime DA FARE.
 
 ## Stato operativo corrente
 
@@ -69,6 +71,13 @@ spuntate nell'archivio storico sotto questa sezione sono fotografie di fasi
 precedenti e non riaprono attività assorbite dalla certificazione.
 
 ### P1 — Prossima fase applicativa
+
+- [ ] **DA FARE** riprogettazione completa UX/UI del pannello pubblico. L'attuale
+  interfaccia e funzionale ma non soddisfa il titolare. Rivedere architettura
+  informativa, gerarchia visiva, navigazione, leggibilita di risposta/fonti e
+  revisione Gemini, stato e tempi dei job, biblioteca PDF, ricerca, responsive
+  mobile e accessibilita. Prima produrre proposta/wireframe, poi implementare e
+  validare con il titolare; non mescolare questa attivita con il benchmark 100.
 
 - [x] **INTEGRATO** completamento operativo del pannello: fonti espandibili,
   export Markdown locale e feedback utile/non utile autenticato, persistito

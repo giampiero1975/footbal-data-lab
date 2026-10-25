@@ -98,3 +98,9 @@ Il collegamento RAG -> Gemini -> pannello e **IMPLEMENTATO** nel codice e
 documentato in `docs/rag-v5-gemini-runtime-review-01.md`. Test e deploy VPS
 restano DA FARE prima di qualunque dichiarazione INTEGRATO. La generazione del
 manifest delle 100 domande non e ancora iniziata.
+
+Il generatore fail-closed e ora disponibile in
+`scripts/generate_coverciano_100_gemini_v1.py`: richiede esattamente 100 ID
+ordinati, dieci categorie con dieci domande ciascuna, difficolta 3-5, testo non
+duplicato e rubriche nascoste complete. Non sovrascrive un manifest esistente.
+Stato del codice: **IMPLEMENTATO**; chiamata Gemini e manifest ancora DA FARE.
