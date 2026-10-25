@@ -1,0 +1,16 @@
+[Unit]
+Description=FOOTBALL-DATA-LAB RAG health and retention maintenance
+After=football-rag-api.service
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/football-data-lab
+EnvironmentFile=/home/football/.config/football-data-lab/rag-api.env
+ExecStart=/opt/football-data-lab/projects/tactical-engine/.venv/bin/python /opt/football-data-lab/projects/tactical-engine/scripts/maintain_rag_v5_runtime.py --write --retention-days 30 --preserve-jobs 100
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/opt/football-data-lab/projects/tactical-engine/evaluation/api-runs
+
