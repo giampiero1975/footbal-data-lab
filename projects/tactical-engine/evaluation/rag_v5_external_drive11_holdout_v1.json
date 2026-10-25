@@ -1,0 +1,61 @@
+{
+  "schema": "rag_v5_external_holdout_v1",
+  "status": "frozen_before_generation",
+  "scope": "six questions from Drive11 sources absent from the certified 5319-chunk collection",
+  "questions": [
+    {
+      "id": "drive11_ext_01",
+      "question": "Nella tesi di Vincenzo Italiano, quale deve essere il primo pensiero collettivo dopo il recupero della palla e come viene definito l'attacco diretto?",
+      "source": "vincenzo-italiano_tesi",
+      "evidence_ids": ["4ee2d2d76f06f4224bd58b442c55d7635e13a67445f20445438675fec8030d56"],
+      "pages": [8, 9],
+      "mandatory_claims": ["attaccare rapidamente la porta avversaria", "ridurre il tempo di costruzione", "orientare l'azione in ampiezza o profondità"],
+      "forbidden_claims": ["il primo obiettivo è rallentare il gioco"]
+    },
+    {
+      "id": "drive11_ext_02",
+      "question": "Secondo la tesi Contran, come cambiava la struttura dell'Italia di Mancini fra possesso e non possesso partendo dal 4-3-3?",
+      "source": "contran_uefa-pro",
+      "evidence_ids": ["1d069e53a949cd566da9c84921dd693c1aec51f1351a33d63636947c8cedcc02"],
+      "pages": [9, 10],
+      "mandatory_claims": ["struttura offensiva 3-2-5", "cinque canali offensivi", "struttura difensiva 4-5-1 con arretramento delle ali"],
+      "forbidden_claims": ["la struttura restava sempre 4-3-3"]
+    },
+    {
+      "id": "drive11_ext_03",
+      "question": "Nella tesi di Andrea Maldera, quale differenza viene indicata tra organizzare una squadra per principi e organizzarla per codifiche?",
+      "source": "maldera_tesi-uefa-pro",
+      "evidence_ids": ["1f5e5619bc22c8e5a160ea7af6401d3a1366f0a4787f52178383018ca37fda09"],
+      "pages": [5],
+      "mandatory_claims": ["i principi richiedono maggiore comprensione e libertà di scelta", "le codifiche usano movimenti provati e prestabiliti", "efficacia tramite tempi e precisione"],
+      "forbidden_claims": ["principi e codifiche sono incompatibili"]
+    },
+    {
+      "id": "drive11_ext_04",
+      "question": "Come definisce Lorenzon la transizione offensiva e quando essa diventa invece un'azione manovrata?",
+      "source": "tesi-lorenzon-uefa-pro",
+      "evidence_ids": ["7f935d20c82e689dcc93ff060c9232b6c43627bc5880f6a847e93d406f4634af"],
+      "pages": [16],
+      "mandatory_claims": ["contrattacco dopo il cambio di possesso", "tempo relativamente breve", "difesa disorganizzata", "diventa manovrata se i difendenti riescono a riordinarsi"],
+      "forbidden_claims": ["ogni possesso prolungato resta una transizione"]
+    },
+    {
+      "id": "drive11_ext_05",
+      "question": "Nella tesi di Luciano Vulcano sulla Periodizzazione Tattica, perché la tattica viene descritta come sovradimensione e quali momenti del gioco comprende?",
+      "source": "vulcano-luciano_tesi-master",
+      "evidence_ids": ["dfc4a0116b1acc619eda9a81bba54e71010d8ce0ebb965bc078a6025bb39c6d6"],
+      "pages": [19, 20],
+      "mandatory_claims": ["ingloba e guida le altre dimensioni", "fase offensiva", "fase difensiva", "transizione positiva", "transizione negativa"],
+      "forbidden_claims": ["la tattica è separata dalle altre dimensioni"]
+    },
+    {
+      "id": "drive11_ext_06",
+      "question": "Secondo la tesi di Francesco Baldini, quanto dovrebbero durare le riunioni tecniche video e come possono essere distribuite durante la settimana?",
+      "source": "baldini-francesco_tesi",
+      "evidence_ids": ["40de5acb0f20e5c3ba47f55863bf920c361dd28989f91ddacf068bbafbb361da"],
+      "pages": [73],
+      "mandatory_claims": ["circa 10-15 minuti", "frammentate nei diversi giorni", "collegate al successivo lavoro sul campo"],
+      "forbidden_claims": ["un'unica riunione video molto lunga"]
+    }
+  ]
+}
