@@ -24,11 +24,12 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "scripts/run_rag_v5_query.py"
 PYTHON = ROOT / ".venv/bin/python"
 PANEL = ROOT / "api/knowledge_panel.html"
+REJECTED_TOKENS = {"replace-with-at-least-32-random-characters"}
 
 
 def load_config(env=os.environ) -> dict:
     token = env.get("RAG_API_TOKEN", "")
-    if len(token) < 32:
+    if len(token) < 32 or token in REJECTED_TOKENS:
         raise RuntimeError("RAG_API_TOKEN must contain at least 32 characters")
     return {
         "token": token,
@@ -252,6 +253,8 @@ class Handler(BaseHTTPRequestHandler):
                                            "items": documents[offset:offset+limit]})
             return
         if parsed.path == "/v1/knowledge/search":
+            if not self.state.rate_allowed(self.client_address[0]):
+                self.send_json(HTTPStatus.TOO_MANY_REQUESTS, {"error": "rate_limited"}); return
             query = parse_qs(parsed.query)
             text = " ".join(query.get("q", [""])[0].split())
             try:
@@ -310,13 +313,39 @@ class Handler(BaseHTTPRequestHandler):
         self.send_json(HTTPStatus.ACCEPTED, job)
 
 
+class BoundedHTTPServer(ThreadingHTTPServer):
+    daemon_threads = True
+    request_queue_size = 32
+
+    def __init__(self, address, handler, max_connections=32, read_timeout=15):
+        self._slots = threading.BoundedSemaphore(max_connections)
+        self._read_timeout = read_timeout
+        super().__init__(address, handler)
+
+    def process_request(self, request, client_address):
+        if not self._slots.acquire(blocking=False):
+            request.close(); return
+        try:
+            request.settimeout(self._read_timeout)
+            super().process_request(request, client_address)
+        except Exception:
+            self._slots.release()
+            raise
+
+    def process_request_thread(self, request, client_address):
+        try:
+            super().process_request_thread(request, client_address)
+        finally:
+            self._slots.release()
+
+
 def main() -> None:
     os.umask(0o077)
     config = load_config()
     state = State(config)
     state.worker_thread = threading.Thread(target=state.worker, daemon=True, name="rag-worker")
     state.worker_thread.start()
-    server = ThreadingHTTPServer((config["host"], config["port"]), Handler)
+    server = BoundedHTTPServer((config["host"], config["port"]), Handler)
     server.state = state  # type: ignore[attr-defined]
     print(json.dumps({"event": "startup", "host": config["host"], "port": config["port"]}), flush=True)
     server.serve_forever()

@@ -677,3 +677,9 @@ Attività: completare il consumer web locale con stato/tempo job, metriche rispo
 ### RAG-V5-API-PROFILE-BENCHMARK-01
 
 Attività: misurare il profilo API su domande breve, media e complessa nuove. Differenza tecnica: tre livelli di lunghezza/struttura mai eseguiti, non benchmark locked e non scenario Coverciano. Script: `benchmark_rag_v5_api_profiles_v1.py`; report `docs/rag-v5-api-profile-benchmark-01.md`. Risultato: harness sequenziale e gate automatici implementati. Decisione: una sola esecuzione VPS e audit qualitativo delle tre risposte. Stato: IMPLEMENTATO.
+
+Attività: eseguire e giudicare il benchmark applicativo a tre profili. JSON SHA-256 `06e0f419a9623cd9f973593a7e6e54c944651305e894670c8b5b89ec7fa8783e`. Risultato: 160,18/194,19/146,13 s; 3/3 stop, citazioni valide, 6196 invariato; caso complesso confonde possesso/non possesso e riconquista/perdita. Decisione: non VALIDARE; correzione generica delle fasi e un solo retest complesso. Stato: ESEGUITO.
+
+Attività: revisione editoriale candidati FIGC. Report `docs/figc-candidate-editorial-review-01.md`. Risultato: Soncin, Di Camillo, Rausse, calcio relazionale IT e Mastroianni ammessi come candidati; Venturini/Pica esclusi come statistici, traduzione EN duplicata; Maresi/Santoni già esclusi. Decisione: preservare cinque file in area candidata e non indicizzare senza collection isolata. Stato: VALIDATO.
+
+Attività: remediation audit API `cc2a0cdd-2e17-4a97-b5ef-6c4e1bed4126`. Script: API, template env e guida generazione; report `docs/rag-v5-api-security-remediation-01.md`. Risultato: placeholder rifiutato, server 32 connessioni/timeout 15s, ricerca rate-limited, distinzione fasi tattiche rafforzata. Decisione: test offline/VPS prima dell'integrazione. Stato: IMPLEMENTATO.

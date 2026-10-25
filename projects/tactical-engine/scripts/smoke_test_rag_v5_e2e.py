@@ -149,7 +149,8 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
                          for i,r in enumerate(evidence,1))
     concise=("\nRispondi direttamente, senza premessa né riepilogo della domanda, entro 350 parole. "
              "Crea una sezione numerata per ogni punto richiesto, tratta tutti i punti prima di aggiungere dettagli, "
-             "usa frasi operative ed evita ripetizioni.\n") if num_predict else ""
+             "usa frasi operative ed evita ripetizioni. Mantieni rigorosamente distinte le fasi richieste "
+             "(possesso, non possesso, perdita e riconquista) e non sostituirle fra loro.\n") if num_predict else ""
     options={"temperature":0,"num_ctx":8192}
     if num_predict:
         options["num_predict"]=num_predict

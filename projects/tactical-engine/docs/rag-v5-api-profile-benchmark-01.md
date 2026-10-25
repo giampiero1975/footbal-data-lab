@@ -10,4 +10,4 @@ Esecuzione sequenziale sul servizio reale. Ogni caso deve terminare con `done_re
 
 ## Stato
 
-**IMPLEMENTATO**. Esecuzione VPS DA FARE.
+**ESEGUITO**. Tempi breve/media/complessa: 160,18 / 194,19 / 146,13 s; 3/3 `stop`, citazioni valide e indice invariato. Il caso complesso confonde possesso/non possesso e riconquista/perdita: benchmark non VALIDATO. Correzione generica della distinzione delle fasi IMPLEMENTATA; nuova verifica consentita solo su quel caso.

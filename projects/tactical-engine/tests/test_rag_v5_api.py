@@ -35,6 +35,8 @@ class ApiTests(unittest.TestCase):
     def test_token_required_and_constant_time_auth_contract(self):
         with self.assertRaises(RuntimeError):
             api.load_config({"RAG_API_TOKEN": "short"})
+        with self.assertRaises(RuntimeError):
+            api.load_config({"RAG_API_TOKEN": "replace-with-at-least-32-random-characters"})
         with tempfile.TemporaryDirectory() as tmp:
             state = api.State(self.config(Path(tmp)))
             self.assertTrue(state.authorized("Bearer " + "x" * 32))
@@ -114,6 +116,10 @@ class ApiTests(unittest.TestCase):
             stored=Path(tmp)/"metrics.json"
             self.assertTrue(stored.exists())
             self.assertEqual(json.loads(stored.read_text())["accepted"],0)
+
+    def test_http_server_is_bounded(self):
+        self.assertEqual(api.BoundedHTTPServer.request_queue_size, 32)
+        self.assertTrue(api.BoundedHTTPServer.daemon_threads)
 
 
 if __name__ == "__main__":
