@@ -69,10 +69,11 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   disabilitate prima dell'autenticazione e messaggio 401 comprensibile. Test VPS
   13/13 e smoke HTTPS con token 200/senza token 401; commit `6bca4f0`, `e70c674`.
   Report `docs/knowledge-panel-application-integration-02.md`.
-- [x] **IMPLEMENTATO** Biblioteca PDF parlante con classificazione derivata
+- [x] **VALIDATO e INTEGRATO** Biblioteca PDF parlante con classificazione derivata
   tattica/tecnica/allenamento/altro, conteggi, ricerca per titolo e filtro per
-  categoria. Nessuna modifica all'indice o al retrieval; test e collaudo VPS
-  differenziali DA FARE.
+  categoria. 157 documenti: primarie 120 tattica, 27 tecnica, 10 allenamento;
+  suite combinate 19/19 e smoke HTTPS superati. Nessuna modifica all'indice o
+  al retrieval; commit `7650fbd`.
 - [x] **VALIDATO** primo E2E applicativo distinto: risposta 3001 caratteri,
   8 evidenze, citazioni F1–F8 valide, indici 5319/34 invariati; SHA-256 nel
   report `docs/rag-v5-http-api-validation-01.md`.
@@ -87,10 +88,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   testo delle domande nelle metriche. Test 10/10 e benchmark 500/500; vista
   Qualità nel pannello. Report
   `docs/rag-v5-api-observability-01.md`.
-- [x] **IMPLEMENTATO** registro diagnostico privacy-safe `events.jsonl`, endpoint
+- [x] **VALIDATO e INTEGRATO** registro diagnostico privacy-safe `events.jsonl`, endpoint
   autenticato `/v1/events`, vista pannello e messaggio distinto per job perso
-  dopo riavvio. Non conserva domande, risposte, stderr o token. Test e smoke VPS
-  differenziali DA FARE.
+  dopo riavvio. Non conserva domande, risposte, stderr o token; file `0600`,
+  suite 19/19, endpoint e vista HTTPS verificati. Commit `20a0001`.
 - [x] **VALIDATO** carico control-plane: 500/500 richieste con concorrenza 25,
   mediana 3.36 ms; readiness 200. Recovery systemd dopo kill superato,
   `NRestarts=1`. Nessuna inferenza duplicata.

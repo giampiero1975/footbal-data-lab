@@ -30,6 +30,11 @@ trasparenti. Il pannello mostra conteggi, titolo, copertura, pagine osservate e
 filtri client-side per testo e categoria. La classificazione non modifica
 chunk, embedding, retrieval o collection.
 
+Validazione VPS: 157/157 documenti esposti; categorie primarie 120 tattica, 27
+tecnica e 10 allenamento. Le categorie pertinenti non esclusive coprono 153
+tattica, 91 tecnica e 42 allenamento. Suite combinate catalogo/API 19/19 e
+smoke HTTPS autenticato superati.
+
 ## Stato
 
 **VALIDATO e INTEGRATO**. La validazione iniziale 9/9 resta storica. Dopo la

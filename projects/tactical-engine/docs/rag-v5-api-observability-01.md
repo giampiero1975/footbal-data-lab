@@ -22,6 +22,10 @@ Aggiungere osservabilità applicativa senza eseguire nuove generazioni equivalen
 - distinzione `job_lost_after_restart` per un job presente su disco ma non più
   nella memoria del servizio dopo un riavvio.
 
+Validazione differenziale VPS: suite catalogo/API 19/19, servizio active,
+endpoint eventi autenticato operativo, evento `service_started` leggibile e
+`events.jsonl` con permessi `0600`. Nessuna inferenza eseguita.
+
 ## Evidenza VPS
 
 - test offline 10/10;
