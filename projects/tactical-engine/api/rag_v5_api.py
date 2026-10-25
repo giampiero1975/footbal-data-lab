@@ -22,6 +22,7 @@ from knowledge_catalog import load_catalog, search_catalog
 ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "scripts/run_rag_v5_query.py"
 PYTHON = ROOT / ".venv/bin/python"
+PANEL = ROOT / "api/knowledge_panel.html"
 
 
 def load_config(env=os.environ) -> dict:
@@ -140,6 +141,18 @@ class Handler(BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(body)
 
+    def send_html(self, path: Path) -> None:
+        body = path.read_bytes()
+        self.send_response(HTTPStatus.OK)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Content-Length", str(len(body)))
+        self.send_header("Cache-Control", "no-store")
+        self.send_header("Content-Security-Policy", "default-src 'self'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'")
+        self.send_header("X-Content-Type-Options", "nosniff")
+        self.send_header("Referrer-Policy", "no-referrer")
+        self.end_headers()
+        self.wfile.write(body)
+
     def authenticated(self, apply_rate_limit: bool = False) -> bool:
         if not self.state.authorized(self.headers.get("Authorization")):
             self.send_json(HTTPStatus.UNAUTHORIZED, {"error": "unauthorized"})
@@ -153,6 +166,9 @@ class Handler(BaseHTTPRequestHandler):
         parsed = urlparse(self.path)
         if parsed.path == "/healthz":
             self.send_json(HTTPStatus.OK, {"status": "ok"})
+            return
+        if parsed.path in {"/panel", "/panel/"}:
+            self.send_html(PANEL)
             return
         if not self.authenticated():
             return

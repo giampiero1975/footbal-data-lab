@@ -65,6 +65,12 @@ class ApiTests(unittest.TestCase):
             self.assertIs(state.catalog(), state.catalog())
             loader.assert_called_once()
 
+    def test_panel_has_no_embedded_secret(self):
+        panel = (ROOT / "api/knowledge_panel.html").read_text(encoding="utf-8")
+        self.assertIn("/v1/knowledge/stats", panel)
+        self.assertIn("/v1/query", panel)
+        self.assertNotIn("RAG_API_TOKEN", panel)
+
 
 if __name__ == "__main__":
     unittest.main()

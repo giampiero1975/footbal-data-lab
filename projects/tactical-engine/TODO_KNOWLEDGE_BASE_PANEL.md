@@ -50,6 +50,6 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - [x] Censire collection, metadata e assenza di un frontend/backend consumer preesistente.
 - [x] Implementare aggregazione read-only con provenienza e conteggi esatti.
 - [x] Implementare endpoint autenticati per statistiche, documenti e ricerca lessicale.
-- [ ] Validare test offline e smoke HTTP sulla VPS.
-- [ ] Implementare interfaccia Inventario/Copertura/Esplora/Qualità.
+- [x] Validare test offline e smoke HTTP sulla VPS per stats, documenti e ricerca.
+- [ ] Validare sulla VPS l'interfaccia IMPLEMENTATA per Inventario/Copertura/Esplora e domanda RAG; vista Qualità ancora DA FARE.
 - [ ] Integrare catalogo FIGC e stati completi di conversione/indicizzazione.

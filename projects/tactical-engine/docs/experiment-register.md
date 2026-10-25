@@ -637,3 +637,7 @@ Attività: ridurre la frequenza del monitor FIGC su indicazione del titolare. Sc
 ### KNOWLEDGE-PANEL-API-V1
 
 Attività: avviare l'integrazione applicativa con il primo consumer read-only previsto dal TODO Knowledge Base. Differenza tecnica: nuovi endpoint di inventario/provenienza, nessuna generazione o mutazione indice. Script: `api/knowledge_catalog.py`, `api/rag_v5_api.py`; test `test_knowledge_catalog.py`, `test_rag_v5_api.py`. Report: `docs/knowledge-panel-api-v1.md`. Risultato: audit reale 6196 chunk/152 fonti; endpoint stats, documents e search implementati con autenticazione e paginazione limitata. Decisione: test offline e smoke HTTP VPS prima della UI. Stato: IMPLEMENTATO.
+
+Attività: validare il contratto Knowledge API sulla VPS. Script: API e catalogo read-only; report `docs/knowledge-panel-api-v1.md`. Risultato: 7/7 test, endpoint 200, conteggi 6196/152, ricerca con provenienza, primo caricamento 1355,90 ms e cache 1,72–38,42 ms; health/readiness 200 e collection invariata. Decisione: implementare il consumer web locale senza esposizione Internet. Stato: VALIDATO.
+
+Attività: implementare il primo consumer applicativo web. Script: `api/knowledge_panel.html`, route `/panel` in `rag_v5_api.py`; test segreto non incorporato. Risultato: inventario, ricerca e submit/polling RAG implementati; token solo in memoria, header di sicurezza e bind localhost. Decisione: test statici e smoke VPS prima dell'integrazione. Stato: IMPLEMENTATO.

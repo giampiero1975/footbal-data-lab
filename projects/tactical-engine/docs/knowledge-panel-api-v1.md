@@ -1,6 +1,6 @@
 # Knowledge Panel API v1
 
-Data: 2026-10-25. Stato: IMPLEMENTATO; verifica VPS DA FARE.
+Data: 2026-10-25. Stato: API read-only VALIDATA; pannello IMPLEMENTATO, verifica VPS DA FARE.
 
 ## Attività e differenza tecnica
 
@@ -19,3 +19,13 @@ Collection `dribbling_tactics_v5_multisource_drive11_candidate_v1`: 6196 chunk, 
 - catalogo derivato in memoria al primo accesso; nessuna scrittura Chroma.
 
 Script: `api/knowledge_catalog.py`, `api/rag_v5_api.py`. Test: `tests/test_knowledge_catalog.py`, `tests/test_rag_v5_api.py`. Commit: DA FARE. Risultato: IMPLEMENTATO. Decisione: eseguire test offline e smoke HTTP VPS; integrare una UI soltanto dopo corrispondenza esatta 6196/152 e provenienza verificata. Stato: IMPLEMENTATO.
+
+## Evidenza API VPS
+
+Suite 7/7 PASS. Smoke autenticato: stats 200 con 6196/152; documenti 200 e paginazione corretta; ricerca `pressing` 200 con fonte e pagina; health/readiness 200. Primo caricamento del catalogo 1355,90 ms, chiamate successive 1,72–38,42 ms. Collection invariata.
+
+## Consumer web
+
+`GET /panel` serve un'interfaccia locale statica con inventario, ricerca e submit/polling delle domande RAG. Il token viene inserito dall'utente, mantenuto soltanto in memoria JavaScript e non incorporato o salvato. CSP, `nosniff`, no-referrer e no-store sono impostati dalla risposta HTTP. Il bind rimane localhost: l'accesso remoto richiede tunnel SSH e non espone 8088 su Internet.
+
+Script: `api/knowledge_panel.html`, `api/rag_v5_api.py`. Risultato: IMPLEMENTATO. Decisione: test statici e smoke browser/HTTP VPS prima di dichiarare il consumer INTEGRATO.
