@@ -388,6 +388,7 @@ def main():
             structural_signals={}
             if args.structural_routing:
                 selected,structural_reserved,structural_signals=structural_reserve(rows,scores,selected,question,args.limit)
+                structural_signals={key:sorted(value) for key,value in structural_signals.items()}
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
