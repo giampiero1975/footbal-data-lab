@@ -25,6 +25,7 @@ class GroqGeneratorOfflineTests(unittest.TestCase):
         payload = {"choices": [{"message": {"content": json.dumps({"questions": rows})}}]}
         self.assertEqual(len(gen.parse_response(payload, "blocco_difensivo", 1, [])), 5)
         rows[0]["id"] = "wrong"
+        payload = {"choices": [{"message": {"content": json.dumps({"questions": rows})}}]}
         with self.assertRaises(ValueError): gen.parse_response(payload, "blocco_difensivo", 1, [])
 
     def test_near_duplicate_fails_closed(self):
