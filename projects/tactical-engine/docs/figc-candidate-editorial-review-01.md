@@ -25,3 +25,5 @@ Nessun documento è stato indicizzato. I cinque ammessi restano in area candidat
 ## Stato
 
 Revisione **VALIDATO**; ingestion **DA FARE** solo in collection candidata separata.
+
+Pulizia VPS eseguita: rimossi esclusivamente Venturini, Pica e la traduzione inglese duplicata (24 MB complessivi); verificata la presenza dei cinque candidati ammessi. Disco root 31%, 40 GB liberi. I file rimossi non sono recuperabili dalla VPS, ma restano riscaricabili dalle URL FIGC registrate.

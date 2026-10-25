@@ -19,4 +19,4 @@ Il bearer token resta solo in memoria. Domande, risposte e cronologia non vengon
 
 ## Stato
 
-**IMPLEMENTATO**. Test offline e smoke VPS DA FARE.
+**VALIDATO e INTEGRATO**. Test offline 9/9; pannello, cronologia ed evidenze presenti nello smoke HTTP; API autenticata `ready` e servizio attivo. Nessuna nuova generazione necessaria per la sola UI.

@@ -9,4 +9,4 @@ Correzioni implementate:
 - rate limit applicato anche alla ricerca full-corpus;
 - guida generativa rafforzata per distinguere possesso, non possesso, perdita e riconquista.
 
-Stato: **IMPLEMENTATO**. Test e verifica VPS DA FARE.
+Verifica VPS: 10/10 test; placeholder respinto; limite server 32/daemon confermato; dieci ricerche 200 e undicesima 429; servizio riavviato `active`, health/readiness corretti. Stato: **VALIDATO e INTEGRATO**.

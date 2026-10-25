@@ -587,12 +587,12 @@ tecnica.
 
 - [x] **INTEGRATO** RAG-V5-PERFORMANCE-PROFILE-01: dopo un primo gate scartato per troncamento, il profilo corretto 6 evidenze/700 token conclude con `stop` in 161,09 contro 292,61 s (-45,0%), 534 token, risposta completa sui due punti, 6/6 fonti citate, zero citazioni invalide e 6196 invariato. Attivo nella sola API locale; default locked 8/0 invariato e rollback esplicito. Prestazioni/servizio 9/10. Report `docs/rag-v5-performance-profile-01.md`; non certificazione universale.
 
-- [x] **IMPLEMENTATO** KNOWLEDGE-PANEL-APPLICATION-INTEGRATION-02: fonti, pagine, provenienza, metriche generazione, stato/tempo job, errori e cronologia effimera aggiunti al consumer locale. Token e cronologia non persistiti; RAG locked invariato. Report `docs/knowledge-panel-application-integration-02.md`. Test e smoke VPS DA FARE.
+- [x] **INTEGRATO** KNOWLEDGE-PANEL-APPLICATION-INTEGRATION-02: fonti, pagine, provenienza, metriche generazione, stato/tempo job, errori e cronologia effimera; 9/9 test, smoke HTTP e readiness superati. Token e cronologia non persistiti; RAG locked invariato. Report `docs/knowledge-panel-application-integration-02.md`.
 
-- [x] **IMPLEMENTATO** RAG-V5-API-PROFILE-BENCHMARK-01: benchmark applicativo sequenziale su tre domande nuove breve/media/complessa; gate stop naturale, citazioni valide e indice 6196 invariato. Script `benchmark_rag_v5_api_profiles_v1.py`, report `docs/rag-v5-api-profile-benchmark-01.md`. Esecuzione VPS DA FARE.
+- [x] **ESEGUITO** RAG-V5-API-PROFILE-BENCHMARK-01: 160,18/194,19/146,13 s, 3/3 stop/citazioni valide/6196 invariato; breve e medio VALIDATI, complesso non validato per confusione di fasi. Retest corretto 143,29 s migliora ma conserva un'ambiguità; nessuna promozione. Report `docs/rag-v5-api-profile-benchmark-01.md`.
 
 - [x] **VALIDATO** FIGC-CANDIDATE-EDITORIAL-REVIEW-01: cinque candidati tattici ammessi, due statistici e una traduzione duplicata esclusi; Maresi non pertinente e Santoni duplicato confermati. Nessuna ingestion. Report `docs/figc-candidate-editorial-review-01.md`.
-- [x] **IMPLEMENTATO** RAG-V5-API-SECURITY-REMEDIATION-01: audit `cc2a0cdd-2e17-4a97-b5ef-6c4e1bed4126`; placeholder token rifiutato, connessioni/timeout bounded e rate limit ricerca aggiunti. Correzione fasi tattiche del benchmark complesso inclusa. Test VPS DA FARE.
+- [x] **INTEGRATO** RAG-V5-API-SECURITY-REMEDIATION-01: audit `cc2a0cdd-2e17-4a97-b5ef-6c4e1bed4126`; placeholder rifiutato, 32 connessioni/timeout 15s, ricerca rate-limited. 10/10 test; runtime placeholder rejected, undicesima ricerca 429, servizio active. Report `docs/rag-v5-api-security-remediation-01.md`.
 
 - [x] **ESEGUITO** V5-RERANK-TRACE-01: diagnostica read-only VPS fresh_03/fresh_10, script `scripts/diagnose_v5_rerank_failures_v1.py` (`c4ee2b5`), report `docs/v5-rerank-trace-01.md` (`adf47ee`); fresh_03 manuale Transizioni assente da dense24; fresh_10 Ussia pagina 17 al rango 9 del reranker, fuori top8. 5319/34 invariati. Nessun nuovo benchmark.
 
