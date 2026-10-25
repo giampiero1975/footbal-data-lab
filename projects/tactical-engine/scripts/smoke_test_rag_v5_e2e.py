@@ -147,9 +147,12 @@ def reserve_explicit_manual(question, rows, scores, selected, limit):
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,num_predict=0):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
-    phase_guard=(" Dopo la perdita descrivi soltanto azioni della squadra che ha appena perso palla: "
+    phase_guard=(" Nella sezione sul possesso usa soltanto movimenti con la propria squadra in controllo del pallone; "
+                 "ignora eventuali evidenze che descrivono pressing o non possesso. Dopo la perdita descrivi soltanto "
+                 "azioni della squadra che ha appena perso palla: "
                  "marcature preventive già predisposte, pressione sul nuovo portatore, coperture, chiusura linee "
-                 "e ripiegamento. Non descrivere uscita dal pressing, conduzione o passaggi della squadra in possesso."
+                 "e ripiegamento. Fermati alla riconquista o al ricompattamento: non descrivere ciò che avviene dopo. "
+                 "Non descrivere uscita dal pressing, conduzione o passaggi della squadra in possesso."
                  if "perd" in question.casefold() else "")
     concise=("\nRispondi direttamente, senza premessa né riepilogo della domanda, entro 350 parole. "
              "Crea una sezione numerata per ogni punto richiesto, tratta tutti i punti prima di aggiungere dettagli, "
