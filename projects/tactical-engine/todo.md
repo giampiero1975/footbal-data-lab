@@ -832,7 +832,11 @@ tecnica.
   completo verificati su un caso esclusivamente sintetico (HTTP 200, 1,628 s,
   1.454 token, score 8,5 PASS); suite offline 6/6. Corretto il blocco Cloudflare
   1010 dichiarando uno User-Agent esplicito. Nessun deploy o dato RAG inviato.
-- [ ] **BLOCCATO** V5-GROQ-01-G4: singolo caso tattico congelato non inviato.
-  Richiede consenso privacy esplicito per trasmettere a Groq domanda, risposta
-  RAG ed estratti selezionati; vietati PDF completi, token e chiavi.
+- [x] **ESEGUITO** V5-GROQ-01-G4: unico caso tattico congelato autorizzato,
+  `928f9702e19148c3a80e500ebe02fec9`; Groq 5,8/10 REVISIONE, HTTP 200,
+  3,770 s e 4.794 token. Critica tattica parzialmente utile, ma due contestazioni
+  sulle citazioni sono false: gli ID `1,2,4,5` corrispondono a F1,F2,F4,F5.
+  Report `docs/groq-free-reviewer-g4-01.md`; output separato in evaluation.
+  Affidabilita generale NON VALIDATA; ulteriori test/integrazione/deploy vietati
+  senza nuova autorizzazione. Revocare la chiave esposta in chat.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

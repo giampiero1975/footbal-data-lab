@@ -1,7 +1,7 @@
 # Proposta tecnica — Groq Free come revisore alternativo (V5-GROQ-01)
 
 Data: 2026-10-25. **Stato corrente: G0/G1 VALIDATI offline; G3 VALIDATO su
-payload sintetico; G4 BLOCCATO in attesa di consenso privacy; G5 DA FARE.**
+payload sintetico; G4 ESEGUITO su un solo caso reale; G5 DA FARE.**
 Nessuna integrazione o deploy. **Destinatario: Codex.** Questo
 documento e una proposta, non autorizza deploy, attivazione billing,
 sostituzione del revisore o esecuzione del benchmark. Evidenze G0/G1:
@@ -51,7 +51,7 @@ riproducibile 6/6 per schema strict, 200, 429, 503, 400/401/403, ID, citazioni,
 interruzione/ripresa e quote. Nessuna chiamata di rete; nessuna regressione RAG.
 **G2 — Autorizzazione utente e credenziali (ESEGUITO, con rotazione richiesta):** chiave Free fornita dal titolare e usata soltanto nel processo temporaneo; non salvata nel repository o nel servizio. Essendo stata incollata in chat, deve essere revocata e rigenerata.
 **G3 — Singola probe reale (VALIDATO per compatibilita tecnica):** connettivita minima e Structured Output strict verificati su `openai/gpt-oss-120b`; il client completo ha prodotto una revisione valida di un caso sintetico. Non equivale a validazione tattica.
-**G4 — Un solo caso tattico congelato (BLOCCATO, consenso privacy necessario):** nessun contenuto RAG reale e stato inviato a Groq. Serve autorizzazione esplicita per domanda, risposta ed estratti delle evidenze; niente PDF completi o segreti.
+**G4 — Un solo caso tattico congelato (ESEGUITO):** autorizzazione specifica ricevuta; caso `928f9702e19148c3a80e500ebe02fec9`, 5,8/10 REVISIONE, 3,770 s e 4.794 token. Due contestazioni di Groq sulle citazioni risultano false; affidabilita generale non validata. Report `docs/groq-free-reviewer-g4-01.md`.
 **G5 — Decisione (DA FARE):** promuovere a provider opt-in soltanto se compatibilita, indipendenza, costo zero e qualita sono accettabili; pianificare i restanti casi senza duplicati e senza consumare risposte gia valide.
 
 ## Workflow obbligatorio
@@ -66,7 +66,8 @@ Dopo ogni report eseguito aggiornare registro e TODO nella stessa sessione. Stat
 
 ## Stato della proposta
 **IMPLEMENTATO e VALIDATO offline** per G0/G1 e **VALIDATO tecnicamente** per
-G3 con payload sintetico. G4 resta BLOCCATO per consenso privacy e G5 DA FARE.
+G3 con payload sintetico. G4 e ESEGUITO ma non valida l'affidabilita generale;
+G5 resta DA FARE.
 Nessun costo, deploy o modifica al runtime/pipeline.
 
 Aggiornamento successivo: probe minima esplicitamente autorizzata **ESEGUITA**

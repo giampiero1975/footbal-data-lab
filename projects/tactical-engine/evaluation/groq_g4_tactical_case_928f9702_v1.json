@@ -1,0 +1,54 @@
+{
+  "schema": "groq_free_reviewer_report_v1",
+  "provider": "groq",
+  "model": "openai/gpt-oss-120b",
+  "case_count": 1,
+  "runtime_case_map": {
+    "case_01": "928f9702e19148c3a80e500ebe02fec9"
+  },
+  "prompt_sha256": "ca72f267102055bfb30f12b07b748b2b2478189909c2274658233ae891f1ebee",
+  "payload_sha256": "8e62020634a1d45cba38cebb21fc3b627fb8b592c6524933028c1d101df20ec4",
+  "network_called": true,
+  "pipeline_writes": false,
+  "index_writes": false,
+  "status": "ESEGUITO",
+  "http_status": 200,
+  "elapsed_seconds": 3.770238,
+  "usage": {
+    "queue_time": 0.29846755,
+    "prompt_tokens": 3250,
+    "prompt_time": 0.18412818,
+    "completion_tokens": 1544,
+    "completion_time": 3.217681522,
+    "total_tokens": 4794,
+    "total_time": 3.401809702,
+    "completion_tokens_details": {
+      "reasoning_tokens": 1160
+    }
+  },
+  "reviews": [
+    {
+      "id": "case_01",
+      "score": 5.8,
+      "verdict": "REVISIONE",
+      "strengths": [
+        "Identifica correttamente la necessità di una sovrapposizione del terzino sinistro",
+        "Riconosce il vuoto creato dall'uscita del braccetto avversario",
+        "Mantiene i ruoli originali senza rinominare i giocatori"
+      ],
+      "structural_errors": [
+        "Le citazioni nel testo ([F4] e [F5]) non corrispondono agli ID di citazione forniti nella sezione \"citation_ids\"",
+        "Mancanza di coerenza tra i numeri di citazione (\"1\",\"2\",\"4\",\"5\") e le etichette di evidenza (F1, F2, F4, F5)"
+      ],
+      "evidence_issues": [
+        "Le fonti citate (F1, F2) sono generiche e non descrivono esplicitamente il movimento richiesto di \"andare in porta da solo\"",
+        "Nessuna evidenza fornisce indicazioni sul tipo di corsa (diagonale verso il palo più lontano, tempistica del passaggio, ecc.)"
+      ],
+      "minimum_fix": "Allineare correttamente le citazioni con le evidenze fornite, aggiungere una descrizione più dettagliata del movimento (es. corsa diagonale verso il palo più lontano, tempistica del passaggio) e includere fonti che supportino esplicitamente tale azione"
+    }
+  ],
+  "series_limitations": [
+    "Le valutazioni si basano esclusivamente sui testi forniti; non è disponibile analisi video o dati di gioco reali",
+    "Le evidenze sono limitate a manuali generici e non specifiche al contesto descritto nella domanda"
+  ]
+}
