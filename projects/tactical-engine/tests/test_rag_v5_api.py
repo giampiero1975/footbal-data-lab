@@ -128,6 +128,8 @@ class ApiTests(unittest.TestCase):
         self.assertIn("libraryCategory", panel)
         self.assertIn("renderLibrary", panel)
         self.assertIn("estratti indicizzati", panel)
+        self.assertIn("/v1/events", panel)
+        self.assertIn("Registro diagnostico", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
     def test_feedback_is_bounded_to_succeeded_job_without_content(self):
@@ -164,6 +166,19 @@ class ApiTests(unittest.TestCase):
             stored=Path(tmp)/"metrics.json"
             self.assertTrue(stored.exists())
             self.assertEqual(json.loads(stored.read_text())["accepted"],0)
+
+    def test_privacy_safe_event_log_filters_content(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            state=api.State(self.config(Path(tmp)))
+            state.record_event("job_finished",job_id="a"*32,status="failed",reason="runner_failed",
+                               question="private question",token="private token",detail="private output")
+            events=state.recent_events(10)
+            self.assertEqual(events[0]["event"],"job_finished")
+            stored=(Path(tmp)/"events.jsonl").read_text(encoding="utf-8")
+            self.assertNotIn("private question",stored)
+            self.assertNotIn("private token",stored)
+            self.assertNotIn("private output",stored)
+            self.assertIn("runner_failed",stored)
 
     def test_http_server_is_bounded(self):
         self.assertEqual(api.BoundedHTTPServer.request_queue_size, 32)

@@ -87,6 +87,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   testo delle domande nelle metriche. Test 10/10 e benchmark 500/500; vista
   Qualità nel pannello. Report
   `docs/rag-v5-api-observability-01.md`.
+- [x] **IMPLEMENTATO** registro diagnostico privacy-safe `events.jsonl`, endpoint
+  autenticato `/v1/events`, vista pannello e messaggio distinto per job perso
+  dopo riavvio. Non conserva domande, risposte, stderr o token. Test e smoke VPS
+  differenziali DA FARE.
 - [x] **VALIDATO** carico control-plane: 500/500 richieste con concorrenza 25,
   mediana 3.36 ms; readiness 200. Recovery systemd dopo kill superato,
   `NRestarts=1`. Nessuna inferenza duplicata.

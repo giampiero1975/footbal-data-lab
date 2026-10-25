@@ -52,17 +52,44 @@ class State:
     def __init__(self, config: dict):
         self.config = config
         self.jobs: dict[str, dict] = {}
-        self.lock = threading.Lock()
+        self.lock = threading.RLock()
         self.requests = defaultdict(deque)
         self.auth_failures = defaultdict(deque)
         self.queue: queue.Queue[str] = queue.Queue(maxsize=config["queue_size"])
         self.knowledge_catalog: dict | None = None
         self.started_at = int(time.time())
         self.metrics_path = config["output_dir"] / "metrics.json"
+        self.events_path = config["output_dir"] / "events.jsonl"
         self.metrics = self._load_metrics()
         config["output_dir"].mkdir(parents=True, exist_ok=True)
         config["output_dir"].chmod(0o700)
         self._persist_metrics()
+        self.record_event("service_started", started_at=self.started_at)
+
+    def record_event(self, event: str, **fields) -> None:
+        allowed = {key: value for key, value in fields.items() if key in {
+            "job_id", "status", "duration_seconds", "reason", "started_at"
+        }}
+        row = {"timestamp": int(time.time()), "event": event, **allowed}
+        with self.lock:
+            with self.events_path.open("a", encoding="utf-8") as stream:
+                stream.write(json.dumps(row, sort_keys=True) + "\n")
+            self.events_path.chmod(0o600)
+
+    def recent_events(self, limit: int = 30) -> list[dict]:
+        try:
+            lines = self.events_path.read_text(encoding="utf-8").splitlines()[-limit:]
+        except OSError:
+            return []
+        events = []
+        for line in lines:
+            try:
+                value = json.loads(line)
+                if isinstance(value, dict):
+                    events.append(value)
+            except json.JSONDecodeError:
+                continue
+        return list(reversed(events))
 
     def _load_metrics(self) -> dict:
         default = {"schema":"rag_api_metrics_v1","accepted":0,"succeeded":0,"failed":0,"timed_out":0,"durations_seconds":[]}
@@ -159,6 +186,7 @@ class State:
         with self.lock:
             self.metrics["accepted"] += 1
             self._persist_metrics()
+        self.record_event("job_accepted", job_id=job_id, status="queued")
         return dict(job)
 
     def worker(self) -> None:
@@ -170,6 +198,7 @@ class State:
                 request = json.loads(request_path.read_text(encoding="utf-8"))
                 with self.lock:
                     self.jobs[job_id].update(status="running", started_at=int(time.time()))
+                self.record_event("job_running", job_id=job_id, status="running")
                 command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id,
                            "--output", str(output_path), "--collection", self.config["collection"],
                            "--expected-count", str(self.config["expected_count"]),
@@ -192,6 +221,8 @@ class State:
                     duration=max(0,self.jobs[job_id]["finished_at"]-self.jobs[job_id].get("started_at",self.jobs[job_id]["created_at"]))
                     self.metrics["durations_seconds"]=(self.metrics["durations_seconds"]+[duration])[-200:]
                     self._persist_metrics()
+                reason = "runner_failed" if status == "failed" else "runner_timeout" if status == "timed_out" else None
+                self.record_event("job_finished", job_id=job_id, status=status, duration_seconds=duration, reason=reason)
                 self.queue.task_done()
 
     def catalog(self) -> dict:
@@ -289,6 +320,14 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/v1/metrics":
             self.send_json(HTTPStatus.OK, self.state.metrics_snapshot())
             return
+        if parsed.path == "/v1/events":
+            query = parse_qs(parsed.query)
+            try:
+                limit = min(100, max(1, int(query.get("limit", ["30"])[0])))
+            except ValueError:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_limit"}); return
+            self.send_json(HTTPStatus.OK, {"schema": "rag_api_events_v1", "items": self.state.recent_events(limit)})
+            return
         if parsed.path == "/v1/knowledge/documents":
             query = parse_qs(parsed.query)
             try:
@@ -323,6 +362,12 @@ class Handler(BaseHTTPRequestHandler):
             with self.state.lock:
                 job = dict(self.state.jobs.get(job_id, {}))
             if not job:
+                request_path = self.state.config["output_dir"] / f"{job_id}.request.json"
+                if request_path.exists():
+                    self.state.record_event("job_unavailable", job_id=job_id, reason="service_restart")
+                    self.send_json(HTTPStatus.GONE, {"error": "job_lost_after_restart"})
+                    return
+                self.state.record_event("job_unavailable", job_id=job_id, reason="unknown_job")
                 self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
                 return
             if job["status"] == "succeeded":

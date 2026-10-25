@@ -14,6 +14,13 @@ Aggiungere osservabilità applicativa senza eseguire nuove generazioni equivalen
 - fino a 200 campioni di durata con min/mediana/p95/max;
 - collection, expected count e stato cache catalogo;
 - persistenza atomica `evaluation/api-runs/metrics.json`, senza domande, risposte o token.
+- registro diagnostico append-only `events.jsonl`, limitato a transizioni del
+  servizio/job, durata e motivo normalizzato; nessun contenuto di domanda,
+  risposta, stderr o credenziale;
+- endpoint autenticato `GET /v1/events` e vista nel pannello per gli ultimi
+  eventi;
+- distinzione `job_lost_after_restart` per un job presente su disco ma non più
+  nella memoria del servizio dopo un riavvio.
 
 ## Evidenza VPS
 
