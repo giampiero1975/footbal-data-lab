@@ -21,6 +21,13 @@ class StructuralRoutingTests(unittest.TestCase):
         static={"source":"Difesa 3-5-2","headings":[],"text":"terzino e ala controllano il braccetto"}
         self.assertGreater(m.score_row(direct,signals),m.score_row(static,signals))
 
+    def test_derives_underlap_from_geometry_without_keyword(self):
+        signals=m.anchors("Ala nello half-space: quale movimento deve fare il terzino per andare in porta?")
+        self.assertIn("underlap",signals["principles"])
+        underlap={"source":"Catene","headings":[],"text":"Sottoposizione: il terzino attacca il corridoio interno"}
+        overlap={"source":"Catene","headings":[],"text":"Il terzino corre in sovrapposizione esterna lungo la fascia"}
+        self.assertGreater(m.score_row(underlap,signals),m.score_row(overlap,signals))
+
     def test_reserves_distinct_structurally_relevant_sources(self):
         rows=[
             {"id":"generic","source":"Principi","headings":[],"text":"ampiezza e profondità"},

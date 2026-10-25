@@ -82,6 +82,10 @@ def scoped_guidance(question):
                         "Non trasferire al giocatore della squadra in possesso istruzioni difensive descritte dalla prospettiva avversaria. "
                         "Non attribuire all'avversario trequartisti o altri ruoli assenti dalla struttura descritta; se gli estratti non "
                         "sostengono un dettaglio, dichiaralo invece di trasferire meccanismi da un modulo diverso.")
+    if "terzino" in q and any(term in q for term in ("ala", "esterno")) and "half-space" in q and any(term in q for term in ("movimento", "andare in porta", "corsa")):
+        guidance.append(" Distingui la sovrapposizione esterna lungo la fascia dalla sottoposizione/underlap: se il terzino "
+                        "taglia verso la porta nel corridoio interno liberato dal difensore, usa il termine tecnico sottoposizione "
+                        "o sotto-sovrapposizione interna, purché sostenuto dagli estratti.")
     if question.startswith("Perché la descrizione di un assetto difensivo nel manuale interno"):
         guidance.append(" Elenca esplicitamente i moduli 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1 con le rispettive citazioni. "
                         "Distingui le descrizioni tattiche dalle prove causali: senza dati comparativi non si può dimostrare "

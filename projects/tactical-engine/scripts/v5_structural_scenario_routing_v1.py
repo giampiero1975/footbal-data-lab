@@ -21,6 +21,7 @@ PRINCIPLE_ANCHORS = (
 )
 MOVEMENT_QUERY_CUES = ("quale movimento", "movimento sincronizzato", "andare in porta", "attaccare lo spazio", "corsa")
 MOVEMENT_TEXT_CUES = ("inserimento", "si inserisce", "corsa", "sovrapposizione", "profondità", "spazio creato", "taglio")
+UNDERLAP_TEXT_CUES = ("sottoposizione", "sotto-sovrapposizione", "underlap", "corridoio interno", "terzino interno", "mezzo spazio")
 
 
 def _normal(value: str) -> str:
@@ -35,6 +36,8 @@ def anchors(question: str) -> dict:
     principles = {term for term in PRINCIPLE_ANCHORS if term in query}
     if any(cue in query for cue in MOVEMENT_QUERY_CUES):
         principles.add("movimento sincronizzato")
+    if {"terzino", "ala"}.issubset(roles) and "half-space" in principles and "movimento sincronizzato" in principles:
+        principles.add("underlap")
     return {"formations": formations, "roles": roles, "principles": principles}
 
 
@@ -43,10 +46,12 @@ def score_row(row: dict, signals: dict) -> int:
     formation_hits = sum(value in haystack or ("1-" + value) in haystack for value in signals["formations"])
     role_hits = sum(any(alias in haystack for alias in ROLE_ANCHORS[name]) for name in signals["roles"])
     principle_hits = sum(
-        any(cue in haystack for cue in MOVEMENT_TEXT_CUES) if term == "movimento sincronizzato" else term in haystack
+        any(cue in haystack for cue in MOVEMENT_TEXT_CUES) if term == "movimento sincronizzato"
+        else any(cue in haystack for cue in UNDERLAP_TEXT_CUES) if term == "underlap"
+        else term in haystack
         for term in signals["principles"]
     )
-    return formation_hits * 10 + role_hits * 3 + principle_hits * 6
+    return formation_hits * 10 + role_hits * 3 + principle_hits * 7
 
 
 def reserve(rows: list[dict], rerank_scores, selected: list[dict], question: str, limit: int, maximum: int = 3):
