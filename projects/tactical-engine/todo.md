@@ -90,6 +90,11 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   Prima di ripetere: separare fase difensiva/offensiva nei candidati, riservare
   scivolamento della linea a tre/lato debole e registrare la telemetria del
   routing. Report `docs/structural-scenario-routing-01.md`.
+- [ ] **BLOCCATO** prima revisione comparativa Gemini dei sei casi: preflight
+  PASS, ma `gemini-3.1-flash-lite-preview` ha restituito HTTP 503; report
+  `evaluation/gemini_coverciano_runtime_series_v1.json`, un tentativo locale,
+  nessun voto e nessun retry automatico. Consentito un solo V2 con
+  `gemini-3-flash-preview` e output separato; non estende la certificazione.
 - [ ] **DA FARE** ridisegno UX del pannello: separare uso normale e
   amministrazione, introdurre modalità conversazione esplicita per follow-up e
   avviso su riferimenti a contesto mancante; estendere 👎 con motivi privacy-safe

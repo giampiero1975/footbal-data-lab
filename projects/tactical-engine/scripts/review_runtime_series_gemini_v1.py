@@ -17,7 +17,8 @@ import urllib.request
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-MODEL = "gemini-3.1-flash-lite-preview"
+ALLOWED_MODELS = ("gemini-3-flash-preview", "gemini-3.1-flash-lite-preview")
+DEFAULT_MODEL = "gemini-3.1-flash-lite-preview"
 
 PROMPT = """Sei un revisore tattico esterno severo e indipendente. Valuta ogni
 risposta RAG da 0.0 a 10.0. Non premiare il tono, il lessico o la presenza di
@@ -108,6 +109,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("reports", type=Path, nargs="+")
     ap.add_argument("--output", type=Path, required=True)
+    ap.add_argument("--model", choices=ALLOWED_MODELS, default=DEFAULT_MODEL)
     ap.add_argument("--max-daily-requests", type=int, default=10)
     ap.add_argument("--confirm-free-tier", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
@@ -116,7 +118,7 @@ def main() -> None:
     ids = [row["id"] for row in cases]
     if len(set(ids)) != len(ids):
         raise SystemExit("DUPLICATE_CASE_ID")
-    meta = {"model": MODEL, "cases": len(cases), "case_ids": ids,
+    meta = {"model": args.model, "cases": len(cases), "case_ids": ids,
             "rag_executed": False, "index_writes": False}
     if args.dry_run:
         print(json.dumps({"preflight": "PASS", **meta}, indent=2))
@@ -142,7 +144,7 @@ def main() -> None:
             {"cases": cases}, ensure_ascii=False)}]}],
         "generationConfig": {"temperature": 0, "responseMimeType": "application/json"},
     }
-    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
+    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{args.model}:generateContent"
     req = urllib.request.Request(endpoint, data=json.dumps(request).encode(),
         headers={"Content-Type": "application/json", "x-goog-api-key": key}, method="POST")
     output = {**meta, "generated_at_utc": now.isoformat(),

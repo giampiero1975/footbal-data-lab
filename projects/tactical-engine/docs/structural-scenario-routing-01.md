@@ -75,3 +75,17 @@ serve una differenza tecnica documentata: separazione possesso/non possesso nel
 pool dei candidati, riserva per scivolamento della linea a tre e lato debole,
 piu telemetria del routing nel report. Il giudizio esterno resta shadow e non
 estende la certificazione locked.
+
+### Revisione comparativa Gemini
+
+Il revisore batch `review_runtime_series_gemini_v1.py` e stato pubblicato nel
+commit `98a615b`; il preflight sui sei report ha superato i controlli senza
+eseguire il RAG o scrivere gli indici. La prima richiesta autorizzata a
+`gemini-3.1-flash-lite-preview` ha restituito HTTP 503 e il report
+`evaluation/gemini_coverciano_runtime_series_v1.json` e `BLOCCATO`: nessun
+voto disponibile, un tentativo registrato e nessun retry automatico.
+
+La variante successiva usa esplicitamente `gemini-3-flash-preview`, gia
+collaudato dal progetto, e un nuovo file di output. La differenza di modello e
+il 503 precedente giustificano un solo tentativo separato; non sovrascrivere il
+report V1.
