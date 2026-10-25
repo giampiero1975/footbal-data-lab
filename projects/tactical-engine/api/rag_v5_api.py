@@ -40,6 +40,8 @@ def load_config(env=os.environ) -> dict:
         "output_dir": Path(env.get("RAG_API_OUTPUT_DIR", str(ROOT / "evaluation/api-runs"))),
         "collection": env.get("RAG_COLLECTION", "dribbling_tactics_v5_multisource"),
         "expected_count": int(env.get("RAG_EXPECTED_COUNT", "5319")),
+        "evidence_limit": int(env.get("RAG_API_EVIDENCE_LIMIT", "8")),
+        "max_output_tokens": int(env.get("RAG_API_MAX_OUTPUT_TOKENS", "0")),
         "chroma_path": Path(env.get("RAG_CHROMA_PATH", str(ROOT.parent.parent / "knowledge/rag/chroma"))),
     }
 
@@ -144,7 +146,9 @@ class State:
                     self.jobs[job_id].update(status="running", started_at=int(time.time()))
                 command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id,
                            "--output", str(output_path), "--collection", self.config["collection"],
-                           "--expected-count", str(self.config["expected_count"])]
+                           "--expected-count", str(self.config["expected_count"]),
+                           "--evidence-limit", str(self.config["evidence_limit"]),
+                           "--max-output-tokens", str(self.config["max_output_tokens"])]
                 try:
                     result = subprocess.run(command, cwd=ROOT.parent.parent, capture_output=True, text=True, timeout=self.config["timeout"])
                     status = "succeeded" if result.returncode == 0 and output_path.exists() else "failed"

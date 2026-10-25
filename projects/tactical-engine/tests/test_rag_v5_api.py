@@ -60,6 +60,23 @@ class ApiTests(unittest.TestCase):
         with self.assertRaises(Exception):
             query.validate_request_id("../invalid")
 
+    def test_performance_profile_defaults_are_locked_compatible(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            config = self.config(Path(tmp))
+            self.assertEqual(config["evidence_limit"], 8)
+            self.assertEqual(config["max_output_tokens"], 0)
+
+    def test_performance_profile_is_forwarded_to_runner(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            config = api.load_config({
+                "RAG_API_TOKEN": "x" * 32,
+                "RAG_API_OUTPUT_DIR": tmp,
+                "RAG_API_EVIDENCE_LIMIT": "6",
+                "RAG_API_MAX_OUTPUT_TOKENS": "700",
+            })
+            self.assertEqual(config["evidence_limit"], 6)
+            self.assertEqual(config["max_output_tokens"], 700)
+
     def test_catalog_is_loaded_once(self):
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(api, "load_catalog", return_value={"documents":[],"chunks":[]}) as loader:
             state = api.State(self.config(Path(tmp)))

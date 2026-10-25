@@ -144,13 +144,18 @@ def reserve_explicit_manual(question, rows, scores, selected, limit):
     winner=max(candidates,key=lambda i:float(scores[i]))
     revised=list(selected[:max(0,limit-1)])+[rows[winner]]
     return revised,[rows[winner]["id"]]
-def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False):
+def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,num_predict=0):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
+    concise=("\nRispondi in modo completo e strutturato ma conciso, entro 500 parole; "
+             "evita ripetizioni e non omettere parti della domanda.\n") if num_predict else ""
+    options={"temperature":0,"num_ctx":8192}
+    if num_predict:
+        options["num_predict"]=num_predict
     payload={"model":model,"stream":False,"think":False,
-             "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")+(generation_guidance(question) if heading_routing else "")},
+             "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")+(generation_guidance(question) if heading_routing else "")+concise},
                          {"role":"user","content":f"DOMANDA:\n{question}\n\nFONTI:\n{context}"}],
-             "options":{"temperature":0,"num_ctx":8192}}
+             "options":options}
     request=Request("http://127.0.0.1:11434/api/chat",
                     data=json.dumps(payload,ensure_ascii=False).encode(),
                     headers={"Content-Type":"application/json"},method="POST")
@@ -161,8 +166,12 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
     if not answer.strip():
         raise RuntimeError(f"Empty model answer: {str(obj)[:300]}")
     return answer,{"total_duration_ns":obj.get("total_duration"),
+                   "load_duration_ns":obj.get("load_duration"),
+                   "prompt_eval_duration_ns":obj.get("prompt_eval_duration"),
+                   "eval_duration_ns":obj.get("eval_duration"),
                    "eval_count":obj.get("eval_count"),
-                   "prompt_eval_count":obj.get("prompt_eval_count")}
+                   "prompt_eval_count":obj.get("prompt_eval_count"),
+                   "done_reason":obj.get("done_reason")}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--model",default="qwen3.5:9b")
@@ -171,6 +180,7 @@ def main():
     ap.add_argument("--output",type=Path)
     ap.add_argument("--timeout",type=int,default=900)
     ap.add_argument("--limit",type=int,default=8)
+    ap.add_argument("--num-predict",type=int,default=0,help="Opt-in output-token ceiling; 0 preserves locked behavior")
     ap.add_argument("--priority-exact",action="store_true",help="Opt-in exact-reference promotion; default off")
     ap.add_argument("--source-aware", action="store_true")
     ap.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate retrieval")
@@ -189,6 +199,7 @@ def main():
     else:
         heading_list = metadata_headings if args.heading_routing else lambda value: []
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
+    if args.num_predict and not 128<=args.num_predict<=4096:ap.error("num-predict must be 0 or between 128 and 4096")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(args.collection)
     count=coll.count()
@@ -335,7 +346,7 @@ def main():
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
-            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout,args.targeted_coverage,args.heading_routing)
+            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout,args.targeted_coverage,args.heading_routing,args.num_predict)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
