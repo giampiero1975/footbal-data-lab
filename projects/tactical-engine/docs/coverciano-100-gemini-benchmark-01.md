@@ -134,3 +134,8 @@ Le metriche AI Studio del titolare mostrano picchi molto sotto 5 RPM, 250K TPM
 e 20 RPD per 3.6 (e 500 RPD per 3.1 Lite): la quota non e esaurita. Poiche
 anche il blocco da dieci puo produrre molte migliaia di token con rubriche, il
 generatore supporta ora due parti da cinque e un merge categoria validato.
+
+La verifica runtime ha confermato l'ipotesi: entrambe le parti da cinque di
+`transizione_negativa` sono riuscite e il merge ha prodotto il quarto blocco
+completo. Totale corrente 40/100. La successiva parte `pressing` ha ricevuto un
+503 intermittente e resta affidata al backoff automatico.
