@@ -97,7 +97,23 @@ class ApiTests(unittest.TestCase):
         self.assertIn("item.evidence", panel)
         self.assertIn("done_reason", panel)
         self.assertIn("askButton", panel)
+        self.assertIn("/v1/feedback", panel)
+        self.assertIn("exportMarkdown", panel)
+        self.assertIn("<details", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
+
+    def test_feedback_is_bounded_to_succeeded_job_without_content(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            state = api.State(self.config(Path(tmp)))
+            job_id = "a" * 32
+            state.jobs[job_id] = {"id": job_id, "status": "succeeded", "question": "non salvare"}
+            feedback = state.record_feedback(job_id, True)
+            self.assertTrue(feedback["helpful"])
+            stored = (Path(tmp) / f"{job_id}.feedback.json").read_text(encoding="utf-8")
+            self.assertNotIn("non salvare", stored)
+            self.assertNotIn("question", stored)
+            with self.assertRaises(KeyError):
+                state.record_feedback("b" * 32, False)
 
     def test_metrics_are_persisted_without_question_text(self):
         with tempfile.TemporaryDirectory() as tmp:

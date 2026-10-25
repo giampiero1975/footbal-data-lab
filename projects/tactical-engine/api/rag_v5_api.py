@@ -175,6 +175,25 @@ class State:
                 self.knowledge_catalog = load_catalog(self.config["chroma_path"], self.config["collection"])
             return self.knowledge_catalog
 
+    def record_feedback(self, job_id: str, helpful: bool) -> dict:
+        with self.lock:
+            job = self.jobs.get(job_id)
+            if job is None:
+                raise KeyError(job_id)
+            if job["status"] != "succeeded":
+                raise RuntimeError("job_not_succeeded")
+        feedback = {
+            "schema": "rag_api_feedback_v1",
+            "job_id": job_id,
+            "helpful": helpful,
+            "created_at": int(time.time()),
+        }
+        path = self.config["output_dir"] / f"{job_id}.feedback.json"
+        temporary = path.with_name(f".{path.name}.tmp")
+        temporary.write_text(json.dumps(feedback, sort_keys=True) + "\n", encoding="utf-8")
+        os.replace(temporary, path)
+        return feedback
+
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "FootballRAG/1"
@@ -285,7 +304,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
 
     def do_POST(self):
-        if self.path != "/v1/query":
+        if self.path not in {"/v1/query", "/v1/feedback"}:
             self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
             return
         if not self.authenticated(apply_rate_limit=True):
@@ -294,8 +313,26 @@ class Handler(BaseHTTPRequestHandler):
             length = int(self.headers.get("Content-Length", "0"))
         except ValueError:
             length = 0
-        if not 1 <= length <= 16384:
+        maximum = 1024 if self.path == "/v1/feedback" else 16384
+        if not 1 <= length <= maximum:
             self.send_json(HTTPStatus.REQUEST_ENTITY_TOO_LARGE, {"error": "invalid_body_size"})
+            return
+        if self.path == "/v1/feedback":
+            try:
+                payload = json.loads(self.rfile.read(length))
+                if set(payload) != {"job_id", "helpful"} or not isinstance(payload["helpful"], bool):
+                    raise ValueError
+                job_id = payload["job_id"]
+                if not isinstance(job_id, str) or len(job_id) != 32 or not job_id.isalnum():
+                    raise ValueError
+                feedback = self.state.record_feedback(job_id, payload["helpful"])
+            except (ValueError, TypeError, json.JSONDecodeError):
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_request"}); return
+            except KeyError:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"}); return
+            except RuntimeError:
+                self.send_json(HTTPStatus.CONFLICT, {"error": "job_not_succeeded"}); return
+            self.send_json(HTTPStatus.OK, feedback)
             return
         try:
             payload = json.loads(self.rfile.read(length))
