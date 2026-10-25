@@ -110,3 +110,10 @@ restituito HTTP 503 dopo circa 16 secondi, senza produrre manifest e senza
 ricevere PDF, evidenze o output RAG. Differenza tecnica autorizzata: il
 generatore accetta ora il fallback stabile `gemini-3.1-flash-lite`; consentita
 una sola richiesta separata, senza retry immediato sul 3.6.
+
+Anche il fallback sincrono `gemini-3.1-flash-lite` ha restituito HTTP 503.
+E stato quindi implementato `scripts/coverciano_100_gemini_batch_v1.py` secondo
+la Batch API ufficiale: creazione non idempotente eseguita una sola volta,
+monitoraggio tramite nome job e materializzazione fail-closed del manifest solo
+dopo `JOB_STATE_SUCCEEDED`. La documentazione Google indica un obiettivo di
+completamento entro 24 ore e spesso tempi inferiori.

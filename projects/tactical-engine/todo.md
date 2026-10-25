@@ -49,6 +49,9 @@ l'archivio conservano gli stati storici senza riaprirli.
   `scripts/generate_coverciano_100_gemini_v1.py`; manifest runtime DA FARE.
 - [x] **BLOCCATO** prima generazione con `gemini-3.6-flash`: HTTP 503 dopo
   circa 16 s, nessun manifest; un solo fallback 3.1 Flash-Lite DA FARE.
+- [x] **IMPLEMENTATO** trasporto asincrono ufficiale Gemini Batch API per
+  invio, monitoraggio e materializzazione fail-closed del manifest 100;
+  submission runtime DA FARE.
 
 ## Stato operativo corrente
 
