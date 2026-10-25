@@ -123,7 +123,8 @@ def main() -> None:
     ledger = json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
     if not quota_allowed(ledger, day, args.estimated_tokens): raise SystemExit("LOCAL_DAILY_BUDGET_EXHAUSTED")
     req = urllib.request.Request(ENDPOINT, data=json.dumps(request).encode(), method="POST",
-                                 headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json"})
+                                 headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json",
+                                          "User-Agent": "football-data-lab-groq-reviewer/1.0"})
     started = dt.datetime.now(dt.timezone.utc)
     try:
         with urllib.request.urlopen(req, timeout=180) as response:
