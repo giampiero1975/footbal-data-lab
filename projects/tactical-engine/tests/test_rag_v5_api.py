@@ -69,6 +69,8 @@ class ApiTests(unittest.TestCase):
         panel = (ROOT / "api/knowledge_panel.html").read_text(encoding="utf-8")
         self.assertIn("/v1/knowledge/stats", panel)
         self.assertIn("/v1/query", panel)
+        self.assertIn("result.questions", panel)
+        self.assertIn("allDocuments", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
 
