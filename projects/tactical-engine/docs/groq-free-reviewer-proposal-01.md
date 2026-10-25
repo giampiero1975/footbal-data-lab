@@ -56,3 +56,11 @@ Dopo ogni report eseguito aggiornare registro e TODO nella stessa sessione. Stat
 
 ## Stato della proposta
 **DA FARE** per implementazione e test reali. Nessuna chiamata Groq, nessun costo e nessuna modifica al runtime o alla pipeline autorizzati da questo documento.
+
+## Report simulazione offline (2026-10-25)
+Attivita: verificare logica illustrativa di validazione fail-closed e aritmetica delle quote, senza rete.
+Script: snippet Python temporaneo eseguito fuori repository (nessun adapter Groq implementato).
+Commit: documentazione `0e8b369`; questo aggiornamento documentale ha commit separato.
+Report/Risultato: **5/5 scenari mock** con esito atteso: caso conforme VALIDATO per sola struttura simulata; ID errato BLOCCATO; citazione inesistente BLOCCATO; voto 11 BLOCCATO; campo mancante BLOCCATO. Aritmetica: 285.000 token -> minimo 2 giorni; 500.000 token -> minimo 3 giorni.
+Decisione: mock illustrativo sufficiente per verificare la logica proposta, **non** valida codice del progetto, schema Groq reale, API, disponibilita, output tattico o integrazione. Codex deve implementare test riproducibili G1 nel repository prima di ogni probe reale.
+Stato: **ESEGUITO** per simulazione esterna; integrazione Groq **DA FARE**.
