@@ -48,6 +48,9 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   senza domanda o risposta. Test locale e VPS 14/14, sintassi JavaScript,
   readiness, collection 6410/157 e smoke HTTP superati senza inferenza. Report
   `docs/knowledge-panel-feedback-export-01.md`.
+- [x] **IMPLEMENTATO** aggregazione feedback nelle metriche e nella vista
+  Qualità, senza testi sensibili e senza doppio conteggio per job. Test offline
+  14/14; deploy VPS DA FARE. Stesso report.
 
 - [x] **VALIDATO** contratto API HTTP asincrona a job, separato dal benchmark
   locked e documentato in `docs/rag-v5-http-api-contract-01.md`.

@@ -112,6 +112,10 @@ class ApiTests(unittest.TestCase):
             stored = (Path(tmp) / f"{job_id}.feedback.json").read_text(encoding="utf-8")
             self.assertNotIn("non salvare", stored)
             self.assertNotIn("question", stored)
+            snapshot = state.metrics_snapshot()
+            self.assertEqual(snapshot["feedback"], {"total": 1, "helpful": 1, "not_helpful": 0})
+            state.record_feedback(job_id, False)
+            self.assertEqual(state.metrics_snapshot()["feedback"], {"total": 1, "helpful": 0, "not_helpful": 1})
             with self.assertRaises(KeyError):
                 state.record_feedback("b" * 32, False)
 

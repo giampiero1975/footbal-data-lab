@@ -84,6 +84,17 @@ class State:
             def percentile(fraction):
                 if not ordered: return None
                 return ordered[min(len(ordered)-1,round((len(ordered)-1)*fraction))]
+            feedback = {"total": 0, "helpful": 0, "not_helpful": 0}
+            for path in self.config["output_dir"].glob("*.feedback.json"):
+                try:
+                    value = json.loads(path.read_text(encoding="utf-8"))
+                    helpful = value["helpful"]
+                    if not isinstance(helpful, bool):
+                        continue
+                    feedback["total"] += 1
+                    feedback["helpful" if helpful else "not_helpful"] += 1
+                except (OSError, KeyError, TypeError, json.JSONDecodeError):
+                    continue
             return {
                 "schema":"rag_api_observability_v1",
                 "started_at":self.started_at,
@@ -97,6 +108,7 @@ class State:
                                     "p95":percentile(.95),"max":max(durations) if durations else None},
                 "catalog_loaded":self.knowledge_catalog is not None,
                 "collection":self.config["collection"],"expected_count":self.config["expected_count"],
+                "feedback":feedback,
             }
 
     def authorized(self, header: str | None) -> bool:

@@ -41,3 +41,12 @@ superata e servizio `active/running`. Smoke HTTP non generativo:
 Decisione: pannello **VALIDATO e INTEGRATO**. Non è stata eseguita alcuna
 inferenza o ripetizione di benchmark. Il feedback reale inizierà a essere
 raccolto soltanto quando l'utente valuterà risposte concluse dal pannello.
+
+## Osservabilità feedback
+
+Incremento distinto **IMPLEMENTATO**: `/v1/metrics` aggrega il numero di file di
+feedback validi in totale, utili e non utili; il pannello mostra il rapporto
+senza leggere o esporre domande e risposte. La scansione ignora file corrotti e
+un nuovo voto sullo stesso job sostituisce il precedente, evitando doppi
+conteggi. Test locale 14/14, compilazione e sintassi JavaScript superati; deploy
+VPS DA FARE.
