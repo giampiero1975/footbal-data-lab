@@ -70,7 +70,10 @@ geometrie concrete. SOLO JSON: {{"questions":[{{"id":"coverciano_{start:03d}",
                 "error":str(exc)[:300]})
             raise
         rows=validate_part(parsed["questions"],args.category,start,count)
-    except (urllib.error.HTTPError,urllib.error.URLError,KeyError,ValueError,json.JSONDecodeError) as exc:
+    except urllib.error.HTTPError as exc:
+        detail=exc.read().decode(errors="replace")[:1200].replace(key,"[REDACTED]")
+        raise SystemExit(f"CHUNK_HTTP_{exc.code}: {detail}")
+    except (urllib.error.URLError,KeyError,ValueError,json.JSONDecodeError) as exc:
         raise SystemExit(f"CHUNK_FAILED: {type(exc).__name__}: {str(exc)[:300].replace(key,'[REDACTED]')}")
     write_new(args.output,{"schema":"coverciano_gemini_question_chunk_v1","status":"ESEGUITO","model":args.model,"category":args.category,
         "start_id":start,"generated_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),"usage_metadata":raw.get("usageMetadata",{}),"questions":rows})
