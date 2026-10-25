@@ -46,9 +46,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [ ] **DA FARE** completare criteri operativi con test di carico/concorrenza e
   monitoraggio prolungato prima dell'esposizione esterna; reboot host da
   verificare alla prossima finestra di manutenzione, senza riavvio dedicato.
-- [x] **IMPLEMENTATO** endpoint autenticato `/v1/metrics` con worker, coda,
+- [x] **INTEGRATO** endpoint autenticato `/v1/metrics` con worker, coda,
   contatori persistenti, durate min/mediana/p95/max, collection e cache; nessun
-  testo delle domande nelle metriche. Test VPS DA FARE; report
+  testo delle domande nelle metriche. Test 10/10 e benchmark 500/500; vista
+  Qualità nel pannello. Report
   `docs/rag-v5-api-observability-01.md`.
 - [x] **VALIDATO** carico control-plane: 500/500 richieste con concorrenza 25,
   mediana 3.36 ms; readiness 200. Recovery systemd dopo kill superato,
@@ -94,8 +95,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   collection certificata 5319, congelato prima della generazione con hash,
   pagine, evidence ID e claim. Esito 6/6, zero citazioni invalide, 6196→6196;
   non è certificazione universale. Report `docs/v5-external-drive11-holdout-01.md`.
-- [ ] **DA FARE** valutare robustezza, latenza e concorrenza nel futuro servizio
-  applicativo, separandole dalla qualità già certificata del wrapper CLI.
+- [x] **VALIDATO** robustezza e latenza control-plane: health e metriche 500/500
+  a concorrenza 25; recovery systemd già verificato. Latenza generativa misurata
+  sul nuovo holdout (mediana circa 120 s), worker seriale mantenuto per scelta;
+  concorrenza generativa resta DA FARE solo con risorse dedicate.
 
 ## Archivio storico e checklist dettagliate
 

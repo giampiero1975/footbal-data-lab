@@ -653,3 +653,5 @@ Attività: eseguire e giudicare l'holdout esterno Drive11 congelato. Script: `ru
 ### RAG-V5-API-OBSERVABILITY-01
 
 Attività: aggiungere metriche persistenti al servizio applicativo senza ripetere benchmark generativi. Differenza tecnica: nuovo endpoint e persistenza aggregata; il benchmark control-plane precedente resta riutilizzato. Script: `api/rag_v5_api.py`, test `test_rag_v5_api.py`. Report: `docs/rag-v5-api-observability-01.md`. Risultato: worker/coda/job, contatori cumulativi, durate e stato collection/cache implementati; file atomico privo di domande, risposte e token. Decisione: test offline e smoke VPS, poi misura read-only del control-plane. Stato: IMPLEMENTATO.
+
+Attività: validare metriche persistenti e integrarle nella vista Qualità. Script: API, `knowledge_panel.html`, test; commit `fbf4162`, `424a4b2`. Report: `docs/rag-v5-api-observability-01.md`. Risultato: test 10/10, file 0600 creato all'avvio, endpoint 200; 500/500 richieste a concorrenza 25, mediana 4,19 ms, worker vivo 500/500; nessuna inferenza. Decisione: INTEGRARE osservabilità nel pannello, mantenere worker seriale e raccogliere campioni reali. Stato: VALIDATO e INTEGRATO.

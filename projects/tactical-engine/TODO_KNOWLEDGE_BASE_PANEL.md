@@ -51,5 +51,6 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - [x] Implementare aggregazione read-only con provenienza e conteggi esatti.
 - [x] Implementare endpoint autenticati per statistiche, documenti e ricerca lessicale.
 - [x] Validare test offline e smoke HTTP sulla VPS per stats, documenti e ricerca.
-- [x] Validare sulla VPS l'interfaccia per Inventario/Copertura/Esplora e domanda RAG; vista Qualità ancora DA FARE.
+- [x] Validare sulla VPS l'interfaccia per Inventario/Copertura/Esplora e domanda RAG.
+- [x] Integrare vista Qualità operativa con worker, coda, job, errori e latenze persistenti.
 - [ ] Integrare catalogo FIGC e stati completi di conversione/indicizzazione.
