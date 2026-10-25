@@ -1,8 +1,8 @@
 [Unit]
-Description=Daily FOOTBALL-DATA-LAB FIGC PDF discovery
+Description=Weekly FOOTBALL-DATA-LAB FIGC PDF discovery
 
 [Timer]
-OnCalendar=daily
+OnCalendar=Sun *-*-* 03:15:00
 RandomizedDelaySec=30m
 Persistent=true
 Unit=football-figc-discovery.service

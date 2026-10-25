@@ -1,15 +1,15 @@
 # TODO — Acquisizione automatica FIGC per DRIBBLING
 
-Stato: **VALIDATO** monitor v1; scheduling giornaliero IMPLEMENTATO. Non modificare la collection V5 integrata prima dei test di ingestione incrementale e deduplicazione.
+Stato: **VALIDATO** monitor v1; scheduling settimanale INTEGRATO. Non modificare la collection V5 integrata prima dei test di ingestione incrementale e deduplicazione.
 
-## Query giornaliere da conservare esattamente
+## Query da conservare esattamente
 
 1. `site:figc.it/media/ "uefa pro" tattica filetype:pdf`
 2. `site:figc.it/media/ tesi (tattica OR "modello di gioco" OR "sistemi di gioco" OR modulo OR moduli) filetype:pdf`
 
 ## Requisiti
 
-- [x] Timer giornaliero di discovery; controlla pagine/archivi ufficiali FIGC e gli allegati delle schede tesi.
+- [x] Timer settimanale di discovery, domenica alle 03:15 con jitter massimo 30 minuti; controlla pagine/archivi ufficiali FIGC e allegati delle schede tesi.
 - Rilevare gli URL PDF effettivi, non confondere una pagina di presentazione con il file scaricabile.
 - Verificare accessibilità, risposta HTTP, MIME, firma PDF e integrità del file; registrare fallimenti e retry.
 - [x] Catalogo corrente atomico per hash e storico JSONL append-only di discovery/download/errori.
