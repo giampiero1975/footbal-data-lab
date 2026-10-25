@@ -16,9 +16,9 @@ La fotografia consolidata, con evidenze e limiti, è
 | Cinque PDF FIGC, collection API 6410/157 | **VALIDATO e INTEGRATO** | `docs/figc5-candidate-integration-01.md`, `936b4c4` |
 
 Il `CERTIFICATO` locked non si estende a Drive11, FIGC5, API o domande
-arbitrarie. Le sole attività tecniche correnti sono osservazione prolungata e
-reboot host alla prossima manutenzione (**DA FARE**) ed esposizione HTTPS
-pubblica in attesa di DNS/certificato (**BLOCCATO**). Consumer esterno,
+arbitrarie. Le sole attività tecniche correnti sono osservazione prolungata
+(**DA FARE**) ed esposizione HTTPS pubblica in attesa di DNS/certificato
+(**BLOCCATO**). Il reboot completo è VALIDATO. Consumer esterno,
 parallelismo generativo e nuove certificazioni sono decisioni facoltative.
 
 Le voci sotto sono cronologia immutabile: uno stato storico non prevale sulla
@@ -711,3 +711,5 @@ Attività: validazione hardening, pulizia FIGC e retest complesso. Risultato: AP
 Attività: chiudere il benchmark complesso con controllo temporale verificabile. Script: `smoke_test_rag_v5_e2e.py`; JSON finale `rag_v5_complex_phase_prune_v2.json`. Risultato: rilevazione delle violazioni, una rigenerazione e rimozione fail-closed dei soli claim completi ancorati a citazione; 132,7 s, stop, sezioni coerenti, citazioni invalide zero, 6196 invariato. Decisione: benchmark applicativo 3/3. Stato: VALIDATO.
 
 Attività: costruire e integrare la candidata FIGC5. Script: ingestion e builder V5 esistenti; report `docs/figc5-candidate-integration-01.md`; locked JSON SHA-256 `3663a392506937da5bc0d989fd3ffa5cfb4578818e7815b2d2590bd4f689784d`. Risultato: 5 documenti/214 chunk, candidata 6410; Soncin validato. Regressione iniziale 9/10 per falso named-source `conclusione`; resolver corretto per richiedere nome proprio su overlap singolo, fresh_04 torna a Ussia/5 secondi. Composito finale 10/10. API ready su 6410/157, baseline 6196 rollback. Decisione: promuovere la candidata nell'API, senza certificazione universale. Stato: VALIDATO e INTEGRATO.
+
+Attività: verificare l'avvio automatico dopo reboot completo della VPS. Script: nessuno; controllo operativo systemd/HTTP; report `docs/rag-v5-full-reboot-validation-01.md`. Risultato: boot 12:42:05, API avviata automaticamente 12:42:14 con `Linger=yes`; health/readiness verdi, pannello 200, collection 6410/157, timer manutenzione e FIGC attivi, zero unità fallite. Decisione: non ripetere senza cambi a unità, linger, boot o configurazione; proseguire soltanto con osservazione prolungata. Stato: VALIDATO.

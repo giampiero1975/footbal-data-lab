@@ -30,9 +30,10 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
 
 ## Attività tecniche realmente aperte
 
-- **DA FARE:** osservazione prolungata del servizio e verifica del riavvio completo
-  dell'host alla prossima finestra di manutenzione. Il riavvio della sola unità e
-  il recovery systemd sono già validati e non vanno ripetuti come equivalenti.
+- **DA FARE:** osservazione prolungata del servizio. Il reboot completo
+  dell'host, il riavvio della sola unità e il
+  recovery systemd sono VALIDATI e non vanno ripetuti senza una modifica tecnica;
+  evidenza reboot in `docs/rag-v5-full-reboot-validation-01.md`.
 - **BLOCCATO:** esposizione pubblica tramite reverse proxy HTTPS finché non sono
   disponibili dominio DNS e certificato validi. Il servizio resta su localhost.
 

@@ -13,9 +13,9 @@ corpus FIGC5 sono **INTEGRATI** con evidenze separate; holdout Drive11 e
 benchmark generico 3/3 sono **VALIDATI**. La certificazione locked non si
 estende a Drive11, FIGC5, API o domande arbitrarie.
 
-Le sole aperture correnti sono: osservazione prolungata e reboot completo alla
-prossima finestra (**DA FARE**); reverse proxy pubblico in attesa di DNS e TLS
-(**BLOCCATO**). Consumer esterno, inferenze parallele e nuove certificazioni
+Le sole aperture correnti sono: osservazione prolungata (**DA FARE**) e reverse
+proxy pubblico in attesa di DNS e TLS (**BLOCCATO**). Il reboot completo è
+VALIDATO. Consumer esterno, inferenze parallele e nuove certificazioni
 sono decisioni facoltative, non attività mancanti. Le righe successive e
 l'archivio conservano gli stati storici senza riaprirli.
 
@@ -49,8 +49,8 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   worker, timeout ed errori; test offline 3/3 e smoke HTTP VPS superati.
 - [x] **INTEGRATO** servizio `systemd --user` locale su `127.0.0.1:8088`, health,
   readiness, log, directory private e rollback verificati. Persistenza utente
-  configurata e VALIDATA con `Linger=yes`; riavvio unità superato. Reboot host
-  completo non eseguito.
+  configurata e VALIDATA con `Linger=yes`; riavvio unità e reboot completo host
+  superati.
 - [x] **INTEGRATO** primo consumer applicativo locale `/panel`: inventario completo,
   ricerca con provenienza e submit/polling RAG; API catalogo 6410 chunk/157 fonti,
   test 8/8 e smoke HTTP 200. Bind localhost e token solo in memoria; report
@@ -58,9 +58,12 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** primo E2E applicativo distinto: risposta 3001 caratteri,
   8 evidenze, citazioni F1–F8 valide, indici 5319/34 invariati; SHA-256 nel
   report `docs/rag-v5-http-api-validation-01.md`.
-- [ ] **DA FARE** monitoraggio prolungato prima dell'esposizione esterna e reboot
-  host da verificare alla prossima finestra di manutenzione, senza riavvio
-  dedicato. Carico control-plane e recovery della unità sono già VALIDATI.
+- [ ] **DA FARE** monitoraggio prolungato prima dell'esposizione esterna.
+  Carico control-plane, recovery della unità e reboot completo sono già VALIDATI.
+- [x] **VALIDATO** reboot completo VPS: user manager con `Linger=yes`, API
+  ripartita automaticamente, health/readiness verdi, pannello 200, collection
+  6410/157, timer RAG/FIGC attivi e zero unità fallite. Report
+  `docs/rag-v5-full-reboot-validation-01.md`.
 - [x] **INTEGRATO** endpoint autenticato `/v1/metrics` con worker, coda,
   contatori persistenti, durate min/mediana/p95/max, collection e cache; nessun
   testo delle domande nelle metriche. Test 10/10 e benchmark 500/500; vista
