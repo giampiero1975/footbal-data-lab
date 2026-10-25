@@ -1,4 +1,5 @@
 import importlib.util
+import json
 from pathlib import Path
 import queue
 import sys
@@ -83,6 +84,13 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(snapshot["queue_depth"],1)
             stored=(Path(tmp)/"metrics.json").read_text(encoding="utf-8")
             self.assertNotIn("sensibile",stored)
+
+    def test_empty_metrics_file_exists_at_startup(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            api.State(self.config(Path(tmp)))
+            stored=Path(tmp)/"metrics.json"
+            self.assertTrue(stored.exists())
+            self.assertEqual(json.loads(stored.read_text())["accepted"],0)
 
 
 if __name__ == "__main__":

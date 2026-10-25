@@ -57,6 +57,7 @@ class State:
         self.metrics = self._load_metrics()
         config["output_dir"].mkdir(parents=True, exist_ok=True)
         config["output_dir"].chmod(0o700)
+        self._persist_metrics()
 
     def _load_metrics(self) -> dict:
         default = {"schema":"rag_api_metrics_v1","accepted":0,"succeeded":0,"failed":0,"timed_out":0,"durations_seconds":[]}
