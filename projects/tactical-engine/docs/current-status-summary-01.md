@@ -12,6 +12,7 @@ non prevalgono sugli stati correnti qui riconciliati.
 | API HTTP locale e pannello | **INTEGRATO** | Contratto e deployment in `docs/rag-v5-http-api-validation-01.md`; pannello, feedback privo di contenuti, fonti espandibili ed export in `docs/knowledge-panel-api-v1.md` e `docs/knowledge-panel-feedback-export-01.md`; commit principali `9472564`, `60bf7b2`, `77a69df`, `e9dda93`. Servizio vincolato a localhost; non è certificato dal closeout locked. |
 | Osservabilità e manutenzione | **INTEGRATO** | Metriche e vista qualità in `docs/rag-v5-api-observability-01.md`; manutenzione settimanale in `docs/rag-v5-runtime-maintenance-01.md`; commit `fbf4162`, `a48b516`, `5b877cb`, `1e9f167`. |
 | Sicurezza pre-pubblicazione | **VALIDATO e INTEGRATO** | Token errati limitati, log senza query, TLS/header predisposti e UFW limitato a SSH/Nginx; `docs/public-panel-security-audit-01.md`, commit `9961a39`. |
+| Pannello HTTPS pubblico | **VALIDATO e INTEGRATO** | `https://football-lab.byoursite.com`: certificato Let's Encrypt, redirect, header di sicurezza, autenticazione e rinnovo simulato verificati; `docs/public-panel-https-01.md`. API e Ollama restano su localhost; nessuna estensione della certificazione locked. |
 | Holdout esterno Drive11 | **VALIDATO** | 6/6, zero citazioni invalide, report e hash in `docs/v5-external-drive11-holdout-01.md`; commit `21eaada`, validazione `31ff5ad`. Non estende la certificazione locked alla collection Drive11 o a domande arbitrarie. |
 | Benchmark applicativo generico | **VALIDATO** | Breve, medio e complesso 3/3; cronologia del fallimento intermedio e risultato finale in `docs/rag-v5-api-profile-benchmark-01.md`; correzioni `37d3ee0`–`3a0af91`, riconciliazione `936b4c4`. Non è certificazione universale. |
 | Corpus FIGC5 | **VALIDATO e INTEGRATO** | Cinque PDF elaborati, 214 chunk aggiunti, API su 6410 chunk/157 fonti; gate Soncin e regressione composita 10/10 in `docs/figc5-candidate-integration-01.md`; commit di riconciliazione `936b4c4`. La collection 6196 resta rollback. |
@@ -35,10 +36,9 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
   dell'host, il riavvio della sola unità e il
   recovery systemd sono VALIDATI e non vanno ripetuti senza una modifica tecnica;
   evidenza reboot in `docs/rag-v5-full-reboot-validation-01.md`.
-- **IMPLEMENTATO:** Nginx, Certbot e configurazioni per
-  `https://football-lab.byoursite.com`; bootstrap espone soltanto la challenge
-  ACME. Certificato e collaudo: **BLOCCATO** finché il record DNS `A` non risolve
-  verso `163.5.26.155`; 8088 resta locale.
+- La pubblicazione HTTPS non è più aperta: è **VALIDATA e INTEGRATA**. Restano
+  da osservare nel tempo disponibilità e rinnovi ordinari, senza ripetere il
+  collaudo salvo modifiche tecniche.
 
 ## Decisioni facoltative, non debiti tecnici
 

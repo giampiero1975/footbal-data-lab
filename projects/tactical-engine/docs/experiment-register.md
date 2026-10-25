@@ -16,9 +16,9 @@ La fotografia consolidata, con evidenze e limiti, è
 | Cinque PDF FIGC, collection API 6410/157 | **VALIDATO e INTEGRATO** | `docs/figc5-candidate-integration-01.md`, `936b4c4` |
 
 Il `CERTIFICATO` locked non si estende a Drive11, FIGC5, API o domande
-arbitrarie. Le attività tecniche correnti sono osservazione prolungata e
-pubblicazione di `football-lab.byoursite.com` (**DA FARE**); il DNS risolve ora
-verso la VPS. Il reboot completo è VALIDATO. Consumer esterno,
+arbitrarie. L'attività tecnica corrente è l'osservazione prolungata. La
+pubblicazione di `football-lab.byoursite.com` è **VALIDATA e INTEGRATA** e il
+reboot completo è VALIDATO. Consumer esterno,
 parallelismo generativo e nuove certificazioni sono decisioni facoltative.
 
 Le voci sotto sono cronologia immutabile: uno stato storico non prevale sulla
@@ -731,3 +731,5 @@ Attività: audit sicurezza pre-pubblicazione. Script: API, test e configurazione
 Attività: validare e integrare hardening pre-pubblicazione; implementazione `9961a39`. Risultato: test VPS 16/16; token errati 20×401 poi 429, token valido ancora ready 200; marker ricerca assente dai log; UFW trovato inattivo e abilitato con sole regole OpenSSH/Nginx Full IPv4/IPv6, nessuna 8088/11434; riconnessione SSH, Nginx/API e bootstrap 404 verificati. Decisione: conservare API/Ollama localhost e completare TLS solo dopo DNS. Stato: VALIDATO e INTEGRATO.
 
 Attività: riconciliare il nome DNS effettivo. Configurazioni Nginx e report HTTPS aggiornati da `footballlab.byoursite.com` al nome creato `football-lab.byoursite.com`; la voce precedente resta cronologia della pianificazione. Risultato: risoluzione pubblica verificata verso `163.5.26.155`. Decisione: procedere con ACME e collaudo pubblico. Stato: VALIDATO per DNS; HTTPS DA FARE.
+
+Attività: completare la pubblicazione HTTPS del Knowledge Panel. Script/configurazione: `deploy/nginx-footballlab-https.conf`; commit di predisposizione e riconciliazione `9961a39`, `5868dbc`; report `docs/public-panel-https-01.md`. Risultato: certificato Let's Encrypt ECDSA emesso per `football-lab.byoursite.com`, scadenza 2027-01-23; `nginx -t` e reload riusciti; HTTP→HTTPS 301, pannello HTTPS 200, endpoint readiness/catalogo/metriche 200 con token e 401 senza token; API e Ollama ancora su localhost; `certbot renew --dry-run` riuscito e timer attivo. Decisione: usare esclusivamente l'URL HTTPS pubblico, non aprire 8088 e non estendere la certificazione locked. Stato: VALIDATO e INTEGRATO.

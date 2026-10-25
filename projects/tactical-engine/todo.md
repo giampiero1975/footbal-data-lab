@@ -88,11 +88,11 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **IMPLEMENTATO** template reverse proxy HTTPS Nginx con TLS, redirect,
   rate/body limit e timeout. Dominio scelto; deploy e certificato sono tracciati
   nella voce successiva. La porta 8088 resta solo localhost.
-- [x] **IMPLEMENTATO** pubblicazione del pannello su
-  `https://football-lab.byoursite.com`: Nginx e Certbot installati, bootstrap
-  ACME attivo con 404 sul resto, API ancora solo localhost; configurazione HTTPS
-  versionata. Certificato e collaudo **BLOCCATO** finché il record DNS `A` non
-  risolve verso `163.5.26.155`. Report `docs/public-panel-https-01.md`.
+- [x] **INTEGRATO** pubblicazione del pannello su
+  `https://football-lab.byoursite.com`: certificato Let's Encrypt valido,
+  redirect HTTP→HTTPS e pannello pubblico 200; endpoint protetti 200 con token
+  e 401 senza token. Rinnovo simulato riuscito e timer Certbot attivo. API e
+  Ollama restano solo su localhost. Report `docs/public-panel-https-01.md`.
 - [x] **INTEGRATO** audit sicurezza pre-pubblicazione: superficie, permessi,
   unità e segreti conformi; aggiunti limite separato ai token errati, log senza
   query string, hardening TLS/header e UFW con sole regole SSH/Nginx. Test locale
