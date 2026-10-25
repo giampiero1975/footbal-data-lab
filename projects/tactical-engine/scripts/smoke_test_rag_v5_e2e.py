@@ -52,6 +52,7 @@ SOURCE_STOPWORDS={"football","data","lab","manuale","manual","tesi","uefa","pro"
 def discover_named_sources(collection, question):
     """Resolve authors/titles mentioned in a question from source metadata."""
     qtokens=set(norm(question).split())
+    proper_tokens={norm(token) for token in re.findall(r"\b[A-ZÀ-ÖØ-Þ][\w'-]{3,}\b",question)[1:]}
     catalog=collection.get(include=["metadatas"])
     sources=sorted({m.get("source", "") for m in catalog["metadatas"] if m.get("source")})
     matches=[]
@@ -59,7 +60,7 @@ def discover_named_sources(collection, question):
         tokens={t for t in norm(source.replace("_", " ").replace("-", " ")).split()
                 if len(t)>=5 and t not in SOURCE_STOPWORDS and not t.isdigit()}
         overlap=tokens & qtokens
-        if overlap and (len(overlap)>=2 or any(len(t)>=6 for t in overlap)):
+        if overlap and (len(overlap)>=2 or any(t in proper_tokens for t in overlap)):
             matches.append((len(overlap),source))
     if not matches:
         return []
