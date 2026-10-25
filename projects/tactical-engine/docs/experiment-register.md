@@ -659,3 +659,5 @@ Attività: validare metriche persistenti e integrarle nella vista Qualità. Scri
 ### RAG-V5-RUNTIME-MAINTENANCE-01
 
 Attività: automatizzare controlli e retention del runtime applicativo. Differenza tecnica: nuovo job settimanale; nessun benchmark generativo. Script: `maintain_rag_v5_runtime.py`, test e unit/timer `football-rag-maintenance.user.*`. Report: `docs/rag-v5-runtime-maintenance-01.md`. Risultato: dry-run predefinito, cancellazione limitata ai job API oltre 30 giorni preservando i 100 più recenti; fail-closed su API, worker, collection 6196 e disco; report senza contenuti sensibili. Decisione: test VPS, dry-run e singola esecuzione reale prima di integrare il timer. Stato: IMPLEMENTATO.
+
+Attività: collaudare e integrare la manutenzione runtime. Script/unit commit `5b877cb`. Report: `docs/rag-v5-runtime-maintenance-01.md`. Risultato: 12/12 test; dry-run e run reale con health/readiness 200, collection 6196, disco 30,77%, Git pulito, zero errori e zero rimozioni; unit success, timer domenicale attivo. Decisione: mantenere retention 30 giorni/100 job, fail-closed; nessun intervento su corpus o indici. Stato: VALIDATO e INTEGRATO.

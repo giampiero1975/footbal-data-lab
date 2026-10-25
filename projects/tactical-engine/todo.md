@@ -63,9 +63,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 
 ### P2 — Ordine e manutenzione del repository
 
-- [x] **IMPLEMENTATO** manutenzione runtime settimanale fail-closed: health,
+- [x] **INTEGRATO** manutenzione runtime settimanale fail-closed: health,
   readiness, metriche, collection/count, disco e Git; retention API 30 giorni
-  preservando almeno 100 job. Dry-run predefinito, test VPS DA FARE; report
+  preservando almeno 100 job. Test 12/12, dry-run e run reale senza errori né
+  rimozioni; timer domenicale attivo. Report
   `docs/rag-v5-runtime-maintenance-01.md`.
 
 - [x] **VALIDATO** audit alberatura e rimozione cache Alibaba inutilizzata;
