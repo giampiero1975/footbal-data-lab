@@ -45,13 +45,31 @@ geometrie concrete. SOLO JSON: {{"questions":[{{"id":"coverciano_{start:03d}",
 "category":"{args.category}","difficulty":4,"question":"...",
 "hidden_rubric":{{"constraints":["..."],"expected_points":["..."],
 "critical_errors":["..."]}}}}]}}. ID consecutivi da {start:03d} a {start+count-1:03d}."""
+    question_schema={"type":"object","required":["id","category","difficulty","question","hidden_rubric"],"properties":{
+        "id":{"type":"string"},"category":{"type":"string","enum":[args.category]},
+        "difficulty":{"type":"integer","enum":[3,4,5]},"question":{"type":"string"},
+        "hidden_rubric":{"type":"object","required":["constraints","expected_points","critical_errors"],"properties":{
+            "constraints":{"type":"array","items":{"type":"string"}},"expected_points":{"type":"array","items":{"type":"string"}},
+            "critical_errors":{"type":"array","items":{"type":"string"}}}}}}
     payload={"system_instruction":{"parts":[{"text":system}]},"contents":[{"role":"user","parts":[{"text":BASE.BASE_PROMPT}]}],
-             "generationConfig":{"temperature":0.7,"responseMimeType":"application/json","maxOutputTokens":8000}}
+             "generationConfig":{"temperature":0.5,"responseMimeType":"application/json","responseSchema":{
+                 "type":"object","required":["questions"],"properties":{"questions":{"type":"array","minItems":count,"maxItems":count,"items":question_schema}}},
+                 "maxOutputTokens":10000}}
     key=api_key(); url=f"https://generativelanguage.googleapis.com/v1beta/models/{args.model}:generateContent"
     req=urllib.request.Request(url,data=json.dumps(payload).encode(),headers={"Content-Type":"application/json","x-goog-api-key":key},method="POST")
     try:
         with urllib.request.urlopen(req,timeout=240) as response: raw=json.loads(response.read())
-        text="".join(p.get("text","") for p in raw["candidates"][0]["content"]["parts"]); rows=validate_part(json.loads(text)["questions"],args.category,start,count)
+        text="".join(p.get("text","") for p in raw["candidates"][0]["content"]["parts"])
+        try:
+            parsed=json.loads(text)
+        except json.JSONDecodeError as exc:
+            diagnostic=args.output.with_name(args.output.stem+".invalid-output.json")
+            write_new(diagnostic,{"schema":"gemini_invalid_output_v1","category":args.category,"part":args.part,
+                "model":args.model,"finish_reason":raw.get("candidates",[{}])[0].get("finishReason"),
+                "text_sha256":hashlib.sha256(text.encode()).hexdigest(),"text_length":len(text),
+                "error":str(exc)[:300]})
+            raise
+        rows=validate_part(parsed["questions"],args.category,start,count)
     except (urllib.error.HTTPError,urllib.error.URLError,KeyError,ValueError,json.JSONDecodeError) as exc:
         raise SystemExit(f"CHUNK_FAILED: {type(exc).__name__}: {str(exc)[:300].replace(key,'[REDACTED]')}")
     write_new(args.output,{"schema":"coverciano_gemini_question_chunk_v1","status":"ESEGUITO","model":args.model,"category":args.category,

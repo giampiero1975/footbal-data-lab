@@ -139,3 +139,8 @@ La verifica runtime ha confermato l'ipotesi: entrambe le parti da cinque di
 `transizione_negativa` sono riuscite e il merge ha prodotto il quarto blocco
 completo. Totale corrente 40/100. La successiva parte `pressing` ha ricevuto un
 503 intermittente e resta affidata al backoff automatico.
+
+Un successivo tentativo `pressing` parte 1 ha prodotto JSON malformato, senza
+creare il file risultato. Il generatore impone ora uno schema JSON completo e,
+in caso di errore, conserva soltanto diagnostica tecnica hash-only senza testo
+generato. Questa differenza tecnica autorizza una nuova esecuzione mirata.

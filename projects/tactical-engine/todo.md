@@ -61,6 +61,9 @@ l'archivio conservano gli stati storici senza riaprirli.
   attiva senza rigenerare i file esistenti.
 - [x] **IMPLEMENTATO** ulteriore riduzione a due parti da 5 domande per le
   categorie mancanti, con merge categoria e validazione degli ID 5+5.
+- [x] **IMPLEMENTATO** schema JSON obbligatorio e diagnostica hash-only per
+  output Gemini malformati dopo il primo errore su `pressing` parte 1; nuova
+  esecuzione differenziale DA FARE.
 
 ## Stato operativo corrente
 
