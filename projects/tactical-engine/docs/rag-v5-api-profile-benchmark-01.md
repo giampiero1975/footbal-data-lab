@@ -15,3 +15,5 @@ Esecuzione sequenziale sul servizio reale. Ogni caso deve terminare con `done_re
 Retest mirato: 143,29 s, `stop`, zero citazioni invalide e 6196 invariato. La distinzione migliora, ma resta una frase ambigua fra superamento del pressing e reazione alla perdita. Il caso complesso rimane **ESEGUITO**, non VALIDATO; i casi breve e medio sono VALIDATI tecnicamente e qualitativamente.
 
 Correzione V2 **IMPLEMENTATO**: per domande con perdita, la seconda fase ammette soltanto azioni della squadra che ha appena perso palla ed esclude esplicitamente uscita dal pressing, conduzione e passaggi della squadra in possesso. Un ultimo test differenziale è autorizzato.
+
+Correzione conclusiva: controllo automatico rileva le due famiglie cross-phase, tenta una rigenerazione e, se il modello le ripete, rimuove soltanto i claim completi ancorati alle rispettive citazioni. Evidenza finale `evaluation/runtime-archive/rag_v5_complex_phase_prune_v2.json`: 132,7 s, `stop`, due sezioni coerenti, zero citazioni invalide e 6196 invariato. Caso complesso **VALIDATO**; benchmark applicativo 3/3 VALIDATO.

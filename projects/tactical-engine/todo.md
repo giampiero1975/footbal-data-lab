@@ -591,6 +591,8 @@ tecnica.
 
 - [x] **ESEGUITO** RAG-V5-API-PROFILE-BENCHMARK-01: 160,18/194,19/146,13 s, 3/3 stop/citazioni valide/6196 invariato; breve e medio VALIDATI, complesso non validato per confusione di fasi. Retest corretto 143,29 s migliora ma conserva un'ambiguità; nessuna promozione. Report `docs/rag-v5-api-profile-benchmark-01.md`.
 - [x] **IMPLEMENTATO** RAG-V5-COMPLEX-PHASE-GUARD-02: vincolo esplicito sulla squadra che perde palla ed esclusione delle azioni della squadra in possesso. Ultimo differenziale DA FARE.
+- [x] **VALIDATO** RAG-V5-COMPLEX-PHASE-GUARD-02: rilevazione, singola rigenerazione e rimozione fail-closed dei soli claim cross-phase; risultato 132,7 s, stop, risposta coerente, citazioni valide, 6196 invariato. Benchmark applicativo ora 3/3 VALIDATO.
+- [x] **INTEGRATO** FIGC5-CANDIDATE-INTEGRATION-01: 5/5 Docling, 214 chunk, candidata 6410/157; gate Soncin superato. Regressione iniziale 9/10, falso routing generico corretto; fresh_04 differenziale corretto e composito 10/10. API promossa a 6410, baseline 6196 conservata. Report `docs/figc5-candidate-integration-01.md`.
 
 - [x] **VALIDATO** FIGC-CANDIDATE-EDITORIAL-REVIEW-01: cinque candidati tattici ammessi, due statistici e una traduzione duplicata esclusi; Maresi non pertinente e Santoni duplicato confermati. Nessuna ingestion. Report `docs/figc-candidate-editorial-review-01.md`.
 - [x] **INTEGRATO** RAG-V5-API-SECURITY-REMEDIATION-01: audit `cc2a0cdd-2e17-4a97-b5ef-6c4e1bed4126`; placeholder rifiutato, 32 connessioni/timeout 15s, ricerca rate-limited. 10/10 test; runtime placeholder rejected, undicesima ricerca 429, servizio active. Report `docs/rag-v5-api-security-remediation-01.md`.
