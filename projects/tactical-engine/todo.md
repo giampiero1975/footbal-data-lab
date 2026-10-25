@@ -33,6 +33,11 @@ l'archivio conservano gli stati storici senza riaprirli.
   ma sia il caso reale sia una richiesta minima “OK” restituiscono HTTP 503
   con messaggio Google `currently experiencing high demand`. Non e un problema
   del payload tattico; sospendere retry immediati e usare backoff/Batch API.
+- [x] **VALIDATO** seconda AI Gemini: `gemini-3.6-flash` ha superato probe
+  HTTP 200/OK e revisione reale del caso 1 in 27,8 s. Voto 3,0/10, F10 invalida,
+  preventiva errata e fonti generiche rilevate; report
+  `gemini_coverciano_runtime_case01_stable36_v6.json`. Modello predefinito del
+  reviewer migrato a 3.6 stabile; 3.1 Flash-Lite ammesso come fallback.
 
 ## Stato operativo corrente
 

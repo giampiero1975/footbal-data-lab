@@ -17,8 +17,8 @@ import urllib.request
 from zoneinfo import ZoneInfo
 
 ROOT = Path(__file__).resolve().parents[1]
-ALLOWED_MODELS = ("gemini-3.6-flash", "gemini-3.8-flash")
-DEFAULT_MODEL = "gemini-3.8-flash"
+ALLOWED_MODELS = ("gemini-3.1-flash-lite", "gemini-3.6-flash", "gemini-3.8-flash")
+DEFAULT_MODEL = "gemini-3.6-flash"
 
 PROMPT = """Sei un revisore tattico esterno severo e indipendente. Valuta ogni
 risposta RAG da 0.0 a 10.0. Non premiare il tono, il lessico o la presenza di

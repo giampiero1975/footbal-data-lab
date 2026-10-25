@@ -69,6 +69,14 @@ HTTP 503. La successiva probe minima senza dati del progetto, contenente solo
 
 `This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.`
 
-La causa corrente e quindi indisponibilita di capacita lato Google, non il
-payload tattico. Nessun ulteriore retry immediato: usare backoff e riprendere
-con modello stabile; per le 100 domande preferire Batch API.
+La causa era indisponibilita di capacita su quello specifico endpoint, non il
+payload tattico. La probe successiva a `gemini-3.6-flash` stabile ha restituito
+HTTP 200/`OK`. Lo stesso modello ha poi valutato realmente il primo report RAG
+in 27,8 secondi: 3,0/10, `REVISIONE`, identificando citazione F10 invalida,
+preventiva geometricamente errata e fonti troppo generiche. Report VPS:
+`evaluation/gemini_coverciano_runtime_case01_stable36_v6.json`.
+
+**Decisione:** seconda AI operativa. Usare `gemini-3.6-flash` come primario,
+`gemini-3.1-flash-lite` come fallback da collaudare soltanto in caso di 503 e
+Batch API per le 100 domande. `gemini-3.8-flash` resta sospeso finche segnala
+alta domanda.
