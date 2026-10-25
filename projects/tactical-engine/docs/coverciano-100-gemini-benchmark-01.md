@@ -59,3 +59,16 @@ prodotto una baseline valida: un endpoint spento, due 503 e un output respinto
 per ID. Ledger locale: 4/10. Non consumare altro budget sui modelli preview.
 Prossimo gate: una probe minima su `gemini-3.8-flash`, poi generatore manifest
 e Batch API con output separati e senza sovrascrittura.
+
+## Probe modello stabile
+
+La chiave VPS ha elencato `gemini-3.8-flash` fra i modelli con
+`generateContent`. Una revisione isolata del caso 1 ha comunque restituito
+HTTP 503. La successiva probe minima senza dati del progetto, contenente solo
+“Rispondi esclusivamente con OK”, ha restituito:
+
+`This model is currently experiencing high demand. Spikes in demand are usually temporary. Please try again later.`
+
+La causa corrente e quindi indisponibilita di capacita lato Google, non il
+payload tattico. Nessun ulteriore retry immediato: usare backoff e riprendere
+con modello stabile; per le 100 domande preferire Batch API.

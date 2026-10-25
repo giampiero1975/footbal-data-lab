@@ -29,6 +29,10 @@ l'archivio conservano gli stati storici senza riaprirli.
   generazione congelata del manifest e valutazione tramite Batch API; nessun
   ulteriore uso di `gemini-3.1-flash-lite-preview` (spento) o del preview
   `gemini-3-flash-preview`.
+- [x] **BLOCCATO** probe `gemini-3.8-flash`: `models.list` vede il modello,
+  ma sia il caso reale sia una richiesta minima “OK” restituiscono HTTP 503
+  con messaggio Google `currently experiencing high demand`. Non e un problema
+  del payload tattico; sospendere retry immediati e usare backoff/Batch API.
 
 ## Stato operativo corrente
 
