@@ -172,6 +172,25 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
         obj=json.load(response)
     msg=obj.get("message") or {}
     answer=msg.get("content","")
+    repair_reasons=[]
+    if num_predict and "perd" in question.casefold():
+        sections=re.split(r"\n\s*2[.)]",answer,maxsplit=1)
+        first=sections[0].casefold()
+        second=sections[1].casefold() if len(sections)>1 else ""
+        if any(term in first for term in ("esce in pressione", "ruolo di pressante", "fase di non possesso")):
+            repair_reasons.append("la sezione 1 contiene azioni di non possesso")
+        if any(term in second for term in ("appena riconquistata", "dopo la riconquista", "il portatore deve scegliere")):
+            repair_reasons.append("la sezione 2 prosegue oltre la riconquista")
+    if repair_reasons:
+        repair={"model":model,"stream":False,"think":False,
+                "messages":[payload["messages"][0],payload["messages"][1],
+                            {"role":"assistant","content":answer},
+                            {"role":"user","content":"Correggi la risposta senza aggiungere nuove fonti. Problemi: "+"; ".join(repair_reasons)+". Mantieni le citazioni e riscrivi entrambe le sezioni."}],
+                "options":options}
+        request=Request("http://127.0.0.1:11434/api/chat",data=json.dumps(repair,ensure_ascii=False).encode(),headers={"Content-Type":"application/json"},method="POST")
+        with urlopen(request,timeout=timeout) as response:
+            obj=json.load(response)
+        answer=(obj.get("message") or {}).get("content","")
     if not answer.strip():
         raise RuntimeError(f"Empty model answer: {str(obj)[:300]}")
     return answer,{"total_duration_ns":obj.get("total_duration"),
@@ -180,7 +199,8 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
                    "eval_duration_ns":obj.get("eval_duration"),
                    "eval_count":obj.get("eval_count"),
                    "prompt_eval_count":obj.get("prompt_eval_count"),
-                   "done_reason":obj.get("done_reason")}
+                   "done_reason":obj.get("done_reason"),
+                   "repair_reasons":repair_reasons}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--model",default="qwen3.5:9b")
