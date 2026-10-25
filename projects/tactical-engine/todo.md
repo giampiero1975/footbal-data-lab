@@ -36,8 +36,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   readiness, log, directory private e rollback verificati. Persistenza utente
   configurata e VALIDATA con `Linger=yes`; riavvio unità superato. Reboot host
   completo non eseguito.
-- [ ] **DA FARE** collegare l'applicazione all'API e predisporre test end-to-end
-  applicativi distinti dal benchmark locked già concluso.
+- [x] **INTEGRATO** primo consumer applicativo locale `/panel`: inventario completo,
+  ricerca con provenienza e submit/polling RAG; API catalogo 6196 chunk/152 fonti,
+  test 8/8 e smoke HTTP 200. Bind localhost e token solo in memoria; report
+  `docs/knowledge-panel-api-v1.md`. Collegamenti a eventuali applicazioni esterne restano fuori perimetro.
 - [x] **VALIDATO** primo E2E applicativo distinto: risposta 3001 caratteri,
   8 evidenze, citazioni F1–F8 valide, indici 5319/34 invariati; SHA-256 nel
   report `docs/rag-v5-http-api-validation-01.md`.

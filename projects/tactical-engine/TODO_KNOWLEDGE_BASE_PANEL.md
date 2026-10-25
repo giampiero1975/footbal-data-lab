@@ -43,7 +43,7 @@ Aggiungere a DRIBBLING un pannello consultabile che mostri quali documenti sono 
 - Nessuna modifica distruttiva al corpus o alla collection validata.
 
 ## Stato
-Architettura applicativa verificata: nessun consumer preesistente nel repository; il pannello diventa il primo consumer ufficiale. Schema metadata Chroma reale verificato su 6196 chunk/152 fonti. Contratto API read-only v1 IMPLEMENTATO; test VPS DA FARE. Nessuna mutazione della collection.
+Architettura applicativa verificata: nessun consumer preesistente nel repository; il pannello è il primo consumer ufficiale locale. Schema metadata Chroma reale verificato su 6196 chunk/152 fonti. Contratto API read-only VALIDATO e pannello INTEGRATO. Nessuna mutazione della collection.
 
 ## Avanzamento operativo
 
@@ -51,5 +51,5 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - [x] Implementare aggregazione read-only con provenienza e conteggi esatti.
 - [x] Implementare endpoint autenticati per statistiche, documenti e ricerca lessicale.
 - [x] Validare test offline e smoke HTTP sulla VPS per stats, documenti e ricerca.
-- [ ] Validare sulla VPS l'interfaccia IMPLEMENTATA per Inventario/Copertura/Esplora e domanda RAG; vista Qualità ancora DA FARE.
+- [x] Validare sulla VPS l'interfaccia per Inventario/Copertura/Esplora e domanda RAG; vista Qualità ancora DA FARE.
 - [ ] Integrare catalogo FIGC e stati completi di conversione/indicizzazione.

@@ -1,6 +1,6 @@
 # Knowledge Panel API v1
 
-Data: 2026-10-25. Stato: API read-only VALIDATA; pannello IMPLEMENTATO, verifica VPS DA FARE.
+Data: 2026-10-25. Stato: API read-only VALIDATA; pannello INTEGRATO localmente.
 
 ## Attività e differenza tecnica
 
@@ -28,4 +28,4 @@ Suite 7/7 PASS. Smoke autenticato: stats 200 con 6196/152; documenti 200 e pagin
 
 `GET /panel` serve un'interfaccia locale statica con inventario, ricerca e submit/polling delle domande RAG. Il token viene inserito dall'utente, mantenuto soltanto in memoria JavaScript e non incorporato o salvato. CSP, `nosniff`, no-referrer e no-store sono impostati dalla risposta HTTP. Il bind rimane localhost: l'accesso remoto richiede tunnel SSH e non espone 8088 su Internet.
 
-Script: `api/knowledge_panel.html`, `api/rag_v5_api.py`. Risultato: IMPLEMENTATO. Decisione: test statici e smoke browser/HTTP VPS prima di dichiarare il consumer INTEGRATO.
+Script: `api/knowledge_panel.html`, `api/rag_v5_api.py`. Risultato: 8/8 test, `/panel` HTTP 200, CSP presente, nessun segreto incorporato, inventario completo su più pagine e mapping reale `questions[0].answer`. Decisione: consumer locale INTEGRATO; conservare bind localhost e usare tunnel SSH. La vista Qualità e l'integrazione degli stati FIGC restano incrementi separati. Stato: INTEGRATO.
