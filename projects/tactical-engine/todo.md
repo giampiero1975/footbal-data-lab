@@ -19,6 +19,17 @@ VALIDATO. Consumer esterno, inferenze parallele e nuove certificazioni
 sono decisioni facoltative, non attività mancanti. Le righe successive e
 l'archivio conservano gli stati storici senza riaprirli.
 
+### Nuovo obiettivo — Benchmark Gemini Coverciano 100
+
+- [ ] **DA FARE** far generare a Gemini 3.8 Flash 100 domande indipendenti da
+  esame allenatore stile Coverciano con rubriche nascoste, far rispondere il RAG
+  e raggiungere una media esterna verificata >=8/10. Protocollo e diagnosi
+  ufficiale in `docs/coverciano-100-gemini-benchmark-01.md`.
+- [ ] **DA FARE** probe minima del modello stabile `gemini-3.8-flash`, quindi
+  generazione congelata del manifest e valutazione tramite Batch API; nessun
+  ulteriore uso di `gemini-3.1-flash-lite-preview` (spento) o del preview
+  `gemini-3-flash-preview`.
+
 ## Stato operativo corrente
 
 **Fonte autorevole:** [Registro esperimenti](docs/experiment-register.md). Prima di proporre un test, consultare attività → script → commit → report → risultato → decisione → stato. Nessun rerun equivalente senza una motivazione tecnica registrata. **VALIDATO shadow non significa INTEGRATO né CERTIFICATO.**
