@@ -81,6 +81,16 @@ class ApiTests(unittest.TestCase):
         with self.assertRaises(Exception):
             query.validate_request_id("../invalid")
 
+    def test_query_report_fails_closed_on_citations(self):
+        good={"questions":[{"invalid_citation_ids":[],"has_any_citation":True}],"index_unchanged":True}
+        query.validate_report(good)
+        for item in (
+            {"invalid_citation_ids":["10"],"has_any_citation":True},
+            {"invalid_citation_ids":[],"has_any_citation":False},
+        ):
+            with self.assertRaises(RuntimeError):
+                query.validate_report({"questions":[item],"index_unchanged":True})
+
     def test_performance_profile_defaults_are_locked_compatible(self):
         with tempfile.TemporaryDirectory() as tmp:
             config = self.config(Path(tmp))

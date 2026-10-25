@@ -24,6 +24,17 @@ def validate_request_id(value: str) -> str:
     return value
 
 
+def validate_report(report: dict) -> None:
+    questions = report.get("questions", [])
+    if len(questions) != 1 or report.get("error") or not report.get("index_unchanged"):
+        raise RuntimeError("incomplete_report")
+    item = questions[0]
+    if item.get("invalid_citation_ids"):
+        raise RuntimeError("invalid_citations")
+    if not item.get("has_any_citation"):
+        raise RuntimeError("missing_citations")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--question", required=True, type=validate_question)
@@ -57,8 +68,10 @@ def main() -> None:
     sys.argv = argv
     v5.main()
     report = json.loads(args.output.read_text(encoding="utf-8"))
-    if len(report.get("questions", [])) != 1 or report.get("error") or not report.get("index_unchanged"):
-        raise SystemExit("INCOMPLETE: inspect report")
+    try:
+        validate_report(report)
+    except RuntimeError as exc:
+        raise SystemExit(f"INCOMPLETE: {exc}") from exc
     print(f"QUERY COMPLETE request_id={args.request_id}", flush=True)
 
 

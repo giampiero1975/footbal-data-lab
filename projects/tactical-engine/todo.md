@@ -69,6 +69,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   disabilitate prima dell'autenticazione e messaggio 401 comprensibile. Test VPS
   13/13 e smoke HTTPS con token 200/senza token 401; commit `6bca4f0`, `e70c674`.
   Report `docs/knowledge-panel-application-integration-02.md`.
+- [x] **IMPLEMENTATO** gate applicativo fail-closed per citazioni: una risposta
+  con riferimenti fuori dalle evidenze disponibili o senza citazioni non può
+  più essere marcata come job riuscito. Evidenza reale: ultimo test Coverciano
+  citava `F10` con sole `F1–F6`; test offline e deploy VPS DA FARE.
 - [x] **VALIDATO e INTEGRATO** Biblioteca PDF parlante con classificazione derivata
   tattica/tecnica/allenamento/altro, conteggi, ricerca per titolo e filtro per
   categoria. 157 documenti: primarie 120 tattica, 27 tecnica, 10 allenamento;
