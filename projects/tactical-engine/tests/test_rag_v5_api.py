@@ -73,6 +73,17 @@ class ApiTests(unittest.TestCase):
         self.assertIn("allDocuments", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
+    def test_metrics_are_persisted_without_question_text(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            state = api.State(self.config(Path(tmp)))
+            state.worker_thread = mock.Mock(); state.worker_thread.is_alive.return_value = True
+            state.submit("Questa domanda sensibile non deve finire nelle metriche")
+            snapshot=state.metrics_snapshot()
+            self.assertEqual(snapshot["cumulative"]["accepted"],1)
+            self.assertEqual(snapshot["queue_depth"],1)
+            stored=(Path(tmp)/"metrics.json").read_text(encoding="utf-8")
+            self.assertNotIn("sensibile",stored)
+
 
 if __name__ == "__main__":
     unittest.main()

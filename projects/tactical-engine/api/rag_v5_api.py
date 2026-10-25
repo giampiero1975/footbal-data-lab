@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import queue
+import statistics
 import subprocess
 import threading
 import time
@@ -51,8 +52,48 @@ class State:
         self.requests = defaultdict(deque)
         self.queue: queue.Queue[str] = queue.Queue(maxsize=config["queue_size"])
         self.knowledge_catalog: dict | None = None
+        self.started_at = int(time.time())
+        self.metrics_path = config["output_dir"] / "metrics.json"
+        self.metrics = self._load_metrics()
         config["output_dir"].mkdir(parents=True, exist_ok=True)
         config["output_dir"].chmod(0o700)
+
+    def _load_metrics(self) -> dict:
+        default = {"schema":"rag_api_metrics_v1","accepted":0,"succeeded":0,"failed":0,"timed_out":0,"durations_seconds":[]}
+        try:
+            saved = json.loads(self.metrics_path.read_text(encoding="utf-8"))
+            return {**default, **saved}
+        except (FileNotFoundError, json.JSONDecodeError, OSError, TypeError):
+            return default
+
+    def _persist_metrics(self) -> None:
+        temporary = self.metrics_path.with_name(f".{self.metrics_path.name}.tmp")
+        temporary.write_text(json.dumps(self.metrics,sort_keys=True)+"\n",encoding="utf-8")
+        os.replace(temporary,self.metrics_path)
+
+    def metrics_snapshot(self) -> dict:
+        with self.lock:
+            durations=list(self.metrics["durations_seconds"])
+            current=defaultdict(int)
+            for job in self.jobs.values(): current[job["status"]]+=1
+            ordered=sorted(durations)
+            def percentile(fraction):
+                if not ordered: return None
+                return ordered[min(len(ordered)-1,round((len(ordered)-1)*fraction))]
+            return {
+                "schema":"rag_api_observability_v1",
+                "started_at":self.started_at,
+                "uptime_seconds":max(0,int(time.time())-self.started_at),
+                "worker_alive":bool(getattr(self,"worker_thread",None) and self.worker_thread.is_alive()),
+                "queue_depth":self.queue.qsize(),"queue_capacity":self.queue.maxsize,
+                "current_jobs":dict(current),
+                "cumulative":{k:self.metrics[k] for k in ("accepted","succeeded","failed","timed_out")},
+                "duration_samples":len(durations),
+                "duration_seconds":{"min":min(durations) if durations else None,"median":statistics.median(durations) if durations else None,
+                                    "p95":percentile(.95),"max":max(durations) if durations else None},
+                "catalog_loaded":self.knowledge_catalog is not None,
+                "collection":self.config["collection"],"expected_count":self.config["expected_count"],
+            }
 
     def authorized(self, header: str | None) -> bool:
         return bool(header and header.startswith("Bearer ") and hmac.compare_digest(header[7:], self.config["token"]))
@@ -86,6 +127,9 @@ class State:
                 del self.jobs[job_id]
             request_path.unlink(missing_ok=True)
             raise
+        with self.lock:
+            self.metrics["accepted"] += 1
+            self._persist_metrics()
         return dict(job)
 
     def worker(self) -> None:
@@ -113,6 +157,10 @@ class State:
                     self.jobs[job_id].update(status=status, finished_at=int(time.time()))
                     if detail:
                         self.jobs[job_id]["error"] = detail
+                    self.metrics[status] += 1
+                    duration=max(0,self.jobs[job_id]["finished_at"]-self.jobs[job_id].get("started_at",self.jobs[job_id]["created_at"]))
+                    self.metrics["durations_seconds"]=(self.metrics["durations_seconds"]+[duration])[-200:]
+                    self._persist_metrics()
                 self.queue.task_done()
 
     def catalog(self) -> dict:
@@ -183,6 +231,9 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path == "/v1/knowledge/stats":
             catalog = self.state.catalog()
             self.send_json(HTTPStatus.OK, {key: value for key, value in catalog.items() if key not in {"documents", "chunks"}})
+            return
+        if parsed.path == "/v1/metrics":
+            self.send_json(HTTPStatus.OK, self.state.metrics_snapshot())
             return
         if parsed.path == "/v1/knowledge/documents":
             query = parse_qs(parsed.query)

@@ -46,6 +46,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [ ] **DA FARE** completare criteri operativi con test di carico/concorrenza e
   monitoraggio prolungato prima dell'esposizione esterna; reboot host da
   verificare alla prossima finestra di manutenzione, senza riavvio dedicato.
+- [x] **IMPLEMENTATO** endpoint autenticato `/v1/metrics` con worker, coda,
+  contatori persistenti, durate min/mediana/p95/max, collection e cache; nessun
+  testo delle domande nelle metriche. Test VPS DA FARE; report
+  `docs/rag-v5-api-observability-01.md`.
 - [x] **VALIDATO** carico control-plane: 500/500 richieste con concorrenza 25,
   mediana 3.36 ms; readiness 200. Recovery systemd dopo kill superato,
   `NRestarts=1`. Nessuna inferenza duplicata.
