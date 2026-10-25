@@ -1,6 +1,28 @@
 # Registro autorevole esperimenti — Tactical Engine
 
-Ultimo aggiornamento: 2026-10-24. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
+Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
+
+## Sintesi corrente per il revisore
+
+La fotografia consolidata, con evidenze e limiti, è
+`docs/current-status-summary-01.md`. In breve:
+
+| Ambito | Stato corrente | Riferimento |
+|---|---|---|
+| Manifest locked, runtime congelato e wrapper CLI | **CERTIFICATO** | `docs/v5-certification-closeout-01.md`, `040c6a5`, `e2c093a` |
+| API locale, pannello, osservabilità e manutenzione | **INTEGRATO** | `docs/rag-v5-http-api-validation-01.md`, `docs/knowledge-panel-api-v1.md`, `docs/rag-v5-api-observability-01.md`, `docs/rag-v5-runtime-maintenance-01.md` |
+| Holdout esterno Drive11 6/6 | **VALIDATO** | `docs/v5-external-drive11-holdout-01.md`, `21eaada`, `31ff5ad` |
+| Benchmark generico breve/medio/complesso 3/3 | **VALIDATO** | `docs/rag-v5-api-profile-benchmark-01.md`, `37d3ee0`–`3a0af91` |
+| Cinque PDF FIGC, collection API 6410/157 | **VALIDATO e INTEGRATO** | `docs/figc5-candidate-integration-01.md`, `936b4c4` |
+
+Il `CERTIFICATO` locked non si estende a Drive11, FIGC5, API o domande
+arbitrarie. Le sole attività tecniche correnti sono osservazione prolungata e
+reboot host alla prossima manutenzione (**DA FARE**) ed esposizione HTTPS
+pubblica in attesa di DNS/certificato (**BLOCCATO**). Consumer esterno,
+parallelismo generativo e nuove certificazioni sono decisioni facoltative.
+
+Le voci sotto sono cronologia immutabile: uno stato storico non prevale sulla
+sintesi corrente e non costituisce automaticamente un'attività aperta.
 
 ## Protocollo permanente
 

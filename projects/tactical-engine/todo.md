@@ -1,10 +1,25 @@
 # DRIBBLING V5 — Piano operativo, checklist e registro delle evidenze
 
-> **Documento di riferimento operativo** · Riconciliato il 2026-10-24 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
+> **Documento di riferimento operativo** · Riconciliato il 2026-10-25 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
 >
 > **Attenzione:** una casella spuntata documenta l'attività descritta, non la certificazione dell'intero RAG. I risultati riportati come comunicati dalla VPS non equivalgono a un accesso diretto dell'assistente alla VPS. Preservare baseline V4, indici e configurazioni prima di qualunque intervento.
 
-## Stato operativo corrente — 2026-10-24
+## Stato consolidato e lavori aperti — 2026-10-25
+
+**Sintesi autorevole per il revisore:**
+`docs/current-status-summary-01.md`. La pipeline V5 locked e il wrapper CLI
+congelato sono **CERTIFICATI**; API, pannello, osservabilità, manutenzione e
+corpus FIGC5 sono **INTEGRATI** con evidenze separate; holdout Drive11 e
+benchmark generico 3/3 sono **VALIDATI**. La certificazione locked non si
+estende a Drive11, FIGC5, API o domande arbitrarie.
+
+Le sole aperture correnti sono: osservazione prolungata e reboot completo alla
+prossima finestra (**DA FARE**); reverse proxy pubblico in attesa di DNS e TLS
+(**BLOCCATO**). Consumer esterno, inferenze parallele e nuove certificazioni
+sono decisioni facoltative, non attività mancanti. Le righe successive e
+l'archivio conservano gli stati storici senza riaprirli.
+
+## Stato operativo corrente
 
 **Fonte autorevole:** [Registro esperimenti](docs/experiment-register.md). Prima di proporre un test, consultare attività → script → commit → report → risultato → decisione → stato. Nessun rerun equivalente senza una motivazione tecnica registrata. **VALIDATO shadow non significa INTEGRATO né CERTIFICATO.**
 
@@ -37,15 +52,15 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   configurata e VALIDATA con `Linger=yes`; riavvio unità superato. Reboot host
   completo non eseguito.
 - [x] **INTEGRATO** primo consumer applicativo locale `/panel`: inventario completo,
-  ricerca con provenienza e submit/polling RAG; API catalogo 6196 chunk/152 fonti,
+  ricerca con provenienza e submit/polling RAG; API catalogo 6410 chunk/157 fonti,
   test 8/8 e smoke HTTP 200. Bind localhost e token solo in memoria; report
   `docs/knowledge-panel-api-v1.md`. Collegamenti a eventuali applicazioni esterne restano fuori perimetro.
 - [x] **VALIDATO** primo E2E applicativo distinto: risposta 3001 caratteri,
   8 evidenze, citazioni F1–F8 valide, indici 5319/34 invariati; SHA-256 nel
   report `docs/rag-v5-http-api-validation-01.md`.
-- [ ] **DA FARE** completare criteri operativi con test di carico/concorrenza e
-  monitoraggio prolungato prima dell'esposizione esterna; reboot host da
-  verificare alla prossima finestra di manutenzione, senza riavvio dedicato.
+- [ ] **DA FARE** monitoraggio prolungato prima dell'esposizione esterna e reboot
+  host da verificare alla prossima finestra di manutenzione, senza riavvio
+  dedicato. Carico control-plane e recovery della unità sono già VALIDATI.
 - [x] **INTEGRATO** endpoint autenticato `/v1/metrics` con worker, coda,
   contatori persistenti, durate min/mediana/p95/max, collection e cache; nessun
   testo delle domande nelle metriche. Test 10/10 e benchmark 500/500; vista
@@ -55,8 +70,9 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   mediana 3.36 ms; readiness 200. Recovery systemd dopo kill superato,
   `NRestarts=1`. Nessuna inferenza duplicata.
 - [x] **IMPLEMENTATO** client applicativo stdlib `api/rag_v5_client.py` con
-  submit, polling e deadline. Collegamento al consumer reale resta DA FARE:
-  nessun codice applicativo consumer è presente nel repository.
+  submit, polling e deadline. Il collegamento a un consumer esterno è una
+  decisione facoltativa futura: nessun consumer di quel tipo è presente nel
+  repository.
 - [x] **IMPLEMENTATO** template reverse proxy HTTPS Nginx con TLS, redirect,
   rate/body limit e timeout. Deploy **BLOCCATO** fino a disponibilità di un
   dominio DNS pubblico e certificato valido; porta 8088 resta solo localhost.
@@ -104,7 +120,14 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** robustezza e latenza control-plane: health e metriche 500/500
   a concorrenza 25; recovery systemd già verificato. Latenza generativa misurata
   sul nuovo holdout (mediana circa 120 s), worker seriale mantenuto per scelta;
-  concorrenza generativa resta DA FARE solo con risorse dedicate.
+  valutare concorrenza generativa è facoltativo e richiede risorse dedicate.
+- [x] **VALIDATO** benchmark applicativo generico breve/medio/complesso 3/3;
+  il caso complesso storicamente ESEGUITO e non valido è stato corretto e
+  successivamente VALIDATO. Report `docs/rag-v5-api-profile-benchmark-01.md`.
+- [x] **INTEGRATO** corpus FIGC5: cinque PDF approvati elaborati e indicizzati,
+  214 nuovi chunk, collection operativa 6410/157; gate Soncin e regressione
+  composita 10/10. Report `docs/figc5-candidate-integration-01.md`; rollback
+  Drive11 6196 preservato. Non è una nuova certificazione universale.
 
 ## Archivio storico e checklist dettagliate
 

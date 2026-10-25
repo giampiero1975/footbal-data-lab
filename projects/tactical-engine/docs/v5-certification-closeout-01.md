@@ -2,6 +2,12 @@
 
 Data: 2026-10-24. Stato: CERTIFICATO.
 
+> Nota di lettura successiva al closeout: questo documento certifica soltanto
+> manifest locked, runtime congelato e wrapper CLI descritti sotto. Gli sviluppi
+> applicativi e di corpus successivi hanno evidenze e stati separati nella
+> sintesi `docs/current-status-summary-01.md`; non ampliano retroattivamente
+> questa certificazione.
+
 ## Attività
 
 Chiudere il ciclo `VALIDATO → INTEGRATO → CERTIFICATO` del RAG V5 locked e
