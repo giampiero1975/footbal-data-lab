@@ -74,3 +74,20 @@ JSON Schema strict e revisione tattica non VALIDATI. Nessun deploy o modifica
 runtime. Poiche la chiave e stata incollata in chat, deve essere revocata e
 rigenerata prima di qualsiasi uso futuro.
 
+## Appendice — Structured Output live su payload sintetico
+
+Una prima chiamata dell'adapter ha restituito HTTP 403 / Cloudflare `1010`.
+Il confronto con una richiesta `curl` strict riuscita ha isolato la causa nello
+User-Agent predefinito di `urllib`; impostato un identificatore esplicito e
+aggiunta diagnostica redatta, senza esporre payload o segreti.
+
+Il client completo ha quindi revisionato un solo caso sintetico: HTTP 200,
+1,628 s, 816 token prompt, 638 completion (488 reasoning), 1.454 totali;
+score 8,5, PASS, due strengths, nessun errore strutturale o di evidenza. La
+suite offline resta 6/6 PASS. Questo valida G3 solo sul piano tecnico.
+
+G4 non e stato eseguito: il trasferimento a Groq di domanda, risposta RAG ed
+estratti delle evidenze reali richiede consenso specifico. Nessun PDF completo,
+token o contenuto RAG reale e stato inviato. Nessun deploy o modifica a Gemini,
+ai dati esistenti o alla pipeline certificata.
+

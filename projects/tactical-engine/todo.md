@@ -828,4 +828,11 @@ tecnica.
   `openai/gpt-oss-120b`, completion ID e usage validi (94 token), nessun errore
   API e nessun deploy. Contenuto vuoto per tetto 16 token/14 reasoning;
   Structured Output e qualita DA FARE. Chiave esposta in chat da ruotare.
+- [x] **VALIDATO** V5-GROQ-01-G3-STRUCTURED: Structured Output strict e adapter
+  completo verificati su un caso esclusivamente sintetico (HTTP 200, 1,628 s,
+  1.454 token, score 8,5 PASS); suite offline 6/6. Corretto il blocco Cloudflare
+  1010 dichiarando uno User-Agent esplicito. Nessun deploy o dato RAG inviato.
+- [ ] **BLOCCATO** V5-GROQ-01-G4: singolo caso tattico congelato non inviato.
+  Richiede consenso privacy esplicito per trasmettere a Groq domanda, risposta
+  RAG ed estratti selezionati; vietati PDF completi, token e chiavi.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.
