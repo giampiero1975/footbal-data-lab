@@ -147,10 +147,14 @@ def reserve_explicit_manual(question, rows, scores, selected, limit):
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,num_predict=0):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
+    phase_guard=(" Dopo la perdita descrivi soltanto azioni della squadra che ha appena perso palla: "
+                 "marcature preventive già predisposte, pressione sul nuovo portatore, coperture, chiusura linee "
+                 "e ripiegamento. Non descrivere uscita dal pressing, conduzione o passaggi della squadra in possesso."
+                 if "perd" in question.casefold() else "")
     concise=("\nRispondi direttamente, senza premessa né riepilogo della domanda, entro 350 parole. "
              "Crea una sezione numerata per ogni punto richiesto, tratta tutti i punti prima di aggiungere dettagli, "
              "usa frasi operative ed evita ripetizioni. Mantieni rigorosamente distinte le fasi richieste "
-             "(possesso, non possesso, perdita e riconquista) e non sostituirle fra loro.\n") if num_predict else ""
+             "(possesso, non possesso, perdita e riconquista) e non sostituirle fra loro."+phase_guard+"\n") if num_predict else ""
     options={"temperature":0,"num_ctx":8192}
     if num_predict:
         options["num_predict"]=num_predict

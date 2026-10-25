@@ -590,6 +590,7 @@ tecnica.
 - [x] **INTEGRATO** KNOWLEDGE-PANEL-APPLICATION-INTEGRATION-02: fonti, pagine, provenienza, metriche generazione, stato/tempo job, errori e cronologia effimera; 9/9 test, smoke HTTP e readiness superati. Token e cronologia non persistiti; RAG locked invariato. Report `docs/knowledge-panel-application-integration-02.md`.
 
 - [x] **ESEGUITO** RAG-V5-API-PROFILE-BENCHMARK-01: 160,18/194,19/146,13 s, 3/3 stop/citazioni valide/6196 invariato; breve e medio VALIDATI, complesso non validato per confusione di fasi. Retest corretto 143,29 s migliora ma conserva un'ambiguità; nessuna promozione. Report `docs/rag-v5-api-profile-benchmark-01.md`.
+- [x] **IMPLEMENTATO** RAG-V5-COMPLEX-PHASE-GUARD-02: vincolo esplicito sulla squadra che perde palla ed esclusione delle azioni della squadra in possesso. Ultimo differenziale DA FARE.
 
 - [x] **VALIDATO** FIGC-CANDIDATE-EDITORIAL-REVIEW-01: cinque candidati tattici ammessi, due statistici e una traduzione duplicata esclusi; Maresi non pertinente e Santoni duplicato confermati. Nessuna ingestion. Report `docs/figc-candidate-editorial-review-01.md`.
 - [x] **INTEGRATO** RAG-V5-API-SECURITY-REMEDIATION-01: audit `cc2a0cdd-2e17-4a97-b5ef-6c4e1bed4126`; placeholder rifiutato, 32 connessioni/timeout 15s, ricerca rate-limited. 10/10 test; runtime placeholder rejected, undicesima ricerca 429, servizio active. Report `docs/rag-v5-api-security-remediation-01.md`.
