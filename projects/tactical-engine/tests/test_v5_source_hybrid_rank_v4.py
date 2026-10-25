@@ -135,7 +135,7 @@ class ScopedGuidanceTests(unittest.TestCase):
 
     def test_structural_guidance_preserves_roles_and_defender_dilemma(self):
         guidance = self.module.scoped_guidance(
-            "Nel 4-3-3 contro 3-5-2, terzino, ala e braccetto si muovono nell'half-space: quale rotazione?"
+            "Nel 4-3-3 contro 3-5-2, terzino, ala e braccetto sono nell'half-space: quale movimento porta in porta?"
         )
         self.assertIn("ruoli realmente presenti", guidance)
         self.assertIn("chi si muove", guidance)

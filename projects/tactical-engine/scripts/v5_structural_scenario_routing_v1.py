@@ -45,13 +45,14 @@ def score_row(row: dict, signals: dict) -> int:
     haystack = _normal(" ".join((str(row.get("source") or ""), " ".join(row.get("headings") or []), str(row.get("text") or ""))))
     formation_hits = sum(value in haystack or ("1-" + value) in haystack for value in signals["formations"])
     role_hits = sum(any(alias in haystack for alias in ROLE_ANCHORS[name]) for name in signals["roles"])
-    principle_hits = sum(
-        any(cue in haystack for cue in MOVEMENT_TEXT_CUES) if term == "movimento sincronizzato"
-        else any(cue in haystack for cue in UNDERLAP_TEXT_CUES) if term == "underlap"
-        else term in haystack
+    principle_score = sum(
+        10 if term == "underlap" and any(cue in haystack for cue in UNDERLAP_TEXT_CUES)
+        else 7 if term == "movimento sincronizzato" and any(cue in haystack for cue in MOVEMENT_TEXT_CUES)
+        else 7 if term not in {"underlap", "movimento sincronizzato"} and term in haystack
+        else 0
         for term in signals["principles"]
     )
-    return formation_hits * 10 + role_hits * 3 + principle_hits * 7
+    return formation_hits * 10 + role_hits * 3 + principle_score
 
 
 def reserve(rows: list[dict], rerank_scores, selected: list[dict], question: str, limit: int, maximum: int = 3):
