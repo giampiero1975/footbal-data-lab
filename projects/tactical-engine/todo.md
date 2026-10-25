@@ -819,5 +819,9 @@ tecnica.
 - [x] **VALIDATO** V5-RUNTIME-FINGERPRINT-FREEZE-02: fingerprint definitivo post-promozione SHA-256 `f5718a39978495894964f79c4a9b5f4be42277affde88fe692b5382cb7c6cca9`, commit runtime `e46746a`, tracked clean; sostituisce il freeze V1.
 - [x] **CERTIFICATO** V5-CERTIFICATION-CLOSEOUT-01: qualità 10/10, confronto V4/V5 per eleggibilità fonti, freeze runtime post-promozione, default CLI e rollback verificati. Report `docs/v5-certification-closeout-01.md`. Ambito: manifest locked e wrapper CLI; nessun servizio HTTP/UI RAG attivo o incluso.
 
-- [ ] **DA FARE** V5-GROQ-01: proposta tecnica Groq Free come revisore alternativo opt-in, documento `docs/groq-free-reviewer-proposal-01.md` (commit `0e8b369`, aggiornamento simulazione `257a9a2`). Nessuna API chiamata, nessun deploy o sostituzione Gemini. Codex: riconciliare stato corrente e realizzare G0/G1 offline prima di richiedere autorizzazione G2/G3.
+- [x] **VALIDATO offline** V5-GROQ-01 G0/G1: proposta riconciliata allo stato
+  VPS 50/100; adapter opt-in isolato e suite mock 6/6 per schema strict, HTTP,
+  ID/citazioni, quote e ripresa. Nessuna API, chiave o deploy; Gemini e locked
+  invariati. Report `docs/groq-free-reviewer-g0-g1-01.md`. G2/G3 DA FARE solo
+  previa autorizzazione esplicita.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

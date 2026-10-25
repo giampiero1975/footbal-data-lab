@@ -1,11 +1,17 @@
 # Proposta tecnica — Groq Free come revisore alternativo (V5-GROQ-01)
 
-Data: 2026-10-25. **Stato: DA FARE** per integrazione e chiamate reali; sola analisi documentale e simulazione offline. **Destinatario: Codex.** Questo documento e una proposta, non autorizza deploy, attivazione billing, sostituzione del revisore o esecuzione del benchmark.
+Data: 2026-10-25. **Stato corrente: G0/G1 VALIDATI offline; G2–G5 DA
+FARE.** Nessuna chiamata reale o integrazione. **Destinatario: Codex.** Questo
+documento e una proposta, non autorizza deploy, attivazione billing,
+sostituzione del revisore o esecuzione del benchmark. Evidenze G0/G1:
+`docs/groq-free-reviewer-g0-g1-01.md`.
 
 ## Contesto verificato in GitHub
 - Fonte autorevole: `projects/tactical-engine/todo.md`, `docs/experiment-register.md`, `docs/coverciano-100-gemini-benchmark-01.md`.
 - Benchmark richiesto: 100 domande stile Coverciano, 10 categorie, rubriche nascoste, RAG riceve solo domanda, giudizio esterno 0–10, target media >=8 e zero citazioni invalide.
-- Ultima evidenza documentata: 40/100 domande generate e preservate in `evaluation/coverciano-100-chunks-v1/`; Gemini 3.6 intermittente 503; un output pressing JSON malformato. Non rigenerare i 40 casi esistenti, non ripetere probe gia concluse.
+- Ultima evidenza verificata: 50/100 domande generate e preservate in
+  `evaluation/coverciano-100-chunks-v1/`; Gemini 3.6 resta intermittente. Non
+  rigenerare i casi esistenti, non ripetere probe gia concluse.
 - La certificazione V5 locked CLI resta separata dalla revisione esterna, dal pannello e dal benchmark 100.
 
 ## Decisione da sottoporre al titolare
@@ -37,8 +43,11 @@ Ipotesi per 100 revisioni: 2.200 token input + 650 output = **2.850 token/caso**
 Ipotesi prudente: 5.000 token/caso => 500.000 token => minimo 3 giorni teorici. Misurare `usage` su un caso autorizzato prima di pianificare 100 revisioni.
 
 ## Piano per Codex — cancelli e anti-duplicazione
-**G0 — Riconciliazione (DA FARE):** verificare TODO, registro, ultimi commit e stato reale VPS (incluso heartbeat Gemini, eventuale progresso >40), report esistenti e script; identificare precisamente il contratto del reviewer e una differenza tecnica rispetto a test gia conclusi.
-**G1 — Compatibilita offline (DA FARE):** test unitari/mock del parser e dello schema strict; simulare 200, 429, 503, 400, ID mismatch, citazioni invalide, interruzione/ripresa, quote. Nessuna chiamata di rete; nessuna regressione del RAG.
+**G0 — Riconciliazione (VALIDATO offline):** TODO, registro, commit, VPS e
+contratto reviewer riconciliati; stato 50/100, Groq assente dal runtime.
+**G1 — Compatibilita offline (VALIDATO offline):** adapter isolato e suite
+riproducibile 6/6 per schema strict, 200, 429, 503, 400/401/403, ID, citazioni,
+interruzione/ripresa e quote. Nessuna chiamata di rete; nessuna regressione RAG.
 **G2 — Autorizzazione utente e credenziali (DA FARE):** l'utente crea chiave Groq Free, verifica assenza di billing e limiti effettivi; Codex configura `GROQ_API_KEY` in modo sicuro. **Non richiedere la chiave in chat/GitHub.**
 **G3 — Singola probe reale (DA FARE, previa autorizzazione):** una richiesta minima a `openai/gpt-oss-120b`, verificare HTTP, schema, usage e rate-limit headers; registrare report distinto.
 **G4 — Un solo caso tattico congelato (DA FARE, previa autorizzazione):** revisione di un report gia esistente, senza rigenerare risposta RAG; confronto qualitativo con evidenza Gemini esistente, senza assimilare automaticamente i voti di provider diversi.
@@ -55,7 +64,9 @@ Dopo ogni report eseguito aggiornare registro e TODO nella stessa sessione. Stat
 4. Autorizzare esplicitamente a Codex una singola probe dopo G0/G1; solo successivamente decidere integrazione.
 
 ## Stato della proposta
-**DA FARE** per implementazione e test reali. Nessuna chiamata Groq, nessun costo e nessuna modifica al runtime o alla pipeline autorizzati da questo documento.
+**IMPLEMENTATO e VALIDATO offline** limitatamente a G0/G1. G2–G5 restano DA
+FARE. Nessuna chiamata Groq, nessun costo e nessuna modifica al runtime o alla
+pipeline autorizzati da questo documento.
 
 ## Report simulazione offline (2026-10-25)
 Attivita: verificare logica illustrativa di validazione fail-closed e aritmetica delle quote, senza rete.
