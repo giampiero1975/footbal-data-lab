@@ -93,6 +93,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   ACME attivo con 404 sul resto, API ancora solo localhost; configurazione HTTPS
   versionata. Certificato e collaudo **BLOCCATO** finché il record DNS `A` non
   risolve verso `163.5.26.155`. Report `docs/public-panel-https-01.md`.
+- [x] **IMPLEMENTATO** audit sicurezza pre-pubblicazione: superficie, permessi,
+  unità e segreti conformi; aggiunti limite separato ai token errati, log senza
+  query string e hardening TLS/header. Test offline 16/16; deploy VPS DA FARE.
+  Report `docs/public-panel-security-audit-01.md`.
 
 ### P2 — Ordine e manutenzione del repository
 

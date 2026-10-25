@@ -38,6 +38,7 @@ def load_config(env=os.environ) -> dict:
         "timeout": int(env.get("RAG_API_TIMEOUT_SECONDS", "900")),
         "queue_size": int(env.get("RAG_API_QUEUE_SIZE", "8")),
         "rate_limit": int(env.get("RAG_API_RATE_LIMIT_PER_MINUTE", "10")),
+        "auth_failure_limit": int(env.get("RAG_API_AUTH_FAILURES_PER_MINUTE", "20")),
         "output_dir": Path(env.get("RAG_API_OUTPUT_DIR", str(ROOT / "evaluation/api-runs"))),
         "collection": env.get("RAG_COLLECTION", "dribbling_tactics_v5_multisource"),
         "expected_count": int(env.get("RAG_EXPECTED_COUNT", "5319")),
@@ -53,6 +54,7 @@ class State:
         self.jobs: dict[str, dict] = {}
         self.lock = threading.Lock()
         self.requests = defaultdict(deque)
+        self.auth_failures = defaultdict(deque)
         self.queue: queue.Queue[str] = queue.Queue(maxsize=config["queue_size"])
         self.knowledge_catalog: dict | None = None
         self.started_at = int(time.time())
@@ -121,6 +123,17 @@ class State:
             while values and now - values[0] >= 60:
                 values.popleft()
             if len(values) >= self.config["rate_limit"]:
+                return False
+            values.append(now)
+            return True
+
+    def auth_failure_allowed(self, client: str) -> bool:
+        now = time.monotonic()
+        with self.lock:
+            values = self.auth_failures[client]
+            while values and now - values[0] >= 60:
+                values.popleft()
+            if len(values) >= self.config["auth_failure_limit"]:
                 return False
             values.append(now)
             return True
@@ -215,7 +228,9 @@ class Handler(BaseHTTPRequestHandler):
         return self.server.state  # type: ignore[attr-defined]
 
     def log_message(self, fmt, *args):
-        print(json.dumps({"event": "http", "client": self.client_address[0], "message": fmt % args}), flush=True)
+        status = args[1] if len(args) > 1 else None
+        print(json.dumps({"event": "http", "client": self.client_address[0], "method": self.command,
+                          "path": urlparse(self.path).path, "status": status}), flush=True)
 
     def send_json(self, status: int, payload: dict) -> None:
         body = json.dumps(payload, ensure_ascii=False).encode()
@@ -240,7 +255,9 @@ class Handler(BaseHTTPRequestHandler):
 
     def authenticated(self, apply_rate_limit: bool = False) -> bool:
         if not self.state.authorized(self.headers.get("Authorization")):
-            self.send_json(HTTPStatus.UNAUTHORIZED, {"error": "unauthorized"})
+            allowed = self.state.auth_failure_allowed(self.client_address[0])
+            self.send_json(HTTPStatus.UNAUTHORIZED if allowed else HTTPStatus.TOO_MANY_REQUESTS,
+                           {"error": "unauthorized" if allowed else "auth_rate_limited"})
             return False
         if apply_rate_limit and not self.state.rate_allowed(self.client_address[0]):
             self.send_json(HTTPStatus.TOO_MANY_REQUESTS, {"error": "rate_limited"})

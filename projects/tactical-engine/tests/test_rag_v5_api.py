@@ -43,6 +43,25 @@ class ApiTests(unittest.TestCase):
             self.assertFalse(state.authorized("Bearer wrong"))
             self.assertFalse(state.authorized(None))
 
+    def test_invalid_auth_attempts_are_bounded_separately(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            config = self.config(Path(tmp)); config["auth_failure_limit"] = 2
+            state = api.State(config)
+            self.assertTrue(state.auth_failure_allowed("127.0.0.1"))
+            self.assertTrue(state.auth_failure_allowed("127.0.0.1"))
+            self.assertFalse(state.auth_failure_allowed("127.0.0.1"))
+            self.assertTrue(state.rate_allowed("127.0.0.1"))
+
+    def test_http_log_drops_query_string_and_message(self):
+        handler = object.__new__(api.Handler)
+        handler.client_address = ("127.0.0.1", 1234)
+        handler.command = "GET"; handler.path = "/v1/knowledge/search?q=secret-tactic"
+        with mock.patch("builtins.print") as output:
+            handler.log_message('"%s" %s %s', handler.path, "200", "1")
+        logged = output.call_args.args[0]
+        self.assertIn('"path": "/v1/knowledge/search"', logged)
+        self.assertNotIn("secret-tactic", logged)
+
     def test_rate_limit_and_bounded_queue(self):
         with tempfile.TemporaryDirectory() as tmp:
             state = api.State(self.config(Path(tmp)))
