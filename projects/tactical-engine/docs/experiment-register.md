@@ -673,3 +673,7 @@ Attività: secondo gate e integrazione del profilo prestazioni API. Script: stes
 ### KNOWLEDGE-PANEL-APPLICATION-INTEGRATION-02
 
 Attività: completare il consumer web locale con stato/tempo job, metriche risposta, evidenze navigabili, cronologia effimera ed errori comprensibili. Differenza tecnica: sola UI; nessuna modifica a retrieval, modello, collection o benchmark. Script: `api/knowledge_panel.html`, test statici `test_rag_v5_api.py`; report `docs/knowledge-panel-application-integration-02.md`. Risultato: implementazione completata, token solo in memoria e dati dinamici sottoposti a escaping. Decisione: test offline e smoke HTTP prima dell'integrazione. Stato: IMPLEMENTATO.
+
+### RAG-V5-API-PROFILE-BENCHMARK-01
+
+Attività: misurare il profilo API su domande breve, media e complessa nuove. Differenza tecnica: tre livelli di lunghezza/struttura mai eseguiti, non benchmark locked e non scenario Coverciano. Script: `benchmark_rag_v5_api_profiles_v1.py`; report `docs/rag-v5-api-profile-benchmark-01.md`. Risultato: harness sequenziale e gate automatici implementati. Decisione: una sola esecuzione VPS e audit qualitativo delle tre risposte. Stato: IMPLEMENTATO.

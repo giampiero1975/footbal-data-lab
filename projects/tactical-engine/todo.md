@@ -589,6 +589,8 @@ tecnica.
 
 - [x] **IMPLEMENTATO** KNOWLEDGE-PANEL-APPLICATION-INTEGRATION-02: fonti, pagine, provenienza, metriche generazione, stato/tempo job, errori e cronologia effimera aggiunti al consumer locale. Token e cronologia non persistiti; RAG locked invariato. Report `docs/knowledge-panel-application-integration-02.md`. Test e smoke VPS DA FARE.
 
+- [x] **IMPLEMENTATO** RAG-V5-API-PROFILE-BENCHMARK-01: benchmark applicativo sequenziale su tre domande nuove breve/media/complessa; gate stop naturale, citazioni valide e indice 6196 invariato. Script `benchmark_rag_v5_api_profiles_v1.py`, report `docs/rag-v5-api-profile-benchmark-01.md`. Esecuzione VPS DA FARE.
+
 - [x] **ESEGUITO** V5-RERANK-TRACE-01: diagnostica read-only VPS fresh_03/fresh_10, script `scripts/diagnose_v5_rerank_failures_v1.py` (`c4ee2b5`), report `docs/v5-rerank-trace-01.md` (`adf47ee`); fresh_03 manuale Transizioni assente da dense24; fresh_10 Ussia pagina 17 al rango 9 del reranker, fuori top8. 5319/34 invariati. Nessun nuovo benchmark.
 
 - [x] **IMPLEMENTATO** V5-SOURCE-COVERAGE-SHADOW-01: script isolato `scripts/v5_source_coverage_shadow_v1.py` (`c400bf0`) per selezionare evidenze da trace già esistente, senza modifica del runner principale, Chroma o generazione. Per fresh_03 segnala fonte assente dal pool; per fresh_10 promuove pagina 17 quando presente. Esecuzione VPS DA FARE; nessuna variazione al benchmark locked 5/10.
