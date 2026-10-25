@@ -85,10 +85,11 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **IMPLEMENTATO** template reverse proxy HTTPS Nginx con TLS, redirect,
   rate/body limit e timeout. Dominio scelto; deploy e certificato sono tracciati
   nella voce successiva. La porta 8088 resta solo localhost.
-- [ ] **DA FARE** pubblicare il pannello su
-  `https://footballlab.byoursite.com`: record DNS `A` richiesto verso
-  `163.5.26.155`, poi Nginx, certificato ACME, redirect, hardening e collaudo.
-  Non esporre 8088. Report `docs/public-panel-https-01.md`.
+- [x] **IMPLEMENTATO** pubblicazione del pannello su
+  `https://footballlab.byoursite.com`: Nginx e Certbot installati, bootstrap
+  ACME attivo con 404 sul resto, API ancora solo localhost; configurazione HTTPS
+  versionata. Certificato e collaudo **BLOCCATO** finché il record DNS `A` non
+  risolve verso `163.5.26.155`. Report `docs/public-panel-https-01.md`.
 
 ### P2 — Ordine e manutenzione del repository
 

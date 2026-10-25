@@ -1,6 +1,6 @@
 # Pubblicazione HTTPS del Knowledge Panel
 
-Data: 2026-10-25. Stato: **DA FARE**.
+Data: 2026-10-25. Stato: **IMPLEMENTATO**; emissione TLS **BLOCCATO** dal DNS.
 
 ## Attività
 
@@ -28,5 +28,17 @@ Record DNS richiesto:
 
 ## Decisione
 
-Procedere autonomamente; l'emissione del certificato resta **BLOCCATO** finché
-il record DNS non risolve pubblicamente. Non esporre direttamente la porta 8088.
+Nginx 1.24 installato dai repository Ubuntu, attivo e abilitato; Certbot 5.8
+installato tramite snap. Virtual host bootstrap installato: porta 80 disponibile
+soltanto per `/.well-known/acme-challenge/`, tutte le altre richieste ricevono
+404. API invariata su `127.0.0.1:8088`, health `ok`.
+
+Configurazioni versionate:
+
+- `deploy/nginx-footballlab-bootstrap.conf`;
+- `deploy/nginx-footballlab-https.conf`.
+
+Il DNS pubblico non restituisce ancora un record per
+`footballlab.byoursite.com`. L'emissione del certificato resta **BLOCCATO**
+finché il record non risolve verso `163.5.26.155`. Non esporre direttamente la
+porta 8088.
