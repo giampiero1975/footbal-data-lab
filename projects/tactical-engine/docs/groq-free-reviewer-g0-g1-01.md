@@ -58,3 +58,19 @@ Chiudere G0 e G1. Fermarsi prima di G2/G3 come richiesto. Non creare chiavi,
 non chiamare Groq, non modificare Gemini e non effettuare deploy. Una futura
 probe richiede autorizzazione esplicita e configurazione privata della chiave.
 
+## Appendice — Probe autorizzata successiva
+
+Il titolare ha successivamente fornito e autorizzato la prova di una chiave
+etichettata `football-data-lab`. La chiave non e stata salvata su disco, Git,
+env del servizio o pannello. Una prima richiesta e stata rifiutata prima
+dell'inferenza per escaping JSON del comando; la probe corretta successiva ha
+raggiunto `openai/gpt-oss-120b` e restituito un completion ID valido, nessun
+errore, 78 token prompt, 16 completion (14 reasoning), 94 totali, queue time
+0,208 s e model time 0,036 s. Il contenuto finale era vuoto per il tetto minimo
+di 16 token assorbito dal ragionamento.
+
+Risultato: autenticazione, endpoint, modello e telemetria **ESEGUITI**; qualita,
+JSON Schema strict e revisione tattica non VALIDATI. Nessun deploy o modifica
+runtime. Poiche la chiave e stata incollata in chat, deve essere revocata e
+rigenerata prima di qualsiasi uso futuro.
+

@@ -68,6 +68,11 @@ Dopo ogni report eseguito aggiornare registro e TODO nella stessa sessione. Stat
 FARE. Nessuna chiamata Groq, nessun costo e nessuna modifica al runtime o alla
 pipeline autorizzati da questo documento.
 
+Aggiornamento successivo: probe minima esplicitamente autorizzata **ESEGUITA**
+su `openai/gpt-oss-120b`; chiave valida, usage e tempi ricevuti, nessun deploy.
+Structured Output live e qualita tattica restano DA FARE. La chiave incollata
+in chat deve essere ruotata prima di ulteriori prove.
+
 ## Report simulazione offline (2026-10-25)
 Attivita: verificare logica illustrativa di validazione fail-closed e aritmetica delle quote, senza rete.
 Script: snippet Python temporaneo eseguito fuori repository (nessun adapter Groq implementato).

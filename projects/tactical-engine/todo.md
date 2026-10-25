@@ -824,4 +824,8 @@ tecnica.
   ID/citazioni, quote e ripresa. Nessuna API, chiave o deploy; Gemini e locked
   invariati. Report `docs/groq-free-reviewer-g0-g1-01.md`. G2/G3 DA FARE solo
   previa autorizzazione esplicita.
+- [x] **ESEGUITO** V5-GROQ-01-G3-CONNECTIVITY: probe minima autorizzata su
+  `openai/gpt-oss-120b`, completion ID e usage validi (94 token), nessun errore
+  API e nessun deploy. Contenuto vuoto per tetto 16 token/14 reasoning;
+  Structured Output e qualita DA FARE. Chiave esposta in chat da ruotare.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.
