@@ -108,6 +108,43 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(config["evidence_limit"], 6)
             self.assertEqual(config["max_output_tokens"], 700)
 
+    def test_gemini_review_is_opt_in_and_uses_stable_model(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            config = self.config(Path(tmp))
+            self.assertFalse(config["gemini_review_enabled"])
+            self.assertEqual(config["gemini_review_model"], "gemini-3.6-flash")
+            enabled = api.load_config({
+                "RAG_API_TOKEN": "x" * 32,
+                "RAG_API_OUTPUT_DIR": tmp,
+                "RAG_GEMINI_REVIEW_ENABLED": "true",
+                "RAG_GEMINI_REVIEW_DAILY_LIMIT": "250",
+            })
+            self.assertTrue(enabled["gemini_review_enabled"])
+            self.assertEqual(enabled["gemini_review_daily_limit"], 250)
+
+    def test_gemini_review_returns_bounded_verified_summary(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp)
+            config = self.config(output); config["gemini_review_enabled"] = True
+            state = api.State(config)
+            result_path = output / ("a" * 32 + ".result.json")
+            result_path.write_text('{"questions":[]}', encoding="utf-8")
+            report = {
+                "status": "ESEGUITO", "model": "gemini-3.6-flash",
+                "reviews": [{"id": "case_01", "score": 8.5, "verdict": "PASS",
+                             "strengths": ["coerente"], "structural_errors": [],
+                             "evidence_issues": [], "minimum_fix": "nessuna"}],
+            }
+            def reviewer(command, **kwargs):
+                review_path = Path(command[command.index("--output") + 1])
+                review_path.write_text(json.dumps(report), encoding="utf-8")
+                return mock.Mock(returncode=0, stderr="")
+            with mock.patch.object(api.subprocess, "run", side_effect=reviewer):
+                summary = state.run_gemini_review("a" * 32, result_path)
+            self.assertEqual(summary["status"], "verified")
+            self.assertEqual(summary["score"], 8.5)
+            self.assertNotIn("raw_review", summary)
+
     def test_catalog_is_loaded_once(self):
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(api, "load_catalog", return_value={"documents":[],"chunks":[]}) as loader:
             state = api.State(self.config(Path(tmp)))
@@ -140,6 +177,9 @@ class ApiTests(unittest.TestCase):
         self.assertIn("estratti indicizzati", panel)
         self.assertIn("/v1/events", panel)
         self.assertIn("Registro diagnostico", panel)
+        self.assertIn("Revisione indipendente Gemini", panel)
+        self.assertIn("job.gemini_review", panel)
+        self.assertIn("mai token, chiavi o PDF completi", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
     def test_feedback_is_bounded_to_succeeded_job_without_content(self):

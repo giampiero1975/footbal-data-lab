@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "scripts/run_rag_v5_query.py"
 PYTHON = ROOT / ".venv/bin/python"
 PANEL = ROOT / "api/knowledge_panel.html"
+GEMINI_REVIEWER = ROOT / "scripts/review_runtime_series_gemini_v1.py"
 REJECTED_TOKENS = {"replace-with-at-least-32-random-characters"}
 
 
@@ -45,6 +46,10 @@ def load_config(env=os.environ) -> dict:
         "evidence_limit": int(env.get("RAG_API_EVIDENCE_LIMIT", "8")),
         "max_output_tokens": int(env.get("RAG_API_MAX_OUTPUT_TOKENS", "0")),
         "chroma_path": Path(env.get("RAG_CHROMA_PATH", str(ROOT.parent.parent / "knowledge/rag/chroma"))),
+        "gemini_review_enabled": env.get("RAG_GEMINI_REVIEW_ENABLED", "0").lower() in {"1", "true", "yes"},
+        "gemini_review_model": env.get("RAG_GEMINI_REVIEW_MODEL", "gemini-3.6-flash"),
+        "gemini_review_timeout": int(env.get("RAG_GEMINI_REVIEW_TIMEOUT_SECONDS", "240")),
+        "gemini_review_daily_limit": int(env.get("RAG_GEMINI_REVIEW_DAILY_LIMIT", "100")),
     }
 
 
@@ -189,6 +194,45 @@ class State:
         self.record_event("job_accepted", job_id=job_id, status="queued")
         return dict(job)
 
+    def run_gemini_review(self, job_id: str, result_path: Path) -> dict:
+        """Run the optional external review without making the RAG result depend on it."""
+        model = self.config["gemini_review_model"]
+        if not self.config["gemini_review_enabled"]:
+            return {"status": "disabled", "model": model}
+        review_path = self.config["output_dir"] / f"{job_id}.gemini-review.json"
+        command = [str(PYTHON), str(GEMINI_REVIEWER), str(result_path),
+                   "--output", str(review_path), "--model", model,
+                   "--max-daily-requests", str(self.config["gemini_review_daily_limit"]),
+                   "--confirm-free-tier"]
+        self.record_event("gemini_review_started", job_id=job_id, status="running")
+        try:
+            process = subprocess.run(command, cwd=ROOT.parent.parent, capture_output=True, text=True,
+                                     timeout=self.config["gemini_review_timeout"])
+            report = json.loads(review_path.read_text(encoding="utf-8")) if review_path.exists() else {}
+            reviews = report.get("reviews", [])
+            if process.returncode == 0 and report.get("status") == "ESEGUITO" and len(reviews) == 1:
+                row = reviews[0]
+                summary = {
+                    "status": "verified",
+                    "model": report.get("model", model),
+                    "score": row.get("score"),
+                    "verdict": row.get("verdict"),
+                    "strengths": row.get("strengths", []),
+                    "structural_errors": row.get("structural_errors", []),
+                    "evidence_issues": row.get("evidence_issues", []),
+                    "minimum_fix": row.get("minimum_fix", ""),
+                    "review_file": review_path.name,
+                }
+                self.record_event("gemini_review_finished", job_id=job_id, status="verified")
+                return summary
+            reason = report.get("reason") or "external_reviewer_failed"
+        except subprocess.TimeoutExpired:
+            reason = "external_reviewer_timeout"
+        except (OSError, ValueError, json.JSONDecodeError):
+            reason = "external_reviewer_invalid_result"
+        self.record_event("gemini_review_finished", job_id=job_id, status="unavailable", reason=reason)
+        return {"status": "unavailable", "model": model, "reason": reason}
+
     def worker(self) -> None:
         while True:
             job_id = self.queue.get()
@@ -208,6 +252,12 @@ class State:
                     result = subprocess.run(command, cwd=ROOT.parent.parent, capture_output=True, text=True, timeout=self.config["timeout"])
                     status = "succeeded" if result.returncode == 0 and output_path.exists() else "failed"
                     detail = result.stderr[-2000:] if status == "failed" else None
+                    if status == "succeeded":
+                        with self.lock:
+                            self.jobs[job_id]["status"] = "reviewing"
+                        review = self.run_gemini_review(job_id, output_path)
+                        with self.lock:
+                            self.jobs[job_id]["gemini_review"] = review
                 except subprocess.TimeoutExpired:
                     status, detail = "timed_out", "runner timeout"
             except Exception as exc:

@@ -35,7 +35,7 @@ Quote effettive e billing devono essere controllati nel progetto AI Studio.
 
 ## Protocollo del benchmark
 
-1. Gemini 3.8 Flash genera e congela 100 tracce, ciascuna con categoria,
+1. Gemini 3.6 Flash genera e congela 100 tracce, ciascuna con categoria,
    difficolta, vincoli e rubrica nascosta.
 2. Il manifest deve coprire costruzione, sviluppo, rifinitura, transizioni,
    pressing, blocco basso/medio/alto, palle inattive, gestione risultato,
@@ -80,3 +80,21 @@ preventiva geometricamente errata e fonti troppo generiche. Report VPS:
 `gemini-3.1-flash-lite` come fallback da collaudare soltanto in caso di 503 e
 Batch API per le 100 domande. `gemini-3.8-flash` resta sospeso finche segnala
 alta domanda.
+
+## Prompt del titolare
+
+Prompt base da conservare integralmente:
+
+> fammi 100 domande da commissione all'esame da allenatore a coverciano sulla tattica
+
+Al prompt saranno aggiunti soltanto vincoli di formato necessari per produrre
+100 identificativi univoci, copertura bilanciata, difficolta e rubriche nascoste
+separate dalle domande mostrate al RAG. Questo evita duplicati e rende la media
+riproducibile senza alterare l'intento del titolare.
+
+## Integrazione applicativa
+
+Il collegamento RAG -> Gemini -> pannello e **IMPLEMENTATO** nel codice e
+documentato in `docs/rag-v5-gemini-runtime-review-01.md`. Test e deploy VPS
+restano DA FARE prima di qualunque dichiarazione INTEGRATO. La generazione del
+manifest delle 100 domande non e ancora iniziata.

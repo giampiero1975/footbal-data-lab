@@ -21,12 +21,19 @@ l'archivio conservano gli stati storici senza riaprirli.
 
 ### Nuovo obiettivo — Benchmark Gemini Coverciano 100
 
-- [ ] **DA FARE** far generare a Gemini 3.8 Flash 100 domande indipendenti da
+- [x] **IMPLEMENTATO** revisore Gemini nel flusso applicativo: dopo ogni
+  risposta RAG l'API invoca `gemini-3.6-flash` e il pannello mostra voto,
+  verdetto, errori strutturali, problemi delle evidenze e correzione minima.
+  Un errore esterno lascia disponibile la risposta ma la marca non verificata.
+  Test e deploy VPS ancora DA FARE; report
+  `docs/rag-v5-gemini-runtime-review-01.md`.
+
+- [ ] **DA FARE** far generare a Gemini 3.6 Flash 100 domande indipendenti da
   esame allenatore stile Coverciano con rubriche nascoste, far rispondere il RAG
   e raggiungere una media esterna verificata >=8/10. Protocollo e diagnosi
   ufficiale in `docs/coverciano-100-gemini-benchmark-01.md`.
-- [ ] **DA FARE** probe minima del modello stabile `gemini-3.8-flash`, quindi
-  generazione congelata del manifest e valutazione tramite Batch API; nessun
+- [ ] **DA FARE** generazione congelata del manifest con `gemini-3.6-flash` e
+  valutazione tramite Batch API; nessun
   ulteriore uso di `gemini-3.1-flash-lite-preview` (spento) o del preview
   `gemini-3-flash-preview`.
 - [x] **BLOCCATO** probe `gemini-3.8-flash`: `models.list` vede il modello,
