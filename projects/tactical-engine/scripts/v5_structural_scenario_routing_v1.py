@@ -22,6 +22,7 @@ PRINCIPLE_ANCHORS = (
 MOVEMENT_QUERY_CUES = ("quale movimento", "movimento sincronizzato", "andare in porta", "attaccare lo spazio", "corsa")
 MOVEMENT_TEXT_CUES = ("inserimento", "si inserisce", "corsa", "sovrapposizione", "profondità", "spazio creato", "taglio")
 UNDERLAP_TEXT_CUES = ("sottoposizione", "sotto-sovrapposizione", "underlap", "corridoio interno", "terzino interno", "mezzo spazio")
+EXACT_UNDERLAP_CUES = ("sottoposizione", "sotto-sovrapposizione", "underlap")
 
 
 def _normal(value: str) -> str:
@@ -46,7 +47,8 @@ def score_row(row: dict, signals: dict) -> int:
     formation_hits = sum(value in haystack or ("1-" + value) in haystack for value in signals["formations"])
     role_hits = sum(any(alias in haystack for alias in ROLE_ANCHORS[name]) for name in signals["roles"])
     principle_score = sum(
-        10 if term == "underlap" and any(cue in haystack for cue in UNDERLAP_TEXT_CUES)
+        24 if term == "underlap" and any(cue in haystack for cue in EXACT_UNDERLAP_CUES)
+        else 10 if term == "underlap" and any(cue in haystack for cue in UNDERLAP_TEXT_CUES)
         else 7 if term == "movimento sincronizzato" and any(cue in haystack for cue in MOVEMENT_TEXT_CUES)
         else 7 if term not in {"underlap", "movimento sincronizzato"} and term in haystack
         else 0
