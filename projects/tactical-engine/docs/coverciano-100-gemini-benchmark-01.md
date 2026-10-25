@@ -117,3 +117,9 @@ la Batch API ufficiale: creazione non idempotente eseguita una sola volta,
 monitoraggio tramite nome job e materializzazione fail-closed del manifest solo
 dopo `JOB_STATE_SUCCEEDED`. La documentazione Google indica un obiettivo di
 completamento entro 24 ore e spesso tempi inferiori.
+
+La submission Batch ha restituito HTTP 400 `FAILED_PRECONDITION`. La pagina
+prezzi ufficiale indica che Batch non e disponibile nel Free Tier; richiede
+billing, che non viene attivato automaticamente. Alternativa gratuita
+implementata: dieci richieste riprendibili da dieci domande, una per categoria,
+con output separati e merge finale fail-closed.

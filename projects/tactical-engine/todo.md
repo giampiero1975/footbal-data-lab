@@ -52,6 +52,9 @@ l'archivio conservano gli stati storici senza riaprirli.
 - [x] **IMPLEMENTATO** trasporto asincrono ufficiale Gemini Batch API per
   invio, monitoraggio e materializzazione fail-closed del manifest 100;
   submission runtime DA FARE.
+- [x] **IMPLEMENTATO** generatore gratuito riprendibile in 10 blocchi da 10
+  domande, uno per categoria, con merge e gate finale 100/100; prima categoria
+  runtime DA FARE.
 
 ## Stato operativo corrente
 
