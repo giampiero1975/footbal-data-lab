@@ -29,4 +29,8 @@ La guida viene resa vincolante sul formato: nessuna premessa, massimo 350 parole
 
 ## Stato
 
-Primo profilo **ESEGUITO** e non validato; correzione **IMPLEMENTATO**, secondo confronto VPS DA FARE. Nessuna integrazione API.
+Il secondo confronto termina naturalmente (`done_reason=stop`) in 161,09 secondi: -45,0% rispetto ai 292,61 secondi iniziali. Genera 534 token, cita tutte le sei evidenze, non produce citazioni invalide, risponde a entrambi i punti e lascia la collection a 6196 record. SHA-256 JSON: `de7c9fee020a67db43c1ef2d4c0bb001c9a65eececcd070a4e63cfa98ab019d2`.
+
+Il profilo è configurato nel solo servizio API locale tramite `RAG_API_EVIDENCE_LIMIT=6` e `RAG_API_MAX_OUTPUT_TOKENS=700`; servizio riavviato attivo, health 200. Il rollback consiste nel ripristinare 8 e 0. Il runner locked conserva i default precedenti.
+
+**VALIDATO e INTEGRATO** nel profilo API. Valutazione prestazioni/servizio: **9/10** (prima 8,5/10). Non è una certificazione universale della qualità per domande arbitrarie.
