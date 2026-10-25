@@ -119,6 +119,11 @@ class ApiTests(unittest.TestCase):
         self.assertIn("/v1/feedback", panel)
         self.assertIn("exportMarkdown", panel)
         self.assertIn("<details", panel)
+        self.assertIn("Come usare il pannello", panel)
+        self.assertIn('id="askButton" disabled', panel)
+        self.assertIn('id="searchButton" disabled', panel)
+        self.assertIn("r.status===401", panel)
+        self.assertIn("setConnected(true)", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
     def test_feedback_is_bounded_to_succeeded_job_without_content(self):
