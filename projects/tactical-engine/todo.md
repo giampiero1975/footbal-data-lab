@@ -82,6 +82,14 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   pertinente; generazione differenziale finale 8,5/10, 96,43 s, arresto `stop`,
   citazioni valide e indice 6410 invariato. Non ripetere questa domanda senza
   nuova differenza tecnica. Report `docs/structural-scenario-routing-01.md`.
+- [ ] **ESEGUITO, non VALIDATO** scenario indipendente 3-4-2-1 contro 4-2-4:
+  job `e890ef205ae342868a610ef819b3020a`, 189 s, citazioni valide e indice
+  invariato, ma ruoli confusi, difesa a cinque contraddittoria, lato debole
+  errato e due fonti offensive estranee. Revisione Google AI Mode concorde
+  sulle criticita; voto 27/30 non calibrato e non usato come certificazione.
+  Prima di ripetere: separare fase difensiva/offensiva nei candidati, riservare
+  scivolamento della linea a tre/lato debole e registrare la telemetria del
+  routing. Report `docs/structural-scenario-routing-01.md`.
 - [ ] **DA FARE** ridisegno UX del pannello: separare uso normale e
   amministrazione, introdurre modalità conversazione esplicita per follow-up e
   avviso su riferimenti a contesto mancante; estendere 👎 con motivi privacy-safe

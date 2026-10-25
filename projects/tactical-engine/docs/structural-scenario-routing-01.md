@@ -49,3 +49,29 @@ Integrare il routing nel profilo API e non ripetere questa domanda senza una
 nuova differenza tecnica. Il risultato è una validazione circoscritta, non prova
 su tutte le trasformazioni tattiche. Una futura verifica deve usare scenari
 strutturali diversi e indipendenti.
+
+## Verifica indipendente 3-4-2-1 contro 4-2-4 — 2026-10-25
+
+Una domanda nuova ha chiesto come difendere l'ampiezza di un 4-2-4 senza
+abbassare entrambi gli esterni e senza lasciare i centrali in parita contro due
+punte. Il job API `e890ef205ae342868a610ef819b3020a` e terminato in 189
+secondi con stato applicativo `succeeded`, indice invariato e citazioni F1-F4
+formalmente valide.
+
+La qualita tattica non e validata: la risposta chiama “terzino” un componente
+della linea a tre, dichiara di evitare il 5-4-1 ma propone una “difesa a 5”,
+mantiene alto l'esterno debole invece di farlo stringere e reintroduce il
+“libero”. Due evidenze su quattro riguardano triangoli e sovrapposizioni in
+possesso e sono estranee al quesito.
+
+Il revisore esterno Google AI Mode, nella conversazione fornita dal titolare,
+ha rilevato le stesse criticita e ha proposto braccetto di parte in uscita,
+scivolamento centrale, esterno debole dentro e mediano opposto a schermo. Il
+voto conversazionale 27/30 e un segnale non calibrato: la stessa revisione
+descrive errori strutturali incompatibili con un risultato quasi pieno.
+
+**Decisione:** stato `ESEGUITO`, non `VALIDATO`. Prima di una nuova generazione
+serve una differenza tecnica documentata: separazione possesso/non possesso nel
+pool dei candidati, riserva per scivolamento della linea a tre e lato debole,
+piu telemetria del routing nel report. Il giudizio esterno resta shadow e non
+estende la certificazione locked.
