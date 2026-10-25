@@ -55,6 +55,10 @@ l'archivio conservano gli stati storici senza riaprirli.
 - [x] **IMPLEMENTATO** generatore gratuito riprendibile in 10 blocchi da 10
   domande, uno per categoria, con merge e gate finale 100/100; prima categoria
   runtime DA FARE.
+- [ ] **ESEGUITO 30/100** blocchi `costruzione`, `sviluppo_rifinitura` e
+  `transizione_positiva` generati e validati. `transizione_negativa` ha ricevuto
+  503 su 3.6 e fallback 3.1; ripresa automatica ogni 30 minuti attiva senza
+  rigenerare i blocchi esistenti.
 
 ## Stato operativo corrente
 

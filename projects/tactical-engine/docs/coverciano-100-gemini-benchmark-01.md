@@ -123,3 +123,9 @@ prezzi ufficiale indica che Batch non e disponibile nel Free Tier; richiede
 billing, che non viene attivato automaticamente. Alternativa gratuita
 implementata: dieci richieste riprendibili da dieci domande, una per categoria,
 con output separati e merge finale fail-closed.
+
+Esecuzione incrementale: i primi tre blocchi sono riusciti e contengono 30
+domande validate (`costruzione`, `sviluppo_rifinitura`,
+`transizione_positiva`). Il quarto ha ricevuto 503 su entrambi i modelli. E
+attiva la ripresa automatica ogni 30 minuti, che salta i file esistenti e
+notifica soltanto completamento o errore non transitorio.
