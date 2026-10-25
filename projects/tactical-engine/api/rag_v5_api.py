@@ -14,7 +14,10 @@ import subprocess
 import threading
 import time
 import urllib.request
+from urllib.parse import parse_qs, urlparse
 import uuid
+
+from knowledge_catalog import load_catalog, search_catalog
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "scripts/run_rag_v5_query.py"
@@ -35,6 +38,7 @@ def load_config(env=os.environ) -> dict:
         "output_dir": Path(env.get("RAG_API_OUTPUT_DIR", str(ROOT / "evaluation/api-runs"))),
         "collection": env.get("RAG_COLLECTION", "dribbling_tactics_v5_multisource"),
         "expected_count": int(env.get("RAG_EXPECTED_COUNT", "5319")),
+        "chroma_path": Path(env.get("RAG_CHROMA_PATH", str(ROOT.parent.parent / "knowledge/rag/chroma"))),
     }
 
 
@@ -45,6 +49,7 @@ class State:
         self.lock = threading.Lock()
         self.requests = defaultdict(deque)
         self.queue: queue.Queue[str] = queue.Queue(maxsize=config["queue_size"])
+        self.knowledge_catalog: dict | None = None
         config["output_dir"].mkdir(parents=True, exist_ok=True)
         config["output_dir"].chmod(0o700)
 
@@ -109,6 +114,12 @@ class State:
                         self.jobs[job_id]["error"] = detail
                 self.queue.task_done()
 
+    def catalog(self) -> dict:
+        with self.lock:
+            if self.knowledge_catalog is None:
+                self.knowledge_catalog = load_catalog(self.config["chroma_path"], self.config["collection"])
+            return self.knowledge_catalog
+
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "FootballRAG/1"
@@ -139,12 +150,13 @@ class Handler(BaseHTTPRequestHandler):
         return True
 
     def do_GET(self):
-        if self.path == "/healthz":
+        parsed = urlparse(self.path)
+        if parsed.path == "/healthz":
             self.send_json(HTTPStatus.OK, {"status": "ok"})
             return
         if not self.authenticated():
             return
-        if self.path == "/readyz":
+        if parsed.path == "/readyz":
             ready = PYTHON.exists() and RUNNER.exists() and self.state.worker_thread.is_alive()
             try:
                 urllib.request.urlopen("http://127.0.0.1:11434/api/tags", timeout=2).close()
@@ -152,9 +164,36 @@ class Handler(BaseHTTPRequestHandler):
                 ready = False
             self.send_json(HTTPStatus.OK if ready else HTTPStatus.SERVICE_UNAVAILABLE, {"status": "ready" if ready else "not_ready"})
             return
+        if parsed.path == "/v1/knowledge/stats":
+            catalog = self.state.catalog()
+            self.send_json(HTTPStatus.OK, {key: value for key, value in catalog.items() if key not in {"documents", "chunks"}})
+            return
+        if parsed.path == "/v1/knowledge/documents":
+            query = parse_qs(parsed.query)
+            try:
+                offset = max(0, int(query.get("offset", ["0"])[0]))
+                limit = min(100, max(1, int(query.get("limit", ["25"])[0])))
+            except ValueError:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_pagination"}); return
+            catalog = self.state.catalog(); documents = catalog["documents"]
+            self.send_json(HTTPStatus.OK, {"total": len(documents), "offset": offset, "limit": limit,
+                                           "items": documents[offset:offset+limit]})
+            return
+        if parsed.path == "/v1/knowledge/search":
+            query = parse_qs(parsed.query)
+            text = " ".join(query.get("q", [""])[0].split())
+            try:
+                limit = min(50, max(1, int(query.get("limit", ["20"])[0])))
+            except ValueError:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_limit"}); return
+            if not 2 <= len(text) <= 200:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_query"}); return
+            items = search_catalog(self.state.catalog(), text, limit)
+            self.send_json(HTTPStatus.OK, {"query": text, "total": len(items), "items": items})
+            return
         prefix = "/v1/jobs/"
-        if self.path.startswith(prefix):
-            job_id = self.path[len(prefix):]
+        if parsed.path.startswith(prefix):
+            job_id = parsed.path[len(prefix):]
             if not job_id.isalnum() or len(job_id) != 32:
                 self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})
                 return

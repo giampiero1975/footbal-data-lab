@@ -4,6 +4,7 @@ import queue
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
@@ -56,6 +57,12 @@ class ApiTests(unittest.TestCase):
         self.assertEqual(query.validate_request_id("abcd1234"), "abcd1234")
         with self.assertRaises(Exception):
             query.validate_request_id("../invalid")
+
+    def test_catalog_is_loaded_once(self):
+        with tempfile.TemporaryDirectory() as tmp, mock.patch.object(api, "load_catalog", return_value={"documents":[],"chunks":[]}) as loader:
+            state = api.State(self.config(Path(tmp)))
+            self.assertIs(state.catalog(), state.catalog())
+            loader.assert_called_once()
 
 
 if __name__ == "__main__":
