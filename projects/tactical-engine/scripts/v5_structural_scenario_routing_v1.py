@@ -19,6 +19,8 @@ PRINCIPLE_ANCHORS = (
     "corridoio interno", "sovrapposizione", "sotto-sovrapposizione", "terzo uomo",
     "raddoppio", "ampiezza", "profondità", "transizione negativa",
 )
+MOVEMENT_QUERY_CUES = ("quale movimento", "movimento sincronizzato", "andare in porta", "attaccare lo spazio", "corsa")
+MOVEMENT_TEXT_CUES = ("inserimento", "si inserisce", "corsa", "sovrapposizione", "profondità", "spazio creato", "taglio")
 
 
 def _normal(value: str) -> str:
@@ -31,6 +33,8 @@ def anchors(question: str) -> dict:
     formations |= {value[2:] for value in formations if value.startswith("1-")}
     roles = {name for name, aliases in ROLE_ANCHORS.items() if any(alias in query for alias in aliases)}
     principles = {term for term in PRINCIPLE_ANCHORS if term in query}
+    if any(cue in query for cue in MOVEMENT_QUERY_CUES):
+        principles.add("movimento sincronizzato")
     return {"formations": formations, "roles": roles, "principles": principles}
 
 
@@ -38,8 +42,11 @@ def score_row(row: dict, signals: dict) -> int:
     haystack = _normal(" ".join((str(row.get("source") or ""), " ".join(row.get("headings") or []), str(row.get("text") or ""))))
     formation_hits = sum(value in haystack or ("1-" + value) in haystack for value in signals["formations"])
     role_hits = sum(any(alias in haystack for alias in ROLE_ANCHORS[name]) for name in signals["roles"])
-    principle_hits = sum(term in haystack for term in signals["principles"])
-    return formation_hits * 12 + role_hits * 3 + principle_hits * 4
+    principle_hits = sum(
+        any(cue in haystack for cue in MOVEMENT_TEXT_CUES) if term == "movimento sincronizzato" else term in haystack
+        for term in signals["principles"]
+    )
+    return formation_hits * 10 + role_hits * 3 + principle_hits * 6
 
 
 def reserve(rows: list[dict], rerank_scores, selected: list[dict], question: str, limit: int, maximum: int = 2):

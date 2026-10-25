@@ -14,6 +14,13 @@ class StructuralRoutingTests(unittest.TestCase):
         self.assertEqual(values["roles"],{"terzino","ala"})
         self.assertEqual(values["principles"],{"half-space","marcatura preventiva"})
 
+    def test_derives_synchronized_run_intent(self):
+        signals=m.anchors("Se il braccetto esce sull'ala, quale movimento deve fare il terzino per andare in porta?")
+        self.assertIn("movimento sincronizzato",signals["principles"])
+        direct={"source":"Il sistema 4-3-3","headings":[],"text":"taglio dell'ala e inserimento del terzino nello spazio creato"}
+        static={"source":"Difesa 3-5-2","headings":[],"text":"terzino e ala controllano il braccetto"}
+        self.assertGreater(m.score_row(direct,signals),m.score_row(static,signals))
+
     def test_reserves_distinct_structurally_relevant_sources(self):
         rows=[
             {"id":"generic","source":"Principi","headings":[],"text":"ampiezza e profondità"},
