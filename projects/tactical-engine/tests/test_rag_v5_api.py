@@ -91,6 +91,10 @@ class ApiTests(unittest.TestCase):
         self.assertIn("allDocuments", panel)
         self.assertIn("/v1/metrics", panel)
         self.assertIn("Qualità operativa", panel)
+        self.assertIn("Cronologia della sessione", panel)
+        self.assertIn("item.evidence", panel)
+        self.assertIn("done_reason", panel)
+        self.assertIn("askButton", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
     def test_metrics_are_persisted_without_question_text(self):
