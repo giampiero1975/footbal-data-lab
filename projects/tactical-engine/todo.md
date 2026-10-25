@@ -100,6 +100,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   `REVIEW_ID_MISMATCH`; nessuna media accettata. V3 consentita solo dopo ID
   brevi con mappa agli UUID e persistenza diagnostica pre-gate; rubrica
   invariata. Report V2 preservato senza sovrascrittura.
+- [ ] **BLOCCATO** baseline numerica Gemini: V3 con ID brevi e V4 isolata sul
+  solo caso 1 hanno entrambe ricevuto HTTP 503 prima del contenuto. Ledger
+  locale 4/10; preservare i sei tentativi residui e non riprovare finche il
+  servizio non torna disponibile. Nessun voto o media esterna disponibile.
 - [ ] **DA FARE** ridisegno UX del pannello: separare uso normale e
   amministrazione, introdurre modalità conversazione esplicita per follow-up e
   avviso su riferimenti a contesto mancante; estendere 👎 con motivi privacy-safe

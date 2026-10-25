@@ -96,3 +96,9 @@ restituito fedelmente. Nessun voto o media e stato accettato. La correzione V3
 usa ID brevi `case_01`-`case_06`, conserva una mappa agli UUID runtime e salva
 la risposta diagnostica prima della validazione. Il prompt e la rubrica restano
 invariati.
+
+Il tentativo V3 con ID brevi ha ricevuto HTTP 503 prima del contenuto. Una
+successiva prova V4 limitata al solo `case_01` ha restituito lo stesso HTTP 503:
+la riduzione del payload non ha risolto l'indisponibilita. Il ledger locale e a
+4/10; i sei tentativi residui non vanno consumati finche il servizio non torna
+disponibile. Nessuna baseline numerica Gemini e stata prodotta.
