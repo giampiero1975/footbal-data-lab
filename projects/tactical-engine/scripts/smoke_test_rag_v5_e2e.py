@@ -22,6 +22,7 @@ from v5_heading_routing_v1 import expand as heading_expand, headings as metadata
 from v5_heading_reservation_v2 import reserve as heading_reserve
 from v5_source_semantic_rank_v3 import semantic_source_ranking
 from v5_source_hybrid_rank_v4 import select_source as hybrid_source_select
+from v5_structural_scenario_routing_v1 import reserve as structural_reserve
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -69,6 +70,15 @@ def discover_named_sources(collection, question):
 def scoped_guidance(question):
     q=question.casefold()
     guidance=[]
+    formations=set(re.findall(r"(?<!\d)(?:[1-9]-){2,3}[1-9](?!\d)",q))
+    structural_terms=("terzino","mezzala","ala","esterno","centravanti","punta","braccetto","mediano","trequartista","half-space","corridoio interno")
+    if len(formations)>=2 or sum(term in q for term in structural_terms)>=3:
+        guidance.append(" Ricostruisci prima i ruoli realmente presenti nel sistema di partenza e non rinominarli con ruoli di un altro modulo. "
+                        "Distingui sempre i nostri giocatori dagli avversari. Per ogni trasformazione indica in ordine: chi si muove, "
+                        "da quale posizione, verso quale spazio e quale dilemma crea al difensore avversario. Se la domanda chiede un "
+                        "movimento sincronizzato, rispondi subito con quel movimento e la linea di corsa, poi spiega perché libera lo spazio. "
+                        "Non attribuire all'avversario trequartisti o altri ruoli assenti dalla struttura descritta; se gli estratti non "
+                        "sostengono un dettaglio, dichiaralo invece di trasferire meccanismi da un modulo diverso.")
     if question.startswith("Perché la descrizione di un assetto difensivo nel manuale interno"):
         guidance.append(" Elenca esplicitamente i moduli 4-3-3, 4-4-2, 3-5-2 e 3-4-2-1 con le rispettive citazioni. "
                         "Distingui le descrizioni tattiche dalle prove causali: senza dati comparativi non si può dimostrare "
@@ -220,6 +230,7 @@ def main():
     ap.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate retrieval")
     ap.add_argument("--targeted-coverage",action="store_true")
     ap.add_argument("--heading-routing",action="store_true",help="Opt-in generic metadata heading expansion; no benchmark ID rules")
+    ap.add_argument("--structural-routing",action="store_true",help="Opt-in generic formation/role/principle context reservation")
     ap.add_argument("--source-ranking-trace",action="store_true",help="Record source-level semantic scores; requires heading routing and retrieval-only")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
@@ -373,6 +384,10 @@ def main():
                     source_ranking_trace=semantic_source_ranking(question,rows,rerank)
                     selected_source, hybrid_trace=hybrid_source_select(question,rows,rerank)
                     source_selection_trace={"selected_source":selected_source,"semantic_margin":1.5,"candidates":hybrid_trace}
+            structural_reserved=[]
+            structural_signals={}
+            if args.structural_routing:
+                selected,structural_reserved,structural_signals=structural_reserve(rows,scores,selected,question,args.limit)
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
@@ -386,6 +401,7 @@ def main():
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
                    "source_aware_source":source_hint,"source_aware_sources":named_sources,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"consolidation_excluded_ids":consolidation_excluded,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"explicit_manual_reserved_ids":explicit_manual_reserved,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
+                   "structural_reserved_ids":structural_reserved,"structural_signals":structural_signals,
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
                    "alias_chunks_skipped":dropped,

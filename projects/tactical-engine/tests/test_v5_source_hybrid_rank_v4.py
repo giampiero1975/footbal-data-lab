@@ -133,6 +133,15 @@ class ScopedGuidanceTests(unittest.TestCase):
     def test_unrelated_question_has_no_guidance(self):
         self.assertEqual(self.module.scoped_guidance("Come creare ampiezza?"), "")
 
+    def test_structural_guidance_preserves_roles_and_defender_dilemma(self):
+        guidance = self.module.scoped_guidance(
+            "Nel 4-3-3 contro 3-5-2, terzino, ala e braccetto si muovono nell'half-space: quale rotazione?"
+        )
+        self.assertIn("ruoli realmente presenti", guidance)
+        self.assertIn("chi si muove", guidance)
+        self.assertIn("dilemma", guidance)
+        self.assertIn("ruoli assenti", guidance)
+
     def test_lateral_zone_guidance_requires_complete_prudent_attribution(self):
         guidance = self.module.scoped_guidance(
             "Perché sono rischiosi i laterali nella zona B e che ruolo ha la pressione a invito?"

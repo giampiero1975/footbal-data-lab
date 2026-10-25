@@ -63,7 +63,7 @@ def main() -> None:
     if not args.legacy_profile:
         argv.extend([
             "--source-aware", "--exercise-candidate", "--priority-exact",
-            "--targeted-coverage", "--heading-routing",
+            "--targeted-coverage", "--heading-routing", "--structural-routing",
         ])
     sys.argv = argv
     v5.main()

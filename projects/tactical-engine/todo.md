@@ -73,12 +73,13 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   con riferimenti fuori dalle evidenze disponibili o senza citazioni non può
   più essere marcata come job riuscito. Evidenza reale: test Coverciano citava
   `F10` con sole `F1–F6`; compilazione e suite VPS 15/15, deploy senza riavvio.
-- [ ] **DA FARE** correggere il routing strutturale delle domande complesse su
+- [x] **IMPLEMENTATO** routing strutturale delle domande complesse su
   moduli e trasformazioni. Due esecuzioni reali hanno recuperato fonti troppo
   generiche o riferite a 4-4-2/3-4-1-2 nonostante il catalogo contenga materiale
-  specifico 4-3-3/3-5-2 e catene terzino-mezzala-esterno. Non ripetere le due
-  baseline; prima implementare e verificare retrieval-only una riserva generica
-  basata su moduli, ruoli e principi.
+  specifico 4-3-3/3-5-2 e catene terzino-mezzala-esterno. Riserva generica
+  basata su moduli, ruoli e principi e guida ruolo-spazio-dilemma aggiunte alla
+  sola API; default locked invariato. Test e verifica retrieval-only DA FARE;
+  non ripetere le due baseline prima del gate.
 - [x] **VALIDATO e INTEGRATO** Biblioteca PDF parlante con classificazione derivata
   tattica/tecnica/allenamento/altro, conteggi, ricerca per titolo e filtro per
   categoria. 157 documenti: primarie 120 tattica, 27 tecnica, 10 allenamento;
