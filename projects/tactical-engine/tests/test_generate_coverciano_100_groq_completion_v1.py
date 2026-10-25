@@ -7,8 +7,9 @@ gen = importlib.util.module_from_spec(spec); spec.loader.exec_module(gen)
 
 
 def row(number, category, text=None):
+    unique = " ".join(f"elemento{number}x{i}" for i in range(35))
     return {"id": f"coverciano_{number:03d}", "category": category, "difficulty": 4,
-            "question": text or ("Scenario tattico concreto molto dettagliato con spazi tempi ruoli vincoli e richiesta tecnica " + str(number) * 20),
+            "question": text or ("Scenario tattico concreto con spazi tempi ruoli vincoli e richiesta tecnica " + unique),
             "hidden_rubric": {"constraints": ["c"], "expected_points": ["e"], "critical_errors": ["x"]}}
 
 
