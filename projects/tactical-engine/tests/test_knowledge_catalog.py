@@ -36,5 +36,19 @@ class KnowledgeCatalogTests(unittest.TestCase):
         out=m.aggregate_rows("test",{},self.rows)
         self.assertEqual(m.search_catalog(out,"a",10),[])
 
+    def test_document_categories_are_derived_and_explainable(self):
+        out=m.aggregate_rows("test",{},self.rows)
+        manual_a=out["documents"][0]
+        self.assertEqual(manual_a["category"],"tattica")
+        self.assertIn("tattica",manual_a["categories"])
+        self.assertGreater(manual_a["category_scores"]["tattica"],0)
+        self.assertNotIn("_category_text",manual_a)
+
+    def test_training_and_other_categories(self):
+        training=m.classify_document("Programma sedute","", "Esercitazioni di allenamento nel microciclo")
+        other=m.classify_document("Regolamento amministrativo","", "Norme e disposizioni")
+        self.assertEqual(training["category"],"allenamento")
+        self.assertEqual(other["category"],"altro")
+
 
 if __name__ == "__main__": unittest.main()

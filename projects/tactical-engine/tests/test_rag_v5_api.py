@@ -124,6 +124,10 @@ class ApiTests(unittest.TestCase):
         self.assertIn('id="searchButton" disabled', panel)
         self.assertIn("r.status===401", panel)
         self.assertIn("setConnected(true)", panel)
+        self.assertIn("Biblioteca PDF", panel)
+        self.assertIn("libraryCategory", panel)
+        self.assertIn("renderLibrary", panel)
+        self.assertIn("estratti indicizzati", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
     def test_feedback_is_bounded_to_succeeded_job_without_content(self):

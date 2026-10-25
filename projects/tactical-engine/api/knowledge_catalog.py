@@ -7,6 +7,23 @@ import json
 from pathlib import Path
 
 
+CATEGORY_TERMS = {
+    "tattica": ("tattic", "pressing", "transizion", "possesso", "non possesso", "costruzion", "modulo", "sistema di gioco", "fase offensiva", "fase difensiva"),
+    "tecnica": ("tecnic", "passaggio", "ricezione", "controllo", "dribbling", "tiro", "colpo di testa", "gesto"),
+    "allenamento": ("allenament", "esercitaz", "seduta", "esercizio", "metodolog", "preparazione", "microciclo", "carico"),
+}
+
+
+def classify_document(source: str, headings: str, text: str) -> dict:
+    """Return a transparent, derived editorial category without changing the index."""
+    weighted = f"{source} {source} {source} {headings} {headings} {text}".casefold()
+    scores = {category: sum(weighted.count(term) for term in terms) for category, terms in CATEGORY_TERMS.items()}
+    ranked = sorted(((score, category) for category, score in scores.items() if score), reverse=True)
+    primary = ranked[0][1] if ranked else "altro"
+    categories = [category for score, category in ranked if score >= max(1, ranked[0][0] // 3)] if ranked else ["altro"]
+    return {"category": primary, "categories": categories, "category_scores": scores}
+
+
 def _pages(value) -> list[int]:
     try:
         parsed = json.loads(value) if isinstance(value, str) else value
@@ -33,9 +50,13 @@ def aggregate_rows(collection_name: str, collection_metadata: dict, rows: dict) 
             "chunk_count": 0,
             "pages": set(),
             "origin_complete": source != "origine_incompleta" and bool(metadata.get("source_pdf")),
+            "_category_headings": [],
+            "_category_text": [],
         })
         item["chunk_count"] += 1
         item["pages"].update(pages)
+        item["_category_headings"].append(str(metadata.get("headings") or ""))
+        item["_category_text"].append(str(document or raw_text))
         chunks.append({
             "id": identifier,
             "source": source,
@@ -50,6 +71,7 @@ def aggregate_rows(collection_name: str, collection_metadata: dict, rows: dict) 
     for item in sources.values():
         item["pages"] = sorted(item["pages"])
         item["page_count_observed"] = len(item["pages"])
+        item.update(classify_document(item["source"], " ".join(item.pop("_category_headings")), " ".join(item.pop("_category_text"))))
         documents.append(item)
     documents.sort(key=lambda x: x["source"].casefold())
     return {

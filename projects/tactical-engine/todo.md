@@ -64,6 +64,15 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   ricerca con provenienza e submit/polling RAG; API catalogo 6410 chunk/157 fonti,
   test 8/8 e smoke HTTP 200. Bind localhost e token solo in memoria; report
   `docs/knowledge-panel-api-v1.md`. Collegamenti a eventuali applicazioni esterne restano fuori perimetro.
+- [x] **VALIDATO e INTEGRATO** onboarding del pannello pubblico: help operativo,
+  recupero amministrativo del token, stato di connessione, domanda e ricerca
+  disabilitate prima dell'autenticazione e messaggio 401 comprensibile. Test VPS
+  13/13 e smoke HTTPS con token 200/senza token 401; commit `6bca4f0`, `e70c674`.
+  Report `docs/knowledge-panel-application-integration-02.md`.
+- [x] **IMPLEMENTATO** Biblioteca PDF parlante con classificazione derivata
+  tattica/tecnica/allenamento/altro, conteggi, ricerca per titolo e filtro per
+  categoria. Nessuna modifica all'indice o al retrieval; test e collaudo VPS
+  differenziali DA FARE.
 - [x] **VALIDATO** primo E2E applicativo distinto: risposta 3001 caratteri,
   8 evidenze, citazioni F1–F8 valide, indici 5319/34 invariati; SHA-256 nel
   report `docs/rag-v5-http-api-validation-01.md`.
