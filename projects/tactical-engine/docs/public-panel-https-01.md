@@ -4,7 +4,7 @@ Data: 2026-10-25. Stato: **IMPLEMENTATO**; emissione TLS **BLOCCATO** dal DNS.
 
 ## Attività
 
-Pubblicare il pannello locale tramite `https://footballlab.byoursite.com`,
+Pubblicare il pannello locale tramite `https://football-lab.byoursite.com`,
 mantenendo API e worker su `127.0.0.1:8088` dietro reverse proxy.
 
 ## Prerequisito esterno
@@ -12,7 +12,7 @@ mantenendo API e worker su `127.0.0.1:8088` dietro reverse proxy.
 Record DNS richiesto:
 
 - tipo `A`;
-- nome `footballlab`;
+- nome `football-lab`;
 - valore `163.5.26.155`;
 - modalità solo DNS durante emissione e collaudo del certificato.
 
@@ -38,7 +38,7 @@ Configurazioni versionate:
 - `deploy/nginx-footballlab-bootstrap.conf`;
 - `deploy/nginx-footballlab-https.conf`.
 
-Il DNS pubblico non restituisce ancora un record per
-`footballlab.byoursite.com`. L'emissione del certificato resta **BLOCCATO**
-finché il record non risolve verso `163.5.26.155`. Non esporre direttamente la
-porta 8088.
+Il nome inizialmente pianificato senza trattino è stato sostituito dal nome
+effettivamente creato `football-lab.byoursite.com`. Il DNS pubblico risolve
+correttamente verso `163.5.26.155`; emissione del certificato e collaudo sono
+ora autorizzati. Non esporre direttamente la porta 8088.

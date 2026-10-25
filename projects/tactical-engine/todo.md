@@ -89,7 +89,7 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   rate/body limit e timeout. Dominio scelto; deploy e certificato sono tracciati
   nella voce successiva. La porta 8088 resta solo localhost.
 - [x] **IMPLEMENTATO** pubblicazione del pannello su
-  `https://footballlab.byoursite.com`: Nginx e Certbot installati, bootstrap
+  `https://football-lab.byoursite.com`: Nginx e Certbot installati, bootstrap
   ACME attivo con 404 sul resto, API ancora solo localhost; configurazione HTTPS
   versionata. Certificato e collaudo **BLOCCATO** finché il record DNS `A` non
   risolve verso `163.5.26.155`. Report `docs/public-panel-https-01.md`.

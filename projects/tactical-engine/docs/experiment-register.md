@@ -17,8 +17,8 @@ La fotografia consolidata, con evidenze e limiti, è
 
 Il `CERTIFICATO` locked non si estende a Drive11, FIGC5, API o domande
 arbitrarie. Le attività tecniche correnti sono osservazione prolungata e
-pubblicazione di `footballlab.byoursite.com` (**DA FARE**); l'emissione TLS è
-**BLOCCATO** finché il DNS non risolve verso la VPS. Il reboot completo è VALIDATO. Consumer esterno,
+pubblicazione di `football-lab.byoursite.com` (**DA FARE**); il DNS risolve ora
+verso la VPS. Il reboot completo è VALIDATO. Consumer esterno,
 parallelismo generativo e nuove certificazioni sono decisioni facoltative.
 
 Le voci sotto sono cronologia immutabile: uno stato storico non prevale sulla
@@ -729,3 +729,5 @@ Attività: predisporre in sicurezza il reverse proxy pubblico. Configurazioni: `
 Attività: audit sicurezza pre-pubblicazione. Script: API, test e configurazione HTTPS; report `docs/public-panel-security-audit-01.md`. Risultato: porte, permessi 700/600, hardening systemd, segreti e log baseline conformi; individuati tentativi token errato non limitati e query string potenzialmente loggata. Correzioni: bucket auth separato 20/min, log applicativo senza query e formato Nginx `$uri`, TLS/header rafforzati; test offline 16/16. Decisione: deploy e smoke VPS senza inferenza; HTTPS resta dipendente dal DNS. Stato: IMPLEMENTATO.
 
 Attività: validare e integrare hardening pre-pubblicazione; implementazione `9961a39`. Risultato: test VPS 16/16; token errati 20×401 poi 429, token valido ancora ready 200; marker ricerca assente dai log; UFW trovato inattivo e abilitato con sole regole OpenSSH/Nginx Full IPv4/IPv6, nessuna 8088/11434; riconnessione SSH, Nginx/API e bootstrap 404 verificati. Decisione: conservare API/Ollama localhost e completare TLS solo dopo DNS. Stato: VALIDATO e INTEGRATO.
+
+Attività: riconciliare il nome DNS effettivo. Configurazioni Nginx e report HTTPS aggiornati da `footballlab.byoursite.com` al nome creato `football-lab.byoursite.com`; la voce precedente resta cronologia della pianificazione. Risultato: risoluzione pubblica verificata verso `163.5.26.155`. Decisione: procedere con ACME e collaudo pubblico. Stato: VALIDATO per DNS; HTTPS DA FARE.

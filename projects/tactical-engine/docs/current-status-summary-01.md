@@ -36,7 +36,7 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
   recovery systemd sono VALIDATI e non vanno ripetuti senza una modifica tecnica;
   evidenza reboot in `docs/rag-v5-full-reboot-validation-01.md`.
 - **IMPLEMENTATO:** Nginx, Certbot e configurazioni per
-  `https://footballlab.byoursite.com`; bootstrap espone soltanto la challenge
+  `https://football-lab.byoursite.com`; bootstrap espone soltanto la challenge
   ACME. Certificato e collaudo: **BLOCCATO** finché il record DNS `A` non risolve
   verso `163.5.26.155`; 8088 resta locale.
 
