@@ -1,6 +1,6 @@
 # Knowledge Panel feedback ed export 01
 
-Data: 2026-10-25. Stato: **IMPLEMENTATO**.
+Data: 2026-10-25. Stato: **VALIDATO e INTEGRATO**.
 
 ## Attività e differenza tecnica
 
@@ -28,6 +28,16 @@ esterni. Il token resta soltanto in memoria come prima.
 
 ## Decisione
 
-Eseguire deploy VPS, smoke autenticato del feedback su un job controllato e
-verifica HTTP del pannello. Non eseguire inferenze o benchmark. Stato corrente:
-**IMPLEMENTATO**, non ancora INTEGRATO.
+Deploy VPS completato nel commit `e9dda93`. Suite VPS 14/14, compilazione
+superata e servizio `active/running`. Smoke HTTP non generativo:
+
+- readiness `ready`;
+- collection invariata a 6410 chunk/157 documenti;
+- pannello contiene feedback ed export;
+- endpoint autenticato risponde correttamente `404 not_found` per un job
+  inesistente senza creare file;
+- percorso positivo e assenza di contenuti nel file verificati dal test unitario.
+
+Decisione: pannello **VALIDATO e INTEGRATO**. Non è stata eseguita alcuna
+inferenza o ripetizione di benchmark. Il feedback reale inizierà a essere
+raccolto soltanto quando l'utente valuterà risposte concluse dal pannello.

@@ -43,10 +43,11 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 
 ### P1 — Prossima fase applicativa
 
-- [x] **IMPLEMENTATO** completamento operativo del pannello: fonti espandibili,
+- [x] **INTEGRATO** completamento operativo del pannello: fonti espandibili,
   export Markdown locale e feedback utile/non utile autenticato, persistito
-  senza domanda o risposta. Test offline 14/14 e sintassi JavaScript superati;
-  deploy VPS DA FARE. Report `docs/knowledge-panel-feedback-export-01.md`.
+  senza domanda o risposta. Test locale e VPS 14/14, sintassi JavaScript,
+  readiness, collection 6410/157 e smoke HTTP superati senza inferenza. Report
+  `docs/knowledge-panel-feedback-export-01.md`.
 
 - [x] **VALIDATO** contratto API HTTP asincrona a job, separato dal benchmark
   locked e documentato in `docs/rag-v5-http-api-contract-01.md`.
