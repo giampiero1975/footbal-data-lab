@@ -49,7 +49,7 @@ def score_row(row: dict, signals: dict) -> int:
     return formation_hits * 10 + role_hits * 3 + principle_hits * 6
 
 
-def reserve(rows: list[dict], rerank_scores, selected: list[dict], question: str, limit: int, maximum: int = 2):
+def reserve(rows: list[dict], rerank_scores, selected: list[dict], question: str, limit: int, maximum: int = 3):
     signals = anchors(question)
     if len(signals["formations"]) + len(signals["roles"]) + len(signals["principles"]) < 2:
         return selected, [], signals
