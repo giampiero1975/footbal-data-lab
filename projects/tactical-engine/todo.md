@@ -47,6 +47,8 @@ l'archivio conservano gli stati storici senza riaprirli.
   reviewer migrato a 3.6 stabile; 3.1 Flash-Lite ammesso come fallback.
 - [x] **IMPLEMENTATO** generatore fail-closed delle 100 tracce Gemini:
   `scripts/generate_coverciano_100_gemini_v1.py`; manifest runtime DA FARE.
+- [x] **BLOCCATO** prima generazione con `gemini-3.6-flash`: HTTP 503 dopo
+  circa 16 s, nessun manifest; un solo fallback 3.1 Flash-Lite DA FARE.
 
 ## Stato operativo corrente
 

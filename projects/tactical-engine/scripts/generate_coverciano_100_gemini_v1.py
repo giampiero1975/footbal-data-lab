@@ -13,7 +13,8 @@ import urllib.error
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-MODEL = "gemini-3.6-flash"
+DEFAULT_MODEL = "gemini-3.6-flash"
+ALLOWED_MODELS = ("gemini-3.6-flash", "gemini-3.1-flash-lite")
 BASE_PROMPT = "fammi 100 domande da commissione all'esame da allenatore a coverciano sulla tattica"
 CATEGORIES = (
     "costruzione", "sviluppo_rifinitura", "transizione_positiva",
@@ -68,6 +69,7 @@ def validate(rows: object) -> list[dict]:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--model", choices=ALLOWED_MODELS, default=DEFAULT_MODEL)
     parser.add_argument("--confirm-gemini-generation", action="store_true")
     args = parser.parse_args()
     if args.output.exists():
@@ -93,7 +95,7 @@ non deve suggerire la risposta nel testo della domanda."""
         "contents": [{"role": "user", "parts": [{"text": BASE_PROMPT}]}],
         "generationConfig": {"temperature": 0.7, "responseMimeType": "application/json", "maxOutputTokens": 60000},
     }
-    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{MODEL}:generateContent"
+    endpoint = f"https://generativelanguage.googleapis.com/v1beta/models/{args.model}:generateContent"
     req = urllib.request.Request(endpoint, data=json.dumps(request).encode(),
         headers={"Content-Type": "application/json", "x-goog-api-key": key}, method="POST")
     started = dt.datetime.now(dt.timezone.utc)
@@ -108,7 +110,7 @@ non deve suggerire la risposta nel testo della domanda."""
     report = {
         "schema": "coverciano_gemini_question_manifest_v1",
         "status": "ESEGUITO",
-        "model": MODEL,
+        "model": args.model,
         "base_prompt": BASE_PROMPT,
         "generated_at_utc": started.isoformat(),
         "question_count": len(rows),

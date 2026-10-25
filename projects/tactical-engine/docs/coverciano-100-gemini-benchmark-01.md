@@ -104,3 +104,9 @@ Il generatore fail-closed e ora disponibile in
 ordinati, dieci categorie con dieci domande ciascuna, difficolta 3-5, testo non
 duplicato e rubriche nascoste complete. Non sovrascrive un manifest esistente.
 Stato del codice: **IMPLEMENTATO**; chiamata Gemini e manifest ancora DA FARE.
+
+Prima chiamata di generazione prompt-only sulla VPS: `gemini-3.6-flash` ha
+restituito HTTP 503 dopo circa 16 secondi, senza produrre manifest e senza
+ricevere PDF, evidenze o output RAG. Differenza tecnica autorizzata: il
+generatore accetta ora il fallback stabile `gemini-3.1-flash-lite`; consentita
+una sola richiesta separata, senza retry immediato sul 3.6.
