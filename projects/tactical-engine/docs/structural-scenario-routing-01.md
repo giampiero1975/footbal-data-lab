@@ -89,3 +89,10 @@ La variante successiva usa esplicitamente `gemini-3-flash-preview`, gia
 collaudato dal progetto, e un nuovo file di output. La differenza di modello e
 il 503 precedente giustificano un solo tentativo separato; non sovrascrivere il
 report V1.
+
+Il tentativo V2 con `gemini-3-flash-preview` ha ricevuto una risposta, ma il
+gate l'ha rifiutata con `REVIEW_ID_MISMATCH`: almeno un UUID lungo non e stato
+restituito fedelmente. Nessun voto o media e stato accettato. La correzione V3
+usa ID brevi `case_01`-`case_06`, conserva una mappa agli UUID runtime e salva
+la risposta diagnostica prima della validazione. Il prompt e la rubrica restano
+invariati.

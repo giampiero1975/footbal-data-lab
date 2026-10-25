@@ -115,10 +115,18 @@ def main() -> None:
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
     cases = [extract_case(path) for path in args.reports]
-    ids = [row["id"] for row in cases]
-    if len(set(ids)) != len(ids):
+    runtime_ids = [row["id"] for row in cases]
+    if len(set(runtime_ids)) != len(runtime_ids):
         raise SystemExit("DUPLICATE_CASE_ID")
+    case_map = {}
+    for number, row in enumerate(cases, 1):
+        short_id = f"case_{number:02d}"
+        case_map[short_id] = row["id"]
+        row["runtime_id"] = row["id"]
+        row["id"] = short_id
+    ids = list(case_map)
     meta = {"model": args.model, "cases": len(cases), "case_ids": ids,
+            "runtime_case_map": case_map,
             "rag_executed": False, "index_writes": False}
     if args.dry_run:
         print(json.dumps({"preflight": "PASS", **meta}, indent=2))
@@ -154,6 +162,8 @@ def main() -> None:
             payload = json.loads(response.read())
         text = "".join(part.get("text", "") for part in payload["candidates"][0]["content"]["parts"])
         parsed = json.loads(text)
+        output["raw_review"] = parsed
+        output["raw_response_sha256"] = hashlib.sha256(text.encode()).hexdigest()
         rows = validate_review(parsed, ids)
         scores = [float(row["score"]) for row in rows]
         output.update({"status": "ESEGUITO", "reviews": rows,
@@ -163,7 +173,7 @@ def main() -> None:
                        "target_reached": sum(scores) / len(scores) >= 8,
                        "series_limitations": parsed.get("series_limitations", []),
                        "usage_metadata": payload.get("usageMetadata", {}),
-                       "raw_response_sha256": hashlib.sha256(text.encode()).hexdigest()})
+                       })
     except (urllib.error.HTTPError, urllib.error.URLError, KeyError, ValueError,
             json.JSONDecodeError) as exc:
         output.update({"status": "BLOCCATO", "error_type": type(exc).__name__,

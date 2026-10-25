@@ -95,6 +95,11 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   `evaluation/gemini_coverciano_runtime_series_v1.json`, un tentativo locale,
   nessun voto e nessun retry automatico. Consentito un solo V2 con
   `gemini-3-flash-preview` e output separato; non estende la certificazione.
+- [ ] **BLOCCATO** V2 Gemini: risposta ricevuta da
+  `gemini-3-flash-preview`, ma rifiutata fail-closed per
+  `REVIEW_ID_MISMATCH`; nessuna media accettata. V3 consentita solo dopo ID
+  brevi con mappa agli UUID e persistenza diagnostica pre-gate; rubrica
+  invariata. Report V2 preservato senza sovrascrittura.
 - [ ] **DA FARE** ridisegno UX del pannello: separare uso normale e
   amministrazione, introdurre modalità conversazione esplicita per follow-up e
   avviso su riferimenti a contesto mancante; estendere 👎 con motivi privacy-safe
