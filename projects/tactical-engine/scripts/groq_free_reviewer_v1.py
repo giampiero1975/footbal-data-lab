@@ -137,12 +137,14 @@ def main() -> None:
             "elapsed_seconds": (dt.datetime.now(dt.timezone.utc)-started).total_seconds(), "usage": usage, **validated})
     except urllib.error.HTTPError as exc:
         policy = http_policy(exc.code, exc.headers.get("retry-after"))
+        raw_error = exc.read().decode(errors="replace")[:1000]
         try:
-            error_payload = json.loads(exc.read().decode(errors="replace"))
+            error_payload = json.loads(raw_error)
             error_message = str(error_payload.get("error", {}).get("message", "http_error"))[:500]
             error_type = str(error_payload.get("error", {}).get("type", type(exc).__name__))[:100]
         except (json.JSONDecodeError, AttributeError, TypeError):
-            error_message, error_type = "unparseable_http_error", type(exc).__name__
+            error_message = " ".join(raw_error.split())[:500] or "empty_http_error"
+            error_type = type(exc).__name__
         atomic_new(args.output, {**meta, "network_called": True, "status": "BLOCCATO",
                                  "http_status": exc.code, "policy": policy, "error_type": error_type,
                                  "error_message": error_message.replace(key, "[REDACTED]")})
