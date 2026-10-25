@@ -86,13 +86,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
 - [x] **VALIDATO** ambiente Ragas rimosso come artefatto rigenerabile e fuori
   dal runtime certificato; script, report NLI e client Gemini conservati come
   archivio riproducibile, non come prerequisiti della certificazione corrente.
-- [ ] **DA FARE** pianificare, solo se utile al prodotto, un nuovo benchmark su
-  documenti e domande realmente nuovi. Deve avere un gold indipendente e una
-  differenza tecnica documentata; non ripetere il locked 10/10.
-- [x] **IMPLEMENTATO** holdout esterno Drive11 da sei casi su fonti assenti dalla
+- [x] **VALIDATO** holdout esterno Drive11 da sei casi su fonti assenti dalla
   collection certificata 5319, congelato prima della generazione con hash,
-  pagine, evidence ID e claim; preflight VPS DA FARE. Report
-  `docs/v5-external-drive11-holdout-01.md`.
+  pagine, evidence ID e claim. Esito 6/6, zero citazioni invalide, 6196→6196;
+  non è certificazione universale. Report `docs/v5-external-drive11-holdout-01.md`.
 - [ ] **DA FARE** valutare robustezza, latenza e concorrenza nel futuro servizio
   applicativo, separandole dalla qualità già certificata del wrapper CLI.
 

@@ -1,0 +1,832 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_candidate_v1",
+  "count_before": 6196,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "drive11_ext_01",
+      "question": "Nella tesi di Vincenzo Italiano, quale deve essere il primo pensiero collettivo dopo il recupero della palla e come viene definito l'attacco diretto?",
+      "answer": "In base alle fonti fornite, ecco le risposte relative alla tesi di Vincenzo Italiano:\n\n**Primo pensiero collettivo dopo il recupero della palla**\nIl primo pensiero collettivo della squadra, una volta recuperata la palla e stabilite le giuste distanze, deve essere quello di **attaccare la porta avversaria il più velocemente possibile**, con convinzione e aggressività. Questo approccio implica affrontare direttamente le fasi di costruzione, rifinitura e finalizzazione del gioco offensivo [F1].\n\n**Definizione di attacco diretto**\nPer \"attacco diretto\" si intende l'orientamento sistematico di ogni azione in direzione della porta avversaria, sia in ampiezza che in profondità. Tale strategia mira a diminuire il tempo dedicato alla costruzione del gioco, consentendo alla squadra di portarsi immediatamente nella metà campo avversaria per poi rifinire e finalizzare l'azione [F1].\n\nÈ importante notare che l'attacco diretto promuove una cultura del rischio (giocare per vincere) ed è considerato un principio della fase di attacco organizzato da sfruttare quando possibile, a differenza della gestione del possesso che privilegia il consolidamento e la messa in sicurezza del pallone [F4].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "4ee2d2d76f06f4224bd58b442c55d7635e13a67445f20445438675fec8030d56",
+          "source": "vincenzo-italiano_tesi",
+          "canonical_source": "vincenzo-italiano_tesi",
+          "source_relative": "formations-and-systems/vincenzo-italiano_tesi.json",
+          "pages": "[8, 9]",
+          "distance": 0.39427,
+          "headings": [
+            "2.1 Fase di possesso Ð transizione offensiva"
+          ],
+          "text": "2.1 Fase di possesso Ð transizione offensiva\nCome punto di inizio necessario affermare che attaccare significa avere lÕobiettivo di segnare un gol nella porta avversaria. Vuol dire che il primo pensiero collettivo della squadra, una volta stabilite le giuste distanze tra i suoi componenti, ed una volta recuperata la palla, quello di attaccare la porta avversaria il pi velocemente possibile, con convinzione ed aggressivitˆ, affrontando obiettivamente le fase di costruzione, rifinitura e finalizzazione del gioco offensivo.\nPer attacco diretto si intende lÕorientamento sistematico di ogni azione in direzione della parta avversaria, in ampiezza o in profonditˆ; tende, pertanto, a diminuire il tempo della costruzione del gioco per consentire alla squadra di portarsi subito nella metˆ campo avversaria, per poi rifinire e finalizzare lÕazione.\nLÕattacco diretto, promuove la cultura del rischio: giocare per vincere e non per evitare di perdere. Non condizionato dallÕossessione di perdere il pallone."
+        },
+        {
+          "label": "F2",
+          "id": "cfe4263137294ef7fa378392a789f64c627458f5fa7de787977d498a13bbfeb8",
+          "source": "Sistema di gioco 3-5-2",
+          "canonical_source": "Sistema di gioco 3-5-2",
+          "source_relative": "formations-and-systems/Sistema di gioco 3-5-2.json",
+          "pages": "[4]",
+          "distance": 0.42339,
+          "headings": [
+            "Atteggiamento del collettivo in fase di non possesso:"
+          ],
+          "text": "Atteggiamento del collettivo in fase di non possesso:\nØ L'azione difensiva si svolge prevalentemente sul movimento della palla e non dell'avversario.\nØ Ogni giocatore non deve farsi superare dall'avversario, con o senza palla.\nØ Bisogna essere aggressivi sul portatore palla, cercando di non farsi superare.\nCosì facendo (pressione sul portatore palla) si ha più possibilità ad indurre l'avversario all'errore e di recuperare palla con un compagno.\nNon basta fare pressione individuale, ma c'è bisogno del pressing dei compagni sugli avversari più vicini (collaborazione).\nEffettuando questo atteggiamento, una volta recuperata la palla, si può tentare una ripartenza repentina con più uomini."
+        },
+        {
+          "label": "F3",
+          "id": "9c794b9d90e0b8f92690d4c1a1642e3216307d470f0eed8ebeabd8bc40e5c797",
+          "source": "FOOTBALL_DATA_LAB_Palle_Inattive_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Palle_Inattive_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Palle_Inattive_Manuale.json",
+          "pages": "[1]",
+          "distance": 0.43154,
+          "headings": [
+            "Attacco primo palo"
+          ],
+          "text": "Attacco primo palo\nMovimento rapido verso una zona predefinita, con opzione spizzata o conclusione diretta."
+        },
+        {
+          "label": "F4",
+          "id": "977acc5e116f8685ef6016e4bc51354cab15a55edbfb87a952c2540e5bc821b9",
+          "source": "vincenzo-italiano_tesi",
+          "canonical_source": "vincenzo-italiano_tesi",
+          "source_relative": "formations-and-systems/vincenzo-italiano_tesi.json",
+          "pages": "[8, 9]",
+          "distance": 0.47516,
+          "headings": [
+            "2.1 Fase di possesso Ð transizione offensiva"
+          ],
+          "text": "2.1 Fase di possesso Ð transizione offensiva\nIn sostanza durante il gioco ogni volta che una squadra ha il dominio della palla, mi piace pensare che questa squadra in fase di gestione del possesso. EÕ un principio, quello del possesso a me caro in particolar modo, poichŽ quando facevo il calciatore ci˜ che mi rendeva pi felice era proprio quando toccavo spesso il pallone. EÕ un lavoro che richiede tanta pazienza, dove per avere Òil pallino del giocoÓ lo devi allenare costantemente con gli aspetti reali della partita, dove cÕ la paritˆ numerica (o la superioritˆ numerica), le dimensioni del campo devono essere di una certa entitˆ, lo spirito di sacrificio collettivo, il non voler mai buttare la palla. Detto questo, attraverso i suoi principi specifici, le caratteristiche della fase di possesso di una mia squadra devono basarsi soprattutto sul consolidamento (ovvero la non ricerca a tutti i costi della verticalitˆ ma solo quando necessaria o possibile) o messa in sicurezza del pallone, la conduzione (cio il guadagnare metri di campo quando possibile, ÒprovocandoÓ lÕavversario), la ricerca del lato debole (quelle zone di campo dove lÕavversario ti concede superioritˆ numerica o ampi spazi per giocare), il tutto supportato dal grande coraggio che bisogna avere nellÕinterpretare tutto ci˜. Fatto salvo il concetto di consolidamento, quando possibile (ad esempio in determinate zone di campo o in base agli spazi che lÕavversario concede) sono propenso a sfruttare lÕarma dellÕattacco diretto: un principio della fase di attacco organizzato."
+        },
+        {
+          "label": "F5",
+          "id": "fd26adddad066c0f0aac045e37638fa1c3c618b2666e9fe7e1ae5d954c26c5ec",
+          "source": "spalla_tesi-uefa-pro",
+          "canonical_source": "spalla_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/spalla_tesi-uefa-pro.json",
+          "pages": "[87, 88]",
+          "distance": 0.40665,
+          "headings": [
+            "Considerazioni finali"
+          ],
+          "text": "Considerazioni finali\nCome descritto, il calcio italiano continuava a basarsi su una difesa solida e una preparazione accurata, con un'attenzione particolare allo studio degli avversari e alla capacitˆ di chiudere gli spazi. Le squadre giocavano con intensitˆ e aggressivitˆ nella fase di non possesso, mentre la gestione del possesso palla era spesso affidata alle caratteristiche e alle qualitˆ individuali dei calciatori. Questa flessibilitˆ tattica permetteva di sfruttare al meglio i punti di forza dei giocatori pi importanti. Inoltre, molte squadre eccellevano nelle ripartenze e negli attacchi diretti, passando rapidamente dalla fase difensiva a quella offensiva. Questi principi, che in passato avevano contribuito al successo delle squadre italiane nelle competizioni europee e alla vittoria della Nazionale nel 2006, rimanevano centrali e costituivano un tratto distintivo del calcio italiano, rappresentando una risorsa fondamentale nel repertorio tattico di ogni allenatore anche al giorno dÕoggi.\nSuccessivamente, emerso un modello di gioco pi orientato al possesso della palla e al dominio della partita, caratterizzato dalla decisione di iniziare la costruzione del gioco dal basso e di difendere nella metˆ campo avversaria. In questo approccio, lÕattenzione della fase difensiva era focalizzata meno sugli avversari e sui loro movimenti e pi sulla coordinazione della squadra come un blocco unico, in base alla posizione della palla e alla propria porta da difendere."
+        },
+        {
+          "label": "F6",
+          "id": "ffa7ed54cf542ac5f0284ab15f3fe93dc6314e130dff76797a90438ae7f9bebb",
+          "source": "vincenzo-italiano_tesi",
+          "canonical_source": "vincenzo-italiano_tesi",
+          "source_relative": "formations-and-systems/vincenzo-italiano_tesi.json",
+          "pages": "[2]",
+          "distance": 0.48559,
+          "headings": [
+            "Sommario"
+          ],
+          "text": "Sommario\n\n ..........................................................................................................., 1 = 7. ÒPensiero tatticoÓ, 1 = ..................................................................................................... 7. 2.1 Fase di possesso Ð transizione offensiva .............................................................................., 1 = 7. 2.2 Fase di non possesso Ð recupero palla Ð attacco diretto ....................................................., 1 = 8. 2.3 Il principio dellÕadattabilitˆ ................................................................................................, 1 ="
+        },
+        {
+          "label": "F7",
+          "id": "b790a6bbc694c176b65507ca06439c0c734f86d398588bba814b0e982d9b7bf7",
+          "source": "Allegati_71201095527",
+          "canonical_source": "Allegati_71201095527",
+          "source_relative": "formations-and-systems/Allegati_71201095527.json",
+          "pages": "[2]",
+          "distance": 0.38164,
+          "headings": [
+            "Premessa"
+          ],
+          "text": "Premessa\nHo desiderato svolgere in questa tesi non tanto un argomento di carattere generale come per esempio l'analisi di un particolare sistema di gioco (zona, uomo) quanto piuttosto dedicarmi all'approfondimento di un momento specifico del contesto gara che, statistiche alla mano, incide ormai, direttamente o indirettamente, praticamente su circa la metà delle reti segnate: la fase di attacco nelle situazioni di palla inattiva. Ho ritenuto opportuno e conveniente organizzare la presente trattazione secondo il seguente schema o piano dell'opera: dopo una breve introduzione all'argomento, propongo nella prima parte (PARTE I), necessariamente in maniera molto snella, alcune considerazioni di carattere generale, all'interno della quale sono esposti certi miei personali convincimenti a proposito della materia in esame. Nella seconda parte di questo lavoro (PARTE II) presento alcune soluzioni specifiche, riprese per larghissima parte dagli schemi adottati dal mio Mantova nelle due stagioni agonistiche appena trascorse. Per chiarezza espositiva ho diviso gli schemi tra Calcio d'inizio, Calcio d'angolo, Calcio di punizione, Rimessa laterale; ho fatto precedere i vari tipi di schemi da alcune note e approfondimenti. Per riprendere e sintetizzare i momenti salienti di questa mia trattazione, ho inserito alcune mie valutazioni finali aventi carattere di note conclusive."
+        },
+        {
+          "label": "F8",
+          "id": "600e27132df557b833772cc6b3570146d83e2eedc74529281fa646fd60be1106",
+          "source": "Transizioni.Ussia",
+          "canonical_source": "Transizioni.Ussia",
+          "source_relative": "formations-and-systems/Transizioni.Ussia.json",
+          "pages": "[2]",
+          "distance": 0.39716,
+          "headings": [
+            "Premessa"
+          ],
+          "text": "Premessa\nLa capacità mentale di reagire velocemente alla perdita del possesso e di recuperare una corretta posizione in fase difensiva, rappresentano, quindi, una qualità fondamentale per ridurre i rischi derivanti dalle ripartenze avversarie. Come spesso si è affermato, fase difensiva e fase offensiva sono strettamente collegate: quando si difende i giocatori sopra la linea della palla devono essere orientati tatticamente e mentalmente ad un potenziale contrattacco, mentre quando si attacca si deve pensare a non perdere di vista il posizionamento difensivo in caso di perdita del possesso. Una squadra che vuol essere equilibrata nelle due fasi, dunque, deve attaccare in maniera razionale, tenendo corti i reparti e predisponendo delle coperture preventive sotto la linea della palla che abbiano lo scopo di evitare facili ripartenze avversarie."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+        "vincenzo-italiano_tesi"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "citation_ids": [
+        "1",
+        "4"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 117.78,
+      "generation": {
+        "total_duration_ns": 110865737018,
+        "eval_count": 253,
+        "prompt_eval_count": 2006
+      }
+    },
+    {
+      "id": "drive11_ext_02",
+      "question": "Secondo la tesi Contran, come cambiava la struttura dell'Italia di Mancini fra possesso e non possesso partendo dal 4-3-3?",
+      "answer": "Secondo la tesi di Contran (Fonte [F1]), l'Italia di Mancini partiva da un sistema base **4-3-3** per poi evolvere in strutture diverse a seconda della fase di gioco:\n\n*   **In fase di possesso:** La squadra occupava gli spazi con una struttura offensiva **3-2-5**, utilizzando 5 canali offensivi.\n*   **In fase di non possesso:** La struttura difensiva si definiva in un **4-5-1**. In questa configurazione, le due ali (Insigne e Chiesa) arretravano per ricostituire il blocco difensivo.\n\nLe fonti fornite non specificano i nomi dei singoli giocatori che occupavano i ruoli nel modulo 3-2-5 offensivo o nel 4-5-1 difensivo oltre all'indicazione generica delle ali (Insigne e Chiesa) [F1].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "1d069e53a949cd566da9c84921dd693c1aec51f1351a33d63636947c8cedcc02",
+          "source": "contran_uefa-pro",
+          "canonical_source": "contran_uefa-pro",
+          "source_relative": "formations-and-systems/contran_uefa-pro.json",
+          "pages": "[9, 10]",
+          "distance": 0.3858,
+          "headings": [
+            "INTRODUZIONE"
+          ],
+          "text": "INTRODUZIONE\nL'identità di una squadra si va sempre più discostando dal modulo avvicinandosi, invece, ai principi di gioco.\nUno dei tanti esempi di una squadra moderna che ha adottato diverse strutture offensive e difensive è l'Italia campione d'Europa di Roberto Mancini, allenatore con cui lavoro da diversi anni, che partiva da un sistema base 4-3-3 per poi, attraverso alcune rotazioni, occupare gli spazi con una struttura offensiva 3-2-5 andando a occupare i 5 canali offensivi.\nFigura 3 - Italia struttura difensiva vs Inghilterra - Finale Europeo 2021\nIn fase di non possesso la struttura difensiva si definiva in un 4-5-1 con l'arretramento delle due ali (Insigne e Chiesa).\nAltri esempi di squadre che applicano una struttura difensiva differente per le diverse zone di campo sono il Barcellona di Xavi nella stagione 2021/22 (vedi la gara di Europa League contro il Napoli di Spalletti) e\ndella Spagna Under 15. Partendo entrambe da un sistema base 4-3-3, in fase di pressione alta in zona 3 (zona più alta di campo dove si pressa la costruzione avversaria) si posizionano con un 4-1-3-2 (rombo a centrocampo) alzando la mezzala sinistra al fianco dell'attaccante, portando l'altra mezzala destra sul play avversario e arretrando le due ali.\nFigura 4 - Pressing del Barcellona 2021/22 da 4-3-3 a 4-1-3-2\nFigura 5 - Pressing 4-1-3-2 del Barcellona 2021/21\nFigura 6 - Pressing della Spagna U15 da 4-3-3 a 4-1-3-2"
+        },
+        {
+          "label": "F2",
+          "id": "40d4f607a72c4be332c666b6931bdf68f0b8c42e5aa91591c3236c7668408c17",
+          "source": "La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi",
+          "canonical_source": "La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi",
+          "source_relative": "formations-and-systems/La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi.json",
+          "pages": "[10, 11, 12, 13, 14, 15]",
+          "distance": 0.57841,
+          "headings": [
+            "FASE DIFENSIVA IN UN MODULO 4-3-3 A ZONA"
+          ],
+          "text": "FASE DIFENSIVA IN UN MODULO 4-3-3 A ZONA\nIn particolare, le ali devono comprendere e assimilare bene il meccanismo della necessaria copertura sul lato debole dell'azione offensiva. Ciò sempre per poter ricostituire quel \"3+1\" rispetto al possesso palla avversario, di cui si diceva sopra. E' un meccanismo generale e di buon senso, che infatti ritroviamo - e non può che essere così - anche nell'interpretazione di altri moduli di gioco quali il 3-4-3 o il 4-4-2.\nSi veda, in figura 12, come l'ala destra abbia effettuato la giusta copertura sul lato debole dell'azione offensiva avversaria. in caso di ripartenza, fungeranno da appoggi immediati la punta centrale e l'ala opposta.\na cura di Marco Proto La fase di non possesso nel 4-3-3: tattica individuale e meccanismi colle... http://www.calciatori.com/magazine1.nsf/webprint/C46302DAB9A58...\nLa fase di non possesso nel 4-3-3: tattica individuale e meccanismi colle... http://www.calciatori.com/magazine1.nsf/webprint/C46302DAB9A58...\nLa fase di non possesso nel 4-3-3: tattica individuale e meccanismi colle... http://www.calciatori.com/magazine1.nsf/webprint/C46302DAB9A58...\nLa fase di non possesso nel 4-3-3: tattica individuale e meccanismi colle... http://www.calciatori.com/magazine1.nsf/webprint/C46302DAB9A58..."
+        },
+        {
+          "label": "F3",
+          "id": "7a77d986ad4ac33b39bf0d6bbc016d7f09143a10f7ec6779a64546a63b30dfa1",
+          "source": "spalla_tesi-uefa-pro",
+          "canonical_source": "spalla_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/spalla_tesi-uefa-pro.json",
+          "pages": "[12, 13, 14]",
+          "distance": 0.49335,
+          "headings": [
+            "- Marcatura a uomo nella zona"
+          ],
+          "text": "- Marcatura a uomo nella zona\nLa fase di possesso, invece, non si basava su giocate predefinite o codificate, ma su principi dettati dalle caratteristiche dei calciatori a disposizione. Questo approccio non era legato alla rigiditˆ di schemi precisi a prescindere dall'avversario, bens\" a situazioni studiate in base all'avversario di turno. Nelle partite della Juventus di Allegri, si poteva notare come spesso la squadra attaccasse con una disposizione tattica e difendesse con una diversa, in base alle richieste della partita e dell'avversario affrontato. Esempio: 2016/17 - 10^ giornata Juventus - Sampdoria Inoltre, con molta intelligenza, lÕallenatore nella sua prima stagione ha proseguito nella struttura tattica del 3-5-2 tracciata dalla gestione precedente per poi, con il passare del tempo, compiere degli adattamenti per mettere i calciatori a disposizione nelle condizioni migliori di esprimersi in base alle loro caratteristiche:\n- Fase di possesso Juventus in 3-5-2\n- Fase di non possesso Juventus in 4-4-2\n2016/17 - 29^ giornata Sampdoria - Juventus\nDisposizione tattica in 4-2-3-1 con lÕutilizzo di Dybala trequartista sotto ad Higuain e con lÕintuizione proficua di Mandzukic esterno alto di sinistra.\n2018/19 - 19^ giornata Juventus - Sampdoria\nDisposizione tattica in 4-3-3 con lÕavvento di Ronaldo posizionato alto a sinistra ma libero di muoversi e sgravato di eccessivi compiti difensivi dal supporto di Mautidi come mezzala."
+        },
+        {
+          "label": "F4",
+          "id": "620b7025145fac708fec3bc874b32a32846e0731909196ec954cea0236de458c",
+          "source": "sviluppo_fase_offensiva",
+          "canonical_source": "sviluppo_fase_offensiva",
+          "source_relative": "formations-and-systems/sviluppo_fase_offensiva.json",
+          "pages": "[1]",
+          "distance": 0.48891,
+          "headings": [
+            "Premessa"
+          ],
+          "text": "Premessa\nNel corso della mia carriera di calciatore mi sono trovato a interpretare diversi moduli di gioco dal 4-4-2 di Eriksson al 4-3-3 di Galeone e via dicendo; solo in un secondo momento, quando ho intrapreso la carriera di tecnico con la qualifica di allenatore in seconda, la mia preferenza personale si è sempre più orientate in senso favorevole all'adozione del modulo 4-3-3.\nPer tradizione culturale la fase difensiva è da sempre curata in Italia con particolare attenzione; tuttavia l'introduzione nell'ultimo decennio della regola dei 3 punti a premiare la vittoria (decisione a suo tempo assai coraggiosa che ha dato effetti positivi) ed alcune modifiche regolamentari non di poco conto (revisione della regola del fuorigioco, inasprimento disciplinare nella sanzione dei falli di gioco etc.) hanno contribuito a mutare in parte la natura del gioco e di conseguenza hanno inciso sul modo di pensare calcio da parte degli allenatori.\nL'espressione più moderna del calcio attuale è rappresentata da squadre che praticano un gioco certamente organizzato in fase difensiva (e non potrebbe essere altrimenti!), ma prevalentemente orientato alla costruzione della manovra d'attacco.\nA livello squisitamente personale ho avuto la possibilità e la fortuna di collaborare con tecnici quali Cadregari e Galeone che nell'utilizzare il modulo 4-3-3 ponevano grande enfasi nell'organizzazione della fase di possesso.\nPer questa ragione ho deciso di dedicare queste mie note all'argomento."
+        },
+        {
+          "label": "F5",
+          "id": "26074e1d2178eaa901be7a572113f99395df8ec83518f8d10bd1b88ec45e8c55",
+          "source": "La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi",
+          "canonical_source": "La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi",
+          "source_relative": "formations-and-systems/La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi.json",
+          "pages": "[1]",
+          "distance": 0.54905,
+          "headings": [
+            "La fase di non possesso nel 4-3-3: tattica individuale e meccanismi collettivi"
+          ],
+          "text": "La fase di non possesso nel 4-3-3: tattica individuale e meccanismi collettivi\ndi Marco Proto\nLa fase di non possesso nel 4-3-3: tattica individuale e meccanismi collettivi\nLe premesse di base le abbiamo date, giusto per intenderci quando parleremo di fase difensiva gestita in base ai concetti della 'ZONA'. Ora vediamo l'applicazione di questi concetti in un sistema di gioco che prevede due difensori centrali, due difensori esterni, un centrale di centrocampo basso, due cursori, due ali e una punta centrale: in pratica un 4-5-1 o 4-3-3 che dir si voglia.\nInnanzitutto visualizziamo la solita lavagna tattica da cui prenderanno spunto i nostri ragionamenti tattici: in figura 1 presentiamo proprio un classico modulo 4-3-3:\nCome già anticipato nella prima parte di questa trattazione (vedi magazine calciatori.com sez.tecnica e tattica), i cinque principi fondamentali di tattica individuale della fase di non"
+        },
+        {
+          "label": "F6",
+          "id": "0bc47ec8e4ead13542f9c985db23374aad11326514c327ba7f9ecad28c226900",
+          "source": "La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi",
+          "canonical_source": "La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi",
+          "source_relative": "formations-and-systems/La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi.json",
+          "pages": "[7, 8, 9]",
+          "distance": 0.59276,
+          "headings": [
+            "FASE DIFENSIVA IN UN MODULO 4-3-3 A ZONA"
+          ],
+          "text": "FASE DIFENSIVA IN UN MODULO 4-3-3 A ZONA\nQueste necessarie premesse dovrebbero aver fatto capire che, a prescindere dai vari moduli di gioco, la fase difensiva deve avvenire con i medesimi concetti e criteri tattici.\nVolendo soffermarci, comunque, su aspetti marcatamente teoretici, si possono individuare - sulla nostra solita lavagna tattica - i movimenti tipici di un 4-3-3 impegnato nella fase di non possesso.\nLa dislocazione 4-3-3 indicata in figura 8 deve gestire la fase di non possesso secondo i principi della 'ZONA', già visti in sede precedente. Vediamo qualche esempio.\nIn figura 9 vediamo un approccio molto aggressivo alla manovra avversaria, non sempre consigliabile e/o praticabile. La punta centrale è in chiusura sul centrale di destra. Al passaggio diretto verso il centrale sinistro, si muove in pressione la mezzala destra. Le ali attendono in zona i terzini. Il loro posizionamento è importante per impedire un gioco agevole e fluido.\nIn figura 10 viene praticata la soluzione sull'esterno sinistro. Va in pressione l'ala destra, adeguatamente assistita dal movimento di copertura della sua mezzala. Il centravanti va in \"contrasto indiretto\", creando una proficua zona d'ombra, sul centrale di sinistra. L'ala sul lato debole, come abbiamo specificato nella trattazione dei concetti di base, decide in base al contesto tattico se stringere verso la zona di pressione, oppure se assumere una posizione più attendista e prudente."
+        },
+        {
+          "label": "F7",
+          "id": "e845f7e382216d62818b9aa671e9dd57964b3720bbeb7c26bda2fef725342780",
+          "source": "contran_uefa-pro",
+          "canonical_source": "contran_uefa-pro",
+          "source_relative": "formations-and-systems/contran_uefa-pro.json",
+          "pages": "[166]",
+          "distance": 0.53801,
+          "headings": [
+            "I FALSI CENTRALI"
+          ],
+          "text": "I FALSI CENTRALI\nUna delle più grande novità proposte da Guardiola nella scorsa stagione (2022/23) che lo ha visto trionfare con il Manchester City vincendo il \"Treble\" (Premier League, Champions League e FA Cup) è stata proprio l'utilizzo del \"falso centrale\" cioè di un centrale difensivo utilizzato come costruttore in fase di possesso. Nessuna invenzione, ma tanto studio, applicazione e un collegamento con il suo passato. Tale meccanismo era stato adottato da Cruijff, e vedeva il centrocampista Miquel Nadal, zio del tennista Rafa, iniziare dalla difesa e alzarsi fino all'altezza del regista. A quel tempo, il regista era proprio Guardiola 55 .\nLa scorsa stagione Guardiola, nonostante avesse cambiato alcuni giocatori in rosa, ha impostato la struttura tattica posizionale dell'anno precedente che prevedeva l'utilizzo dei falsi terzini (che analizzerò nel capitolo successivo), un'altra sua invenzione tattica passata risalente ai tempi in cui allenava il Bayern Monaco.\nAnalizzando le prime partite di Premier League notiamo come la struttura posizionale portava ad una costruzione con un 2+3 con i due terzini dentro al campo insieme al play. Questa soluzione è stata adottata nelle prime giornate di campionato dove Guardiola spesso utilizzava come terzini che venivano dentro al campo Walker a destra e Joao Cancelo a sinistra."
+        },
+        {
+          "label": "F8",
+          "id": "a89239829d7a64bb907e40cf65f635b3e8e2b81b1f2281faf2f1ca268a83692f",
+          "source": "difesa_possesso_Morace",
+          "canonical_source": "difesa_possesso_Morace",
+          "source_relative": "formations-and-systems/difesa_possesso_Morace.json",
+          "pages": "[1]",
+          "distance": 0.5729,
+          "headings": [
+            "I MOVIMENTI DELLA DIFESA IN FASE DI POSSESSO DELLA PALLA"
+          ],
+          "text": "I MOVIMENTI DELLA DIFESA IN FASE DI POSSESSO DELLA PALLA\ndi Carolina Morace*\nn un precedente articolo ho trattato della fase di non possesso palla della difesa della Nazionale di Calcio Femminile, adesso evidenziamo i movimenti della difesa nella fase di possesso palla. Tale aspetto è fondamentale per lo sviluppo e la costruzione di azioni di gioco offensive efficaci. Come ho già detto la Nazionale Azzurra Femminile ha impostato il proprio sistema di gioco partendo dal 4-4-2 per poi \"modularsi\" in base alle condizioni fisiche delle atlete ed al modulo di gioco della squadra avversaria. I\nSe la nostra difesa ha un buon possesso palla la nostra squadra ha il tempo di \"rifiatare\" e di riorganizzarsi nei momenti di difficoltà ma, oltretutto, far girare palla alla difesa significa far rincorrere la stessa dalle attaccanti avversarie che in tal modo perderanno lucidità in fase realizzativa; inoltre, avere un buon possesso palla, consente alla nostra squadra di alternare il gioco lungo al gioco corto che, con continui cambiamenti di gioco, ci permettono di non dare alcun punto di riferimento alle avversarie."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "La fase di non possesso nel 4-3-3_ premesse di base",
+        "La fase di non possesso nel 4-3-3_ tattica individuale e meccanismi collettivi",
+        "contran_uefa-pro",
+        "difesa_non_possesso_Morace",
+        "difesa_possesso_Morace",
+        "superiorita_in_possesso_palla_Tesser"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "citation_ids": [
+        "1"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 140.6,
+      "generation": {
+        "total_duration_ns": 130342246036,
+        "eval_count": 193,
+        "prompt_eval_count": 3118
+      }
+    },
+    {
+      "id": "drive11_ext_03",
+      "question": "Nella tesi di Andrea Maldera, quale differenza viene indicata tra organizzare una squadra per principi e organizzarla per codifiche?",
+      "answer": "Nella tesi di Andrea Maldera, la differenza fondamentale tra organizzare una squadra per **Principi** e per **Codifiche** risiede nella natura della decisione e nella comprensione del gioco da parte dei giocatori:\n\n*   **Organizzazione per Principi:** L'allenatore richiede una maggiore **comprensione del gioco** e concede ai giocatori una **libertà di scelta** superiore [F1]. Il giocatore possiede una \"conoscenza\" per gestire la situazione specifica che si crea in campo, agendo come protagonista autonomo [F2], [F3]. Questo approccio considera il calcio un contesto complesso (\"malvagio\") dove le situazioni non sono sempre ripetibili e prevedibili, puntando sulla capacità di interpretare il momento [F3].\n*   **Organizzazione per Codifiche:** L'allenatore richiede l'esecuzione di movimenti **prestabiliti** provati e riprovati in allenamento, dove l'efficacia deriva dal miglioramento dei tempi e dalla precisione meccanica dell'esecuzione [F1], [F3]. In questo modello, la codifica è spesso un \"compito da fare\" o un'esecuzione che si ripete a prescindere dalla situazione specifica, trattando il calcio come un contesto più prevedibile (\"gentile\") basato sulla ripetizione di azioni (Chunking) [F2], [F3].\n\nMaldera chiarisce che la differenza non sta necessariamente nell'effetto tattico finale (che può essere simile, ad esempio nello scappare per coprire uno spazio), ma nella diversa **comprensione** della situazione da parte del giocatore: nei principi si agisce per scelta consapevole, nelle codifiche si esegue un ordine [F1], [F2].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "1f5e5619bc22c8e5a160ea7af6401d3a1366f0a4787f52178383018ca37fda09",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[5]",
+          "distance": 0.37809,
+          "headings": [
+            "1.2 PRINCIPI E CODIFICHE"
+          ],
+          "text": "1.2 PRINCIPI E CODIFICHE\nEsistono alcune differenze tra una squadra che costruisce un pensiero di calcio attraverso Principi o che lo costruisce per Codifiche.\nGrazie alla mia esperienza ho maturato l'idea che l'allenatore che costruisce una squadra basandosi più sui Principi, chiede una maggior comprensione del gioco e dà una libertà di scelta maggiore ai giocatori. L'allenatore che invece costruisce la propria organizzazione per Codifiche, spesso richiede movimenti che vengono provati e riprovati in allenamento con azioni spesso prestabilite dove l'efficacia è ottenuta con un miglioramento dei tempi e nella precisione di esecuzione.\nI due modi di pensiero possono comunque avere letture molto simili: Se una squadra ha come principio, per la linea difensiva in fase di non possesso, la copertura dello spazio e della profondità, quando l'avversario si sta preparando a calciare una palla in profondità, la linea dei difensori tende a \"scappare\" per coprire lo spazio stesso. Succede la medesima cosa per un allenatore che crede nella codifica. In questo caso, ad esempio, l'allenatore chiederà ai propri difensori che ogni volta che un avversario si prepara a calciare una palla in profondità, esattamente come per il principio, di \"scappare\". Diversi pensieri, diversa comunicazione, ma stessa lettura del momento di gara.(fig.1) . La differenza non sta nell'effetto della situazione nello specifico, ma in\nuna diversa \"comprensione\" della situazione."
+        },
+        {
+          "label": "F2",
+          "id": "1c7dd88382db8963aafdcd7a5bed013b6e9f94f7d4e4710297332506bff44fd6",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[6, 7]",
+          "distance": 0.40936,
+          "headings": [
+            "PRINCIPI, STRATEGIA E PERCORSO TATTICO"
+          ],
+          "text": "PRINCIPI, STRATEGIA E PERCORSO TATTICO\nLa mia esperienza con la Nazionale Ucraina Andrea Maldera\nFig.1\nCi sono comunque anche delle Codifiche quando il pensiero della squadra è orientato sui Principi. Ad esempio, durante la preparazione della fase difensiva di una gara, può essere chiesta un'uscita di pressione di un esterno alto orientando il portatore di palla avversario verso l'interno o esterno del campo, appunto Codificandola in relazione di una Strategia di gara\nNelle figure 2 e 3 si può notare come la stessa squadra, Bayern Monaco, e lo stesso giocatore, Sanè, ha una lettura difensiva diversa: nella fig.2 contro il Barcellona che giocava con una difesa a quattro, orienta una pressione verso l'esterno, mentre nel fig.3, avversario il Borussia Monchengladback che schiera una difesa a tre l'orientamento della pressione è far giocare l'avversario verso l'interno del campo.\nIl Principio del Bayern Monaco in fase di non possesso è lo stesso, esercitare una pressione alta, cambia la strategia e appunto la Codifica nell'uscita.\nFig.2\nFig.3\nIn conclusione credo che dentro il Principio spesso c'è la Codifica e viceversa, soprattutto nella fase di non possesso, la differenza è che la Codifica, di solito non è una scelta, ma è un compito da fare, un'esecuzione che si ripete a prescindere dalla situazione. Nel Principio, invece la differenza la fa proprio la capacità di fare una scelta da parte del giocatore, cioè il Principio è una conoscenza per gestire la situazione che si crea in campo."
+        },
+        {
+          "label": "F3",
+          "id": "bb881d163f19dd0f6203013b0fa056b3e016661e4b0684d6a5498d9c102f8b73",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[8]",
+          "distance": 0.46319,
+          "headings": [
+            "2.1 LA \"SCELTA\" E PRINCIPI DI GIOCO"
+          ],
+          "text": "2.1 LA \"SCELTA\" E PRINCIPI DI GIOCO\nQuante volte guardando una partita e riferendoci all'errore di un giocatore diciamo: \"ha sbagliato la scelta\". Ho accennato nel capitolo precedente alla proposta per Codifiche o Principi. Una delle differenze più importanti è che in quella per Principi al giocatore è data una maggior libertà di compiere una scelta, di avere una maggiore comprensione del gioco, della situazione e di reagire di conseguenza. Nella proposta per Codifiche il giocatore deve, oltre a tutti gli aspetti già citati, soprattutto eseguire una giocata prestabilita.\nDetto questo la domanda che noi allenatori dobbiamo porci è: \"come posso migliorare nel giocatore la capacità di scegliere? È un talento o si può allenare? In che modo, attraverso quali mezzi?\"\nCercherò in questo capitolo, con il supporto della *Dott.ssa Barbara Rossi, Psicologa dello Sport, di provare a dare delle risposte a questa domanda.\nPrima di affrontare la discussione mi sembra opportuno anche approfondire il discorso di Hogard* sulla distinzione tra contesti gentili (dove le situazioni sono ripetibili e prevedibili) e contesti malvagi (dove si ripete e scarseggiano i punti di riferimento). Lavorare per Codifiche significa propendere per la tendenza a considerare il calcio un contesto gentile e si punta a accrescere le qualità di Chunking* dei giocatori, a lavorare per Principi invece si propende per il malvagio e si punta sulla capacità dei giocatori di interpretare le situazioni."
+        },
+        {
+          "label": "F4",
+          "id": "cd60863e56813c8c7f580b01c78f6d18269a06723e6c366b3e9660c1519d5e10",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[60]",
+          "distance": 0.44862,
+          "headings": [
+            "CONCLUSIONI"
+          ],
+          "text": "CONCLUSIONI\nHo voluto esporre, attraverso la mia esperienza con la Nazionale Ucraina, il percorso utilizzato nel dare un'identità Tattica e dei Principi di gioco ad un gruppo e una squadra nuova.\nIn questa mia tesi ho voluto dare rilevanza alla differenza tra Principi e Codifiche e alla Strategia di gara. Oggi nel preparare una partita l'interpretazione, la fluidità di movimenti e il piano gara necessitano di molte conoscenze e adattamenti non a caso ho scelto di prendere in considerazione proprio due partite giocate con sistemi di gioco differenti, ma con gli stessi Principi.\nHo voluto dare molto valore anche alla programmazione, al percorso e alla capacità dell'allenatore e dello staff di saper insegnare e trasmettere le proprie idee. I calciatori sono sempre i protagonisti di questo sport, ed è grazie alle loro qualità che un allenatore può esprimere al meglio il proprio pensiero, ma da soli oggi non bastano. E' compito dell'allenatore e dello staff far rendere al meglio i calciatori, aiutarli a crescere individualmente e all'interno della squadra."
+        },
+        {
+          "label": "F5",
+          "id": "7aa632a965ee4112e30989f5b0113051235e94ee0830ea1214068cc9c26f20bc",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[4]",
+          "distance": 0.4768,
+          "headings": [
+            "Per la fase di non possesso palla:"
+          ],
+          "text": "Per la fase di non possesso palla:\n- Scaglionamento difensivo\n- Azione ritardatrice/Temporaggiamento\n- Concentrazione/Densità\n- Equilibrio\n- Controllo\nI Principi sopra elencati non sono i Principi di una squadra in particolare o di un allenatore, ma sono (o meglio) dovrebbero essere sempre presenti in un'organizzazione di gioco complessa ed organizzata.\nPer un allenatore il Principio rappresenta l'idea, il pensiero che vuole trasmettere ai giocatori e dunque alla squadra. E' un modo per avere\nLa mia esperienza con la Nazionale Ucraina Andrea Maldera\n\"Giocare a Calcio è semplice, ma giocare un Calcio semplice è la cosa più difficile che esista\"\nJoan Cruiff"
+        },
+        {
+          "label": "F6",
+          "id": "a307a282fd01e48039d8a53a53416aba99811361f3a2edad490a6f07f483104c",
+          "source": "palle_inattive_Indiani",
+          "canonical_source": "palle_inattive_Indiani",
+          "source_relative": "formations-and-systems/palle_inattive_Indiani.json",
+          "pages": "[1]",
+          "distance": 0.47658,
+          "headings": [
+            "Principi di gestione"
+          ],
+          "text": "Principi di gestione\nLa difficoltà più evidente per raggiungere lo scopo di avere una squadra organizzata nella fase di non possesso in oggetto è sicuramente trovare il consenso del gruppo, fargli accettare il tempo programmato nelle varie sedute come opportuno e necessario (il calciatore dedica molta più attenzione alla fase attiva che a quella passiva, è per lui molto più gratificante realizzare una rete che impedirla!). Per questo sono necessari dei principi di gestione a cui bisogna attenersi:\n- della consapevolezza, cioè spiegare bene come e perché viene eseguito un determinato movimento, rendere consapevole il calciatore, protagonista della propria prestazione, perché sia autonomo ed attivo;\n- della partecipazione attiva, cioè ad interessarlo e coinvolgerlo nelle scelte in quanto la motivazione, che nasce sempre dal suo interno, è la chiave dell'apprendimento;"
+        },
+        {
+          "label": "F7",
+          "id": "38c9eb18dcec34cd35817316286bb2a8bec16760c2ebe9d121f1da87c4d268c0",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[5]",
+          "distance": 0.43088,
+          "headings": [
+            "PRINCIPI, STRATEGIA E PERCORSO TATTICO"
+          ],
+          "text": "PRINCIPI, STRATEGIA E PERCORSO TATTICO\nLa mia esperienza con la Nazionale Ucraina Andrea Maldera\ntutti lo stesso \"linguaggio\" che ha una finalità ben definita: quello vivere la stessa idea di calcio.\nUn altro aspetto importante che l'allenatore deve valutare, è se i suoi principi sono adatti alle caratteristiche individuali dei suoi giocatori."
+        },
+        {
+          "label": "F8",
+          "id": "f05609d73bd6885d4633795aa0ad68eed8cd7191c6edd993a9be3a5b374a04c7",
+          "source": "L’IMPREVEDIBILITÀ NEL GIOCO DEL CALCIO",
+          "canonical_source": "L’IMPREVEDIBILITÀ NEL GIOCO DEL CALCIO",
+          "source_relative": "formations-and-systems/L’IMPREVEDIBILITÀ NEL GIOCO DEL CALCIO.json",
+          "pages": "[3, 4]",
+          "distance": 0.43124,
+          "headings": [
+            "INTRODUZIONE"
+          ],
+          "text": "INTRODUZIONE\nQuesto ci serve per mantenere il nostro equilibrio interno ed esterno, sia nei momenti negativi che in quelli positivi, in un contesto complesso (pubblico, dirigenti, presidenti-allenatori, organi d'informazione) volubile e variegato come oggi è il mondo del calcio.\nRitornando al concetto di organizzazione, penso che oggi, grazie ai corsi tecnici di base, ai corsi di Coverciano ed alla ricerca continua di aggiornamento da parte dei tecnici, ogni squadra dai campionati minori ai massimi livelli ha una propria organizzazione; per questo penso che il nostro compito in vista di una partita, sia quello di cercare soluzioni tali da disorganizzare la progettazione dell'avversario di turno. Nella nostra strutturazione di squadra, tutti i principi di tattica nelle due fasi di gioco (non possesso - possesso), indipendentemente dalla posizione sul terreno di gioco della palla, vanno rispettati, quindi in fase difensiva: scaglionamento, azione ritardatrice, concentrazione, equilibrio, controllo e limitazione in difesa ed in fase offensiva: scaglionamento, penetrazione, ampiezza, mobilità, imprevedibilità."
+        }
+      ],
+      "source_aware_source": "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "citation_ids": [
+        "1",
+        "2",
+        "3"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 123.44,
+      "generation": {
+        "total_duration_ns": 120454743665,
+        "eval_count": 356,
+        "prompt_eval_count": 2242
+      }
+    },
+    {
+      "id": "drive11_ext_04",
+      "question": "Come definisce Lorenzon la transizione offensiva e quando essa diventa invece un'azione manovrata?",
+      "answer": "Secondo le fonti fornite, ecco come Lorenzon definisce la transizione offensiva e il momento in cui essa diventa un'azione manovrata:\n\n**Definizione di Transizione Offensiva**\nLa transizione offensiva è definita come una situazione di contrattacco che si sviluppa dopo il cambio di possesso (dalla fase difensiva a quella offensiva) entro un arco temporale relativamente breve. In questa fase, la squadra avversaria (quella che ha perso palla) risulta disorganizzata sia numericamente che tatticamente [F1].\n\n**Quando diventa un'azione manovrata**\nLa transizione si trasforma in un'azione manovrata quando l'azione si \"dilunga\", concedendo tempo alla squadra difendente di riordinarsi nel proprio sistema di gioco o difensivo [F1].\n\nInoltre, il testo specifica che se la palla rientra nella metà campo difensiva della squadra in possesso per pochi secondi (o non più di tre passaggi) prima di tornare nell'altra metà campo, l'azione viene considerata manovrata in metà offensiva, indipendentemente dall'atteggiamento della squadra avversaria [F4]. Anche situazioni in cui la squadra che ha recuperato palla riesce a riorganizzarsi tatticamente sotto palla senza invadere la metà campo avversaria rientrano nella categoria di azione manovrata [F2].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "7f935d20c82e689dcc93ff060c9232b6c43627bc5880f6a847e93d406f4634af",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[16]",
+          "distance": 0.29309,
+          "headings": [
+            "∞ Transizione offensiva"
+          ],
+          "text": "∞ Transizione offensiva\nSituazione di contrattacco che si sviluppa dopo il cambio di possesso in un arco temporale relativamente breve, con la squadra difendente disorganizzata a livello numerico e tattico. Se l'azione si dilunga, dando tempo ai difendenti di riordinarsi nel loro sistema di gioco di base o difensivo, si tramuta in un'azione manovrata tra quelle descritte precedentemente."
+        },
+        {
+          "label": "F2",
+          "id": "b6e5553a94af5b18ee9bfeef7863e9b35268390a2d566b78ba274d4cac439cb2",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[33]",
+          "distance": 0.45669,
+          "headings": [
+            "2.5 Genesi e sviluppo delle transizioni"
+          ],
+          "text": "2.5 Genesi e sviluppo delle transizioni\nCome di evince dalla figura 11, nel 58% dei casi la transizione passa da metà campo difensiva a quella offensiva; quindi, più di una volta su 2 questo presupposto viene rispettato dando vita quindi ad una transizione nella metà campo avversaria che, come vedremo in seguito, ha alta probabilità di essere un sinonimo di pericolosità offensiva.\nFigura 11\nMolto alta anche la probabilità che la transizione venga interrotta, ricorrendo ad un fallo che spesso viene definito \"tattico\". Lo stop successivo ad una ripartenza è pari al 16%, quasi una su 5, valore dato dalla sommatoria di pausa (normale fallo di gioco) e sanitari (fallo che comporta l'entrata in campo del personale medico).\nCi sono poi delle altre situazioni che presuppongono il mantenimento del possesso da parte della squadra che ha iniziato la ripartenza, senza però riuscire a tramutare l'azione in transizione in metà offensiva; in questi casi il valore è del 14%, dato dalla somma delle situazioni in cui l'azione si trasforma in un'azione manovrata nella metà offensiva, con la squadra che precedentemente aveva perso il pallone che è quindi riuscita a riorganizzarsi tatticamente sotto palla, azione manovrata su pressing, con quindi la squadra che ha recuperato palla che non riesce ad invadere la metà campo avversaria ed infine azione manovrata in metà difensiva."
+        },
+        {
+          "label": "F3",
+          "id": "f24ed4d89608e10a7a2986b9dfe146b1a21ccfc6d1a4678fab62a3479d09c89a",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[26, 27]",
+          "distance": 0.4674,
+          "headings": [
+            "2.2 Distribuzione delle azioni offensive"
+          ],
+          "text": "2.2 Distribuzione delle azioni offensive\nNelle partite analizzate la grande maggioranza delle transizioni hanno uno sbocco in avanti nella metà campo degli avversari, significa che il più delle volte le azioni di ripartenza vengono concretizzate in un'invasione della metà campo avversaria. Mediamente dal recupero palla, una squadra impiega 5\" per \"invadere\" l'altra metà campo e rimane in possesso palla poi per altri 7\" fino alla perdita del possesso, alla finalizzazione dell'azione oppure al recupero difensivo posizionale della squadra avversaria.\nNello specifico le transizioni che sono nate in metà difensiva sono state 109: di queste 69 (il 63.3%) si sono trasformate in transizione in metà offensiva e 7 hanno portato invece ad un'azione manovrata in metà offensiva. Quindi ricapitolando: 76 transizioni su 109 hanno portato ad uno sbocco nella metà offensiva equivalenti al 69.7%\nTutte queste informazioni possono essere strategicamente, a mio avviso, molto importanti nella scelta tattica di come affrontare un determinato avversario ma anche su quali giocatori impiegare.\nAbbiamo visto che ci sono squadre che passano più di 20 minuti dentro la metà campo avversaria: potrebbe essere questo un motivo per decidere di schierare giocatori più adatti ad affrontare difese chiuse? E di contro, nello scegliere magari calciatori con meno attitudini difensive, considerando che disputeremo una gara di dominio?"
+        },
+        {
+          "label": "F4",
+          "id": "a9cee395617a256aa2719724076fbd37fe7c297cdf4283e355d7e935553672b8",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[13]",
+          "distance": 0.44501,
+          "headings": [
+            "∞ Azione manovrata nella metà campo offensiva"
+          ],
+          "text": "∞ Azione manovrata nella metà campo offensiva\nSviluppo del gioco che ha l'obiettivo di arrivare alla finalizzazione, si svolge nella metà campo della squadra senza palla. Se la palla rientra nella metà campo difensiva della squadra in possesso per pochi secondi o per non più di tre passaggi, per poi tornare nell'altra metà campo, l'azione viene considerata sempre manovrata in metà offensiva. Non è contemplata nessuna discriminante relativa all'atteggiamento della squadra difendente."
+        },
+        {
+          "label": "F5",
+          "id": "5d775c1462418b694cd3235ef3a5ae08af92777a4c5fbba68700338a31326056",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[44, 45]",
+          "distance": 0.44808,
+          "headings": [
+            "3.3 Pericolosità in situazione di palla attiva ed inattiva"
+          ],
+          "text": "3.3 Pericolosità in situazione di palla attiva ed inattiva\nSemplificando ed esemplificando: se un'azione include un cross e un tiro da posizione tale da renderlo un'occasione, è stato acquisito solamente l'evento più importante, quindi in questo caso l'occasione. Per tale motivo, i tiri della figura 15 non sono tutti quelli effettuati nella fase ad eliminazione diretta della Champions, ma tutti quelli fatti non all'interno di occasione oppure di azione promettente, sia in situazione che su palla inattiva.\nLa prima considerazione degna di nota è quella visibile nella penultima colonna (nessun esito): quasi l'85% delle azioni manovrate è inconcludente, contro il valore di inefficienza ben inferiore delle transizioni, dove capovolgendo la percentuale si nota che quasi il 35% delle stesse hanno un esito offensivo. Le palle inattive invece risultano pericolose in un caso su quattro.\nAndando poi a considerare la percentuale di situazioni in cui manovrate e transizioni portano ad un qualcosa di \"pericoloso\", si nota che tra gli eventi principali (gol, occasione, promettente) la percentuale di conversione è la seguente: 8% delle transizioni portano ad un gol, 11,4% ad un'occasione da rete, il 5% ad una promettente. Sommando i tre valori appena descritti, si può asserire che una transizione su quattro porta ad una rete oppure ad un'alta probabilità di realizzarla. Su azione manovrata, le stesse situazioni, si verificano appena nel 2,5% dei casi."
+        },
+        {
+          "label": "F6",
+          "id": "5cb888b2375ddf86ae21133006a20e6a223f128a1cd7311fbff3f15d115c8ace",
+          "source": "verticalizzazione_Bonacini",
+          "canonical_source": "verticalizzazione_Bonacini",
+          "source_relative": "formations-and-systems/verticalizzazione_Bonacini.json",
+          "pages": "[1]",
+          "distance": 0.47466,
+          "headings": [
+            "Principi e soluzioni a 360° per dare profondità alla manovra d'attacco della propria squadra."
+          ],
+          "text": "Principi e soluzioni a 360° per dare profondità alla manovra d'attacco della propria squadra.\nVerticalizzazione:\nCome sappiamo una partita di calcio consta di due fasi principali che sono la fase offensiva e la fase difensiva. Tra queste si interpone una terza fase definita di transizione ossia fase di passaggio dalla fase offensiva alla difensiva e viceversa (transizione negativa e transizione positiva). Nella fase difensiva, che definiamo come situazione tattica in cui la squadra non è in possesso palla, l'obiettivo da raggiungere è quello di non subire reti e di ritornare in possesso della sfera attraverso un lavoro tattico individuale (marcare, intercettare ecc.) e tattico collettivo (pressing, raddoppio ecc.). Conquistata palla, entriamo nella fase di transizione definita come quel breve lasso di tempo nel quale avviene il passaggio da una all'altra delle due fasi principali. Nel nostro caso dopo aver conquistato (fase difensiva) e consolidato il possesso palla (post-conquista) avremo una transizione positiva nella quale cercheremo di sorprendere il più rapidamente possibile la compagine rivale alla ricerca della metà campo avversaria. Siamo ora nella fase offensiva che, costituita da tre sottofasi - costruzione, rifinitura e conclusione -, ha come obiettivo quello di mantenere il possesso palla (specialmente nei pressi della porta che difendiamo) allo scopo di farla possibilmente avanzare verso la porta opposta per arrivare alla conclusione finale."
+        },
+        {
+          "label": "F7",
+          "id": "988b54912df728e1264631ef21662953f3669613058dfc40fd304e830c337a1e",
+          "source": "Transizioni.Ussia",
+          "canonical_source": "Transizioni.Ussia",
+          "source_relative": "formations-and-systems/Transizioni.Ussia.json",
+          "pages": "[4, 5]",
+          "distance": 0.42026,
+          "headings": [
+            "Definizione"
+          ],
+          "text": "Definizione\nLa transizione è, dunque , una fase importante del nostro calcio che rappresenta il momento in cui si perde o si riconquista una palla. Pertanto oltre alla fase offensiva e difensiva, quindi di possesso o non possesso palla, esiste una terza fase, cosiddetta di transizione, che identifica il momento della riconquista o della perdita della palla.\nLa transizione dunque è, nel calcio odierno, una fase fondamentale per fare o per non subire goal. In un'ottica di questo tipo diventa quindi \"strategico\" allenare in maniera diversa dal solito i calciatori, affinché non abbiano pause nel passare da una fase di gioco all'altra.\nLa fase di transizione, dunque va analizzata nei suoi due aspetti:\n- 1) sotto l'aspetto difensivo in quanto la perdita del possesso palla può determinare, come abbiamo visto, una situazione ad alto rischio (transizione negativa)."
+        },
+        {
+          "label": "F8",
+          "id": "511e45a7c3bbe390a6e1aa7b237b5853755922bb0adab9e09928bc0068b9c23d",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[9]",
+          "distance": 0.5556,
+          "headings": [
+            "1 - OGGETTIVARE LE FASI DI GIOCO"
+          ],
+          "text": "1 - OGGETTIVARE LE FASI DI GIOCO\nCostruzione su rinvio dal fondo, NON POSSESSO PALLA = Pressing su rinvio dal fondo. Azione manovrata su pressing, NON POSSESSO PALLA = Pressing su azione manovrata. Azione manovrata nella propria metà campo, NON POSSESSO PALLA = Linea d'attesa nella metà campo offensiva. Azione manovrata nella metà campo offensiva, NON POSSESSO PALLA = Linea d'attesa nella metà campo difensiva. Azione manovrata su palla che torna, NON POSSESSO PALLA = Pressing su palla che torna. Azione manovrata su riaggressione, NON POSSESSO PALLA = Riaggressione. Transizione offensiva, NON POSSESSO PALLA = Transizione difensiva. PALLE INATTIVE OFFENSIVA, NON POSSESSO PALLA = PALLE INATTIVE DIFENSIVE. Corner a favore, NON POSSESSO PALLA = Corner contro. Punizioni a favore, NON POSSESSO PALLA = Punizioni contro. Rigore a favore, NON POSSESSO PALLA = Rigore contro. Rimessa laterale a favore, NON POSSESSO PALLA = Rimessa laterale contro. PAUSA DI GIOCO, NON POSSESSO PALLA = PAUSA DI GIOCO"
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "palle_inattive_fase_offensiva_Pulga",
+        "sviluppo_fase_offensiva",
+        "tesi-lorenzon-uefa-pro"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "citation_ids": [
+        "1",
+        "2",
+        "4"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 121.97,
+      "generation": {
+        "total_duration_ns": 116829279767,
+        "eval_count": 288,
+        "prompt_eval_count": 2393
+      }
+    },
+    {
+      "id": "drive11_ext_05",
+      "question": "Nella tesi di Luciano Vulcano sulla Periodizzazione Tattica, perché la tattica viene descritta come sovradimensione e quali momenti del gioco comprende?",
+      "answer": "In base alle fonti fornite, ecco l'analisi della \"sovradimensione\" tattica nella tesi di Luciano Vulcano:\n\n**Perché la tattica è descritta come sovradimensione**\nLa tattica viene definita \"sovradimensione\" perché si colloca al di sopra delle altre dimensioni (fisica, tecnica, psicologica), inglobandole e guidando l'intero processo di allenamento [F1]. Non è una dimensione isolata, ma ha bisogno delle altre tre per manifestarsi [F6]. Essa funge da \"grande coordinatrice\" del processo di allenamento [F3] e rappresenta il nucleo centrale della preparazione, da cui dipendono le restanti componenti della performance [F8]. La Periodizzazione Tattica inverte la logica tradizionale (basata sulla dimensione fisica) ponendo al centro una pianificazione dinamica guidata dalla tattica [F7].\n\n**Momenti del gioco compresi**\nLa sovradimensione tattica definisce e operazionalizza aspetti relativi a tutti i momenti del calcio, specificamente:\n*   Fase offensiva;\n*   Fase difensiva;\n*   Transizione positiva (difa-attacco);\n*   Transizione negativa (attaco-difesa) [F1].\n\nIn questi quattro momenti, la tattica assicura che tutti i giocatori pensino in funzione dello stesso obiettivo simultaneamente, basandosi su principi di gioco e un Modello di Gioco specifico [F4].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "dfc4a0116b1acc619eda9a81bba54e71010d8ce0ebb965bc078a6025bb39c6d6",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[19, 20]",
+          "distance": 0.3334,
+          "headings": [
+            "La TATTICA come una delle quattro dimensioni del gioco:"
+          ],
+          "text": "La TATTICA come una delle quattro dimensioni del gioco:\nQuindi, il fattore tattico appare come un qualcosa che sta al di sopra delle altre dimensioni, non distinguendosi da esse, ma inglobandole al suo interno. La tattica è perciò una sovradimensione che guida tutto il processo di allenamento e assume un'importanza centrale, in quanto definisce e operazionalizza tutti quegli aspetti che l'allenatore vuole che vengano messi in pratica (Modello di Gioco) in campo durante la competizione e nelle varie fasi del gioco che il calcio possiede (fase offensiva, fase difensiva, transizione positiva difesa-attacco e transizione negativa attacco-difesa).\nDisegno di Oliveira, modificato da Vulcano (2015)\nDa qui, nasce l'importanza di possedere, da parte dell'allenatore, una cultura tattica chiaramente definita in ognuno dei quattro momenti del calcio e, basandosi su questi, di fornire la massima coerenza al processo da seguire (Operazionalizzazione del Modello di Gioco)."
+        },
+        {
+          "label": "F2",
+          "id": "03076975d24dc0c29aafce8a064301f34a5c42d58d744d85ab762923866eb2ba",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[69]",
+          "distance": 0.28815,
+          "headings": [
+            "5.3 La sottodimensione fisica nella Periodizzazione Tattica"
+          ],
+          "text": "5.3 La sottodimensione fisica nella Periodizzazione Tattica\nCome evidenziato lungo tutto la tesi, risulta chiaro come la Periodizzazione Tattica sia una metodologia d'allenamento che pone le sue fondamenta sulla specificità del gioco.\nQuesta metodologia riesce, attraverso l'applicazione dei principi metodologici che la governano, a sviluppare tutte le dimensioni della prestazione sportiva in maniera congiunta durante l'allenamento.\nIl processo di allenamento, però, deve essere sottoposto sempre alla sovradimensione tattica e tattico-strategica, posta a un livello superiore rispetto alle altre dimensioni poichè è quella che assicura che tutto ciò che viene proposto in allenamento sia specifico di un determinato modo di giocare, di un Modello di Gioco."
+        },
+        {
+          "label": "F3",
+          "id": "d168cb3f5c9f7d54e19f57ff218c59908ffaa2913e71e27cb550404214151f8d",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[18]",
+          "distance": 0.28415,
+          "headings": [
+            "2.2 La sovradimensione tattica"
+          ],
+          "text": "2.2 La sovradimensione tattica\n\"La sovradimensione tattica è pertanto la grande coordinatrice dell'intero\nprocesso di allenamento\". (Mourinho)\n\"La tattica non è una dimensione fisica, non è tecnica, non è psicologica, ma ha bisogno di\ntutte e tre per manifestarsi\". (Frade,1996)\nLa Periodizzazione Tattica rispetta il principio dell'integrità inscindibile del gioco, inglobando in ogni esercitazione le quattro dimensioni che compongono la prestazione calcistica."
+        },
+        {
+          "label": "F4",
+          "id": "852384837c26f74891a5a35dedfb45a4491896fc5e100c4ae62291d4bb1d1b23",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[20, 21]",
+          "distance": 0.36268,
+          "headings": [
+            "2.3 Tattica: definizione di uno special one"
+          ],
+          "text": "2.3 Tattica: definizione di uno special one\nSpieghiamo ora attraverso le parole dell'allenatore portoghese José Mourinho (citato da Amiero, Oliveira, Resende, Barreto, 2006) qual è la visione della sovradimensione tattica che operazionalizza nella sua Periodizzazione Tattica.\n\"La tattica è l'insieme di comportamenti che si vogliono ottenere dalla squadra, ciò che la squadra deve mettere in pratica con regolarità, l'insieme dei principi\nIL GIOCO\nche danno forma al Modello di Gioco\". \"È una cultura comportamentale specifica che richiede esercizio ed è una proprietà che si costruisce\". \"La cosa più importante in una squadra è avere un determinato Modello di Gioco, un insieme di principi di gioco, conoscerli a fondo, interpretarli bene indipendentemente dagli undici che scendono in campo\". \"Giocare come una squadra è avere un'organizzazione, determinate regole che\nfanno sì che nei quattro momenti del gioco tutti i giocatori pensino in funzione dello stesso obiettivo simultaneamente e questo è un risultato che si raggiunge con il tempo, il lavoro e la tranquillità. Perchè una cosa è che i giocatori acquisiscano e provino a fare quel che io voglio e un'altra cosa è ottenerlo come squadra. Per questo c'è bisogno di tempo\"."
+        },
+        {
+          "label": "F5",
+          "id": "8dbd889b36643c9c425045020324bafcbfd8689c1836c3409aa75d55533a4179",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[18]",
+          "distance": 0.30839,
+          "headings": [
+            "2.1 La nascita di una nuova logica"
+          ],
+          "text": "2.1 La nascita di una nuova logica\nPer Frade (2010, citato da Tamarit, 2013), ideatore della Periodizzazione Tattica: \"la scelta del nome 'Periodizzazione Tattica' è provocatoria poiché esiste una periodizzazione, ovvero l'utilizzo di un determinato tempo per portare a compimento un determinato ordine, però se questa periodizzazione è 'Tattica', il tempo viene utilizzato per conseguire e dare enfasi al lato tattico. Anche il significato di tattica non coincide con quello che normalmente gli si attribuisce, ma risulta essere un aspetto meramente organizzativo e intenzionalizzato del gioco, il quale prevede l'assimilazione di principi nella dinamica del gioco di una squadra. Se questo gioco richiede qualità, ci vorrà più tempo affinchè si costruisca. Quindi riguardo al nome che gli ho dato inizialmente, che è precisamente questo, Periodizzazione Tattica, è provocatorio poiché già sapevo che si sarebbe detto - la periodizzazione è un'altra cosa e non è tattica..- e questa è la mia intenzione, che appaia in un modo diverso, poiché secondo le regole generali tutte le periodizzazioni che si utilizzano sono in funzione della dimensione fisica e delle capacità condizionali, mentre questa è in funzione della sovradimensione tattica\"."
+        },
+        {
+          "label": "F6",
+          "id": "1b529136b69b74498e16f99862a85a7b031d8b2505eeb5280ab97edf67fc47d9",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[19]",
+          "distance": 0.37367,
+          "headings": [
+            "La TATTICA come una delle quattro dimensioni del gioco:"
+          ],
+          "text": "La TATTICA come una delle quattro dimensioni del gioco:\n- Dimensione Tattica;\n- Dimensione Tecnica;\n- Dimensione Psicologica;\n- Dimensione Fisica.\nDisegno di Oliveira, modificato da Vulcano (2015)\nTuttavia, nonostante gli esercizi di acquisizione e sviluppo delle capacità calcistiche debbano essere necessariamente a carattere globale, le quattro dimensioni che compongono la prestazione calcistica non possono essere valutate in egual misura. A questo proposito è necessaria una gerarchizzazione in accordo con l'esercitazione che si prende in considerazione. Se il Modello di Gioco (che verrà affrontato nei capitoli successivi) è il riferimento di tutto il processo, la dimensione tattica sarà sempre la guida di tutte le esercitazioni e gli altri fattori che compongono la prestazione emergeranno e conseguiranno uno sviluppo specifico dipendente da essa.\nPer il professor Vitor Frade (1996, citato da Tamarit, 2007) \"La tattica non è una dimensione fisica, non è tecnica, non è psicologica, ma ha bisogno di tutte e tre per manifestarsi\". Anche per Amieiro, Oliveira, Resende e Barreto (2009) \"si tenga in considerazione che qualsiasi azione tecnica o fisica ha sempre un intento tattico sottostante\"."
+        },
+        {
+          "label": "F7",
+          "id": "5f2748985a30854a78a0e180229ceda37955f2878b4b249a5f7ee857426d16cf",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[8]",
+          "distance": 0.30188,
+          "headings": [
+            "Introduzione"
+          ],
+          "text": "Introduzione\nLa mia tesi ha come obiettivo quello di esporre brevemente i concetti metodologici su cui si fondano i metodi d'allenamento fino ad oggi conosciuti e maggiormente utilizzati nel calcio e successivamente quello di illustrare un nuovo tipo di periodizzazione che metta in evidenza le differenze tra l'usuale pianificazione in termini fisici e una pianificazione in termini tattici. Quest'ultima attribuisce massima importanza alla dimensione tattica, la quale si realizza attraverso l'organizzazione di un Modello di Gioco, in un processo guidato da una pianificazione dinamica, in cui la componente fisica dell'allenamento, così come le altre componenti, apparirà relazionata ma sottoposta alla dimensione tattica.\nÈ pertanto obiettivo di questa tesi presentare le caratteristiche sostanziali della Periodizzazione Tattica, dove e perchè nasce la PT, la considerazione che la PT ha delle componenti della prestazione calcistica, la creazione e l'organizzazione di un Modello di Gioco, i principi metodologici che regolano l'allenamento, la struttura e i contenuti del Morfociclo, la dimensione fisica secondo la PT, tutto visto attraverso questo nuovo approccio che arriva dal Portogallo."
+        },
+        {
+          "label": "F8",
+          "id": "488f5c54e6dcbeb5623f006d780c1181bc498c5a195c489d0fa4c37db5d8093c",
+          "source": "vulcano-luciano_tesi-master",
+          "canonical_source": "vulcano-luciano_tesi-master",
+          "source_relative": "formations-and-systems/vulcano-luciano_tesi-master.json",
+          "pages": "[5]",
+          "distance": 0.37072,
+          "headings": [
+            "Sintesi"
+          ],
+          "text": "Sintesi\nLa natura complessa degli sport situazionali di squadra evidenzia l'importanza della dimensione tattica come chiave di lettura, analisi e risposta a questa complessità. Ciò conduce verso una teoria che considera la tattica il nucleo centrale della preparazione alle competizioni e l'elemento da cui dipendono le restanti componenti della performance. Nasce dunque la Periodizzazione Tattica, una nuova metodologia incentrata su una visione più vicina al gioco e fedele alle necessità della prestazione calcistica di squadra. Essa si realizza attraverso la scelta e l'operazionalizzazione di un determinato Modello di Gioco, ovvero la traduzione del modello teorico (principi di gioco) che l'allenatore sceglie per la propria squadra, in operazioni procedurali che si manifestano sotto forma di comportamenti osservabili e riproducibili. L'allenamento diventa quindi un contesto in cui poter 'simulare' il modello concettuale del gioco che si vuole realizzare in partita senza la necessità di ridurre ad una forma analitica l'inscindibilità delle componenti di una pratica sportiva complessa come il calcio."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco",
+        "vulcano-luciano_tesi-master"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "citation_ids": [
+        "1",
+        "3",
+        "4",
+        "6",
+        "7",
+        "8"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 115.9,
+      "generation": {
+        "total_duration_ns": 113155544423,
+        "eval_count": 307,
+        "prompt_eval_count": 2220
+      }
+    },
+    {
+      "id": "drive11_ext_06",
+      "question": "Secondo la tesi di Francesco Baldini, quanto dovrebbero durare le riunioni tecniche video e come possono essere distribuite durante la settimana?",
+      "answer": "Secondo la tesi di Francesco Baldini:\n\n*   **Durata delle riunioni:** Le sessioni tecniche video dovrebbero durare circa **10-15 minuti**. Questo tempo è considerato idoneo per mantenere elevati livelli di attenzione da parte dei giocatori [F1].\n*   **Distribuzione settimanale:** È consigliabile frammentare le proposte video nei diversi giorni della settimana, collegandole al lavoro successivo svolto sul campo per creare una forte connessione tra la metodologia pratica e il supporto analitico [F1].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "40de5acb0f20e5c3ba47f55863bf920c361dd28989f91ddacf068bbafbb361da",
+          "source": "baldini-francesco_tesi",
+          "canonical_source": "baldini-francesco_tesi",
+          "source_relative": "formations-and-systems/baldini-francesco_tesi.json",
+          "pages": "[73]",
+          "distance": 0.37815,
+          "headings": [
+            "Descrizione e video dell'organizzazione delle palle inattive offensive"
+          ],
+          "text": "Descrizione e video dell'organizzazione delle palle inattive offensive\nQuesta analisi degli avversari fa da corollario, ovviamente, ad un'analisi altrettanto accurata e dettagliata della propria squadra. Principi di gioco svolti più o meno correttamente in fase di offensiva e in fase difensiva, gestione delle transizioni, sviluppo e difesa delle palle inattive.\nDa qualche anno, approfondendo sempre di più il tema dell'analisi video, si è giunti alla conclusione di quanto sia in effetti produttivo far durare le riunioni tecniche un tempo consono (intorno ai 10-15 minuti) per garantire il mantenimento delle capacità dei livelli di attenzione da parte del giocatore. Alcuni tecnici per favorire questo aspetto hanno ritenuto giusto frammentare le proposte video nei diversi giorni della settimana in relazione al lavoro svolto successivamente sul campo, quindi creare forte connessione tra metodologia da campo e supporto video.\nIn conclusione, è giusto rimarcare che avere la possibilità di rivedersi e di analizzarsi da angolature diverse, costituisca un enorme vantaggio, che deve essere sfruttato, al pari di ogni altro ausilio, con le giuste modalità e con la giusta misura in qualsiasi fascia d'età."
+        },
+        {
+          "label": "F2",
+          "id": "160f5c1a8b1dbdd753ae6cec61cd224aa3fa777c3d36df39e61709b2256f93e7",
+          "source": "baldini-francesco_tesi",
+          "canonical_source": "baldini-francesco_tesi",
+          "source_relative": "formations-and-systems/baldini-francesco_tesi.json",
+          "pages": "[60]",
+          "distance": 0.61784,
+          "headings": [
+            "La match analysis singola e collettiva"
+          ],
+          "text": "La match analysis singola e collettiva\nQuesti ultimi non dovranno essere intesi come dei rigidi \"schemi/catene\" ma come degli strumenti per la risoluzione di situazioni complesse in relazione ai compagni e quindi in contrapposizione alle scelte attuate dall'avversario.\nProprio questo ultimo punto è importante perché l'aspetto situazionale determina il riconoscimento e l'adattamento all'avversario per rendere la scelta più efficace possibile. Tuttavia, ritengo che dalla categoria Primavera abbia senso iniziare a parlare di avversari e quindi soffermarsi sul sistema di gioco che si incontrerà e l'attuazione del modello di gioco avversario. In questa ultima fascia dello sviluppo, le riunioni video possono mirare all'applicazione dei nostri principi in funzione delle scelte strategiche avversarie per ottimizzare la riuscita della nostra idea di calcio che si presuppone, a questo punto, ampiamente consolidata."
+        },
+        {
+          "label": "F3",
+          "id": "88d8d935451d18ed811cc191217ec72da67dcbbd49793387cf6871fd9ce23f6d",
+          "source": "baldini-francesco_tesi",
+          "canonical_source": "baldini-francesco_tesi",
+          "source_relative": "formations-and-systems/baldini-francesco_tesi.json",
+          "pages": "[10]",
+          "distance": 0.61655,
+          "headings": [
+            "Perché questa scelta?"
+          ],
+          "text": "Perché questa scelta?\nPortandomi dietro questa convinzione, nel momento in cui ho cominciato a lavorare come allenatore di settore giovanile (Bologna - Roma - Juventus), per poi passare a categorie superiori (Sestri Levante e Imolese in serie D - Lucchese Lega Pro - Trapani Serie B) ho cercato di studiare tecniche di allenamento utili allo sviluppo mentale del singolo giocatore e dell'intera squadra, per quanto riguarda il riconoscimento del maggior numero di situazioni che una partita può proporre ad un atleta nell'arco dei 95 minuti di sfida. In questi anni, durante la settimana tipo, mi sono concentrato su esercitazioni che proponessero il più possibile situazioni nuove, sconosciute, imprevedibili e reali per non trovarsi poi impreparati durante il match dove in palio ci sono i tre punti.\nQueste convinzioni hanno permesso che inconsciamente iniziassi a scrivere pagine e pagine relative ad ogni allenatore che avuto la fortuna di incontrare nella mia strada, descrivendo la mia visione dei loro pregi e difetti e riempiendo interi quaderni che parlavano di aspetti caratteriali, umani, tecnici e tattici."
+        }
+      ],
+      "source_aware_source": "baldini-francesco_tesi",
+      "source_aware_sources": [
+        "baldini-francesco_tesi"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [
+        "3fcf839803740aab82e46bbb06dfb5549e59e6f67f5ba663cf3d08a49a974e52",
+        "1511d71809d7fdac7f7df582716ead97d247c307b5760144c47441c427da2bd3",
+        "80ff6f79c0110d041cec98c3858a23859b64efb0ba204a8e294b858728ec56a1",
+        "2c7de7c771df3634f08ee6e4d3b3f3025b8af21c882a1329f9406515cb4bd8b1",
+        "a0744ab6f3b445a68bc55bf437ea87e63c83b13543abfea97f2d5dc08af29e3b"
+      ],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "citation_ids": [
+        "1"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 48.74,
+      "generation": {
+        "total_duration_ns": 44992609290,
+        "eval_count": 112,
+        "prompt_eval_count": 939
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6196,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}
