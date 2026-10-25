@@ -77,6 +77,9 @@ def scoped_guidance(question):
                         "Distingui sempre i nostri giocatori dagli avversari. Per ogni trasformazione indica in ordine: chi si muove, "
                         "da quale posizione, verso quale spazio e quale dilemma crea al difensore avversario. Se la domanda chiede un "
                         "movimento sincronizzato, rispondi subito con quel movimento e la linea di corsa, poi spiega perché libera lo spazio. "
+                        "Considera definitive le scelte già dichiarate nella domanda: se un difensore è già uscito sul portatore, non "
+                        "riproporre se debba uscire o restare e indica quale compagno attacca lo spazio che ha liberato alle sue spalle. "
+                        "Non trasferire al giocatore della squadra in possesso istruzioni difensive descritte dalla prospettiva avversaria. "
                         "Non attribuire all'avversario trequartisti o altri ruoli assenti dalla struttura descritta; se gli estratti non "
                         "sostengono un dettaglio, dichiaralo invece di trasferire meccanismi da un modulo diverso.")
     if question.startswith("Perché la descrizione di un assetto difensivo nel manuale interno"):

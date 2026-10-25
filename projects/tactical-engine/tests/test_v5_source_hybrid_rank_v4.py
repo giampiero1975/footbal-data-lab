@@ -141,6 +141,9 @@ class ScopedGuidanceTests(unittest.TestCase):
         self.assertIn("chi si muove", guidance)
         self.assertIn("dilemma", guidance)
         self.assertIn("ruoli assenti", guidance)
+        self.assertIn("scelte già dichiarate", guidance)
+        self.assertIn("spazio che ha liberato", guidance)
+        self.assertIn("prospettiva avversaria", guidance)
 
     def test_lateral_zone_guidance_requires_complete_prudent_attribution(self):
         guidance = self.module.scoped_guidance(
