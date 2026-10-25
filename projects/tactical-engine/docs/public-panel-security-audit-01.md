@@ -1,6 +1,6 @@
 # Audit sicurezza pannello pubblico 01
 
-Data: 2026-10-25. Stato: **IMPLEMENTATO**.
+Data: 2026-10-25. Stato: **VALIDATO e INTEGRATO**.
 
 ## Perimetro
 
@@ -16,7 +16,7 @@ porta 8088.
 - unità con `UMask=0077`, `NoNewPrivileges`, `PrivateTmp`, `ProtectSystem=strict`
   e scrittura limitata alla directory job;
 - log applicativi osservati senza header Authorization né body;
-- firewall host attivo;
+- UFW installato ma policy inizialmente inattiva;
 - bootstrap Nginx restituisce 404 fuori dalla challenge ACME.
 
 ## Rischi individuati e correzioni
@@ -29,11 +29,17 @@ porta 8088.
    configurazione HTTPS usa un formato Nginx basato su `$uri`, non `$request`.
 3. Rafforzata la configurazione TLS prevista con TLS 1.2/1.3, session ticket
    disabilitati, HSTS, frame deny, nosniff, no-referrer e Permissions-Policy.
+4. UFW era inattivo. Attivato con sole regole in ingresso `OpenSSH` e
+   `Nginx Full` per IPv4/IPv6; nessuna regola per 8088 o 11434.
 
 ## Evidenza offline
 
-Compilazione superata, suite API/catalogo 16/16 e diff check pulito. Deploy e
-smoke VPS DA FARE; stato corrente **IMPLEMENTATO**, non ancora INTEGRATO.
+Compilazione superata, suite API/catalogo locale e VPS 16/16 e diff check
+pulito. Smoke VPS: 20 token errati ricevono 401, il 21º riceve 429; subito dopo
+un token valido ottiene readiness 200. Una ricerca con marker univoco non appare
+nei log, che riportano solo metodo, path e stato. UFW attivo/enabled, nuova
+connessione SSH riuscita, Nginx e API attivi, bootstrap 404, API ancora in
+ascolto esclusivamente su localhost. Stato **VALIDATO e INTEGRATO**.
 
 ## Limiti
 
