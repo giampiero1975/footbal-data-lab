@@ -839,4 +839,16 @@ tecnica.
   Report `docs/groq-free-reviewer-g4-01.md`; output separato in evaluation.
   Affidabilita generale NON VALIDATA; ulteriori test/integrazione/deploy vietati
   senza nuova autorizzazione. Revocare la chiave esposta in chat.
+- [x] **VALIDATO offline** V5-GROQ-02-PHASE-A: Groq predisposto per completare
+  esclusivamente le 50 domande mancanti e per operare come spalla tattica a due
+  passaggi. Inventario VPS confermato 50/100; suite 10/10, due preflight PASS,
+  API_REQUESTS=0. Commit `7596ba4`, `f03b66d`, `9031661`, `2d034c7`; report
+  `docs/groq-coverciano-completion-copilot-phase-a-01.md`. Pipeline e indici
+  invariati. Heartbeat Gemini eliminato per evitare doppia generazione.
+- [ ] **DA FARE** V5-GROQ-02-GENERATE-50: previa autorizzazione, 10 chiamate
+  Free Tier (5 categorie x 2 parti), massimo pianificato 75.000 token, merge
+  fail-closed fino a manifest misto 100/100. Non sovrascrivere i 50 casi Gemini.
+- [ ] **DA FARE** V5-GROQ-02-COPILOT-DIFF: previa autorizzazione separata,
+  tre casi congelati distinti dal G4 e 6 chiamate logiche; nessuna nuova risposta
+  RAG. Validare falsi positivi, utilita e supporto documentale prima del benchmark.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

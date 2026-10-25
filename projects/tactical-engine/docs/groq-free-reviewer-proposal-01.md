@@ -15,8 +15,12 @@ sostituzione del revisore o esecuzione del benchmark. Evidenze G0/G1:
   rigenerare i casi esistenti, non ripetere probe gia concluse.
 - La certificazione V5 locked CLI resta separata dalla revisione esterna, dal pannello e dal benchmark 100.
 
-## Decisione da sottoporre al titolare
-Valutare **Groq Free**, modello primario candidato `openai/gpt-oss-120b`, come **provider opt-in** del revisore esterno; mantenere Gemini esistente e i dati pregressi immutati. Fallback futuro opzionale solo dopo approvazione. Non e una promozione a INTEGRATO o CERTIFICATO.
+## Decisione del titolare aggiornata il 26/10/2026
+Adottare **Groq Free**, modello candidato `openai/gpt-oss-120b`, sia per
+completare le 50 domande Coverciano mancanti sia come seconda AI/spalla tattica.
+I 50 casi Gemini validi restano immutati. Implementazione isolata autorizzata;
+chiamate API, benchmark e integrazione richiedono autorizzazione successiva.
+Dettagli: `docs/groq-coverciano-completion-copilot-phase-a-01.md`.
 
 ## Evidenza ufficiale Groq, verificata il 25/10/2026
 1. Piano Free, `openai/gpt-oss-120b`: **30 RPM, 1.000 RPD, 8.000 TPM, 200.000 TPD** (limiti base; verificare quelli effettivi della propria organizzazione). I limiti sono organizzativi, con possibili soglie ITPM/OTPM. HTTP 429 e header `retry-after`.
