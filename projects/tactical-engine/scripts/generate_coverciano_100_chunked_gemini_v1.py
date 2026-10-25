@@ -23,8 +23,8 @@ def write_new(path,payload):
     path.parent.mkdir(parents=True,exist_ok=True); tmp=path.with_name(f".{path.name}.tmp.{os.getpid()}")
     tmp.write_text(json.dumps(payload,ensure_ascii=False,indent=2)+"\n",encoding="utf-8"); tmp.replace(path)
 
-def validate_part(rows, category, start):
-    if not isinstance(rows,list) or len(rows)!=10: raise ValueError("EXPECTED_10")
+def validate_part(rows, category, start, count=10):
+    if not isinstance(rows,list) or len(rows)!=count: raise ValueError(f"EXPECTED_{count}")
     seen=set()
     for offset,row in enumerate(rows):
         if row.get("id") != f"coverciano_{start+offset:03d}" or row.get("category") != category: raise ValueError("ID_OR_CATEGORY")
@@ -36,26 +36,37 @@ def validate_part(rows, category, start):
     return rows
 
 def generate(args):
-    index=BASE.CATEGORIES.index(args.category); start=index*10+1
-    system=f"""Sei una commissione UEFA Pro. Genera esattamente 10 domande originali
+    index=BASE.CATEGORIES.index(args.category); category_start=index*10+1
+    count=5 if args.part else 10; start=category_start + ((args.part-1)*5 if args.part else 0)
+    system=f"""Sei una commissione UEFA Pro. Genera esattamente {count} domande originali
 da esame Coverciano esclusivamente sulla categoria {args.category}. Scenari
 realistici e difficili con moduli, fase, tempo/punteggio, vincoli, compiti e
 geometrie concrete. SOLO JSON: {{"questions":[{{"id":"coverciano_{start:03d}",
 "category":"{args.category}","difficulty":4,"question":"...",
 "hidden_rubric":{{"constraints":["..."],"expected_points":["..."],
-"critical_errors":["..."]}}}}]}}. ID consecutivi da {start:03d} a {start+9:03d}."""
+"critical_errors":["..."]}}}}]}}. ID consecutivi da {start:03d} a {start+count-1:03d}."""
     payload={"system_instruction":{"parts":[{"text":system}]},"contents":[{"role":"user","parts":[{"text":BASE.BASE_PROMPT}]}],
              "generationConfig":{"temperature":0.7,"responseMimeType":"application/json","maxOutputTokens":8000}}
     key=api_key(); url=f"https://generativelanguage.googleapis.com/v1beta/models/{args.model}:generateContent"
     req=urllib.request.Request(url,data=json.dumps(payload).encode(),headers={"Content-Type":"application/json","x-goog-api-key":key},method="POST")
     try:
         with urllib.request.urlopen(req,timeout=240) as response: raw=json.loads(response.read())
-        text="".join(p.get("text","") for p in raw["candidates"][0]["content"]["parts"]); rows=validate_part(json.loads(text)["questions"],args.category,start)
+        text="".join(p.get("text","") for p in raw["candidates"][0]["content"]["parts"]); rows=validate_part(json.loads(text)["questions"],args.category,start,count)
     except (urllib.error.HTTPError,urllib.error.URLError,KeyError,ValueError,json.JSONDecodeError) as exc:
         raise SystemExit(f"CHUNK_FAILED: {type(exc).__name__}: {str(exc)[:300].replace(key,'[REDACTED]')}")
     write_new(args.output,{"schema":"coverciano_gemini_question_chunk_v1","status":"ESEGUITO","model":args.model,"category":args.category,
         "start_id":start,"generated_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),"usage_metadata":raw.get("usageMetadata",{}),"questions":rows})
-    print(json.dumps({"status":"ESEGUITO","category":args.category,"count":10}))
+    print(json.dumps({"status":"ESEGUITO","category":args.category,"part":args.part or None,"count":count}))
+
+def merge_category(args):
+    index=BASE.CATEGORIES.index(args.category); start=index*10+1; rows=[]; models=set()
+    for part in (1,2):
+        data=json.loads((args.input_dir/f"coverciano_{args.category}_part{part}_v1.json").read_text(encoding="utf-8"))
+        rows.extend(data["questions"]); models.add(data["model"])
+    validate_part(rows,args.category,start,10)
+    write_new(args.output,{"schema":"coverciano_gemini_question_chunk_v1","status":"ESEGUITO","model":"+".join(sorted(models)),
+        "category":args.category,"start_id":start,"generated_at_utc":dt.datetime.now(dt.timezone.utc).isoformat(),"questions":rows})
+    print(json.dumps({"status":"ESEGUITO","category":args.category,"count":10,"merged_parts":2}))
 
 def merge(args):
     rows=[]; models=set()
@@ -69,7 +80,11 @@ def merge(args):
 
 def main():
     parser=argparse.ArgumentParser(); sub=parser.add_subparsers(dest="action",required=True)
-    gen=sub.add_parser("generate"); gen.add_argument("--category",choices=BASE.CATEGORIES,required=True); gen.add_argument("--model",default="gemini-3.6-flash"); gen.add_argument("--output",type=Path,required=True)
+    gen=sub.add_parser("generate"); gen.add_argument("--category",choices=BASE.CATEGORIES,required=True); gen.add_argument("--model",default="gemini-3.6-flash"); gen.add_argument("--part",type=int,choices=(1,2)); gen.add_argument("--output",type=Path,required=True)
+    cat=sub.add_parser("merge-category"); cat.add_argument("--category",choices=BASE.CATEGORIES,required=True); cat.add_argument("--input-dir",type=Path,required=True); cat.add_argument("--output",type=Path,required=True)
     mer=sub.add_parser("merge"); mer.add_argument("--input-dir",type=Path,required=True); mer.add_argument("--output",type=Path,required=True)
-    args=parser.parse_args(); generate(args) if args.action=="generate" else merge(args)
+    args=parser.parse_args()
+    if args.action=="generate": generate(args)
+    elif args.action=="merge-category": merge_category(args)
+    else: merge(args)
 if __name__=="__main__": main()

@@ -59,6 +59,8 @@ l'archivio conservano gli stati storici senza riaprirli.
   `transizione_positiva` generati e validati. `transizione_negativa` ha ricevuto
   503 su 3.6 e fallback 3.1; ripresa automatica ogni 30 minuti attiva senza
   rigenerare i blocchi esistenti.
+- [x] **IMPLEMENTATO** ulteriore riduzione a due parti da 5 domande per le
+  categorie mancanti, con merge categoria e validazione degli ID 5+5.
 
 ## Stato operativo corrente
 

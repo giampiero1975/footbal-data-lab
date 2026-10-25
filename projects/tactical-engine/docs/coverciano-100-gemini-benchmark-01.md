@@ -129,3 +129,8 @@ domande validate (`costruzione`, `sviluppo_rifinitura`,
 `transizione_positiva`). Il quarto ha ricevuto 503 su entrambi i modelli. E
 attiva la ripresa automatica ogni 30 minuti, che salta i file esistenti e
 notifica soltanto completamento o errore non transitorio.
+
+Le metriche AI Studio del titolare mostrano picchi molto sotto 5 RPM, 250K TPM
+e 20 RPD per 3.6 (e 500 RPD per 3.1 Lite): la quota non e esaurita. Poiche
+anche il blocco da dieci puo produrre molte migliaia di token con rubriche, il
+generatore supporta ora due parti da cinque e un merge categoria validato.
