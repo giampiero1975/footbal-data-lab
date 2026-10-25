@@ -44,9 +44,11 @@ raccolto soltanto quando l'utente valuterà risposte concluse dal pannello.
 
 ## Osservabilità feedback
 
-Incremento distinto **IMPLEMENTATO**: `/v1/metrics` aggrega il numero di file di
+Incremento distinto **VALIDATO e INTEGRATO**: `/v1/metrics` aggrega il numero di file di
 feedback validi in totale, utili e non utili; il pannello mostra il rapporto
 senza leggere o esporre domande e risposte. La scansione ignora file corrotti e
 un nuovo voto sullo stesso job sostituisce il precedente, evitando doppi
-conteggi. Test locale 14/14, compilazione e sintassi JavaScript superati; deploy
-VPS DA FARE.
+conteggi. Test locale e VPS 14/14, compilazione e sintassi JavaScript superati.
+Smoke reale: servizio attivo, worker vivo, coda zero, collection attesa 6410 e
+feedback iniziale `0/0/0`; vista `Feedback utili` servita dal pannello. Nessuna
+inferenza eseguita.
