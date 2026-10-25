@@ -23,7 +23,7 @@ I tre URL storici Spalla/Maldera/Contran sono accessibili e sono stati riconosci
 
 La revisione delle prime quindici pagine e dell'indice mostra un contenuto centrato su scouting, psicologia professionale e organizzazione dello staff. I riferimenti tattici sono accessori: pertinenza `non pertinente`, decisione `escluso`, nessuna esecuzione Docling/chunk/embedding/Chroma.
 
-La normalizzazione del nome e la deduplica interna sono state validate nell'ambiente VPS: una sola copia fisica, rerun `duplicate_existing`, test 5/5. Il timer utente esegue ogni domenica alle 03:15 un crawl massimo di 30 pagine con ritardo casuale fino a 30 minuti; il job rimane fail-closed e non può modificare gli indici.
+La normalizzazione del nome e la deduplica interna sono state validate nell'ambiente VPS: una sola copia fisica, rerun `duplicate_existing`, test 5/5. Il timer utente esegue ogni sabato alle 03:15 un crawl massimo di 30 pagine con ritardo casuale fino a 30 minuti; il job rimane fail-closed e non può modificare gli indici.
 
 ## Collaudo dell'unit installata
 
