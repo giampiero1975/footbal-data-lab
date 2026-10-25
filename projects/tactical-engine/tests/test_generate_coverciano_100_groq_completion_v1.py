@@ -19,6 +19,8 @@ class GroqGeneratorOfflineTests(unittest.TestCase):
         self.assertTrue(request["response_format"]["json_schema"]["strict"])
         self.assertIn("coverciano_051", request["messages"][0]["content"])
         self.assertIn("existing_questions_read_only", request["messages"][1]["content"])
+        body = json.loads(request["messages"][1]["content"])
+        self.assertLessEqual(len(body["existing_questions_read_only"][0]["question_prefix"]), 160)
 
     def test_parse_accepts_five_and_rejects_wrong_ids(self):
         rows = [row(n, "blocco_difensivo") for n in range(51, 56)]

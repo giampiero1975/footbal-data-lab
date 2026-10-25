@@ -17,6 +17,8 @@ from pathlib import Path
 import urllib.error
 import urllib.request
 
+from groq_free_reviewer_v1 import quota_allowed
+
 ROOT = Path(__file__).resolve().parents[1]
 SPEC = importlib.util.spec_from_file_location("gemini_chunks", ROOT / "scripts/generate_coverciano_100_chunked_gemini_v1.py")
 CHUNKS = importlib.util.module_from_spec(SPEC); SPEC.loader.exec_module(CHUNKS)
@@ -77,7 +79,8 @@ def question_schema(category: str) -> dict:
 
 def build_request(category: str, part: int, existing: list[dict], model: str = DEFAULT_MODEL) -> dict:
     index = BASE.CATEGORIES.index(category); start = index * 10 + 1 + (part - 1) * 5
-    prior = [{"id": r["id"], "question": r["question"]} for r in existing]
+    prior = [{"id": r["id"], "question_prefix": " ".join(r["question"].split())[:160],
+              "question_sha256": hashlib.sha256(r["question"].encode()).hexdigest()} for r in existing]
     prompt = f"""Sei una commissione UEFA Pro. Genera esattamente 5 domande originali
 da esame Coverciano esclusivamente sulla categoria {category}. Mantieni lo stesso
 livello e contratto delle domande gia congelate: scenari realistici con moduli,
@@ -124,6 +127,11 @@ def generate(args) -> None:
     key = os.environ.get("GROQ_API_KEY", "")
     if not key:
         raise SystemExit("GROQ_API_KEY_MISSING")
+    day = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    ledger_path = ROOT / "evaluation/.groq_coverciano_generation_ledger.json"
+    ledger = json.loads(ledger_path.read_text(encoding="utf-8")) if ledger_path.exists() else {}
+    if not quota_allowed(ledger, day, args.estimated_tokens, LIMITS):
+        raise SystemExit("LOCAL_FREE_TIER_BUDGET_EXHAUSTED")
     req = urllib.request.Request(ENDPOINT, data=json.dumps(request).encode(), method="POST",
         headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json",
                  "User-Agent": "football-data-lab-coverciano-generator/1.0"})
@@ -135,6 +143,10 @@ def generate(args) -> None:
     except urllib.error.HTTPError as exc:
         detail = exc.read().decode(errors="replace")[:1000].replace(key, "[REDACTED]")
         raise SystemExit(f"GROQ_HTTP_{exc.code}:{detail}")
+    used = int(raw.get("usage", {}).get("total_tokens", args.estimated_tokens))
+    ledger[day] = {"requests": int(ledger.get(day, {}).get("requests", 0)) + 1,
+                   "tokens": int(ledger.get(day, {}).get("tokens", 0)) + used}
+    ledger_path.write_text(json.dumps(ledger, indent=2) + "\n", encoding="utf-8")
     write_new(args.output, {"schema": "coverciano_groq_question_part_v1", "status": "ESEGUITO",
         "provider": "groq", "model": args.model, "category": args.category, "part": args.part,
         "generated_at_utc": dt.datetime.now(dt.timezone.utc).isoformat(), "http_status": status,
@@ -175,6 +187,7 @@ def main() -> None:
     gen = sub.add_parser("generate"); gen.add_argument("--category", choices=BASE.CATEGORIES, required=True)
     gen.add_argument("--part", type=int, choices=(1, 2), required=True); gen.add_argument("--input-dir", type=Path, required=True)
     gen.add_argument("--output", type=Path, required=True); gen.add_argument("--model", default=DEFAULT_MODEL)
+    gen.add_argument("--estimated-tokens", type=int, default=7500)
     gen.add_argument("--execute", action="store_true"); gen.add_argument("--confirm-free-tier", action="store_true")
     cat = sub.add_parser("merge-category"); cat.add_argument("--category", choices=BASE.CATEGORIES, required=True)
     cat.add_argument("--input-dir", type=Path, required=True); cat.add_argument("--output", type=Path, required=True)
