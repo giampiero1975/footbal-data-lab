@@ -47,7 +47,7 @@ geometrie concrete. SOLO JSON: {{"questions":[{{"id":"coverciano_{start:03d}",
 "critical_errors":["..."]}}}}]}}. ID consecutivi da {start:03d} a {start+count-1:03d}."""
     question_schema={"type":"object","required":["id","category","difficulty","question","hidden_rubric"],"properties":{
         "id":{"type":"string"},"category":{"type":"string","enum":[args.category]},
-        "difficulty":{"type":"integer","enum":[3,4,5]},"question":{"type":"string"},
+        "difficulty":{"type":"integer","minimum":3,"maximum":5},"question":{"type":"string"},
         "hidden_rubric":{"type":"object","required":["constraints","expected_points","critical_errors"],"properties":{
             "constraints":{"type":"array","items":{"type":"string"}},"expected_points":{"type":"array","items":{"type":"string"}},
             "critical_errors":{"type":"array","items":{"type":"string"}}}}}}
