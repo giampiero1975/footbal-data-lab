@@ -83,8 +83,12 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   decisione facoltativa futura: nessun consumer di quel tipo è presente nel
   repository.
 - [x] **IMPLEMENTATO** template reverse proxy HTTPS Nginx con TLS, redirect,
-  rate/body limit e timeout. Deploy **BLOCCATO** fino a disponibilità di un
-  dominio DNS pubblico e certificato valido; porta 8088 resta solo localhost.
+  rate/body limit e timeout. Dominio scelto; deploy e certificato sono tracciati
+  nella voce successiva. La porta 8088 resta solo localhost.
+- [ ] **DA FARE** pubblicare il pannello su
+  `https://footballlab.byoursite.com`: record DNS `A` richiesto verso
+  `163.5.26.155`, poi Nginx, certificato ACME, redirect, hardening e collaudo.
+  Non esporre 8088. Report `docs/public-panel-https-01.md`.
 
 ### P2 — Ordine e manutenzione del repository
 

@@ -16,9 +16,9 @@ La fotografia consolidata, con evidenze e limiti, è
 | Cinque PDF FIGC, collection API 6410/157 | **VALIDATO e INTEGRATO** | `docs/figc5-candidate-integration-01.md`, `936b4c4` |
 
 Il `CERTIFICATO` locked non si estende a Drive11, FIGC5, API o domande
-arbitrarie. Le sole attività tecniche correnti sono osservazione prolungata
-(**DA FARE**) ed esposizione HTTPS pubblica in attesa di DNS/certificato
-(**BLOCCATO**). Il reboot completo è VALIDATO. Consumer esterno,
+arbitrarie. Le attività tecniche correnti sono osservazione prolungata e
+pubblicazione di `footballlab.byoursite.com` (**DA FARE**); l'emissione TLS è
+**BLOCCATO** finché il DNS non risolve verso la VPS. Il reboot completo è VALIDATO. Consumer esterno,
 parallelismo generativo e nuove certificazioni sono decisioni facoltative.
 
 Le voci sotto sono cronologia immutabile: uno stato storico non prevale sulla
@@ -717,3 +717,5 @@ Attività: verificare l'avvio automatico dopo reboot completo della VPS. Script:
 Attività: completare il pannello con fonti espandibili, export Markdown e feedback persistente privo di contenuti. Script: `api/knowledge_panel.html`, `api/rag_v5_api.py`; test `tests/test_rag_v5_api.py`, `tests/test_knowledge_catalog.py`; report `docs/knowledge-panel-feedback-export-01.md`. Risultato: compilazione Python, suite 14/14, sintassi JavaScript e diff check superati; feedback limitato ai job riusciti e file atomico senza domanda/risposta. Decisione: deploy e smoke VPS senza inferenza. Stato: IMPLEMENTATO.
 
 Attività: integrare e collaudare feedback/export del pannello. Script e report come sopra; commit `e9dda93`. Risultato: suite VPS 14/14, servizio active/running, readiness ready, collection 6410/157 invariata, UI aggiornata servita e contratto negativo feedback 404 corretto; percorso positivo coperto dal test unitario senza contenuti sensibili. Nessuna inferenza eseguita. Decisione: promuovere il completamento del consumer locale; raccogliere feedback soltanto dall'uso reale. Stato: VALIDATO e INTEGRATO.
+
+Attività: pubblicare il pannello tramite `footballlab.byoursite.com`. Script: template `deploy/nginx-football-rag-api.conf.example`; report `docs/public-panel-https-01.md`. Risultato: nome e IP target definiti; DNS, Nginx, certificato e collaudo ancora mancanti. Decisione: procedere senza esporre 8088; emissione TLS subordinata alla risoluzione DNS pubblica verso `163.5.26.155`. Stato: DA FARE; certificato BLOCCATO fino al DNS.

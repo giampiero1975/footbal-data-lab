@@ -34,8 +34,9 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
   dell'host, il riavvio della sola unità e il
   recovery systemd sono VALIDATI e non vanno ripetuti senza una modifica tecnica;
   evidenza reboot in `docs/rag-v5-full-reboot-validation-01.md`.
-- **BLOCCATO:** esposizione pubblica tramite reverse proxy HTTPS finché non sono
-  disponibili dominio DNS e certificato validi. Il servizio resta su localhost.
+- **DA FARE:** pubblicazione su `https://footballlab.byoursite.com`; record DNS
+  `A` richiesto verso `163.5.26.155`, quindi Nginx, certificato e collaudo.
+  Fase di emissione TLS: **BLOCCATO** finché il DNS non risolve; 8088 resta locale.
 
 ## Decisioni facoltative, non debiti tecnici
 
