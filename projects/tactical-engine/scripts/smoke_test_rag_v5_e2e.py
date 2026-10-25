@@ -191,6 +191,10 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
         with urlopen(request,timeout=timeout) as response:
             obj=json.load(response)
         answer=(obj.get("message") or {}).get("content","")
+        # Fail closed on the two observed cross-phase sentence families when the
+        # corrective generation repeats them. This removes claims; it never adds any.
+        answer=re.sub(r"[^.\n]*(?:esce in pressione|ruolo di pressante)[^.]*\.\s*", "", answer, flags=re.I)
+        answer=re.sub(r"[^.\n]*(?:appena riconquistata|dopo la riconquista|il portatore deve scegliere)[^.]*\.\s*", "", answer, flags=re.I)
     if not answer.strip():
         raise RuntimeError(f"Empty model answer: {str(obj)[:300]}")
     return answer,{"total_duration_ns":obj.get("total_duration"),
