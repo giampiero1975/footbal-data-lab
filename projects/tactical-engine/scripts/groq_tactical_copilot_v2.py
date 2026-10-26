@@ -98,7 +98,10 @@ PASS2_SCHEMA = {
 
 
 def strict_request(prompt: str, body: dict, schema: dict, name: str, model: str = DEFAULT_MODEL) -> dict:
-    return {"model": model, "temperature": 0, "n": 1, "stream": False,
+    # Keep the request aligned with Groq's documented strict-output example.
+    # A small positive temperature also avoids the provider's compatibility
+    # conversion from 0 to 1e-8, documented as a possible source of issues.
+    return {"model": model, "temperature": 0.1,
             "messages": [{"role": "system", "content": prompt},
                          {"role": "user", "content": json.dumps(body, ensure_ascii=False)}],
             "response_format": {"type": "json_schema", "json_schema": {
@@ -191,9 +194,35 @@ def parsed_content(payload: dict) -> dict:
     return json.loads(payload["choices"][0]["message"]["content"])
 
 
+def _redacted_http_400_category(exc: urllib.error.HTTPError) -> str:
+    """Classify a provider error without retaining its message or payload."""
+    try:
+        raw = exc.read(65536)
+        payload = json.loads(raw.decode("utf-8", errors="replace"))
+        error = payload.get("error", {}) if isinstance(payload, dict) else {}
+        message = str(error.get("message", "")).lower()
+        param = str(error.get("param", "")).lower()
+    except (AttributeError, OSError, UnicodeError, json.JSONDecodeError):
+        return "UNCLASSIFIED"
+    text = f"{param} {message}"
+    if any(word in text for word in ("response_format", "json_schema", "schema")):
+        return "SCHEMA"
+    if "temperature" in text:
+        return "TEMPERATURE"
+    if "model" in text:
+        return "MODEL"
+    if any(word in text for word in ("token", "context", "too large")):
+        return "SIZE"
+    if any(word in text for word in ("generated json", "does not match")):
+        return "OUTPUT_MISMATCH"
+    return "INVALID_REQUEST"
+
+
 def redacted_failure_reason(exc: Exception) -> str:
     """Return a diagnostic code without response bodies, prompts or secrets."""
     if isinstance(exc, urllib.error.HTTPError):
+        if exc.code == 400:
+            return f"GROQ_HTTP_400_{_redacted_http_400_category(exc)}"
         return f"GROQ_HTTP_{exc.code}"
     if isinstance(exc, urllib.error.URLError):
         return "GROQ_NETWORK_ERROR"

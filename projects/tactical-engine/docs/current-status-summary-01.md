@@ -33,6 +33,11 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
 ## Attività tecniche realmente aperte
 
 - **DA FARE:** ottimizzazione del flusso Coverciano assistito. Una prova
+- **VALIDATO offline:** remediation del 400 Groq con payload strict minimale e
+  diagnostica redatta; 33/33 test, zero chiamate API. Una smoke differenziale
+  autorizzata resta necessaria prima dell'integrazione; riferimento
+  `docs/groq-copilot-http400-remediation-01.md`.
+- **DA FARE:** ottimizzazione del flusso Coverciano assistito. Una prova
   manuale Gemini-esaminatore → RAG → Groq-copilot → Gemini-valutatore ha
   ottenuto 30/30 con lode, ma il solo RAG ha richiesto circa 170 secondi. La
   prova è ESEGUITA, non ancora VALIDATA o INTEGRATA. Il precedente piano batch

@@ -58,6 +58,12 @@ l'archivio conservano gli stati storici senza riaprirli.
   risposta finale e fonti. Suite 25/25 e JavaScript PASS; smoke live e
   configurazione privata DA FARE. Report
   `docs/groq-copilot-panel-integration-01.md`.
+- [x] **VALIDATO offline** remediation del `GROQ_HTTP_400`: payload strict
+  allineato all'esempio ufficiale Groq, temperatura positiva, parametri
+  ridondanti rimossi e diagnostica 400 classificata senza persistere body,
+  prompt o evidenze. Suite combinata 33/33 e compilazione PASS, zero API.
+  Una sola smoke differenziale DA FARE previa autorizzazione; report
+  `docs/groq-copilot-http400-remediation-01.md`.
 - [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto
   dopo ottimizzazione e validazione differenziale del copilot.
 

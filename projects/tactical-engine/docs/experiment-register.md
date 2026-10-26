@@ -14,6 +14,17 @@ il segreto corrente e non memorizzarlo lato browser. Commit `12c7fe0`, deploy VP
 fast-forward, servizio attivo, suite VPS 18/18 e smoke HTTPS autenticato HTTP 200.
 Stato: **VALIDATO e INTEGRATO**.
 
+### 2026-10-26 — Remediation offline HTTP 400 Groq copilot
+
+Attività: diagnosticare il 400 della seconda smoke senza nuova chiamata API.
+Script: `scripts/groq_tactical_copilot_v2.py`; test copilot, reviewer e API;
+report `docs/groq-copilot-http400-remediation-01.md`. Risultato: documentazione
+ufficiale conferma modello e strict schema; payload reso minimale con temperatura
+0,1 e diagnostica redatta per categorie 400. Suite 33/33, compilazione PASS,
+API_REQUESTS=0. Decisione: non introdurre fallback permissivi o retry; richiedere
+una sola smoke differenziale sul caso congelato. Stato: **VALIDATO offline**,
+runtime **DA FARE**.
+
 ## Sintesi corrente per il revisore
 
 La fotografia consolidata, con evidenze e limiti, è

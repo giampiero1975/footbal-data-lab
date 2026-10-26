@@ -1,4 +1,4 @@
-import importlib.util, json, sys, unittest
+import importlib.util, io, json, sys, unittest
 import urllib.error
 from pathlib import Path
 
@@ -34,6 +34,9 @@ class CopilotOfflineTests(unittest.TestCase):
         request = copilot.build_pass1(cases())
         self.assertNotIn("evidence", request["messages"][1]["content"])
         self.assertTrue(request["response_format"]["json_schema"]["strict"])
+        self.assertEqual(request["temperature"], 0.1)
+        self.assertNotIn("n", request)
+        self.assertNotIn("stream", request)
 
     def test_pass1_semantic_gates(self):
         self.assertEqual(copilot.validate_pass1(pass1(), ["case_01"])["reviews"][0]["score"], 7)
@@ -66,6 +69,11 @@ class CopilotOfflineTests(unittest.TestCase):
     def test_failure_reasons_are_redacted(self):
         http = urllib.error.HTTPError("https://example.invalid", 503, "secret body", {}, None)
         self.assertEqual(copilot.redacted_failure_reason(http), "GROQ_HTTP_503")
+        body = io.BytesIO(json.dumps({"error": {
+            "message": "Invalid response_format json_schema containing private details",
+            "type": "invalid_request_error"}}).encode())
+        bad_schema = urllib.error.HTTPError("https://example.invalid", 400, "bad", {}, body)
+        self.assertEqual(copilot.redacted_failure_reason(bad_schema), "GROQ_HTTP_400_SCHEMA")
         self.assertEqual(copilot.redacted_failure_reason(ValueError("raw model content")),
                          "GROQ_INVALID_STRUCTURED_RESPONSE")
 
