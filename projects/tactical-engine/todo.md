@@ -1004,4 +1004,13 @@ tecnica.
 - [ ] **DA FARE** V5-OPENROUTER-TELEMETRY-01: integrare metadati Generation e
   Key; Analytics/crediti richiedono management key. Mostrare costi, token,
   provider, fallback e timeout senza conservare prompt/risposte sensibili.
+- [ ] **DA FARE** V5-RAG-COPILOT-ATTRIBUTION-01: il campione operativo delle
+  prime 16 prove Coverciano indica in via preliminare un contributo qualitativo
+  RAG di circa 25-35% e revisore OpenRouter di circa 65-75%; la sedicesima
+  valutazione esterna e ancora pendente. Obiettivo vincolante: RAG almeno 70%
+  e spalla al massimo 30%, con bozza RAG autonoma almeno 26/30. Implementare
+  confronto per caso fra bozza RAG, interventi proposti, risposta finale e voto
+  esterno; distinguere concetti preservati, corretti, aggiunti e non supportati.
+  La spalla non deve sostituire integralmente la risposta. La stima attuale non
+  e VALIDATA e non va presentata come misura causale definitiva.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

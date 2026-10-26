@@ -1140,3 +1140,19 @@ Risultato: RAG 71,39 s; timeout revisore 240 s; totale 334 s e fallback sulla
 bozza. Usage locale assente per completion non conclusa. Decisione: ridurre
 reasoning a low e riconciliare il costo tramite telemetria OpenRouter; nessun
 invio Gemini. Stato: **ESEGUITO**.
+
+### V5-RAG-COPILOT-ATTRIBUTION-01 — Audit preliminare 70/30 (2026-10-26)
+
+Attivita: riconciliare il ruolo effettivo di RAG e spalla OpenRouter nelle
+prime 16 prove Coverciano eseguite dal pannello, senza nuove chiamate. Evidenze:
+bozze RAG e revisioni conservate nella cronologia della sessione, valutazioni
+interne frequentemente comprese fra 2 e 4/10 nei casi recenti, risposte finali
+valutate dalla commissione esterna 29-30/30 nei primi 15 casi; valutazione del
+caso 16 ancora pendente. Risultato: stima qualitativa preliminare RAG 25-35% e
+spalla 65-75%; il retrieval e il grounding restano prevalentemente RAG, mentre
+la maggioranza del miglioramento di ragionamento ed esposizione proviene oggi
+dalla spalla. Decisione: obiettivo RAG >=70%, spalla <=30% e bozza autonoma
+>=26/30; progettare attribuzione per caso sui concetti preservati, corretti,
+aggiunti e non supportati prima di dichiarare una percentuale validata. Vietata
+la sostituzione integrale della risposta da parte del revisore. Stato:
+**ESEGUITO** per l'audit preliminare; misura causale **DA FARE**, non VALIDATA.
