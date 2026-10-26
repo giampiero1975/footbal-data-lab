@@ -76,6 +76,20 @@ class CopilotOfflineTests(unittest.TestCase):
     def test_pass2_requires_complete_finding_coverage(self):
         with self.assertRaises(ValueError): copilot.validate_pass2({"checks": [], "limitations": []}, cases(), pass1())
 
+    def test_pass2_missing_check_is_fail_closed(self):
+        raw = pass2()
+        raw["checks"] = []
+        raw["revised_answers"][0]["applied_findings"] = ["f01"]
+        normalized, notes = copilot.normalize_pass2(raw, cases(), pass1())
+        check = normalized["checks"][0]
+        answer = normalized["revised_answers"][0]
+        self.assertEqual(check["classification"], "ULTERIORE_RETRIEVAL")
+        self.assertEqual(check["evidence_labels"], [])
+        self.assertEqual(answer["applied_findings"], [])
+        self.assertEqual(answer["unresolved_findings"], ["f01"])
+        self.assertEqual(len(notes), 2)
+        self.assertIs(copilot.validate_pass2(normalized, cases(), pass1()), normalized)
+
     def test_revised_answer_citation_and_partition_fail_closed(self):
         bad = pass2(); bad["revised_answers"][0]["answer"] = "Inventata [F9]."
         with self.assertRaises(ValueError): copilot.validate_pass2(bad, cases(), pass1())

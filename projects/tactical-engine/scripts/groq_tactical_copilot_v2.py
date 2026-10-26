@@ -184,6 +184,54 @@ def build_pass2(cases: list[dict], pass1: dict, model: str = DEFAULT_MODEL) -> d
     return strict_request(PASS2_PROMPT, body, PASS2_SCHEMA, "groq_tactical_copilot_pass2", model)
 
 
+def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict, list[str]]:
+    """Fail closed on omitted checks and mechanical finding partitions."""
+    normalized = json.loads(json.dumps(parsed))
+    expected = {(row["id"], f["finding_id"]) for row in pass1["reviews"] for f in row["findings"]}
+    checks = normalized.get("checks")
+    if not isinstance(checks, list):
+        raise ValueError("PASS2_CHECKS_TYPE")
+    notes: list[str] = []
+    observed: set[tuple[str, str]] = set()
+    for row in checks:
+        if not isinstance(row, dict):
+            raise ValueError("PASS2_CHECK_TYPE")
+        key = (row.get("id"), row.get("finding_id"))
+        if key not in expected or key in observed:
+            raise ValueError("PASS2_UNKNOWN_OR_DUPLICATE_FINDING")
+        observed.add(key)
+    for case_id, finding_id in sorted(expected - observed):
+        checks.append({"id": case_id, "finding_id": finding_id,
+            "classification": "ULTERIORE_RETRIEVAL", "evidence_labels": [],
+            "rationale": "Verifica non restituita dal copilot; mantenuta fuori dalla risposta finale."})
+        notes.append(f"{case_id}:{finding_id}:MISSING_CHECK_FAIL_CLOSED")
+
+    revised = normalized.get("revised_answers")
+    if not isinstance(revised, list):
+        raise ValueError("PASS2_REVISED_TYPE")
+    by_case = {row.get("id"): row for row in revised if isinstance(row, dict)}
+    if len(by_case) != len(revised):
+        raise ValueError("PASS2_REVISED_DUPLICATE_ID")
+    supported = {(r["id"], r["finding_id"]) for r in checks if r.get("classification") == "SUPPORTATO"}
+    for case in cases:
+        case_id = case["id"]
+        row = by_case.get(case_id)
+        if row is None:
+            raise ValueError("PASS2_REVISED_CASE_COVERAGE")
+        expected_ids = {fid for cid, fid in expected if cid == case_id}
+        applied = set(row.get("applied_findings", []))
+        unresolved = set(row.get("unresolved_findings", []))
+        if not (applied | unresolved) <= expected_ids:
+            raise ValueError("PASS2_UNKNOWN_FINDING_IN_PARTITION")
+        unsafe = {fid for fid in applied if (case_id, fid) not in supported}
+        missing = expected_ids - applied - unresolved
+        if unsafe or missing:
+            row["applied_findings"] = sorted(applied - unsafe)
+            row["unresolved_findings"] = sorted(unresolved | unsafe | missing)
+            notes.append(f"{case_id}:FINDING_PARTITION_FAIL_CLOSED")
+    return normalized, notes
+
+
 def validate_pass2(parsed: dict, cases: list[dict], pass1: dict) -> dict:
     expected = {(row["id"], f["finding_id"]) for row in pass1["reviews"] for f in row["findings"]}
     checks = parsed.get("checks")
@@ -296,7 +344,8 @@ def execute(paths: list[Path], output: Path, model: str, estimated_tokens: int) 
     pass1, normalizations = normalize_pass1(parsed_content(payload1), list(mapping))
     pass1 = validate_pass1(pass1, list(mapping))
     req2 = build_pass2(cases, pass1, model); payload2, elapsed2 = call_groq(req2, key)
-    pass2 = validate_pass2(parsed_content(payload2), cases, pass1)
+    pass2, pass2_normalizations = normalize_pass2(parsed_content(payload2), cases, pass1)
+    pass2 = validate_pass2(pass2, cases, pass1)
     usage1 = payload1.get("usage", {}); usage2 = payload2.get("usage", {})
     used = int(usage1.get("total_tokens", 0)) + int(usage2.get("total_tokens", 0))
     ledger[day] = {"requests": int(ledger.get(day, {}).get("requests", 0)) + 2,
@@ -306,7 +355,7 @@ def execute(paths: list[Path], output: Path, model: str, estimated_tokens: int) 
         "provider": "groq", "model": model, "runtime_case_map": mapping,
         "network_called": True, "rag_executed": False, "index_writes": False,
         "elapsed_seconds": round(elapsed1 + elapsed2, 3),
-        "mechanical_normalizations": normalizations,
+        "mechanical_normalizations": normalizations + pass2_normalizations,
         "passes": [{"elapsed_seconds": elapsed1, "usage": usage1},
                    {"elapsed_seconds": elapsed2, "usage": usage2}],
         "pass1": pass1, "pass2": pass2})

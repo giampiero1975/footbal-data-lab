@@ -41,6 +41,19 @@ API_REQUESTS=0 nella correzione. Decisione: disattivare reviewer Gemini API
 legacy e attendere una sola verifica utente prima di VALIDARE runtime. Stato:
 **IMPLEMENTATO e VALIDATO offline**.
 
+### 2026-10-26 — Smoke isolata Groq job a5b991d0
+
+Attività: rieseguire soltanto il copilot sul risultato RAG esistente dopo
+autorizzazione esplicita; quattro estratti, nessun PDF/credenziale e nessun nuovo
+RAG. Script: copilot V2; output temporaneo redatto; report
+`docs/groq-copilot-http400-remediation-01.md`. Risultato: passaggio 1 accettato,
+passaggio 2 BLOCCATO in 6,697 s con `GROQ_PASS2_FINDING_COVERAGE`. Decisione:
+non inventare check mancanti; classificarli localmente come
+`ULTERIORE_RETRIEVAL`, rimuoverli dagli applicati e conservarli irrisolti.
+Extra/duplicati restano errori. Suite 35/35, nessuna API successiva. Stato:
+smoke **ESEGUITA**, correzione **IMPLEMENTATA e VALIDATA offline**, runtime
+finale **DA FARE** previa nuova autorizzazione.
+
 ## Sintesi corrente per il revisore
 
 La fotografia consolidata, con evidenze e limiti, è

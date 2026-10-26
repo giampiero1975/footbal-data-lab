@@ -73,6 +73,13 @@ l'archivio conservano gli stati storici senza riaprirli.
   classificati per fase PASS1/PASS2. Suite 34/34, zero API nella correzione.
 - [ ] **DA FARE** confermare con una sola prova utente che i due passaggi Groq
   completino; non avviare benchmark o retry automatici prima dell'esito.
+- [x] **ESEGUITO** smoke Groq isolata autorizzata sul job `a5b991d0`: nessun
+  nuovo RAG, primo passaggio accettato, secondo BLOCCATO dopo 6,697 s per
+  `PASS2_FINDING_COVERAGE`. Nessun contenuto inventato.
+- [x] **VALIDATO offline** fallback conservativo per check omessi: classificare
+  esclusivamente `ULTERIORE_RETRIEVAL` e mantenere il finding irrisolto; extra e
+  duplicati ancora fail-closed. Suite 35/35. Nuova smoke DA FARE solo previa
+  autorizzazione.
 - [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto
   dopo ottimizzazione e validazione differenziale del copilot.
 

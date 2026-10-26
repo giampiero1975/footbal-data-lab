@@ -70,3 +70,19 @@ nel protocollo corrente Gemini Cloud e l'esaminatore manuale, mentre Groq e il
 copilot applicativo. Questo elimina una chiamata 503 inutile senza toccare RAG,
 indice o copilot.
 
+## Smoke isolata autorizzata sul risultato esistente
+
+Autorizzazione esplicita ricevuta per il job `a5b991d0`, con domanda, risposta
+RAG e quattro estratti; nessun PDF o segreto. Nessun nuovo retrieval o RAG.
+Il primo passaggio Groq ha superato normalizzazione e validazione; il secondo ha
+fallito in 6,697 s con `GROQ_PASS2_FINDING_COVERAGE`, cioe non ha restituito un
+check per ogni finding. Il sistema non ha inventato classificazioni e ha
+bloccato la composizione.
+
+Correzione offline: ogni check omesso viene aggiunto deterministicamente come
+`ULTERIORE_RETRIEVAL`, senza label e con motivazione locale; eventuali finding
+non supportati vengono rimossi dagli applicati e mantenuti tra gli irrisolti.
+Check sconosciuti o duplicati restano errori. Suite combinata **35/35 PASS**,
+compilazione PASS, nessuna ulteriore API. Stato: **IMPLEMENTATO e VALIDATO
+offline**; una nuova smoke richiede una nuova autorizzazione.
+
