@@ -15,6 +15,18 @@ chiamate esterne. Decisione: mantenere gli artefatti storici per audit e
 installare la nuova chiave solo nel file privato VPS. Stato: **IMPLEMENTATO**;
 deploy e singola verifica pubblica **DA FARE**.
 
+### 2026-10-26 — Prima prova pubblica OpenRouter e cardinalità PASS1
+
+Attività: eseguire dal pannello il caso storico 4-3-3 contro 5-4-1 per
+confrontabilità. Job `7cb0da28`; report
+`docs/openrouter-reviewer-migration-01.md`. Risultato: RAG 128,2 s, totale
+187 s, 555 token e quattro evidenze; OpenRouter raggiunto con modello riportato
+`openai/gpt-oss-120b`, output bloccato da `PASS1_CASE_COUNT_MISMATCH` dopo
+circa 34 s. Decisione: imporre nello schema per-request esattamente un elemento
+per caso in `reviews` e `revised_answers`, senza allentare i gate semantici.
+Suite 23/23, compilazione PASS, nessuna API nella correzione. Stato: prova
+**ESEGUITA**, correzione **IMPLEMENTATA e VALIDATA offline**, runtime **DA FARE**.
+
 ### 2026-10-26 — Benchmark live Coverciano caso 001 e gate PASS2
 
 Attività: avviare il protocollo Gemini-esaminatore → pannello RAG/Groq →

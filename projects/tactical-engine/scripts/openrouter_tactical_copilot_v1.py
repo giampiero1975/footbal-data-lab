@@ -57,7 +57,13 @@ def strict_request(prompt: str, body: dict, schema: dict, name: str,
 def build_pass1(cases: list[dict], models: list[str]) -> dict:
     minimal = [{"id": c["id"], "question": c["question"], "answer": c["answer"]}
                for c in cases]
-    return strict_request(PASS1_PROMPT, {"cases": minimal}, PASS1_SCHEMA,
+    schema = json.loads(json.dumps(PASS1_SCHEMA))
+    schema["properties"]["reviews"].update(
+        {"minItems": len(cases), "maxItems": len(cases)})
+    prompt = PASS1_PROMPT + (
+        f" Restituisci esattamente {len(cases)} elemento/i in reviews, uno per ogni "
+        "caso ricevuto, senza aggiungere o omettere casi.")
+    return strict_request(prompt, {"cases": minimal}, schema,
                           "openrouter_tactical_copilot_pass1_v1", models)
 
 
@@ -65,7 +71,10 @@ def build_pass2(cases: list[dict], pass1: dict, models: list[str]) -> dict:
     by_id = {row["id"]: row for row in pass1["reviews"]}
     body = {"cases": [{"id": c["id"], "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
-    return strict_request(PASS2_PROMPT, body, PASS2_SCHEMA,
+    schema = json.loads(json.dumps(PASS2_SCHEMA))
+    schema["properties"]["revised_answers"].update(
+        {"minItems": len(cases), "maxItems": len(cases)})
+    return strict_request(PASS2_PROMPT, body, schema,
                           "openrouter_tactical_copilot_pass2_v1", models)
 
 

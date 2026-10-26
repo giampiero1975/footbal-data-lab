@@ -28,6 +28,11 @@ l'archivio conservano gli stati storici senza riaprirli.
   JavaScript PASS, zero chiamate API. Installazione segreto, deploy e singola
   prova dal pannello **DA FARE**. Report
   `docs/openrouter-reviewer-migration-01.md`.
+- [ ] **ESEGUITO** primo job OpenRouter pubblico `7cb0da28`: RAG 128,2 s,
+  totale 187 s, quattro evidenze; trasporto OpenRouter operativo ma output
+  bloccato fail-closed da `PASS1_CASE_COUNT_MISMATCH`. Cardinalità esatta
+  aggiunta a entrambi gli schemi e validata offline, suite 23/23. Nuova prova
+  differenziale dal solo pannello **DA FARE**.
 
 > **Protocollo corretto il 2026-10-26.** Gemini Cloud formula una domanda e
 > valuta la risposta finale; il RAG produce la risposta documentale iniziale;

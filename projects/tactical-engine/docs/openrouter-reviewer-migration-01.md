@@ -56,3 +56,16 @@ La migrazione è **IMPLEMENTATA**, non ancora **VALIDATA** né **INTEGRATA**.
 Prima della promozione servono installazione della chiave solo sulla VPS,
 deploy anti-conflitto, test offline VPS e una singola prova completa dal
 pannello pubblico. I risultati storici Gemini/Groq non vanno cancellati.
+
+## Prima prova pubblica e correzione differenziale
+
+La prima prova dal pannello, job `7cb0da28`, ha completato il RAG in 128,2 s
+e raggiunto OpenRouter: tempo totale 187 s, 555 token generativi e quattro
+evidenze. `openai/gpt-oss-120b` ha restituito structured output, poi bloccato
+dal gate locale con `PASS1_CASE_COUNT_MISMATCH`. Il trasporto e la chiave sono
+quindi operativi; il contratto non imponeva la cardinalità dell'array.
+
+Correzione: schema per-request con `minItems=maxItems=numero casi` sia per
+`reviews` sia per `revised_answers`, più istruzione esplicita nel primo prompt.
+Suite aggiornata: **23/23 PASS**, zero ulteriori chiamate API. Una nuova prova
+del medesimo caso è tecnicamente giustificata dalla variazione del contratto.
