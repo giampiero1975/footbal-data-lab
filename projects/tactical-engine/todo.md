@@ -90,6 +90,10 @@ l'archivio conservano gli stati storici senza riaprirli.
 - [x] **VALIDATO offline** schema PASS2 vincolato agli ID reali prodotti dal
   PASS1, senza allentare i gate semantici/documentali: copilot 12/12, suite Groq
   22/22, zero API. Deploy e smoke differenziale con la domanda 2 **DA FARE**.
+- [ ] **ESEGUITO 2/100** caso 002 job `768b7980`: 206 s totali, RAG 173,42 s,
+  quattro evidenze. Il gate ID è superato; nuovo blocco fail-closed
+  `PASS2_UNSUPPORTED_WITH_EVIDENCE`. Normalizzazione conservativa delle sole
+  etichette **IMPLEMENTATA**; test e deploy da completare prima del caso 003.
 
 ### Archivio storico — vecchia generazione batch Gemini/Groq
 

@@ -101,6 +101,27 @@ class CopilotOfflineTests(unittest.TestCase):
         self.assertEqual(len(notes), 2)
         self.assertIs(copilot.validate_pass2(normalized, cases(), pass1()), normalized)
 
+    def test_pass2_unsupported_check_drops_evidence_fail_closed(self):
+        raw = pass2()
+        raw["checks"][0]["classification"] = "NON_SUPPORTATO"
+        raw["revised_answers"][0]["applied_findings"] = []
+        raw["revised_answers"][0]["unresolved_findings"] = ["f01"]
+        normalized, notes = copilot.normalize_pass2(raw, cases(), pass1())
+        self.assertEqual(normalized["checks"][0]["evidence_labels"], [])
+        self.assertIn("case_01:f01:UNSUPPORTED_LABELS_REMOVED", notes)
+        self.assertIs(copilot.validate_pass2(normalized, cases(), pass1()), normalized)
+
+    def test_pass2_supported_unknown_evidence_is_downgraded(self):
+        raw = pass2()
+        raw["checks"][0]["evidence_labels"] = ["F9"]
+        raw["revised_answers"][0]["applied_findings"] = []
+        raw["revised_answers"][0]["unresolved_findings"] = ["f01"]
+        normalized, notes = copilot.normalize_pass2(raw, cases(), pass1())
+        self.assertEqual(normalized["checks"][0]["classification"], "ULTERIORE_RETRIEVAL")
+        self.assertEqual(normalized["checks"][0]["evidence_labels"], [])
+        self.assertIn("case_01:f01:SUPPORT_DOWNGRADED_FAIL_CLOSED", notes)
+        self.assertIs(copilot.validate_pass2(normalized, cases(), pass1()), normalized)
+
     def test_revised_answer_citation_and_partition_fail_closed(self):
         bad = pass2(); bad["revised_answers"][0]["answer"] = "Inventata [F9]."
         with self.assertRaises(ValueError): copilot.validate_pass2(bad, cases(), pass1())

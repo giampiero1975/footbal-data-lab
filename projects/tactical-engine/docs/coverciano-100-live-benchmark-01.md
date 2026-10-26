@@ -41,3 +41,19 @@ Nessuna correzione tattica viene inventata o normalizzata localmente.
 Verifica offline: test copilot 12/12; suite Groq combinata 22/22. Chiamate API
 durante la correzione: zero. Smoke live successiva necessaria tramite domanda 2.
 
+## Caso 002 — 3-5-2 avanti 1-0 contro 4-2-3-1 offensivo
+
+- Job: `768b7980`.
+- Tempo totale pannello: 206 s; generazione RAG: 173,42 s, 687 token.
+- Evidenze recuperate: 4.
+- Il vincolo sugli ID ha eliminato l'errore del caso 001. PASS2 è arrivato al
+  controllo successivo ed è stato respinto dopo circa 9 s con
+  `GROQ_PASS2_UNSUPPORTED_WITH_EVIDENCE`.
+- Diagnosi: Groq ha associato etichette documentali a un finding classificato
+  non supportato. La bozza RAG resta disponibile ma non viene presentata come
+  risposta assistita né inviata a Gemini per un voto finale.
+- Decisione: normalizzare fail-closed soltanto le etichette: un finding non
+  supportato perde tutte le etichette; un finding supportato con sole etichette
+  sconosciute viene degradato a `ULTERIORE_RETRIEVAL`. Il contenuto tattico non
+  viene modificato né promosso.
+

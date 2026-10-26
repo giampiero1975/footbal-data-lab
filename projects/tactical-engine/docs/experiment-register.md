@@ -16,6 +16,17 @@ come fallimento di pipeline, non eseguire casi equivalenti finché la correzione
 non è distribuita, poi riprendere dalla domanda 2 già acquisita. Stato: caso
 **ESEGUITO**, correzione **IMPLEMENTATA e VALIDATA offline**, runtime **DA FARE**.
 
+### 2026-10-26 — Benchmark live Coverciano caso 002 e coerenza evidenze PASS2
+
+Attività: smoke runtime della correzione ID con la domanda 2 prodotta da Gemini.
+Job `768b7980`; report `docs/coverciano-100-live-benchmark-01.md`. Risultato:
+RAG 173,42 s, totale 206 s, quattro evidenze; il precedente errore ID è risolto,
+ma PASS2 è bloccato da `UNSUPPORTED_WITH_EVIDENCE`. Decisione: rimuovere
+meccanicamente le etichette dai finding non supportati e degradare a
+`ULTERIORE_RETRIEVAL` i finding dichiarati supportati senza alcuna etichetta
+valida. Nessuna promozione, modifica tattica o API durante la correzione. Stato:
+caso **ESEGUITO**, correzione **IMPLEMENTATA**, validazione offline **DA FARE**.
+
 ### 2026-10-26 — Normalizzazione token pannello pubblico
 
 Attività: diagnosticare `unauthorized` senza ruotare o divulgare credenziali.

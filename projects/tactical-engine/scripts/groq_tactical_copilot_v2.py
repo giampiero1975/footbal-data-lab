@@ -224,6 +224,21 @@ def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict,
             "rationale": "Verifica non restituita dal copilot; mantenuta fuori dalla risposta finale."})
         notes.append(f"{case_id}:{finding_id}:MISSING_CHECK_FAIL_CLOSED")
 
+    labels = {c["id"]: {str(e.get("label", "")) for e in c["evidence"]} for c in cases}
+    for row in checks:
+        classification = row.get("classification")
+        used = set(row.get("evidence_labels", []))
+        valid = used & labels[row["id"]]
+        if classification != "SUPPORTATO" and used:
+            row["evidence_labels"] = []
+            notes.append(f"{row['id']}:{row['finding_id']}:UNSUPPORTED_LABELS_REMOVED")
+        elif classification == "SUPPORTATO" and valid != used:
+            row["evidence_labels"] = sorted(valid)
+            notes.append(f"{row['id']}:{row['finding_id']}:UNKNOWN_LABELS_REMOVED")
+            if not valid:
+                row["classification"] = "ULTERIORE_RETRIEVAL"
+                notes.append(f"{row['id']}:{row['finding_id']}:SUPPORT_DOWNGRADED_FAIL_CLOSED")
+
     revised = normalized.get("revised_answers")
     if not isinstance(revised, list):
         raise ValueError("PASS2_REVISED_TYPE")
