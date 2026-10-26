@@ -117,3 +117,22 @@ Correzione differenziale:
 Suite combinata Groq storico + OpenRouter + API: **40/40 PASS**. Nessuna API
 usata nella correzione. Nuovo test autorizzato dalla differenza tecnica; criterio
 di arresto: voto Gemini almeno **28/30**.
+
+### Prova differenziale qualità 2 — job `8de1cbcc`
+
+La correzione di preservazione del contesto è stata eseguita dal pannello
+pubblico sul medesimo caso: RAG 73,3 s, revisore 15,701 s, totale 113 s,
+quattro evidenze e stato `verified`. I due passaggi hanno usato 5.155 token
+(3.472 input, 1.683 output) al costo totale di **$0,02551** ($0,01222 e
+$0,01329). Gemini ha assegnato **25/30**, contro 18/30 della prova precedente.
+
+Il progresso conferma la rimozione delle confusioni di ruolo, ma resta un
+difetto implementativo: la risposta finale diagnostica la vecchia bozza invece
+di sostituirla con un piano proattivo; omette ancora tre cambi/due slot,
+rotazione per liberare l'ala e preventiva. Stato: **ESEGUITO**, non VALIDATO.
+
+Differenza tecnica successiva: PASS1 deve produrre una `replacement_answer`
+operativa completa (minimo locale 400 caratteri); PASS2 la usa come ossatura e
+deve coprire struttura, movimenti, tutti i vincoli espliciti, area,
+preventiva/transizione e trigger. Questa variante giustifica un solo nuovo test
+del caso; criterio invariato: almeno **28/30**.

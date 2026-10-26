@@ -1105,3 +1105,12 @@ report fallimento con soli codici HTTP/rete/timeout/schema, senza contenuti o
 segreti; test 27/27. Decisione: pubblicare la diagnostica, non ripetere la
 chiamata senza nuova autorizzazione esplicita. Stato: smoke **ESEGUITA**,
 copilot live **BLOCCATO**, diagnostica **IMPLEMENTATA**.
+
+### V5-OPENROUTER-QUALITY-02 — Contesto preservato (2026-10-26)
+
+Attività: seconda prova differenziale dal pannello sul caso Coverciano 001,
+job `8de1cbcc`. Risultato: RAG 73,3 s, OpenRouter 15,701 s, totale 113 s,
+5.155 token, costo $0,02551, stato `verified`; valutazione Gemini **25/30**.
+Decisione: miglioramento reale rispetto a 18/30, ma risposta ancora diagnostica
+e non proattiva; omessi tre cambi/due slot. Implementare risposta sostitutiva
+completa nei due passaggi e ripetere una sola volta. Stato: **ESEGUITO**.

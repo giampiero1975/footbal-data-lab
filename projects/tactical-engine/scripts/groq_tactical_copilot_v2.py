@@ -29,7 +29,13 @@ lato, ruolo, punteggio, minuto e vincoli della domanda. Non confondere terzino,
 ala, esterno di centrocampo, mezzala e mediano. Ogni finding deve proporre una
 correzione concreta, non ripetere l'errore della bozza. Per una situazione di
 gara verifica sempre struttura in possesso, occupazione degli spazi, movimenti
-sincroni, preventiva/transizione e uso esplicito dei cambi disponibili."""
+sincroni, preventiva/transizione e uso esplicito dei cambi disponibili.
+Oltre alla diagnosi scrivi replacement_answer: una nuova risposta completa da
+esame, operativa e autosufficiente. Deve dire chi fa cosa, dove e quando;
+rispondere a ogni vincolo numerico della domanda (cambi, slot, minuto, risultato);
+definire struttura, catene/rotazioni, occupazione dell'area, preventiva e trigger.
+Non limitarti a spiegare perche la bozza e sbagliata e non usare l'assenza di una
+fonte come motivo per evitare una scelta logico-tattica esplicitamente qualificata."""
 
 PASS2_PROMPT = """Sei il verificatore documentale della revisione tattica.
 Ricevi osservazioni gia formulate ed estratti selezionati. Per ogni finding_id
@@ -41,12 +47,15 @@ Usa soltanto evidence_labels realmente disponibili. Non controllare la sintassi
 delle citazioni della risposta: quella responsabilita appartiene al software.
 Non inventare fonti, pagine, citazioni o contenuti assenti dagli estratti."""
 
-PASS2_PROMPT += """ Dopo i controlli, riscrivi una risposta finale concreta e
-completa per ogni caso. Applica soltanto finding classificati SUPPORTATO; lascia
-gli altri in unresolved_findings. La risposta deve essere autonoma, completa e
-rispondere a tutti i vincoli della domanda, preservando le parti corrette della
-bozza. Applica anche i finding GIUDIZIO_TECNICO, senza presentarli come fatti
-documentali. Ogni affermazione documentale deve citare una
+PASS2_PROMPT += """ Dopo i controlli, usa replacement_answer come ossatura e
+riscrivi una risposta finale concreta e completa per ogni caso: non produrre una
+diagnosi della bozza. La risposta deve avere sezioni operative su obiettivo e
+struttura, compiti e movimenti coordinati, utilizzo di tutti i cambi/slot o altri
+vincoli espliciti, occupazione dell'area, preventiva/transizione e trigger
+decisionali. Applica soltanto finding classificati SUPPORTATO o
+GIUDIZIO_TECNICO; lascia gli altri in unresolved_findings. Preserva le parti
+corrette della bozza, ma sostituisci integralmente quelle errate. Non presentare
+i GIUDIZIO_TECNICO come fatti documentali. Ogni affermazione documentale deve citare una
 evidence label disponibile nel formato [F1]. Non aggiungere bibliografie o
 fonti esterne e non dichiarare verificato cio che richiede ulteriore retrieval."""
 
@@ -68,7 +77,8 @@ PASS1_SCHEMA = {
         "reviews": {"type": "array", "items": {
             "type": "object", "additionalProperties": False,
             "required": ["id", "score", "verdict", "answered_parts", "missing_parts", "digressions",
-                         "confirmed_points", "findings", "improvement_plan", "retrieval_needs"],
+                         "confirmed_points", "findings", "improvement_plan", "replacement_answer",
+                         "retrieval_needs"],
             "properties": {
                 "id": {"type": "string"}, "score": {"type": "number", "minimum": 0, "maximum": 10},
                 "verdict": {"type": "string", "enum": ["PASS", "REVISIONE"]},
@@ -78,6 +88,7 @@ PASS1_SCHEMA = {
                 "confirmed_points": {"type": "array", "items": {"type": "string"}},
                 "findings": {"type": "array", "items": FINDING},
                 "improvement_plan": {"type": "array", "items": {"type": "string"}},
+                "replacement_answer": {"type": "string"},
                 "retrieval_needs": {"type": "array", "items": {"type": "string"}},
             }}},
         "limitations": {"type": "array", "items": {"type": "string"}},
@@ -182,6 +193,9 @@ def validate_pass1(parsed: dict, case_ids: list[str]) -> dict:
             raise ValueError("PASS1_SCORE")
         if (float(score) >= 8) != (row.get("verdict") == "PASS"):
             raise ValueError("PASS1_VERDICT")
+        replacement = row.get("replacement_answer")
+        if not isinstance(replacement, str) or len(replacement.strip()) < 400:
+            raise ValueError("PASS1_REPLACEMENT_ANSWER")
         for finding in row.get("findings", []):
             fid = finding.get("finding_id")
             if not fid or fid in finding_ids:
@@ -194,6 +208,8 @@ def build_pass2(cases: list[dict], pass1: dict, model: str = DEFAULT_MODEL) -> d
     by_id = {row["id"]: row for row in pass1["reviews"]}
     body = {"cases": [{"id": c["id"], "question": c["question"],
                         "original_answer": c["answer"],
+                        "replacement_answer": by_id[c["id"]]["replacement_answer"],
+                        "improvement_plan": by_id[c["id"]]["improvement_plan"],
                         "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
     # Schema names are immutable provider-side contract identifiers.  The v1
@@ -431,7 +447,9 @@ def preflight(paths: list[Path], output: Path, model: str) -> None:
     request1 = build_pass1(cases, model)
     synthetic_pass1 = {"reviews": [{"id": c["id"], "score": 0, "verdict": "REVISIONE",
         "answered_parts": [], "missing_parts": [], "digressions": [], "confirmed_points": [],
-        "findings": [], "improvement_plan": [], "retrieval_needs": []} for c in cases], "limitations": []}
+        "findings": [], "improvement_plan": [],
+        "replacement_answer": "Preflight placeholder operativo. " * 20,
+        "retrieval_needs": []} for c in cases], "limitations": []}
     validate_pass1(synthetic_pass1, list(mapping))
     request2 = build_pass2(cases, synthetic_pass1, model)
     atomic_new(output, {"schema": "groq_tactical_copilot_preflight_v2", "status": "VALIDATO",

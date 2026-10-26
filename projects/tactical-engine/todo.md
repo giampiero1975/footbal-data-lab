@@ -978,4 +978,11 @@ tecnica.
   spalla tattica; prima fase differenziale su tre casi congelati distinti dal
   G4 e 6 chiamate logiche; nessuna nuova risposta
   RAG. Validare falsi positivi, utilita e supporto documentale prima del benchmark.
+- [x] **ESEGUITO** V5-OPENROUTER-QUALITY-02: job pannello `8de1cbcc`, RAG 73,3 s,
+  revisore 15,701 s, totale 113 s; 5.155 token, costo $0,02551, Gemini 25/30.
+  Ruoli corretti ma risposta ancora diagnostica, senza tre cambi/due slot.
+- [x] **IMPLEMENTATO** V5-OPENROUTER-QUALITY-03: PASS1 genera una risposta
+  sostitutiva completa; PASS2 la verifica e preserva copertura di struttura,
+  movimenti, vincoli, area, preventiva e trigger. Un test differenziale dal
+  pannello DA FARE; obiettivo di arresto >=28/30.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.
