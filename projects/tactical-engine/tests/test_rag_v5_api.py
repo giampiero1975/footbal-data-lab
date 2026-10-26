@@ -97,6 +97,18 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(config["evidence_limit"], 8)
             self.assertEqual(config["max_output_tokens"], 0)
 
+    def test_openrouter_usage_summary_includes_tokens_cost_and_provider(self):
+        report = {"passes": [
+            {"provider": "OpenAI", "usage": {"prompt_tokens": 10,
+             "completion_tokens": 4, "total_tokens": 14, "cost": 0.001}},
+            {"provider": "OpenAI", "usage": {"prompt_tokens": 20,
+             "completion_tokens": 6, "total_tokens": 26, "cost": 0.002}},
+        ]}
+        self.assertEqual(api.summarize_openrouter_usage(report), {
+            "prompt_tokens": 30, "completion_tokens": 10, "total_tokens": 40,
+            "cost_usd": 0.003, "route_providers": ["OpenAI"],
+        })
+
     def test_performance_profile_is_forwarded_to_runner(self):
         with tempfile.TemporaryDirectory() as tmp:
             config = api.load_config({
@@ -198,6 +210,8 @@ class ApiTests(unittest.TestCase):
         self.assertIn("<details", panel)
         self.assertIn("guida rapida", panel)
         self.assertIn("Revisore AI via OpenRouter", panel)
+        self.assertIn("cost_usd", panel)
+        self.assertIn("total_tokens", panel)
         self.assertIn('id="finalAnswer"', panel)
         self.assertIn('id="askButton" disabled', panel)
         self.assertIn('id="searchButton" disabled', panel)

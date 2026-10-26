@@ -69,3 +69,51 @@ Correzione: schema per-request con `minItems=maxItems=numero casi` sia per
 `reviews` sia per `revised_answers`, più istruzione esplicita nel primo prompt.
 Suite aggiornata: **23/23 PASS**, zero ulteriori chiamate API. Una nuova prova
 del medesimo caso è tecnicamente giustificata dalla variazione del contratto.
+
+## Prove differenziali e risultato completo del caso 001
+
+| Job | Differenza tecnica | RAG | Revisore | Totale | Esito |
+| --- | --- | ---: | ---: | ---: | --- |
+| `7cb0da28` | prima integrazione OpenRouter | 128,2 s | ~34 s | 187 s | `PASS1_CASE_COUNT_MISMATCH` |
+| `111f3235` | cardinalità schema corretta | 73,35 s | timeout 240 s | 335 s | `openrouter_copilot_timeout` con `gpt-oss-120b` |
+| `efb84ad8` | `openai/gpt-4o` primario | 127,6 s | 21,6 s | 171 s | revisore **verified**, voto bozza 5/10 |
+
+Nel job riuscito i due passaggi OpenRouter hanno utilizzato complessivamente
+4.343 token (3.087 input, 1.256 output) e sono costati **$0,0202775**:
+$0,010385 il primo passaggio e $0,0098925 il secondo. Il provider effettivo
+riportato è OpenAI, modello `openai/gpt-4o`.
+
+La risposta migliorata è stata sottoposta alla stessa conversazione Gemini
+esaminatrice e ha ricevuto **18/30**. Criticità: confusione tra terzino, ala e
+“centrocampista esterno” nel 4-3-3; rimozione dell'ala sinistra dal mismatch sul
+terzino ammonito; preventiva indebolita; mancato uso concreto di due slot e tre
+cambi. Il percorso tecnico è quindi operativo, ma la qualità tattica non è
+VALIDATA e resta sotto l'obiettivo medio 8/10.
+
+È inoltre **IMPLEMENTATA** l'esposizione nel pannello di token e costo reale per
+ogni revisione, ricavati esclusivamente dai campi `usage` OpenRouter. Test e
+deploy di questa sola visualizzazione restano DA FARE.
+
+## Remediation qualità verso 28/30
+
+Il 18/30 ha mostrato due cause implementative, non soltanto un limite del
+modello: il secondo passaggio riceveva finding ed evidenze ma non la domanda né
+la bozza completa; inoltre poteva applicare solo correzioni documentate, anche
+quando si trattava di geometria e coerenza interna direttamente verificabili
+nel caso.
+
+Correzione differenziale:
+
+- PASS1 preserva esplicitamente sistema, lato, ruoli, minuto, punteggio e vincoli;
+- ogni finding deve correggere concretamente l'errore, non ripeterlo;
+- PASS2 riceve domanda, bozza, finding ed evidenze;
+- nuova classe `GIUDIZIO_TECNICO`, ammessa solo quando
+  `needs_document_check=false` e sempre senza citazioni;
+- la risposta finale deve essere autonoma, completa e coprire struttura,
+  movimenti, preventiva e cambi;
+- gate fail-closed per impedire che un finding documentale venga promosso a
+  giudizio tecnico.
+
+Suite combinata Groq storico + OpenRouter + API: **40/40 PASS**. Nessuna API
+usata nella correzione. Nuovo test autorizzato dalla differenza tecnica; criterio
+di arresto: voto Gemini almeno **28/30**.

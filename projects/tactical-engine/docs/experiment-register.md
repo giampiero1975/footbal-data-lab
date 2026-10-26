@@ -27,6 +27,34 @@ per caso in `reviews` e `revised_answers`, senza allentare i gate semantici.
 Suite 23/23, compilazione PASS, nessuna API nella correzione. Stato: prova
 **ESEGUITA**, correzione **IMPLEMENTATA e VALIDATA offline**, runtime **DA FARE**.
 
+### 2026-10-26 — OpenRouter GPT-4o completo, costo e giudizio esterno
+
+Attività: sostituire il primario lento `gpt-oss-120b` con `openai/gpt-4o` dopo
+il timeout differenziale del job `111f3235`, quindi completare dal pannello lo
+stesso caso e sottoporre la risposta finale alla conversazione Gemini
+esaminatrice. Job `efb84ad8`; report
+`docs/openrouter-reviewer-migration-01.md`. Risultato: RAG 127,6 s, OpenRouter
+21,6 s, totale 171 s; structured output e due passaggi verificati. Uso: 3.087
+token input, 1.256 output, 4.343 totali; costo $0,0202775. Revisore 5/10;
+Gemini esterno 18/30 con errori di ruoli, geometria, preventiva e uso dei cambi.
+Decisione: mantenere GPT-4o primario per l'interattività, non validare la
+qualità e tracciare nel pannello costo/token/modello per ogni caso. Stato:
+flusso **ESEGUITO**, trasporto **VALIDATO**, qualità tattica **DA FARE**;
+telemetria costo **IMPLEMENTATA**.
+
+### 2026-10-26 — Remediation tattica successiva al 18/30
+
+Attività: correggere le cause strutturali della risposta finale incompleta senza
+allentare la verifica documentale. Script: contratto condiviso copilot, adapter
+OpenRouter, API e pannello; report `docs/openrouter-reviewer-migration-01.md`.
+Risultato: PASS2 riceve ora domanda e bozza integrali; prompt vincolato a ruoli,
+lati e uso dei cambi; introdotto `GIUDIZIO_TECNICO` esclusivamente per finding
+con `needs_document_check=false`, senza evidence labels e con downgrade
+fail-closed in caso di abuso. Aggiunta telemetria di costo/token al pannello.
+Suite 40/40 e compilazione PASS, zero API. Decisione: nuova prova differenziale
+dal pannello e iterazione fino a voto esterno >=28/30. Stato: **IMPLEMENTATO e
+VALIDATO offline**, runtime **DA FARE**.
+
 ### 2026-10-26 — Benchmark live Coverciano caso 001 e gate PASS2
 
 Attività: avviare il protocollo Gemini-esaminatore → pannello RAG/Groq →

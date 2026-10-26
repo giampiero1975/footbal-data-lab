@@ -33,6 +33,18 @@ l'archivio conservano gli stati storici senza riaprirli.
   bloccato fail-closed da `PASS1_CASE_COUNT_MISMATCH`. Cardinalità esatta
   aggiunta a entrambi gli schemi e validata offline, suite 23/23. Nuova prova
   differenziale dal solo pannello **DA FARE**.
+- [x] **ESEGUITO** percorso OpenRouter completo job `efb84ad8`: RAG 127,6 s,
+  revisore GPT-4o 21,6 s, totale 171 s; 4.343 token e costo $0,0202775.
+  Revisore verified ma voto bozza 5/10; risposta finale valutata 18/30 da
+  Gemini Cloud. Integrazione tecnica funzionante, qualità tattica non VALIDATA.
+- [x] **IMPLEMENTATO** costo per domanda nel pannello ed export: somma dei due
+  passaggi OpenRouter con token input/output/totali, costo USD, modello e
+  provider effettivo. Test/deploy differenziale DA FARE.
+- [x] **IMPLEMENTATO e VALIDATO offline** remediation qualità dopo 18/30:
+  domanda e bozza complete anche al PASS2, disciplina rigorosa di ruoli/lati,
+  risposta autonoma, nuova classe fail-closed `GIUDIZIO_TECNICO` solo per
+  correzioni che non richiedono verifica documentale. Suite combinata 40/40.
+  Nuova prova dal pannello DA FARE; arresto solo a voto Gemini >=28/30.
 
 > **Protocollo corretto il 2026-10-26.** Gemini Cloud formula una domanda e
 > valuta la risposta finale; il RAG produce la risposta documentale iniziale;

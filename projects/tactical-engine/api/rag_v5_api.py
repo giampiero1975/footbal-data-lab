@@ -59,6 +59,26 @@ def load_config(env=os.environ) -> dict:
     }
 
 
+def summarize_openrouter_usage(report: dict) -> dict:
+    """Expose only bounded accounting fields returned by OpenRouter."""
+    totals = {"prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0}
+    cost = 0.0
+    providers: list[str] = []
+    for row in report.get("passes", []):
+        usage = row.get("usage", {}) if isinstance(row, dict) else {}
+        for key in totals:
+            value = usage.get(key, 0)
+            if isinstance(value, (int, float)):
+                totals[key] += int(value)
+        value = usage.get("cost", 0)
+        if isinstance(value, (int, float)):
+            cost += float(value)
+        provider = row.get("provider") if isinstance(row, dict) else None
+        if isinstance(provider, str) and provider and provider not in providers:
+            providers.append(provider)
+    return {**totals, "cost_usd": round(cost, 8), "route_providers": providers}
+
+
 class State:
     def __init__(self, config: dict):
         self.config = config
@@ -226,6 +246,7 @@ class State:
                     revised = report["pass2"]["revised_answers"][0]
                     job["openrouter_copilot"] = {"status": "verified", "model": report.get("model"),
                         "provider": report.get("provider", "openrouter"),
+                        **summarize_openrouter_usage(report),
                         "score": review.get("score"), "verdict": review.get("verdict"),
                         "confirmed_points": review.get("confirmed_points", []),
                         "findings": review.get("findings", []),
@@ -279,6 +300,7 @@ class State:
                 revised = report["pass2"]["revised_answers"][0]
                 summary = {"status": "verified", "model": report.get("model", model),
                     "provider": report.get("provider", "openrouter"),
+                    **summarize_openrouter_usage(report),
                     "score": review.get("score"), "verdict": review.get("verdict"),
                     "confirmed_points": review.get("confirmed_points", []),
                     "findings": review.get("findings", []),

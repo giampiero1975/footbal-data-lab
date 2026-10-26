@@ -24,16 +24,29 @@ correttezza di ruoli/movimenti/tempi/spazi, completezza e azioni concrete di
 miglioramento. Non inventare fonti, pagine o attribuzioni. Assegna a ogni
 osservazione un finding_id univoco e indica se richiede verifica documentale."""
 
+PASS1_PROMPT += """ Valuta come una commissione esigente: preserva sistema,
+lato, ruolo, punteggio, minuto e vincoli della domanda. Non confondere terzino,
+ala, esterno di centrocampo, mezzala e mediano. Ogni finding deve proporre una
+correzione concreta, non ripetere l'errore della bozza. Per una situazione di
+gara verifica sempre struttura in possesso, occupazione degli spazi, movimenti
+sincroni, preventiva/transizione e uso esplicito dei cambi disponibili."""
+
 PASS2_PROMPT = """Sei il verificatore documentale della revisione tattica.
 Ricevi osservazioni gia formulate ed estratti selezionati. Per ogni finding_id
-classifica esclusivamente: SUPPORTATO, ULTERIORE_RETRIEVAL o NON_SUPPORTATO.
+classifica esclusivamente: SUPPORTATO, GIUDIZIO_TECNICO,
+ULTERIORE_RETRIEVAL o NON_SUPPORTATO. Usa GIUDIZIO_TECNICO soltanto per una
+correzione logico-tattica che nel finding dichiara needs_document_check=false;
+non associarle evidence_labels.
 Usa soltanto evidence_labels realmente disponibili. Non controllare la sintassi
 delle citazioni della risposta: quella responsabilita appartiene al software.
 Non inventare fonti, pagine, citazioni o contenuti assenti dagli estratti."""
 
 PASS2_PROMPT += """ Dopo i controlli, riscrivi una risposta finale concreta e
 completa per ogni caso. Applica soltanto finding classificati SUPPORTATO; lascia
-gli altri in unresolved_findings. Ogni affermazione documentale deve citare una
+gli altri in unresolved_findings. La risposta deve essere autonoma, completa e
+rispondere a tutti i vincoli della domanda, preservando le parti corrette della
+bozza. Applica anche i finding GIUDIZIO_TECNICO, senza presentarli come fatti
+documentali. Ogni affermazione documentale deve citare una
 evidence label disponibile nel formato [F1]. Non aggiungere bibliografie o
 fonti esterne e non dichiarare verificato cio che richiede ulteriore retrieval."""
 
@@ -80,7 +93,7 @@ PASS2_SCHEMA = {
             "required": ["id", "finding_id", "classification", "evidence_labels", "rationale"],
             "properties": {
                 "id": {"type": "string"}, "finding_id": {"type": "string"},
-                "classification": {"type": "string", "enum": ["SUPPORTATO", "ULTERIORE_RETRIEVAL", "NON_SUPPORTATO"]},
+                "classification": {"type": "string", "enum": ["SUPPORTATO", "GIUDIZIO_TECNICO", "ULTERIORE_RETRIEVAL", "NON_SUPPORTATO"]},
                 "evidence_labels": {"type": "array", "items": {"type": "string"}},
                 "rationale": {"type": "string"},
             }}},
@@ -179,7 +192,9 @@ def validate_pass1(parsed: dict, case_ids: list[str]) -> dict:
 
 def build_pass2(cases: list[dict], pass1: dict, model: str = DEFAULT_MODEL) -> dict:
     by_id = {row["id"]: row for row in pass1["reviews"]}
-    body = {"cases": [{"id": c["id"], "findings": by_id[c["id"]]["findings"],
+    body = {"cases": [{"id": c["id"], "question": c["question"],
+                        "original_answer": c["answer"],
+                        "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
     # Schema names are immutable provider-side contract identifiers.  The v1
     # name was used by an experimental dynamic schema, so the restored static
@@ -243,7 +258,16 @@ def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict,
     by_case = {row.get("id"): row for row in revised if isinstance(row, dict)}
     if len(by_case) != len(revised):
         raise ValueError("PASS2_REVISED_DUPLICATE_ID")
-    supported = {(r["id"], r["finding_id"]) for r in checks if r.get("classification") == "SUPPORTATO"}
+    needs_check = {(row["id"], finding["finding_id"]): finding.get("needs_document_check", True)
+                   for row in pass1["reviews"] for finding in row["findings"]}
+    for row in checks:
+        key = (row["id"], row["finding_id"])
+        if row.get("classification") == "GIUDIZIO_TECNICO" and needs_check.get(key, True):
+            row["classification"] = "ULTERIORE_RETRIEVAL"
+            row["evidence_labels"] = []
+            notes.append(f"{row['id']}:{row['finding_id']}:EXPERT_JUDGMENT_DOWNGRADED")
+    supported = {(r["id"], r["finding_id"]) for r in checks
+                 if r.get("classification") in {"SUPPORTATO", "GIUDIZIO_TECNICO"}}
     for case in cases:
         case_id = case["id"]
         row = by_case.get(case_id)
@@ -284,7 +308,14 @@ def validate_pass2(parsed: dict, cases: list[dict], pass1: dict) -> dict:
     case_ids = {c["id"] for c in cases}
     if not isinstance(revised, list) or {r.get("id") for r in revised} != case_ids:
         raise ValueError("PASS2_REVISED_CASE_COVERAGE")
-    supported = {(r["id"], r["finding_id"]) for r in checks if r["classification"] == "SUPPORTATO"}
+    needs_check = {(row["id"], finding["finding_id"]): finding.get("needs_document_check", True)
+                   for row in pass1["reviews"] for finding in row["findings"]}
+    for row in checks:
+        key = (row["id"], row["finding_id"])
+        if row["classification"] == "GIUDIZIO_TECNICO" and needs_check.get(key, True):
+            raise ValueError("PASS2_INVALID_EXPERT_JUDGMENT")
+    supported = {(r["id"], r["finding_id"]) for r in checks
+                 if r["classification"] in {"SUPPORTATO", "GIUDIZIO_TECNICO"}}
     expected_by_case = {case_id: {fid for cid, fid in expected if cid == case_id} for case_id in case_ids}
     for row in revised:
         case_id = row["id"]
