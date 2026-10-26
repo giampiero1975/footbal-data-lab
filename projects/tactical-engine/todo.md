@@ -190,10 +190,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   disabilitate prima dell'autenticazione e messaggio 401 comprensibile. Test VPS
   13/13 e smoke HTTPS con token 200/senza token 401; commit `6bca4f0`, `e70c674`.
   Report `docs/knowledge-panel-application-integration-02.md`.
-- [x] **VALIDATO offline** persistenza applicativa dopo riavvio: job completati
+- [x] **VALIDATO e INTEGRATO** persistenza applicativa dopo riavvio: job completati
   ricostruiti dai file runtime privati, endpoint autenticato per le 20 analisi
   recenti e cronologia ricaricata alla connessione. Stato grafico perso marcato
-  `Interrotto`. Suite 30/30, Python/JavaScript PASS; deploy DA FARE. Report
+  `Interrotto`. Suite locale/VPS 30/30, HTTPS 200 e job reale recuperato. Report
   `docs/panel-job-recovery-01.md`.
 - [x] **VALIDATO e INTEGRATO** gate applicativo fail-closed per citazioni: una risposta
 - [x] **VALIDATO e INTEGRATO** correzione differenziale dell'inserimento token: il backend

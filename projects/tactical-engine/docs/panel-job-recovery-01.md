@@ -27,3 +27,11 @@ header HTTP restano `no-store`. Nessun nuovo RAG o chiamata esterna.
 Suite API/copilot 30/30, compilazione Python e sintassi JavaScript PASS. Stato:
 **VALIDATO offline**; deploy e verifica di recupero del job reale DA FARE.
 
+## Deploy
+
+Commit `1d408ec` distribuito sulla VPS soltanto dopo verifica di assenza job
+attivi. Suite VPS 30/30, servizio attivo. Endpoint locale e pubblico restituiscono
+20 analisi recenti; il job reale `259b7f4b...` e ricostruito come `succeeded`
+con risultato presente. HTTPS pubblico 200 e pannello aggiornato verificato.
+Stato: **VALIDATO e INTEGRATO**.
+

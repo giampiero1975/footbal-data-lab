@@ -23,7 +23,9 @@ stato/cronologia solo in memoria. Implementata ricostruzione autenticata dei job
 completati, lista recente e chiusura grafica dei job realmente interrotti. Suite
 30/30, compilazione e JavaScript PASS, nessuna inferenza. Decisione: non riavviare
 durante job attivi e rendere il risultato persistente indipendente dal processo.
-Stato: **VALIDATO offline**, deploy **DA FARE**.
+Deploy commit `1d408ec` dopo controllo coda/processi: suite VPS 30/30, servizio
+attivo, endpoint recente locale/pubblico 200 con 20 job e job `259b7f4b...`
+ricostruito con risultato. Stato: **VALIDATO e INTEGRATO**.
 
 ### 2026-10-26 — Remediation offline HTTP 400 Groq copilot
 
