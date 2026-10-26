@@ -1013,4 +1013,30 @@ tecnica.
   esterno; distinguere concetti preservati, corretti, aggiunti e non supportati.
   La spalla non deve sostituire integralmente la risposta. La stima attuale non
   e VALIDATA e non va presentata come misura causale definitiva.
+- [x] **ESEGUITO** V5-COVERCIANO-RAG-AUTONOMY-AUDIT-01: sospese le 100 prove e
+  analizzate offline le prime 16. Quindici bozze su sedici ricevono 2-4/10,
+  media 3,06/10 e mediana 2; risposta finale mediamente 2,87 volte piu lunga.
+  Accertati: spalla configurata come autore sostitutivo, retrieval senza
+  scomposizione strutturale, evidenze con prospettiva/fase errate, prompt
+  grounded-only troppo rigido, gate soltanto sintattici e persistenza UI
+  insufficiente. Il voto 28/30 nominale della prova 16 e INVALIDO per perdita
+  sessione e invio del segnaposto del pannello. Report
+  `docs/v5-coverciano-rag-autonomy-audit-01.md`. Benchmark sospeso.
+- [ ] **DA FARE** V5-RAG-STRUCTURAL-QUERY-01: parser e gate deterministici per
+  sistemi, squadre, ruoli, lati, fase, minuto, risultato, cambi/slot e punti
+  richiesti; retrieval per sottoproblemi con filtro prospettiva/fase prima del
+  rerank. Nessuna nuova prova Coverciano prima dei test offline.
+- [ ] **DA FARE** V5-OPENROUTER-DELTA-ONLY-01: rimuovere `replacement_answer`
+  e riscrittura integrale. La spalla deve restituire soltanto correzioni
+  strutturate e supportate, con tetto misurabile del 30%; la risposta RAG resta
+  il testo principale. Test offline prima di deploy o chiamate reali.
+- [ ] **DA FARE** V5-RAG-AUTONOMY-GATE-01: tre casi congelati, voto esterno
+  separato sulla bozza RAG prima della spalla; prosecuzione soltanto con media
+  >=26/30, nessun errore strutturale grave e contributo spalla <=30%.
+- [ ] **DA FARE** V5-PANEL-PERSISTENT-HISTORY-01: rendere persistenti lato
+  server domanda, evidenze, bozza RAG, delta della spalla, risposta finale,
+  stato, tempi, token, costi e valutazione esterna. Il pannello deve riprendere
+  una sessione dopo refresh, chiusura o riavvio, distinguere sempre caso e job,
+  impedire l'invio di segnaposto/stati incompleti e consentire export cumulativo
+  auditabile. La cronologia soltanto browser non e sufficiente.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

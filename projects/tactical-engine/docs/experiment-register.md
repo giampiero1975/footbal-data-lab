@@ -1156,3 +1156,27 @@ dalla spalla. Decisione: obiettivo RAG >=70%, spalla <=30% e bozza autonoma
 aggiunti e non supportati prima di dichiarare una percentuale validata. Vietata
 la sostituzione integrale della risposta da parte del revisore. Stato:
 **ESEGUITO** per l'audit preliminare; misura causale **DA FARE**, non VALIDATA.
+
+### V5-COVERCIANO-RAG-AUTONOMY-AUDIT-01 — Stop e diagnosi (2026-10-26)
+
+Attivita: sospendere il benchmark e analizzare senza nuove chiamate le prime 16
+prove conservate nella sessione del pannello, il runner, il prompt RAG e i due
+passaggi OpenRouter. Report:
+`docs/v5-coverciano-rag-autonomy-audit-01.md`. Risultato: 15/16 bozze a 2-4/10,
+media interna 3,06/10, mediana 2/10; risposta finale mediamente 2,87x piu
+lunga. Accertato che il copilot richiede una `replacement_answer` e la usa come
+ossatura per una riscrittura integrale. Retrieval e generazione non impongono
+una mappa strutturale generale; i gate API controllano citazioni sintattiche e
+indice, non coerenza tattica. Il voto nominale 28/30 della prova 16 e INVALIDO:
+dopo perdita della sessione e stato trasmesso il segnaposto `Connettiti per
+iniziare`, dal quale la commissione ha inferito impropriamente un giudizio usando
+la cronologia. Decisione: non usare domanda 17, non proseguire il benchmark;
+implementare parser/gate strutturale, retrieval per sottoproblemi, spalla
+delta-only e gate autonomia su tre casi congelati. Stato: **ESEGUITO** per
+l'audit; correzioni **DA FARE**, benchmark sospeso.
+
+Decisione aggiuntiva del titolare: la perdita della sessione dimostra che
+persistenza e tracciamento devono diventare un requisito tecnico autonomo.
+Attivita `V5-PANEL-PERSISTENT-HISTORY-01` aperta nel TODO: storico server-side,
+ripresa sicura, associazione caso/job, blocco dei placeholder ed export
+cumulativo. Stato: **DA FARE**; nessuna implementazione o test eseguito.
