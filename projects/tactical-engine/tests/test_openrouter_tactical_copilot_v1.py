@@ -41,15 +41,26 @@ class OpenRouterCopilotTests(unittest.TestCase):
         self.assertTrue(request["provider"]["require_parameters"])
         self.assertEqual(request["provider"]["data_collection"], "deny")
 
+    def test_gpt6_uses_reasoning_without_temperature(self):
+        request = mod.strict_request("prompt", {"cases": []}, {"type": "object"},
+                                     "schema", ["openai/gpt-6.1-sol"])
+        self.assertEqual(request["reasoning"], {"effort": "high"})
+        self.assertNotIn("temperature", request)
+
     def test_case_cardinality_is_enforced_in_both_passes(self):
         cases = [{"id": "case_01", "question": "Q", "answer": "A", "evidence": []}]
         request1 = mod.build_pass1(cases, mod.DEFAULT_MODELS)
         reviews = request1["response_format"]["json_schema"]["schema"]["properties"]["reviews"]
         self.assertEqual((reviews["minItems"], reviews["maxItems"]), (1, 1))
-        pass1 = {"reviews": [{"id": "case_01", "findings": []}]}
+        pass1 = {"reviews": [{"id": "case_01", "findings": [],
+                              "replacement_answer": "Piano completo " * 30,
+                              "improvement_plan": ["usare tutti i cambi"]}]}
         request2 = mod.build_pass2(cases, pass1, mod.DEFAULT_MODELS)
         revised = request2["response_format"]["json_schema"]["schema"]["properties"]["revised_answers"]
         self.assertEqual((revised["minItems"], revised["maxItems"]), (1, 1))
+        body = json.loads(request2["messages"][1]["content"])
+        self.assertEqual(body["cases"][0]["question"], "Q")
+        self.assertIn("Piano completo", body["cases"][0]["replacement_answer"])
 
     def test_offline_preflight_makes_no_network_call(self):
         with tempfile.TemporaryDirectory() as tmp:

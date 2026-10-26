@@ -1123,3 +1123,12 @@ $0,0290325; voto interno 3/10. Errori: lato invertito, ruolo inesistente e cambi
 generici. Decisione: non inviare a Gemini; introdurre mappa geometrica e distinta
 N cambi/M slot, quindi usare `openai/gpt-6.1-sol` come primario. Stato:
 **ESEGUITO**, non VALIDATO.
+
+### V5-OPENROUTER-QUALITY-04 — Root cause adapter PASS2 (2026-10-26)
+
+Attività: job pannello `6d5e64b6`. Risultato: 117 s totali, 6.125 token,
+$0,032585, fallback GPT-4o, voto interno 2/10. Causa verificata: override
+OpenRouter di PASS2 ometteva domanda, bozza, risposta sostitutiva e piano;
+`temperature` rendeva GPT-6.1 non eleggibile col gate parametri. Decisione:
+correggere payload e usare reasoning high senza temperatura; nuova prova
+giustificata, nessun invio Gemini dell'output respinto. Stato: **ESEGUITO**.

@@ -35,10 +35,9 @@ def strict_request(prompt: str, body: dict, schema: dict, name: str,
                    models: list[str]) -> dict:
     if not models:
         raise ValueError("OPENROUTER_MODEL_LIST_EMPTY")
-    return {
+    request = {
         "model": models[0],
         "models": models,
-        "temperature": 0.1,
         "messages": [
             {"role": "system", "content": prompt},
             {"role": "user", "content": json.dumps(body, ensure_ascii=False)},
@@ -52,6 +51,11 @@ def strict_request(prompt: str, body: dict, schema: dict, name: str,
             "data_collection": "deny",
         },
     }
+    if models[0].startswith("openai/gpt-6"):
+        request["reasoning"] = {"effort": "high"}
+    else:
+        request["temperature"] = 0.1
+    return request
 
 
 def build_pass1(cases: list[dict], models: list[str]) -> dict:
@@ -69,7 +73,11 @@ def build_pass1(cases: list[dict], models: list[str]) -> dict:
 
 def build_pass2(cases: list[dict], pass1: dict, models: list[str]) -> dict:
     by_id = {row["id"]: row for row in pass1["reviews"]}
-    body = {"cases": [{"id": c["id"], "findings": by_id[c["id"]]["findings"],
+    body = {"cases": [{"id": c["id"], "question": c["question"],
+                        "original_answer": c["answer"],
+                        "replacement_answer": by_id[c["id"]]["replacement_answer"],
+                        "improvement_plan": by_id[c["id"]]["improvement_plan"],
+                        "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
     schema = json.loads(json.dumps(PASS2_SCHEMA))
     schema["properties"]["revised_answers"].update(

@@ -151,3 +151,18 @@ avversario, lati e ruoli, preserva il giocatore che vince il mismatch e impone
 la distinta esatta di N cambi in M slot. Per qualità/instruction following viene
 inoltre promosso come primario `openai/gpt-6.1-sol`, che OpenRouter documenta
 come compatibile con structured output; fallback invariati.
+
+### Prova differenziale qualità 4 — job `6d5e64b6`
+
+Il job ha concluso in 117 s (RAG 73,47 s; revisore 18,288 s), con 6.125 token
+e costo **$0,032585**, ma è ricaduto su `openai/gpt-4o` e ha ottenuto 2/10.
+L'audit del codice ha identificato la causa: l'adapter OpenRouter ridefiniva
+`build_pass2` e passava soltanto finding ed evidenze, omettendo domanda, bozza,
+`replacement_answer` e piano nonostante il contratto condiviso fosse stato
+corretto. Inoltre il parametro `temperature` impediva l'eleggibilità del modello
+GPT-6.1 nel routing con `require_parameters=true`.
+
+Correzione: payload PASS2 completo nell'adapter; per GPT-6.1 rimozione di
+`temperature` e reasoning `high`; test di regressione sul contenuto del payload
+e sui parametri modello. La precedente prova non viene inviata a Gemini perché
+respinta 2/10 dal gate interno.

@@ -991,4 +991,10 @@ tecnica.
 - [x] **IMPLEMENTATO** V5-OPENROUTER-QUALITY-04: mappa obbligatoria dei lati e
   ruoli, tutela del mismatch favorevole e distinta esatta N cambi/M slot;
   `openai/gpt-6.1-sol` primario con fallback. Test pannello DA FARE.
+- [x] **ESEGUITO** V5-OPENROUTER-QUALITY-04: job `6d5e64b6`, 117 s, 6.125
+  token, $0,032585, voto interno 2/10. Individuato override PASS2 OpenRouter
+  ancora privo di contesto e GPT-6.1 ineleggibile per `temperature`.
+- [x] **IMPLEMENTATO** V5-OPENROUTER-QUALITY-05: PASS2 OpenRouter riceve domanda,
+  bozza, risposta sostitutiva e piano; GPT-6.1 usa reasoning high senza
+  temperatura. Test di regressione dedicati; prova pannello DA FARE.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.
