@@ -985,4 +985,10 @@ tecnica.
   sostitutiva completa; PASS2 la verifica e preserva copertura di struttura,
   movimenti, vincoli, area, preventiva e trigger. Un test differenziale dal
   pannello DA FARE; obiettivo di arresto >=28/30.
+- [x] **ESEGUITO** V5-OPENROUTER-QUALITY-03: job `08f5015c`, totale 170 s,
+  5.505 token, costo $0,0290325, voto interno 3/10; lato/ruolo/cambi errati,
+  scartato prima di Gemini.
+- [x] **IMPLEMENTATO** V5-OPENROUTER-QUALITY-04: mappa obbligatoria dei lati e
+  ruoli, tutela del mismatch favorevole e distinta esatta N cambi/M slot;
+  `openai/gpt-6.1-sol` primario con fallback. Test pannello DA FARE.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

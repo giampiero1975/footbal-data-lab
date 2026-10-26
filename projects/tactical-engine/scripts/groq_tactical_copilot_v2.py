@@ -35,7 +35,15 @@ esame, operativa e autosufficiente. Deve dire chi fa cosa, dove e quando;
 rispondere a ogni vincolo numerico della domanda (cambi, slot, minuto, risultato);
 definire struttura, catene/rotazioni, occupazione dell'area, preventiva e trigger.
 Non limitarti a spiegare perche la bozza e sbagliata e non usare l'assenza di una
-fonte come motivo per evitare una scelta logico-tattica esplicitamente qualificata."""
+fonte come motivo per evitare una scelta logico-tattica esplicitamente qualificata.
+Prima di scrivere costruisci mentalmente una mappa: NOSTRA squadra/AVVERSARIO,
+lato destro/sinistro, ruolo iniziale e ruolo trasformato. Il lato destro
+avversario fronteggia il nostro lato sinistro e viceversa. Non spostare dalla
+zona decisiva il giocatore che sta gia vincendo il duello: usa compagni vicini,
+rotazioni e corse nel mezzo spazio per rompere il raddoppio. Non inventare ruoli
+assenti nel sistema dichiarato. Se sono indicati N cambi e M slot, nomina tutti
+gli N cambi in ordine e raggruppali esattamente negli M slot, spiegando per
+ciascuno uscita, entrata, nuova posizione e impatto strutturale."""
 
 PASS2_PROMPT = """Sei il verificatore documentale della revisione tattica.
 Ricevi osservazioni gia formulate ed estratti selezionati. Per ogni finding_id

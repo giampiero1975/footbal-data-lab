@@ -1114,3 +1114,12 @@ job `8de1cbcc`. Risultato: RAG 73,3 s, OpenRouter 15,701 s, totale 113 s,
 Decisione: miglioramento reale rispetto a 18/30, ma risposta ancora diagnostica
 e non proattiva; omessi tre cambi/due slot. Implementare risposta sostitutiva
 completa nei due passaggi e ripetere una sola volta. Stato: **ESEGUITO**.
+
+### V5-OPENROUTER-QUALITY-03 — Risposta sostitutiva (2026-10-26)
+
+Attività: job pannello `08f5015c` con risposta sostitutiva obbligatoria.
+Risultato: RAG 128,27 s, revisore 18,993 s, totale 170 s; 5.505 token, costo
+$0,0290325; voto interno 3/10. Errori: lato invertito, ruolo inesistente e cambi
+generici. Decisione: non inviare a Gemini; introdurre mappa geometrica e distinta
+N cambi/M slot, quindi usare `openai/gpt-6.1-sol` come primario. Stato:
+**ESEGUITO**, non VALIDATO.

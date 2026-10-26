@@ -136,3 +136,18 @@ operativa completa (minimo locale 400 caratteri); PASS2 la usa come ossatura e
 deve coprire struttura, movimenti, tutti i vincoli espliciti, area,
 preventiva/transizione e trigger. Questa variante giustifica un solo nuovo test
 del caso; criterio invariato: almeno **28/30**.
+
+### Prova differenziale qualità 3 — job `08f5015c`
+
+La risposta sostitutiva è stata generata, ma il gate qualitativo interno l'ha
+valutata soltanto **3/10**: ha invertito il lato del duello, inventato un
+“centrocampista esterno destro” nel 4-3-3 e lasciato generici tre cambi/due
+slot. RAG 128,27 s, revisore 18,993 s, totale 170 s; 5.505 token (3.469 input,
+2.036 output), costo **$0,0290325**. Non viene sottoposta a Gemini perché già
+respinta fail-closed dal revisore stesso. Stato: **ESEGUITO**, non VALIDATO.
+
+La variante successiva aggiunge una mappa geometrica obbligatoria tra squadra,
+avversario, lati e ruoli, preserva il giocatore che vince il mismatch e impone
+la distinta esatta di N cambi in M slot. Per qualità/instruction following viene
+inoltre promosso come primario `openai/gpt-6.1-sol`, che OpenRouter documenta
+come compatibile con structured output; fallback invariati.
