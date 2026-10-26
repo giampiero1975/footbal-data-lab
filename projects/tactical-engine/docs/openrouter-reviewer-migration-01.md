@@ -166,3 +166,17 @@ Correzione: payload PASS2 completo nell'adapter; per GPT-6.1 rimozione di
 `temperature` e reasoning `high`; test di regressione sul contenuto del payload
 e sui parametri modello. La precedente prova non viene inviata a Gemini perché
 respinta 2/10 dal gate interno.
+
+### Prova differenziale qualità 5 — job `24ae6aba`
+
+Con payload completo e GPT-6.1 Sol primario, il RAG ha concluso in 71,39 s ma
+il primo passaggio OpenRouter con reasoning `high` ha raggiunto il timeout
+applicativo di 240 s; totale 334 s, fallback sicuro sulla bozza RAG. Il report
+locale non contiene usage perché la completion non è terminata; il costo va
+riconciliato dai log provider. Stato: **ESEGUITO**, copilot unavailable.
+
+Decisione: reasoning GPT-6.1 ridotto a `low`, senza alterare payload o gate. La
+documentazione ufficiale OpenRouter conferma l'alias Sol, structured output,
+API Generation per costo/token/provider/fallback, API Key per utilizzo e
+Analytics API (management key) per aggregati. Integrare telemetria provider
+dopo la calibrazione qualitativa.

@@ -1132,3 +1132,11 @@ OpenRouter di PASS2 ometteva domanda, bozza, risposta sostitutiva e piano;
 `temperature` rendeva GPT-6.1 non eleggibile col gate parametri. Decisione:
 correggere payload e usare reasoning high senza temperatura; nuova prova
 giustificata, nessun invio Gemini dell'output respinto. Stato: **ESEGUITO**.
+
+### V5-OPENROUTER-QUALITY-05 — Timeout reasoning high (2026-10-26)
+
+Attività: job pannello `24ae6aba` con payload PASS2 completo e GPT-6.1 Sol.
+Risultato: RAG 71,39 s; timeout revisore 240 s; totale 334 s e fallback sulla
+bozza. Usage locale assente per completion non conclusa. Decisione: ridurre
+reasoning a low e riconciliare il costo tramite telemetria OpenRouter; nessun
+invio Gemini. Stato: **ESEGUITO**.

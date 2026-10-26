@@ -52,7 +52,7 @@ def strict_request(prompt: str, body: dict, schema: dict, name: str,
         },
     }
     if models[0].startswith("openai/gpt-6"):
-        request["reasoning"] = {"effort": "high"}
+        request["reasoning"] = {"effort": "low"}
     else:
         request["temperature"] = 0.1
     return request

@@ -997,4 +997,11 @@ tecnica.
 - [x] **IMPLEMENTATO** V5-OPENROUTER-QUALITY-05: PASS2 OpenRouter riceve domanda,
   bozza, risposta sostitutiva e piano; GPT-6.1 usa reasoning high senza
   temperatura. Test di regressione dedicati; prova pannello DA FARE.
+- [x] **ESEGUITO** V5-OPENROUTER-QUALITY-05: job `24ae6aba`, RAG 71,39 s,
+  revisore timeout 240 s, totale 334 s; nessuna risposta/costo locale completo.
+- [x] **IMPLEMENTATO** V5-OPENROUTER-QUALITY-06: reasoning GPT-6.1 da high a
+  low per rispettare la latenza; payload completo invariato. Prova pannello DA FARE.
+- [ ] **DA FARE** V5-OPENROUTER-TELEMETRY-01: integrare metadati Generation e
+  Key; Analytics/crediti richiedono management key. Mostrare costi, token,
+  provider, fallback e timeout senza conservare prompt/risposte sensibili.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

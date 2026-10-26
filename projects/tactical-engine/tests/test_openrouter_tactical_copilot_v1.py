@@ -44,7 +44,7 @@ class OpenRouterCopilotTests(unittest.TestCase):
     def test_gpt6_uses_reasoning_without_temperature(self):
         request = mod.strict_request("prompt", {"cases": []}, {"type": "object"},
                                      "schema", ["openai/gpt-6.1-sol"])
-        self.assertEqual(request["reasoning"], {"effort": "high"})
+        self.assertEqual(request["reasoning"], {"effort": "low"})
         self.assertNotIn("temperature", request)
 
     def test_case_cardinality_is_enforced_in_both_passes(self):
