@@ -169,12 +169,13 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   13/13 e smoke HTTPS con token 200/senza token 401; commit `6bca4f0`, `e70c674`.
   Report `docs/knowledge-panel-application-integration-02.md`.
 - [x] **VALIDATO e INTEGRATO** gate applicativo fail-closed per citazioni: una risposta
-- [x] **VALIDATO** correzione differenziale dell'inserimento token: il backend
+- [x] **VALIDATO e INTEGRATO** correzione differenziale dell'inserimento token: il backend
   pubblico e locale autenticavano gia con HTTP 200, mentre il pannello accettava
   soltanto il valore puro. La UI normalizza ora anche la riga amministrativa
   completa, rimuove virgolette/spazi, intercetta valori troppo corti e distingue
   token RAG, password SSH e chiave Groq. Nessun segreto e memorizzato o incorporato;
-  suite API 18/18 e sintassi JavaScript superate.
+  suite API locale/VPS 18/18, sintassi JavaScript, servizio attivo e smoke HTTPS
+  autenticato HTTP 200.
 - [x] **VALIDATO e INTEGRATO** gate applicativo fail-closed per citazioni: una risposta
   con riferimenti fuori dalle evidenze disponibili o senza citazioni non può
   più essere marcata come job riuscito. Evidenza reale: test Coverciano citava

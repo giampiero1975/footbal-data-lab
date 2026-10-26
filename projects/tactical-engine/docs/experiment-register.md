@@ -10,8 +10,9 @@ Script: `api/knowledge_panel.html`; test: `tests/test_rag_v5_api.py`; report:
 verificato con HTTP 200 locale e pubblico; individuato il limite UX sul formato
 incollato; aggiunta normalizzazione di assegnazione/virgolette/spazi e guardia sui
 valori troppo corti. Suite 18/18 e sintassi JavaScript PASS. Decisione: preservare
-il segreto corrente e non memorizzarlo lato browser. Stato: **VALIDATO**, deploy
-pubblico ancora da registrare.
+il segreto corrente e non memorizzarlo lato browser. Commit `12c7fe0`, deploy VPS
+fast-forward, servizio attivo, suite VPS 18/18 e smoke HTTPS autenticato HTTP 200.
+Stato: **VALIDATO e INTEGRATO**.
 
 ## Sintesi corrente per il revisore
 

@@ -11,8 +11,9 @@ Il pannello ora normalizza localmente il solo input dell'utente: accetta valore 
 assegnazione con nome terminante in `TOKEN`, elimina spazi e virgolette esterne e
 rifiuta prima della rete valori inferiori a 32 caratteri. Il token continua a non
 essere salvato nel browser, nei log o nel sorgente. Verifica: 18/18 test API e
-controllo sintattico JavaScript superati. Stato: **VALIDATO**; deploy pubblico da
-registrare separatamente prima di dichiarare l'addendum INTEGRATO.
+controllo sintattico JavaScript superati. Deploy VPS al commit `12c7fe0`, servizio
+`football-rag-api.service` attivo, suite VPS 18/18 e autenticazione HTTPS pubblica
+HTTP 200. Stato: **VALIDATO e INTEGRATO**.
 
 ## Attività
 
