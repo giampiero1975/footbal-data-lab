@@ -107,12 +107,16 @@ class ApiTests(unittest.TestCase):
                 "RAG_API_MODEL": "qwen3.5:4b",
                 "RAG_API_CONTEXT_WINDOW": "4096",
                 "RAG_API_KEEP_ALIVE": "30m",
+                "RAG_GROQ_COPILOT_ENABLED": "1",
+                "RAG_GROQ_COPILOT_MODEL": "openai/gpt-oss-120b",
             })
             self.assertEqual(config["evidence_limit"], 6)
             self.assertEqual(config["max_output_tokens"], 700)
             self.assertEqual(config["model"], "qwen3.5:4b")
             self.assertEqual(config["context_window"], 4096)
             self.assertEqual(config["keep_alive"], "30m")
+            self.assertTrue(config["groq_copilot_enabled"])
+            self.assertEqual(config["groq_copilot_model"], "openai/gpt-oss-120b")
 
     def test_gemini_review_is_opt_in_and_uses_stable_model(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -151,6 +155,30 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(summary["score"], 8.5)
             self.assertNotIn("raw_review", summary)
 
+    def test_groq_copilot_returns_verified_revised_answer(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); config = self.config(output)
+            config["groq_copilot_enabled"] = True
+            state = api.State(config)
+            result_path = output / ("b" * 32 + ".result.json")
+            result_path.write_text('{"questions":[]}', encoding="utf-8")
+            report = {"status": "ESEGUITO", "model": "openai/gpt-oss-120b",
+                "elapsed_seconds": 4.2,
+                "pass1": {"reviews": [{"score": 6.5, "verdict": "REVISIONE",
+                    "confirmed_points": ["ampiezza"], "findings": [],
+                    "improvement_plan": ["specificare movimenti"], "retrieval_needs": []}]},
+                "pass2": {"checks": [], "revised_answers": [{"answer": "Risposta corretta [F1].",
+                    "unresolved_findings": []}]}}
+            def copilot(command, **kwargs):
+                path = Path(command[command.index("--output") + 1])
+                path.write_text(json.dumps(report), encoding="utf-8")
+                return mock.Mock(returncode=0, stderr="")
+            with mock.patch.object(api.subprocess, "run", side_effect=copilot):
+                summary = state.run_groq_copilot("b" * 32, result_path)
+            self.assertEqual(summary["status"], "verified")
+            self.assertEqual(summary["revised_answer"], "Risposta corretta [F1].")
+            self.assertNotIn("pass1", summary)
+
     def test_catalog_is_loaded_once(self):
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(api, "load_catalog", return_value={"documents":[],"chunks":[]}) as loader:
             state = api.State(self.config(Path(tmp)))
@@ -172,20 +200,22 @@ class ApiTests(unittest.TestCase):
         self.assertIn("/v1/feedback", panel)
         self.assertIn("exportMarkdown", panel)
         self.assertIn("<details", panel)
-        self.assertIn("Come usare il pannello", panel)
+        self.assertIn("guida rapida", panel)
+        self.assertIn("Copilot tattico Groq", panel)
+        self.assertIn('id="finalAnswer"', panel)
         self.assertIn('id="askButton" disabled', panel)
         self.assertIn('id="searchButton" disabled', panel)
         self.assertIn("r.status===401", panel)
         self.assertIn("setConnected(true)", panel)
-        self.assertIn("Biblioteca PDF", panel)
+        self.assertIn("PDF indicizzati", panel)
         self.assertIn("libraryCategory", panel)
         self.assertIn("renderLibrary", panel)
         self.assertIn("estratti indicizzati", panel)
         self.assertIn("/v1/events", panel)
         self.assertIn("Registro diagnostico", panel)
-        self.assertIn("Revisione indipendente Gemini", panel)
-        self.assertIn("job.gemini_review", panel)
-        self.assertIn("mai token, chiavi o PDF completi", panel)
+        self.assertIn("renderCopilot", panel)
+        self.assertIn("job.groq_copilot", panel)
+        self.assertIn("il token resta soltanto nella memoria", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
     def test_feedback_is_bounded_to_succeeded_job_without_content(self):

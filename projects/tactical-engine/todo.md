@@ -47,8 +47,17 @@ l'archivio conservano gli stati storici senza riaprirli.
   contesto e keep-alive configurabili con default locked invariati; diagnosi
   165,92/173,34 s attribuiti a Ollama, suite API 17/17. Unico collaudo 4B
   differenziale DA FARE; report `docs/rag-v5-interactive-performance-01.md`.
+- [x] **ESEGUITO** collaudo 4B differenziale: V1 87,64 s completa ma
+  tatticamente insufficiente; V2 calda 31,59 s ma troncata e tatticamente
+  insufficiente. Collection 6410 invariata e citazioni formalmente valide.
+  Candidato non VALIDATO né INTEGRATO; modello rimosso, disco 32%.
 - [ ] **DA FARE** automatizzare il copilot Groq dietro flag, mantenendo distinti
   diagnosi tattica e verifica documentale e senza modificare il profilo locked.
+- [x] **IMPLEMENTATO** copilot Groq a due passaggi con composizione finale
+  fail-closed, API opt-in e nuovo pannello centrato su bozza, revisione,
+  risposta finale e fonti. Suite 25/25 e JavaScript PASS; smoke live e
+  configurazione privata DA FARE. Report
+  `docs/groq-copilot-panel-integration-01.md`.
 - [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto
   dopo ottimizzazione e validazione differenziale del copilot.
 
@@ -128,6 +137,10 @@ precedenti e non riaprono attività assorbite dalla certificazione.
   revisione Gemini, stato e tempi dei job, biblioteca PDF, ricerca, responsive
   mobile e accessibilita. Prima produrre proposta/wireframe, poi implementare e
   validare con il titolare; non mescolare questa attivita con il benchmark 100.
+- [x] **IMPLEMENTATO** primo ridisegno UX/UI: percorso a quattro fasi,
+  risposta migliorata prioritaria, bozza trasparente, copilot, fonti,
+  navigazione e responsive. Collaudo pubblico DA FARE prima dello stato
+  INTEGRATO; report `docs/groq-copilot-panel-integration-01.md`.
 
 - [x] **INTEGRATO** completamento operativo del pannello: fonti espandibili,
   export Markdown locale e feedback utile/non utile autenticato, persistito

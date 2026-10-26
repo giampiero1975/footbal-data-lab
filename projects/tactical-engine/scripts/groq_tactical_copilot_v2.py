@@ -1,17 +1,19 @@
 #!/usr/bin/env python3
-"""Offline-first two-pass Groq tactical copilot contract.
-
-Phase A deliberately contains no network execution path. It prepares and
-validates the two requests while leaving the certified RAG and Gemini intact.
-"""
+"""Opt-in two-pass Groq tactical copilot with fail-closed final composition."""
 from __future__ import annotations
 
 import argparse
+import datetime as dt
 import hashlib
 import json
+import os
 from pathlib import Path
+import re
+import urllib.error
+import urllib.request
 
-from groq_free_reviewer_v1 import DEFAULT_MODEL, atomic_new, prepare_cases
+from groq_free_reviewer_v1 import (DEFAULT_MODEL, ENDPOINT, atomic_new,
+                                   prepare_cases, quota_allowed)
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -28,6 +30,12 @@ classifica esclusivamente: SUPPORTATO, ULTERIORE_RETRIEVAL o NON_SUPPORTATO.
 Usa soltanto evidence_labels realmente disponibili. Non controllare la sintassi
 delle citazioni della risposta: quella responsabilita appartiene al software.
 Non inventare fonti, pagine, citazioni o contenuti assenti dagli estratti."""
+
+PASS2_PROMPT += """ Dopo i controlli, riscrivi una risposta finale concreta e
+completa per ogni caso. Applica soltanto finding classificati SUPPORTATO; lascia
+gli altri in unresolved_findings. Ogni affermazione documentale deve citare una
+evidence label disponibile nel formato [F1]. Non aggiungere bibliografie o
+fonti esterne e non dichiarare verificato cio che richiede ulteriore retrieval."""
 
 FINDING = {
     "type": "object", "additionalProperties": False,
@@ -64,7 +72,8 @@ PASS1_SCHEMA = {
 }
 
 PASS2_SCHEMA = {
-    "type": "object", "additionalProperties": False, "required": ["checks", "limitations"],
+    "type": "object", "additionalProperties": False,
+    "required": ["checks", "revised_answers", "limitations"],
     "properties": {
         "checks": {"type": "array", "items": {
             "type": "object", "additionalProperties": False,
@@ -74,6 +83,14 @@ PASS2_SCHEMA = {
                 "classification": {"type": "string", "enum": ["SUPPORTATO", "ULTERIORE_RETRIEVAL", "NON_SUPPORTATO"]},
                 "evidence_labels": {"type": "array", "items": {"type": "string"}},
                 "rationale": {"type": "string"},
+            }}},
+        "revised_answers": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False,
+            "required": ["id", "answer", "applied_findings", "unresolved_findings"],
+            "properties": {
+                "id": {"type": "string"}, "answer": {"type": "string"},
+                "applied_findings": {"type": "array", "items": {"type": "string"}},
+                "unresolved_findings": {"type": "array", "items": {"type": "string"}},
             }}},
         "limitations": {"type": "array", "items": {"type": "string"}},
     },
@@ -138,7 +155,68 @@ def validate_pass2(parsed: dict, cases: list[dict], pass1: dict) -> dict:
             raise ValueError("PASS2_SUPPORTED_WITHOUT_EVIDENCE")
         if row.get("classification") != "SUPPORTATO" and used:
             raise ValueError("PASS2_UNSUPPORTED_WITH_EVIDENCE")
+    revised = parsed.get("revised_answers")
+    case_ids = {c["id"] for c in cases}
+    if not isinstance(revised, list) or {r.get("id") for r in revised} != case_ids:
+        raise ValueError("PASS2_REVISED_CASE_COVERAGE")
+    supported = {(r["id"], r["finding_id"]) for r in checks if r["classification"] == "SUPPORTATO"}
+    expected_by_case = {case_id: {fid for cid, fid in expected if cid == case_id} for case_id in case_ids}
+    for row in revised:
+        case_id = row["id"]
+        answer = row.get("answer", "")
+        if not isinstance(answer, str) or not answer.strip():
+            raise ValueError("PASS2_EMPTY_REVISED_ANSWER")
+        applied = set(row.get("applied_findings", [])); unresolved = set(row.get("unresolved_findings", []))
+        if applied & unresolved or applied | unresolved != expected_by_case[case_id]:
+            raise ValueError("PASS2_FINDING_PARTITION")
+        if any((case_id, fid) not in supported for fid in applied):
+            raise ValueError("PASS2_APPLIED_UNSUPPORTED")
+        cited = set(re.findall(r"\[(F\d+)\]", answer))
+        if not cited <= labels[case_id]:
+            raise ValueError("PASS2_REVISED_UNKNOWN_CITATION")
     return parsed
+
+
+def call_groq(request: dict, key: str, timeout: int = 180) -> tuple[dict, float]:
+    req = urllib.request.Request(ENDPOINT, data=json.dumps(request).encode(), method="POST",
+        headers={"Authorization": f"Bearer {key}", "Content-Type": "application/json",
+                 "User-Agent": "football-data-lab-groq-copilot/2.0"})
+    started = dt.datetime.now(dt.timezone.utc)
+    with urllib.request.urlopen(req, timeout=timeout) as response:
+        payload = json.loads(response.read())
+    return payload, (dt.datetime.now(dt.timezone.utc) - started).total_seconds()
+
+
+def parsed_content(payload: dict) -> dict:
+    return json.loads(payload["choices"][0]["message"]["content"])
+
+
+def execute(paths: list[Path], output: Path, model: str, estimated_tokens: int) -> None:
+    cases, mapping = prepare_inputs(paths)
+    key = os.environ.get("GROQ_API_KEY", "")
+    if not key:
+        raise SystemExit("GROQ_API_KEY_MISSING")
+    day = dt.datetime.now(dt.timezone.utc).date().isoformat()
+    ledger_path = ROOT / "evaluation/.groq_free_ledger.json"
+    ledger = json.loads(ledger_path.read_text()) if ledger_path.exists() else {}
+    if not quota_allowed(ledger, day, estimated_tokens):
+        raise SystemExit("LOCAL_DAILY_BUDGET_EXHAUSTED")
+    req1 = build_pass1(cases, model); payload1, elapsed1 = call_groq(req1, key)
+    pass1 = validate_pass1(parsed_content(payload1), list(mapping))
+    req2 = build_pass2(cases, pass1, model); payload2, elapsed2 = call_groq(req2, key)
+    pass2 = validate_pass2(parsed_content(payload2), cases, pass1)
+    usage1 = payload1.get("usage", {}); usage2 = payload2.get("usage", {})
+    used = int(usage1.get("total_tokens", 0)) + int(usage2.get("total_tokens", 0))
+    ledger[day] = {"requests": int(ledger.get(day, {}).get("requests", 0)) + 2,
+                   "tokens": int(ledger.get(day, {}).get("tokens", 0)) + used}
+    ledger_path.write_text(json.dumps(ledger, indent=2) + "\n", encoding="utf-8")
+    atomic_new(output, {"schema": "groq_tactical_copilot_runtime_v2", "status": "ESEGUITO",
+        "provider": "groq", "model": model, "runtime_case_map": mapping,
+        "network_called": True, "rag_executed": False, "index_writes": False,
+        "elapsed_seconds": round(elapsed1 + elapsed2, 3),
+        "passes": [{"elapsed_seconds": elapsed1, "usage": usage1},
+                   {"elapsed_seconds": elapsed2, "usage": usage2}],
+        "pass1": pass1, "pass2": pass2})
 
 
 def preflight(paths: list[Path], output: Path, model: str) -> None:
@@ -162,9 +240,18 @@ def main() -> None:
     parser.add_argument("reports", nargs="+", type=Path)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument("--execute", action="store_true")
+    parser.add_argument("--confirm-free-tier", action="store_true")
+    parser.add_argument("--estimated-tokens", type=int, default=7500)
     args = parser.parse_args()
-    preflight(args.reports, args.output, args.model)
-    print("OFFLINE_PREFLIGHT_PASS API_REQUESTS=0")
+    if not args.execute:
+        preflight(args.reports, args.output, args.model)
+        print("OFFLINE_PREFLIGHT_PASS API_REQUESTS=0")
+        return
+    if not args.confirm_free_tier:
+        raise SystemExit("FREE_TIER_CONFIRMATION_REQUIRED")
+    execute(args.reports, args.output, args.model, args.estimated_tokens)
+    print("COPILOT_COMPLETE")
 
 
 if __name__ == "__main__":

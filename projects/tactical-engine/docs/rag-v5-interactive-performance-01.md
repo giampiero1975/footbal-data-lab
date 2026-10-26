@@ -1,6 +1,6 @@
 # RAG V5 — profilo interattivo e latenza
 
-Data: 2026-10-26. Stato iniziale: **IMPLEMENTATO**, runtime **DA FARE**.
+Data: 2026-10-26. Stato: **ESEGUITO**, candidato non `VALIDATO`.
 
 ## Diagnosi senza nuova inferenza
 
@@ -34,6 +34,23 @@ Il codice espone modello, contesto e keep-alive come opzioni; i default locked
 restano `qwen3.5:9b`, 8192 e nessun keep-alive esplicito. La modifica non tocca
 collection, embedding, reranker, routing o gate delle citazioni.
 
+## Risultati runtime
+
+| candidato | evidenze | tetto output | tempo | esito |
+|---|---:|---:|---:|---|
+| 4B V1 | 6 | 450 | 87,64 s | completo, citazioni valide, qualità tattica insufficiente |
+| 4B V2 caldo | 4 | 300 | 31,59 s | troncato per lunghezza, qualità tattica insufficiente |
+
+V1 ha impiegato 43,66 s per il prompt e 30,04 s per 363 token. V2 ha
+beneficiato della cache del prefisso, ma si è arrestato a 300 token lasciando
+la risposta incompleta. Entrambe le risposte confondono ruoli e fasi; V2 chiama
+la mezzala «trequartista» e non costruisce la soluzione richiesta. Collection
+6410 prima/dopo, citazioni invalide zero.
+
+Il modello 4B non è stato promosso ed è stato rimosso dalla VPS, recuperando
+circa 3,3 GB; disco finale 32% utilizzato. Il profilo configurabile rimane
+reversibile per future prove, mentre il servizio continua a usare il 9B.
+
 ## Criteri
 
 Un solo scenario differenziale già noto verrà rieseguito dopo il deploy del
@@ -45,5 +62,8 @@ candidato, perché modello e parametri sono tecnicamente diversi. Gate:
 - risposta tatticamente utilizzabile dal copilot;
 - target aspirazionale 30–45 s, soglia provvisoria massima 60 s.
 
-Il profilo non sarà promosso soltanto in base alla velocità. Se perde i nuclei
-tattici essenziali resta **ESEGUITO** ma non `VALIDATO`.
+Il profilo non è promosso: la soglia di velocità della V2 è stata raggiunta
+soltanto sacrificando completezza e correttezza. Stato **ESEGUITO**, non
+`VALIDATO` o `INTEGRATO`. La strada successiva è rendere Groq copilot capace di
+proporre una composizione finale controllata, senza presentare il 4B come autore
+affidabile.

@@ -20,6 +20,14 @@ def pass1():
         "improvement_plan": ["m"], "retrieval_needs": ["r"]}], "limitations": []}
 
 
+def pass2():
+    return {"checks": [{"id": "case_01", "finding_id": "f01", "classification": "SUPPORTATO",
+                         "evidence_labels": ["F1"], "rationale": "ok"}],
+            "revised_answers": [{"id": "case_01", "answer": "Correzione [F1].",
+                                  "applied_findings": ["f01"], "unresolved_findings": []}],
+            "limitations": []}
+
+
 class CopilotOfflineTests(unittest.TestCase):
     def test_pass1_excludes_evidence(self):
         request = copilot.build_pass1(cases())
@@ -42,14 +50,19 @@ class CopilotOfflineTests(unittest.TestCase):
         self.assertEqual(body["cases"][0]["findings"][0]["finding_id"], "f01")
 
     def test_pass2_software_validates_labels(self):
-        good = {"checks": [{"id": "case_01", "finding_id": "f01", "classification": "SUPPORTATO",
-                            "evidence_labels": ["F1"], "rationale": "ok"}], "limitations": []}
+        good = pass2()
         self.assertEqual(copilot.validate_pass2(good, cases(), pass1())["checks"][0]["classification"], "SUPPORTATO")
         bad = json.loads(json.dumps(good)); bad["checks"][0]["evidence_labels"] = ["F9"]
         with self.assertRaises(ValueError): copilot.validate_pass2(bad, cases(), pass1())
 
     def test_pass2_requires_complete_finding_coverage(self):
         with self.assertRaises(ValueError): copilot.validate_pass2({"checks": [], "limitations": []}, cases(), pass1())
+
+    def test_revised_answer_citation_and_partition_fail_closed(self):
+        bad = pass2(); bad["revised_answers"][0]["answer"] = "Inventata [F9]."
+        with self.assertRaises(ValueError): copilot.validate_pass2(bad, cases(), pass1())
+        bad = pass2(); bad["revised_answers"][0]["unresolved_findings"] = ["f01"]
+        with self.assertRaises(ValueError): copilot.validate_pass2(bad, cases(), pass1())
 
 
 if __name__ == "__main__": unittest.main()

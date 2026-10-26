@@ -840,3 +840,28 @@ invariati; compilazione PASS e suite API 17/17. Decisione: collaudare una sola
 volta `qwen3.5:4b`, contesto 4096, massimo 450 token, sei evidenze e keep-alive
 30m; la differenza di modello/parametri giustifica il test. Stato:
 **IMPLEMENTATO**; runtime **DA FARE**.
+
+Attivita: collaudare il profilo 4B senza alterare locked o collection. Script:
+`run_rag_v5_query.py`, report runtime separati
+`api-runs/perf4b_ad41e872_v1.result.json` e V2. Commit: `080bba4`. Report:
+`docs/rag-v5-interactive-performance-01.md`. Risultato: V1 87,64 s, completa
+ma tatticamente insufficiente; V2 con quattro evidenze e 300 token 31,59 s,
+ma `done_reason=length`, risposta incompleta e ruoli errati. Entrambe con zero
+citazioni invalide e collection 6410 invariata. Decisione: non promuovere il
+4B; rimuoverlo dalla VPS e recuperare 3,3 GB, disco finale 32%. Conservare le
+opzioni reversibili e proseguire sul copilot Groq con composizione controllata.
+Stato: **ESEGUITO**, non `VALIDATO` o `INTEGRATO`.
+
+### V5-GROQ-COPILOT-03 — Composizione controllata e pannello (2026-10-26)
+
+Attivita: trasformare il prototipo Groq in spalla tattica applicativa senza
+toccare locked, collection o risposta RAG originale. Script:
+`groq_tactical_copilot_v2.py`, `rag_v5_api.py`, `knowledge_panel.html`; test
+copilot e API. Commit: DA FARE. Report:
+`docs/groq-copilot-panel-integration-01.md`. Risultato: due passaggi, finding
+supportati/irrisolti, composizione finale con citazioni ammesse e fallback non
+bloccante; pannello ridisegnato con quattro fasi, risposta finale, bozza e fonti.
+Compilazione e sintassi JavaScript PASS, suite 25/25. Decisione: pubblicare il
+codice con flag disattivo; attivazione soltanto dopo configurazione privata
+della chiave e una smoke live. Stato: **IMPLEMENTATO**, non ancora `ESEGUITO`,
+`VALIDATO` o `INTEGRATO` live.
