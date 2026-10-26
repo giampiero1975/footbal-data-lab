@@ -162,7 +162,8 @@ def reserve_explicit_manual(question, rows, scores, selected, limit):
     winner=max(candidates,key=lambda i:float(scores[i]))
     revised=list(selected[:max(0,limit-1)])+[rows[winner]]
     return revised,[rows[winner]["id"]]
-def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,num_predict=0):
+def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,
+         num_predict=0,context_window=8192,keep_alive=None):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
     phase_guard=(" Nella sezione sul possesso usa soltanto movimenti con la propria squadra in controllo del pallone; "
@@ -176,13 +177,15 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
              "Crea una sezione numerata per ogni punto richiesto, tratta tutti i punti prima di aggiungere dettagli, "
              "usa frasi operative ed evita ripetizioni. Mantieni rigorosamente distinte le fasi richieste "
              "(possesso, non possesso, perdita e riconquista) e non sostituirle fra loro."+phase_guard+"\n") if num_predict else ""
-    options={"temperature":0,"num_ctx":8192}
+    options={"temperature":0,"num_ctx":context_window}
     if num_predict:
         options["num_predict"]=num_predict
     payload={"model":model,"stream":False,"think":False,
              "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")+(generation_guidance(question) if heading_routing else "")+concise},
                          {"role":"user","content":f"DOMANDA:\n{question}\n\nFONTI:\n{context}"}],
              "options":options}
+    if keep_alive:
+        payload["keep_alive"]=keep_alive
     request=Request("http://127.0.0.1:11434/api/chat",
                     data=json.dumps(payload,ensure_ascii=False).encode(),
                     headers={"Content-Type":"application/json"},method="POST")
@@ -232,6 +235,8 @@ def main():
     ap.add_argument("--timeout",type=int,default=900)
     ap.add_argument("--limit",type=int,default=8)
     ap.add_argument("--num-predict",type=int,default=0,help="Opt-in output-token ceiling; 0 preserves locked behavior")
+    ap.add_argument("--context-window",type=int,default=8192,help="Generation context window; locked default is 8192")
+    ap.add_argument("--keep-alive",default=None,help="Optional Ollama keep_alive value for an interactive profile")
     ap.add_argument("--priority-exact",action="store_true",help="Opt-in exact-reference promotion; default off")
     ap.add_argument("--source-aware", action="store_true")
     ap.add_argument("--exercise-candidate", action="store_true", help="Opt-in isolated Ussia exercise candidate retrieval")
@@ -252,6 +257,7 @@ def main():
         heading_list = metadata_headings if args.heading_routing else lambda value: []
     if not 1<=args.limit<=12:ap.error("limit must be between 1 and 12")
     if args.num_predict and not 128<=args.num_predict<=4096:ap.error("num-predict must be 0 or between 128 and 4096")
+    if not 2048<=args.context_window<=8192:ap.error("context-window must be between 2048 and 8192")
     questions=[("probe_exact",args.probe_question)] if args.probe_question else QUESTIONS
     coll=chromadb.PersistentClient(path=DB).get_collection(args.collection)
     count=coll.count()
@@ -403,7 +409,9 @@ def main():
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
-            answer,stats=("",{}) if args.retrieval_only else chat(args.model,question,evidence,args.timeout,args.targeted_coverage,args.heading_routing,args.num_predict)
+            answer,stats=("",{}) if args.retrieval_only else chat(
+                args.model,question,evidence,args.timeout,args.targeted_coverage,
+                args.heading_routing,args.num_predict,args.context_window,args.keep_alive)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,

@@ -45,6 +45,9 @@ def load_config(env=os.environ) -> dict:
         "expected_count": int(env.get("RAG_EXPECTED_COUNT", "5319")),
         "evidence_limit": int(env.get("RAG_API_EVIDENCE_LIMIT", "8")),
         "max_output_tokens": int(env.get("RAG_API_MAX_OUTPUT_TOKENS", "0")),
+        "model": env.get("RAG_API_MODEL", "qwen3.5:9b"),
+        "context_window": int(env.get("RAG_API_CONTEXT_WINDOW", "8192")),
+        "keep_alive": env.get("RAG_API_KEEP_ALIVE", ""),
         "chroma_path": Path(env.get("RAG_CHROMA_PATH", str(ROOT.parent.parent / "knowledge/rag/chroma"))),
         "gemini_review_enabled": env.get("RAG_GEMINI_REVIEW_ENABLED", "0").lower() in {"1", "true", "yes"},
         "gemini_review_model": env.get("RAG_GEMINI_REVIEW_MODEL", "gemini-3.6-flash"),
@@ -247,7 +250,11 @@ class State:
                            "--output", str(output_path), "--collection", self.config["collection"],
                            "--expected-count", str(self.config["expected_count"]),
                            "--evidence-limit", str(self.config["evidence_limit"]),
-                           "--max-output-tokens", str(self.config["max_output_tokens"])]
+                           "--max-output-tokens", str(self.config["max_output_tokens"]),
+                           "--model", self.config["model"],
+                           "--context-window", str(self.config["context_window"])]
+                if self.config["keep_alive"]:
+                    command.extend(["--keep-alive", self.config["keep_alive"]])
                 try:
                     result = subprocess.run(command, cwd=ROOT.parent.parent, capture_output=True, text=True, timeout=self.config["timeout"])
                     status = "succeeded" if result.returncode == 0 and output_path.exists() else "failed"

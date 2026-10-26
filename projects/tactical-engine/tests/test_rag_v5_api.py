@@ -104,9 +104,15 @@ class ApiTests(unittest.TestCase):
                 "RAG_API_OUTPUT_DIR": tmp,
                 "RAG_API_EVIDENCE_LIMIT": "6",
                 "RAG_API_MAX_OUTPUT_TOKENS": "700",
+                "RAG_API_MODEL": "qwen3.5:4b",
+                "RAG_API_CONTEXT_WINDOW": "4096",
+                "RAG_API_KEEP_ALIVE": "30m",
             })
             self.assertEqual(config["evidence_limit"], 6)
             self.assertEqual(config["max_output_tokens"], 700)
+            self.assertEqual(config["model"], "qwen3.5:4b")
+            self.assertEqual(config["context_window"], 4096)
+            self.assertEqual(config["keep_alive"], "30m")
 
     def test_gemini_review_is_opt_in_and_uses_stable_model(self):
         with tempfile.TemporaryDirectory() as tmp:

@@ -36,9 +36,17 @@ l'archivio conservano gli stati storici senza riaprirli.
   laterale del numero 4, terzo uomo e preventiva 2+1 ha ricevuto 30/30 con lode
   nell'interfaccia Google AI Mode. È una singola prova preliminare, non una
   validazione statistica né un'integrazione applicativa.
+- [x] **VALIDATO** reset runtime del vecchio benchmark: rimossa esclusivamente
+  `evaluation/coverciano-100-chunks-v1/` dalla VPS dopo verifica del percorso
+  assoluto; 9 file e 156 KB prima, directory assente dopo. Indici, PDF e altri
+  report invariati per perimetro dell'operazione.
 - [ ] **DA FARE** ridurre la latenza del ciclo: il solo job RAG ha richiesto
   circa 170 s, incompatibili con l'uso interattivo. Obiettivo operativo iniziale
   30–45 s end-to-end, senza ridurre validità delle citazioni o qualità tattica.
+- [x] **IMPLEMENTATO** profilo generativo interattivo reversibile: modello,
+  contesto e keep-alive configurabili con default locked invariati; diagnosi
+  165,92/173,34 s attribuiti a Ollama, suite API 17/17. Unico collaudo 4B
+  differenziale DA FARE; report `docs/rag-v5-interactive-performance-01.md`.
 - [ ] **DA FARE** automatizzare il copilot Groq dietro flag, mantenendo distinti
   diagnosi tattica e verifica documentale e senza modificare il profilo locked.
 - [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto

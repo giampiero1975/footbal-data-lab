@@ -816,3 +816,27 @@ Decisione: registrare la prova come ESEGUITA ma non VALIDATA, eliminare soltanto
 la directory runtime dei 50 casi, ottimizzare prima la latenza e solo dopo
 congelare il nuovo benchmark. Stato: **ESEGUITO** per riconciliazione e prova;
 pulizia e ottimizzazione **DA FARE**.
+
+Attivita: rimuovere dalla VPS soltanto gli artefatti del protocollo batch
+annullato. Script: shell fail-closed con `readlink -f`, confronto del percorso,
+conteggio, dimensione e verifica post-rimozione. Commit decisionale: `ab837fd`.
+Report: `docs/coverciano-examiner-copilot-reset-01.md`. Risultato: percorso
+`/opt/football-data-lab/projects/tactical-engine/evaluation/coverciano-100-chunks-v1`,
+9 file, 156 KB; directory assente dopo la rimozione. Nessun altro report,
+indice o PDF incluso nel target. Decisione: chiudere il vecchio avanzamento
+50/100 e ripartire da zero soltanto dopo il nuovo protocollo congelato. Stato:
+**VALIDATO** per la pulizia mirata.
+
+### V5-PERF-INTERACTIVE-01 — Profilo generativo interattivo (2026-10-26)
+
+Attivita: isolare il collo di bottiglia del ciclo Coverciano senza ripetere
+inferenze equivalenti. Script: lettura del job esistente e dei due report
+prestazionali; opzioni applicative in `smoke_test_rag_v5_e2e.py`,
+`run_rag_v5_query.py` e `rag_v5_api.py`. Commit: DA FARE. Report:
+`docs/rag-v5-interactive-performance-01.md`. Risultato: 165,92 dei 173,34 s
+sono dentro Ollama; 75,90 s prompt, 79,58 s output e 10,40 s load. Implementato
+profilo opt-in con modello, contesto e keep-alive configurabili; default locked
+invariati; compilazione PASS e suite API 17/17. Decisione: collaudare una sola
+volta `qwen3.5:4b`, contesto 4096, massimo 450 token, sei evidenze e keep-alive
+30m; la differenza di modello/parametri giustifica il test. Stato:
+**IMPLEMENTATO**; runtime **DA FARE**.

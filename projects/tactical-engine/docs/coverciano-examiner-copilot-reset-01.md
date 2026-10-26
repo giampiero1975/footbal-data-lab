@@ -66,7 +66,9 @@ ottenuto disattivando il gate citazioni o riducendo arbitrariamente le fonti.
 - riconciliazione del protocollo: **ESEGUITO**;
 - prova manuale singola: **ESEGUITO**;
 - vecchio benchmark 50/100: **BLOCCATO** e fuori perimetro;
-- pulizia runtime mirata: **DA FARE** fino a verifica post-rimozione;
+- pulizia runtime mirata: **VALIDATO**; percorso risolto esattamente, 9 file e
+  156 KB prima della rimozione, directory assente dopo; nessun altro artefatto
+  Gemini/Groq o indice interessato;
 - ottimizzazione latenza: **DA FARE**;
 - copilot applicativo: **DA FARE**;
 - benchmark 100 corretto: **DA FARE**.
