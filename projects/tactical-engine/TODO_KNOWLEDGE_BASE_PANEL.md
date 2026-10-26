@@ -53,4 +53,5 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - [x] Validare test offline e smoke HTTP sulla VPS per stats, documenti e ricerca.
 - [x] Validare sulla VPS l'interfaccia per Inventario/Copertura/Esplora e domanda RAG.
 - [x] Integrare vista Qualità operativa con worker, coda, job, errori e latenze persistenti.
+- [x] Riprogettare e collaudare la UX pubblica con flusso Analisi → RAG/fonti → copilot → risposta finale, biblioteca e diagnostica (`a77420e`).
 - [ ] Integrare catalogo FIGC e stati completi di conversione/indicizzazione.

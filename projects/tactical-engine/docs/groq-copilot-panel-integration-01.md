@@ -1,7 +1,7 @@
 # Groq copilot e pannello operativo — integrazione isolata
 
-Data: 2026-10-26. Stato: **IMPLEMENTATO**; chiamata live e attivazione
-servizio **DA FARE**.
+Data: 2026-10-26. Stato pannello: **VALIDATO e INTEGRATO**. Stato copilot
+Groq: **IMPLEMENTATO**; chiamata live e attivazione servizio **DA FARE**.
 
 ## Implementazione
 
@@ -40,10 +40,24 @@ Il pannello è stato riorganizzato attorno al compito principale:
 - sintassi JavaScript: PASS;
 - nessuna chiave incorporata nel pannello o nel repository.
 
+## Deploy e collaudo pubblico
+
+Il commit applicativo `a77420e` è stato pubblicato, allineato sulla VPS e il
+servizio `football-rag-api.service` è stato riavviato con esito `active`.
+La suite VPS ha confermato 25/25 test; `/healthz` e `/readyz` autenticati hanno
+restituito HTTP 200 e la pagina pubblica
+`https://football-lab.byoursite.com/panel` ha restituito HTTP 200.
+
+Il collaudo visivo e dell'albero accessibile ha verificato titolo, guida,
+autenticazione, quattro fasi di analisi, risposta migliorata, bozza RAG,
+evidenze, diagnostica e biblioteca. Il layout pubblico è quindi
+**VALIDATO e INTEGRATO**. Questa decisione riguarda la UI e non promuove il
+copilot esterno né estende la certificazione locked.
+
 ## Limiti
 
-La chiave Groq non è persistita sulla VPS. L'integrazione non viene dichiarata
+La chiave Groq non è persistita sulla VPS. Il copilot non viene dichiarato
 `INTEGRATO` finché non vengono completati configurazione privata, singola smoke
-live autorizzata, verifica dei log redatti e collaudo visivo pubblico. Il RAG
+live autorizzata e verifica dei log redatti. Il RAG
 locale 9B mantiene la propria latenza: questa implementazione migliora il flusso
 di revisione, non rende più veloce la bozza iniziale.

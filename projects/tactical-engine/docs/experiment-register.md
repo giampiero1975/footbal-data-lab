@@ -865,3 +865,14 @@ Compilazione e sintassi JavaScript PASS, suite 25/25. Decisione: pubblicare il
 codice con flag disattivo; attivazione soltanto dopo configurazione privata
 della chiave e una smoke live. Stato: **IMPLEMENTATO**, non ancora `ESEGUITO`,
 `VALIDATO` o `INTEGRATO` live.
+
+Attivita: pubblicare e collaudare la nuova interfaccia senza attivare il
+copilot esterno. Script: `api/knowledge_panel.html`, API e test gia descritti;
+commit `a77420e`. Report: `docs/groq-copilot-panel-integration-01.md`.
+Risultato: pull VPS, suite 25/25, servizio active, `/healthz`, `/readyz` e
+pagina HTTPS pubblica HTTP 200; albero accessibile e verifica visiva confermano
+guida, autenticazione, quattro fasi, risposta finale, bozza, evidenze,
+diagnostica e biblioteca. Decisione: chiudere la riprogettazione UI come
+**VALIDATA e INTEGRATA**; mantenere separato il copilot Groq, ancora
+**IMPLEMENTATO** e disattivato in assenza di configurazione privata e smoke
+live. Nessuna estensione della certificazione locked.

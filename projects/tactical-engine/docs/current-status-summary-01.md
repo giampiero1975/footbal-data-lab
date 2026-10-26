@@ -1,4 +1,4 @@
-# Stato consolidato corrente — 2026-10-25
+# Stato consolidato corrente — 2026-10-26
 
 Questa pagina è il punto di ingresso per lo stato attuale. La cronologia completa
 resta in `docs/experiment-register.md`; gli stati storici non sono cancellati e
@@ -9,7 +9,7 @@ non prevalgono sugli stati correnti qui riconciliati.
 | Ambito | Stato corrente | Evidenza e limite |
 |---|---|---|
 | Pipeline V5 locked e wrapper CLI | **CERTIFICATO** | Regressione 10/10, confronto di eleggibilità V4/V5, freeze runtime, default e rollback in `docs/v5-certification-closeout-01.md`; commit di promozione `040c6a5`, closeout `e2c093a`. La certificazione vale soltanto per manifest locked, runtime congelato e wrapper CLI verificato. |
-| API HTTP locale e pannello | **INTEGRATO** | Contratto e deployment in `docs/rag-v5-http-api-validation-01.md`; pannello, feedback privo di contenuti, fonti espandibili ed export in `docs/knowledge-panel-api-v1.md` e `docs/knowledge-panel-feedback-export-01.md`; commit principali `9472564`, `60bf7b2`, `77a69df`, `e9dda93`. Servizio vincolato a localhost; non è certificato dal closeout locked. |
+| API HTTP e pannello pubblico | **VALIDATO e INTEGRATO** | Contratto e deployment in `docs/rag-v5-http-api-validation-01.md`; nuovo pannello operativo in `docs/groq-copilot-panel-integration-01.md`, commit `a77420e`: HTTPS 200, struttura accessibile e collaudo visivo pubblico superati. La UI espone risposta finale, bozza RAG, fonti, biblioteca e diagnostica. Il copilot Groq è ancora disattivato e non eredita questo stato. |
 | Osservabilità e manutenzione | **INTEGRATO** | Metriche e vista qualità in `docs/rag-v5-api-observability-01.md`; manutenzione settimanale in `docs/rag-v5-runtime-maintenance-01.md`; commit `fbf4162`, `a48b516`, `5b877cb`, `1e9f167`. |
 | Sicurezza pre-pubblicazione | **VALIDATO e INTEGRATO** | Token errati limitati, log senza query, TLS/header predisposti e UFW limitato a SSH/Nginx; `docs/public-panel-security-audit-01.md`, commit `9961a39`. |
 | Pannello HTTPS pubblico | **VALIDATO e INTEGRATO** | `https://football-lab.byoursite.com`: certificato Let's Encrypt, redirect, header di sicurezza, autenticazione e rinnovo simulato verificati; `docs/public-panel-https-01.md`. API e Ollama restano su localhost; nessuna estensione della certificazione locked. |
@@ -38,7 +38,10 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
   prova è ESEGUITA, non ancora VALIDATA o INTEGRATA. Il precedente piano batch
   50/100 è BLOCCATO e fuori perimetro; dettagli in
   `docs/coverciano-examiner-copilot-reset-01.md`.
-- **DA FARE:** riprogettazione UX/UI del pannello pubblico.
+- La riprogettazione UX/UI del pannello pubblico è **VALIDATA e INTEGRATA**;
+  non è più un'attività aperta. Il copilot Groq mostrato nella UI resta
+  **IMPLEMENTATO** ma disattivato finché non vengono configurati privatamente
+  chiave e flag e svolta una singola smoke live distinta.
 
 - **DA FARE:** osservazione prolungata del servizio. Il reboot completo
   dell'host, il riavvio della sola unità e il
