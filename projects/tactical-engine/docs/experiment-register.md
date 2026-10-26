@@ -14,6 +14,17 @@ il segreto corrente e non memorizzarlo lato browser. Commit `12c7fe0`, deploy VP
 fast-forward, servizio attivo, suite VPS 18/18 e smoke HTTPS autenticato HTTP 200.
 Stato: **VALIDATO e INTEGRATO**.
 
+### 2026-10-26 — Recupero job e cronologia pannello
+
+Attività: correggere la perdita apparente del job `259b7f4b...` dopo restart.
+Script: `api/rag_v5_api.py`, `api/knowledge_panel.html`; test API; report
+`docs/panel-job-recovery-01.md`. Risultato: evidenza RAG esistente sul disco ma
+stato/cronologia solo in memoria. Implementata ricostruzione autenticata dei job
+completati, lista recente e chiusura grafica dei job realmente interrotti. Suite
+30/30, compilazione e JavaScript PASS, nessuna inferenza. Decisione: non riavviare
+durante job attivi e rendere il risultato persistente indipendente dal processo.
+Stato: **VALIDATO offline**, deploy **DA FARE**.
+
 ### 2026-10-26 — Remediation offline HTTP 400 Groq copilot
 
 Attività: diagnosticare il 400 della seconda smoke senza nuova chiamata API.

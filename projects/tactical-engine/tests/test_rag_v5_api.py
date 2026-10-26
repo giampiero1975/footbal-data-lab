@@ -179,6 +179,27 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(summary["revised_answer"], "Risposta corretta [F1].")
             self.assertNotIn("pass1", summary)
 
+    def test_completed_job_and_history_survive_restart(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); job_id = "c" * 32
+            (output / f"{job_id}.request.json").write_text(
+                json.dumps({"id": job_id, "question": "Domanda tattica persistente"}), encoding="utf-8")
+            result = {"questions": [{"answer": "Bozza recuperata [F1].", "evidence": [],
+                                      "elapsed_seconds": 42}]}
+            (output / f"{job_id}.result.json").write_text(json.dumps(result), encoding="utf-8")
+            (output / f"{job_id}.groq-copilot.json").write_text(json.dumps({
+                "status": "BLOCCATO", "model": "openai/gpt-oss-120b",
+                "reason": "GROQ_PASS2_FINDING_COVERAGE"}), encoding="utf-8")
+            state = api.State(self.config(output))
+            recovered = state.persisted_job(job_id)
+            self.assertEqual(recovered["status"], "succeeded")
+            self.assertTrue(recovered["recovered_after_restart"])
+            self.assertEqual(recovered["question"], "Domanda tattica persistente")
+            self.assertEqual(recovered["result"], result)
+            self.assertEqual(recovered["groq_copilot"]["status"], "unavailable")
+            recent = state.recent_completed_jobs(20)
+            self.assertEqual([item["id"] for item in recent], [job_id])
+
     def test_catalog_is_loaded_once(self):
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(api, "load_catalog", return_value={"documents":[],"chunks":[]}) as loader:
             state = api.State(self.config(Path(tmp)))
@@ -214,6 +235,10 @@ class ApiTests(unittest.TestCase):
         self.assertIn("/v1/events", panel)
         self.assertIn("Registro diagnostico", panel)
         self.assertIn("renderCopilot", panel)
+        self.assertIn("markInterrupted", panel)
+        self.assertIn("Interrotto ·", panel)
+        self.assertIn("/v1/jobs/recent", panel)
+        self.assertIn("loadRecentJobs", panel)
         self.assertIn("job.groq_copilot", panel)
         self.assertIn("il token resta soltanto nella memoria", panel)
         self.assertIn("normalizeToken", panel)

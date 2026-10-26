@@ -202,6 +202,63 @@ class State:
         self.record_event("job_accepted", job_id=job_id, status="queued")
         return dict(job)
 
+    def persisted_job(self, job_id: str) -> dict | None:
+        """Reconstruct a completed job from private runtime files after restart."""
+        request_path = self.config["output_dir"] / f"{job_id}.request.json"
+        result_path = self.config["output_dir"] / f"{job_id}.result.json"
+        if not request_path.exists() or not result_path.exists():
+            return None
+        try:
+            request = json.loads(request_path.read_text(encoding="utf-8"))
+            result = json.loads(result_path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError, TypeError):
+            return None
+        job = {"id": job_id, "status": "succeeded",
+               "created_at": int(request_path.stat().st_mtime),
+               "started_at": int(request_path.stat().st_mtime),
+               "finished_at": int(result_path.stat().st_mtime),
+               "question": request.get("question", ""), "result": result,
+               "recovered_after_restart": True}
+        copilot_path = self.config["output_dir"] / f"{job_id}.groq-copilot.json"
+        if copilot_path.exists():
+            try:
+                report = json.loads(copilot_path.read_text(encoding="utf-8"))
+                if report.get("status") == "ESEGUITO":
+                    review = report["pass1"]["reviews"][0]
+                    revised = report["pass2"]["revised_answers"][0]
+                    job["groq_copilot"] = {"status": "verified", "model": report.get("model"),
+                        "score": review.get("score"), "verdict": review.get("verdict"),
+                        "confirmed_points": review.get("confirmed_points", []),
+                        "findings": review.get("findings", []),
+                        "improvement_plan": review.get("improvement_plan", []),
+                        "retrieval_needs": review.get("retrieval_needs", []),
+                        "checks": report["pass2"].get("checks", []),
+                        "revised_answer": revised.get("answer", ""),
+                        "unresolved_findings": revised.get("unresolved_findings", []),
+                        "elapsed_seconds": report.get("elapsed_seconds")}
+                else:
+                    job["groq_copilot"] = {"status": "unavailable",
+                        "model": report.get("model", self.config["groq_copilot_model"]),
+                        "reason": report.get("reason", "groq_copilot_failed")}
+            except (OSError, KeyError, TypeError, json.JSONDecodeError):
+                job["groq_copilot"] = {"status": "unavailable",
+                    "model": self.config["groq_copilot_model"], "reason": "groq_copilot_invalid_result"}
+        return job
+
+    def recent_completed_jobs(self, limit: int = 20) -> list[dict]:
+        paths = sorted(self.config["output_dir"].glob("*.result.json"),
+                       key=lambda path: path.stat().st_mtime, reverse=True)
+        jobs = []
+        for path in paths:
+            job_id = path.name.removesuffix(".result.json")
+            if len(job_id) == 32 and job_id.isalnum():
+                job = self.persisted_job(job_id)
+                if job:
+                    jobs.append(job)
+            if len(jobs) >= limit:
+                break
+        return jobs
+
     def run_gemini_review(self, job_id: str, result_path: Path) -> dict:
         """Run the optional external review without making the RAG result depend on it."""
         model = self.config["gemini_review_model"]
@@ -430,6 +487,15 @@ class Handler(BaseHTTPRequestHandler):
                 self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_limit"}); return
             self.send_json(HTTPStatus.OK, {"schema": "rag_api_events_v1", "items": self.state.recent_events(limit)})
             return
+        if parsed.path == "/v1/jobs/recent":
+            query = parse_qs(parsed.query)
+            try:
+                limit = min(50, max(1, int(query.get("limit", ["20"])[0])))
+            except ValueError:
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_limit"}); return
+            self.send_json(HTTPStatus.OK, {"schema": "rag_api_recent_jobs_v1",
+                                           "items": self.state.recent_completed_jobs(limit)})
+            return
         if parsed.path == "/v1/knowledge/documents":
             query = parse_qs(parsed.query)
             try:
@@ -469,6 +535,10 @@ class Handler(BaseHTTPRequestHandler):
             with self.state.lock:
                 job = dict(self.state.jobs.get(job_id, {}))
             if not job:
+                job = self.state.persisted_job(job_id)
+                if job:
+                    self.send_json(HTTPStatus.OK, job)
+                    return
                 request_path = self.state.config["output_dir"] / f"{job_id}.request.json"
                 if request_path.exists():
                     self.state.record_event("job_unavailable", job_id=job_id, reason="service_restart")
