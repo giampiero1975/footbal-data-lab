@@ -7,6 +7,17 @@
 ## Stato consolidato e lavori aperti — 2026-10-25
 
 **Sintesi autorevole per il revisore:**
+
+- [ ] **DA FARE** V5-COVERCIANO-RAG-ONLY-100-01: nuovo benchmark vincolante di
+  100 domande. Flusso esclusivo Gemini Cloud domanda → pannello → RAG → Gemini
+  Cloud voto sulla risposta RAG invariata. Spalla OpenRouter conservata ma
+  disabilitata. Obiettivo media RAG >=26/30; esecuzione continua senza richieste
+  ordinarie e arresto esatto a 100 casi con report completo. Protocollo:
+  `docs/coverciano-rag-only-100-protocol-01.md`.
+- [x] **IMPLEMENTATO** V5-COVERCIANO-RAG-ONLY-ISOLATION-01: flag runtime
+  OpenRouter impostato a zero; backend evita la fase reviewing quando la spalla
+  e disabilitata; pannello mostra come risposta finale il testo RAG non
+  modificato. Test, deploy e smoke pannello DA FARE prima del caso 1.
 `docs/current-status-summary-01.md`. La pipeline V5 locked e il wrapper CLI
 congelato sono **CERTIFICATI**; API, pannello, osservabilità, manutenzione e
 corpus FIGC5 sono **INTEGRATI** con evidenze separate; holdout Drive11 e

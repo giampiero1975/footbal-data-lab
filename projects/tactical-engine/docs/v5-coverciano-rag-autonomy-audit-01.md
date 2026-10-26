@@ -57,6 +57,71 @@ La precedente stima RAG 25–35% / spalla 65–75% resta una stima qualitativa. 
 campione prova la dominanza operativa della spalla, ma non consente ancora una
 percentuale validata concetto per concetto.
 
+### Stima diagnostica per caso
+
+La persistenza attuale non conserva un diff semantico concetto per concetto.
+Le percentuali seguenti non sono quindi una misura certificata di authorship:
+sono intervalli diagnostici ricavati congiuntamente da voto interno della
+bozza, rapporto di lunghezza bozza/finale, ampiezza delle correzioni ed errori
+strutturali. Il `massimo testuale RAG` e soltanto un limite superiore: assume,
+in modo irrealistico, che ogni carattere della bozza sia sopravvissuto.
+
+| Prova | massimo testuale RAG | stima RAG | stima spalla | motivazione sintetica |
+|---:|---:|---:|---:|---|
+| 1 | 38,7% | 15–25% | 75–85% | bozza 2/10; finale 2,58 volte piu lunga |
+| 2 | 35,6% | 25–35% | 65–75% | bozza 3/10; correzione strutturale ampia |
+| 3 | 38,7% | 70–85% | 15–30% | unico 10/10; outlier da non generalizzare |
+| 4 | 39,3% | 15–25% | 75–85% | bozza 2/10; riscrittura dominante |
+| 5 | 37,3% | 15–25% | 75–85% | bozza 2/10; riscrittura dominante |
+| 6 | 41,9% | 15–25% | 75–85% | bozza 2/10; riscrittura dominante |
+| 7 | 39,8% | 25–35% | 65–75% | bozza 3/10; finale molto piu estesa |
+| 8 | 51,6% | 25–35% | 65–75% | bozza 3/10; lunghezza non prova sopravvivenza semantica |
+| 9 | 25,9% | 30–40% | 60–70% | bozza 4/10 ma testo finale 3,86 volte piu lungo |
+| 10 | 30,8% | 30–40% | 60–70% | bozza 4/10; correzione ancora maggioritaria |
+| 11 | 40,8% | 25–35% | 65–75% | bozza 3/10; finale 2,45 volte piu lunga |
+| 12 | 28,3% | 15–25% | 75–85% | bozza 2/10; finale 3,54 volte piu lunga |
+| 13 | 24,1% | 15–25% | 75–85% | bozza 2/10; finale 4,15 volte piu lunga |
+| 14 | 29,7% | 25–35% | 65–75% | bozza 3/10; correzione maggioritaria |
+| 15 | 27,0% | 15–25% | 75–85% | bozza 2/10; finale 3,71 volte piu lunga |
+| 16 | 34,9% | 15–25% | 75–85% | bozza 2/10 con ruoli incompatibili; voto esterno invalido |
+
+Usando il centro degli intervalli, il campione e circa **29% RAG / 71%
+spalla**. Il dato e coerente con la precedente stima aggregata, ma resta
+diagnostico finche non esiste il diff semantico persistente richiesto dal gate
+di attribuzione.
+
+## Conformita ai requisiti e origine della deviazione
+
+Il requisito originario era esplicito. La Fase A del copilot dichiarava che
+Groq doveva produrre diagnosi tattica e verifica documentale e che **nessun
+percorso modifica automaticamente la risposta RAG**. Il reset del protocollo
+definiva la seconda AI come spalla per errori, omissioni, geometria e
+miglioramenti. La successiva espressione `si compone una risposta finale` non
+autorizzava una sostituzione integrale e avrebbe dovuto essere subordinata a un
+limite di contributo e a una misura separata della bozza.
+
+La deviazione e entrata nel codice in due passaggi:
+
+1. commit `a77420e`: l'integrazione live ha aggiunto a PASS2 l'ordine di
+   `riscrivere una risposta finale concreta e completa`, mentre il progetto
+   originario prevedeva soltanto finding e verifica;
+2. commit `86a64b0`: dopo un voto esterno 25/30, per inseguire il target >=28,
+   PASS1 e stato obbligato a produrre `replacement_answer` e PASS2 a usarla
+   come ossatura e a sostituire integralmente le parti errate.
+
+Questa e una non conformita dell'implementazione, non una modifica richiesta
+dal titolare. I test verificavano schema, ID, citazioni, fail-closed e trasporto,
+ma mancava un test sul rapporto di contributo RAG/spalla. L'ottimizzazione sul
+voto finale ha quindi premiato il secondo autore e nascosto la debolezza della
+bozza.
+
+Non e ancora dimostrato che il RAG sia regredito rispetto a un benchmark
+Coverciano equivalente: il benchmark locked precedente aveva dominio e rubriche
+piu circoscritti. Le 16 prove dimostrano invece che il profilo corrente non
+generalizza ai nuovi scenari complessi. Per distinguere regressione software da
+limite preesistente serve un confronto offline sugli stessi casi congelati tra
+commit precedenti e corrente, senza spalla e senza nuove valutazioni esterne.
+
 ## Cause accertate
 
 ### 1. La spalla e configurata come autore sostitutivo

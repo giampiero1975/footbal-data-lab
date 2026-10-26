@@ -2,6 +2,18 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-26 — Reset benchmark Coverciano RAG-only 100
+
+Attivita: sostituire il benchmark inficiato dalla riscrittura OpenRouter con un
+nuovo percorso che valuta esclusivamente il RAG autonomo. Script: API e pannello
+in modalità spalla disabilitata; protocollo
+`docs/coverciano-rag-only-100-protocol-01.md`. Risultato iniziale: requisito
+congelato; casi precedenti esclusi dalla nuova media; OpenRouter conservato nel
+codice ma flag runtime impostato a zero. Decisione: Gemini Cloud genera e valuta,
+il pannello esegue soltanto RAG; target medio >=26/30; continuare fino al caso
+100 e poi arrestarsi con report completo. Stato: requisiti **IMPLEMENTATI**;
+test/deploy **DA FARE**; benchmark **DA FARE**.
+
 ### 2026-10-26 — Migrazione revisore applicativo a OpenRouter
 
 Attività: sostituire nel percorso applicativo i collegamenti diretti Gemini e

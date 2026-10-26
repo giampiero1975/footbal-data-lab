@@ -168,6 +168,7 @@ class State:
                                     "p95":percentile(.95),"max":max(durations) if durations else None},
                 "catalog_loaded":self.knowledge_catalog is not None,
                 "collection":self.config["collection"],"expected_count":self.config["expected_count"],
+                "openrouter_copilot_enabled":self.config["openrouter_copilot_enabled"],
                 "feedback":feedback,
             }
 
@@ -345,9 +346,12 @@ class State:
                     status = "succeeded" if result.returncode == 0 and output_path.exists() else "failed"
                     detail = result.stderr[-2000:] if status == "failed" else None
                     if status == "succeeded":
-                        with self.lock:
-                            self.jobs[job_id]["status"] = "reviewing"
-                        copilot = self.run_openrouter_copilot(job_id, output_path)
+                        if self.config["openrouter_copilot_enabled"]:
+                            with self.lock:
+                                self.jobs[job_id]["status"] = "reviewing"
+                            copilot = self.run_openrouter_copilot(job_id, output_path)
+                        else:
+                            copilot = {"status": "disabled", "provider": "openrouter"}
                         with self.lock:
                             self.jobs[job_id]["openrouter_copilot"] = copilot
                 except subprocess.TimeoutExpired:
