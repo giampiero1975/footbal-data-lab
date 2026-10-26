@@ -66,6 +66,13 @@ l'archivio conservano gli stati storici senza riaprirli.
   `docs/groq-copilot-http400-remediation-01.md`.
   Commit `301d3dd` distribuito sulla VPS: suite 33/33, servizio attivo e zero
   chiamate Groq; stato applicativo **IMPLEMENTATO**, runtime non ancora VALIDATO.
+- [x] **IMPLEMENTATO e VALIDATO offline** normalizzazione fail-closed del
+  contratto copilot dopo prova utente: HTTP 400 risolto, ma risposta Groq
+  respinta in 8 s dal controllo locale. Solo ID caso/finding e verdetto derivato
+  dal voto vengono normalizzati; contenuto tattico invariato. Errori residui
+  classificati per fase PASS1/PASS2. Suite 34/34, zero API nella correzione.
+- [ ] **DA FARE** confermare con una sola prova utente che i due passaggi Groq
+  completino; non avviare benchmark o retry automatici prima dell'esito.
 - [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto
   dopo ottimizzazione e validazione differenziale del copilot.
 

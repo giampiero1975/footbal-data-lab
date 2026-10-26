@@ -43,6 +43,20 @@ class CopilotOfflineTests(unittest.TestCase):
         bad = pass1(); bad["reviews"][0]["verdict"] = "PASS"
         with self.assertRaises(ValueError): copilot.validate_pass1(bad, ["case_01"])
 
+    def test_pass1_normalizes_only_mechanical_fields(self):
+        raw = pass1()
+        raw["reviews"][0]["id"] = "invented-id"
+        raw["reviews"][0]["verdict"] = "PASS"
+        raw["reviews"][0]["findings"][0]["finding_id"] = ""
+        raw["reviews"][0]["findings"][0]["claim"] = "contenuto invariato"
+        normalized, notes = copilot.normalize_pass1(raw, ["case_01"])
+        row = normalized["reviews"][0]
+        self.assertEqual(row["id"], "case_01")
+        self.assertEqual(row["verdict"], "REVISIONE")
+        self.assertEqual(row["findings"][0]["finding_id"], "case_01_f01")
+        self.assertEqual(row["findings"][0]["claim"], "contenuto invariato")
+        self.assertEqual(len(notes), 3)
+
     def test_duplicate_findings_fail(self):
         bad = pass1(); bad["reviews"][0]["findings"] *= 2
         with self.assertRaises(ValueError): copilot.validate_pass1(bad, ["case_01"])
@@ -74,6 +88,8 @@ class CopilotOfflineTests(unittest.TestCase):
             "type": "invalid_request_error"}}).encode())
         bad_schema = urllib.error.HTTPError("https://example.invalid", 400, "bad", {}, body)
         self.assertEqual(copilot.redacted_failure_reason(bad_schema), "GROQ_HTTP_400_SCHEMA")
+        self.assertEqual(copilot.redacted_failure_reason(ValueError("PASS2_FINDING_COVERAGE")),
+                         "GROQ_PASS2_FINDING_COVERAGE")
         self.assertEqual(copilot.redacted_failure_reason(ValueError("raw model content")),
                          "GROQ_INVALID_STRUCTURED_RESPONSE")
 

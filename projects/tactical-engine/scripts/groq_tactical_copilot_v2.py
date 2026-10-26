@@ -118,6 +118,46 @@ def build_pass1(cases: list[dict], model: str = DEFAULT_MODEL) -> dict:
     return strict_request(PASS1_PROMPT, {"cases": minimal}, PASS1_SCHEMA, "groq_tactical_copilot_pass1", model)
 
 
+def normalize_pass1(parsed: dict, case_ids: list[str]) -> tuple[dict, list[str]]:
+    """Normalize only identifiers and score-derived verdicts, never tactical text."""
+    normalized = json.loads(json.dumps(parsed))
+    rows = normalized.get("reviews")
+    if not isinstance(rows, list) or len(rows) != len(case_ids):
+        raise ValueError("PASS1_CASE_COUNT_MISMATCH")
+    notes: list[str] = []
+    returned_ids = [row.get("id") if isinstance(row, dict) else None for row in rows]
+    if sorted(returned_ids, key=str) != sorted(case_ids):
+        for row, case_id in zip(rows, case_ids):
+            if not isinstance(row, dict):
+                raise ValueError("PASS1_REVIEW_TYPE")
+            row["id"] = case_id
+        notes.append("CASE_IDS_POSITIONALLY_NORMALIZED")
+    used: set[str] = set()
+    for row in rows:
+        score = row.get("score")
+        if not isinstance(score, (int, float)) or not 0 <= float(score) <= 10:
+            raise ValueError("PASS1_SCORE")
+        expected_verdict = "PASS" if float(score) >= 8 else "REVISIONE"
+        if row.get("verdict") != expected_verdict:
+            row["verdict"] = expected_verdict
+            notes.append(f"{row['id']}:VERDICT_DERIVED_FROM_SCORE")
+        findings = row.get("findings")
+        if not isinstance(findings, list):
+            raise ValueError("PASS1_FINDINGS_TYPE")
+        for index, finding in enumerate(findings, 1):
+            if not isinstance(finding, dict):
+                raise ValueError("PASS1_FINDING_TYPE")
+            fid = finding.get("finding_id")
+            if not isinstance(fid, str) or not fid.strip() or fid in used:
+                fid = f"{row['id']}_f{index:02d}"
+                while fid in used:
+                    index += 1; fid = f"{row['id']}_f{index:02d}"
+                finding["finding_id"] = fid
+                notes.append(f"{row['id']}:FINDING_ID_NORMALIZED")
+            used.add(fid)
+    return normalized, notes
+
+
 def validate_pass1(parsed: dict, case_ids: list[str]) -> dict:
     rows = parsed.get("reviews")
     if not isinstance(rows, list) or sorted(r.get("id") for r in rows) != sorted(case_ids):
@@ -228,6 +268,8 @@ def redacted_failure_reason(exc: Exception) -> str:
         return "GROQ_NETWORK_ERROR"
     if isinstance(exc, TimeoutError):
         return "GROQ_TIMEOUT"
+    if isinstance(exc, ValueError) and re.fullmatch(r"PASS[12]_[A-Z0-9_]+", str(exc)):
+        return f"GROQ_{exc}"
     if isinstance(exc, (json.JSONDecodeError, KeyError, TypeError, ValueError)):
         return "GROQ_INVALID_STRUCTURED_RESPONSE"
     return "GROQ_UNEXPECTED_ERROR"
@@ -251,7 +293,8 @@ def execute(paths: list[Path], output: Path, model: str, estimated_tokens: int) 
     if not quota_allowed(ledger, day, estimated_tokens):
         raise SystemExit("LOCAL_DAILY_BUDGET_EXHAUSTED")
     req1 = build_pass1(cases, model); payload1, elapsed1 = call_groq(req1, key)
-    pass1 = validate_pass1(parsed_content(payload1), list(mapping))
+    pass1, normalizations = normalize_pass1(parsed_content(payload1), list(mapping))
+    pass1 = validate_pass1(pass1, list(mapping))
     req2 = build_pass2(cases, pass1, model); payload2, elapsed2 = call_groq(req2, key)
     pass2 = validate_pass2(parsed_content(payload2), cases, pass1)
     usage1 = payload1.get("usage", {}); usage2 = payload2.get("usage", {})
@@ -263,6 +306,7 @@ def execute(paths: list[Path], output: Path, model: str, estimated_tokens: int) 
         "provider": "groq", "model": model, "runtime_case_map": mapping,
         "network_called": True, "rag_executed": False, "index_writes": False,
         "elapsed_seconds": round(elapsed1 + elapsed2, 3),
+        "mechanical_normalizations": normalizations,
         "passes": [{"elapsed_seconds": elapsed1, "usage": usage1},
                    {"elapsed_seconds": elapsed2, "usage": usage2}],
         "pass1": pass1, "pass2": pass2})

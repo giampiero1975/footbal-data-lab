@@ -50,3 +50,23 @@ Commit `301d3dd` distribuito con fast-forward sulla VPS. Suite VPS 33/33,
 Il deploy non ha eseguito inferenze né chiamate Groq. Stato applicativo:
 **IMPLEMENTATO** e **VALIDATO offline**; validazione runtime ancora **DA FARE**.
 
+## Prova utente successiva e contratto locale
+
+Il titolare ha eseguito dal pannello un caso 4-3-3 contro 5-4-1. Il trasporto
+Groq ha completato in 8 secondi, ma il risultato e stato respinto come
+`GROQ_INVALID_STRUCTURED_RESPONSE`: il precedente HTTP 400 e quindi risolto.
+Telemetria completa: RAG 168 s, Groq 8 s, reviewer Gemini legacy 8 s in HTTP
+503, totale 184 s, quattro evidenze. La bozza RAG e rimasta disponibile come
+previsto dal fail-closed.
+
+La revisione del contratto normalizza ora esclusivamente campi meccanici:
+identificativo del caso, ID finding e verdetto derivato deterministicamente
+dal voto. Domanda, voto, osservazioni e contenuto tattico non vengono modificati.
+Gli altri errori restano fail-closed e sono riportati con un codice specifico
+PASS1/PASS2 redatto. Suite combinata: **34/34 PASS**, zero API nella correzione.
+
+Il reviewer Gemini API legacy deve essere disabilitato nella configurazione VPS:
+nel protocollo corrente Gemini Cloud e l'esaminatore manuale, mentre Groq e il
+copilot applicativo. Questo elimina una chiamata 503 inutile senza toccare RAG,
+indice o copilot.
+

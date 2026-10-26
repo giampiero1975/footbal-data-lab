@@ -28,6 +28,19 @@ Deploy del commit `301d3dd` sulla VPS: suite 33/33, compilazione PASS, servizio
 attivo, checkout pulito e nessuna chiamata Groq. Stato applicativo:
 **IMPLEMENTATO** e **VALIDATO offline**; runtime **DA FARE**.
 
+### 2026-10-26 — Prova utente Groq e normalizzazione contratto
+
+Attività: analizzare il test lanciato dal titolare senza ripeterlo. Job
+`a5b991d0561548c09d82a1a75da0ccce`; script copilot V2 e test omonimi; report
+`docs/groq-copilot-http400-remediation-01.md`. Risultato: RAG 168 s, Groq 8 s,
+Gemini legacy 8 s/503, totale 184 s; Groq non restituisce piu HTTP 400 ma il
+validatore aggregava tutti gli errori locali in `INVALID_STRUCTURED_RESPONSE`.
+Implementata normalizzazione deterministica dei soli ID e del verdetto derivato
+dal voto; contenuto tattico intatto; codici PASS1/PASS2 redatti. Suite 34/34,
+API_REQUESTS=0 nella correzione. Decisione: disattivare reviewer Gemini API
+legacy e attendere una sola verifica utente prima di VALIDARE runtime. Stato:
+**IMPLEMENTATO e VALIDATO offline**.
+
 ## Sintesi corrente per il revisore
 
 La fotografia consolidata, con evidenze e limiti, è
