@@ -8,12 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
-- [ ] **DA FARE** V5-COVERCIANO-RAG-ONLY-100-01: nuovo benchmark vincolante di
-  100 domande. Flusso esclusivo Gemini Cloud domanda → pannello → RAG → Gemini
-  Cloud voto sulla risposta RAG invariata. Spalla OpenRouter conservata ma
-  disabilitata. Obiettivo media RAG >=26/30; esecuzione continua senza richieste
-  ordinarie e arresto esatto a 100 casi con report completo. Protocollo:
-  `docs/coverciano-rag-only-100-protocol-01.md`.
+- [x] **ESEGUITO, non VALIDATO** V5-COVERCIANO-RAG-ONLY-100-01: il titolare ha
+  ridotto la baseline a 10 casi e imposto l'arresto esatto al caso 10. Flusso
+  Gemini Cloud domanda → pannello → RAG → Gemini Cloud voto sulla risposta RAG
+  invariata; spalla OpenRouter disabilitata. Risultato 199/300, media 19,90/30,
+  mediana 21,50, minimo 0 e massimo 26; job tecnici 10/10 riusciti, target medio
+  >=26/30 respinto. Report:
+  `docs/coverciano-rag-only-100-report-01.md`.
+- [ ] **DA FARE** V5-COVERCIANO-RAG-REMEDIATION-01: correggere senza spalla la
+  scomposizione della domanda, il retrieval per sottoproblemi/fase, il gate di
+  copertura, la risposta applicativa chi-cosa-dove-quando-perché-copertura e la
+  normalizzazione terminologica. Preparare test offline e un set differenziale
+  congelato; nessun nuovo benchmark equivalente prima di una differenza tecnica
+  documentata.
 - [x] **IMPLEMENTATO** V5-COVERCIANO-RAG-ONLY-ISOLATION-01: flag runtime
   OpenRouter impostato a zero; backend evita la fase reviewing quando la spalla
   e disabilitata; pannello mostra come risposta finale il testo RAG non

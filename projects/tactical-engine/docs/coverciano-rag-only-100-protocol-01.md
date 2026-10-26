@@ -1,7 +1,13 @@
 # Protocollo Coverciano 100 — RAG-only
 
 Data: 2026-10-26  
-Stato: **IMPLEMENTATO** per requisiti e isolamento; benchmark **DA FARE**
+Stato: **IMPLEMENTATO** per requisiti e isolamento; baseline ridotta dal
+titolare a 10 casi ed **ESEGUITA**. Esito nel report omonimo.
+
+> Emendamento del 2026-10-26: il titolare ha richiesto “arriviamo solo a 10 e
+> ci fermiamo”. Le regole sotto restano la definizione del protocollo esteso,
+> ma questa sessione si arresta tassativamente a 10 e non costituisce un
+> benchmark 100/100.
 
 ## Obiettivo vincolante
 

@@ -1192,3 +1192,20 @@ persistenza e tracciamento devono diventare un requisito tecnico autonomo.
 Attivita `V5-PANEL-PERSISTENT-HISTORY-01` aperta nel TODO: storico server-side,
 ripresa sicura, associazione caso/job, blocco dei placeholder ed export
 cumulativo. Stato: **DA FARE**; nessuna implementazione o test eseguito.
+
+### V5-COVERCIANO-RAG-ONLY-100-01 — Baseline autonoma ridotta a 10 casi (2026-10-26)
+
+Attivita: eseguire dal pannello il flusso Gemini Cloud esaminatore → RAG-only →
+Gemini Cloud valutatore, con risposta RAG invariata e spalla OpenRouter
+disabilitata. Il titolare ha ridotto esplicitamente il perimetro da 100 a 10 e
+richiesto l'arresto esatto al caso 10. Script: pannello pubblico e pipeline API
+gia integrata; nessuna modifica alla pipeline durante la baseline. Commit:
+DA FARE. Report: `docs/coverciano-rag-only-100-report-01.md`. Risultato: 10/10
+job `succeeded`, 199/300, media 19,90/30, mediana 21,50, minimo 0 e massimo 26;
+tempo RAG totale 1.512,17 s, media 151,22 s; 5.506 token complessivi. Caso 9:
+retrieval di sole due evidenze generiche e risposta completamente astensiva,
+voto 0/30. Decisione: target autonomo >=26/30 respinto; non continuare oltre
+10 e non riattivare la spalla per compensare. Aprire remediation su parsing dei
+sottoproblemi, retrieval per fase/ruolo, gate di copertura, risposta applicativa
+e normalizzazione terminologica; ripetere soltanto dopo una differenza tecnica
+documentata. Stato: **ESEGUITO**, non **VALIDATO**.
