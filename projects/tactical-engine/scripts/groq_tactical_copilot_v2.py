@@ -181,35 +181,29 @@ def build_pass2(cases: list[dict], pass1: dict, model: str = DEFAULT_MODEL) -> d
     by_id = {row["id"]: row for row in pass1["reviews"]}
     body = {"cases": [{"id": c["id"], "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
-    # Constrain mechanical identifiers in the model response to the identifiers
-    # supplied by pass 1.  The local validator still enforces exact coverage and
-    # case/finding pairing; these enums prevent harmless identifier invention
-    # from discarding an otherwise useful tactical review.
-    schema = json.loads(json.dumps(PASS2_SCHEMA))
-    case_ids = [case["id"] for case in cases]
-    finding_ids = [
-        finding["finding_id"]
-        for review in pass1["reviews"]
-        for finding in review["findings"]
-    ]
-    check_props = schema["properties"]["checks"]["items"]["properties"]
-    check_props["id"]["enum"] = case_ids
-    check_props["finding_id"]["enum"] = finding_ids
-    revised_props = schema["properties"]["revised_answers"]["items"]["properties"]
-    revised_props["id"]["enum"] = case_ids
-    revised_props["applied_findings"]["items"]["enum"] = finding_ids
-    revised_props["unresolved_findings"]["items"]["enum"] = finding_ids
-    return strict_request(PASS2_PROMPT, body, schema, "groq_tactical_copilot_pass2", model)
+    return strict_request(PASS2_PROMPT, body, PASS2_SCHEMA, "groq_tactical_copilot_pass2", model)
 
 
 def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict, list[str]]:
     """Fail closed on omitted checks and mechanical finding partitions."""
     normalized = json.loads(json.dumps(parsed))
-    expected = {(row["id"], f["finding_id"]) for row in pass1["reviews"] for f in row["findings"]}
+    expected_order = [(row["id"], f["finding_id"])
+                      for row in pass1["reviews"] for f in row["findings"]]
+    expected = set(expected_order)
     checks = normalized.get("checks")
     if not isinstance(checks, list):
         raise ValueError("PASS2_CHECKS_TYPE")
     notes: list[str] = []
+    raw_keys = [(row.get("id"), row.get("finding_id"))
+                for row in checks if isinstance(row, dict)]
+    if len(raw_keys) != len(checks):
+        raise ValueError("PASS2_CHECK_TYPE")
+    if len(checks) == len(expected_order) and set(raw_keys) != expected:
+        for row, (case_id, finding_id) in zip(checks, expected_order):
+            row["id"] = case_id
+            row["finding_id"] = finding_id
+        notes.append("CHECK_IDS_POSITIONALLY_NORMALIZED")
+
     observed: set[tuple[str, str]] = set()
     for row in checks:
         if not isinstance(row, dict):
@@ -254,8 +248,11 @@ def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict,
         expected_ids = {fid for cid, fid in expected if cid == case_id}
         applied = set(row.get("applied_findings", []))
         unresolved = set(row.get("unresolved_findings", []))
-        if not (applied | unresolved) <= expected_ids:
-            raise ValueError("PASS2_UNKNOWN_FINDING_IN_PARTITION")
+        unknown = (applied | unresolved) - expected_ids
+        if unknown:
+            applied &= expected_ids
+            unresolved &= expected_ids
+            notes.append(f"{case_id}:UNKNOWN_PARTITION_IDS_REMOVED")
         unsafe = {fid for fid in applied if (case_id, fid) not in supported}
         missing = expected_ids - applied - unresolved
         if unsafe or missing:

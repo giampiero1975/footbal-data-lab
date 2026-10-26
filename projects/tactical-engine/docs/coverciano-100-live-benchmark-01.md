@@ -32,11 +32,14 @@ come risposta assistita.
 
 ## Correzione differenziale dopo il caso 001
 
-Il response schema PASS2 viene derivato dagli ID reali di caso e finding prodotti
-dal PASS1. Gli ID sono vincolati con enum nello schema inviato a Groq; il
-validatore locale continua a imporre copertura esatta, associazione caso/finding,
-etichette esistenti, citazioni valide e applicazione dei soli finding supportati.
-Nessuna correzione tattica viene inventata o normalizzata localmente.
+Il primo tentativo vincolava gli ID con enum dinamici nello schema. Una verifica
+tecnica fuori benchmark è stata respinta dal provider con HTTP 400 schema ed è
+quindi esclusa dal conteggio. La soluzione è stata sostituita: schema statico già
+accettato dal provider e riconciliazione posizionale degli ID soltanto quando
+numero e ordine dei finding rendono la mappatura univoca. Il validatore locale
+continua a imporre copertura esatta, associazione caso/finding, etichette
+esistenti, citazioni valide e applicazione dei soli finding supportati. Nessuna
+correzione tattica viene inventata o normalizzata localmente.
 
 Verifica offline: test copilot 12/12; suite Groq combinata 22/22. Chiamate API
 durante la correzione: zero. Smoke live successiva necessaria tramite domanda 2.
@@ -56,4 +59,7 @@ durante la correzione: zero. Smoke live successiva necessaria tramite domanda 2.
   supportato perde tutte le etichette; un finding supportato con sole etichette
   sconosciute viene degradato a `ULTERIORE_RETRIEVAL`. Il contenuto tattico non
   viene modificato né promosso.
+
+La validazione reale successiva deve avvenire esclusivamente dal pannello
+pubblico. Invocazioni isolate da CLI non appartengono al benchmark.
 

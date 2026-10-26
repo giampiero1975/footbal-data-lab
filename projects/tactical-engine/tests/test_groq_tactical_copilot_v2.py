@@ -67,16 +67,35 @@ class CopilotOfflineTests(unittest.TestCase):
         self.assertEqual(body["cases"][0]["evidence"][0]["label"], "F1")
         self.assertEqual(body["cases"][0]["findings"][0]["finding_id"], "f01")
 
-    def test_pass2_schema_constrains_mechanical_identifiers(self):
+    def test_pass2_uses_provider_compatible_static_schema(self):
         request = copilot.build_pass2(cases(), pass1())
         schema = request["response_format"]["json_schema"]["schema"]
         checks = schema["properties"]["checks"]["items"]["properties"]
         revised = schema["properties"]["revised_answers"]["items"]["properties"]
-        self.assertEqual(checks["id"]["enum"], ["case_01"])
-        self.assertEqual(checks["finding_id"]["enum"], ["f01"])
-        self.assertEqual(revised["id"]["enum"], ["case_01"])
-        self.assertEqual(revised["applied_findings"]["items"]["enum"], ["f01"])
-        self.assertEqual(revised["unresolved_findings"]["items"]["enum"], ["f01"])
+        self.assertNotIn("enum", checks["id"])
+        self.assertNotIn("enum", checks["finding_id"])
+        self.assertNotIn("enum", revised["id"])
+
+    def test_pass2_normalizes_check_ids_positionally_when_unambiguous(self):
+        raw = pass2()
+        raw["checks"][0]["id"] = "invented-case"
+        raw["checks"][0]["finding_id"] = "invented-finding"
+        normalized, notes = copilot.normalize_pass2(raw, cases(), pass1())
+        self.assertEqual(normalized["checks"][0]["id"], "case_01")
+        self.assertEqual(normalized["checks"][0]["finding_id"], "f01")
+        self.assertIn("CHECK_IDS_POSITIONALLY_NORMALIZED", notes)
+        self.assertIs(copilot.validate_pass2(normalized, cases(), pass1()), normalized)
+
+    def test_pass2_drops_unknown_partition_ids_fail_closed(self):
+        raw = pass2()
+        raw["revised_answers"][0]["applied_findings"] = ["invented"]
+        raw["revised_answers"][0]["unresolved_findings"] = []
+        normalized, notes = copilot.normalize_pass2(raw, cases(), pass1())
+        answer = normalized["revised_answers"][0]
+        self.assertEqual(answer["applied_findings"], [])
+        self.assertEqual(answer["unresolved_findings"], ["f01"])
+        self.assertIn("case_01:UNKNOWN_PARTITION_IDS_REMOVED", notes)
+        self.assertIs(copilot.validate_pass2(normalized, cases(), pass1()), normalized)
 
     def test_pass2_software_validates_labels(self):
         good = pass2()

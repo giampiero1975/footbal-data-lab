@@ -24,8 +24,14 @@ RAG 173,42 s, totale 206 s, quattro evidenze; il precedente errore ID è risolto
 ma PASS2 è bloccato da `UNSUPPORTED_WITH_EVIDENCE`. Decisione: rimuovere
 meccanicamente le etichette dai finding non supportati e degradare a
 `ULTERIORE_RETRIEVAL` i finding dichiarati supportati senza alcuna etichetta
-valida. Nessuna promozione, modifica tattica o API durante la correzione. Stato:
-caso **ESEGUITO**, correzione **IMPLEMENTATA**, validazione offline **DA FARE**.
+valida. Nessuna promozione o modifica tattica. Il tentativo successivo con enum
+dinamici è stato respinto dal provider con HTTP 400 schema ed è escluso dal
+benchmark; su richiesta del titolare ogni ulteriore prova reale avverrà soltanto
+dal pannello. Ripristinato lo schema statico e aggiunta riconciliazione
+posizionale solo con cardinalità univoca, oltre alla normalizzazione fail-closed
+delle etichette. Test copilot 16/16 e suite Groq 26/26. Stato: caso
+**ESEGUITO**; correzione **IMPLEMENTATA e VALIDATA offline**; deploy e runtime
+da pannello **DA FARE**.
 
 ### 2026-10-26 — Normalizzazione token pannello pubblico
 

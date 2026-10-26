@@ -87,13 +87,14 @@ l'archivio conservano gli stati storici senza riaprirli.
   PASS2 sconosciuto/duplicato, bozza RAG valutata 18/30. Campagna sospesa prima
   del caso 002 esclusivamente per correggere il difetto sistemico; report
   `docs/coverciano-100-live-benchmark-01.md`.
-- [x] **VALIDATO offline** schema PASS2 vincolato agli ID reali prodotti dal
-  PASS1, senza allentare i gate semantici/documentali: copilot 12/12, suite Groq
-  22/22, zero API. Deploy e smoke differenziale con la domanda 2 **DA FARE**.
+- [x] **SUPERATO** tentativo enum dinamici PASS2: il provider ha respinto lo
+  schema con HTTP 400 in una verifica esclusa dal benchmark. Sostituito con
+  schema statico e riconciliazione posizionale solo quando univoca.
 - [ ] **ESEGUITO 2/100** caso 002 job `768b7980`: 206 s totali, RAG 173,42 s,
   quattro evidenze. Il gate ID è superato; nuovo blocco fail-closed
-  `PASS2_UNSUPPORTED_WITH_EVIDENCE`. Normalizzazione conservativa delle sole
-  etichette **IMPLEMENTATA**; test e deploy da completare prima del caso 003.
+  `PASS2_UNSUPPORTED_WITH_EVIDENCE`. Normalizzazione conservativa di etichette
+  e ID meccanici **IMPLEMENTATA e VALIDATA offline**: copilot 16/16, suite Groq
+  26/26. Deploy e nuova prova esclusivamente da pannello **DA FARE**.
 
 ### Archivio storico — vecchia generazione batch Gemini/Groq
 
