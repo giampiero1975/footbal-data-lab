@@ -4,13 +4,13 @@
   "decisions": [
     {
       "sha256": "03fb0809f67e7534a9ad5e358d74f3b3323d4e761280d1667cd697b710ac0007",
-      "decision": "candidate_tactical",
-      "reason": "Caso studio tattico del Rayo Vallecano: strutture 4-2-3-1/4-4-2, costruzione, catene esterne, mezzi spazi e pressione alta."
+      "decision": "integrated_tactical",
+      "reason": "Caso studio tattico del Rayo Vallecano già integrato nella collection FIGC5: 33 chunk su strutture 4-2-3-1/4-4-2, costruzione, catene esterne, mezzi spazi e pressione alta."
     },
     {
       "sha256": "7b868a1a969b24e7c11fccced8811411ecc5023b85110b28a6f0fe0a247ee469",
-      "decision": "candidate_tactical",
-      "reason": "Caso studio del RB Leipzig con sezioni esplicite su fase offensiva, costruzione, sviluppo/rifinitura e fase difensiva."
+      "decision": "integrated_tactical",
+      "reason": "Caso studio del RB Leipzig già integrato nella collection FIGC5: 58 chunk su fase offensiva, costruzione, sviluppo/rifinitura e fase difensiva."
     },
     {
       "sha256": "4dee4c9fbb431a4034e32d59c46213f11f50d3cf509f6447a53cdaae2529c901",

@@ -8,7 +8,7 @@ from pathlib import Path
 def apply(catalog_path: Path, decisions_path: Path) -> int:
     catalog=json.loads(catalog_path.read_text(encoding="utf-8"))
     decisions=json.loads(decisions_path.read_text(encoding="utf-8"))
-    allowed={"candidate_tactical","exclude_tactical"}
+    allowed={"candidate_tactical","integrated_tactical","exclude_tactical"}
     for row in decisions["decisions"]:
         digest=row["sha256"]
         if digest not in catalog.get("documents",{}):

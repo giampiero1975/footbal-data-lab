@@ -914,3 +914,24 @@ successiva esposizione nel pannello. Commit base `48ef114`; commit UI: DA FARE.
 Risultato: aggiornamento 3/3 per SHA-256, Di Camillo/Rausse candidati tattici e
 Venturini escluso; suite 25/25 e sintassi JavaScript PASS. Decisione: chiudere
 la review come **VALIDATA**; nessuna indicizzazione inclusa.
+
+### VPS-CLEAN-02 — Archivio artefatti runtime (2026-10-26)
+
+Attivita: riconciliare 122 file runtime non tracciati senza perdere evidenze.
+Report: `docs/vps-runtime-artifact-cleanup-01.md`. Risultato: 3.409.525 byte
+compressi in archivio verificato da 692.765 byte con manifest per file e
+SHA-256 archivio `f32263a...e5fd`; checkout VPS pulito. Decisione: conservare
+l'archivio recuperabile fuori dal checkout; nessuna modifica a Git, PDF,
+collection o output API corrente. Stato: **VALIDATO**.
+
+### V5-FIGC-RECONCILE-03 — Duplicazione candidata evitata (2026-10-26)
+
+Attivita: costruire una candidata isolata per Di Camillo e Rausse. Il dry-run
+ha prodotto 33+58=91 chunk; in scrittura il gate fail-closed ha rilevato un ID
+esistente con metadata differente prima di qualunque nuovo inserimento.
+L'ispezione esatta della baseline ha confermato entrambi i documenti già
+integrati nella FIGC5 (33 e 58 chunk). Risultato: candidata parziale contenente
+soltanto la baseline 6410 rimossa insieme alla copia temporanea; collection
+operativa invariata a 6410. Decisione: correggere catalogo e pannello da
+`candidate_tactical` a `integrated_tactical`; nessuna regressione necessaria
+perché non è cambiato alcun indice. Stato: **VALIDATO**.

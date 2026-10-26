@@ -5,9 +5,9 @@ Data: 2026-10-26. Stato: **VALIDATO**; decisioni registrate nel catalogo.
 Sono stati ispezionati testo, indice e pagine rappresentative dei tre candidati,
 senza indicizzazione o inferenze LLM.
 
-- Di Camillo: `candidate_tactical`. Contiene un caso studio del Rayo Vallecano
+- Di Camillo: `integrated_tactical`. Contiene un caso studio del Rayo Vallecano
   con strutture, costruzione, catene esterne, mezzi spazi e pressione alta.
-- Rausse: `candidate_tactical`. Contiene un caso studio del RB Leipzig con
+- Rausse: `integrated_tactical`. Contiene un caso studio del RB Leipzig con
   sezioni esplicite su fase offensiva, costruzione, sviluppo/rifinitura e fase
   difensiva.
 - Venturini: `exclude_tactical`. È uno studio utile di analytics e metriche,
@@ -27,5 +27,8 @@ possono essere applicate atomicamente con
 Il commit `48ef114` è stato allineato sulla VPS. Il catalogo è stato salvato in
 backup e aggiornato atomicamente: 3/3 decisioni coincidono con gli SHA-256
 attesi. La proiezione API e il pannello espongono decisione e motivazione senza
-percorsi privati. Stato della review: **VALIDATO**. I due candidati tattici non
-sono ancora indicizzati.
+percorsi privati. Un successivo gate differenziale ha dimostrato che i due
+documenti erano già inclusi nella FIGC5 operativa: Di Camillo 33 chunk e Rausse
+58 chunk. La candidata ridondante si è fermata prima di nuovi inserimenti ed è
+stata rimossa; collection operativa invariata a 6410. Stato: **VALIDATO e
+INTEGRATO**.

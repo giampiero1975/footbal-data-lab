@@ -39,7 +39,7 @@ Stato: **VALIDATO** monitor v1; scheduling settimanale INTEGRATO. Non modificare
 
 - [x] Concludere la review dei tre documenti match/player analysis e registrare la decisione nel catalogo — **VALIDATO** (`docs/figc-match-analysis-editorial-review-01.md`).
 - [ ] Escludere dall'ingestion la traduzione inglese del documento relazionale italiano.
-- [ ] Creare una collection candidata isolata con i soli PDF pertinenti, quindi verificare integrità, deduplica, retrieval e regressione prima di qualsiasi promozione.
+- [x] Verificare la collection per i PDF pertinenti: Di Camillo (33 chunk) e Rausse (58) erano già nella FIGC5 operativa; gate fail-closed e candidata ridondante rimossa, collection invariata a 6410.
 
 ## Esempi di URL da validare nel collaudo
 
