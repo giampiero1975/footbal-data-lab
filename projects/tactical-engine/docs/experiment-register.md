@@ -2,6 +2,22 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-26 — Remediation autonoma RAG sui dieci casi Coverciano
+
+Attività: analizzare la baseline 199/300 e correggere il RAG senza riattivare
+OpenRouter né ripetere chiamate Gemini. Script:
+`scripts/v5_tactical_query_plan_v1.py`, integrazione opt-in applicativa in
+`smoke_test_rag_v5_e2e.py` e default del solo wrapper
+`run_rag_v5_query.py`; test `test_v5_tactical_query_plan_v1.py`. Report:
+`docs/rag-coverciano-remediation-01.md`. Risultato: parser e piano dei
+sottoproblemi, retrieval multi-query, penalità fase opposta, riserva multi-facet,
+contratto applicativo e audit post-risposta implementati; test planner/router
+11/11, API 19/19, catalogo 7/7, compilazione e diff check PASS. Decisione:
+preservare il default locked, distribuire sul ramo dedicato e svolgere un solo
+rerun differenziale dei dieci casi congelati; 26/30 resta soglia minima e non è
+ancora dimostrata. Stato: **IMPLEMENTATO e VALIDATO offline**; runtime **DA
+FARE**, benchmark non VALIDATO.
+
 ### 2026-10-26 — Reset benchmark Coverciano RAG-only 100
 
 Attivita: sostituire il benchmark inficiato dalla riscrittura OpenRouter con un

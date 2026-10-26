@@ -15,7 +15,15 @@
   mediana 21,50, minimo 0 e massimo 26; job tecnici 10/10 riusciti, target medio
   >=26/30 respinto. Report:
   `docs/coverciano-rag-only-100-report-01.md`.
-- [ ] **DA FARE** V5-COVERCIANO-RAG-REMEDIATION-01: correggere senza spalla la
+- [x] **IMPLEMENTATO e VALIDATO offline** V5-COVERCIANO-RAG-REMEDIATION-01:
+  corretto senza spalla il percorso applicativo con piano deterministico dei
+  sottoproblemi, retrieval multi-query, penalità per fase opposta, riserva di
+  copertura, contratto applicativo chi-cosa-dove-innesco-perché-copertura e
+  audit esplicito della risposta. Suite mirata 11/11, regressione API 19/19 e
+  catalogo 7/7. Profilo locked invariato; deploy e rerun differenziale dei 10
+  casi **DA FARE**, quindi target >=26/30 non ancora VALIDATO. Report:
+  `docs/rag-coverciano-remediation-01.md`.
+  Storicamente l'attività chiedeva di correggere senza spalla la
   scomposizione della domanda, il retrieval per sottoproblemi/fase, il gate di
   copertura, la risposta applicativa chi-cosa-dove-quando-perché-copertura e la
   normalizzazione terminologica. Preparare test offline e un set differenziale
@@ -1040,10 +1048,12 @@ tecnica.
   insufficiente. Il voto 28/30 nominale della prova 16 e INVALIDO per perdita
   sessione e invio del segnaposto del pannello. Report
   `docs/v5-coverciano-rag-autonomy-audit-01.md`. Benchmark sospeso.
-- [ ] **DA FARE** V5-RAG-STRUCTURAL-QUERY-01: parser e gate deterministici per
-  sistemi, squadre, ruoli, lati, fase, minuto, risultato, cambi/slot e punti
-  richiesti; retrieval per sottoproblemi con filtro prospettiva/fase prima del
-  rerank. Nessuna nuova prova Coverciano prima dei test offline.
+- [x] **IMPLEMENTATO e VALIDATO offline** V5-RAG-STRUCTURAL-QUERY-01: parser
+  deterministico di fasi, sistemi, ruoli e richieste; query separate per
+  sottoproblema; penalità per evidenze esclusivamente della fase opposta;
+  riserva multi-facet e trace completo nel JSON. I dieci temi congelati sono
+  coperti da regressione locale, 6/6; suite complessiva interessata 37/37.
+  Deploy e prova retrieval/generazione differenziale **DA FARE**.
 - [ ] **DA FARE** V5-OPENROUTER-DELTA-ONLY-01: rimuovere `replacement_answer`
   e riscrittura integrale. La spalla deve restituire soltanto correzioni
   strutturate e supportate, con tetto misurabile del 30%; la risposta RAG resta

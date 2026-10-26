@@ -1,0 +1,77 @@
+import importlib.util
+from pathlib import Path
+import unittest
+
+ROOT = Path(__file__).resolve().parents[1]
+spec = importlib.util.spec_from_file_location("planner", ROOT / "scripts/v5_tactical_query_plan_v1.py")
+planner = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(planner)
+
+
+class TacticalQueryPlanTests(unittest.TestCase):
+    CASES = [
+        ("Transizione negativa: quando riaggressione immediata e quando ripiegamento? Valuta preventiva, zona e palla coperta o scoperta.", {"negative_transition", "prevention", "offside"}),
+        ("Costruzione dal basso contro pressione uomo su uomo: rotazioni, liberazione spazi, terzo uomo, rischio e portiere.", {"possession", "third_man", "goalkeeper"}),
+        ("Come difendere la porta su cross laterale: postura dei centrali, duello, traiettoria e coordinazione col portiere?", {"non_possession", "box", "goalkeeper"}),
+        ("Scaglionamento offensivo contro blocco medio-basso: cinque corridoi e marcatura preventiva.", {"possession", "non_possession", "prevention"}),
+        ("Nel blocco medio-basso descrivi sotto-blocco e scivolamento sul cambio di gioco, lato debole e mediano.", {"non_possession", "width"}),
+        ("In transizione negativa confronta contro-pressing orientato sull'uomo e sulle linee di passaggio con preventiva e ripiegamento.", {"negative_transition", "prevention"}),
+        ("Come occupare la zona di rifinitura tra le linee con trequartisti, ali dentro e terzo uomo?", {"possession", "inside_space", "third_man"}),
+        ("Costruzione alta contro blocco basso 5-4-1: cambio gioco, uno contro uno e occupazione area su cross.", {"possession", "non_possession", "width", "box"}),
+        ("Come organizzi la trappola del fuorigioco su palla coperta o scoperta e quali comandi dà il leader?", {"non_possession", "offside", "communication"}),
+        ("Quali sostituzioni e cambi di sistema preservano il vantaggio, considerando comunicazione, impatto emotivo ed equilibrio?", {"prevention", "substitutions", "communication", "psychology"}),
+    ]
+
+    def test_extracts_multiple_requested_facets(self):
+        plan = planner.analyse(
+            "Nel 4-3-3 descrivi costruzione dal basso contro pressione: ruolo del portiere, terzo uomo e marcatura preventiva."
+        )
+        self.assertIn("possession", plan["facets"])
+        self.assertIn("goalkeeper", plan["facets"])
+        self.assertIn("third_man", plan["facets"])
+        self.assertIn("prevention", plan["facets"])
+        self.assertEqual(plan["formations"], ["4-3-3"])
+
+    def test_phase_adjustment_penalises_opposite_only(self):
+        plan = planner.analyse("Come organizzi la fase di possesso e la costruzione?")
+        attack = {"source": "a", "text": "fase di possesso costruzione e sviluppo", "headings": []}
+        defence = {"source": "b", "text": "fase di non possesso blocco e difesa", "headings": []}
+        self.assertGreater(planner.phase_adjustment(attack, plan), 0)
+        self.assertLess(planner.phase_adjustment(defence, plan), 0)
+
+    def test_diversifies_facets_and_preserves_limit(self):
+        plan = planner.analyse("Costruzione: portiere, terzo uomo e ampiezza")
+        rows = [
+            {"id": "generic", "source": "g", "text": "costruzione", "headings": []},
+            {"id": "gk", "source": "p", "text": "portiere in costruzione", "headings": []},
+            {"id": "third", "source": "t", "text": "terzo uomo", "headings": []},
+            {"id": "wide", "source": "w", "text": "ampiezza e corsia laterale", "headings": []},
+        ]
+        revised, reserved, covered = planner.diversify(rows, [9, 2, 1, 0], [rows[0]], plan, 4)
+        self.assertEqual(len(revised), 4)
+        self.assertTrue({"goalkeeper", "third_man", "width"}.issubset(covered))
+        self.assertEqual(set(reserved), {"gk", "third", "wide", "generic"})
+
+    def test_contract_requires_operational_geometry(self):
+        contract = planner.generation_contract(planner.analyse("Come difendi e quando ripieghi?"))
+        for token in ("CHI", "COSA", "DOVE", "QUANDO", "PERCHE", "COPERTURA"):
+            self.assertIn(token, contract)
+        self.assertIn("squadra propria e avversario", contract)
+
+    def test_answer_audit_exposes_missing_facets(self):
+        plan = planner.analyse("In costruzione descrivi portiere, terzo uomo e marcatura preventiva")
+        audit = planner.audit_answer(
+            "Il portiere serve il centrale quando la punta esce, così da creare spazio.", plan
+        )
+        self.assertIn("third_man", audit["missing_facets"])
+        self.assertIn("prevention", audit["missing_facets"])
+        self.assertFalse(audit["complete"])
+
+    def test_frozen_ten_case_facets_are_not_silently_omitted(self):
+        for question, expected in self.CASES:
+            with self.subTest(question=question):
+                self.assertTrue(expected.issubset(set(planner.analyse(question)["facets"])))
+
+
+if __name__ == "__main__":
+    unittest.main()

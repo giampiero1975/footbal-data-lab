@@ -70,6 +70,7 @@ def main() -> None:
         argv.extend([
             "--source-aware", "--exercise-candidate", "--priority-exact",
             "--targeted-coverage", "--heading-routing", "--structural-routing",
+            "--tactical-plan",
         ])
     sys.argv = argv
     v5.main()
