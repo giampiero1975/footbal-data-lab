@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-26 — Benchmark live Coverciano caso 001 e gate PASS2
+
+Attività: avviare il protocollo Gemini-esaminatore → pannello RAG/Groq →
+Gemini-valutatore sul caso già valutato in precedenza. Job `7c9d0148`; report
+`docs/coverciano-100-live-benchmark-01.md`. Risultato: RAG 159,82 s/510 token,
+totale 193 s, sei evidenze; Groq concluso ma respinto con
+`GROQ_PASS2_UNKNOWN_OR_DUPLICATE_FINDING`. Gemini Cloud ha valutato la bozza
+18/30 e rilevato l'errata attribuzione del terzino ammonito. Implementato schema
+PASS2 dinamico con enum sugli ID reali; tutti i gate locali restano fail-closed.
+Test copilot 12/12 e suite Groq 22/22, zero API. Decisione: preservare il caso
+come fallimento di pipeline, non eseguire casi equivalenti finché la correzione
+non è distribuita, poi riprendere dalla domanda 2 già acquisita. Stato: caso
+**ESEGUITO**, correzione **IMPLEMENTATA e VALIDATA offline**, runtime **DA FARE**.
+
 ### 2026-10-26 — Normalizzazione token pannello pubblico
 
 Attività: diagnosticare `unauthorized` senza ruotare o divulgare credenziali.

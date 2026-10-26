@@ -181,7 +181,25 @@ def build_pass2(cases: list[dict], pass1: dict, model: str = DEFAULT_MODEL) -> d
     by_id = {row["id"]: row for row in pass1["reviews"]}
     body = {"cases": [{"id": c["id"], "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
-    return strict_request(PASS2_PROMPT, body, PASS2_SCHEMA, "groq_tactical_copilot_pass2", model)
+    # Constrain mechanical identifiers in the model response to the identifiers
+    # supplied by pass 1.  The local validator still enforces exact coverage and
+    # case/finding pairing; these enums prevent harmless identifier invention
+    # from discarding an otherwise useful tactical review.
+    schema = json.loads(json.dumps(PASS2_SCHEMA))
+    case_ids = [case["id"] for case in cases]
+    finding_ids = [
+        finding["finding_id"]
+        for review in pass1["reviews"]
+        for finding in review["findings"]
+    ]
+    check_props = schema["properties"]["checks"]["items"]["properties"]
+    check_props["id"]["enum"] = case_ids
+    check_props["finding_id"]["enum"] = finding_ids
+    revised_props = schema["properties"]["revised_answers"]["items"]["properties"]
+    revised_props["id"]["enum"] = case_ids
+    revised_props["applied_findings"]["items"]["enum"] = finding_ids
+    revised_props["unresolved_findings"]["items"]["enum"] = finding_ids
+    return strict_request(PASS2_PROMPT, body, schema, "groq_tactical_copilot_pass2", model)
 
 
 def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict, list[str]]:

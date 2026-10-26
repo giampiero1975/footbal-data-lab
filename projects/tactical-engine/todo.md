@@ -82,6 +82,14 @@ l'archivio conservano gli stati storici senza riaprirli.
   autorizzazione.
 - [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto
   dopo ottimizzazione e validazione differenziale del copilot.
+- [ ] **ESEGUITO 1/100** benchmark live Gemini-esaminatore → RAG → Groq →
+  Gemini-valutatore. Caso 001: job `7c9d0148`, 193 s, Groq respinto per ID
+  PASS2 sconosciuto/duplicato, bozza RAG valutata 18/30. Campagna sospesa prima
+  del caso 002 esclusivamente per correggere il difetto sistemico; report
+  `docs/coverciano-100-live-benchmark-01.md`.
+- [x] **VALIDATO offline** schema PASS2 vincolato agli ID reali prodotti dal
+  PASS1, senza allentare i gate semantici/documentali: copilot 12/12, suite Groq
+  22/22, zero API. Deploy e smoke differenziale con la domanda 2 **DA FARE**.
 
 ### Archivio storico — vecchia generazione batch Gemini/Groq
 

@@ -67,6 +67,17 @@ class CopilotOfflineTests(unittest.TestCase):
         self.assertEqual(body["cases"][0]["evidence"][0]["label"], "F1")
         self.assertEqual(body["cases"][0]["findings"][0]["finding_id"], "f01")
 
+    def test_pass2_schema_constrains_mechanical_identifiers(self):
+        request = copilot.build_pass2(cases(), pass1())
+        schema = request["response_format"]["json_schema"]["schema"]
+        checks = schema["properties"]["checks"]["items"]["properties"]
+        revised = schema["properties"]["revised_answers"]["items"]["properties"]
+        self.assertEqual(checks["id"]["enum"], ["case_01"])
+        self.assertEqual(checks["finding_id"]["enum"], ["f01"])
+        self.assertEqual(revised["id"]["enum"], ["case_01"])
+        self.assertEqual(revised["applied_findings"]["items"]["enum"], ["f01"])
+        self.assertEqual(revised["unresolved_findings"]["items"]["enum"], ["f01"])
+
     def test_pass2_software_validates_labels(self):
         good = pass2()
         self.assertEqual(copilot.validate_pass2(good, cases(), pass1())["checks"][0]["classification"], "SUPPORTATO")
