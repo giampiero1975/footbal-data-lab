@@ -93,6 +93,36 @@ def load_catalog(chroma_path: Path, collection_name: str) -> dict:
     return aggregate_rows(collection_name, collection.metadata or {}, rows)
 
 
+def load_figc_catalog(path: Path) -> dict:
+    """Load the optional discovery catalog as a read-only, UI-safe projection."""
+    empty = {"schema": "figc_catalog_projection_v1", "available": False, "documents": [], "errors": []}
+    try:
+        raw = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, OSError, json.JSONDecodeError, TypeError):
+        return empty
+    documents = []
+    for digest, item in (raw.get("documents") or {}).items():
+        status = str(item.get("status") or "discovered")
+        documents.append({
+            "sha256": str(digest),
+            "file_name": str(item.get("file_name") or "documento FIGC"),
+            "category": str(item.get("category") or "review_required"),
+            "status": status,
+            "discovered": True,
+            "verified": status in {"verified", "downloaded", "duplicate_existing"},
+            "downloaded": status == "downloaded" or bool(item.get("local_path")),
+            "duplicate_existing": status == "duplicate_existing",
+            "first_seen": item.get("first_seen"),
+            "last_seen": item.get("last_seen"),
+            "url": item.get("final_url") or item.get("url"),
+        })
+    documents.sort(key=lambda item: item["file_name"].casefold())
+    errors = [{"url": value.get("url") or key, "error": value.get("error"),
+               "last_seen": value.get("last_seen")} for key, value in (raw.get("errors") or {}).items()]
+    return {"schema": "figc_catalog_projection_v1", "available": True,
+            "documents": documents, "errors": errors}
+
+
 def search_catalog(catalog: dict, query: str, limit: int = 20) -> list[dict]:
     terms = [term for term in query.casefold().split() if len(term) >= 2]
     if not terms:

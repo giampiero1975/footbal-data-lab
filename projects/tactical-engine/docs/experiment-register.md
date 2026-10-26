@@ -876,3 +876,14 @@ diagnostica e biblioteca. Decisione: chiudere la riprogettazione UI come
 **VALIDATA e INTEGRATA**; mantenere separato il copilot Groq, ancora
 **IMPLEMENTATO** e disattivato in assenza di configurazione privata e smoke
 live. Nessuna estensione della certificazione locked.
+
+### V5-FIGC-PANEL-01 — Stati monitor FIGC nel pannello (2026-10-26)
+
+Attivita: integrare il catalogo del monitor nella UI senza confondere download
+e indicizzazione. Script: `api/knowledge_catalog.py`, `api/rag_v5_api.py`,
+`api/knowledge_panel.html`; test catalogo/API. Commit: DA FARE. Report:
+`docs/figc-catalog-panel-integration-01.md`. Risultato: proiezione read-only
+senza percorsi locali, endpoint autenticato e tabella separata; suite 25/25,
+compilazione e sintassi JavaScript PASS. Decisione: pubblicare e verificare sul
+catalogo VPS reale; nessuna ingestion o scrittura Chroma. Stato:
+**IMPLEMENTATO**; runtime **DA FARE**.

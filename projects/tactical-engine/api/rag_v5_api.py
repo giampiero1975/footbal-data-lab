@@ -18,7 +18,7 @@ import urllib.request
 from urllib.parse import parse_qs, urlparse
 import uuid
 
-from knowledge_catalog import load_catalog, search_catalog
+from knowledge_catalog import load_catalog, load_figc_catalog, search_catalog
 
 ROOT = Path(__file__).resolve().parents[1]
 RUNNER = ROOT / "scripts/run_rag_v5_query.py"
@@ -50,6 +50,7 @@ def load_config(env=os.environ) -> dict:
         "context_window": int(env.get("RAG_API_CONTEXT_WINDOW", "8192")),
         "keep_alive": env.get("RAG_API_KEEP_ALIVE", ""),
         "chroma_path": Path(env.get("RAG_CHROMA_PATH", str(ROOT.parent.parent / "knowledge/rag/chroma"))),
+        "figc_catalog_path": Path(env.get("RAG_FIGC_CATALOG_PATH", str(ROOT.parent.parent / "knowledge/candidates/figc-discovery/catalog.json"))),
         "gemini_review_enabled": env.get("RAG_GEMINI_REVIEW_ENABLED", "0").lower() in {"1", "true", "yes"},
         "gemini_review_model": env.get("RAG_GEMINI_REVIEW_MODEL", "gemini-3.6-flash"),
         "gemini_review_timeout": int(env.get("RAG_GEMINI_REVIEW_TIMEOUT_SECONDS", "240")),
@@ -439,6 +440,11 @@ class Handler(BaseHTTPRequestHandler):
             catalog = self.state.catalog(); documents = catalog["documents"]
             self.send_json(HTTPStatus.OK, {"total": len(documents), "offset": offset, "limit": limit,
                                            "items": documents[offset:offset+limit]})
+            return
+        if parsed.path == "/v1/knowledge/figc":
+            catalog = load_figc_catalog(self.state.config["figc_catalog_path"])
+            self.send_json(HTTPStatus.OK, {**catalog, "total": len(catalog["documents"]),
+                                           "error_count": len(catalog["errors"])})
             return
         if parsed.path == "/v1/knowledge/search":
             if not self.state.rate_allowed(self.client_address[0]):

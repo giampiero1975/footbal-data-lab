@@ -1,6 +1,8 @@
 import importlib.util
 from pathlib import Path
 import unittest
+import json
+import tempfile
 
 PATH=Path(__file__).parents[1]/"api/knowledge_catalog.py"
 spec=importlib.util.spec_from_file_location("knowledge_catalog",PATH)
@@ -49,6 +51,20 @@ class KnowledgeCatalogTests(unittest.TestCase):
         other=m.classify_document("Regolamento amministrativo","", "Norme e disposizioni")
         self.assertEqual(training["category"],"allenamento")
         self.assertEqual(other["category"],"altro")
+
+    def test_figc_projection_exposes_states_without_private_paths(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path=Path(directory)/"catalog.json"
+            path.write_text(json.dumps({"documents":{"abc":{"file_name":"tesi.pdf","status":"downloaded","category":"tattica","local_path":"/private/file.pdf","url":"https://figc.it/media/tesi.pdf"}},"errors":{}}),encoding="utf-8")
+            out=m.load_figc_catalog(path)
+        self.assertTrue(out["available"])
+        self.assertTrue(out["documents"][0]["downloaded"])
+        self.assertNotIn("local_path",out["documents"][0])
+
+    def test_missing_figc_catalog_is_optional(self):
+        out=m.load_figc_catalog(Path("missing-figc-catalog.json"))
+        self.assertFalse(out["available"])
+        self.assertEqual(out["documents"],[])
 
 
 if __name__ == "__main__": unittest.main()
