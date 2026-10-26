@@ -19,7 +19,32 @@ VALIDATO. Consumer esterno, inferenze parallele e nuove certificazioni
 sono decisioni facoltative, non attività mancanti. Le righe successive e
 l'archivio conservano gli stati storici senza riaprirli.
 
-### Nuovo obiettivo — Benchmark Gemini Coverciano 100
+### Nuovo obiettivo — Esame Coverciano assistito
+
+> **Protocollo corretto il 2026-10-26.** Gemini Cloud formula una domanda e
+> valuta la risposta finale; il RAG produce la risposta documentale iniziale;
+> Groq opera esclusivamente come spalla tattica propositiva e verifica
+> separatamente i suggerimenti rispetto alle evidenze. La precedente campagna
+> di generazione batch 100 domande e il piano Groq per completarne 50 sono
+> **BLOCCATI e SUPERATI**: i relativi 50 casi non costituiscono avanzamento del
+> nuovo benchmark. Evidenza e piano di reset:
+> `docs/coverciano-examiner-copilot-reset-01.md`.
+
+- [x] **ESEGUITO** primo ciclo manuale completo
+  Gemini-esaminatore → RAG → Groq-copilot → risposta finale → Gemini-valutatore.
+  Il RAG iniziale era generico; la risposta corretta con portiere +1, movimento
+  laterale del numero 4, terzo uomo e preventiva 2+1 ha ricevuto 30/30 con lode
+  nell'interfaccia Google AI Mode. È una singola prova preliminare, non una
+  validazione statistica né un'integrazione applicativa.
+- [ ] **DA FARE** ridurre la latenza del ciclo: il solo job RAG ha richiesto
+  circa 170 s, incompatibili con l'uso interattivo. Obiettivo operativo iniziale
+  30–45 s end-to-end, senza ridurre validità delle citazioni o qualità tattica.
+- [ ] **DA FARE** automatizzare il copilot Groq dietro flag, mantenendo distinti
+  diagnosi tattica e verifica documentale e senza modificare il profilo locked.
+- [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto
+  dopo ottimizzazione e validazione differenziale del copilot.
+
+### Archivio storico — vecchia generazione batch Gemini/Groq
 
 - [x] **IMPLEMENTATO** revisore Gemini nel flusso applicativo: dopo ogni
   risposta RAG l'API invoca `gemini-3.6-flash` e il pannello mostra voto,
@@ -28,11 +53,11 @@ l'archivio conservano gli stati storici senza riaprirli.
   Test e deploy VPS ancora DA FARE; report
   `docs/rag-v5-gemini-runtime-review-01.md`.
 
-- [ ] **DA FARE** far generare a Gemini 3.6 Flash 100 domande indipendenti da
+- [x] **BLOCCATO** far generare a Gemini 3.6 Flash 100 domande indipendenti da
   esame allenatore stile Coverciano con rubriche nascoste, far rispondere il RAG
   e raggiungere una media esterna verificata >=8/10. Protocollo e diagnosi
   ufficiale in `docs/coverciano-100-gemini-benchmark-01.md`.
-- [ ] **DA FARE** generazione congelata del manifest con `gemini-3.6-flash` e
+- [x] **BLOCCATO** generazione congelata del manifest con `gemini-3.6-flash` e
   valutazione tramite Batch API; nessun
   ulteriore uso di `gemini-3.1-flash-lite-preview` (spento) o del preview
   `gemini-3-flash-preview`.
@@ -839,16 +864,20 @@ tecnica.
   Report `docs/groq-free-reviewer-g4-01.md`; output separato in evaluation.
   Affidabilita generale NON VALIDATA; ulteriori test/integrazione/deploy vietati
   senza nuova autorizzazione. Revocare la chiave esposta in chat.
-- [x] **VALIDATO offline** V5-GROQ-02-PHASE-A: Groq predisposto per completare
+- [x] **BLOCCATO** V5-GROQ-02-PHASE-A: Groq era stato predisposto per completare
   esclusivamente le 50 domande mancanti e per operare come spalla tattica a due
   passaggi. Inventario VPS confermato 50/100; suite 10/10, due preflight PASS,
   API_REQUESTS=0. Commit `7596ba4`, `f03b66d`, `9031661`, `2d034c7`; report
   `docs/groq-coverciano-completion-copilot-phase-a-01.md`. Pipeline e indici
-  invariati. Heartbeat Gemini eliminato per evitare doppia generazione.
-- [ ] **DA FARE** V5-GROQ-02-GENERATE-50: previa autorizzazione, 10 chiamate
+  invariati. Heartbeat Gemini eliminato per evitare doppia generazione. Il
+  percorso di generazione è stato successivamente annullato dal titolare: la
+  validazione offline resta evidenza storica, non piano attivo.
+- [x] **BLOCCATO** V5-GROQ-02-GENERATE-50: attività annullata; Groq non deve
+  completare i 50 casi del protocollo errato. Piano storico: 10 chiamate
   Free Tier (5 categorie x 2 parti), massimo pianificato 75.000 token, merge
   fail-closed fino a manifest misto 100/100. Non sovrascrivere i 50 casi Gemini.
-- [ ] **DA FARE** V5-GROQ-02-COPILOT-DIFF: previa autorizzazione separata,
-  tre casi congelati distinti dal G4 e 6 chiamate logiche; nessuna nuova risposta
+- [ ] **DA FARE** V5-GROQ-02-COPILOT-DIFF: riprogettare sul ruolo corretto di
+  spalla tattica; prima fase differenziale su tre casi congelati distinti dal
+  G4 e 6 chiamate logiche; nessuna nuova risposta
   RAG. Validare falsi positivi, utilita e supporto documentale prima del benchmark.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.

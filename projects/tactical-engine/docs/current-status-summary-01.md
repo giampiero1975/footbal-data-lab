@@ -32,6 +32,14 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
 
 ## Attività tecniche realmente aperte
 
+- **DA FARE:** ottimizzazione del flusso Coverciano assistito. Una prova
+  manuale Gemini-esaminatore → RAG → Groq-copilot → Gemini-valutatore ha
+  ottenuto 30/30 con lode, ma il solo RAG ha richiesto circa 170 secondi. La
+  prova è ESEGUITA, non ancora VALIDATA o INTEGRATA. Il precedente piano batch
+  50/100 è BLOCCATO e fuori perimetro; dettagli in
+  `docs/coverciano-examiner-copilot-reset-01.md`.
+- **DA FARE:** riprogettazione UX/UI del pannello pubblico.
+
 - **DA FARE:** osservazione prolungata del servizio. Il reboot completo
   dell'host, il riavvio della sola unità e il
   recovery systemd sono VALIDATI e non vanno ripetuti senza una modifica tecnica;

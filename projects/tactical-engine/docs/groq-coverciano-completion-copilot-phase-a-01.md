@@ -1,5 +1,11 @@
 # Groq — completamento Coverciano 100 e spalla tattica, Fase A
 
+> **SUPERATO il 2026-10-26.** Questo documento conserva una fase storica
+> tecnicamente valida offline ma fondata su un'interpretazione errata del
+> flusso. Groq non completerà le 50 domande e i casi Gemini esistenti non
+> costituiscono benchmark corrente. Stato e decisione autorevoli:
+> `coverciano-examiner-copilot-reset-01.md`.
+
 Data: 2026-10-26. Stato: **VALIDATO offline**. Nessuna chiamata API Groq,
 generazione, risposta RAG, modifica della pipeline certificata o deploy.
 

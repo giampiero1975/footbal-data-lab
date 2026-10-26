@@ -800,3 +800,19 @@ Attivita: eseguire l'unico G4 tattico reale autorizzato riutilizzando il caso co
 ### V5-GROQ-02 — Completamento Coverciano e copilot tattico, Fase A (2026-10-26)
 
 Attivita: sostituire Gemini con Groq nei due ruoli decisi dal titolare, preservando le 50 domande Gemini valide: completamento delle 50 mancanti e seconda AI propositiva del RAG. Script: `scripts/generate_coverciano_100_groq_completion_v1.py`, `scripts/groq_tactical_copilot_v2.py`; test omonimi. Commit: `7596ba4`, `f03b66d`, `9031661`, `2d034c7`; report `docs/groq-coverciano-completion-copilot-phase-a-01.md`. Risultato: inventario VPS 50/100 con cinque categorie complete e cinque mancanti; suite combinata 10/10, compilazione PASS, preflight generatore e copilot PASS, API_REQUESTS=0. Generatore preserva schema/rubriche/ID, produce solo parti mancanti, rileva quasi-duplicati, non sovrascrive e applica hard stop Free Tier; copilot separa revisione tattica senza fonti da verifica documentale e demanda al software la validita delle label. Heartbeat Gemini eliminato per impedire doppia generazione. Decisione: Fase A chiusa; attendere autorizzazione per 10 chiamate di generazione (budget pianificato 75.000 token) e autorizzazione separata per 3 casi differenziali/6 chiamate. Nessun deploy, risposta RAG o modifica alla pipeline. Stato: **VALIDATO offline**; generazione e copilot live **DA FARE**.
+
+### V5-COV-RESET-01 — Correzione del protocollo d'esame (2026-10-26)
+
+Attivita: riconciliare l'intento originario dopo aver rilevato che la campagna
+50/100 aveva assegnato a Gemini il ruolo sbagliato. Script: nessuna inferenza;
+audit TODO, registro, report, commit e inventario VPS. Commit: DA FARE. Report:
+`docs/coverciano-examiner-copilot-reset-01.md`. Risultato: il flusso corretto è
+Gemini Cloud esaminatore e valutatore, RAG candidato documentale, Groq spalla
+tattica con verifica separata delle evidenze. I 50 casi batch e il completamento
+Groq sono fuori perimetro. Una singola prova manuale sul 4-3-3 contro pressione
+alta a uomo ha trasformato una risposta RAG generica in una risposta valutata
+30/30 con lode; job RAG `ad41e872d5f44a66a7626f8429f30e5e`, circa 170 s.
+Decisione: registrare la prova come ESEGUITA ma non VALIDATA, eliminare soltanto
+la directory runtime dei 50 casi, ottimizzare prima la latenza e solo dopo
+congelare il nuovo benchmark. Stato: **ESEGUITO** per riconciliazione e prova;
+pulizia e ottimizzazione **DA FARE**.
