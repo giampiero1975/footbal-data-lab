@@ -64,6 +64,8 @@ l'archivio conservano gli stati storici senza riaprirli.
   prompt o evidenze. Suite combinata 33/33 e compilazione PASS, zero API.
   Una sola smoke differenziale DA FARE previa autorizzazione; report
   `docs/groq-copilot-http400-remediation-01.md`.
+  Commit `301d3dd` distribuito sulla VPS: suite 33/33, servizio attivo e zero
+  chiamate Groq; stato applicativo **IMPLEMENTATO**, runtime non ancora VALIDATO.
 - [ ] **DA FARE** definire e congelare il nuovo protocollo 100 casi soltanto
   dopo ottimizzazione e validazione differenziale del copilot.
 

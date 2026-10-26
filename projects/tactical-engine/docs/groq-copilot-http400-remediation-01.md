@@ -43,3 +43,10 @@ Suite combinata copilot, reviewer precedente e API: **33/33 PASS**;
 autorizzata sul caso congelato; se fallisce, il nuovo codice redatto renderà
 identificabile la categoria senza divulgare dati.
 
+## Deploy controllato
+
+Commit `301d3dd` distribuito con fast-forward sulla VPS. Suite VPS 33/33,
+`py_compile` PASS, servizio `football-rag-api.service` attivo e checkout pulito.
+Il deploy non ha eseguito inferenze né chiamate Groq. Stato applicativo:
+**IMPLEMENTATO** e **VALIDATO offline**; validazione runtime ancora **DA FARE**.
+

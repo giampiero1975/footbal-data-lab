@@ -24,6 +24,9 @@ ufficiale conferma modello e strict schema; payload reso minimale con temperatur
 API_REQUESTS=0. Decisione: non introdurre fallback permissivi o retry; richiedere
 una sola smoke differenziale sul caso congelato. Stato: **VALIDATO offline**,
 runtime **DA FARE**.
+Deploy del commit `301d3dd` sulla VPS: suite 33/33, compilazione PASS, servizio
+attivo, checkout pulito e nessuna chiamata Groq. Stato applicativo:
+**IMPLEMENTATO** e **VALIDATO offline**; runtime **DA FARE**.
 
 ## Sintesi corrente per il revisore
 
