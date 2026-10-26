@@ -63,3 +63,12 @@ durante la correzione: zero. Smoke live successiva necessaria tramite domanda 2.
 La validazione reale successiva deve avvenire esclusivamente dal pannello
 pubblico. Invocazioni isolate da CLI non appartengono al benchmark.
 
+### Verifica pannello post-correzione
+
+Il job pannello `a368e4de` ha completato il RAG in 171,63 s e il totale in
+205 s, ma Groq è stato respinto con `GROQ_HTTP_400_SCHEMA`. Poiché lo schema
+dinamico sperimentale e quello statico avevano riutilizzato lo stesso nome
+provider-side, il contratto statico viene ora pubblicato con nome versionato e
+immutabile `groq_tactical_copilot_pass2_static_v2`. Il job resta un errore di
+pipeline e non riceve voto Gemini.
+

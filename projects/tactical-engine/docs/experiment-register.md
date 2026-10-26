@@ -33,6 +33,16 @@ delle etichette. Test copilot 16/16 e suite Groq 26/26. Stato: caso
 **ESEGUITO**; correzione **IMPLEMENTATA e VALIDATA offline**; deploy e runtime
 da pannello **DA FARE**.
 
+### 2026-10-26 — Verifica pannello schema PASS2 versionato
+
+Attività: validare dal solo pannello la correzione sul caso 002. Job
+`a368e4de`; report `docs/coverciano-100-live-benchmark-01.md`. Risultato: RAG
+171,63 s, totale 205 s, Groq respinto con `GROQ_HTTP_400_SCHEMA`; nessun voto
+Gemini. Decisione: non riutilizzare il nome provider-side impiegato dal tentativo
+dinamico; assegnare al contratto statico il nome immutabile
+`groq_tactical_copilot_pass2_static_v2`. Stato: verifica **ESEGUITA**, correzione
+**IMPLEMENTATA**, validazione offline e runtime **DA FARE**.
+
 ### 2026-10-26 — Normalizzazione token pannello pubblico
 
 Attività: diagnosticare `unauthorized` senza ruotare o divulgare credenziali.

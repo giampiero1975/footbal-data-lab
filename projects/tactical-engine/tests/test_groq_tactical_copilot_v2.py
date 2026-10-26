@@ -69,6 +69,8 @@ class CopilotOfflineTests(unittest.TestCase):
 
     def test_pass2_uses_provider_compatible_static_schema(self):
         request = copilot.build_pass2(cases(), pass1())
+        self.assertEqual(request["response_format"]["json_schema"]["name"],
+                         "groq_tactical_copilot_pass2_static_v2")
         schema = request["response_format"]["json_schema"]["schema"]
         checks = schema["properties"]["checks"]["items"]["properties"]
         revised = schema["properties"]["revised_answers"]["items"]["properties"]

@@ -95,6 +95,10 @@ l'archivio conservano gli stati storici senza riaprirli.
   `PASS2_UNSUPPORTED_WITH_EVIDENCE`. Normalizzazione conservativa di etichette
   e ID meccanici **IMPLEMENTATA e VALIDATA offline**: copilot 16/16, suite Groq
   26/26. Deploy e nuova prova esclusivamente da pannello **DA FARE**.
+- [ ] **ESEGUITO** verifica pannello job `a368e4de`: RAG 171,63 s, totale
+  205 s, Groq `HTTP_400_SCHEMA`. Contratto statico PASS2 rinominato e versionato
+  per non riutilizzare il nome dello schema dinamico sperimentale; validazione
+  offline e deploy **DA FARE**.
 
 ### Archivio storico — vecchia generazione batch Gemini/Groq
 

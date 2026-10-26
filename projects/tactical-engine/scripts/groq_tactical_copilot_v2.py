@@ -181,7 +181,11 @@ def build_pass2(cases: list[dict], pass1: dict, model: str = DEFAULT_MODEL) -> d
     by_id = {row["id"]: row for row in pass1["reviews"]}
     body = {"cases": [{"id": c["id"], "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
-    return strict_request(PASS2_PROMPT, body, PASS2_SCHEMA, "groq_tactical_copilot_pass2", model)
+    # Schema names are immutable provider-side contract identifiers.  The v1
+    # name was used by an experimental dynamic schema, so the restored static
+    # contract receives a fresh versioned name.
+    return strict_request(PASS2_PROMPT, body, PASS2_SCHEMA,
+                          "groq_tactical_copilot_pass2_static_v2", model)
 
 
 def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict, list[str]]:
