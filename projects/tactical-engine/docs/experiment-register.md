@@ -895,3 +895,16 @@ zero errori e nessun percorso privato; sezione pubblica “Monitor FIGC” prese
 nell'albero accessibile. Decisione: chiudere la vista come **VALIDATA e
 INTEGRATA**; non confondere lo stato UI con conversione o ingestion automatica,
 che restano processi separati.
+
+### V5-FIGC-REVIEW-02 — Review match analysis (2026-10-26)
+
+Attivita: revisione editoriale read-only di Di Camillo, Rausse e Venturini.
+Script: `apply_figc_editorial_decisions_v1.py`; decisioni:
+`docs/figc-match-analysis-decisions-v1.json`. Commit: DA FARE. Report:
+`docs/figc-match-analysis-editorial-review-01.md`. Risultato: Di Camillo e
+Rausse candidati tattici; Venturini escluso dal RAG tattico perché focalizzato
+su analytics/metriche. Rilevato inoltre catalogo Venturini stale: stato
+downloaded ma file locale assente, URL FIGC ancora accessibile. Test atomico
+3/3 e compilazione PASS. Decisione: pubblicare, applicare le tre decisioni al
+catalogo VPS senza ingestion e conservare separata l'anomalia file. Stato:
+**IMPLEMENTATO** per applicatore, review **ESEGUITA**, runtime **DA FARE**.
