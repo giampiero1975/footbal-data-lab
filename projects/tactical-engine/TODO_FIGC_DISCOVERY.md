@@ -37,7 +37,7 @@ Stato: **VALIDATO** monitor v1; scheduling settimanale INTEGRATO. Non modificare
 
 ## Prossimo incremento autorizzato
 
-- [ ] Concludere la review dei tre documenti match/player analysis e registrare la decisione nel catalogo — review **ESEGUITA**, applicazione atomica runtime DA FARE (`docs/figc-match-analysis-editorial-review-01.md`).
+- [x] Concludere la review dei tre documenti match/player analysis e registrare la decisione nel catalogo — **VALIDATO** (`docs/figc-match-analysis-editorial-review-01.md`).
 - [ ] Escludere dall'ingestion la traduzione inglese del documento relazionale italiano.
 - [ ] Creare una collection candidata isolata con i soli PDF pertinenti, quindi verificare integrità, deduplica, retrieval e regressione prima di qualsiasi promozione.
 

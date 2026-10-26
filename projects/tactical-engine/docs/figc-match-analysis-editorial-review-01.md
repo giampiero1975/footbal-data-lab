@@ -1,6 +1,6 @@
 # Revisione editoriale candidati FIGC match analysis
 
-Data: 2026-10-26. Stato: **ESEGUITO**; registrazione runtime **DA FARE**.
+Data: 2026-10-26. Stato: **VALIDATO**; decisioni registrate nel catalogo.
 
 Sono stati ispezionati testo, indice e pagine rappresentative dei tre candidati,
 senza indicizzazione o inferenze LLM.
@@ -21,3 +21,11 @@ decisione editoriale non deve mascherare questa anomalia operativa.
 Le decisioni sono congelate in `figc-match-analysis-decisions-v1.json` e
 possono essere applicate atomicamente con
 `apply_figc_editorial_decisions_v1.py`. Nessuna promozione in Chroma è inclusa.
+
+## Esito runtime
+
+Il commit `48ef114` è stato allineato sulla VPS. Il catalogo è stato salvato in
+backup e aggiornato atomicamente: 3/3 decisioni coincidono con gli SHA-256
+attesi. La proiezione API e il pannello espongono decisione e motivazione senza
+percorsi privati. Stato della review: **VALIDATO**. I due candidati tattici non
+sono ancora indicizzati.

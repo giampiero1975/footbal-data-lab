@@ -112,6 +112,8 @@ def load_figc_catalog(path: Path) -> dict:
             "verified": status in {"verified", "downloaded", "duplicate_existing"},
             "downloaded": status == "downloaded" or bool(item.get("local_path")),
             "duplicate_existing": status == "duplicate_existing",
+            "editorial_decision": item.get("editorial_decision"),
+            "editorial_reason": item.get("editorial_reason"),
             "first_seen": item.get("first_seen"),
             "last_seen": item.get("last_seen"),
             "url": item.get("final_url") or item.get("url"),

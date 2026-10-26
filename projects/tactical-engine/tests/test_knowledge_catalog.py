@@ -55,11 +55,12 @@ class KnowledgeCatalogTests(unittest.TestCase):
     def test_figc_projection_exposes_states_without_private_paths(self):
         with tempfile.TemporaryDirectory() as directory:
             path=Path(directory)/"catalog.json"
-            path.write_text(json.dumps({"documents":{"abc":{"file_name":"tesi.pdf","status":"downloaded","category":"tattica","local_path":"/private/file.pdf","url":"https://figc.it/media/tesi.pdf"}},"errors":{}}),encoding="utf-8")
+            path.write_text(json.dumps({"documents":{"abc":{"file_name":"tesi.pdf","status":"downloaded","category":"tattica","local_path":"/private/file.pdf","url":"https://figc.it/media/tesi.pdf","editorial_decision":"candidate_tactical","editorial_reason":"pertinente"}},"errors":{}}),encoding="utf-8")
             out=m.load_figc_catalog(path)
         self.assertTrue(out["available"])
         self.assertTrue(out["documents"][0]["downloaded"])
         self.assertNotIn("local_path",out["documents"][0])
+        self.assertEqual(out["documents"][0]["editorial_decision"],"candidate_tactical")
 
     def test_missing_figc_catalog_is_optional(self):
         out=m.load_figc_catalog(Path("missing-figc-catalog.json"))

@@ -908,3 +908,9 @@ downloaded ma file locale assente, URL FIGC ancora accessibile. Test atomico
 3/3 e compilazione PASS. Decisione: pubblicare, applicare le tre decisioni al
 catalogo VPS senza ingestion e conservare separata l'anomalia file. Stato:
 **IMPLEMENTATO** per applicatore, review **ESEGUITA**, runtime **DA FARE**.
+
+Attivita: applicazione runtime delle tre decisioni con backup del catalogo e
+successiva esposizione nel pannello. Commit base `48ef114`; commit UI: DA FARE.
+Risultato: aggiornamento 3/3 per SHA-256, Di Camillo/Rausse candidati tattici e
+Venturini escluso; suite 25/25 e sintassi JavaScript PASS. Decisione: chiudere
+la review come **VALIDATA**; nessuna indicizzazione inclusa.
