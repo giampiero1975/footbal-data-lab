@@ -216,6 +216,8 @@ class ApiTests(unittest.TestCase):
         self.assertIn("renderCopilot", panel)
         self.assertIn("job.groq_copilot", panel)
         self.assertIn("il token resta soltanto nella memoria", panel)
+        self.assertIn("normalizeToken", panel)
+        self.assertIn("probabilmente è una password", panel)
         self.assertNotIn("RAG_API_TOKEN", panel)
 
     def test_feedback_is_bounded_to_succeeded_job_without_content(self):

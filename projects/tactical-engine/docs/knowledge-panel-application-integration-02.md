@@ -1,5 +1,19 @@
 # Knowledge Panel application integration 02
 
+## Addendum 2026-10-26 — inserimento token tollerante
+
+Una verifica autenticata ha restituito HTTP 200 sia su localhost sia sul dominio
+pubblico, confermando che token, proxy e servizio erano operativi. Il caso utente
+`unauthorized` era quindi confinato all'inserimento nel browser: la UI accettava
+solo il valore puro e rifiutava la riga completa copiata dal file di ambiente.
+
+Il pannello ora normalizza localmente il solo input dell'utente: accetta valore o
+assegnazione con nome terminante in `TOKEN`, elimina spazi e virgolette esterne e
+rifiuta prima della rete valori inferiori a 32 caratteri. Il token continua a non
+essere salvato nel browser, nei log o nel sorgente. Verifica: 18/18 test API e
+controllo sintattico JavaScript superati. Stato: **VALIDATO**; deploy pubblico da
+registrare separatamente prima di dichiarare l'addendum INTEGRATO.
+
 ## Attività
 
 Completare il flusso applicativo locale senza modificare runner, retrieval, collection o profilo locked.

@@ -2,6 +2,17 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-26 — Normalizzazione token pannello pubblico
+
+Attività: diagnosticare `unauthorized` senza ruotare o divulgare credenziali.
+Script: `api/knowledge_panel.html`; test: `tests/test_rag_v5_api.py`; report:
+`docs/knowledge-panel-application-integration-02.md`. Risultato: token corrente
+verificato con HTTP 200 locale e pubblico; individuato il limite UX sul formato
+incollato; aggiunta normalizzazione di assegnazione/virgolette/spazi e guardia sui
+valori troppo corti. Suite 18/18 e sintassi JavaScript PASS. Decisione: preservare
+il segreto corrente e non memorizzarlo lato browser. Stato: **VALIDATO**, deploy
+pubblico ancora da registrare.
+
 ## Sintesi corrente per il revisore
 
 La fotografia consolidata, con evidenze e limiti, è
