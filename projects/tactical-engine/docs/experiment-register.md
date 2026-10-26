@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-26 — Migrazione revisore applicativo a OpenRouter
+
+Attività: sostituire nel percorso applicativo i collegamenti diretti Gemini e
+Groq con un unico trasporto OpenRouter, preservando integralmente storico e
+pipeline RAG certificata. Script: `scripts/openrouter_tactical_copilot_v1.py`,
+API e pannello; report `docs/openrouter-reviewer-migration-01.md`. Risultato:
+adapter a due passaggi con fallback ordinato, structured output e validazione
+fail-closed; configurazione, worker e UI non invocano più i provider diretti.
+Suite API/adapter 22/22, compilazione Python e sintassi JavaScript PASS; zero
+chiamate esterne. Decisione: mantenere gli artefatti storici per audit e
+installare la nuova chiave solo nel file privato VPS. Stato: **IMPLEMENTATO**;
+deploy e singola verifica pubblica **DA FARE**.
+
 ### 2026-10-26 — Benchmark live Coverciano caso 001 e gate PASS2
 
 Attività: avviare il protocollo Gemini-esaminatore → pannello RAG/Groq →

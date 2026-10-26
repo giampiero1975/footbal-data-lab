@@ -21,6 +21,14 @@ l'archivio conservano gli stati storici senza riaprirli.
 
 ### Nuovo obiettivo — Esame Coverciano assistito
 
+- [x] **IMPLEMENTATO** passaggio del revisore applicativo a OpenRouter come
+  unico trasporto esterno attivo. Rimossi Gemini e Groq diretti da worker,
+  configurazione e pannello; storico preservato. Adapter a due passaggi,
+  fallback ordinato e controlli fail-closed: suite 22/22, compilazione e
+  JavaScript PASS, zero chiamate API. Installazione segreto, deploy e singola
+  prova dal pannello **DA FARE**. Report
+  `docs/openrouter-reviewer-migration-01.md`.
+
 > **Protocollo corretto il 2026-10-26.** Gemini Cloud formula una domanda e
 > valuta la risposta finale; il RAG produce la risposta documentale iniziale;
 > Groq opera esclusivamente come spalla tattica propositiva e verifica

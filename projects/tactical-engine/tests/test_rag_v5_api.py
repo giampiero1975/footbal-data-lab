@@ -107,58 +107,33 @@ class ApiTests(unittest.TestCase):
                 "RAG_API_MODEL": "qwen3.5:4b",
                 "RAG_API_CONTEXT_WINDOW": "4096",
                 "RAG_API_KEEP_ALIVE": "30m",
-                "RAG_GROQ_COPILOT_ENABLED": "1",
-                "RAG_GROQ_COPILOT_MODEL": "openai/gpt-oss-120b",
+                "RAG_OPENROUTER_COPILOT_ENABLED": "1",
+                "RAG_OPENROUTER_COPILOT_MODELS": "openai/gpt-oss-120b,openai/gpt-6.1-sol",
             })
             self.assertEqual(config["evidence_limit"], 6)
             self.assertEqual(config["max_output_tokens"], 700)
             self.assertEqual(config["model"], "qwen3.5:4b")
             self.assertEqual(config["context_window"], 4096)
             self.assertEqual(config["keep_alive"], "30m")
-            self.assertTrue(config["groq_copilot_enabled"])
-            self.assertEqual(config["groq_copilot_model"], "openai/gpt-oss-120b")
+            self.assertTrue(config["openrouter_copilot_enabled"])
+            self.assertEqual(config["openrouter_copilot_models"],
+                             ["openai/gpt-oss-120b", "openai/gpt-6.1-sol"])
 
-    def test_gemini_review_is_opt_in_and_uses_stable_model(self):
+    def test_openrouter_reviewer_is_opt_in(self):
         with tempfile.TemporaryDirectory() as tmp:
             config = self.config(Path(tmp))
-            self.assertFalse(config["gemini_review_enabled"])
-            self.assertEqual(config["gemini_review_model"], "gemini-3.6-flash")
+            self.assertFalse(config["openrouter_copilot_enabled"])
             enabled = api.load_config({
                 "RAG_API_TOKEN": "x" * 32,
                 "RAG_API_OUTPUT_DIR": tmp,
-                "RAG_GEMINI_REVIEW_ENABLED": "true",
-                "RAG_GEMINI_REVIEW_DAILY_LIMIT": "250",
+                "RAG_OPENROUTER_COPILOT_ENABLED": "true",
             })
-            self.assertTrue(enabled["gemini_review_enabled"])
-            self.assertEqual(enabled["gemini_review_daily_limit"], 250)
+            self.assertTrue(enabled["openrouter_copilot_enabled"])
 
-    def test_gemini_review_returns_bounded_verified_summary(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            output = Path(tmp)
-            config = self.config(output); config["gemini_review_enabled"] = True
-            state = api.State(config)
-            result_path = output / ("a" * 32 + ".result.json")
-            result_path.write_text('{"questions":[]}', encoding="utf-8")
-            report = {
-                "status": "ESEGUITO", "model": "gemini-3.6-flash",
-                "reviews": [{"id": "case_01", "score": 8.5, "verdict": "PASS",
-                             "strengths": ["coerente"], "structural_errors": [],
-                             "evidence_issues": [], "minimum_fix": "nessuna"}],
-            }
-            def reviewer(command, **kwargs):
-                review_path = Path(command[command.index("--output") + 1])
-                review_path.write_text(json.dumps(report), encoding="utf-8")
-                return mock.Mock(returncode=0, stderr="")
-            with mock.patch.object(api.subprocess, "run", side_effect=reviewer):
-                summary = state.run_gemini_review("a" * 32, result_path)
-            self.assertEqual(summary["status"], "verified")
-            self.assertEqual(summary["score"], 8.5)
-            self.assertNotIn("raw_review", summary)
-
-    def test_groq_copilot_returns_verified_revised_answer(self):
+    def test_openrouter_copilot_returns_verified_revised_answer(self):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp); config = self.config(output)
-            config["groq_copilot_enabled"] = True
+            config["openrouter_copilot_enabled"] = True
             state = api.State(config)
             result_path = output / ("b" * 32 + ".result.json")
             result_path.write_text('{"questions":[]}', encoding="utf-8")
@@ -174,7 +149,7 @@ class ApiTests(unittest.TestCase):
                 path.write_text(json.dumps(report), encoding="utf-8")
                 return mock.Mock(returncode=0, stderr="")
             with mock.patch.object(api.subprocess, "run", side_effect=copilot):
-                summary = state.run_groq_copilot("b" * 32, result_path)
+                summary = state.run_openrouter_copilot("b" * 32, result_path)
             self.assertEqual(summary["status"], "verified")
             self.assertEqual(summary["revised_answer"], "Risposta corretta [F1].")
             self.assertNotIn("pass1", summary)
@@ -187,16 +162,16 @@ class ApiTests(unittest.TestCase):
             result = {"questions": [{"answer": "Bozza recuperata [F1].", "evidence": [],
                                       "elapsed_seconds": 42}]}
             (output / f"{job_id}.result.json").write_text(json.dumps(result), encoding="utf-8")
-            (output / f"{job_id}.groq-copilot.json").write_text(json.dumps({
+            (output / f"{job_id}.openrouter-copilot.json").write_text(json.dumps({
                 "status": "BLOCCATO", "model": "openai/gpt-oss-120b",
-                "reason": "GROQ_PASS2_FINDING_COVERAGE"}), encoding="utf-8")
+                "reason": "PASS2_FINDING_COVERAGE"}), encoding="utf-8")
             state = api.State(self.config(output))
             recovered = state.persisted_job(job_id)
             self.assertEqual(recovered["status"], "succeeded")
             self.assertTrue(recovered["recovered_after_restart"])
             self.assertEqual(recovered["question"], "Domanda tattica persistente")
             self.assertEqual(recovered["result"], result)
-            self.assertEqual(recovered["groq_copilot"]["status"], "unavailable")
+            self.assertEqual(recovered["openrouter_copilot"]["status"], "unavailable")
             recent = state.recent_completed_jobs(20)
             self.assertEqual([item["id"] for item in recent], [job_id])
 
@@ -222,7 +197,7 @@ class ApiTests(unittest.TestCase):
         self.assertIn("exportMarkdown", panel)
         self.assertIn("<details", panel)
         self.assertIn("guida rapida", panel)
-        self.assertIn("Copilot tattico Groq", panel)
+        self.assertIn("Revisore AI via OpenRouter", panel)
         self.assertIn('id="finalAnswer"', panel)
         self.assertIn('id="askButton" disabled', panel)
         self.assertIn('id="searchButton" disabled', panel)
@@ -239,7 +214,7 @@ class ApiTests(unittest.TestCase):
         self.assertIn("Interrotto ·", panel)
         self.assertIn("/v1/jobs/recent", panel)
         self.assertIn("loadRecentJobs", panel)
-        self.assertIn("job.groq_copilot", panel)
+        self.assertIn("job.openrouter_copilot", panel)
         self.assertIn("il token resta soltanto nella memoria", panel)
         self.assertIn("normalizeToken", panel)
         self.assertIn("probabilmente è una password", panel)
