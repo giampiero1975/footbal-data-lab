@@ -163,6 +163,7 @@ def preflight(paths: list[Path], output: Path, models: list[str]) -> None:
         "id": c["id"], "score": 0, "verdict": "REVISIONE",
         "answered_parts": [], "missing_parts": [], "digressions": [],
         "confirmed_points": [], "findings": [], "improvement_plan": [],
+        "replacement_answer": "Preflight placeholder operativo. " * 20,
         "retrieval_needs": [],
     } for c in cases], "limitations": []}
     validate_pass1(synthetic, list(mapping))
