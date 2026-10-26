@@ -887,3 +887,11 @@ senza percorsi locali, endpoint autenticato e tabella separata; suite 25/25,
 compilazione e sintassi JavaScript PASS. Decisione: pubblicare e verificare sul
 catalogo VPS reale; nessuna ingestion o scrittura Chroma. Stato:
 **IMPLEMENTATO**; runtime **DA FARE**.
+
+Attivita: verifica runtime distinta dell'integrazione FIGC. Script e commit:
+`5b55967`. Report: `docs/figc-catalog-panel-integration-01.md`. Risultato: VPS
+25/25, servizio active, endpoint autenticato con schema corretto, 10 documenti,
+zero errori e nessun percorso privato; sezione pubblica “Monitor FIGC” presente
+nell'albero accessibile. Decisione: chiudere la vista come **VALIDATA e
+INTEGRATA**; non confondere lo stato UI con conversione o ingestion automatica,
+che restano processi separati.
