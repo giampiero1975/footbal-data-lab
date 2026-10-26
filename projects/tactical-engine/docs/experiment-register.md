@@ -935,3 +935,14 @@ soltanto la baseline 6410 rimossa insieme alla copia temporanea; collection
 operativa invariata a 6410. Decisione: correggere catalogo e pannello da
 `candidate_tactical` a `integrated_tactical`; nessuna regressione necessaria
 perché non è cambiato alcun indice. Stato: **VALIDATO**.
+
+### V5-GROQ-LIVE-04 — Prima smoke applicativa (2026-10-26)
+
+Attivita: attivare il copilot privato e verificare API → RAG → Groq. Job
+`0edcc041b11c405f80d389a92b84fda4`. Risultato: RAG 151,76 s, sei evidenze,
+zero citazioni invalide; copilot `unavailable`, fallback corretto e bozza RAG
+preservata. Il vecchio client non ha persistito il motivo redatto. Correzione:
+report fallimento con soli codici HTTP/rete/timeout/schema, senza contenuti o
+segreti; test 27/27. Decisione: pubblicare la diagnostica, non ripetere la
+chiamata senza nuova autorizzazione esplicita. Stato: smoke **ESEGUITA**,
+copilot live **BLOCCATO**, diagnostica **IMPLEMENTATA**.

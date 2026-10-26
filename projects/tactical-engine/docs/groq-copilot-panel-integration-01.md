@@ -56,8 +56,22 @@ copilot esterno né estende la certificazione locked.
 
 ## Limiti
 
-La chiave Groq non è persistita sulla VPS. Il copilot non viene dichiarato
-`INTEGRATO` finché non vengono completati configurazione privata, singola smoke
-live autorizzata e verifica dei log redatti. Il RAG
+La configurazione Groq privata è ora persistita sulla VPS con permessi `0600`.
+Il copilot non viene dichiarato `INTEGRATO` finché una smoke live non completa
+entrambi i passaggi con report redatto verificabile. Il RAG
 locale 9B mantiene la propria latenza: questa implementazione migliora il flusso
 di revisione, non rende più veloce la bozza iniziale.
+
+## Smoke live 2026-10-26
+
+La configurazione privata è stata installata con permessi `0600` e il copilot
+abilitato. Il job end-to-end `0edcc041...` ha completato RAG in 151,76 secondi,
+sei evidenze e zero citazioni invalide; lo stadio Groq è terminato con fallback
+`unavailable` dopo circa 18 secondi, senza compromettere la bozza RAG.
+
+Il client precedente non conservava il motivo redatto quando mancava il report
+esterno. Sul ramo `codex/bug-groq-copilot-diagnostics` è stata quindi aggiunta
+diagnostica fail-closed senza prompt, evidenze, body HTTP o segreti. Suite
+combinata 27/27 PASS. Una nuova chiamata live non è stata eseguita perché
+richiede autorizzazione distinta; stato copilot live: **BLOCCATO** fino a tale
+smoke diagnostica.

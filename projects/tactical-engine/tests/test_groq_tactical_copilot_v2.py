@@ -1,4 +1,5 @@
 import importlib.util, json, sys, unittest
+import urllib.error
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -61,6 +62,22 @@ class CopilotOfflineTests(unittest.TestCase):
     def test_revised_answer_citation_and_partition_fail_closed(self):
         bad = pass2(); bad["revised_answers"][0]["answer"] = "Inventata [F9]."
         with self.assertRaises(ValueError): copilot.validate_pass2(bad, cases(), pass1())
+
+    def test_failure_reasons_are_redacted(self):
+        http = urllib.error.HTTPError("https://example.invalid", 503, "secret body", {}, None)
+        self.assertEqual(copilot.redacted_failure_reason(http), "GROQ_HTTP_503")
+        self.assertEqual(copilot.redacted_failure_reason(ValueError("raw model content")),
+                         "GROQ_INVALID_STRUCTURED_RESPONSE")
+
+    def test_failure_report_contains_no_payload(self):
+        import tempfile
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "failure.json"
+            copilot.write_failure(output, "model", "GROQ_HTTP_429")
+            saved = json.loads(output.read_text())
+        self.assertEqual(saved["reason"], "GROQ_HTTP_429")
+        self.assertFalse(saved["contains_prompt_or_evidence"])
+        self.assertNotIn("cases", saved)
         bad = pass2(); bad["revised_answers"][0]["unresolved_findings"] = ["f01"]
         with self.assertRaises(ValueError): copilot.validate_pass2(bad, cases(), pass1())
 

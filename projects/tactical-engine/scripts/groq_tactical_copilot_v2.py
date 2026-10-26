@@ -191,6 +191,26 @@ def parsed_content(payload: dict) -> dict:
     return json.loads(payload["choices"][0]["message"]["content"])
 
 
+def redacted_failure_reason(exc: Exception) -> str:
+    """Return a diagnostic code without response bodies, prompts or secrets."""
+    if isinstance(exc, urllib.error.HTTPError):
+        return f"GROQ_HTTP_{exc.code}"
+    if isinstance(exc, urllib.error.URLError):
+        return "GROQ_NETWORK_ERROR"
+    if isinstance(exc, TimeoutError):
+        return "GROQ_TIMEOUT"
+    if isinstance(exc, (json.JSONDecodeError, KeyError, TypeError, ValueError)):
+        return "GROQ_INVALID_STRUCTURED_RESPONSE"
+    return "GROQ_UNEXPECTED_ERROR"
+
+
+def write_failure(output: Path, model: str, reason: str) -> None:
+    atomic_new(output, {"schema": "groq_tactical_copilot_runtime_v2",
+        "status": "BLOCCATO", "provider": "groq", "model": model,
+        "reason": reason, "network_called": True, "rag_executed": False,
+        "index_writes": False, "contains_prompt_or_evidence": False})
+
+
 def execute(paths: list[Path], output: Path, model: str, estimated_tokens: int) -> None:
     cases, mapping = prepare_inputs(paths)
     key = os.environ.get("GROQ_API_KEY", "")
@@ -250,7 +270,12 @@ def main() -> None:
         return
     if not args.confirm_free_tier:
         raise SystemExit("FREE_TIER_CONFIRMATION_REQUIRED")
-    execute(args.reports, args.output, args.model, args.estimated_tokens)
+    try:
+        execute(args.reports, args.output, args.model, args.estimated_tokens)
+    except Exception as exc:
+        reason = redacted_failure_reason(exc)
+        write_failure(args.output, args.model, reason)
+        raise SystemExit(reason) from None
     print("COPILOT_COMPLETE")
 
 

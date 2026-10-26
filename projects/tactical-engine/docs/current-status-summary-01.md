@@ -41,7 +41,11 @@ Questi ambiti possiedono evidenze separate e i loro stati sono `VALIDATO` o
 - La riprogettazione UX/UI del pannello pubblico è **VALIDATA e INTEGRATA**;
   non è più un'attività aperta. Il copilot Groq mostrato nella UI resta
   **IMPLEMENTATO** ma disattivato finché non vengono configurati privatamente
-  chiave e flag e svolta una singola smoke live distinta.
+  chiave e flag e svolta una singola smoke live distinta. Aggiornamento
+  2026-10-26: configurazione installata e smoke ESEGUITA; fallback non
+  bloccante riuscito, ma revisione Groq **BLOCCATA** da errore esterno non
+  diagnosticato dal vecchio client. Diagnostica redatta IMPLEMENTATA; nuova
+  smoke live richiede autorizzazione distinta.
 
 - **DA FARE:** osservazione prolungata del servizio. Il reboot completo
   dell'host, il riavvio della sola unità e il
