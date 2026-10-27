@@ -78,6 +78,14 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertIn("prevention", audit["missing_facets"])
         self.assertFalse(audit["complete"])
 
+    def test_negative_transition_audit_requires_decision_details(self):
+        plan = planner.analyse("Come gestisci la transizione negativa e la marcatura preventiva?")
+        audit = planner.audit_answer(
+            "I giocatori vicini creano densità nella zona e mantengono la preventiva.", plan
+        )
+        self.assertIn("covered_or_uncovered_ball", audit["missing_details"])
+        self.assertFalse(audit["complete"])
+
     def test_frozen_ten_case_facets_are_not_silently_omitted(self):
         for question, expected in self.CASES:
             with self.subTest(question=question):

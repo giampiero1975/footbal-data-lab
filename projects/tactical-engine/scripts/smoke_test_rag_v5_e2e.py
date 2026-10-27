@@ -315,7 +315,7 @@ def main():
             tactical_queries=retrieval_queries(question,tactical_plan) if tactical_plan else [question]
             for tactical_query in tactical_queries[1:]:
                 sub_embedding=embed.get_query_embedding(tactical_query)
-                sub=coll.query(query_embeddings=[sub_embedding],n_results=12,
+                sub=coll.query(query_embeddings=[sub_embedding],n_results=8,
                                include=["documents","metadatas","distances"])
                 known={row["id"] for row in rows}
                 for cid,doc,meta,dist in zip(sub["ids"][0],sub["documents"][0],sub["metadatas"][0],sub["distances"][0]):
@@ -396,7 +396,7 @@ def main():
                             existing.add(r["id"])
             active_rerank=rerank or CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
             scores=active_rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if (args.targeted_coverage and qid == "fresh_03") or (args.heading_routing and heading_applicable(question)) else r["text"]) for r in rows],
-                                  batch_size=1,show_progress_bar=False)
+                                  batch_size=8 if args.tactical_plan else 1,show_progress_bar=False)
             selected=[];seen=set();dropped=0
             for index in sorted(range(len(rows)),key=lambda i:float(scores[i]),reverse=True):
                 r=rows[index]

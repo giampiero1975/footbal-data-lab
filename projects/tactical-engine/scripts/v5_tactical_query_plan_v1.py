@@ -54,6 +54,23 @@ FACET_GUIDANCE = {
     "relational_superiority": "Distingui superiorità posizionale da relazione socio-affettiva: vicinanze, conoscenza reciproca, appoggi e combinazioni coordinate.",
 }
 
+REQUIRED_DETAILS = {
+    "negative_transition": {
+        "density_or_proximity": ("densità", "prossimità", "vicini"),
+        "covered_or_uncovered_ball": ("palla coperta", "palla scoperta"),
+        "field_zone": ("zona", "campo"),
+        "preventive_structure": ("preventiv",),
+    },
+    "five_lanes": {
+        "five_lane_geometry": ("cinque corridoi", "5 corridoi", "fascia", "half-space"),
+        "residual_structure": ("2+3", "3+2", "struttura residua"),
+    },
+    "substitutions": {
+        "players_in_out": ("esce", "entra", "sostit"),
+        "new_structure": ("struttura", "sistema", "modulo"),
+    },
+}
+
 
 def normal(value: str) -> str:
     return re.sub(r"\s+", " ", value.casefold().replace("–", "-").replace("—", "-")).strip()
@@ -165,7 +182,7 @@ def generation_contract(plan: dict) -> str:
         "senza attribuirla letteralmente alla fonte. Non usare l'assenza di una fonte identica allo scenario come motivo per "
         "omettere la soluzione: applica prudentemente i principi recuperati e segnala solo il limite specifico. "
         "Evita termini anacronistici se esiste un equivalente moderno e chiudi controllando che nessun sottopunto sia rimasto fuori. "
-        + guidance
+        "I seguenti requisiti specifici sono obbligatori, non suggerimenti: " + guidance
     )
 
 
@@ -185,10 +202,17 @@ def audit_answer(answer: str, plan: dict) -> dict:
     }
     missing_facets = [name for name, covered in facet_coverage.items() if not covered]
     missing_operational = [name for name, covered in operational.items() if not covered]
+    detail_coverage = {}
+    for facet in plan["facets"]:
+        for name, alternatives in REQUIRED_DETAILS.get(facet, {}).items():
+            detail_coverage[name] = any(term in text for term in alternatives)
+    missing_details = [name for name, covered in detail_coverage.items() if not covered]
     return {
         "facet_coverage": facet_coverage,
         "operational_coverage": operational,
         "missing_facets": missing_facets,
         "missing_operational": missing_operational,
-        "complete": not missing_facets and len(missing_operational) <= 1,
+        "detail_coverage": detail_coverage,
+        "missing_details": missing_details,
+        "complete": not missing_facets and len(missing_operational) <= 1 and not missing_details,
     }
