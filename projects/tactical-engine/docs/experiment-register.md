@@ -1052,3 +1052,7 @@ report fallimento con soli codici HTTP/rete/timeout/schema, senza contenuti o
 segreti; test 27/27. Decisione: pubblicare la diagnostica, non ripetere la
 chiamata senza nuova autorizzazione esplicita. Stato: smoke **ESEGUITA**,
 copilot live **BLOCCATO**, diagnostica **IMPLEMENTATA**.
+
+### 2026-10-27 — Revisione UI Knowledge Panel per compiti
+
+Attività: separare il pannello monolitico in panoramica, analisi, esplora, biblioteca, monitor FIGC e monitoraggio senza toccare le logiche. Script: `api/knowledge_panel.html`; commit `a78181f3`; report `docs/panel-ui-information-architecture-01.md`. Risultato: blocco JS applicativo invariato e 43 ID preservati in verifica statica; introdotti solo CSS, markup e navigazione UI. Decisione: PR draft senza deploy, collaudo browser e regressione DOM prima di integrare. Stato: **IMPLEMENTATO**; verifica runtime **DA FARE**.
