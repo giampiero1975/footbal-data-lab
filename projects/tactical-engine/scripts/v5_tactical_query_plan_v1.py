@@ -429,10 +429,10 @@ def audit_answer(answer: str, plan: dict) -> dict:
     semantic_issues = []
     clauses = [normal(part) for part in re.split(r"[.;\n]+", answer) if part.strip()]
     if any("palla coperta" in clause and re.search(r"\b(?:scapp|arretr)", clause)
-           for clause in clauses):
+           and not re.search(r"\b(?:sale|salita|risal)", clause) for clause in clauses):
         semantic_issues.append("covered_ball_mapped_to_drop")
     if any("palla scoperta" in clause and re.search(r"\b(?:sale|salita|risal)", clause)
-           for clause in clauses):
+           and not re.search(r"\b(?:scapp|arretr)", clause) for clause in clauses):
         semantic_issues.append("uncovered_ball_mapped_to_step")
     if "counterpress_deadline" in plan.get("scenarios", []):
         if re.search(r"(?:contro-?pressing|attacco spazio).{0,80}\(possesso\)|principio.{0,80}\(possesso\)", text):

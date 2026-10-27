@@ -58,11 +58,14 @@
   tempo medio 254,05 s. Il gate ha intercettato contaminazione di fase e numeri
   inventati, ma tre requisiti erano attivati fuori contesto. Report
   `docs/rag-coverciano-remediation-v8-runtime-01.md`.
-- [ ] **IMPLEMENTATO, runtime DA FARE** V5-COVERCIANO-RAG-REMEDIATION-V9:
+- [x] **ESEGUITO; VALIDATO tecnicamente sui dieci casi** V5-COVERCIANO-RAG-REMEDIATION-V9:
   requisiti condizionati alla domanda, matching relazionale palla
   coperta/scoperta, motivazioni riconosciute semanticamente, numeri ammessi solo
-  se presenti nella traccia e repair senza etichette interne. Validare offline,
-  distribuire sul ramo dedicato e ripetere i dieci casi congelati.
+  se presenti nella traccia e repair senza etichette interne. Runtime 10/10,
+  zero citazioni invalide/troncamenti, media 215,72 s; gate 9/10 e re-audit
+  V9.1 10/10 dopo correzione di un falso positivo sequenziale. Il voto esterno
+  medio >=26/30 resta DA VALIDARE senza spalla. Report
+  `docs/rag-coverciano-remediation-v9-runtime-01.md`.
 - [x] **IMPLEMENTATO** V5-COVERCIANO-RAG-ONLY-ISOLATION-01: flag runtime
   OpenRouter impostato a zero; backend evita la fase reviewing quando la spalla
   e disabilitata; pannello mostra come risposta finale il testo RAG non

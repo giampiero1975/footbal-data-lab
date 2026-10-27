@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-27 — Runtime V9 e chiusura tecnica del set congelato
+
+Attività: terzo rerun differenziale RAG-only delle dieci domande congelate;
+report `docs/rag-coverciano-remediation-v9-runtime-01.md`, risultati
+`evaluation/coverciano-remediation-v9/`. Risultato: 10/10 file, indice 6.410
+invariato, zero citazioni invalide, zero troncamenti, media 215,72 s; gate 9/10.
+Il solo FAIL era un falso positivo: una clausola associava correttamente palla
+scoperta ad arretramento e descriveva una risalita solo successiva. V9.1 rende
+l'audit sensibile alla sequenza; re-audit degli output conservati 10/10, senza
+nuova inferenza. Confronto con i rilievi Gemini congelati: omissioni note ora
+coperte, ma nessun nuovo voto esterno richiesto. Decisione: chiudere la
+remediation tecnica del set; non dichiarare il target medio >=26/30 finché non
+viene valutato esternamente il testo RAG invariato. Stato: V9 **ESEGUITA e
+VALIDATA tecnicamente**; voto esterno **DA VALIDARE**.
+
 ### 2026-10-27 — Runtime V8 e correzione differenziale V9
 
 Attività: rieseguire i dieci casi congelati con gate relazionale fail-closed,

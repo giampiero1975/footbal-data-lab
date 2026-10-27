@@ -122,7 +122,7 @@ class TacticalQueryPlanTests(unittest.TestCase):
             "Trappola del fuorigioco: palla scoperta e palla inattiva, comando del leader."
         )
         answer = (
-            "Su palla coperta la linea scappa e poi sale; su palla scoperta sale. "
+            "Su palla coperta la linea scappa; su palla scoperta sale. "
             "In seguito: su palla scoperta la linea scappa, mentre su palla coperta sale. "
             "Il leader chiama e il portiere copre; su palla inattiva si sale al momento del calcio. "
             + " La squadra protegge porta e profondità con postura coordinata." * 12
@@ -131,6 +131,19 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertIn("covered_ball_mapped_to_drop", audit["semantic_issues"])
         self.assertIn("uncovered_ball_mapped_to_step", audit["semantic_issues"])
         self.assertFalse(audit["complete"])
+
+    def test_offside_audit_accepts_drop_then_conditional_recovery(self):
+        plan = planner.analyse(
+            "Trappola del fuorigioco: palla scoperta e palla inattiva, comando del leader."
+        )
+        answer = (
+            "Su palla scoperta la linea arretra insieme e risale soltanto dopo avere protetto la profondità. "
+            "Su palla coperta sale al gesto tecnico leggibile. Il leader chiama e il portiere copre. "
+            "Su palla inattiva si sale all'istante del calcio. "
+            + " La squadra mantiene postura e copertura coordinate." * 20
+        )
+        audit = planner.audit_answer(answer, plan)
+        self.assertNotIn("uncovered_ball_mapped_to_step", audit["semantic_issues"])
 
     def test_cross_attack_audit_rejects_defensive_phase_contamination(self):
         plan = planner.analyse(

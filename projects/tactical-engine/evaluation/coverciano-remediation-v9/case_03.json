@@ -1,0 +1,252 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv9_03",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "answer": "1. **Coordinazione posturale e gestione dello spazio**: In fase di non possesso su cross, il difensore centrale assume una postura semiaperta con il corpo orientato verso la palla e l'avversario [F3], mantenendo uno sguardo che copre simultaneamente il punto di caduta della traiettoria e il movimento dell'attaccante. La distanza di contatto deve essere calibrata per non commettere fallo in area, posizionandosi tra il portiere e l'avversario se quest'ultimo è in uscita, o a difesa dello specchio del portiere se questi rimane in porta [F4].\n\n2. **Gestione del duello individuale (marcatura a uomo nella zona)**: La marcatura a uomo nella zona richiede al difensore di anteporsi all'avversario con una distanza che permetta un'uscita fluida del portiere, evitando contrasti troppo aggressivi che potrebbero generare rigori [F4]. A differenza della marcatura pura (contatto diretto), qui prevale l'ombra tattica: il difensore oscura la \"luce\" della porta per costringere l'avversario a tirare o passare in zone meno pericolose, proteggendo lo specchio del portiere senza ostacolarne gli interventi [F4].\n\n3. **Lettura della traiettoria e punto di caduta**: Il difensore deve andare sempre sul punto di caduta su palloni che arrivano dall'alto, posizionandosi in diagonale rispetto alla palla per rientrare verso la porta se necessario [F1], [F3]. La lettura efficace della situazione \"in volo\" permette al reparto di compiere movimenti verticali elastici per togliere profondità all'azione avversaria prima che il cross raggiunga l'area [F5].\n\n4. **Ripartizione compiti con il portiere (copertura e uscite)**: Quando il portiere è in uscita, il difensore deve anteporsi correttamente senza essere troppo vicino, creando un blocco che protegge l'uscita del portiere; viceversa, se il portiere rimane in porta, il difensore assume posizione a difesa della porta stessa [F4]. Il portiere deve leggere la situazione tattica per difendere lo spazio oltre che la porta, mentre i difensori curano la copertura dello specchio e delle uscite coordinate [F5], [F6].\n\n5. **Rischio residuo**: Il rischio principale risiede in una protezione errata del portiere (troppo vicina) o in un'uscita non fluida dell'avversario che potrebbe colpire il difensore, portando a sanzioni rigorese; inoltre, se la lettura della traiettoria è sbagliata, il punto di caduta può essere sfruttato per segnare direttamente [F4], [F5].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "09a422323d92ba80c5b5d1c26fbd63c19308fe3d822064611e81ad35af3c10e0",
+          "source": "La tattica nel calcio",
+          "canonical_source": "La tattica nel calcio",
+          "source_relative": "formations-and-systems/La tattica nel calcio.json",
+          "pages": "[1, 2]",
+          "distance": null,
+          "headings": [
+            "Partita Di Calcio"
+          ],
+          "text": "Partita Di Calcio\nCortometraggio d'autore su Cassano! dal Salento Finibus Terrae\nRewwwolution.tv ricevere la palla); in diagonale\n- Difesa e protezione della palla: ad ogni ricezione devo mettere il corpo a protezione della palla; andare sempre in contro alla palla; andare sempre sul punto di caduta su palloni che arrivano dall'alto\n- Passaggio: la precisione determina il vantaggio rispetto alla conduzione della palla: è più veloce; supero più avversari in un colpo solo; determina meno consumo energetico\n- Guida della palla, finta e dribbling\n- Tiro in porta\nNella fase di non possesso palla, deve conoscere:\n- Presa di posizione: in diagonale rispetto alla palla; rientrare verso la porta\n- Marcamento: a uomo (la posizione è determinata dall'avversario); a zona (la posizione è determinata dalla palla)\n- Intercettamento e/o anticipo: contrasto diretto; contrasto indiretto (mettere in zona d'ombra l'avversario)\n- Difesa della porta: difendere il portiere nei suoi interventi; non girarsi in occasioni di possibili tiri degli avversari; copertura di parte della porta con il corpo; non ostacolare il proprio portiere\nI principi di gioco collettivi, in fase di possesso palla sono:\nScaglionamento: i giocatori non devono mai trovarsi in linea, ma devono formare dei triangoli tra di loro."
+        },
+        {
+          "label": "F2",
+          "id": "9dfff114ca25415e111ce3a9d84b003f5164908001d6348672e9a626583e82ca",
+          "source": "contran_uefa-pro",
+          "canonical_source": "contran_uefa-pro",
+          "source_relative": "formations-and-systems/contran_uefa-pro.json",
+          "pages": "[104]",
+          "distance": null,
+          "headings": [
+            "FERNANDO DINIZ - FLUMINENSE"
+          ],
+          "text": "FERNANDO DINIZ - FLUMINENSE\nIl 30 aprile 2022, a sorpresa, il Fluminense decide di richiamarlo per sostituire Abel Braga, dimissionario dopo l'eliminazione dai playoff di Libertadores. Proprio nel club con cui aveva vissuto i momenti più brillanti della sua vita da calciatore, Diniz riesce a cambiare definitivamente la propria reputazione: vince il Campionato Carioca, il primo titolo della sua carriera, guadagnandosi una certa popolarità anche fuori dai confini brasiliani, come avanguardista del \"gioco funzionale\".\nIn Sudamerica, e particolarmente in Brasile, come già scritto, vi è una forte corrente di pensiero che vede la diffusione del gioco di posizione come l'ennesima espressione del colonialismo culturale europeo: in nome di una supposta superiorità razionale, questo modello di gioco mortificherebbe il genio e la creatività dei calciatori, subordinandone il talento al rispetto di precise e invadenti istruzioni sulle zone ideali in cui ricevere palla, sulla postura del corpo e sui tempi e modi di scarico del pallone. Inoltre, i risultati non positivi dell'ultimo commissario tecnico della nazionale brasiliana Tite, vicino al calcio posizionale, hanno accentuato questa polemica. La critica che è stata più menzionata all'ex allenatore brasiliano è sul suo approccio troppo europeo che uccide le soluzioni istintive e imprevedibili di geni al livello di Neymar, Vinícius o Rodrygo.\n35 Matthias Galbiati - Il Fluminense di Fernando Diniz è una festa - www.sportellate.it/2023/05/03/fluminense-fernando-diniz-analisi-brasile"
+        },
+        {
+          "label": "F3",
+          "id": "415d6ac4ae98140e989a095eb5d5fd6a14d356d60f3ed65ff6ca7c0e9e584af5",
+          "source": "Allegati_14112014151551",
+          "canonical_source": "Allegati_14112014151551",
+          "source_relative": "formations-and-systems/Allegati_14112014151551.json",
+          "pages": "[3]",
+          "distance": null,
+          "headings": [
+            "LEGENDA"
+          ],
+          "text": "LEGENDA\nCAPITOLO 4 1-4-4-2 CONTRO IL 1-4-4-2\nAffrontando una squadra posizionata col 1-4-4-2, si evidenziano uno schieramento speculare. Quindi troveremo un 4vs4 a centrocampo, un 4vs2 in difesa e un 2vs4 in attacco (vedi fig.1). Ovvio che in fase di possesso palla ci troveremo in tutte le zone del campo nell'1vs1 (vedi fig.2), situazioni queste, che potremmo definirle negative, con i nostri due difensori centrali, positive con i nostri due attaccanti, mentre tutti gli altri \"duelli\" saranno meno rischiosi da entrambe le parti. Prima di vedere alcuni esempi, nel curare la FASE OFFENSIVA, alcuni gesti tecnici, atteggiamenti, posture, la cura delle due variabili tempo e spazio, sono per me di una fondamentale importanza. Lo stop dovrà essere a seguire e indirizzato e la postura del corpo di chi riceve la palla, dovrà sempre essere posizionata guardando compagno - palla - porta. Fatta questa premessa, il nostro obiettivo è quello di andare a creare situazioni positive, di andare a fare GOAL, con i nostri due att., supportati dai due esterni di c/c e dai due centrocampisti interni, nonché, dalle sovrapposizioni dei nostri terzini per creare la superiorità numerica sulle fasce."
+        },
+        {
+          "label": "F4",
+          "id": "06a71bf5295661988085b721f3f00f33abef84287036024d456dd91ee5e8f49e",
+          "source": "Allegati_17122013122448",
+          "canonical_source": "Allegati_17122013122448",
+          "source_relative": "formations-and-systems/Allegati_17122013122448.json",
+          "pages": "[91, 92, 93, 94]",
+          "distance": 0.27417,
+          "headings": [
+            "4.3 Protezione del portiere da cross"
+          ],
+          "text": "4.3 Protezione del portiere da cross\nIl difensore, dopo un cross dal fondo o traversone dalla trequarti, che vede il proprio portiere impegnato in uscita sulla palla, deve anteporsi tra lui e l'avversario con una distanza che permetta un'uscita fluida e agevole e che ne consenta la protezione.\nDeve fare una sorta di \"blocco\" corretto senza essere troppo aggressivo sull'avversario per non commettere fallo che in area potrebbe essere sanzionato con il calcio di rigore.\nLa protezione del portiere può essere anche a protezione della porta: quando il portiere è in uscita, invece di anteporsi tra lui e l'avversario, prende posizione a difesa della porta.\nE' importante per il difensore conoscere le peculiarità tecniche del proprio portiere in uscita e le caratteristiche morfologiche dello stesso (con un portiere molto alto e abile nelle uscite, il difensore sarà sempre più portato a difesa della porta, viceversa spesso andrà a protezione dell'uscita del proprio portiere).\nprotezione del portiere da cross dal fondo (blocco corretto)\nprotezione del portiere da cross dal fondo (difesa della porta)\nprotezione errata del portiere da cross dal fondo (troppo vicino al portiere)\ndifesa della porta (difensore corre per oscurare la luce della porta)\ndifesa della porta (difensore oscura la luce della porta)"
+        },
+        {
+          "label": "F5",
+          "id": "ad2923bc138d87809d154c100f5499735ad763fcf28515f6185999f16008ea01",
+          "source": "La gestione tattica della gara.",
+          "canonical_source": "La gestione tattica della gara.",
+          "source_relative": "formations-and-systems/La gestione tattica della gara..json",
+          "pages": "[3]",
+          "distance": 0.3581,
+          "headings": [
+            "5. L'azione del reparto difensivo è efficace?"
+          ],
+          "text": "5. L'azione del reparto difensivo è efficace?\n- Il reparto riesce a leggere efficacemente la situazione della palla (in \"volo\": in \"possesso\" -> coperta/scoperta o aperta/chiusa) ed a compiere gli opportuni movimenti in verticale (elastico) allo scopo di togliere profondità all'azione avversaria?\n- Il reparto riesce a leggere efficacemente la situazione della palla e ad attaccare il possessore quando non è più possibile \"scappare\" (il reparto sa difendere la zona prospiciente l'area di rigore)?\n- Il reparto riesce a scalare con la giusta tempistica?\n- Il reparto riesce a reggere collettivamente ed individualmente ed a tamponare efficacemente le rifiniture avversarie (tagli, sponde, cross, combinazioni)?\n6. Il portiere sa leggere la situazione tattica e riesce a difendere lo spazio oltre che la porta quando è necessario?\n7. Quali sono i giocatori all'interno dei vari reparti che non riescono a muoversi tatticamente in modo opportuno ottimizzando tempi e partecipazione alla fase di non possesso (è sufficiente un richiamo od occorre prendere in considerazione un riposizionamento all'interno del campo o la sostituzione con un giocatore a disposizione) ?"
+        },
+        {
+          "label": "F6",
+          "id": "b9856b749b0280d467a76f48d688ef103266be9ef7779c5f5c077ff9b1623a92",
+          "source": "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale.json",
+          "pages": "[1]",
+          "distance": 0.3781,
+          "headings": [
+            "LA DIFESA DELL'AREA DI RIGORE"
+          ],
+          "text": "LA DIFESA DELL'AREA DI RIGORE\nCross, cutback, marcature, coperture, portiere, seconde palle e transizioni.\nEdizione di studio - ottobre 2026. Schemi, esercitazioni e criteri di osservazione proposti dall'autore; non equivalgono a protocolli federali validati."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+        "I movimenti della difesa a 3",
+        "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+        "La gestione tattica della gara.",
+        "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "question_text": "il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+        "facets": [
+          "non_possession",
+          "goalkeeper",
+          "box"
+        ],
+        "scenarios": [
+          "cross_defence"
+        ],
+        "formations": [],
+        "roles": [
+          "portiere"
+        ],
+        "request_parts": [
+          "il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "06a71bf5295661988085b721f3f00f33abef84287036024d456dd91ee5e8f49e",
+        "ad2923bc138d87809d154c100f5499735ad763fcf28515f6185999f16008ea01",
+        "b9856b749b0280d467a76f48d688ef103266be9ef7779c5f5c077ff9b1623a92"
+      ],
+      "tactical_covered": {
+        "non_possession": "06a71bf5295661988085b721f3f00f33abef84287036024d456dd91ee5e8f49e",
+        "goalkeeper": "ad2923bc138d87809d154c100f5499735ad763fcf28515f6185999f16008ea01",
+        "box": "b9856b749b0280d467a76f48d688ef103266be9ef7779c5f5c077ff9b1623a92"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+        "difesa porta cross postura palla uomo contatto punto caduta chiamata portiere portiere",
+        "portiere costruzione superiorita pressione uscita corta palla lunga oppure portiere cross chiamata uscita difensori portiere",
+        "cross attacco area primo palo dischetto secondo palo limite area oppure difesa palla uomo portiere portiere",
+        "fase di non possesso blocco difesa difendere portiere"
+      ],
+      "tactical_anchors": [
+        "punto di caduta",
+        "postura del corpo"
+      ],
+      "tactical_anchor_candidate_ids": [
+        "09a422323d92ba80c5b5d1c26fbd63c19308fe3d822064611e81ad35af3c10e0",
+        "33ac947ef42a0c9903e36c81ba3aa73c88bf3f422029b6be5d0bf1b2eb6b049e",
+        "35afb4a74441637c6cd747ce93fc18acebe33903d7a3a42d241dc939b123866c",
+        "412da0c269e274d9a0e4be56b97fb3b1f9f6664ca1fe9b29c190227666ab55a2",
+        "415d6ac4ae98140e989a095eb5d5fd6a14d356d60f3ed65ff6ca7c0e9e584af5",
+        "421471f367ed4f49d0eef3135bb7552548310d196c35858fa21765319962f4c7",
+        "4457559af397158bc1e684929e9c3d1ee25d9e9591c79e13d7aab45d43575950",
+        "5184ee1a3b8e34886c8b8b7d36443baaa6ca21de11b2244910d063e3fdc8ac7b",
+        "667d0459b5834cb3d709397b41317912ec96cc82267803d8dd6fee13bfc82706",
+        "6c776c7bb3d254058c053475d2704df0d87c6164377da18093feb158a99a563a",
+        "9dfff114ca25415e111ce3a9d84b003f5164908001d6348672e9a626583e82ca",
+        "ad4914d67698d22fa0507b02d5ffd8aee64bd3ab53af66f80dbd289c995883e0"
+      ],
+      "tactical_anchor_reserved_ids": [
+        "09a422323d92ba80c5b5d1c26fbd63c19308fe3d822064611e81ad35af3c10e0",
+        "415d6ac4ae98140e989a095eb5d5fd6a14d356d60f3ed65ff6ca7c0e9e584af5",
+        "9dfff114ca25415e111ce3a9d84b003f5164908001d6348672e9a626583e82ca"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "non_possession": true,
+          "goalkeeper": true,
+          "box": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {
+          "goalkeeper_decision": true,
+          "body_orientation": true,
+          "contact_distance": true,
+          "landing_point": true,
+          "goalkeeper_call": true
+        },
+        "missing_details": [],
+        "semantic_issues": [],
+        "complete": true
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 186.66,
+      "generation": {
+        "total_duration_ns": 169337393284,
+        "load_duration_ns": 1146701,
+        "prompt_eval_duration_ns": 94954560000,
+        "eval_duration_ns": 74184989000,
+        "eval_count": 580,
+        "prompt_eval_count": 2790,
+        "done_reason": "stop",
+        "repair_reasons": [],
+        "quality_gate_passed": true,
+        "quality_gate_missing": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}
