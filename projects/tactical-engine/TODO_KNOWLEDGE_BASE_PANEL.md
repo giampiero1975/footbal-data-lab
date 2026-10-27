@@ -61,3 +61,5 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - **IMPLEMENTATO** su branch `ui/panel-information-architecture-20261027`, commit `a78181f3`: panoramica, navigazione per compiti, sezioni dedicate e dettagli espandibili; invariati JS applicativo, ID, API e token.
 - **DA FARE**: revisione diff, collaudo browser desktop/mobile, verifica interazioni e navigazione, poi decisione sul merge/deploy. Non ripetere benchmark generativi: nessuna logica RAG è cambiata.
 - Evidenza: `docs/panel-ui-information-architecture-01.md`.
+
+- Verifica differenziale UI 2026-10-27: **VALIDATO** solo controllo statico (43 ID, 11 handler, sintassi JS, struttura e deep-link legacy); **DA FARE** browser desktop/mobile, interazioni reali e successiva decisione su merge. Report `docs/panel-ui-information-architecture-01.md`; commit `ccf4db3`.
