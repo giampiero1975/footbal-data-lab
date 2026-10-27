@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-27 — Runtime V8 e correzione differenziale V9
+
+Attività: rieseguire i dieci casi congelati con gate relazionale fail-closed,
+contesto 8.192 e spalla disabilitata. Report
+`docs/rag-coverciano-remediation-v8-runtime-01.md`; risultati
+`evaluation/coverciano-remediation-v8/`. Risultato: 10/10, indice 6.410
+invariato, zero citazioni invalide, zero troncamenti, media 254,05 s; gate PASS
+3/10. Errori reali nei casi 7-10 e falsi negativi di audit nei casi 3, 4 e 6.
+Decisione: V8 non VALIDATA; implementare V9 con attivazione contestuale dei
+requisiti, match relazionale, divieto numeri non richiesti e repair in linguaggio
+tattico naturale, quindi ripetere lo stesso set. Stato: V8 **ESEGUITA, NON
+VALIDATA**; V9 **IMPLEMENTATA**, validazione offline e runtime **DA FARE**.
+
 ### 2026-10-27 — Remediation V8 gate relazionale e selezione repair
 
 Attività: correggere le tre cause residue dimostrate dal runtime V7 senza

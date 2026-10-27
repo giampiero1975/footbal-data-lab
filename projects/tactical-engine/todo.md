@@ -53,6 +53,16 @@
   normalizzazione terminologica. Preparare test offline e un set differenziale
   congelato; nessun nuovo benchmark equivalente prima di una differenza tecnica
   documentata.
+- [x] **ESEGUITO, NON VALIDATO** V5-COVERCIANO-RAG-REMEDIATION-V8-RUNTIME:
+  10/10 casi, zero citazioni invalide e zero troncamenti; gate superato 3/10,
+  tempo medio 254,05 s. Il gate ha intercettato contaminazione di fase e numeri
+  inventati, ma tre requisiti erano attivati fuori contesto. Report
+  `docs/rag-coverciano-remediation-v8-runtime-01.md`.
+- [ ] **IMPLEMENTATO, runtime DA FARE** V5-COVERCIANO-RAG-REMEDIATION-V9:
+  requisiti condizionati alla domanda, matching relazionale palla
+  coperta/scoperta, motivazioni riconosciute semanticamente, numeri ammessi solo
+  se presenti nella traccia e repair senza etichette interne. Validare offline,
+  distribuire sul ramo dedicato e ripetere i dieci casi congelati.
 - [x] **IMPLEMENTATO** V5-COVERCIANO-RAG-ONLY-ISOLATION-01: flag runtime
   OpenRouter impostato a zero; backend evita la fase reviewing quando la spalla
   e disabilitata; pannello mostra come risposta finale il testo RAG non

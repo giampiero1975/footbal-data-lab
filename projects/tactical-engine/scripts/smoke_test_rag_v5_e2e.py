@@ -232,10 +232,26 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
     if obj.get("done_reason")=="length":
         repair_reasons.append("risposta troncata dal limite di generazione")
     if repair_reasons:
+        repair_labels = {
+            "reason": "spiega il perche tattico di ogni scelta",
+            "box_roles": "distingui i compiti difensivi su cross senza importarvi le occupazioni offensive dell'area",
+            "ball_flight_trigger": "usa il tempo di volo del cambio gioco come innesco dello scivolamento",
+            "next_action": "specifica l'azione immediatamente successiva alla ricezione",
+            "between_lines_receiving": "specifica smarcamento alle spalle del centrocampo, postura aperta e ricezione orientata",
+            "covered_or_uncovered_ball": "distingui esplicitamente palla coperta e scoperta",
+            "live_communication": "indica comando verbale o gesto, chi lo da e quando",
+            "cross_attack_contaminated_by_defensive_phase": "resta nell'attacco del cross senza inserire la difesa del cross",
+            "unsupported_rigid_player_numbers": "elimina numeri di maglia non presenti nella domanda",
+        }
+        readable_reasons=[]
+        for reason in repair_reasons:
+            for label, explanation in repair_labels.items():
+                reason=reason.replace(label, explanation)
+            readable_reasons.append(reason)
         repair={"model":model,"stream":False,"think":False,
                 "messages":[payload["messages"][0],payload["messages"][1],
                             {"role":"assistant","content":answer},
-                            {"role":"user","content":"Riscrivi integralmente la risposta senza aggiungere nuove fonti o affermazioni non sostenute. Problemi da correggere: "+"; ".join(repair_reasons)+". Copri prima tutti i requisiti obbligatori, mantieni le citazioni accanto ai principi documentali, elimina formule astratte e resta entro il limite."}],
+                            {"role":"user","content":"Riscrivi integralmente la risposta senza aggiungere nuove fonti o affermazioni non sostenute. Problemi da correggere: "+"; ".join(readable_reasons)+". Copri prima tutti i requisiti obbligatori, mantieni le citazioni accanto ai principi documentali, elimina formule astratte e resta entro il limite."}],
                 "options":options}
         request=Request("http://127.0.0.1:11434/api/chat",data=json.dumps(repair,ensure_ascii=False).encode(),headers={"Content-Type":"application/json"},method="POST")
         with urlopen(request,timeout=timeout) as response:

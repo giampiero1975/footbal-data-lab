@@ -212,6 +212,7 @@ def analyse(question: str) -> dict:
             request_parts.append(part)
     scenarios = [name for name, cues in SCENARIOS.items() if all(cue in query for cue in cues)]
     return {
+        "question_text": query,
         "facets": facets,
         "scenarios": scenarios,
         "formations": formations,
@@ -349,8 +350,20 @@ def generation_contract(plan: dict) -> str:
     guidance = " ".join(FACET_GUIDANCE[facet] for facet in plan["facets"] if facet in FACET_GUIDANCE)
     guidance += " " + " ".join(SCENARIO_GUIDANCE[name] for name in plan.get("scenarios", []))
     mandatory = []
+    question_text = plan.get("question_text", "")
     for facet in plan["facets"]:
-        mandatory.extend(REQUIRED_DETAILS.get(facet, {}).keys())
+        details = REQUIRED_DETAILS.get(facet, {})
+        for name in details:
+            if name == "ball_flight_trigger" and not any(
+                    cue in question_text for cue in ("cambio gioco", "tempo di volo", "palla viaggia")):
+                continue
+            if name in ("between_lines_receiving", "next_action") and not any(
+                    cue in question_text for cue in ("tra le linee", "successiv", "dopo la ricezione", "attacco diretto")):
+                continue
+            if name == "box_roles" and not any(
+                    cue in question_text for cue in ("riempimento", "attacco del primo palo", "dischetto", "secondo palo")):
+                continue
+            mandatory.append(name)
     for scenario in plan.get("scenarios", []):
         mandatory.extend(SCENARIO_DETAILS.get(scenario, {}).keys())
     mandatory_text = ", ".join(dict.fromkeys(mandatory)) or "copertura integrale della domanda"
@@ -367,7 +380,7 @@ def generation_contract(plan: dict) -> str:
         "Evita termini anacronistici se esiste un equivalente moderno e chiudi controllando che nessun sottopunto sia rimasto fuori. "
         "Non mostrare nomi tecnici del controllo interno, non aggiungere una sezione di verifica e non assegnare numeri di maglia se lo scenario non li fornisce. "
         f"Il controllo finale deve verificare esplicitamente: {mandatory_text}. "
-        "I seguenti requisiti specifici sono obbligatori, non suggerimenti. Mantieni l'intera risposta entro 340 parole, "
+        "I seguenti requisiti specifici sono obbligatori, non suggerimenti. Mantieni l'intera risposta entro 420 parole, "
         "accorpa i criteri in una matrice o in punti compatti e non ripetere la stessa griglia per concetti equivalenti: " + guidance
     )
 
@@ -383,15 +396,29 @@ def audit_answer(answer: str, plan: dict) -> dict:
         "who": bool(re.search(r"\b(?:portiere|terzino|braccetto|centrale|mediano|mezzala|ala|esterno|punta|centravanti|squadra|reparto)\b", text)),
         "where": any(cue in text for cue in ("spazio", "zona", "fascia", "corridoio", "area", "linea")),
         "trigger": any(cue in text for cue in ("quando", "nel momento", "se ", "alla perdita", "sul passaggio", "durante")),
-        "reason": any(cue in text for cue in ("perché", "perche", "in modo da", "così da", "obiettivo", "costringe")),
+        "reason": any(cue in text for cue in ("perché", "perche", "in modo da", "così da", "obiettivo", "costringe",
+                                                   "serve a", "consente", "evita", "riduce", "impedisce", "garantisce")),
         "coverage_or_risk": any(cue in text for cue in ("copertura", "preventiva", "rischio", "equilibrio", "protezione")),
     }
     missing_facets = [name for name, covered in facet_coverage.items() if not covered]
     missing_operational = [name for name, covered in operational.items() if not covered]
     detail_coverage = {}
+    question_text = plan.get("question_text", "")
     for facet in plan["facets"]:
         for name, alternatives in REQUIRED_DETAILS.get(facet, {}).items():
-            detail_coverage[name] = any(term in text for term in alternatives)
+            if name == "ball_flight_trigger" and not any(
+                    cue in question_text for cue in ("cambio gioco", "tempo di volo", "palla viaggia")):
+                continue
+            if name in ("between_lines_receiving", "next_action") and not any(
+                    cue in question_text for cue in ("tra le linee", "successiv", "dopo la ricezione", "attacco diretto")):
+                continue
+            if name == "box_roles" and not any(
+                    cue in question_text for cue in ("riempimento", "attacco del primo palo", "dischetto", "secondo palo")):
+                continue
+            if name == "covered_or_uncovered_ball":
+                detail_coverage[name] = bool(re.search(r"palla.{0,18}(?:coperta|scoperta)", text))
+            else:
+                detail_coverage[name] = any(term in text for term in alternatives)
     for scenario in plan.get("scenarios", []):
         for name, alternatives in SCENARIO_DETAILS.get(scenario, {}).items():
             detail_coverage[name] = any(term in text for term in alternatives)
@@ -417,7 +444,8 @@ def audit_answer(answer: str, plan: dict) -> dict:
         semantic_issues.append("cross_attack_contaminated_by_defensive_phase")
     if re.search(r"\b(?:goalkeeper_decision|third_man_sequence|box_roles|next_action|between_lines_receiving|transition_balance|emotional_effect)\b", text):
         semantic_issues.append("internal_audit_labels_exposed")
-    if re.search(r"\b(?:n[.°]?\s*|giocatore\s+)(?:2|3|4|5|6|7|8|9|10|11)\b", text) and not plan.get("formations"):
+    if re.search(r"\b(?:n[.°]?\s*|giocatore\s+|#)(?:2|3|4|5|6|7|8|9|10|11)\b", text) and not re.search(
+            r"\b(?:n[.°]?\s*|giocatore\s+|#)(?:2|3|4|5|6|7|8|9|10|11)\b", question_text):
         semantic_issues.append("unsupported_rigid_player_numbers")
     if plan.get("scenarios") and len(text.split()) < 150:
         semantic_issues.append("complex_answer_too_short")
