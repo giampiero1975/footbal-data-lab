@@ -55,3 +55,9 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - [x] Integrare vista Qualità operativa con worker, coda, job, errori e latenze persistenti.
 - [x] Riprogettare e collaudare la UX pubblica con flusso Analisi → RAG/fonti → copilot → risposta finale, biblioteca e diagnostica (`a77420e`).
 - [x] Integrare catalogo FIGC e stati di scoperta/download/presenza nel corpus — **VALIDATO e INTEGRATO**; conversione e ingestion restano separate (`docs/figc-catalog-panel-integration-01.md`).
+
+## 2026-10-27 — Riorganizzazione UI del pannello
+
+- **IMPLEMENTATO** su branch `ui/panel-information-architecture-20261027`, commit `a78181f3`: panoramica, navigazione per compiti, sezioni dedicate e dettagli espandibili; invariati JS applicativo, ID, API e token.
+- **DA FARE**: revisione diff, collaudo browser desktop/mobile, verifica interazioni e navigazione, poi decisione sul merge/deploy. Non ripetere benchmark generativi: nessuna logica RAG è cambiata.
+- Evidenza: `docs/panel-ui-information-architecture-01.md`.
