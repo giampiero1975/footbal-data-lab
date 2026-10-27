@@ -123,6 +123,27 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertIn("tempo volo", queries[1])
         self.assertIn("mediano schermo", queries[1])
 
+    def test_scenario_exact_anchors_are_bounded(self):
+        plan = planner.analyse(
+            "Contro-pressing: indica il tempo massimo e la marcatura preventiva."
+        )
+        anchors = planner.retrieval_anchors(plan)
+        self.assertIn("regola dei cinque secondi", anchors)
+        self.assertLessEqual(len(anchors), 4)
+
+    def test_anchor_reservation_keeps_semantic_order_and_source_diversity(self):
+        rows = [
+            {"id": "a", "source": "one"},
+            {"id": "b", "source": "one"},
+            {"id": "c", "source": "two"},
+            {"id": "d", "source": "base"},
+        ]
+        revised, reserved = planner.reserve_anchor_candidates(
+            rows, [8, 9, 7, 10], [rows[3], rows[0]], ["a", "b", "c"], 3
+        )
+        self.assertEqual(reserved, ["b", "c"])
+        self.assertEqual([row["id"] for row in revised], ["b", "c", "d"])
+
 
 if __name__ == "__main__":
     unittest.main()

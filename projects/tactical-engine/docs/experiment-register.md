@@ -15,7 +15,11 @@ incompleti, due troncamenti e errori semantici residui nei casi 5, 6, 9 e 10.
 Decisione: V6 non VALIDATA e target 26/30 non dimostrato. Correzione V7:
 scenari generici, query prioritarie, vincoli decisionali, audit relazionale e
 singola rigenerazione su omissione/troncamento. Stato: V6 **ESEGUITA, NON
-VALIDATA**; V7 **IMPLEMENTATA**, validazione offline e runtime **DA FARE**.
+VALIDATA**. Primo gate retrieval-only 4/4: ha rilevato che passaggi esatti gia
+presenti nel corpus non entravano nel contesto; aggiunta espansione bounded per
+frasi esatte con massimo tre riserve sottoposte al reranker. Suite aggiornata
+39/39. V7 **IMPLEMENTATA e VALIDATA offline**; nuovo gate retrieval e runtime
+**DA FARE**.
 
 ### 2026-10-26 — Remediation autonoma RAG sui dieci casi Coverciano
 

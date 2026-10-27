@@ -26,7 +26,8 @@ from v5_source_hybrid_rank_v4 import select_source as hybrid_source_select
 from v5_structural_scenario_routing_v1 import reserve as structural_reserve
 from v5_tactical_query_plan_v1 import (analyse as tactical_analyse,
     audit_answer as tactical_audit_answer, diversify as tactical_diversify,
-    generation_contract, retrieval_queries)
+    generation_contract, reserve_anchor_candidates, retrieval_anchors,
+    retrieval_queries)
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -337,6 +338,24 @@ def main():
                                  "distance":float(dist),
                                  "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
                     known.add(cid)
+            tactical_anchors=retrieval_anchors(tactical_plan) if tactical_plan else []
+            tactical_anchor_candidate_ids=[]
+            for anchor in tactical_anchors:
+                anchored=coll.get(where_document={"$contains":anchor},limit=8,
+                                  include=["documents","metadatas"])
+                known={row["id"] for row in rows}
+                for cid,doc,meta in zip(anchored["ids"],anchored["documents"],anchored["metadatas"]):
+                    tactical_anchor_candidate_ids.append(cid)
+                    if cid in known:
+                        continue
+                    raw=meta.get("raw_text") or doc
+                    rows.append({"id":cid,"source":meta["source"],
+                                 "source_relative":meta.get("source_relative"),
+                                 "pages":meta.get("page_numbers"),"text":doc,
+                                 "headings":heading_list(meta.get("headings")),
+                                 "distance":None,
+                                 "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+                    known.add(cid)
             source_hint = None
             named_sources=[]
             if args.source_aware:
@@ -451,8 +470,11 @@ def main():
                 structural_signals={key:sorted(value) for key,value in structural_signals.items()}
             tactical_reserved=[]
             tactical_covered={}
+            tactical_anchor_reserved=[]
             if tactical_plan:
                 selected,tactical_reserved,tactical_covered=tactical_diversify(rows,scores,selected,tactical_plan,args.limit)
+                selected,tactical_anchor_reserved=reserve_anchor_candidates(
+                    rows,scores,selected,tactical_anchor_candidate_ids,args.limit)
                 del active_rerank
                 gc.collect()
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
@@ -473,7 +495,9 @@ def main():
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "structural_reserved_ids":structural_reserved,"structural_signals":structural_signals,
                    "tactical_plan":tactical_plan,"tactical_reserved_ids":tactical_reserved,"tactical_covered":tactical_covered,
-                   "tactical_queries":tactical_queries,
+                   "tactical_queries":tactical_queries,"tactical_anchors":tactical_anchors,
+                   "tactical_anchor_candidate_ids":sorted(set(tactical_anchor_candidate_ids)),
+                   "tactical_anchor_reserved_ids":tactical_anchor_reserved,
                    "tactical_answer_audit":tactical_answer_audit,
                    "embedding_model_released_before_generation":embedding_model_released,
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],

@@ -104,3 +104,10 @@ vincoli decisionali, audit relazionale e una sola rigenerazione correttiva
 quando mancano requisiti o l'output e troncato. Prima del nuovo runtime devono
 passare test offline e un controllo retrieval-only; solo dopo e ammesso un
 rerun differenziale.
+
+Il primo controllo retrieval-only sui casi 5, 6, 9 e 10 ha mostrato che la
+ricerca semantica continuava a saltare passaggi esistenti nel corpus: manuali su
+`tempo di volo`, fonti sulla regola dei cinque/sei secondi e documenti espliciti
+su palla coperta/scoperta. La V7 aggiunge quindi un'espansione bounded per frasi
+esatte e riserva al massimo tre fonti, sempre sottoposte al reranker e senza
+regole legate agli ID del benchmark. Il runtime generativo resta DA FARE.

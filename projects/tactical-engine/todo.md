@@ -23,11 +23,15 @@
   citazioni invalide, ma quattro audit incompleti, due risposte troncate ed
   errori semantici residui: target >=26/30 non dimostrato. Report:
   `docs/rag-coverciano-remediation-v6-runtime-01.md`.
-- [ ] **IMPLEMENTATO, DA VALIDARE offline e runtime**
+- [ ] **IMPLEMENTATO e VALIDATO offline; runtime DA FARE**
   V5-COVERCIANO-RAG-REMEDIATION-V7-01: scenari generici, query prioritarie,
   vincoli decisionali, audit relazionale e singola rigenerazione correttiva su
   omissione o troncamento. Completare suite, controllo retrieval-only, commit e
   rerun differenziale prima di qualunque validazione del target 26/30.
+  Primo retrieval-only 4/4 ha dimostrato una seconda causa: passaggi esatti
+  presenti nel corpus non raggiungevano il contesto. Espansione bounded per
+  frasi esatte e riserva massima di tre fonti aggiunte; suite aggiornata 39/39.
+  Ripetere il gate retrieval-only dopo deploy, quindi autorizzare il runtime.
   Storicamente l'attività chiedeva di correggere senza spalla la
   scomposizione della domanda, il retrieval per sottoproblemi/fase, il gate di
   copertura, la risposta applicativa chi-cosa-dove-quando-perché-copertura e la

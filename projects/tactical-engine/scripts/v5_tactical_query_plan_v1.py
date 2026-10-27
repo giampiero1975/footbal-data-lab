@@ -181,6 +181,17 @@ SCENARIO_DETAILS = {
     },
 }
 
+SCENARIO_ANCHORS = {
+    "build_out": ("terzo uomo", "portiere"),
+    "cross_defence": ("punto di caduta", "palla e uomo"),
+    "lateral_shift": ("tempo di volo", "lato debole"),
+    "counterpress_deadline": ("regola dei cinque secondi", "entro i 6 secondi", "marcatura preventiva"),
+    "between_lines": ("tra le linee", "terzo uomo"),
+    "cross_attack": ("primo palo", "secondo palo", "dischetto"),
+    "offside_trap": ("palla scoperta", "palla inattiva"),
+    "game_management": ("cambio del sistema di gioco", "comunicazione efficace"),
+}
+
 
 def normal(value: str) -> str:
     return re.sub(r"\s+", " ", value.casefold().replace("–", "-").replace("—", "-")).strip()
@@ -239,6 +250,41 @@ def retrieval_queries(question: str, plan: dict, maximum: int = 5) -> list[str]:
         if len(queries) >= maximum:
             break
     return queries
+
+
+def retrieval_anchors(plan: dict, maximum: int = 4) -> list[str]:
+    """Return bounded exact phrases used only to widen the candidate pool."""
+    anchors = []
+    for scenario in plan.get("scenarios", []):
+        for anchor in SCENARIO_ANCHORS.get(scenario, ()):
+            if anchor not in anchors:
+                anchors.append(anchor)
+            if len(anchors) >= maximum:
+                return anchors
+    return anchors
+
+
+def reserve_anchor_candidates(rows: list[dict], scores, selected: list[dict],
+                              candidate_ids: list[str], limit: int, maximum: int = 3):
+    """Reserve the best exact-anchor candidates without bypassing reranking."""
+    allowed = set(candidate_ids)
+    ranked = sorted(
+        (i for i, row in enumerate(rows) if row["id"] in allowed),
+        key=lambda i: float(scores[i]), reverse=True,
+    )
+    reserved = []
+    used_sources = set()
+    for index in ranked:
+        row = rows[index]
+        source = row.get("source")
+        if source in used_sources:
+            continue
+        reserved.append(row)
+        used_sources.add(source)
+        if len(reserved) >= maximum:
+            break
+    reserved_ids = {row["id"] for row in reserved}
+    return (reserved + [row for row in selected if row["id"] not in reserved_ids])[:limit], sorted(reserved_ids)
 
 
 def row_facets(row: dict) -> set[str]:
