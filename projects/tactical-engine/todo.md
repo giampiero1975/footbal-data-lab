@@ -74,9 +74,12 @@
   sostituzioni triple generiche. Runtime: 10/10, zero troncamenti/citazioni
   invalide, gate 8/10; audit umano ha rilevato altri due falsi PASS nei casi 8
   e 10. Report `docs/rag-coverciano-remediation-v10-runtime-01.md`.
-- [ ] **IMPLEMENTATO; runtime differenziale DA FARE** V10.1: sanificazione
+- [x] **ESEGUITO e VALIDATO tecnicamente** V10.1/V10.2: sanificazione
   sottrattiva degli artefatti, numeri introdotti con “es.” e trasformazioni di
-  ruolo incoerenti. Ripetere soltanto i casi 5, 6, 8 e 10.
+  ruolo incoerenti. Rerun 5/6/8 PASS; caso 10 corretto e re-audit PASS dopo
+  eliminazione di un falso negativo singolare/plurale. Set logico finale 10/10.
+  Prossimo cancello: media Gemini >=28/30 su almeno dieci domande inedite,
+  risposta RAG invariata e spalla disabilitata.
 - [x] **IMPLEMENTATO** V5-COVERCIANO-RAG-ONLY-ISOLATION-01: flag runtime
   OpenRouter impostato a zero; backend evita la fase reviewing quando la spalla
   e disabilitata; pannello mostra come risposta finale il testo RAG non

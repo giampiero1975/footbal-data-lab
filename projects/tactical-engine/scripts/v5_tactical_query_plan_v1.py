@@ -92,7 +92,7 @@ REQUIRED_DETAILS = {
         "open_vs_restart": ("palla inattiva", "punizione", "gioco aperto"),
     },
     "communication": {
-        "live_communication": ("comando", "parola", "gesto", "segnale"),
+        "live_communication": ("comando", "comandi", "parola", "parole", "gesto", "gesti", "segnale", "segnali"),
     },
     "psychology": {
         "observable_psychology": ("ansia", "fiducia", "responsabil", "chiarezza", "sicurezza"),
@@ -176,7 +176,7 @@ SCENARIO_DETAILS = {
     "game_management": {
         "concrete_role_change": ("esce", "entra", "scala", "si abbassa", "si alza"),
         "transition_balance": ("seconda palla", "profondità", "preventiv"),
-        "live_message": ("comando", "parola", "gesto", "messaggio"),
+        "live_message": ("comando", "comandi", "parola", "parole", "gesto", "gesti", "messaggio"),
         "emotional_effect": ("fiducia", "chiarezza", "sicurezza", "ansia", "responsabil"),
     },
 }

@@ -2,6 +2,18 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-27 — Chiusura differenziale V10.1/V10.2
+
+Attività: rerun esclusivo dei casi 5, 6, 8 e 10 dopo gli errori V10. Risultato:
+5/6/8 PASS; caso 10 rigenerato una seconda volta con geometria coerente e senza
+numeri inventati. Il FAIL residuo dipendeva solo dall'audit, che riconosceva
+`comando/segnale` ma non `comandi/segnali`; re-audit dopo correzione PASS.
+Nessuna nuova inferenza per gli altri casi. Decisione: set logico finale 10/10
+VALIDATO tecnicamente; aprire il cancello esterno con almeno dieci domande
+inedite Gemini, risposta RAG invariata, spalla disabilitata e soglia media
+>=28/30. Stato: V10.1/V10.2 **ESEGUITA e VALIDATA tecnicamente**; voto esterno
+**DA FARE**.
+
 ### 2026-10-27 — Terzo giro V10 e correzione mirata V10.1
 
 Attività: terzo rerun RAG-only 10/10 con gate di contaminazione rafforzato;
