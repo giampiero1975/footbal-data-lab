@@ -179,6 +179,24 @@ def unload_ollama_model(model, timeout=30):
         return True
     except (HTTPError,URLError,TimeoutError,json.JSONDecodeError):
         return False
+def sanitize_tactical_output(answer):
+    """Remove exposed audit artefacts and one self-contradictory surface form.
+
+    The sanitizer only deletes/rephrases material already present; it never
+    adds tactical claims or citations.
+    """
+    labels=("goalkeeper_decision", "third_man_sequence", "box_roles", "next_action",
+            "between_lines_receiving", "transition_balance", "emotional_effect",
+            "field_zone", "live_message", "density_or_proximity")
+    cleaned=answer
+    for label in labels:
+        cleaned=re.sub(rf"\s*\({re.escape(label)}\)", "", cleaned, flags=re.I)
+        cleaned=re.sub(rf"\b{re.escape(label)}\b\s*[:=-]?\s*", "", cleaned, flags=re.I)
+    cleaned=re.sub(r"scivol\w*\s+all['’]indietro\s+traslando\s+lateralmente",
+                   "trasli lateralmente", cleaned, flags=re.I)
+    return cleaned
+
+
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,
          num_predict=0,context_window=8192,keep_alive=None,tactical_plan=None):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
@@ -209,7 +227,7 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
     with urlopen(request,timeout=timeout) as response:
         obj=json.load(response)
     msg=obj.get("message") or {}
-    answer=msg.get("content","")
+    answer=sanitize_tactical_output(msg.get("content",""))
     first_answer=answer
     first_obj=obj
     repair_reasons=[]
@@ -247,6 +265,7 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
             "wide_defender_given_midfielder_screen": "separa il quarto/quinto che esce sul ricevente dal mediano che scherma l'imbucata",
             "edge_of_box_role_inverted": "assegna il limite area alla respinta e alla preventiva, non a evitare tiri della propria squadra",
             "generic_triple_substitution": "proponi una trasformazione coerente con cambi ruolo o sostituzioni nominate una per una",
+            "incoherent_role_transformation": "ricostruisci coerentemente la linea a tre, i quinti e le due punte senza trasformare i terzini in mediani generici",
             "internal_audit_labels_exposed": "rimuovi tutte le etichette tecniche del controllo interno",
         }
         readable_reasons=[]
@@ -262,7 +281,7 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
         request=Request("http://127.0.0.1:11434/api/chat",data=json.dumps(repair,ensure_ascii=False).encode(),headers={"Content-Type":"application/json"},method="POST")
         with urlopen(request,timeout=timeout) as response:
             repair_obj=json.load(response)
-        repair_answer=(repair_obj.get("message") or {}).get("content","")
+        repair_answer=sanitize_tactical_output((repair_obj.get("message") or {}).get("content",""))
         # Fail closed on the two observed cross-phase sentence families when the
         # corrective generation repeats them. This removes claims; it never adds any.
         repair_answer=re.sub(r"In caso di passaggio[^\n]*?(?:esce in pressione|ruolo di pressante)[^\n]*?\[F3\]\.[ ]*", "", repair_answer, flags=re.I)

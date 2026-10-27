@@ -177,6 +177,14 @@ class TacticalQueryPlanTests(unittest.TestCase):
         management_answer = "Scambio simultaneo di tre giocatori con tre riserve, poi comando e copertura. " * 20
         self.assertIn("generic_triple_substitution",
                       planner.audit_answer(management_answer, management)["semantic_issues"])
+        role_answer = "Due esterni difensivi entrano come centrocampisti centrali; comando e copertura. " * 20
+        self.assertIn("incoherent_role_transformation",
+                      planner.audit_answer(role_answer, management)["semantic_issues"])
+
+        attack = planner.analyse("Attacco del cross con primo palo, dischetto, secondo palo e limite area.")
+        numbered = "L'esterno, es. 7, serve il compagno, es. 10, al dischetto. " * 20
+        self.assertIn("unsupported_rigid_player_numbers",
+                      planner.audit_answer(numbered, attack)["semantic_issues"])
 
     def test_scenario_query_is_prioritised(self):
         plan = planner.analyse("Scivolamento del reparto su cambio gioco con mediano e lato debole.")

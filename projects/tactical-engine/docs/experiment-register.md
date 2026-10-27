@@ -2,6 +2,18 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-27 — Terzo giro V10 e correzione mirata V10.1
+
+Attività: terzo rerun RAG-only 10/10 con gate di contaminazione rafforzato;
+report `docs/rag-coverciano-remediation-v10-runtime-01.md`, risultati
+`evaluation/coverciano-remediation-v10/`. Risultato: indice 6.410 invariato,
+zero troncamenti/citazioni invalide, media 224,95 s, gate PASS 8/10. Casi 5 e 6
+respinti; audit umano ha inoltre respinto i falsi PASS 8 (numeri inventati) e 10
+(ruoli incoerenti). Decisione: V10 non VALIDATA; V10.1 ripete esclusivamente i
+quattro casi interessati dopo sanificazione sottrattiva e nuovi gate. Stato:
+V10 **ESEGUITA, NON VALIDATA**; V10.1 **IMPLEMENTATA**, validazione/runtime
+**DA FARE**.
+
 ### 2026-10-27 — Preparazione terzo giro V10
 
 Attività: audit manuale-applicativo dei dieci testi V9 prima di ripetere il test.

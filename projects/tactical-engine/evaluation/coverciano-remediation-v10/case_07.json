@@ -1,0 +1,224 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv10_07",
+      "question": "Il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. Ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+      "answer": "1. **Smarcamento e Postura**: Il trequartista o l'esterno che viene dentro il campo deve adottare una postura aperta per ricevere palla, offrendosi alla marcatura avversaria per liberarsi dal controllo [F3]. Lo smarcamento avviene specificamente alle spalle del centrocampo avversario tramite movimenti ad elastico, cambi di direzione o inserimenti verticali che modificano la posizione rispetto ai compagni, creando spazi liberi [F2], [F6]. La ricezione deve essere orientata verso il compagno o la porta per impostare i tempi dell'azione [F3].\n\n2. **Modalità di Trasmissione**: Una volta nella zona di rifinitura (tra linea difensiva e centrocampo avversario), la scelta della giocata dipende dalla distanza verso porta: maggiore è la distanza, si usano giocate in profondità; minore è la distanza, si cerca l'aggiramento o fraseggio stretto [F1]. Le modalità includono passaggi filtranti, a muro, con sponda o in superiorità numerica per rompere la linea difensiva [F1]. La palla deve muoversi rapidamente in senso verticale per rifinire e concludere nel minor tempo possibile [F2].\n\n3. **Sviluppo Offensivo**: Dopo il passaggio, si procede all'accelerazione del possesso con cambi di ritmo aggressivi verso la linea difensiva avversaria [F2]. Il comportamento successivo prevede l'attacco diretto della linea difensiva o lo scarico laterale per creare superiorità numerica [F1]. Se la difesa è concentrata in avanti, il trequartista favorisce la profondità all'indietro (sostegno offensivo) evitando l'intasamento degli spazi [F6]. Gli esterni che ricevono palla possono effettuare corse di deviazione o dribbling vincente per permettere al compagno di concludere sia sotto porta che dalla media distanza [F3], [F1].\n\n**Rischio Residuo**: Il limite principale è l'intasamento degli spazi nei pressi della metà campo avversaria, che può portare a errori avversari ma espone la squadra alla perdita del possesso se il pressing difensivo avversario è attivo e basato su anticipi o copertura degli spazi [F5]. La scelta errata tra giocate in profondità e fraseggio stretto senza valutare correttamente la distanza porta all'inefficacia dell'azione di rifinitura [F1].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "a4f5a06d9fc10e6c34c6bc09f070362a632f120b2276e0bc4a1c0067224bb9cd",
+          "source": "Allegati_1412201193520",
+          "canonical_source": "Allegati_1412201193520",
+          "source_relative": "formations-and-systems/Allegati_1412201193520.json",
+          "pages": "[10]",
+          "distance": 0.29245,
+          "headings": [
+            "TIPI DI RIFINITURA"
+          ],
+          "text": "TIPI DI RIFINITURA\nDopo avere fornito ai calciatori le informazioni relative ai segnali ed al tempo di esecuzione, bisogna spiegare quali sono i tipi di rifinitura e , soprattutto, quando utilizzarli. Il calciatore deve avere un bagaglio tecnicotattico molto ampio che sia omogeneo con quello del compagno. Egli deve agire sempre in maniera consapevole e la consapevolezza è data dalla conoscenza. Non bisogna mai pensare che i calciatori , per quanto bravi e importanti possano essere, non abbiano più niente da imparare!\nLa rifinitura può essere fatta attraverso:\n-  Cross\n-  Passaggio filtrante\n-  Passaggio a muro\n-  Passaggio con sponda\n-  Passaggio in superiorità numerica\n-  Lancio\nL'allenatore deve dare delle informazioni che siano chiare per tutti i giocatori sulle modalità di esecuzione e, soprattutto, sulle zone di campo in cui metterle in atto.\nIl primo concetto da trasferire ai calciatori è quello che, una volta arrivati in zona di rifinitura, devono valutare la distanza che intercorre tra la linea di difesa e la porta avversaria : maggiore è la distanza e più si potranno utilizzare giocate in profondità, minore è la distanza e più si dovrà cercare l'aggiramento o il fraseggio stretto.\nA questa informazione il calciatore deve, quindi , associare la corretta rifinitura."
+        },
+        {
+          "label": "F2",
+          "id": "6e2a92b8c4a7e00eb21aa49439ceec6ef21316e54d50676a08017479bedca27a",
+          "source": "preview1",
+          "canonical_source": "preview1",
+          "source_relative": "formations-and-systems/preview1.json",
+          "pages": "[6, 7]",
+          "distance": 0.35336,
+          "headings": [
+            "POSSESSO DI PALLA SEMPLICE (ORIZZONTALE) E COMPLESSO (VERTICALE)"
+          ],
+          "text": "POSSESSO DI PALLA SEMPLICE (ORIZZONTALE) E COMPLESSO (VERTICALE)\nVi è quindi un passaggio da una fase d'attesa del possesso palla (l'avanzamento di uomini e palla in zone utili alla rifinitura nei pressi della difesa rivale e la ricerca/creazione di spazi liberi e situazioni di sovrannumero), ad una fase di accelerazione del possesso palla. In questa fase occorre infatti imprimere un vero e proprio cambio di ritmo, aggredendo gli spazi tramite movimenti complessi che hanno la peculiarità di modificare nettamente la posizione in campo rispetto ai compagni da parte di chi li compie (sovrapposizioni, inserimenti, tagli a divergere o a convergere). La palla deve muoversi con ancora più rapidità in senso prevalentemente verticale, diminuendo il numero di tocchi per ogni possessore, in modo da rifinire e concludere l'azione nel minor tempo possibile. In seguito a quanto esposto, la manovra appare chiaramente strutturata in due sottofasi ben distinte: la costruzione del gioco e la sua rifinitura."
+        },
+        {
+          "label": "F3",
+          "id": "c5643bade8fb00169f6772ddd176cdf7e8132d6427ef9c6be36d0996c481e8de",
+          "source": "il_trequartista_Clagluna",
+          "canonical_source": "il_trequartista_Clagluna",
+          "source_relative": "formations-and-systems/il_trequartista_Clagluna.json",
+          "pages": "[2]",
+          "distance": 0.28281,
+          "headings": [
+            "Prerogative del trequartista"
+          ],
+          "text": "Prerogative del trequartista\nPremesso che i l trequartista debba essere dotato di qualità tattiche di rilievo per affrontare le varie situazioni di gioco in cui può venirsi a trovare, deve essere dotato anche di un eccellente bagaglio tecnico che gli permetta l'attuazione del suo compito primario: la rifinitura. I passaggi smarcanti per i compagni, da effettuare di prima intenzione (tempismo e precisione) o dopo aver condotto palla (abilità di controllo) o a seguito di dribbling vincente (capacità di creare superiorità numerica), dovranno essere eseguiti facendo leva sull'intuito e la fantasia, doti queste indispensabili per operare in spazi stretti. Per compiti specifici, ma anche per liberarsi della marcatura, dovrà sapersi offrire alla difesa per ricevere la palla ed impostare il gioco dettandone i tempi. Sfruttando il movimento e gli spazi creati dai compagni, il trequartista deve ricercare anche la conclusione, sia sotto porta sia dalla media distanza (fig. 3, 4 e 5)."
+        },
+        {
+          "label": "F4",
+          "id": "bf359d4a0c04434c42f6e92a9f971d845594ca663f0d9624bc49e6f73c65aa07",
+          "source": "rausse_match-analyst",
+          "canonical_source": "rausse_match-analyst",
+          "source_relative": "rausse_match-analyst.json",
+          "pages": "[21]",
+          "distance": 0.31571,
+          "headings": [
+            "5.2 Sviluppo e Rifinitura"
+          ],
+          "text": "5.2 Sviluppo e Rifinitura\nTuttavia, anche a difesa schierata viene cercata la palla diretta su uno dei due attaccanti, aitati anche in questo caso dai terzini, che fissando in ampiezza, aiutano ad allargare le difese avversarie."
+        },
+        {
+          "label": "F5",
+          "id": "857a5369744cfebc36ad63488fa174df227db739a8ce88cd4b78166088af60f1",
+          "source": "La strategia della fase difensiva",
+          "canonical_source": "La strategia della fase difensiva",
+          "source_relative": "formations-and-systems/La strategia della fase difensiva.json",
+          "pages": "[1]",
+          "distance": 0.4073,
+          "headings": [
+            "La strategia della fase difensiva"
+          ],
+          "text": "La strategia della fase difensiva\nCi sono squadre molto attive anche in fase difensiva, che non si risparmiano e pressano gli avversari anche dentro la loro metà campo. Queste squadre hanno una strategia difensiva basata principalmente sull'anticipo e sono \"obbligate\" ad adottare la tattica del fuorigioco per mantenere le giuste distanze tra i reparti e per risolvere situazioni di parità o addirittura inferiorità numerica che derivano dal fallimento del pressing offensivo. Altre squadre invece hanno una strategia difensiva basata sull'attesa e solitamente la loro conquista della palla avviene per errore avversario dovuto a intasamento degli spazi nei pressi della metà campo da loro difesa. Queste squadre adottano principalmente i mezzi tattici della copertura degli spazi e dei raddoppi fatti dal giocatore che arretra.\nL'allenatore in fase difensiva deve organizzare i rapporti ed i movimenti tra i giocatori appartenenti al medesimo reparto, deve poi organizzare i rapporti fra i reparti vicini e definire la strategia difensiva in senso globale.\nAnalizzando la copertura ci si può accorgere che, se il reparto difensivo è disposto ad uomo solitamente è il libero che garantisce la copertura al difensore opposto al possessore, mentre se si gioca con la difesa schierata a zona la copertura viene effettuata dal giocatore vicino a quello in pressione sulla palla.\nQui di seguito sono riportati gli obiettivi che il mister deve conseguire al momento in cui intende organizzare un reparto:"
+        },
+        {
+          "label": "F6",
+          "id": "7f8c966aa3e62cacb66653a06217628509f324ce94720e9fa7ac8ba8f67cce63",
+          "source": "il_trequartista_Clagluna",
+          "canonical_source": "il_trequartista_Clagluna",
+          "source_relative": "formations-and-systems/il_trequartista_Clagluna.json",
+          "pages": "[2, 3]",
+          "distance": 0.28929,
+          "headings": [
+            "Prerogative del trequartista"
+          ],
+          "text": "Prerogative del trequartista\nIl movimento senza palla è indispensabile, sia che venga marcato ad uomo che a zona, per favorire l'azione dei compagni e per l iberarsi dal control lo dell'avversario. La marcatura ad uomo può essere elusa facendosi servire \"addosso\" la palla e restituendola di prima intenzione per poi effettuare corse di deviazione e cambi di direzione, al fine di ricevere, libero da marcature, o creare spazio a favore di un compagno (fig.6). Ci si può sottrarre alla marcatura anche con movimenti ad elastico (fig.7) o cambiando spesso di posizione con una punta (fig.8). Quest'ultimo movimento favorisce la contromisura al fuorigioco. Essenziale, per la zona di campo in cui opera, la funzione di sostegno offensivo che, nel concetto di squadra corta, favorisce la possibilità di creare una profondità all'indietro quando non sia possibile trovare spazi in avanti a causa della concentrazione di troppi uomini vicino alla porta avversaria.\nNella fase difensiva, il trequartista si integra con gli attaccanti nell'organizzazione del pressing razionale, sia alto che medio. Vari sono i modi d'interpretazione del ruolo del trequartista secondo le caratteristiche individuali:\n- rifinitore puro: posizionato fra i reparti di attacco e di centrocampo (fig.9);\n- attaccante rifinitore: partenza dalla linea di attacco (fig.10);\n- centrocampista rifinitore: partendo dalla linea dei centrocampisti (fig.11)."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+        "I movimenti della difesa a 3",
+        "La strategia della fase difensiva"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "question_text": "il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+        "facets": [
+          "possession",
+          "non_possession",
+          "inside_space"
+        ],
+        "scenarios": [],
+        "formations": [],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "a4f5a06d9fc10e6c34c6bc09f070362a632f120b2276e0bc4a1c0067224bb9cd",
+        "6e2a92b8c4a7e00eb21aa49439ceec6ef21316e54d50676a08017479bedca27a",
+        "c5643bade8fb00169f6772ddd176cdf7e8132d6427ef9c6be36d0996c481e8de"
+      ],
+      "tactical_covered": {
+        "possession": "a4f5a06d9fc10e6c34c6bc09f070362a632f120b2276e0bc4a1c0067224bb9cd",
+        "non_possession": "6e2a92b8c4a7e00eb21aa49439ceec6ef21316e54d50676a08017479bedca27a",
+        "inside_space": "c5643bade8fb00169f6772ddd176cdf7e8132d6427ef9c6be36d0996c481e8de"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. Ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+        "rifinitura tra le linee ricezione orientata scarico inserimento attacco linea difensiva",
+        "fase di possesso costruzione sviluppo rifinitura",
+        "fase di non possesso blocco difesa difendere"
+      ],
+      "tactical_anchors": [],
+      "tactical_anchor_candidate_ids": [],
+      "tactical_anchor_reserved_ids": [],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": true,
+          "non_possession": true,
+          "inside_space": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {
+          "between_lines_receiving": true,
+          "next_action": true
+        },
+        "missing_details": [],
+        "semantic_issues": [],
+        "complete": true
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 251.43,
+      "generation": {
+        "total_duration_ns": 87727631951,
+        "load_duration_ns": 1946816,
+        "prompt_eval_duration_ns": 22103347000,
+        "eval_duration_ns": 65581042000,
+        "eval_count": 505,
+        "prompt_eval_count": 3098,
+        "done_reason": "stop",
+        "repair_reasons": [
+          "copertura incompleta: between_lines_receiving",
+          "generazione selezionata: repair"
+        ],
+        "quality_gate_passed": true,
+        "quality_gate_missing": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}
