@@ -7,6 +7,7 @@ does not change Chroma, PDF, source JSON, or production configuration.
 from __future__ import annotations
 import argparse
 from collections import Counter
+import gc
 import hashlib
 import json
 from pathlib import Path
@@ -286,7 +287,7 @@ def main():
             raise RuntimeError(f"Unexpected exercise candidate count {candidate_count}; expected 34")
     if count!=args.expected_count:raise RuntimeError(f"V5 record count changed: {count}; expected {args.expected_count}; refusing test")
     embed=OllamaEmbedding(model_name="qwen3-embedding:0.6b",base_url="http://127.0.0.1:11434")
-    rerank=CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
+    rerank=None if args.tactical_plan else CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
     report={"collection":args.collection,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
@@ -393,7 +394,8 @@ def main():
                                          "pages":r["pages"],"text":r["text"],"distance":None,
                                          "fingerprint":hashlib.sha256(norm(r["text"]).encode()).hexdigest()})
                             existing.add(r["id"])
-            scores=rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if (args.targeted_coverage and qid == "fresh_03") or (args.heading_routing and heading_applicable(question)) else r["text"]) for r in rows],
+            active_rerank=rerank or CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
+            scores=active_rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if (args.targeted_coverage and qid == "fresh_03") or (args.heading_routing and heading_applicable(question)) else r["text"]) for r in rows],
                                   batch_size=1,show_progress_bar=False)
             selected=[];seen=set();dropped=0
             for index in sorted(range(len(rows)),key=lambda i:float(scores[i]),reverse=True):
@@ -427,12 +429,12 @@ def main():
             source_ranking_trace=[]
             source_selection_trace={}
             if args.heading_routing:
-                revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit,reranker=rerank)
+                revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit,reranker=active_rerank)
                 if revised is not None:
                     selected=revised
                 if args.source_ranking_trace:
-                    source_ranking_trace=semantic_source_ranking(question,rows,rerank)
-                    selected_source, hybrid_trace=hybrid_source_select(question,rows,rerank)
+                    source_ranking_trace=semantic_source_ranking(question,rows,active_rerank)
+                    selected_source, hybrid_trace=hybrid_source_select(question,rows,active_rerank)
                     source_selection_trace={"selected_source":selected_source,"semantic_margin":1.5,"candidates":hybrid_trace}
             structural_reserved=[]
             structural_signals={}
@@ -443,6 +445,8 @@ def main():
             tactical_covered={}
             if tactical_plan:
                 selected,tactical_reserved,tactical_covered=tactical_diversify(rows,scores,selected,tactical_plan,args.limit)
+                del active_rerank
+                gc.collect()
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
