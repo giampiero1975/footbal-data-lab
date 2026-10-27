@@ -93,6 +93,36 @@ class TacticalQueryPlanTests(unittest.TestCase):
             with self.subTest(question=question):
                 self.assertTrue(expected.issubset(set(planner.analyse(question)["facets"])))
 
+    def test_recognises_generic_scenarios_without_benchmark_ids(self):
+        samples = {
+            "build_out": "Costruzione dal basso contro pressing alto: portiere e terzo uomo.",
+            "cross_defence": "Protezione della porta su cross con postura e portiere.",
+            "lateral_shift": "Scivolamento del reparto dopo un cambio gioco.",
+            "counterpress_deadline": "Nel contro-pressing qual e il tempo massimo?",
+            "offside_trap": "Trappola del fuorigioco su palla inattiva.",
+            "game_management": "Sostituzioni negli ultimi 15 minuti per difendere il vantaggio.",
+        }
+        for expected, question in samples.items():
+            with self.subTest(expected=expected):
+                self.assertIn(expected, planner.analyse(question)["scenarios"])
+
+    def test_offside_audit_rejects_unsafe_generic_answer(self):
+        plan = planner.analyse(
+            "Trappola del fuorigioco: differenza tra palla scoperta e palla inattiva, comando del leader."
+        )
+        audit = planner.audit_answer(
+            "Il leader dà il comando e la linea sale su palla scoperta; su palla inattiva resta alta.", plan
+        )
+        self.assertIn("uncovered_ball_drop", audit["missing_details"])
+        self.assertIn("leader_and_keeper", audit["missing_details"])
+        self.assertFalse(audit["complete"])
+
+    def test_scenario_query_is_prioritised(self):
+        plan = planner.analyse("Scivolamento del reparto su cambio gioco con mediano e lato debole.")
+        queries = planner.retrieval_queries("Scivolamento del reparto su cambio gioco.", plan)
+        self.assertIn("tempo volo", queries[1])
+        self.assertIn("mediano schermo", queries[1])
+
 
 if __name__ == "__main__":
     unittest.main()

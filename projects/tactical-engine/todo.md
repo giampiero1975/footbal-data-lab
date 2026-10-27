@@ -1,6 +1,6 @@
 # DRIBBLING V5 — Piano operativo, checklist e registro delle evidenze
 
-> **Documento di riferimento operativo** · Riconciliato il 2026-10-25 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
+> **Documento di riferimento operativo** · Riconciliato il 2026-10-27 · Repository: `giampiero1975/footbal-data-lab` · Ambito: `projects/tactical-engine/` e VPS `/opt/football-data-lab`.
 >
 > **Attenzione:** una casella spuntata documenta l'attività descritta, non la certificazione dell'intero RAG. I risultati riportati come comunicati dalla VPS non equivalgono a un accesso diretto dell'assistente alla VPS. Preservare baseline V4, indici e configurazioni prima di qualunque intervento.
 
@@ -15,14 +15,19 @@
   mediana 21,50, minimo 0 e massimo 26; job tecnici 10/10 riusciti, target medio
   >=26/30 respinto. Report:
   `docs/coverciano-rag-only-100-report-01.md`.
-- [x] **IMPLEMENTATO e VALIDATO offline** V5-COVERCIANO-RAG-REMEDIATION-01:
+- [x] **ESEGUITO, non VALIDATO** V5-COVERCIANO-RAG-REMEDIATION-V6-01:
   corretto senza spalla il percorso applicativo con piano deterministico dei
   sottoproblemi, retrieval multi-query, penalità per fase opposta, riserva di
   copertura, contratto applicativo chi-cosa-dove-innesco-perché-copertura e
-  audit esplicito della risposta. Suite mirata 11/11, regressione API 19/19 e
-  catalogo 7/7. Profilo locked invariato; deploy e rerun differenziale dei 10
-  casi **DA FARE**, quindi target >=26/30 non ancora VALIDATO. Report:
-  `docs/rag-coverciano-remediation-01.md`.
+  audit esplicito della risposta. Runtime 10/10, indice 6.410 invariato e zero
+  citazioni invalide, ma quattro audit incompleti, due risposte troncate ed
+  errori semantici residui: target >=26/30 non dimostrato. Report:
+  `docs/rag-coverciano-remediation-v6-runtime-01.md`.
+- [ ] **IMPLEMENTATO, DA VALIDARE offline e runtime**
+  V5-COVERCIANO-RAG-REMEDIATION-V7-01: scenari generici, query prioritarie,
+  vincoli decisionali, audit relazionale e singola rigenerazione correttiva su
+  omissione o troncamento. Completare suite, controllo retrieval-only, commit e
+  rerun differenziale prima di qualunque validazione del target 26/30.
   Storicamente l'attività chiedeva di correggere senza spalla la
   scomposizione della domanda, il retrieval per sottoproblemi/fase, il gate di
   copertura, la risposta applicativa chi-cosa-dove-quando-perché-copertura e la

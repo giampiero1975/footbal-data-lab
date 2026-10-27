@@ -2,7 +2,7 @@
 
 Data avvio: 2026-10-26  
 Ramo: `codex/rag-coverciano-remediation`  
-Stato: remediation **IMPLEMENTATA e VALIDATA offline**; runtime **DA FARE**
+Stato: V6 **ESEGUITA, NON VALIDATA**; remediation V7 **IMPLEMENTATA offline**, runtime **DA FARE**
 
 ## Obiettivo vincolante
 
@@ -97,6 +97,20 @@ Questa evidenza valida l'implementazione, non il voto tattico. Il rerun dei diec
 casi è ora giustificato dalla differenza tecnica, ma resta da svolgere sul
 runtime con indice invariato, spalla disabilitata e confronto contro i rilievi
 Gemini già congelati.
+
+## Esito V6 e remediation V7
+
+Il rerun V6 ha completato 10/10 casi con indice 6.410 invariato e zero
+citazioni sintatticamente invalide, ma quattro audit incompleti, due output
+troncati e più errori semantici residui. Il report completo e
+`docs/rag-coverciano-remediation-v6-runtime-01.md`.
+
+La V7 corregge il difetto sistemico emerso: il controllo non e pi soltanto
+descrittivo. Introduce scenari tattici generici, query specifiche prioritarie,
+requisiti relazionali (per esempio palla scoperta -> scappata), controllo dei
+dettagli per scenario e una sola rigenerazione correttiva fail-closed in caso
+di omissione o troncamento. Questa modifica richiede test offline e un nuovo
+runtime differenziale prima di qualsiasi validazione.
 
 ## Criterio di chiusura
 

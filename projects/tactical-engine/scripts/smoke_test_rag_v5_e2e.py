@@ -218,11 +218,19 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
             repair_reasons.append("la sezione 1 contiene azioni di non possesso")
         if any(term in second for term in ("appena riconquistata", "dopo la riconquista", "il portatore deve scegliere")):
             repair_reasons.append("la sezione 2 prosegue oltre la riconquista")
+    if tactical_plan:
+        first_audit=tactical_audit_answer(answer,tactical_plan)
+        missing=(first_audit["missing_facets"]+first_audit["missing_operational"]+
+                 first_audit["missing_details"])
+        if missing:
+            repair_reasons.append("copertura incompleta: "+", ".join(missing))
+    if obj.get("done_reason")=="length":
+        repair_reasons.append("risposta troncata dal limite di generazione")
     if repair_reasons:
         repair={"model":model,"stream":False,"think":False,
                 "messages":[payload["messages"][0],payload["messages"][1],
                             {"role":"assistant","content":answer},
-                            {"role":"user","content":"Correggi la risposta senza aggiungere nuove fonti. Problemi: "+"; ".join(repair_reasons)+". Mantieni le citazioni e riscrivi entrambe le sezioni."}],
+                            {"role":"user","content":"Riscrivi integralmente la risposta senza aggiungere nuove fonti o affermazioni non sostenute. Problemi da correggere: "+"; ".join(repair_reasons)+". Copri prima tutti i requisiti obbligatori, mantieni le citazioni accanto ai principi documentali, elimina formule astratte e resta entro il limite."}],
                 "options":options}
         request=Request("http://127.0.0.1:11434/api/chat",data=json.dumps(repair,ensure_ascii=False).encode(),headers={"Content-Type":"application/json"},method="POST")
         with urlopen(request,timeout=timeout) as response:

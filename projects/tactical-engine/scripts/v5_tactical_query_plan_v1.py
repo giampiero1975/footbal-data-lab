@@ -41,14 +41,14 @@ FACET_GUIDANCE = {
     "non_possession": "Definisci riferimenti, distanze, scivolamenti e protezione della porta senza trasformarli in principi di costruzione offensiva.",
     "negative_transition": "Confronta riaggressione e ripiegamento usando prossimità e densità attorno alla palla, zona del campo, palla coperta/scoperta, qualità dell'avversario e preventive già predisposte.",
     "prevention": "Indica sempre quanti e quali giocatori restano in equilibrio, cosa controllano e come proteggono profondità e seconde palle.",
-    "goalkeeper": "Spiega come il portiere crea superiorità, orienta il pressing e sceglie tra uscita corta e soluzione oltre pressione.",
+    "goalkeeper": "Se la domanda riguarda la costruzione, spiega come il portiere crea superiorità, orienta il pressing e sceglie tra uscita corta e soluzione oltre pressione. Se riguarda un cross, definisci invece chiamata, zona d'uscita e ripartizione palla-uomo-porta con i difensori.",
     "third_man": "Rendi esplicita la sequenza portatore-appoggio-terzo uomo, lo spazio liberato e il tempo del movimento.",
-    "width": "Distingui lato palla e lato debole, momento del cambio gioco e duello o superiorità creati in ampiezza.",
+    "width": "Distingui lato palla e lato debole, usa il tempo di volo del cambio gioco per scivolare e accorciare, e descrivi il nuovo lato forte senza aprire il corridoio interno.",
     "inside_space": "Distingui la fascia orizzontale di rifinitura dai corridoi verticali interni e specifica postura e smarcamento del ricevente.",
-    "box": "Mappa occupazione e responsabilità su primo palo, zona centrale/dischetto, secondo palo e limite area, oltre al coordinamento col portiere.",
-    "offside": "Distingui palla coperta e scoperta, gioco aperto e palla inattiva; specifica leader, comando, innesco e rischio alle spalle.",
-    "substitutions": "Per ogni cambio indica giocatore/ruolo che esce ed entra, nuova struttura, compito concreto e rischio compensato.",
-    "communication": "Indica chi comunica, con quale comando o canale e in quale momento della gara.",
+    "box": "Distingui attacco e difesa del cross. In attacco mappa primo palo, zona centrale/dischetto, secondo palo e limite area; in difesa definisci postura semiaperta, visione palla-uomo, contatto, protezione porta e competenza del portiere.",
+    "offside": "Distingui palla coperta e scoperta: su palla scoperta la priorità è scappare e proteggere profondità, non salire alla cieca. Se descrivi una trappola, separa gioco aperto e palla inattiva e specifica leader, comando, istante del calcio e rischio alle spalle.",
+    "substitutions": "Per ogni cambio indica giocatore/ruolo che esce ed entra, nuova struttura, compito concreto e rischio compensato; non limitarti a dire che entra il giocatore piu adatto.",
+    "communication": "Indica chi comunica, con quale comando o canale e in quale momento della gara. Non proporre video come canale operativo durante il gioco.",
     "psychology": "Collega l'impatto emotivo a un comportamento osservabile e a una comunicazione concreta, non a formule astratte.",
     "five_lanes": "Nomina e occupa esplicitamente i cinque corridoi verticali: fascia, half-space, centro, half-space e fascia; collega la linea avanzata alla struttura residua 2+3 o 3+2.",
     "relational_superiority": "Distingui superiorità posizionale da relazione socio-affettiva: vicinanze, conoscenza reciproca, appoggi e combinazioni coordinate.",
@@ -68,6 +68,116 @@ REQUIRED_DETAILS = {
     "substitutions": {
         "players_in_out": ("esce", "entra", "sostit"),
         "new_structure": ("struttura", "sistema", "modulo"),
+    },
+    "goalkeeper": {
+        "goalkeeper_decision": ("portiere", "uscita", "oltre pressione"),
+    },
+    "third_man": {
+        "third_man_sequence": ("terzo uomo", "portatore", "appoggio"),
+    },
+    "width": {
+        "strong_and_weak_side": ("lato debole", "lato forte"),
+        "ball_flight_trigger": ("tempo di volo", "palla viaggia"),
+    },
+    "inside_space": {
+        "between_lines_receiving": ("tra le linee", "alle spalle", "orientato"),
+        "next_action": ("scarico", "inserimento", "attacca la linea", "attacco della linea"),
+    },
+    "box": {
+        "box_roles": ("primo palo", "secondo palo", "dischetto", "limite area", "palla-uomo"),
+    },
+    "offside": {
+        "covered_uncovered_choice": ("palla coperta", "palla scoperta"),
+        "leader_command": ("comando", "leader", "chiama"),
+        "open_vs_restart": ("palla inattiva", "punizione", "gioco aperto"),
+    },
+    "communication": {
+        "live_communication": ("comando", "parola", "gesto", "segnale"),
+    },
+    "psychology": {
+        "observable_psychology": ("ansia", "fiducia", "responsabil", "chiarezza", "sicurezza"),
+    },
+}
+
+DETAIL_QUERIES = {
+    "negative_transition": "transizione negativa riaggressione ripiegamento palla coperta palla scoperta marcatura preventiva densita zona perdita",
+    "goalkeeper": "portiere costruzione superiorita pressione uscita corta palla lunga oppure portiere cross chiamata uscita difensori",
+    "third_man": "terzo uomo portatore appoggio pressione uomo su uomo liberare spazio",
+    "width": "cambio gioco tempo di volo lato debole lato forte scivolamento mediano schermo",
+    "inside_space": "rifinitura tra le linee ricezione orientata scarico inserimento attacco linea difensiva",
+    "box": "cross attacco area primo palo dischetto secondo palo limite area oppure difesa palla uomo portiere",
+    "offside": "fuorigioco palla coperta scoperta gioco aperto palla inattiva comando leader postura profondita",
+    "substitutions": "cambio sistema in gara giocatore esce entra compiti comunicazione equilibrio transizione",
+}
+
+SCENARIOS = {
+    "build_out": ("costruzione dal basso", "pressing alto"),
+    "cross_defence": ("protezione della porta", "cross"),
+    "lateral_shift": ("scivolamento", "cambio gioco"),
+    "counterpress_deadline": ("contro-pressing", "tempo massimo"),
+    "between_lines": ("zona di rifinitura", "tra la linea difensiva"),
+    "cross_attack": ("primo palo", "secondo palo", "dischetto"),
+    "offside_trap": ("trappola del fuorigioco", "palla inattiva"),
+    "game_management": ("sostituzioni", "ultimi 15 minuti"),
+}
+
+SCENARIO_GUIDANCE = {
+    "build_out": "Non abbassare genericamente il baricentro: descrivi portiere uomo libero, attrazione della prima pressione, smarcamento opposto dell'appoggio e del terzo uomo, uscita oltre pressione e soluzione lunga preparata con struttura per la seconda palla.",
+    "cross_defence": "Descrivi marcatura a uomo nella zona: difensore lato porta, distanza di contatto, postura semiaperta per vedere palla e uomo, attacco del punto di caduta e chiamata del portiere; evita numeri di maglia rigidi non ricavati dallo scenario.",
+    "lateral_shift": "Il tempo di volo del cambio gioco serve per traslare: il nuovo esterno lato forte esce sul ricevente, il lato debole stringe, il mediano scherma l'imbucata e le linee mantengono distanze corte. Non trasformare lo scivolamento in un ripiegamento verticale.",
+    "counterpress_deadline": "Distingui uomo e linee di passaggio, mantieni una preventiva aggressiva dietro la pressione e indica una finestra operativa breve di circa 5-6 secondi; se viene superata o la palla e scoperta, interrompi e scappa in blocco.",
+    "between_lines": "Il ricevente si smarca alle spalle del centrocampo avversario con corpo aperto; dopo la ricezione deve scegliere tra girarsi e attaccare la linea, giocare a muro/scarico per il terzo uomo o liberare un inserimento in profondita.",
+    "cross_attack": "Assegna quattro occupazioni distinte: primo palo, zona centrale/dischetto, secondo palo e limite area per respinta e preventiva. Collega il cross a un segnale del portatore, non a una coreografia automatica.",
+    "offside_trap": "Correzione vincolante: su palla scoperta in gioco aperto la linea scappa e protegge profondita; la salita e ammessa solo su palla coperta o gesto tecnico leggibile. Su palla inattiva la linea concordata sale all'istante del calcio, comandata da un leader, con portiere pronto alla profondita.",
+    "game_management": "Fornisci almeno un esempio completo e coerente di trasformazione, indicando chi esce o cambia ruolo, chi entra, compiti della nuova linea, protezione delle seconde palle e messaggio semplice dato prima dell'ingresso. Non usare il video come comunicazione live.",
+}
+
+SCENARIO_DETAILS = {
+    "build_out": {
+        "goalkeeper_spare_man": ("uomo libero", "superiorità"),
+        "third_man_escape": ("terzo uomo",),
+        "long_exit_and_second_ball": ("palla lunga", "oltre pressione", "seconda palla"),
+    },
+    "cross_defence": {
+        "body_orientation": ("semiapert", "palla e uomo", "palla-uomo"),
+        "contact_distance": ("contatto", "braccio", "distanza"),
+        "landing_point": ("punto di caduta", "traiettoria"),
+        "goalkeeper_call": ("chiama", "chiamata", "mia"),
+    },
+    "lateral_shift": {
+        "flight_time": ("tempo di volo", "palla viaggia"),
+        "new_strong_side": ("lato forte",),
+        "weak_side_squeeze": ("lato debole", "stringe"),
+        "midfielder_screen": ("mediano", "schermo", "imbucata"),
+    },
+    "counterpress_deadline": {
+        "man_vs_lane": ("orientato sull'uomo", "linee di passaggio"),
+        "preventive_defenders": ("preventiv", "difensori rimasti"),
+        "five_six_seconds": ("5 second", "6 second", "5-6 second", "cinque second", "sei second"),
+    },
+    "between_lines": {
+        "open_body": ("corpo aperto", "orientato"),
+        "attack_or_layoff": ("attacca la linea", "attacco diretto", "scarico", "a muro"),
+        "runner": ("inserimento", "terzo uomo"),
+    },
+    "cross_attack": {
+        "first_post": ("primo palo",),
+        "penalty_spot": ("dischetto", "zona centrale"),
+        "far_post": ("secondo palo",),
+        "edge_of_box": ("limite area", "fuori area"),
+        "cross_signal": ("testa alta", "segnale", "tempo del cross", "portatore"),
+    },
+    "offside_trap": {
+        "uncovered_ball_drop": ("palla scoperta", "scappa"),
+        "covered_ball_step": ("palla coperta", "sale", "salita"),
+        "restart_kick_moment": ("istante del calcio", "momento del calcio", "palla inattiva"),
+        "leader_and_keeper": ("leader", "portiere"),
+    },
+    "game_management": {
+        "concrete_role_change": ("esce", "entra", "scala", "si abbassa", "si alza"),
+        "transition_balance": ("seconda palla", "profondità", "preventiv"),
+        "live_message": ("comando", "parola", "gesto", "messaggio"),
+        "emotional_effect": ("fiducia", "chiarezza", "sicurezza", "ansia", "responsabil"),
     },
 }
 
@@ -89,8 +199,10 @@ def analyse(question: str) -> dict:
         part = part.strip(" .,:-")
         if len(part.split()) >= 4 and part not in request_parts:
             request_parts.append(part)
+    scenarios = [name for name, cues in SCENARIOS.items() if all(cue in query for cue in cues)]
     return {
         "facets": facets,
+        "scenarios": scenarios,
         "formations": formations,
         "roles": roles,
         "request_parts": request_parts[:8],
@@ -101,15 +213,31 @@ def retrieval_queries(question: str, plan: dict, maximum: int = 5) -> list[str]:
     """Return the original question plus bounded, facet-specific expansions."""
     queries = [" ".join(question.split())]
     context = " ".join(plan["formations"] + plan["roles"][:5])
-    for facet in plan["facets"]:
-        cues = " ".join(FACETS[facet][:4])
+    scenario_queries = {
+        "build_out": "costruzione dal basso portiere uomo libero terzo uomo uscita pressione seconda palla",
+        "cross_defence": "difesa porta cross postura palla uomo contatto punto caduta chiamata portiere",
+        "lateral_shift": "cambio gioco tempo volo scivolamento lato debole forte mediano schermo imbucata",
+        "counterpress_deadline": "contropressing uomo linee passaggio marcatura preventiva cinque sei secondi ripiegamento",
+        "between_lines": "rifinitura tra linee corpo aperto attacco linea scarico terzo uomo inserimento",
+        "cross_attack": "cambio gioco uno contro uno cross primo palo dischetto secondo palo limite area segnale",
+        "offside_trap": "fuorigioco palla coperta salita palla scoperta scappare punizione istante calcio leader portiere",
+        "game_management": "cambio sistema gara ruoli entra esce comunicazione fiducia preventive seconde palle",
+    }
+    for scenario in plan.get("scenarios", []):
+        candidate = f"{scenario_queries[scenario]} {context}".strip()
+        if candidate not in queries:
+            queries.append(candidate)
+        if len(queries) >= maximum:
+            return queries
+    priority = [name for name in plan["facets"] if name in DETAIL_QUERIES]
+    priority.extend(name for name in plan["facets"] if name not in priority)
+    for facet in priority:
+        cues = DETAIL_QUERIES.get(facet) or " ".join(FACETS[facet][:4])
         candidate = f"{cues} {context}".strip()
         if candidate and candidate not in queries:
             queries.append(candidate)
         if len(queries) >= maximum:
             break
-    if "negative_transition" in plan["facets"] and len(queries) < maximum:
-        queries.append("transizione negativa palla coperta palla scoperta marcatura preventiva densità zona perdita")
     return queries
 
 
@@ -173,6 +301,13 @@ def generation_contract(plan: dict) -> str:
     parts = plan["request_parts"]
     checklist = "\n".join(f"- {part}" for part in parts) if parts else "- Rispondi alla richiesta esplicita."
     guidance = " ".join(FACET_GUIDANCE[facet] for facet in plan["facets"] if facet in FACET_GUIDANCE)
+    guidance += " " + " ".join(SCENARIO_GUIDANCE[name] for name in plan.get("scenarios", []))
+    mandatory = []
+    for facet in plan["facets"]:
+        mandatory.extend(REQUIRED_DETAILS.get(facet, {}).keys())
+    for scenario in plan.get("scenarios", []):
+        mandatory.extend(SCENARIO_DETAILS.get(scenario, {}).keys())
+    mandatory_text = ", ".join(dict.fromkeys(mandatory)) or "copertura integrale della domanda"
     return (
         "\nPIANO TATTICO OBBLIGATORIO\n"
         f"Ambiti rilevati: {facets}.\nRichieste da coprire:\n{checklist}\n"
@@ -184,7 +319,8 @@ def generation_contract(plan: dict) -> str:
         "senza attribuirla letteralmente alla fonte. Non usare l'assenza di una fonte identica allo scenario come motivo per "
         "omettere la soluzione: applica prudentemente i principi recuperati e segnala solo il limite specifico. "
         "Evita termini anacronistici se esiste un equivalente moderno e chiudi controllando che nessun sottopunto sia rimasto fuori. "
-        "I seguenti requisiti specifici sono obbligatori, non suggerimenti. Mantieni l'intera risposta entro 280 parole, "
+        f"Il controllo finale deve verificare esplicitamente: {mandatory_text}. "
+        "I seguenti requisiti specifici sono obbligatori, non suggerimenti. Mantieni l'intera risposta entro 340 parole, "
         "accorpa i criteri in una matrice o in punti compatti e non ripetere la stessa griglia per concetti equivalenti: " + guidance
     )
 
@@ -209,6 +345,13 @@ def audit_answer(answer: str, plan: dict) -> dict:
     for facet in plan["facets"]:
         for name, alternatives in REQUIRED_DETAILS.get(facet, {}).items():
             detail_coverage[name] = any(term in text for term in alternatives)
+    for scenario in plan.get("scenarios", []):
+        for name, alternatives in SCENARIO_DETAILS.get(scenario, {}).items():
+            detail_coverage[name] = any(term in text for term in alternatives)
+    if "offside_trap" in plan.get("scenarios", []):
+        detail_coverage["uncovered_ball_drop"] = "palla scoperta" in text and "scapp" in text
+        detail_coverage["covered_ball_step"] = "palla coperta" in text and any(term in text for term in ("sale", "salita"))
+        detail_coverage["leader_and_keeper"] = "leader" in text and "portiere" in text
     missing_details = [name for name, covered in detail_coverage.items() if not covered]
     return {
         "facet_coverage": facet_coverage,

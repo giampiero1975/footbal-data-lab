@@ -1,0 +1,213 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv6_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer": "1. **Sviluppo del contro-pressing e chiusura spazi**: Il pressing immediato in zona offensiva mira ad accorciare rapidamente sul possessore e sugli appoggi, riducendo le opzioni di disimpegno (scarico o passaggio corto) piuttosto che cercare la superiorità numerica [F1]. L'azione parte con il difensore più vicino che va in pressione, mentre un secondo accompagna limitando i tempi al possessore; altri difensori coprono le zone luce e chiudono le linee di passaggio lunghe [F4].\n\n2. **Differenza uomo vs spazio**: Un approccio orientato sull'uomo prevede marcature strette degli appoggi corti per asfissiare il portatore, costringendolo al rinvio o a dribbling azzardati [F1]. Un approccio orientato sulle linee di passaggio/spazio si realizza tramite raddoppi di marcatura che mettono in ombra i compagni del possessore e chiudono le zone laterali per intercettare i lanci lunghi, riducendo la profondità dell'avversario [F4].\n\n3. **Comportamento difensori in copertura e tempo di esecuzione**: Durante la transizione negativa (perdita palla), i difensori devono ripiegare velocemente dietro la linea della palla scappando con la linea difensiva per ritardare l'azione del portatore avversario, evitando contrattacchi veloci [F3]. Se il pressing non porta al recupero immediato o se la squadra non riesce a ricompattarsi rapidamente, l'azione deve essere interrotta per evitare di subire ripartenze; il tempo massimo è quello necessario per ritardare l'avversario fino alla ricompattazione collettiva [F3]. La transizione negativa può essere affrontata anche con un disturbo del giocatore più vicino prima della fuga, ma lo scopo principale è togliere profondità all'avversario [F3].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "e7ed0ae8128ae09bbbffe783e5770d0c2fc00279f6f939291900d2f10d6229b7",
+          "source": "Pressing ultra-offensivo",
+          "canonical_source": "Pressing ultra-offensivo",
+          "source_relative": "formations-and-systems/Pressing ultra-offensivo.json",
+          "pages": "[1]",
+          "distance": 0.27665,
+          "headings": [
+            "Pressing ultra-offensivo"
+          ],
+          "text": "Pressing ultra-offensivo\nIl pressing offensivo o meglio, il pressing immediato in zona offensiva si basa più sull'abilità della squadra nell'accorciare con rapidità sul possessore e sugli appoggi e sostegni che non sulla capacità di creare situazioni di superiorità numerica. Il giocatore che viene a trovarsi in situazione di possesso nella propria metà campo sente, ovviamente, molto di più la responsabilità di una eventuale perdita del pallone che non il giocatore che si trova ad amministrare la palla nei pressi dell'area avversaria. Tutto ciò fa si che le giocate utili o intelligenti a sua disposizione diminuiscano (ad esempio il dribbling diventa una scelta estremamente azzardata e quindi inutilizzabile) e che il possessore pensi più ad evitare di perder palla che non ad alimentare l'azione di attacco. Ecco quindi che una delle soluzioni più ricercate da parte del possessore sotto pressione sarà il rinvio. In conseguenza di ciò, per effettuare un efficace pressing immediato è necessario:\n- mettere pressione sul possessore;\n- chiudere con tempismo le possibili soluzioni in disimpegno (scarico, passaggio su appoggio corto) al possessore;\n- essere abili nella copertura degli appoggi lunghi su cui verrà indirizzato il lancio lungo.\nIL PRESSING IN ZONA OFFENSIVA"
+        },
+        {
+          "label": "F2",
+          "id": "c2ee1b2832c3b469e4e3c9fffa78f7a131e51d3d19e4c6c481f267b8e2cca6f6",
+          "source": "Attacco delle fasce",
+          "canonical_source": "Attacco delle fasce",
+          "source_relative": "formations-and-systems/Attacco delle fasce.json",
+          "pages": "[1]",
+          "distance": 0.43731,
+          "headings": [
+            "Si rileva inoltre che:"
+          ],
+          "text": "Si rileva inoltre che:\n1. I cross creano concrete possibilità di realizzazione per gli attaccanti che stanno in movimento nell'area di rigore.\n2. Eventuali disimpegni difensivi scarsamente precisi presentano una seconda opportunità di andare al goal o, almeno, di proseguire la fase offensiva.\n3. I cross effettuati con precisione mettono in apprensione la difesa e creano una pressione psicologica con la possibilità di una deviazione nella propria rete.\n4. Se si perde il possesso della palla dopo un cross nell'area avversaria esiste un minor pericolo di transizione negativa in quanto molti giocatori della propria squadra saranno dietro la linea della palla e gli attaccanti vicino alla sfera, pronti a mettere pressione sul portatore.\nCome mostrato dallo studio di José Maria Yagùe Cabezòn e Julio Paz Fernàndez nella ricerca intitolata 'La mappa del gol', pubblicata dalla rivista del Settore Tecnico n. 4 del luglio-agosto 1996, il 39% dei gol sono portati a termine da passaggi ricevuti dalle fasce. Il campione considerato era costituito da 100 gol segnati nel campionato spagnolo di serie A su un totale di 52 partite selezionate in maniera casuale. Considerando sia le palle attive che quelle inattive è evidenziato che il 22% dei gol è realizzato dopo passaggi dalla sinistra ed il 17% dalla fascia destra. Queste informazioni portano a dedurre che i passaggi dalle fasce sono un veicolo importante di possibilità realizzative e, di conseguenza, una serie di sedute finalizzate diventa fondamentale nella programmazione degli allenamenti."
+        },
+        {
+          "label": "F3",
+          "id": "b7d53536cad0f60d8869005315f536fd62dcd131479b1dfb226432c3e838f308",
+          "source": "Allegati_2311201293017",
+          "canonical_source": "Allegati_2311201293017",
+          "source_relative": "formations-and-systems/Allegati_2311201293017.json",
+          "pages": "[14]",
+          "distance": 0.28052,
+          "headings": [
+            "Comportamento e atteggiamento dei difensori nel 2vs2"
+          ],
+          "text": "Comportamento e atteggiamento dei difensori nel 2vs2\nOltre alle fasi di possesso o non possesso palla, esiste una terza fase, cosiddetta di transizione, che identifica il momento della riconquista (transizione positiva) o della perdita della palla(transizione negativa). Nel calcio moderno si dà molta importanza a questo aspetto poiché dai rilievi statistici, sempre più utili e avanzati, si è notato che una parte consistente dei gol che vengono realizzati, nascono da una perdita di possesso palla e dal successivo contrattacco veloce. L`aspetto psicologico è importante in quanto occorre un rapido adattamento mentale del giocatore dalla fase offensiva a quella difensiva. Se quindi è importante una reazione immediata a livello individuale e` anche vero che risulta necessaria un organizzazione tattica che preveda una reazione collettiva. La transizione negativa può essere affrontata ripiegando più velocemente possibile dietro la linea della palla, scappando con la linea di difesa e centrocampo, al massimo cercando di ritardare l`azione del portatore di palla con un`azione di disturbo del giocatore più vicino. In questo caso la squadra dovrà temporeggiare per poi una volta ricompattata cominciare ad attaccare il portatore di palla. Lo scopo principale diventa quello di togliere profondità alla squadra avversaria di modo che non si conceda una ripartenza veloce. Un altro modo di affrontare la transizione negativa è quello che in questi ultimi anni viene proposto soprattutto dal Barcellona."
+        },
+        {
+          "label": "F4",
+          "id": "26f3738dcc632d186f0d89e4ca629f94e8294f48f72a7a78de912297588cc754",
+          "source": "Allegati_142201217954",
+          "canonical_source": "Allegati_142201217954",
+          "source_relative": "formations-and-systems/Allegati_142201217954.json",
+          "pages": "[18]",
+          "distance": 0.27794,
+          "headings": [
+            "TRE CONTRO TRE"
+          ],
+          "text": "TRE CONTRO TRE\nIn stretta connessione con lo sviluppo del pressing sono i raddoppi di marcatura, azione di due uomini che ha lo scopo di ridurre ulteriormente spazio e tempo di gioco al possessore di palla avversario. Bisogna dire che un'azione di pressing spesso ha inizio attraverso un raddoppio di marcatura. Il difensore più vicino alla palla va in pressione, mentre un secondo difensore lo accompagna nella pressione stessa, limitando tempi di gioco al possessore lasciandogli una piccola zona luce prevedibile che verrà tenuta sotto controllo da altri difendenti. Nella figura 17 viene rappresentato un raddoppio di marcatura in zona esterna : il difensore E mette pressione su F, A raddoppia ed accompagna nella pressione e mette in ombra B, C invece copre la piccola zona luce del possessore di palla e mette in ombra D. Certamente questo avvio al pressing con raddoppio ha una componente di rischio maggiore rispetto alla figura 16 nella quale veniva marcato in modo stretto l'appoggio più vicino al possessore di palla, non prevedendo il raddoppio di marcatura. In figura 19 invece viene raffigurato un raddoppio di marcatura in verticale su zone esterne . L'azione parte con B che gioca palla in verticale per D che riceve con spalle alla porta che attacca ( Fig 18 ). In figura 19, il difensore C marca il possessore, il compagno A raddoppia rimanendo sopra la linea di palla mettendo in ombra B , mentre E viene a chiudere la zona luce del possessore coprendo la linea di passaggio per F,"
+        },
+        {
+          "label": "F5",
+          "id": "881c6b9cec2b5766bc64ad26a44013bb5e8b657f7a7b5f69a0038bd92e3cd5c7",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[28, 29]",
+          "distance": 0.2586,
+          "headings": [
+            "2.4 Resistenza al pressing avversario"
+          ],
+          "text": "2.4 Resistenza al pressing avversario\nUn aspetto molto importante da analizzare è quello relativo al pressing; in un calcio dove l'aspetto tattico è una componente fondamentale, dove è importante la scelta sul comportamento difensivo da intraprendere, inteso come decisione se \"aspettare\" o \"pressare\", ed in quest'ultimo caso se farlo con chi, quando e in quale porzione di campo, ho deciso di studiare come le squadre siano capaci di \"resistere\" al pressing avversario e viceversa come chi pressa sia in grado di ottenere un reale beneficio da tali situazioni difensive.\nNella figura 8 ho sintetizzato le quattro azioni di pressing che una squadra può decidere di attuare, escludendo quindi in questo paragrafo le azioni passive di linea d'attesa. Nello specifico, una squadra può decidere di tentare il recupero del pallone in maniera attiva su rinvio dal fondo, su azione manovrata, su palla che torna e su riaggressione.\nHo studiato in quanti casi l'azione manovrata sia riuscita oppure no; per riuscita intendo il consolidamento del possesso della squadra che ha la palla e quindi il superamento della metà campo avversaria; al contrario, il mancato mantenimento di palla si intende qualora avvenga il cambio di possesso (perdita del pallone) o l'incapacità di superare la metà campo. In questi ultimi due casi si parla ovviamente di azione di pressing efficace da parte della squadra difendente.\nFigura 8"
+        },
+        {
+          "label": "F6",
+          "id": "9b8af62bc7b61935d7478a177c02efe16fff0c94446d42630362be7e8d2cd2b6",
+          "source": "il_3412_Giustinetti",
+          "canonical_source": "il_3412_Giustinetti",
+          "source_relative": "formations-and-systems/il_3412_Giustinetti.json",
+          "pages": "[8]",
+          "distance": 0.28264,
+          "headings": [
+            "CONTRATTACCO"
+          ],
+          "text": "CONTRATTACCO\nIl contrattacco perciò è strettamente legato alla tattica del pressing con l'obiettivo della trasformazione immediata dell'azione da difensiva in offensiva, sfruttando il momento di disorientamento e di disorganizzazione degli avversari.\nL'azione di contrattacco nel 3-41-2 deve essere fulminea perchè avendo a disposizione tre giocatori, le due punte e il trequartista, in posizione offensiva bisogna metterli immediatamente in condizione di concludere l'azione.\nLe esercitazioni proposte per affinare l'esecuzione del contrattacco sono rappresentate dalle situazioni in cui si simulano gli errori degli avversari per poi sviluppare una manovra che ricerchi la sincronia dei tempi del passaggio e della esecuzione degli inserimenti senza palla.\nEsempio. Prima fase (figura 14): il giocatore che conquista la palla, in questo caso il 6, deve verticalizzarla sulla punta che per prima, dopo lo smarcamento, gli va incontro. La punta 11 passa la palla al trequartista 10 e il 6 prosegue la corsa in profondità.\nEsempio. Seconda fase (figura 15): il trequartista 10 ha varie possibilità di giocata, tra cui: 1) la soluzione personale (tiro o azione individuale): 2) passaggio filtrante per le punte; 3) l'apertura sulle fasce laterali dove si inseriscono gli esterni, 6 o 7, di centrocampo."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Attacco delle fasce",
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "facets": [
+          "possession",
+          "negative_transition"
+        ],
+        "formations": [],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). specifichi",
+          "i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "e7ed0ae8128ae09bbbffe783e5770d0c2fc00279f6f939291900d2f10d6229b7",
+        "c2ee1b2832c3b469e4e3c9fffa78f7a131e51d3d19e4c6c481f267b8e2cca6f6"
+      ],
+      "tactical_covered": {
+        "possession": "e7ed0ae8128ae09bbbffe783e5770d0c2fc00279f6f939291900d2f10d6229b7",
+        "negative_transition": "c2ee1b2832c3b469e4e3c9fffa78f7a131e51d3d19e4c6c481f267b8e2cca6f6"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+        "fase di possesso costruzione sviluppo rifinitura",
+        "transizione negativa perdita riaggressione contro-pressing",
+        "transizione negativa palla coperta palla scoperta marcatura preventiva densità zona perdita"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": true,
+          "negative_transition": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {
+          "density_or_proximity": false,
+          "covered_or_uncovered_ball": false,
+          "field_zone": true,
+          "preventive_structure": false
+        },
+        "missing_details": [
+          "density_or_proximity",
+          "covered_or_uncovered_ball",
+          "preventive_structure"
+        ],
+        "complete": false
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "3",
+        "4"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 357.54,
+      "generation": {
+        "total_duration_ns": 314959214065,
+        "load_duration_ns": 163456716809,
+        "prompt_eval_duration_ns": 99387086000,
+        "eval_duration_ns": 52074261000,
+        "eval_count": 408,
+        "prompt_eval_count": 2905,
+        "done_reason": "stop",
+        "repair_reasons": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

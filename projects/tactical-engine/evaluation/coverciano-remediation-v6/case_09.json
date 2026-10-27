@@ -1,0 +1,213 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv6_09",
+      "question": "Il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"Trappola del Fuorigioco\" (offside trap) come scelta tattica attiva. Ci illustri la differenza tra un fuorigioco attuato su situazione di \"Palla Libera/Scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"Palla Inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). Quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo?",
+      "answer": "1. **Gestione Strategica Attiva (Offside Trap):** La linea difensiva agisce come unità coesa che avanza simultaneamente ([F2]). Il leader della linea, solitamente un difensore centrale, coordina il movimento arretrando inizialmente per poi scattare in avanti all'unisono al segnale visivo del piede d'appoggio dell'avversario o comando vocale \"stringere e scappare\" ([F2]). L'obiettivo è posizionare la linea difensiva oltre l'avversario più avanzato nel momento esatto del passaggio ([F1], [F5]).\n\n2. **Differenza Palla Libera vs. Palla Inattiva:**\n   - *Palla Libera/Scoperta:* Si applica su tagli diagonali o passaggi in profondità. La difesa mantiene una linea elastica ma compatta, arretrando per poi risalire al momento del passaggio ([F1], [F4]). Il rischio è l'inserimento del \"terzo uomo\" se la pressione non è immediata ([F5]).\n   - *Palla Inattiva:* Su punizioni o calci d'angolo, il fuorigioco è sistematico ma statico. La difesa non arretra per seguire la palla, ma mantiene una posizione fissa a tre quarti campo, sfruttando l'inerzia dell'avversario che deve attendere il rigetto ([F5]).\n\n3. **Comandi e Posture:**\n   - *Chi agisce:* Il leader della linea (difensore centrale) comanda verbalmente i tempi di uscita ([F5]).\n   - *Cosa fa:* Comunica l'innesco del movimento o conferma la posizione tramite segnali visivi (piede d'appoggio) e vocali ([F2], [F4]).\n   - *Dove/Quando:* Il comando avviene nel momento in cui il portatore di palla avversario decide il passaggio o esegue il taglio ([F1], [F6]).\n   - *Posture richieste:* I difensori laterali (n° 3, 6, 2) devono rimanere allineati al centrale arretrato e risalire solo dopo aver verificato che l'attaccante sia caduto in fuorigioco ([F1]).\n   - *Rischio residuo:* Il rischio transizionale principale è il \"controtempo\" se la palla viene giocata prima dell'avanzamento della linea, lasciando gli spazi alle spalle dei difensori aperti ([F5], [F6]). La copertura si basa sul marco e copro in superiorità numerica locale ([F2]).",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "955efbbee06d00aa85955891a4359367536b731b482b33a8db2bbf421a76b566",
+          "source": "movimenti_difensivi_442",
+          "canonical_source": "movimenti_difensivi_442",
+          "source_relative": "formations-and-systems/movimenti_difensivi_442.json",
+          "pages": "[10, 11]",
+          "distance": 0.2826,
+          "headings": [
+            "Eercitazioni per l'applicazione della tattica del fuorigioco"
+          ],
+          "text": "Eercitazioni per l'applicazione della tattica del fuorigioco\nL'esercitazione inizia in fig. 15 con l'avversario \"C\" in possesso di palla ed i 4 difensori già schierati. Al comando dell'allenatore, \"C\" trasmette palla a \"B\", il quale controlla e serve in profondità il compagno \"A\" che sta eseguendo il taglio.\nIl comportamento dei difensori sarà il seguente: il n° 5, nel momento in cui \"C\" trasmette palla a \"B\", attacca quest'ultimo (essendo una simulazione, lascerà spazio a \"B\" affinché possa calciare), il n° 3, sul taglio di\"A\", non farà altro che seguirlo, tenendo sempre sotto controllo la linea dell'attaccante \"A\" proteso in profondità, allo scopo di interrompere la corsa un istante prima rispetto al passaggio in profondità di \"B\" per \"A\", sempre che quest'ultimo, nel momento in cui parte la palla dai piedi di \"B\", si trovi oltre la linea difensiva, quindi, per quanto detto precedentemente, oltre se stesso. Gli altri due difensori, il n° 6 e n° 2 devono farsi trovare allineati con il n° 3 arretrando insieme con lui per poi risalire al momento opportuno quando si capisce che l'avversario è caduto in fuorigioco. In fig. 16 è \"fotografato\" l'istante in cui il portatore di palla avversario \"B\" sta per servire in profondità \"C\"; mentre in fig. 17 è \"fotografato\" l'istante in cui il pallone si stacca dai piedi di \"B\".\nFig. 15\nFig. 16\nFig. 17"
+        },
+        {
+          "label": "F2",
+          "id": "118358561cbed190e3e8a69dbbc693260854ee418e153c33e18beda5ec8c9eb4",
+          "source": "Allegati_2812011191858",
+          "canonical_source": "Allegati_2812011191858",
+          "source_relative": "formations-and-systems/Allegati_2812011191858.json",
+          "pages": "[17]",
+          "distance": 0.34333,
+          "headings": [
+            "COMPITI E FUNZIONI"
+          ],
+          "text": "COMPITI E FUNZIONI\nd'appoggio all'altezza della palla, si inverte la direzione di corsa e si scatta in avanti tutti insieme (il piede d'appoggio indica il tempo e la la possibilità di calciare), mettendo l'attaccante avversario in posizione di fuorigioco.\nQuesto tipo di tattica, applicata con un messaggio visivo (piede d'appoggio vicino alla palla), riduce notevolmente i tempi di reazione per l'avanzamento, anche se un po' complessa e di difficile attuazione.\nPer una realizzazione ottimale dobbiamo aggiungere un messaggio vocale da parte di un difensore centrale prestabilito all'inizio del movimento all'indietro, in modo che la difesa sia chiamata oralmente a \"stringere e scappare\", ma successivamente solo la lettura della situazione (attaccante sulla linea difensiva) ed il segnale visivo (piede d'appoggio) determinino l'agire.\nIl meccanismo di pressione sulla palla e copertura tra i compagni (marco e copro), da applicare in superiorità numerica, ci porta ad avere una linea difensiva di 3 giocatori.\nIn base a dove arriva la palla (o sta per arrivare), il difensore responsabile di quella zona e dell'avversario che la occupa, esce in pressione, mentre gli altri danno copertura."
+        },
+        {
+          "label": "F3",
+          "id": "01f7d4f4845a0766902aed86a44a32e52eef0ce445386c46a63650a7f3896ba6",
+          "source": "Allegati_127201015377",
+          "canonical_source": "Allegati_127201015377",
+          "source_relative": "formations-and-systems/Allegati_127201015377.json",
+          "pages": "[6]",
+          "distance": 0.37287,
+          "headings": [
+            "Cap.1 La leadership"
+          ],
+          "text": "Cap.1 La leadership\nIl termine leader deriva dal verbo inglese \"to lead\" che significa dirigere, guidare. L'etimologia ci fa subito comprendere che il leader guida un gruppo di persone. Il concetto di leader si applica in svariati campi dell'attività umane, management, politica, cultura, arte. E' un elemento di un gruppo di status più elevato degli altri, e certamente in una squadra di calcio, l'allenatore si trova in una posizione sociale di superiorità. L'allenatore, nel calcio, così come negli altri sport, ha il ruolo formale, imposto dalla società, di guidare una squadra al conseguimento del risultato sportivo prefissato. In forza di ciò egli esercita influenza sugli altri, in virtù di conoscenze, competenze, esperienze, capacità e nello stesso tempo viene a sua volta influenzato dal gruppo. Ha enormi e maggiori responsabilità rispetto a chiunque altro, ma è vincolato e dipende dalle esigenze della squadra. Ci sono sfumature diverse nella definizione del concetto di leadership così come più di una modalità di esercitarla, ma tutte prevedono l'attenzione agli individui che formano il gruppo perché sono essi in definitiva a decidere se sposare la linea operativa del leader e se impegnarsi insieme per ottenere il raggiungimento della meta richiesta. La figura del leader mostra maggiore iniziativa rispetto agli altri,"
+        },
+        {
+          "label": "F4",
+          "id": "ec147d89c206f8cbdd8b3f072fe30e3aead5978b0f2d0599bb2f577d485ac790",
+          "source": "movimenti_difensivi_442",
+          "canonical_source": "movimenti_difensivi_442",
+          "source_relative": "formations-and-systems/movimenti_difensivi_442.json",
+          "pages": "[9]",
+          "distance": 0.25486,
+          "headings": [
+            "Eercitazioni per l'applicazione della tattica del fuorigioco"
+          ],
+          "text": "Eercitazioni per l'applicazione della tattica del fuorigioco\nIl \"taglio\" si può definire come \"azione di smarcamento eseguita con corsa in diagonale davanti al compagno in possesso palla\". L'applicazione della tattica del fuorigioco sul taglio può essere attuata con buona certezza di riuscita se il reparto difensivo adotta una sola linea di copertura sia nell'esecuzione della diagonale (palla sull'esterno) che della piramide (palla in zona centrale).\nNelle fig. 12-13-14 è rappresentata una situazione \"tipica\" con palla sull'esterno, nella quale si evidenzia il comportamento dei difensori per mettere in fuorigioco l'attaccante avversario che esegue il taglio.\nFig. 12\nLa situazione che andiamo a ricreare inizia in fig. 12 con \"l'avversario \"A\" in possesso palla; al comando dell'allenatore lo stesso \"A\" trasmette palla a \"B\", il quale controlla e serve il compagno \"C\", che stava eseguendo il taglio."
+        },
+        {
+          "label": "F5",
+          "id": "fa94cd105642e8d043aa90d3c656ebcce43407a55e0800f426de173009b2f74e",
+          "source": "movimenti_difensivi_442",
+          "canonical_source": "movimenti_difensivi_442",
+          "source_relative": "formations-and-systems/movimenti_difensivi_442.json",
+          "pages": "[9]",
+          "distance": 0.29287,
+          "headings": [
+            "Il fuorigioco"
+          ],
+          "text": "Il fuorigioco\n- parità o inferiorità numerica difensiva;\n- respinta in zona centrale dopo lancio o cross;\n- respinta in zona centrale dopo esecuzione di calcio d'angolo;\n- quando la punta, spalle alla porta, esegue un passaggio all'indietro. Nell'attuazione del fuorigioco è indispensabile che uno dei due centrali detti i tempi di uscita con comando verbale.\nIn considerazione di quest'analisi, possiamo dedurre che, la tattica del fuorigioco prevede tutte le situazioni in precedenza analizzate trattando l'elastico difensivo, ma la differenza sostanziale è che nel fuorigioco non è previsto l'arretramento, poiché la difesa continua a salire, mentre l'elastico mi sembra più sicuro perché è in grado di sopportare anche inserimenti del 3° uomo."
+        },
+        {
+          "label": "F6",
+          "id": "5370b19b42f3128a77133c4600c5b8f7a8e732e348cb86e23842523bc1362bfe",
+          "source": "lancio_Giuliano",
+          "canonical_source": "lancio_Giuliano",
+          "source_relative": "formations-and-systems/lancio_Giuliano.json",
+          "pages": "[4, 5]",
+          "distance": 0.25275,
+          "headings": [
+            "Il lancio utilizzato per eludere la tattica del fuorigioco"
+          ],
+          "text": "Il lancio utilizzato per eludere la tattica del fuorigioco\nLe difese utilizzano la tattica dell'off-side, per fermare gli attacchi improvvisi degli avversari e semplicemente per evitare che la squadra ospite dia profondità alla manovra. Il lancio può avvenire da ogni parte del campo, sia lateralmente che centralmente e da tutte le distanze possibili. Alcuni portieri come ad esempio Buffon, attraverso il calcio del terzino servono direttamente le punte che, in alcuni casi, si trovano in posizioni favorevoli per andare alla conclusione. Ora verranno analizzate due circostanze in cui si impiega il cross per superare il fuorigioco impostato dai difensori.\nIn questa situazione A, non viene immediatamente pressato da B, per cui ha il tempo di ragionare e di vedere il movimento di C a mezzaluna. Quest'ultimo riuscirà ad eludere la tattica del fuorigioco, grazie al taglio e a ricevere la palla in C1 (fig.10).\nN.B.: Eludere il fuorigioco non è semplice, in questo caso C deve avere un ottimo scatto è un buon tempismo.\nUn'altra situazione in cui si riesce ad eludere il fuorigioco è nell'apertura laterale. A viene pressato da due centrocampisti, e cerca di effettuare un lancio per cambiare il gioco in fascia su B che, si allarga in B1. La differenza sostanziale rispetto l'esercitazione precedente è nel pressing sul portatore di palla. A non ha il tempo di ragionare e, nel minor tempo possibile, deve cercare di servire il compagno B (fig.11)."
+        }
+      ],
+      "source_aware_source": "La gestione tattica della gara.",
+      "source_aware_sources": [
+        "La gestione tattica della gara."
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [
+        "955efbbee06d00aa85955891a4359367536b731b482b33a8db2bbf421a76b566",
+        "5370b19b42f3128a77133c4600c5b8f7a8e732e348cb86e23842523bc1362bfe",
+        "6ed78944405a49ec7585fc3dfc9b1af0c3bc7ffe74596790aec9d95ae068144f",
+        "b8a2a5f0776d0c4e1f05136eb459f4552090adee0ec1108158139dcb5a3ed3fd"
+      ],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "facets": [
+          "non_possession",
+          "offside",
+          "communication"
+        ],
+        "formations": [],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"trappola del fuorigioco\" (offside trap) come scelta tattica attiva. ci illustri la differenza tra un fuorigioco attuato su situazione di \"palla libera/scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"palla inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "955efbbee06d00aa85955891a4359367536b731b482b33a8db2bbf421a76b566",
+        "118358561cbed190e3e8a69dbbc693260854ee418e153c33e18beda5ec8c9eb4",
+        "01f7d4f4845a0766902aed86a44a32e52eef0ce445386c46a63650a7f3896ba6"
+      ],
+      "tactical_covered": {
+        "non_possession": "955efbbee06d00aa85955891a4359367536b731b482b33a8db2bbf421a76b566",
+        "offside": "118358561cbed190e3e8a69dbbc693260854ee418e153c33e18beda5ec8c9eb4",
+        "communication": "01f7d4f4845a0766902aed86a44a32e52eef0ce445386c46a63650a7f3896ba6"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"Trappola del Fuorigioco\" (offside trap) come scelta tattica attiva. Ci illustri la differenza tra un fuorigioco attuato su situazione di \"Palla Libera/Scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"Palla Inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). Quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo?",
+        "fase di non possesso blocco difesa difendere",
+        "fuorigioco palla scoperta palla libera palla coperta",
+        "comunicazione comando leader segnale"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "non_possession": true,
+          "offside": true,
+          "communication": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {},
+        "missing_details": [],
+        "complete": true
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "4",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 176.02,
+      "generation": {
+        "total_duration_ns": 164661947883,
+        "load_duration_ns": 1188912,
+        "prompt_eval_duration_ns": 94530709000,
+        "eval_duration_ns": 69921868000,
+        "eval_count": 550,
+        "prompt_eval_count": 2754,
+        "done_reason": "length",
+        "repair_reasons": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}
