@@ -33,6 +33,8 @@ def validate_report(report: dict) -> None:
         raise RuntimeError("invalid_citations")
     if not item.get("has_any_citation"):
         raise RuntimeError("missing_citations")
+    if item.get("tactical_plan") and (item.get("generation") or {}).get("quality_gate_passed") is not True:
+        raise RuntimeError("tactical_quality_gate_failed")
 
 
 def main() -> None:

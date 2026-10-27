@@ -91,6 +91,16 @@ class ApiTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 query.validate_report({"questions":[item],"index_unchanged":True})
 
+    def test_query_report_fails_closed_on_tactical_quality(self):
+        good={"questions":[{"invalid_citation_ids":[],"has_any_citation":True,
+            "tactical_plan":{"facets":["possession"]},
+            "generation":{"quality_gate_passed":True}}],"index_unchanged":True}
+        query.validate_report(good)
+        bad=json.loads(json.dumps(good))
+        bad["questions"][0]["generation"]["quality_gate_passed"]=False
+        with self.assertRaisesRegex(RuntimeError,"tactical_quality_gate_failed"):
+            query.validate_report(bad)
+
     def test_performance_profile_defaults_are_locked_compatible(self):
         with tempfile.TemporaryDirectory() as tmp:
             config = self.config(Path(tmp))

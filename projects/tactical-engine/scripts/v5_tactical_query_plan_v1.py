@@ -365,6 +365,7 @@ def generation_contract(plan: dict) -> str:
         "senza attribuirla letteralmente alla fonte. Non usare l'assenza di una fonte identica allo scenario come motivo per "
         "omettere la soluzione: applica prudentemente i principi recuperati e segnala solo il limite specifico. "
         "Evita termini anacronistici se esiste un equivalente moderno e chiudi controllando che nessun sottopunto sia rimasto fuori. "
+        "Non mostrare nomi tecnici del controllo interno, non aggiungere una sezione di verifica e non assegnare numeri di maglia se lo scenario non li fornisce. "
         f"Il controllo finale deve verificare esplicitamente: {mandatory_text}. "
         "I seguenti requisiti specifici sono obbligatori, non suggerimenti. Mantieni l'intera risposta entro 340 parole, "
         "accorpa i criteri in una matrice o in punti compatti e non ripetere la stessa griglia per concetti equivalenti: " + guidance
@@ -398,6 +399,28 @@ def audit_answer(answer: str, plan: dict) -> dict:
         detail_coverage["uncovered_ball_drop"] = "palla scoperta" in text and "scapp" in text
         detail_coverage["covered_ball_step"] = "palla coperta" in text and any(term in text for term in ("sale", "salita"))
         detail_coverage["leader_and_keeper"] = "leader" in text and "portiere" in text
+    semantic_issues = []
+    clauses = [normal(part) for part in re.split(r"[.;\n]+", answer) if part.strip()]
+    if any("palla coperta" in clause and re.search(r"\b(?:scapp|arretr)", clause)
+           for clause in clauses):
+        semantic_issues.append("covered_ball_mapped_to_drop")
+    if any("palla scoperta" in clause and re.search(r"\b(?:sale|salita|risal)", clause)
+           for clause in clauses):
+        semantic_issues.append("uncovered_ball_mapped_to_step")
+    if "counterpress_deadline" in plan.get("scenarios", []):
+        if re.search(r"(?:contro-?pressing|attacco spazio).{0,80}\(possesso\)|principio.{0,80}\(possesso\)", text):
+            semantic_issues.append("counterpress_labelled_as_possession")
+        if re.search(r"densit.{0,80}(?:cede|cedere|deve cedere)", text):
+            semantic_issues.append("defensive_density_must_yield")
+    if "cross_attack" in plan.get("scenarios", []) and re.search(
+            r"\bin difesa\b|postura semiaperta|difesa del cross", text):
+        semantic_issues.append("cross_attack_contaminated_by_defensive_phase")
+    if re.search(r"\b(?:goalkeeper_decision|third_man_sequence|box_roles|next_action|between_lines_receiving|transition_balance|emotional_effect)\b", text):
+        semantic_issues.append("internal_audit_labels_exposed")
+    if re.search(r"\b(?:n[.°]?\s*|giocatore\s+)(?:2|3|4|5|6|7|8|9|10|11)\b", text) and not plan.get("formations"):
+        semantic_issues.append("unsupported_rigid_player_numbers")
+    if plan.get("scenarios") and len(text.split()) < 150:
+        semantic_issues.append("complex_answer_too_short")
     missing_details = [name for name, covered in detail_coverage.items() if not covered]
     return {
         "facet_coverage": facet_coverage,
@@ -406,5 +429,6 @@ def audit_answer(answer: str, plan: dict) -> dict:
         "missing_operational": missing_operational,
         "detail_coverage": detail_coverage,
         "missing_details": missing_details,
-        "complete": not missing_facets and len(missing_operational) <= 1 and not missing_details,
+        "semantic_issues": semantic_issues,
+        "complete": not missing_facets and len(missing_operational) <= 1 and not missing_details and not semantic_issues,
     }

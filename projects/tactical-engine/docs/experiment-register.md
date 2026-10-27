@@ -2,6 +2,22 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-27 — Remediation V8 gate relazionale e selezione repair
+
+Attività: correggere le tre cause residue dimostrate dal runtime V7 senza
+spalla e senza modificare la pipeline locked. Script:
+`v5_tactical_query_plan_v1.py`, `smoke_test_rag_v5_e2e.py`,
+`run_rag_v5_query.py`; test planner/API/catalogo. Implementazione: rilevamento
+di associazioni tattiche contraddittorie e contaminazioni di fase, divieto di
+esporre etichette interne o numeri rigidi non richiesti, confronto deterministico
+fra prima risposta e repair, selezione del candidato con minori omissioni,
+telemetria `quality_gate_*` e rifiuto fail-closed del wrapper se il candidato
+finale non supera il gate. Risultato offline: 43/43 test, compilazione e diff
+check PASS. Decisione: distribuire sul ramo dedicato e ripetere da zero le dieci
+domande con contesto 8.192 per evitare troncamenti; continuare l'affinamento
+dopo il confronto. Stato: **IMPLEMENTATO e VALIDATO offline**; runtime **DA
+FARE**.
+
 ### 2026-10-27 — Runtime Coverciano remediation V7
 
 Attività: secondo rerun differenziale 10/10 con ancoraggi documentali esatti,

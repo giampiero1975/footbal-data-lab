@@ -210,6 +210,8 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
         obj=json.load(response)
     msg=obj.get("message") or {}
     answer=msg.get("content","")
+    first_answer=answer
+    first_obj=obj
     repair_reasons=[]
     if num_predict and "perd" in question.casefold():
         sections=re.split(r"\n\s*2[.)]",answer,maxsplit=1)
@@ -225,6 +227,8 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
                  first_audit["missing_details"])
         if missing:
             repair_reasons.append("copertura incompleta: "+", ".join(missing))
+        if first_audit.get("semantic_issues"):
+            repair_reasons.append("incoerenze semantiche: "+", ".join(first_audit["semantic_issues"]))
     if obj.get("done_reason")=="length":
         repair_reasons.append("risposta troncata dal limite di generazione")
     if repair_reasons:
@@ -235,14 +239,33 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
                 "options":options}
         request=Request("http://127.0.0.1:11434/api/chat",data=json.dumps(repair,ensure_ascii=False).encode(),headers={"Content-Type":"application/json"},method="POST")
         with urlopen(request,timeout=timeout) as response:
-            obj=json.load(response)
-        answer=(obj.get("message") or {}).get("content","")
+            repair_obj=json.load(response)
+        repair_answer=(repair_obj.get("message") or {}).get("content","")
         # Fail closed on the two observed cross-phase sentence families when the
         # corrective generation repeats them. This removes claims; it never adds any.
-        answer=re.sub(r"In caso di passaggio[^\n]*?(?:esce in pressione|ruolo di pressante)[^\n]*?\[F3\]\.[ ]*", "", answer, flags=re.I)
-        answer=re.sub(r"In fase di contropressione[^\n]*?(?:appena riconquistata|il portatore deve scegliere)[^\n]*?\[F5\]\.[ ]*", "", answer, flags=re.I)
+        repair_answer=re.sub(r"In caso di passaggio[^\n]*?(?:esce in pressione|ruolo di pressante)[^\n]*?\[F3\]\.[ ]*", "", repair_answer, flags=re.I)
+        repair_answer=re.sub(r"In fase di contropressione[^\n]*?(?:appena riconquistata|il portatore deve scegliere)[^\n]*?\[F5\]\.[ ]*", "", repair_answer, flags=re.I)
+        first_audit=tactical_audit_answer(first_answer,tactical_plan) if tactical_plan else None
+        repair_audit=tactical_audit_answer(repair_answer,tactical_plan) if tactical_plan else None
+        def candidate_key(candidate_answer,candidate_obj,candidate_audit):
+            missing_count=(len(candidate_audit["missing_facets"])+
+                           len(candidate_audit["missing_operational"])+
+                           len(candidate_audit["missing_details"])+
+                           len(candidate_audit.get("semantic_issues",[]))) if candidate_audit else 0
+            return (0 if candidate_audit and candidate_audit["complete"] else 1,
+                    missing_count,
+                    1 if candidate_obj.get("done_reason")=="length" else 0,
+                    -len(candidate_answer.split()))
+        candidates=[(first_answer,first_obj,first_audit,"first"),
+                    (repair_answer,repair_obj,repair_audit,"repair")]
+        answer,obj,selected_audit,selected_generation=min(
+            candidates,key=lambda item:candidate_key(item[0],item[1],item[2]))
+        repair_reasons.append("generazione selezionata: "+selected_generation)
+    else:
+        selected_audit=tactical_audit_answer(answer,tactical_plan) if tactical_plan else None
     if not answer.strip():
         raise RuntimeError(f"Empty model answer: {str(obj)[:300]}")
+    final_audit=selected_audit if tactical_plan else None
     return answer,{"total_duration_ns":obj.get("total_duration"),
                    "load_duration_ns":obj.get("load_duration"),
                    "prompt_eval_duration_ns":obj.get("prompt_eval_duration"),
@@ -250,7 +273,11 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
                    "eval_count":obj.get("eval_count"),
                    "prompt_eval_count":obj.get("prompt_eval_count"),
                    "done_reason":obj.get("done_reason"),
-                   "repair_reasons":repair_reasons}
+                   "repair_reasons":repair_reasons,
+                   "quality_gate_passed":bool(final_audit and final_audit["complete"]) if tactical_plan else None,
+                   "quality_gate_missing":((final_audit["missing_facets"]+final_audit["missing_operational"]+
+                                             final_audit["missing_details"]+final_audit.get("semantic_issues",[]))
+                                            if final_audit else [])}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--model",default="qwen3.5:9b")

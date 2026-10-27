@@ -38,10 +38,15 @@
   repair 6/10. Soltanto tre risposte sono realmente complete; casi 4 e 10
   troncati; il caso 9 evidenzia un falso positivo semantico. Target 26/30 non
   dimostrato. Report `docs/rag-coverciano-remediation-v7-runtime-01.md`.
-- [ ] **DA FARE** V5-COVERCIANO-RAG-REMEDIATION-V8: audit relazionale su
+- [x] **SUPERATO DALLO STEP SUCCESSIVO** piano V5-COVERCIANO-RAG-REMEDIATION-V8: audit relazionale su
   soggetto/decisione/negazione, fail-closed dopo repair, selezione della
   migliore fra prima e seconda risposta e prova isolata di un generatore più
   capace senza spostare retrieval, fonti o responsabilità fuori dal RAG.
+- [x] **IMPLEMENTATO e VALIDATO offline** V5-COVERCIANO-RAG-REMEDIATION-V8:
+  audit relazionale per contraddizioni e contaminazioni di fase, confronto fra
+  prima generazione e repair, scelta del candidato migliore, telemetria del gate
+  e wrapper fail-closed se l'output resta incompleto. Suite 43/43. Rerun 10/10
+  da zero con contesto 8.192 **DA FARE**; spalla ancora disabilitata.
   Storicamente l'attività chiedeva di correggere senza spalla la
   scomposizione della domanda, il retrieval per sottoproblemi/fase, il gate di
   copertura, la risposta applicativa chi-cosa-dove-quando-perché-copertura e la

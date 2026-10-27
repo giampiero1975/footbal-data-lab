@@ -2,7 +2,7 @@
 
 Data avvio: 2026-10-26  
 Ramo: `codex/rag-coverciano-remediation`  
-Stato: V6 e V7 **ESEGUITE, NON VALIDATE**; V8 **DA FARE**
+Stato: V6 e V7 **ESEGUITE, NON VALIDATE**; V8 **IMPLEMENTATA e VALIDATA offline**, runtime **DA FARE**
 
 ## Obiettivo vincolante
 
@@ -118,6 +118,15 @@ grave nel caso 9. Dettagli in
 `docs/rag-coverciano-remediation-v7-runtime-01.md`. La prossima differenza
 tecnica necessaria e un audit relazionale fail-closed, non un altro rerun
 equivalente.
+
+## Remediation V8
+
+La V8 implementa la differenza tecnica richiesta: audit delle associazioni
+tattiche e delle contaminazioni di fase, selezione deterministica fra prima
+risposta e repair, conservazione del candidato migliore, telemetria esplicita e
+rifiuto fail-closed nel wrapper quando il risultato resta incompleto. La suite
+planner/API/catalogo passa 43/43. Il nuovo ciclo usa contesto 8.192 per impedire
+che prompt ed evidenze consumino lo spazio destinato all'output.
 
 ## Criterio di chiusura
 

@@ -117,6 +117,34 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertIn("leader_and_keeper", audit["missing_details"])
         self.assertFalse(audit["complete"])
 
+    def test_offside_audit_detects_contradictory_mappings(self):
+        plan = planner.analyse(
+            "Trappola del fuorigioco: palla scoperta e palla inattiva, comando del leader."
+        )
+        answer = (
+            "Su palla coperta la linea scappa e poi sale; su palla scoperta sale. "
+            "In seguito: su palla scoperta la linea scappa, mentre su palla coperta sale. "
+            "Il leader chiama e il portiere copre; su palla inattiva si sale al momento del calcio. "
+            + " La squadra protegge porta e profondità con postura coordinata." * 12
+        )
+        audit = planner.audit_answer(answer, plan)
+        self.assertIn("covered_ball_mapped_to_drop", audit["semantic_issues"])
+        self.assertIn("uncovered_ball_mapped_to_step", audit["semantic_issues"])
+        self.assertFalse(audit["complete"])
+
+    def test_cross_attack_audit_rejects_defensive_phase_contamination(self):
+        plan = planner.analyse(
+            "Attacco su cross: primo palo, secondo palo, dischetto e fuori area."
+        )
+        answer = (
+            "Primo palo, dischetto, secondo palo e limite area sono occupati. "
+            "In difesa si usa postura semiaperta. Il portatore dà il segnale e la squadra attacca. "
+            + " I giocatori coordinano corse e coperture preventive." * 15
+        )
+        audit = planner.audit_answer(answer, plan)
+        self.assertIn("cross_attack_contaminated_by_defensive_phase", audit["semantic_issues"])
+        self.assertFalse(audit["complete"])
+
     def test_scenario_query_is_prioritised(self):
         plan = planner.analyse("Scivolamento del reparto su cambio gioco con mediano e lato debole.")
         queries = planner.retrieval_queries("Scivolamento del reparto su cambio gioco.", plan)
