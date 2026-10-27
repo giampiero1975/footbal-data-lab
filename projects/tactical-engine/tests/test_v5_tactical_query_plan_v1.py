@@ -13,7 +13,7 @@ class TacticalQueryPlanTests(unittest.TestCase):
         ("Transizione negativa: quando riaggressione immediata e quando ripiegamento? Valuta preventiva, zona e palla coperta o scoperta.", {"negative_transition", "prevention", "offside"}),
         ("Costruzione dal basso contro pressione uomo su uomo: rotazioni, liberazione spazi, terzo uomo, rischio e portiere.", {"possession", "third_man", "goalkeeper"}),
         ("Come difendere la porta su cross laterale: postura dei centrali, duello, traiettoria e coordinazione col portiere?", {"non_possession", "box", "goalkeeper"}),
-        ("Scaglionamento offensivo contro blocco medio-basso: cinque corridoi e marcatura preventiva.", {"possession", "non_possession", "prevention"}),
+        ("Scaglionamento offensivo contro blocco medio-basso: cinque corridoi, superiorità socio-affettiva e marcature preventive.", {"possession", "non_possession", "prevention", "five_lanes", "relational_superiority"}),
         ("Nel blocco medio-basso descrivi sotto-blocco e scivolamento sul cambio di gioco, lato debole e mediano.", {"non_possession", "width"}),
         ("In transizione negativa confronta contro-pressing orientato sull'uomo e sulle linee di passaggio con preventiva e ripiegamento.", {"negative_transition", "prevention"}),
         ("Come occupare la zona di rifinitura tra le linee con trequartisti, ali dentro e terzo uomo?", {"possession", "inside_space", "third_man"}),

@@ -165,6 +165,18 @@ def reserve_explicit_manual(question, rows, scores, selected, limit):
     winner=max(candidates,key=lambda i:float(scores[i]))
     revised=list(selected[:max(0,limit-1)])+[rows[winner]]
     return revised,[rows[winner]["id"]]
+def unload_ollama_model(model, timeout=30):
+    """Release an opt-in retrieval model before CPU-bound generation."""
+    payload={"model":model,"keep_alive":0,"stream":False}
+    request=Request("http://127.0.0.1:11434/api/generate",
+                    data=json.dumps(payload).encode(),
+                    headers={"Content-Type":"application/json"},method="POST")
+    try:
+        with urlopen(request,timeout=timeout) as response:
+            json.load(response)
+        return True
+    except (HTTPError,URLError,TimeoutError,json.JSONDecodeError):
+        return False
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,
          num_predict=0,context_window=8192,keep_alive=None,tactical_plan=None):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
@@ -352,6 +364,9 @@ def main():
             if args.source_aware:
                 known={r["id"] for r in rows}
                 rows.extend(explicit_manual_candidates(coll,embedding,question,known))
+            embedding_model_released=False
+            if args.tactical_plan and not args.retrieval_only:
+                embedding_model_released=unload_ollama_model("qwen3-embedding:0.6b")
             candidate_ids=[]
             if candidate is not None and re.search(r"\bussia\b",question,re.I):
                 extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
@@ -448,6 +463,7 @@ def main():
                    "tactical_plan":tactical_plan,"tactical_reserved_ids":tactical_reserved,"tactical_covered":tactical_covered,
                    "tactical_queries":tactical_queries,
                    "tactical_answer_audit":tactical_answer_audit,
+                   "embedding_model_released_before_generation":embedding_model_released,
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
                    "alias_chunks_skipped":dropped,

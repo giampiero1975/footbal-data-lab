@@ -15,7 +15,7 @@ FACETS = {
     "non_possession": ("fase di non possesso", "blocco", "difesa", "difendere", "scivolamento", "sotto-blocco", "fuorigioco"),
     "negative_transition": ("transizione negativa", "perdita", "riaggressione", "contro-pressing", "ripiegamento"),
     "positive_transition": ("transizione positiva", "riconquista", "contropiede", "ripartenza"),
-    "prevention": ("preventiva", "marcatura preventiva", "copertura preventiva", "seconda palla", "equilibrio"),
+    "prevention": ("preventiv", "seconda palla", "equilibrio"),
     "goalkeeper": ("portiere", "estremo difensore"),
     "third_man": ("terzo uomo", "3° uomo"),
     "width": ("ampiezza", "corsia laterale", "cambio gioco", "cambio di gioco", "lato debole"),
@@ -25,6 +25,8 @@ FACETS = {
     "substitutions": ("sostituz", "cambio di sistema", "cambi di sistema", "gestione del risultato"),
     "communication": ("comunicazione", "comando", "leader", "segnale"),
     "psychology": ("emotiv", "psicolog", "pressione della gara"),
+    "five_lanes": ("cinque corridoi", "5 corridoi", "cinque canali", "5 canali"),
+    "relational_superiority": ("superiorità socio-affettiva", "superiorita socio-affettiva", "superiorità posizionale", "superiorita posizionale"),
 }
 
 OPPOSITE = {
@@ -48,6 +50,8 @@ FACET_GUIDANCE = {
     "substitutions": "Per ogni cambio indica giocatore/ruolo che esce ed entra, nuova struttura, compito concreto e rischio compensato.",
     "communication": "Indica chi comunica, con quale comando o canale e in quale momento della gara.",
     "psychology": "Collega l'impatto emotivo a un comportamento osservabile e a una comunicazione concreta, non a formule astratte.",
+    "five_lanes": "Nomina e occupa esplicitamente i cinque corridoi verticali: fascia, half-space, centro, half-space e fascia; collega la linea avanzata alla struttura residua 2+3 o 3+2.",
+    "relational_superiority": "Distingui superiorità posizionale da relazione socio-affettiva: vicinanze, conoscenza reciproca, appoggi e combinazioni coordinate.",
 }
 
 
