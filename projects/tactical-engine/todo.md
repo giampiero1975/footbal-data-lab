@@ -66,6 +66,12 @@
   V9.1 10/10 dopo correzione di un falso positivo sequenziale. Il voto esterno
   medio >=26/30 resta DA VALIDARE senza spalla. Report
   `docs/rag-coverciano-remediation-v9-runtime-01.md`.
+- [ ] **IMPLEMENTATO; runtime DA FARE** V5-COVERCIANO-RAG-REMEDIATION-V10:
+  terzo giro autorizzato dopo audit qualitativo del testo V9. Nuovi gate contro
+  contaminazione cross nella costruzione dal basso, scivolamento laterale
+  trasformato in arretramento, sovrapposizione dei compiti quinto/mediano,
+  ruolo invertito del limite area, numeri non richiesti, etichette interne e
+  sostituzioni triple generiche. Validare offline e rieseguire i dieci casi.
 - [x] **IMPLEMENTATO** V5-COVERCIANO-RAG-ONLY-ISOLATION-01: flag runtime
   OpenRouter impostato a zero; backend evita la fase reviewing quando la spalla
   e disabilitata; pannello mostra come risposta finale il testo RAG non

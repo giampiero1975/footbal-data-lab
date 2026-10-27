@@ -158,6 +158,26 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertIn("cross_attack_contaminated_by_defensive_phase", audit["semantic_issues"])
         self.assertFalse(audit["complete"])
 
+    def test_scenario_audit_rejects_v9_contaminations(self):
+        build = planner.analyse("Costruzione dal basso contro pressing alto con portiere e terzo uomo.")
+        build_answer = "Il portiere crea superiorità, poi si attacca il primo palo con un cross. " * 20
+        self.assertIn("build_out_contaminated_by_cross_attack",
+                      planner.audit_answer(build_answer, build)["semantic_issues"])
+
+        shift = planner.analyse("Sotto-blocco e scivolamento su cambio gioco con tempo di volo.")
+        shift_answer = (
+            "Il quinto scherma lo spazio di imbucata davanti alla difesa e il reparto scivola all'indietro. "
+            "Il lato debole stringe, il lato forte esce e il mediano garantisce copertura. " * 15
+        )
+        issues = planner.audit_answer(shift_answer, shift)["semantic_issues"]
+        self.assertIn("lateral_shift_mapped_to_vertical_drop", issues)
+        self.assertIn("wide_defender_given_midfielder_screen", issues)
+
+        management = planner.analyse("Sostituzioni negli ultimi 15 minuti e cambio del sistema di gioco.")
+        management_answer = "Scambio simultaneo di tre giocatori con tre riserve, poi comando e copertura. " * 20
+        self.assertIn("generic_triple_substitution",
+                      planner.audit_answer(management_answer, management)["semantic_issues"])
+
     def test_scenario_query_is_prioritised(self):
         plan = planner.analyse("Scivolamento del reparto su cambio gioco con mediano e lato debole.")
         queries = planner.retrieval_queries("Scivolamento del reparto su cambio gioco.", plan)

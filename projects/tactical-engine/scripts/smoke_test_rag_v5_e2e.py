@@ -242,6 +242,12 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
             "live_communication": "indica comando verbale o gesto, chi lo da e quando",
             "cross_attack_contaminated_by_defensive_phase": "resta nell'attacco del cross senza inserire la difesa del cross",
             "unsupported_rigid_player_numbers": "elimina numeri di maglia non presenti nella domanda",
+            "build_out_contaminated_by_cross_attack": "resta nella costruzione dal basso ed elimina cross e occupazioni dell'area offensiva",
+            "lateral_shift_mapped_to_vertical_drop": "descrivi una traslazione laterale e non uno scivolamento all'indietro",
+            "wide_defender_given_midfielder_screen": "separa il quarto/quinto che esce sul ricevente dal mediano che scherma l'imbucata",
+            "edge_of_box_role_inverted": "assegna il limite area alla respinta e alla preventiva, non a evitare tiri della propria squadra",
+            "generic_triple_substitution": "proponi una trasformazione coerente con cambi ruolo o sostituzioni nominate una per una",
+            "internal_audit_labels_exposed": "rimuovi tutte le etichette tecniche del controllo interno",
         }
         readable_reasons=[]
         for reason in repair_reasons:

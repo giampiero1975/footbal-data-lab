@@ -122,14 +122,14 @@ SCENARIOS = {
 }
 
 SCENARIO_GUIDANCE = {
-    "build_out": "Non abbassare genericamente il baricentro: descrivi portiere uomo libero, attrazione della prima pressione, smarcamento opposto dell'appoggio e del terzo uomo, uscita oltre pressione e soluzione lunga preparata con struttura per la seconda palla.",
+    "build_out": "Non abbassare genericamente il baricentro: descrivi portiere uomo libero, attrazione della prima pressione, smarcamento opposto dell'appoggio e del terzo uomo, uscita oltre pressione e soluzione lunga preparata con struttura per la seconda palla. Resta nella costruzione dal basso: non introdurre cross, primo/secondo palo o occupazioni dell'area offensiva.",
     "cross_defence": "Descrivi marcatura a uomo nella zona: difensore lato porta, distanza di contatto, postura semiaperta per vedere palla e uomo, attacco del punto di caduta e chiamata del portiere; evita numeri di maglia rigidi non ricavati dallo scenario.",
-    "lateral_shift": "Il tempo di volo del cambio gioco serve per traslare: il nuovo esterno lato forte esce sul ricevente, il lato debole stringe, il mediano scherma l'imbucata e le linee mantengono distanze corte. Non trasformare lo scivolamento in un ripiegamento verticale.",
+    "lateral_shift": "Il tempo di volo del cambio gioco serve per traslare lateralmente, non per scappare all'indietro: il nuovo quarto/quinto lato forte esce sul ricevente, il lato debole stringe, il mediano resta distinto e scherma l'imbucata, le linee mantengono distanze corte. Non attribuire al quarto/quinto il compito del mediano.",
     "counterpress_deadline": "Distingui uomo e linee di passaggio, mantieni una preventiva aggressiva dietro la pressione e indica una finestra operativa breve di circa 5-6 secondi; se viene superata o la palla e scoperta, interrompi e scappa in blocco.",
     "between_lines": "Il ricevente si smarca alle spalle del centrocampo avversario con corpo aperto; dopo la ricezione deve scegliere tra girarsi e attaccare la linea, giocare a muro/scarico per il terzo uomo o liberare un inserimento in profondita.",
-    "cross_attack": "Assegna quattro occupazioni distinte: primo palo, zona centrale/dischetto, secondo palo e limite area per respinta e preventiva. Collega il cross a un segnale del portatore, non a una coreografia automatica.",
+    "cross_attack": "Assegna quattro occupazioni distinte: primo palo, zona centrale/dischetto, secondo palo e limite area per raccogliere la respinta e garantire preventiva. Collega il cross a un segnale del portatore, non a una coreografia automatica; non usare numeri di maglia se assenti dalla domanda.",
     "offside_trap": "Correzione vincolante: su palla scoperta in gioco aperto la linea scappa e protegge profondita; la salita e ammessa solo su palla coperta o gesto tecnico leggibile. Su palla inattiva la linea concordata sale all'istante del calcio, comandata da un leader, con portiere pronto alla profondita.",
-    "game_management": "Fornisci almeno un esempio completo e coerente di trasformazione, indicando chi esce o cambia ruolo, chi entra, compiti della nuova linea, protezione delle seconde palle e messaggio semplice dato prima dell'ingresso. Non usare il video come comunicazione live.",
+    "game_management": "Fornisci almeno un esempio completo e coerente di trasformazione: indica un cambio ruolo senza sostituzione oppure, per ogni sostituzione realmente proposta, chi esce e chi entra. Descrivi compiti della nuova linea, protezione delle seconde palle e messaggio semplice dato prima dell'ingresso. Non inventare tre cambi generici e non usare il video come comunicazione live.",
 }
 
 SCENARIO_DETAILS = {
@@ -442,11 +442,26 @@ def audit_answer(answer: str, plan: dict) -> dict:
     if "cross_attack" in plan.get("scenarios", []) and re.search(
             r"\bin difesa\b|postura semiaperta|difesa del cross", text):
         semantic_issues.append("cross_attack_contaminated_by_defensive_phase")
-    if re.search(r"\b(?:goalkeeper_decision|third_man_sequence|box_roles|next_action|between_lines_receiving|transition_balance|emotional_effect)\b", text):
+    if re.search(r"\b(?:goalkeeper_decision|third_man_sequence|box_roles|next_action|between_lines_receiving|transition_balance|emotional_effect|field_zone|live_message|density_or_proximity)\b", text):
         semantic_issues.append("internal_audit_labels_exposed")
-    if re.search(r"\b(?:n[.°]?\s*|giocatore\s+|#)(?:2|3|4|5|6|7|8|9|10|11)\b", text) and not re.search(
-            r"\b(?:n[.°]?\s*|giocatore\s+|#)(?:2|3|4|5|6|7|8|9|10|11)\b", question_text):
+    if re.search(r"\b(?:n[.°]?\s*|numero\s+|giocatore\s+|#)(?:2|3|4|5|6|7|8|9|10|11)\b", text) and not re.search(
+            r"\b(?:n[.°]?\s*|numero\s+|giocatore\s+|#)(?:2|3|4|5|6|7|8|9|10|11)\b", question_text):
         semantic_issues.append("unsupported_rigid_player_numbers")
+    if "build_out" in plan.get("scenarios", []) and re.search(
+            r"\b(?:cross|primo palo|secondo palo|dischetto)\b", text):
+        semantic_issues.append("build_out_contaminated_by_cross_attack")
+    if "lateral_shift" in plan.get("scenarios", []) and re.search(
+            r"scivol\w*\s+(?:all'indietro|indietro)|ripiegamento verticale", text):
+        semantic_issues.append("lateral_shift_mapped_to_vertical_drop")
+    if "lateral_shift" in plan.get("scenarios", []) and re.search(
+            r"(?:quarto|quinto).{0,90}(?:scherm|spazio di imbucata|davanti alla difesa)", text):
+        semantic_issues.append("wide_defender_given_midfielder_screen")
+    if "cross_attack" in plan.get("scenarios", []) and re.search(
+            r"limite (?:dell['’]?)?area.{0,70}evitare tiri da fuori", text):
+        semantic_issues.append("edge_of_box_role_inverted")
+    if "game_management" in plan.get("scenarios", []) and re.search(
+            r"(?:scambio|sostituzione) simultane[oa] di tre|tre giocatori.{0,50}tre riserve", text):
+        semantic_issues.append("generic_triple_substitution")
     if plan.get("scenarios") and len(text.split()) < 150:
         semantic_issues.append("complex_answer_too_short")
     missing_details = [name for name, covered in detail_coverage.items() if not covered]

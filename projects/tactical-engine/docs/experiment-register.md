@@ -2,6 +2,18 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-27 — Preparazione terzo giro V10
+
+Attività: audit manuale-applicativo dei dieci testi V9 prima di ripetere il test.
+Evidenze: contaminazione da cross nel caso 2; numeri non richiesti nei casi 4 e
+8; scivolamento descritto come arretramento e compiti quinto/mediano confusi nel
+caso 5; etichetta interna nel caso 6; ruolo del limite area invertito nel caso
+8; trasformazione con tre sostituzioni generiche nel caso 10. Script:
+`v5_tactical_query_plan_v1.py`, `smoke_test_rag_v5_e2e.py`; test planner.
+Decisione: introdurre questi gate e istruzioni correttive come differenza
+tecnica V10, quindi rieseguire lo stesso set senza spalla. Stato:
+**IMPLEMENTATO**; validazione offline e runtime **DA FARE**.
+
 ### 2026-10-27 — Runtime V9 e chiusura tecnica del set congelato
 
 Attività: terzo rerun differenziale RAG-only delle dieci domande congelate;
