@@ -1056,3 +1056,7 @@ copilot live **BLOCCATO**, diagnostica **IMPLEMENTATA**.
 ### 2026-10-27 — Revisione UI Knowledge Panel per compiti
 
 Attività: separare il pannello monolitico in panoramica, analisi, esplora, biblioteca, monitor FIGC e monitoraggio senza toccare le logiche. Script: `api/knowledge_panel.html`; commit `a78181f3`; report `docs/panel-ui-information-architecture-01.md`. Risultato: blocco JS applicativo invariato e 43 ID preservati in verifica statica; introdotti solo CSS, markup e navigazione UI. Decisione: PR draft senza deploy, collaudo browser e regressione DOM prima di integrare. Stato: **IMPLEMENTATO**; verifica runtime **DA FARE**.
+
+### 2026-10-27 — Verifica statica differenziale della UI
+
+Attività: confrontare `main` e branch UI senza test generativi. Script: `api/knowledge_panel.html`; commit correttivo `ccf4db3`; report `docs/panel-ui-information-architecture-01.md`. Risultato: 43/43 ID conservati, zero duplicati, 11/11 handler conservati, JavaScript applicativo identico, sintassi dei due blocchi JS PASS, tag strutturali bilanciati e sei viste presenti. Compatibilità hash legacy `#ask`/`#diagnostics` ripristinata. Decisione: struttura statica **VALIDATA**, browser/responsive **DA FARE**; nessun merge o deploy, nessun benchmark RAG.
