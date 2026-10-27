@@ -131,6 +131,12 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertIn("regola dei cinque secondi", anchors)
         self.assertLessEqual(len(anchors), 4)
 
+    def test_lateral_shift_uses_discriminating_document_phrases(self):
+        plan = planner.analyse("Scivolamento difensivo su cambio gioco.")
+        anchors = planner.retrieval_anchors(plan)
+        self.assertIn("punto critico è il tempo di volo", anchors)
+        self.assertNotIn("tempo di volo", anchors)
+
     def test_anchor_reservation_keeps_semantic_order_and_source_diversity(self):
         rows = [
             {"id": "a", "source": "one"},

@@ -183,12 +183,12 @@ SCENARIO_DETAILS = {
 
 SCENARIO_ANCHORS = {
     "build_out": ("terzo uomo", "portiere"),
-    "cross_defence": ("punto di caduta", "palla e uomo"),
-    "lateral_shift": ("tempo di volo", "lato debole"),
+    "cross_defence": ("punto di caduta", "postura del corpo"),
+    "lateral_shift": ("punto critico è il tempo di volo", "difendente lontano deve valutare"),
     "counterpress_deadline": ("regola dei cinque secondi", "entro i 6 secondi", "marcatura preventiva"),
     "between_lines": ("tra le linee", "terzo uomo"),
     "cross_attack": ("primo palo", "secondo palo", "dischetto"),
-    "offside_trap": ("palla scoperta", "palla inattiva"),
+    "offside_trap": ("la difesa innanzitutto scappa", "durante il tragitto della palla"),
     "game_management": ("cambio del sistema di gioco", "comunicazione efficace"),
 }
 
