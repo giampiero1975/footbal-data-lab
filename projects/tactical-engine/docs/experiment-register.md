@@ -1,6 +1,21 @@
 # Registro autorevole esperimenti — Tactical Engine
 
-Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
+Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
+
+### 2026-10-27 — Fix pannello: rimozione `--tactical-plan` dal profilo default
+
+Attività: diagnosticare e risolvere il blocco totale del pannello pubblico sulla VPS.
+Script: `scripts/run_rag_v5_query.py`; commit: `7c018f9` su `codex/rag-coverciano-remediation`.
+Risultato: il branch aveva introdotto `--tactical-plan` nel profilo default del runner
+del pannello, attivando il quality gate di `audit_answer` (`v5_tactical_query_plan_v1.py`)
+su tutte le domande. Il gate richiedeva `complete=True` (zero `missing_facets`,
+`missing_operational <= 1`, zero `missing_details`, zero `semantic_issues`); le risposte
+RAG generiche fallivano su `unsupported_rigid_player_numbers` e altri criteri Coverciano.
+Tutti i job restituivano `INCOMPLETE: tactical_quality_gate_failed`. Rimossa la riga
+`--tactical-plan` dalla lista argv del profilo default; gate e audit preservati per gli
+script Coverciano. Deploy: git pull VPS + restart `football-rag-api`; pannello ripristinato.
+Decisione: `--tactical-plan` rimane fuori dal profilo default del pannello finché non
+validato su domande generiche. Stato: **VALIDATO e INTEGRATO**.
 
 ### 2026-10-27 — Chiusura differenziale V10.1/V10.2
 
