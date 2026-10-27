@@ -39,6 +39,15 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertGreater(planner.phase_adjustment(attack, plan), 0)
         self.assertLess(planner.phase_adjustment(defence, plan), 0)
 
+    def test_diversification_excludes_opposite_only_evidence(self):
+        plan = planner.analyse("In fase di possesso descrivi la costruzione e il portiere")
+        rows = [
+            {"id": "attack", "source": "a", "text": "costruzione in fase di possesso con portiere", "headings": []},
+            {"id": "defence", "source": "d", "text": "fase di non possesso difesa e marcatura", "headings": []},
+        ]
+        revised, _, _ = planner.diversify(rows, [1, 9], rows[::-1], plan, 2)
+        self.assertEqual([row["id"] for row in revised], ["attack"])
+
     def test_diversifies_facets_and_preserves_limit(self):
         plan = planner.analyse("Costruzione: portiere, terzo uomo e ampiezza")
         rows = [
@@ -57,6 +66,8 @@ class TacticalQueryPlanTests(unittest.TestCase):
         for token in ("CHI", "COSA", "DOVE", "QUANDO", "PERCHE", "COPERTURA"):
             self.assertIn(token, contract)
         self.assertIn("squadra propria e avversario", contract)
+        self.assertIn("non introdurre perdita", planner.generation_contract(
+            planner.analyse("Descrivi la costruzione in fase di possesso")))
 
     def test_answer_audit_exposes_missing_facets(self):
         plan = planner.analyse("In costruzione descrivi portiere, terzo uomo e marcatura preventiva")
