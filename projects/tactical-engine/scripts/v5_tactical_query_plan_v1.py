@@ -108,6 +108,8 @@ def retrieval_queries(question: str, plan: dict, maximum: int = 5) -> list[str]:
             queries.append(candidate)
         if len(queries) >= maximum:
             break
+    if "negative_transition" in plan["facets"] and len(queries) < maximum:
+        queries.append("transizione negativa palla coperta palla scoperta marcatura preventiva densità zona perdita")
     return queries
 
 
@@ -182,7 +184,8 @@ def generation_contract(plan: dict) -> str:
         "senza attribuirla letteralmente alla fonte. Non usare l'assenza di una fonte identica allo scenario come motivo per "
         "omettere la soluzione: applica prudentemente i principi recuperati e segnala solo il limite specifico. "
         "Evita termini anacronistici se esiste un equivalente moderno e chiudi controllando che nessun sottopunto sia rimasto fuori. "
-        "I seguenti requisiti specifici sono obbligatori, non suggerimenti: " + guidance
+        "I seguenti requisiti specifici sono obbligatori, non suggerimenti. Mantieni l'intera risposta entro 280 parole, "
+        "accorpa i criteri in una matrice o in punti compatti e non ripetere la stessa griglia per concetti equivalenti: " + guidance
     )
 
 

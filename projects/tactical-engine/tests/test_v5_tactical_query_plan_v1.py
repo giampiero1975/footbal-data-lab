@@ -85,6 +85,8 @@ class TacticalQueryPlanTests(unittest.TestCase):
         )
         self.assertIn("covered_or_uncovered_ball", audit["missing_details"])
         self.assertFalse(audit["complete"])
+        queries = planner.retrieval_queries("Come gestisci la transizione negativa?", plan)
+        self.assertTrue(any("palla coperta" in query and "marcatura preventiva" in query for query in queries))
 
     def test_frozen_ten_case_facets_are_not_silently_omitted(self):
         for question, expected in self.CASES:
