@@ -17,3 +17,9 @@ Non è stato eseguito un collaudo browser o smoke HTTPS della nuova UI. Non è s
 
 ## Risultato, decisione e stato
 Risultato: UI riorganizzata su branch isolato, con logica applicativa originale invariata. Decisione: aprire PR draft, verificare rendering, navigazione e compatibilità DOM senza generazione. Stato: **IMPLEMENTATO**; validazione browser **DA FARE**; integrazione **DA FARE**.
+
+## Verifica differenziale 2026-10-27
+
+Confronto diretto via GitHub tra `main` e branch: 43/43 ID HTML originali conservati, nessun duplicato; 11/11 handler inline conservati; JavaScript applicativo originale identico; sintassi JavaScript applicativo e navigazione PASS; tag principali bilanciati (`main`, `section`, `div`, `details`, `nav`, `aside`, `header`, `button`, `table`, `tbody`, `script`, `style`); sei pagine riconosciute. Correzione differenziale deep-link storici `#ask` e `#diagnostics` nel commit `ccf4db3`. Nessuna chiamata a provider e nessun benchmark duplicato.
+
+Risultato: **VALIDATO** limitatamente alla struttura statica, sintassi e preservazione dei contratti DOM; collaudo reale browser/responsive **DA FARE** perché non disponibile un browser collegato al branch, né deploy di staging. Decisione: non promuovere a **INTEGRATO** senza prova browser, mantenere PR draft e produzione invariata.
