@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-10-27 — Runtime Coverciano remediation V7
+
+Attività: secondo rerun differenziale 10/10 con ancoraggi documentali esatti,
+audit scenario-specifico e singolo repair automatico; spalla disabilitata e
+nessuna chiamata Gemini. Script: `v5_tactical_query_plan_v1.py`,
+`smoke_test_rag_v5_e2e.py`; report
+`docs/rag-coverciano-remediation-v7-runtime-01.md`; risultati
+`evaluation/coverciano-remediation-v7/`. Risultato: indice 6.410 invariato,
+zero citazioni invalide, media 227,45 s (-22,6% su V6), repair 6/10, due
+troncamenti e solo tre risposte realmente complete; il caso 9 supera
+erroneamente il gate pur contenendo una contraddizione palla coperta/scoperta.
+Decisione: target 26/30 non dimostrato; non validare. Rafforzare audit
+relazionale e fail-closed post-repair prima di altri benchmark. Stato:
+**ESEGUITO, NON VALIDATO**.
+
 ### 2026-10-27 — Runtime V6 e correzione gate semantico V7
 
 Attività: eseguire il rerun differenziale dei dieci casi Coverciano congelati e

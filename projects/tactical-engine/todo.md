@@ -23,7 +23,7 @@
   citazioni invalide, ma quattro audit incompleti, due risposte troncate ed
   errori semantici residui: target >=26/30 non dimostrato. Report:
   `docs/rag-coverciano-remediation-v6-runtime-01.md`.
-- [ ] **IMPLEMENTATO e VALIDATO offline; runtime DA FARE**
+- [x] **IMPLEMENTATO e VALIDATO offline; runtime ESEGUITO NON VALIDATO**
   V5-COVERCIANO-RAG-REMEDIATION-V7-01: scenari generici, query prioritarie,
   vincoli decisionali, audit relazionale e singola rigenerazione correttiva su
   omissione o troncamento. Completare suite, controllo retrieval-only, commit e
@@ -31,7 +31,17 @@
   Primo retrieval-only 4/4 ha dimostrato una seconda causa: passaggi esatti
   presenti nel corpus non raggiungevano il contesto. Espansione bounded per
   frasi esatte e riserva massima di tre fonti aggiunte; suite aggiornata 39/39.
-  Ripetere il gate retrieval-only dopo deploy, quindi autorizzare il runtime.
+  Gate retrieval-only e runtime completati; esito dettagliato nella voce V7
+  successiva.
+- [x] **ESEGUITO, NON VALIDATO** V5-COVERCIANO-RAG-REMEDIATION-V7-RUNTIME:
+  10/10, indice 6.410 invariato, zero citazioni invalide, media 227,45 s e
+  repair 6/10. Soltanto tre risposte sono realmente complete; casi 4 e 10
+  troncati; il caso 9 evidenzia un falso positivo semantico. Target 26/30 non
+  dimostrato. Report `docs/rag-coverciano-remediation-v7-runtime-01.md`.
+- [ ] **DA FARE** V5-COVERCIANO-RAG-REMEDIATION-V8: audit relazionale su
+  soggetto/decisione/negazione, fail-closed dopo repair, selezione della
+  migliore fra prima e seconda risposta e prova isolata di un generatore più
+  capace senza spostare retrieval, fonti o responsabilità fuori dal RAG.
   Storicamente l'attività chiedeva di correggere senza spalla la
   scomposizione della domanda, il retrieval per sottoproblemi/fase, il gate di
   copertura, la risposta applicativa chi-cosa-dove-quando-perché-copertura e la

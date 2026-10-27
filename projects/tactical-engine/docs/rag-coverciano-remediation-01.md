@@ -2,7 +2,7 @@
 
 Data avvio: 2026-10-26  
 Ramo: `codex/rag-coverciano-remediation`  
-Stato: V6 **ESEGUITA, NON VALIDATA**; remediation V7 **IMPLEMENTATA offline**, runtime **DA FARE**
+Stato: V6 e V7 **ESEGUITE, NON VALIDATE**; V8 **DA FARE**
 
 ## Obiettivo vincolante
 
@@ -111,6 +111,13 @@ requisiti relazionali (per esempio palla scoperta -> scappata), controllo dei
 dettagli per scenario e una sola rigenerazione correttiva fail-closed in caso
 di omissione o troncamento. Questa modifica richiede test offline e un nuovo
 runtime differenziale prima di qualsiasi validazione.
+
+Il runtime V7 ha completato 10/10 casi ma non ha chiuso il problema: repair
+6/10, due troncamenti, tre sole risposte realmente complete e un falso positivo
+grave nel caso 9. Dettagli in
+`docs/rag-coverciano-remediation-v7-runtime-01.md`. La prossima differenza
+tecnica necessaria e un audit relazionale fail-closed, non un altro rerun
+equivalente.
 
 ## Criterio di chiusura
 
