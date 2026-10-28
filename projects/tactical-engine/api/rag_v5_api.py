@@ -27,6 +27,50 @@ PYTHON = ROOT / ".venv/bin/python"
 PANEL = ROOT / "api/knowledge_panel.html"
 OPENROUTER_COPILOT = ROOT / "scripts/openrouter_tactical_copilot_v1.py"
 REJECTED_TOKENS = {"replace-with-at-least-32-random-characters"}
+SESSION_ID_RE = re.compile(r"^[A-Za-z0-9_-]{1,64}$")
+
+
+def normalize_query_payload(payload: dict) -> tuple[str, dict | None]:
+    """Validate the legacy request or the isolated contextual extension."""
+    if not isinstance(payload, dict) or "question" not in payload:
+        raise ValueError("invalid_request")
+    allowed = {"question", "session_id", "case_id", "confirmed_context", "prior_job_ids"}
+    if not set(payload) <= allowed:
+        raise ValueError("invalid_request")
+    question = " ".join(str(payload["question"]).split()) if isinstance(payload["question"], str) else ""
+    if not 10 <= len(question) <= 2000:
+        raise ValueError("invalid_question")
+    if set(payload) == {"question"}:
+        return question, None
+    session_id, case_id = payload.get("session_id"), payload.get("case_id")
+    if not isinstance(session_id, str) or not SESSION_ID_RE.fullmatch(session_id):
+        raise ValueError("invalid_session_id")
+    if not isinstance(case_id, str) or not SESSION_ID_RE.fullmatch(case_id):
+        raise ValueError("invalid_case_id")
+    confirmed = payload.get("confirmed_context", [])
+    prior = payload.get("prior_job_ids", [])
+    if (not isinstance(confirmed, list) or len(confirmed) > 20
+            or any(not isinstance(item, str) or not 1 <= len(" ".join(item.split())) <= 500 for item in confirmed)):
+        raise ValueError("invalid_confirmed_context")
+    if (not isinstance(prior, list) or len(prior) > 20
+            or any(not isinstance(item, str) or len(item) != 32 or not item.isalnum() for item in prior)):
+        raise ValueError("invalid_prior_job_ids")
+    context = {
+        "session_id": session_id,
+        "case_id": case_id,
+        "confirmed_context": list(dict.fromkeys(" ".join(item.split()) for item in confirmed)),
+        "prior_job_ids": list(dict.fromkeys(prior)),
+    }
+    return question, context
+
+
+def effective_question(question: str, confirmed_context: list[str]) -> str:
+    """Compose only user-confirmed facts; generated answers are never promoted."""
+    if not confirmed_context:
+        return question
+    facts = "\n".join(f"- {item}" for item in confirmed_context)
+    return ("SCENARIO CONFERMATO DALL'UTENTE (usa solo questi fatti come contesto):\n"
+            f"{facts}\n\nDOMANDA ORIGINALE:\n{question}")
 
 
 def classify_failure(detail: str | None, status: str = "failed") -> dict:
@@ -242,13 +286,30 @@ class State:
             values.append(now)
             return True
 
-    def submit(self, question: str) -> dict:
+    def submit(self, question: str, context: dict | None = None) -> dict:
         job_id = uuid.uuid4().hex
         job = {"id": job_id, "status": "queued", "created_at": int(time.time())}
+        context = context or None
+        if context:
+            for prior_id in context["prior_job_ids"]:
+                with self.lock:
+                    prior_job = dict(self.jobs.get(prior_id, {}))
+                prior_job = prior_job or self.persisted_job(prior_id)
+                if not prior_job or prior_job.get("status") != "succeeded":
+                    raise RuntimeError("prior_job_not_succeeded")
+            job.update(session_id=context["session_id"], case_id=context["case_id"])
         request_path = self.config["output_dir"] / f"{job_id}.request.json"
         temporary_path = self.config["output_dir"] / f".{job_id}.request.tmp"
+        request = {"id": job_id, "question": question}
+        if context:
+            request.update({
+                "schema": "rag_api_contextual_request_v1",
+                **context,
+                "effective_question": effective_question(question, context["confirmed_context"]),
+                "context_policy": "explicit_confirmed_facts_only",
+            })
         temporary_path.write_text(
-            json.dumps({"id": job_id, "question": question}, ensure_ascii=False) + "\n", encoding="utf-8"
+            json.dumps(request, ensure_ascii=False) + "\n", encoding="utf-8"
         )
         os.replace(temporary_path, request_path)
         with self.lock:
@@ -272,7 +333,7 @@ class State:
         job = self.jobs[job_id]
         allowed = {key: job[key] for key in (
             "id", "status", "created_at", "started_at", "finished_at", "failure",
-            "openrouter_copilot",
+            "openrouter_copilot", "session_id", "case_id",
         ) if key in job}
         path = self.config["output_dir"] / f"{job_id}.job.json"
         temporary = path.with_name(f".{path.name}.tmp")
@@ -314,6 +375,10 @@ class State:
                ).stat().st_mtime)),
                "question": request.get("question", ""),
                "recovered_after_restart": True}
+        for key in ("schema", "session_id", "case_id", "confirmed_context", "prior_job_ids",
+                    "effective_question", "context_policy"):
+            if key in request:
+                job[key] = request[key]
         job.update({key: value for key, value in saved.items() if key not in {"id", "question", "result"}})
         if status == "succeeded" and result_path.exists():
             try:
@@ -352,6 +417,27 @@ class State:
         if feedback is not None:
             job["feedback"] = feedback
         return job
+
+    def session_snapshot(self, session_id: str) -> dict:
+        """Rebuild one session from existing job files; no parallel archive."""
+        if not isinstance(session_id, str) or not SESSION_ID_RE.fullmatch(session_id):
+            raise ValueError("invalid_session_id")
+        items = []
+        for path in self.config["output_dir"].glob("*.request.json"):
+            try:
+                request = json.loads(path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError, TypeError):
+                continue
+            if request.get("session_id") != session_id:
+                continue
+            job_id = request.get("id", "")
+            job = self.persisted_job(job_id) if isinstance(job_id, str) else None
+            if job:
+                items.append(job)
+        items.sort(key=lambda item: (item.get("created_at", 0), item["id"]))
+        return {"schema": "rag_api_session_v1", "session_id": session_id,
+                "items": items, "total": len(items),
+                "context_policy": "explicit_confirmed_facts_only"}
 
     def recent_jobs(self, limit: int = 20) -> list[dict]:
         paths = list(self.config["output_dir"].glob("*.job.json"))
@@ -431,7 +517,7 @@ class State:
                     self.jobs[job_id].update(status="running", started_at=int(time.time()))
                     self._persist_job_state(job_id)
                 self.record_event("job_running", job_id=job_id, status="running")
-                command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id,
+                command = [str(PYTHON), str(RUNNER), "--question", request.get("effective_question", request["question"]), "--request-id", job_id,
                            "--output", str(output_path), "--collection", self.config["collection"],
                            "--expected-count", str(self.config["expected_count"]),
                            "--evidence-limit", str(self.config["evidence_limit"]),
@@ -637,6 +723,15 @@ class Handler(BaseHTTPRequestHandler):
             items = search_catalog(self.state.catalog(), text, limit)
             self.send_json(HTTPStatus.OK, {"query": text, "total": len(items), "items": items})
             return
+        session_prefix = "/v1/sessions/"
+        if parsed.path.startswith(session_prefix):
+            session_id = parsed.path[len(session_prefix):]
+            try:
+                snapshot = self.state.session_snapshot(session_id)
+            except ValueError:
+                self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"}); return
+            self.send_json(HTTPStatus.OK, snapshot)
+            return
         prefix = "/v1/jobs/"
         if parsed.path.startswith(prefix):
             job_id = parsed.path[len(prefix):]
@@ -701,17 +796,20 @@ class Handler(BaseHTTPRequestHandler):
             return
         try:
             payload = json.loads(self.rfile.read(length))
-            question = " ".join(payload["question"].split())
-            if set(payload) != {"question"} or not 10 <= len(question) <= 2000:
-                raise ValueError
+            question, context = normalize_query_payload(payload)
         except (ValueError, KeyError, TypeError, json.JSONDecodeError):
             self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_request"})
             return
         try:
-            job = self.state.submit(question)
+            job = self.state.submit(question, context)
         except queue.Full:
             self.send_json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": "queue_full"})
             return
+        except RuntimeError as exc:
+            if str(exc) == "prior_job_not_succeeded":
+                self.send_json(HTTPStatus.CONFLICT, {"error": "prior_job_not_succeeded"})
+                return
+            raise
         self.send_json(HTTPStatus.ACCEPTED, job)
 
 

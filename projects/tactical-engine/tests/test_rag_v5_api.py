@@ -81,6 +81,64 @@ class ApiTests(unittest.TestCase):
         with self.assertRaises(Exception):
             query.validate_request_id("../invalid")
 
+    def test_legacy_query_payload_and_request_file_remain_unchanged(self):
+        question, context = api.normalize_query_payload({"question": "Domanda tattica legacy valida"})
+        self.assertIsNone(context)
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output))
+            job = state.submit(question)
+            request = json.loads((output / f"{job['id']}.request.json").read_text(encoding="utf-8"))
+            self.assertEqual(set(request), {"id", "question"})
+            self.assertEqual(request["question"], question)
+
+    def test_contextual_request_uses_only_confirmed_facts(self):
+        payload = {
+            "question": "Come riorganizzo la squadra negli ultimi minuti?",
+            "session_id": "sessione-01", "case_id": "caso-02",
+            "confirmed_context": ["Siamo in dieci.", "Il risultato è 1-0."],
+            "prior_job_ids": [],
+        }
+        question, context = api.normalize_query_payload(payload)
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); job = state.submit(question, context)
+            request = json.loads((output / f"{job['id']}.request.json").read_text(encoding="utf-8"))
+            self.assertEqual(request["question"], question)
+            self.assertIn("Siamo in dieci.", request["effective_question"])
+            self.assertIn(question, request["effective_question"])
+            self.assertNotIn("risposta precedente", request["effective_question"].casefold())
+            self.assertEqual(request["context_policy"], "explicit_confirmed_facts_only")
+
+    def test_failed_or_placeholder_prior_job_cannot_become_context(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); prior_id = "5" * 32
+            (output / f"{prior_id}.request.json").write_text(
+                json.dumps({"id": prior_id, "question": "Connettiti per iniziare"}), encoding="utf-8")
+            (output / f"{prior_id}.job.json").write_text(
+                json.dumps({"id": prior_id, "status": "failed", "finished_at": 2}), encoding="utf-8")
+            context = {"session_id": "s1", "case_id": "c1", "confirmed_context": [],
+                       "prior_job_ids": [prior_id]}
+            with self.assertRaisesRegex(RuntimeError, "prior_job_not_succeeded"):
+                state.submit("Domanda successiva abbastanza lunga", context)
+
+    def test_session_is_reconstructed_from_jobs_after_restart(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output))
+            context = {"session_id": "sessione-ripresa", "case_id": "caso-a",
+                       "confirmed_context": ["Modulo iniziale 4-3-3."], "prior_job_ids": []}
+            job = state.submit("Come modifico la struttura in possesso?", context)
+            result = {"questions": [{"answer": "Bozza RAG [F1].", "evidence": []}]}
+            (output / f"{job['id']}.result.json").write_text(json.dumps(result), encoding="utf-8")
+            state.jobs[job["id"]].update(status="succeeded", finished_at=3)
+            state._persist_job_state(job["id"])
+            restarted = api.State(self.config(output))
+            snapshot = restarted.session_snapshot("sessione-ripresa")
+            self.assertEqual(snapshot["total"], 1)
+            item = snapshot["items"][0]
+            self.assertEqual(item["question"], "Come modifico la struttura in possesso?")
+            self.assertEqual(item["confirmed_context"], ["Modulo iniziale 4-3-3."])
+            self.assertEqual(item["result"], result)
+            self.assertEqual(snapshot["context_policy"], "explicit_confirmed_facts_only")
+
     def test_query_report_fails_closed_on_citations(self):
         good={"questions":[{"invalid_citation_ids":[],"has_any_citation":True}],"index_unchanged":True}
         query.validate_report(good)
