@@ -1426,3 +1426,21 @@ zero chiamate esterne. Decisione: pubblicare sul ramo dedicato per nuova revisio
 condivisa; nessuna seconda patch, merge o deploy. Stato: **IMPLEMENTATO** per il
 codice, **ESEGUITO** per i test, **VALIDATO** offline per gli invarianti coperti e
 l'isolamento; non INTEGRATO o CERTIFICATO.
+
+### RD-TSC-V1-CONSOLIDATED-REMEDIATION-01 — chiusura differenziale (2026-10-28)
+
+Attività: verificare e correggere esclusivamente sette condizioni relazionali
+non coperte dalla suite precedente. Script:
+`scripts/v5_tactical_state_contract_v1.py`; test:
+`tests/test_v5_tactical_state_contract_v1.py`; regressione planner esistente.
+Commit codice/test: `0d69be6`; report:
+`docs/tactical-state-contract-v1-consolidated-remediation-01.md`. Risultato:
+delta aggregato per espulsioni multiple, rientro basato sul grafo temporale,
+rendering che omette eventi dipendenti da blocchi globali o di transizione,
+registrazione sicura dei numeri nudi, archi invalidi strutturati, verifica della
+presenza completa e continuità fra mapping e assegnazioni concrete. Contratto
+48/48, planner storico 18/18, compilazione e diff check PASS; zero chiamate
+esterne. Decisione: chiudere `RD-RELATION-01` sul solo perimetro deterministico
+offline e procedere separatamente con l'audit tattico relazionale non
+bloccante. Stato: **IMPLEMENTATO** codice, **ESEGUITO** test, **VALIDATO**
+offline; non **INTEGRATO** o **CERTIFICATO**.
