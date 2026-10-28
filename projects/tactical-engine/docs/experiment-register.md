@@ -1633,3 +1633,16 @@ benchmark, chiamata esterna, modifica runtime, merge o deploy. Decisione:
 pianificazione **ESEGUITO**; raccolta/annotazione/freeze **DA FARE**,
 `RD-RELATIONAL-GOLD-E-V-01` **BLOCCATO**, audit documentale e auto-learning
 **DA FARE**; gold/audit non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
+
+Revisione indipendente ChatGPT sul commit `cbece0f`: **APPROVABILE CON
+CORREZIONI**. Commit rettifiche `f2242c4`: C1 estende i limiti a autore,
+organizzazione e origine comune e vieta autori esposti ai failure mode; C2
+introduce matrice di sottotemi/dimensioni senza forzare etichette; C3 definisce
+misure, accettazione del pilot, disaccordi e versionamento istruzioni; C4
+traccia esclusioni/sostituzioni e nuovi manifest; C5 separa analisi per
+risposta/requisito, dipendenza per `case_id` e fallimenti tecnici; C6 definisce
+accessi, retention, revoca, licenze, pubblicabilità e isolamento dai flussi
+automatici. Pilot 12, Gold E 60, Gold V 60 e quote 24/18/18 invariati. Nessun
+test, raccolta, annotazione, inferenza, benchmark o runtime modificato. Stato
+invariato: pianificazione **ESEGUITO**; G0–G8 **DA FARE**, G9 e validazione
+indipendente **BLOCCATO**.
