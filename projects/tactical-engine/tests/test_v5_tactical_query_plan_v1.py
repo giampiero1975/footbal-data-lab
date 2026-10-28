@@ -439,6 +439,43 @@ class RelationalAuditDifferentialTests(unittest.TestCase):
         self.assertFalse(result["satisfied"])
         self.assertEqual(result["polarity_status"], "AMBIGUOUS")
 
+    def test_open_objective_cannot_be_borrowed_from_opponent_relation(self):
+        plan = planner.analyse("Come organizzi la copertura preventiva contro una ripartenza centrale?")
+        answers = (
+            "Alla perdita l'ala attacca la fascia per creare spazio, mentre il centrale avversario protegge la porta.",
+            "Alla perdita l'ala attacca la fascia per creare spazio e il centrale avversario protegge la porta.",
+        )
+        for answer in answers:
+            with self.subTest(answer=answer):
+                result = planner.audit_relations(answer, plan["relation_requirements"])["requirements"][0]
+                self.assertFalse(result["satisfied"])
+
+    def test_local_triggers_override_shared_while_frame(self):
+        plan = planner.analyse(
+            "Alla perdita il centrale copre la profondità, mentre alla riconquista l'ala attacca la fascia."
+        )
+        central = next(item for item in plan["relation_requirements"] if item.get("actor_terms") == ["centrale"])
+        wing = next(item for item in plan["relation_requirements"] if item.get("actor_terms") == ["ala"])
+        self.assertEqual(central["trigger_terms"], ["alla perdita"])
+        self.assertEqual(central["phase_terms"], ["alla perdita"])
+        self.assertEqual(wing["trigger_terms"], ["alla riconquista"])
+        self.assertEqual(wing["phase_terms"], ["alla riconquista"])
+
+    def test_initial_trigger_is_shared_when_second_segment_has_none(self):
+        plan = planner.analyse(
+            "Alla perdita il centrale copre la profondità, mentre l'ala accorcia sul portatore."
+        )
+        for requirement in plan["relation_requirements"]:
+            self.assertEqual(requirement["trigger_terms"], ["alla perdita"])
+            self.assertEqual(requirement["phase_terms"], ["alla perdita"])
+
+    def test_postverbal_intermediate_clause_does_not_link_actor(self):
+        requirement = self.requirement(required_dimensions=["actor", "task", "space", "trigger"])
+        answer = ("Alla perdita, a coprire la profondità prova l'ala che, "
+                  "secondo il centrale, è il giocatore più adatto.")
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+
 
 if __name__ == "__main__":
     unittest.main()

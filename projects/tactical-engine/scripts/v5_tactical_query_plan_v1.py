@@ -234,6 +234,14 @@ def _objective_terms(text: str) -> list[str]:
     return list(dict.fromkeys(terms))
 
 
+def _objective_groups(text: str) -> list[dict]:
+    return [
+        {"question_cue": cue, "terms": list(alternatives)}
+        for cue, alternatives in RELATION_OBJECTIVE_MAP.items()
+        if cue in text
+    ]
+
+
 def relation_requirements(plan: dict) -> list[dict]:
     """Build frozen, part-local obligations without prescribing a solution.
 
@@ -254,17 +262,20 @@ def relation_requirements(plan: dict) -> list[dict]:
     requirements = []
     for index, part in enumerate(plan.get("request_parts", [])):
         part_text = normal(part)
-        shared_phases = [term for term in explicit_phases if term in part_text]
-        shared_triggers = [cue for cue in RELATION_DIMENSION_CUES["trigger"] if cue in part_text]
         objective_terms = _objective_terms(part_text)
+        objective_groups = _objective_groups(part_text)
         segments = [segment.strip(" ,") for segment in re.split(r"\bmentre\b", part_text) if segment.strip(" ,")]
+        frame_phases = [term for term in explicit_phases if term in segments[0]]
+        frame_triggers = [cue for cue in RELATION_DIMENSION_CUES["trigger"] if cue in segments[0]]
         for segment_index, segment in enumerate(segments):
             actors_in_segment = _explicit_actor_terms(segment)
             tasks_in_segment = [cue for cue in RELATION_DIMENSION_CUES["task"] if cue in segment]
+            local_phases = [term for term in explicit_phases if term in segment]
+            local_triggers = [cue for cue in RELATION_DIMENSION_CUES["trigger"] if cue in segment]
             local_dimensions = {
-                "phase": shared_phases,
+                "phase": local_phases or (frame_phases if segment_index else []),
                 "space": [cue for cue in RELATION_DIMENSION_CUES["space"] if cue in segment],
-                "trigger": shared_triggers,
+                "trigger": local_triggers or (frame_triggers if segment_index else []),
                 "purpose": [cue for cue in RELATION_DIMENSION_CUES["purpose"] if cue in segment],
             }
             task_atoms = tasks_in_segment or [None]
@@ -288,6 +299,9 @@ def relation_requirements(plan: dict) -> list[dict]:
                     item["task_terms"] = [task]
                 if objective_terms:
                     item["objective_terms"] = objective_terms
+                    item["objective_groups"] = objective_groups
+                if item["requirement_type"] == "open":
+                    item["actor_scope"] = "opponent" if "avversar" in part_text else "own_or_unspecified"
                 item["specificity"] = (
                     "explicit_relation" if item["requirement_type"] == "explicit" else "underspecified"
                 )
@@ -506,6 +520,7 @@ RELATION_DIMENSION_CUES = {
 def _relation_clauses(answer: str) -> list[dict]:
     """Extract clause-local signals without inferring missing tactical links."""
     clauses = []
+    actor_pattern = "|".join(re.escape(cue) for cue in RELATION_DIMENSION_CUES["actor"])
     raw_clauses = [raw for raw in re.split(r"[.;\n]+", answer) if raw.strip()]
     for index, raw in enumerate(raw_clauses):
         text = normal(raw)
@@ -520,6 +535,13 @@ def _relation_clauses(answer: str) -> list[dict]:
             "text": text,
             "dimensions": dimensions,
             "citations": sorted(set(re.findall(r"\[(F\d+)\]", raw, re.I))),
+            "actor_scope": (
+                "opponent" if re.search(
+                    r"\b(?:" + actor_pattern + r")\b.{0,20}\bavversari\w*\b|"
+                    r"\bavversari\w*\b.{0,20}\b(?:" + actor_pattern + r")\b",
+                    text,
+                ) else "unspecified"
+            ),
         })
     base = list(clauses)
     for index in range(len(base) - 1):
@@ -535,6 +557,10 @@ def _relation_clauses(answer: str) -> list[dict]:
                 for name, cues in RELATION_DIMENSION_CUES.items()
             },
             "citations": sorted(set(base[index]["citations"] + base[index + 1]["citations"])),
+            "actor_scope": (
+                "opponent" if "opponent" in (base[index]["actor_scope"], base[index + 1]["actor_scope"])
+                else "unspecified"
+            ),
         })
     return clauses
 
@@ -642,12 +668,18 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
             for dimension in RELATION_DIMENSION_CUES
         }
         objective_terms = [normal(term) for term in requirement.get("objective_terms", [])]
+        objective_groups = [
+            [normal(term) for term in group.get("terms", [])]
+            for group in requirement.get("objective_groups", [])
+        ]
+        actor_scope = requirement.get("actor_scope")
         candidates = []
         rejected_negation = False
         ambiguous_polarity = False
         rejected_association = False
         ambiguous_association = False
         rejected_objective = False
+        rejected_actor_scope = False
         specified = bool(constraints.get("actor") and constraints.get("task"))
         for clause in clauses:
             present = {name: bool(values) for name, values in clause["dimensions"].items()}
@@ -680,8 +712,20 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
                 if link_status != "LINKED":
                     rejected_association = True
                     continue
-            if objective_terms and not any(
-                    re.search(_task_pattern(term), clause["text"]) for term in objective_terms):
+            if actor_scope == "own_or_unspecified" and clause["actor_scope"] == "opponent":
+                rejected_actor_scope = True
+                continue
+            if actor_scope == "opponent" and clause["actor_scope"] != "opponent":
+                rejected_actor_scope = True
+                continue
+            objective_relevant = (
+                all(any(re.search(_task_pattern(term), clause["text"]) for term in group)
+                    for group in objective_groups)
+                if objective_groups else
+                (not objective_terms or any(
+                    re.search(_task_pattern(term), clause["text"]) for term in objective_terms))
+            )
+            if not objective_relevant:
                 rejected_objective = True
                 continue
             candidates.append(clause)
@@ -702,6 +746,8 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
                 issue_codes.append("actor_task_association_ambiguous")
             if rejected_objective:
                 issue_codes.append("relation_objective_not_demonstrated")
+            if rejected_actor_scope:
+                issue_codes.append("relation_actor_scope_not_demonstrated")
             task_terms = constraints.get("task", [])
             task_clauses = [item for item in clauses if task_terms and any(
                 re.search(_task_pattern(term), item["text"]) for term in task_terms)]
@@ -740,6 +786,11 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
             "objective_relevance": (
                 "relevant" if matched and objective_terms else
                 "not_demonstrated" if objective_terms else
+                "not_applicable"
+            ),
+            "actor_scope_status": (
+                "compatible" if matched and actor_scope else
+                "not_demonstrated" if actor_scope else
                 "not_applicable"
             ),
             "polarity_status": (
