@@ -233,6 +233,9 @@ class ApiTests(unittest.TestCase):
             (output / f"{job_id}.request.json").write_text(json.dumps({
                 "id": job_id, "question": "Domanda precedente senza sidecar"
             }), encoding="utf-8")
+            (output / f"{job_id}.result.json").write_text(json.dumps({
+                "questions": [{"answer": "Output parziale da non promuovere"}]
+            }), encoding="utf-8")
             state.record_event("job_finished", job_id=job_id, status="failed",
                                reason="tactical_quality_gate_failed", duration_seconds=328)
             recovered = state.persisted_job(job_id)

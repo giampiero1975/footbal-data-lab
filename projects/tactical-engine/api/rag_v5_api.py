@@ -293,17 +293,18 @@ class State:
             saved = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
         except (OSError, json.JSONDecodeError, TypeError):
             return None
-        if not saved and not result_path.exists():
+        if not saved:
             legacy_event = next((event for event in self.recent_events(10000)
                                  if event.get("job_id") == job_id
                                  and event.get("event") == "job_finished"), None)
-            if not legacy_event:
+            if not legacy_event and not result_path.exists():
                 return None
-            legacy_status = legacy_event.get("status", "failed")
-            saved = {"status": legacy_status,
-                     "finished_at": legacy_event.get("timestamp", int(request_path.stat().st_mtime))}
-            if legacy_status != "succeeded":
-                saved["failure"] = classify_failure(legacy_event.get("reason"), legacy_status)
+            if legacy_event:
+                legacy_status = legacy_event.get("status", "failed")
+                saved = {"status": legacy_status,
+                         "finished_at": legacy_event.get("timestamp", int(request_path.stat().st_mtime))}
+                if legacy_status != "succeeded":
+                    saved["failure"] = classify_failure(legacy_event.get("reason"), legacy_status)
         status = saved.get("status", "succeeded" if result_path.exists() else "failed")
         job = {"id": job_id, "status": status,
                "created_at": int(request_path.stat().st_mtime),
