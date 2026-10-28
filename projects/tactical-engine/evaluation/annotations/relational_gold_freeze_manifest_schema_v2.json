@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://football-data-lab.local/schemas/relational_gold_freeze_manifest_v2.json",
+  "title": "FOOTBALL-DATA-LAB Relational Gold Freeze Manifest v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "manifest_status", "dataset", "canonicalization", "normative_ordering", "case_count", "cases", "dependencies", "frozen_at", "parent_manifest_sha256", "supersedes_manifest_sha256", "immutable_after_freeze"],
+  "properties": {
+    "schema_version": {"const": "relational_gold_freeze_manifest_v2"},
+    "manifest_status": {"enum": ["draft", "frozen", "superseded"]},
+    "dataset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["kind", "version", "path", "sha256"],
+      "properties": {
+        "kind": {"enum": ["gold_e", "gold_v"]},
+        "version": {"type": ["string", "null"]},
+        "path": {"type": ["string", "null"]},
+        "sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "canonicalization": {"const": "RFC 8785 restricted to null, booleans, I-JSON integers, valid Unicode strings, arrays and objects; floats rejected"},
+    "normative_ordering": {"type": "object", "additionalProperties": {"type": "string"}},
+    "case_count": {"type": "integer", "minimum": 0},
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["case_id", "sha256"],
+        "properties": {
+          "case_id": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+        }
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["dependency_type", "schema_version", "artifact_version", "path", "sha256", "access_class"],
+        "properties": {
+          "dependency_type": {"enum": ["provenance_registry", "annotation_ledger", "gold_e_manifest"]},
+          "schema_version": {"type": "string", "minLength": 1},
+          "artifact_version": {"type": "string", "minLength": 1},
+          "path": {"type": "string", "minLength": 1},
+          "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+          "access_class": {"enum": ["public", "restricted"]}
+        }
+      }
+    },
+    "frozen_at": {"type": ["string", "null"], "format": "date-time"},
+    "parent_manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "supersedes_manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+    "immutable_after_freeze": {"const": true}
+  }
+}

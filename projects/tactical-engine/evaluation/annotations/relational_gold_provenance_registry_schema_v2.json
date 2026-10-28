@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://football-data-lab.local/schemas/relational_gold_provenance_registry_v2.json",
+  "title": "FOOTBALL-DATA-LAB Relational Gold Provenance Registry v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "registry_version", "status", "records"],
+  "properties": {
+    "schema_version": {"const": "relational_gold_provenance_registry_v2"},
+    "registry_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["template", "draft", "frozen", "superseded"]},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}}
+  },
+  "$defs": {
+    "availability_check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "checked_at", "reviewer_id"],
+      "properties": {
+        "status": {"enum": ["not_checked", "verified", "unavailable"]},
+        "checked_at": {"type": ["string", "null"], "format": "date-time"},
+        "reviewer_id": {"type": ["string", "null"]}
+      }
+    },
+    "rights_evidence_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidence_id", "evidence_version", "sha256", "access_class", "custodian", "availability_check"],
+      "properties": {
+        "evidence_id": {"type": "string", "minLength": 1},
+        "evidence_version": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "access_class": {"enum": ["public", "restricted"]},
+        "custodian": {"type": "string", "minLength": 1},
+        "availability_check": {"$ref": "#/$defs/availability_check"}
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["license_class", "allowed_uses", "redistribution_status", "publication_status", "retention_policy", "expires_at", "revocation_status", "rights_evidence_ref"],
+      "properties": {
+        "license_class": {"type": "string", "minLength": 1},
+        "allowed_uses": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+        "redistribution_status": {"enum": ["allowed", "restricted", "prohibited", "unknown"]},
+        "publication_status": {"enum": ["publishable", "metadata_only", "restricted", "unknown"]},
+        "retention_policy": {"type": "string", "minLength": 1},
+        "expires_at": {"type": ["string", "null"], "format": "date-time"},
+        "revocation_status": {"enum": ["active", "pending_review", "revoked"]},
+        "rights_evidence_ref": {"$ref": "#/$defs/rights_evidence_ref"}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provenance_record_id", "author_ref", "organization_ref", "origin_cluster_id", "acquisition", "transformations", "independence", "conflicts_of_interest", "rights"],
+      "properties": {
+        "provenance_record_id": {"type": "string", "minLength": 1},
+        "author_ref": {"type": "string", "minLength": 1},
+        "organization_ref": {"type": "string", "minLength": 1},
+        "origin_cluster_id": {"type": "string", "minLength": 1},
+        "acquisition": {
+          "type": "object", "additionalProperties": false,
+          "required": ["origin", "acquired_at", "method"],
+          "properties": {
+            "origin": {"type": "string", "minLength": 1},
+            "acquired_at": {"type": "string", "format": "date-time"},
+            "method": {"type": "string", "minLength": 1}
+          }
+        },
+        "transformations": {"type": "array", "items": {"type": "string"}},
+        "independence": {
+          "type": "object", "additionalProperties": false,
+          "required": ["used_in_development", "failure_mode_exposure", "screening_method", "screening_result"],
+          "properties": {
+            "used_in_development": {"type": "boolean"},
+            "failure_mode_exposure": {"type": "boolean"},
+            "screening_method": {"type": "string", "minLength": 1},
+            "screening_result": {"enum": ["unique", "possible_duplicate", "duplicate", "not_screened"]}
+          }
+        },
+        "conflicts_of_interest": {"type": "array", "items": {"type": "string"}},
+        "rights": {"$ref": "#/$defs/rights"}
+      }
+    }
+  }
+}

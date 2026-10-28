@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://football-data-lab.local/schemas/relational_gold_annotation_ledger_v2.json",
+  "title": "FOOTBALL-DATA-LAB Relational Gold Annotation Ledger v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "ledger_version", "dataset_kind", "dataset_version", "status", "records"],
+  "properties": {
+    "schema_version": {"const": "relational_gold_annotation_ledger_v2"},
+    "ledger_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "dataset_kind": {"enum": ["gold_e", "gold_v"]},
+    "dataset_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["template", "annotation_in_progress", "adjudicated", "frozen", "superseded"]},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}}
+  },
+  "$defs": {
+    "annotation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["annotator_id", "created_at", "payload"],
+      "properties": {
+        "annotator_id": {"type": "string", "minLength": 1},
+        "created_at": {"type": "string", "format": "date-time"},
+        "payload": {"type": "object"}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["adjudication_record_id", "case_id", "instruction_version", "annotated_object", "annotation_a", "annotation_b", "disagreements", "adjudication_c", "adjudication_rationale"],
+      "properties": {
+        "adjudication_record_id": {"type": "string", "minLength": 1},
+        "case_id": {"type": "string", "minLength": 1},
+        "instruction_version": {"type": "string", "minLength": 1},
+        "annotated_object": {
+          "type": "object", "additionalProperties": false,
+          "required": ["artifact_type", "artifact_version", "artifact_sha256"],
+          "properties": {
+            "artifact_type": {"enum": ["gold_e_case", "gold_v_answer"]},
+            "artifact_version": {"type": "string", "minLength": 1},
+            "artifact_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+          }
+        },
+        "annotation_a": {"$ref": "#/$defs/annotation"},
+        "annotation_b": {"$ref": "#/$defs/annotation"},
+        "disagreements": {"type": "array", "items": {"type": "object"}},
+        "adjudication_c": {"$ref": "#/$defs/annotation"},
+        "adjudication_rationale": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

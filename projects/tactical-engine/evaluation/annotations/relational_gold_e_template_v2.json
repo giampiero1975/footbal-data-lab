@@ -1,0 +1,7 @@
+{
+  "schema_version": "relational_gold_e_v2",
+  "dataset_kind": "gold_e",
+  "dataset_version": "0.0.0",
+  "status": "template",
+  "cases": []
+}

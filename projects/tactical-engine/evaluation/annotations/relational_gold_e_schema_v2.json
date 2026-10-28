@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://football-data-lab.local/schemas/relational_gold_e_v2.json",
+  "title": "FOOTBALL-DATA-LAB Relational Gold E v2",
+  "description": "Human-frozen tactical requirements with versioned provenance and adjudication references.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "dataset_kind", "dataset_version", "status", "cases"],
+  "properties": {
+    "schema_version": {"const": "relational_gold_e_v2"},
+    "dataset_kind": {"const": "gold_e"},
+    "dataset_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["template", "annotation_in_progress", "review_in_progress", "adjudicated", "frozen"]},
+    "cases": {"type": "array", "items": {"$ref": "#/$defs/case"}}
+  },
+  "$defs": {
+    "provenance_value": {
+      "type": "object", "additionalProperties": false,
+      "required": ["value", "status"],
+      "properties": {
+        "value": {},
+        "status": {"enum": ["explicit", "derived", "assumed", "unknown"]},
+        "rule_id": {"type": ["string", "null"]},
+        "notes": {"type": "string"}
+      },
+      "allOf": [{"if": {"properties": {"status": {"const": "derived"}}, "required": ["status"]}, "then": {"required": ["rule_id"], "properties": {"rule_id": {"type": "string", "minLength": 1}}}}]
+    },
+    "request_part": {
+      "type": "object", "additionalProperties": false,
+      "required": ["request_part_id", "text", "order", "annotation_status"],
+      "properties": {
+        "request_part_id": {"type": "string", "minLength": 1},
+        "text": {"type": "string", "minLength": 1},
+        "order": {"type": "integer", "minimum": 0},
+        "annotation_status": {"enum": ["explicit", "open", "ambiguous", "non_determinable"]}
+      }
+    },
+    "dimension": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dimension", "values"],
+      "properties": {
+        "dimension": {"enum": ["actor", "task", "phase", "trigger", "space", "purpose", "polarity", "team_scope"]},
+        "values": {"type": "array", "items": {"$ref": "#/$defs/provenance_value"}},
+        "open_to_multiple_solutions": {"type": "boolean"},
+        "non_determinable_reason": {"type": ["string", "null"]}
+      }
+    },
+    "requirement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requirement_id", "request_part_id", "requirement_type", "dimensions", "admissible_alternatives", "forbidden_contradictions", "annotation_rationale"],
+      "properties": {
+        "requirement_id": {"type": "string", "minLength": 1},
+        "request_part_id": {"type": "string", "minLength": 1},
+        "requirement_type": {"enum": ["explicit", "open", "ambiguous", "non_determinable"]},
+        "dimensions": {"type": "array", "items": {"$ref": "#/$defs/dimension"}},
+        "admissible_alternatives": {"type": "array", "items": {"type": "string"}},
+        "forbidden_contradictions": {"type": "array", "items": {"type": "string"}},
+        "annotation_rationale": {"type": "string"}
+      }
+    },
+    "ambiguity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["ambiguity_id", "scope", "description", "treatment"],
+      "properties": {
+        "ambiguity_id": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "treatment": {"enum": ["exclude", "retain_as_ambiguous", "adjudicate", "non_determinable"]}
+      }
+    },
+    "case": {
+      "type": "object", "additionalProperties": false,
+      "required": ["case_id", "question", "source_id", "provenance_record_id", "independence_status", "annotation_version", "adjudication_record_id", "request_parts", "requirements", "ambiguities", "annotation_notes", "review_status", "freeze_status", "freeze_timestamp", "schema_version"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "question": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "provenance_record_id": {"type": "string", "minLength": 1},
+        "independence_status": {"enum": ["candidate_unreviewed", "eligible_independent", "excluded_development", "independent_frozen", "retired_from_independent"]},
+        "annotation_version": {"type": "string", "minLength": 1},
+        "adjudication_record_id": {"type": ["string", "null"]},
+        "request_parts": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/request_part"}},
+        "requirements": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/requirement"}},
+        "ambiguities": {"type": "array", "items": {"$ref": "#/$defs/ambiguity"}},
+        "annotation_notes": {"type": "string"},
+        "review_status": {"enum": ["not_reviewed", "reviewed_agreement", "reviewed_disagreement", "adjudicated"]},
+        "freeze_status": {"enum": ["draft", "ready_for_freeze", "frozen", "superseded"]},
+        "freeze_timestamp": {"type": ["string", "null"], "format": "date-time"},
+        "schema_version": {"const": "relational_gold_e_case_v2"}
+      }
+    }
+  }
+}

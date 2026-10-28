@@ -1,0 +1,24 @@
+{
+  "schema_version": "relational_gold_freeze_manifest_v2",
+  "manifest_status": "draft",
+  "dataset": {
+    "kind": "gold_e",
+    "version": null,
+    "path": null,
+    "sha256": null
+  },
+  "canonicalization": "RFC 8785 restricted to null, booleans, I-JSON integers, valid Unicode strings, arrays and objects; floats rejected",
+  "normative_ordering": {
+    "cases": "case_id",
+    "requirements": "requirement_id",
+    "records": "stable record identifier",
+    "dependencies": "dependency_type, artifact_version, sha256"
+  },
+  "case_count": 0,
+  "cases": [],
+  "dependencies": [],
+  "frozen_at": null,
+  "parent_manifest_sha256": null,
+  "supersedes_manifest_sha256": null,
+  "immutable_after_freeze": true
+}

@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://football-data-lab.local/schemas/relational_gold_v_v2.json",
+  "title": "FOOTBALL-DATA-LAB Relational Gold V v2",
+  "description": "Human judgements of technically evaluable answers against frozen Gold E v2 references.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "dataset_kind", "dataset_version", "status", "gold_e_reference", "expected_attempt_ids", "cases"],
+  "properties": {
+    "schema_version": {"const": "relational_gold_v_v2"},
+    "dataset_kind": {"const": "gold_v"},
+    "dataset_version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["template", "generation_in_progress", "annotation_in_progress", "review_in_progress", "adjudicated", "frozen"]},
+    "gold_e_reference": {"$ref": "#/$defs/gold_e_reference"},
+    "expected_attempt_ids": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+    "cases": {"type": "array", "items": {"$ref": "#/$defs/case"}}
+  },
+  "$defs": {
+    "gold_e_reference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dataset_version", "manifest_sha256", "freeze_status"],
+      "properties": {
+        "dataset_version": {"type": ["string", "null"]},
+        "manifest_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "freeze_status": {"enum": ["not_available", "frozen"]}
+      }
+    },
+    "input_reference": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gold_e_manifest_sha256", "gold_e_case_id", "input_sha256"],
+      "properties": {
+        "gold_e_manifest_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+        "gold_e_case_id": {"type": "string", "minLength": 1},
+        "input_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "generation_configuration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["configuration_id", "configuration_sha256"],
+      "properties": {
+        "configuration_id": {"type": "string", "minLength": 1},
+        "configuration_sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
+      }
+    },
+    "technical_review": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "reviewer_id", "reviewed_at"],
+      "properties": {
+        "status": {"enum": ["not_reviewed", "confirmed"]},
+        "reviewer_id": {"type": ["string", "null"]},
+        "reviewed_at": {"type": ["string", "null"], "format": "date-time"}
+      }
+    },
+    "generation_result": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "started_at", "completed_at", "elapsed_ms", "diagnostic", "technical_review"],
+      "properties": {
+        "status": {"enum": ["completed_evaluable", "completed_empty", "timeout", "technical_error"]},
+        "started_at": {"type": "string", "format": "date-time"},
+        "completed_at": {"type": "string", "format": "date-time"},
+        "elapsed_ms": {"type": "integer", "minimum": 0},
+        "diagnostic": {"type": ["object", "null"]},
+        "technical_review": {"$ref": "#/$defs/technical_review"}
+      }
+    },
+    "evidence_ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "source_id", "locator", "text"],
+      "properties": {
+        "evidence_id": {"type": "string", "minLength": 1},
+        "source_id": {"type": "string", "minLength": 1},
+        "locator": {"type": "string"},
+        "text": {"type": "string"}
+      }
+    },
+    "relation_judgement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requirement_id", "status", "actor_task", "phase_trigger", "space", "purpose", "polarity", "team_scope", "answer_span", "rationale"],
+      "properties": {
+        "requirement_id": {"type": "string", "minLength": 1},
+        "status": {"enum": ["satisfied", "not_demonstrated", "contradicted", "ambiguous", "not_applicable"]},
+        "actor_task": {"enum": ["correct", "incorrect", "ambiguous", "not_demonstrated", "not_applicable"]},
+        "phase_trigger": {"enum": ["correct", "incorrect", "ambiguous", "not_demonstrated", "not_applicable"]},
+        "space": {"enum": ["correct", "incorrect", "ambiguous", "not_demonstrated", "not_applicable"]},
+        "purpose": {"enum": ["correct", "incorrect", "ambiguous", "not_demonstrated", "not_applicable"]},
+        "polarity": {"enum": ["affirmed", "negated", "mixed", "ambiguous", "not_found", "not_applicable"]},
+        "team_scope": {"enum": ["own", "opponent", "unspecified", "wrong_scope", "ambiguous", "not_applicable"]},
+        "answer_span": {"type": ["string", "null"]},
+        "rationale": {"type": "string"},
+        "evidence_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "dimension_judgement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "rationale", "confidence"],
+      "properties": {
+        "status": {"enum": ["pass", "partial", "fail", "ambiguous", "not_verifiable", "not_applicable"]},
+        "rationale": {"type": "string"},
+        "confidence": {"enum": ["high", "medium", "low"]}
+      }
+    },
+    "case": {
+      "type": "object", "additionalProperties": false,
+      "required": ["case_id", "attempt_id", "run_id", "input_reference", "generation_configuration", "generation_result", "gold_e_case_id", "gold_e_requirement_ids", "answer", "answer_sha256", "evidence", "relation_judgements", "quality_judgements", "annotation_version", "adjudication_record_id", "annotation_status", "freeze_status", "freeze_timestamp", "schema_version"],
+      "properties": {
+        "case_id": {"type": "string", "minLength": 1},
+        "attempt_id": {"type": "string", "minLength": 1},
+        "run_id": {"type": "string", "minLength": 1},
+        "input_reference": {"$ref": "#/$defs/input_reference"},
+        "generation_configuration": {"$ref": "#/$defs/generation_configuration"},
+        "generation_result": {"$ref": "#/$defs/generation_result"},
+        "gold_e_case_id": {"type": "string", "minLength": 1},
+        "gold_e_requirement_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "answer": {"type": ["string", "null"]},
+        "answer_sha256": {"type": ["string", "null"], "pattern": "^[a-f0-9]{64}$"},
+        "evidence": {"type": "array", "items": {"$ref": "#/$defs/evidence_ref"}},
+        "relation_judgements": {"type": "array", "items": {"$ref": "#/$defs/relation_judgement"}},
+        "quality_judgements": {
+          "type": ["object", "null"], "additionalProperties": false,
+          "properties": {
+            "completeness": {"$ref": "#/$defs/dimension_judgement"},
+            "relational_coherence": {"$ref": "#/$defs/dimension_judgement"},
+            "tactical_correctness": {"$ref": "#/$defs/dimension_judgement"},
+            "documentary_support": {"$ref": "#/$defs/dimension_judgement"}
+          }
+        },
+        "annotation_version": {"type": "string", "minLength": 1},
+        "adjudication_record_id": {"type": ["string", "null"]},
+        "annotation_status": {"enum": ["not_applicable", "pending", "double_annotated", "adjudicated"]},
+        "freeze_status": {"enum": ["draft", "ready_for_freeze", "frozen", "superseded"]},
+        "freeze_timestamp": {"type": ["string", "null"], "format": "date-time"},
+        "schema_version": {"const": "relational_gold_v_case_v2"}
+      }
+    }
+  }
+}
