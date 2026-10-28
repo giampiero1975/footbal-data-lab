@@ -1706,3 +1706,21 @@ Tre test negativi nuovi; test positivo completo riutilizzato. V2 21/21 e v1
 offline. Nessuna raccolta, annotazione reale, inferenza, benchmark, runtime,
 pannello, RAG, Qwen, corpus, indice, API, VPS, merge o deploy. Gold indipendente
 ancora **BLOCCATO**; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-FEEDBACK-UX-CONFIRMATION-01 — conferma visuale persistita (2026-10-28)
+
+Attività: ricostruire il percorso pannello → API → persistenza → recupero e
+correggere soltanto la UX se il backend risultava funzionante. Script
+applicativo: `api/knowledge_panel.html`; test differenziale:
+`tests/test_knowledge_panel_feedback_ui.js`; report:
+`docs/feedback-ux-confirmation-01.md`; commit tecnico `ed7a84c`. Risultato: il
+backend esistente salva atomicamente un voto per job e lo restituisce nelle
+letture live/persistite; il pannello non ne rappresentava lo stato. Aggiunti
+caricamento, blocco dei doppi clic, verifica della conferma server, spunta
+verde soltanto dopo successo, errore ritentabile e ripristino da
+`job.feedback`. Contratto `/v1/feedback`, schema e backend invariati. Test UX
+4/4 e suite API 35/35 PASS; script inline eseguiti dal test Node e diff check
+PASS. Decisione: chiudere il difetto esclusivamente frontend. Stato:
+correzione **IMPLEMENTATO**, test **ESEGUITO**, comportamento coperto
+**VALIDATO offline**; nessun Qwen, benchmark, merge o deploy, quindi non
+**INTEGRATO** o **CERTIFICATO** nel pannello pubblico.
