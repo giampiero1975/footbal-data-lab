@@ -1112,7 +1112,7 @@ tecnica.
 - [ ] **DA FARE** V5-RAG-AUTONOMY-GATE-01: tre casi congelati, voto esterno
   separato sulla bozza RAG prima della spalla; prosecuzione soltanto con media
   >=26/30, nessun errore strutturale grave e contributo spalla <=30%.
-- [ ] **DA FARE** V5-PANEL-PERSISTENT-HISTORY-01: rendere persistenti lato
+- [ ] **DA FARE** V5-PANEL-PERSISTENT-HISTORY-01: backend API isolato **VALIDATO offline** al commit `863a943`, ma resta da collegare e collaudare la UI senza intervenire sulla produzione. Rendere persistenti lato
   server domanda, evidenze, bozza RAG, delta della spalla, risposta finale,
   stato, tempi, token, costi e valutazione esterna. Il pannello deve riprendere
   una sessione dopo refresh, chiusura o riavvio, distinguere sempre caso e job,
@@ -1135,7 +1135,7 @@ tecnica.
 - [x] **ESEGUITO** RD-THINK-01: verifica statica conferma `think: False` in prima generazione e repair su main e ramo remediation; API→query→runner verificati. Report `docs/revisione_domande.md`. Non è una conferma live VPS.
 - [x] **ESEGUITO** RD-THINK-01 runtime: VPS `1a80fe0`, Ollama 0.40.5 e Qwen3.5 9B Q4_K_M con thinking verificati. Caso V10.2 congelato: off 204,932 s/647 token/348 parole; on 546,484 s/4096 token e zero output; repair on 552,773 s/4096 token e zero output. `think:false` resta il default; nessun deploy. Report `docs/rd-think-01-runtime-01.md`.
 - [x] **VALIDATO offline** RD-RELATION-01: il Tactical State Contract controlla ora presenza, timeline, sostituzioni/espulsioni aggregate, continuità degli attori e coerenza fra assegnazioni concrete e mapping strutturale. Suite consolidata 48/48 e planner storico 18/18 PASS. Questa validazione deterministica non dimostra ancora la qualità della generazione Qwen né integra il gate nel runtime.
-- [ ] **DA FARE** RD-SESSION-01: il pannello invia ogni query senza cronologia. Progettare separatamente sessioni tracciate o richiedere la ripetizione esplicita dello scenario nei follow-up; non assumere memoria conversazionale inesistente.
+- [x] **VALIDATO offline** RD-SESSION-01 backend: commit `863a943`; estensione API retrocompatibile con `session_id`, `case_id`, fatti confermati e riferimenti a soli job riusciti. La domanda originale resta auditabile, le risposte generate non diventano contesto e la sessione è ricostruita dai sidecar esistenti dopo riavvio. Suite API 32/32 PASS. Report `docs/api-session-context-history-01.md`. UI/pannello e deploy restano **DA FARE**.
 
 ## RD-TACTICAL-STATE-CONTRACT-V1 — Evidenze GitHub della prima patch (2026-10-28)
 

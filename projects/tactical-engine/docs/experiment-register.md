@@ -1475,3 +1475,18 @@ offline preservando `/v1/feedback` e `rag_api_feedback_v1`; non equiparare il
 feedback a diagnosi o apprendimento. Stato: **IMPLEMENTATO**, **ESEGUITO**,
 **VALIDATO** offline; non distribuito, quindi non **INTEGRATO** in produzione o
 **CERTIFICATO**.
+
+### RD-SESSION-01 / V5-PANEL-PERSISTENT-HISTORY-01 — backend isolato (2026-10-28)
+
+Attività: implementare un solo contratto backend per contesto confermato e
+ricostruzione della cronologia, senza modificare il pannello. Script:
+`api/rag_v5_api.py`; test `tests/test_rag_v5_api.py`. Commit codice/test
+`863a943`; report `docs/api-session-context-history-01.md`. Risultato: payload
+legacy invariato; estensione opzionale con sessione/caso, fatti confermati e
+riferimenti a soli job riusciti; domanda originale ed effettiva entrambe
+persistite; nessuna risposta generata promossa a fatto; sessione ricostruita dai
+sidecar esistenti dopo riavvio. Suite API 32/32, compilazione e diff check PASS.
+Decisione: validare offline il backend e mantenere UI/deploy separati. Stato:
+supporto API **IMPLEMENTATO**, test **ESEGUITO**, recovery e retrocompatibilità
+**VALIDATO** offline; collegamento al pannello **DA FARE**, non **INTEGRATO** in
+produzione o **CERTIFICATO**.
