@@ -1,0 +1,164 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rag_corpus_integrity_manifest_schema_v1.json",
+  "title": "RAG corpus integrity manifest v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "manifest_version",
+    "snapshot_id",
+    "snapshot_kind",
+    "canonicalization",
+    "collection",
+    "documents"
+  ],
+  "properties": {
+    "schema_version": {"const": "rag_corpus_integrity_manifest_v1"},
+    "manifest_version": {"type": "string", "minLength": 1},
+    "snapshot_id": {"type": "string", "minLength": 1},
+    "snapshot_kind": {"enum": ["runtime_readonly", "synthetic_fixture"]},
+    "created_at": {"type": ["string", "null"]},
+    "created_by": {"type": ["string", "null"]},
+    "canonicalization": {"const": "RFC 8785 restricted profile"},
+    "manifest_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "collection": {"$ref": "#/$defs/collection"},
+    "documents": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/document"}
+    },
+    "parent_manifest_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+    "supersedes_manifest_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "verification_status": {
+      "enum": ["verified", "declared", "not_accessible", "not_declared", "mismatch"]
+    },
+    "collection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "record_count",
+        "record_count_status",
+        "inventory_completeness",
+        "snapshot_consistency",
+        "chunker_version",
+        "embedding"
+      ],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "declared_version": {"type": ["string", "null"]},
+        "chroma_version": {"type": ["string", "null"]},
+        "record_count": {"type": "integer", "minimum": 0},
+        "record_count_status": {"$ref": "#/$defs/verification_status"},
+        "inventory_completeness": {"enum": ["complete", "partial", "unknown"]},
+        "inventory_completeness_evidence_ref": {"type": ["string", "null"]},
+        "chunker_version": {"type": ["string", "null"]},
+        "distance_metric": {"type": ["string", "null"]},
+        "collection_metadata_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "sorted_record_ids_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "snapshot_consistency": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "method", "evidence_ref"],
+          "properties": {
+            "status": {"enum": ["certifiable", "not_certifiable"]},
+            "method": {"type": ["string", "null"]},
+            "evidence_ref": {"type": ["string", "null"]}
+          }
+        },
+        "embedding": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model", "model_digest", "dimensions", "vector_fingerprint_mode"],
+          "properties": {
+            "model": {"type": ["string", "null"]},
+            "model_digest": {"type": ["string", "null"]},
+            "dimensions": {"type": ["integer", "null"], "minimum": 1},
+            "vector_fingerprint_mode": {"enum": ["not_collected", "float32_le_sha256"]}
+          }
+        }
+      }
+    },
+    "identity_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["basis", "evidence_ref", "evidence_sha256"],
+      "properties": {
+        "basis": {"enum": ["current_verified", "historically_verified", "declared_only", "none"]},
+        "evidence_ref": {"type": ["string", "null"]},
+        "evidence_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["relative_path", "size_bytes", "sha256", "verification_status"],
+      "properties": {
+        "relative_path": {"type": ["string", "null"]},
+        "size_bytes": {"type": ["integer", "null"], "minimum": 0},
+        "sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "verification_status": {"$ref": "#/$defs/verification_status"},
+        "pipeline_name": {"type": ["string", "null"]},
+        "pipeline_version": {"type": ["string", "integer", "null"]},
+        "docling_version": {"type": ["string", "null"]},
+        "docling_core_version": {"type": ["string", "null"]},
+        "configuration_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "chunk": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "chunk_id",
+        "chunk_index",
+        "content_sha256",
+        "metadata_sha256",
+        "pages",
+        "headings",
+        "source_relative",
+        "chroma_presence",
+        "verification_status"
+      ],
+      "properties": {
+        "chunk_id": {"type": "string", "minLength": 1},
+        "chunk_index": {"type": "integer", "minimum": 0},
+        "content_sha256": {"$ref": "#/$defs/sha256"},
+        "raw_text_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "metadata_sha256": {"$ref": "#/$defs/sha256"},
+        "pages": {"type": "array", "items": {"type": "integer", "minimum": 1}},
+        "headings": {"type": "array", "items": {"type": "string"}},
+        "source_relative": {"type": "string", "minLength": 1},
+        "chroma_presence": {"enum": ["present", "missing", "not_checked"]},
+        "embedding_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+        "verification_status": {"$ref": "#/$defs/verification_status"}
+      }
+    },
+    "document": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_ref",
+        "document_id",
+        "identity_evidence",
+        "original",
+        "extraction",
+        "bibliography",
+        "rights",
+        "chunks"
+      ],
+      "properties": {
+        "source_ref": {"type": "string", "minLength": 1},
+        "document_id": {"type": ["string", "null"], "pattern": "^sha256:[0-9a-f]{64}$"},
+        "identity_evidence": {"$ref": "#/$defs/identity_evidence"},
+        "original": {"$ref": "#/$defs/artifact"},
+        "extraction": {"$ref": "#/$defs/artifact"},
+        "bibliography": {"type": "object"},
+        "rights": {"type": "object"},
+        "chunks": {"type": "array", "items": {"$ref": "#/$defs/chunk"}}
+      }
+    }
+  }
+}

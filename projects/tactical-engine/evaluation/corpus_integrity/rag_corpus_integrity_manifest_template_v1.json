@@ -1,0 +1,37 @@
+{
+  "schema_version": "rag_corpus_integrity_manifest_v1",
+  "manifest_version": "1.0.0",
+  "snapshot_id": "replace-with-stable-snapshot-id",
+  "snapshot_kind": "synthetic_fixture",
+  "created_at": null,
+  "created_by": null,
+  "canonicalization": "RFC 8785 restricted profile",
+  "manifest_sha256": null,
+  "collection": {
+    "name": "replace-with-collection-name",
+    "declared_version": null,
+    "chroma_version": null,
+    "record_count": 0,
+    "record_count_status": "not_declared",
+    "inventory_completeness": "unknown",
+    "inventory_completeness_evidence_ref": null,
+    "chunker_version": null,
+    "distance_metric": null,
+    "collection_metadata_sha256": null,
+    "sorted_record_ids_sha256": null,
+    "snapshot_consistency": {
+      "status": "not_certifiable",
+      "method": null,
+      "evidence_ref": null
+    },
+    "embedding": {
+      "model": null,
+      "model_digest": null,
+      "dimensions": null,
+      "vector_fingerprint_mode": "not_collected"
+    }
+  },
+  "documents": [],
+  "parent_manifest_sha256": null,
+  "supersedes_manifest_sha256": null
+}
