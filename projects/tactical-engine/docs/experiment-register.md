@@ -1363,3 +1363,7 @@ Attività: raccolta diagnostica di due trascrizioni d'esame e confronto con TODO
 
 ### V5-REVISIONE-DOMANDE-01 — RD-002-R1 (2026-10-28)
 Attività: analizzare il seguito del 22/30 fornito in chat. Script: nessuno nuovo. Commit: quello che aggiorna insieme report/TODO/registro con RD-002-R1. Report: `docs/revisione_domande.md`. Risultato: risposta RAG limitata alle definizioni F1/F2; applicazione allo scenario scritta da Gemini prima del voto 30/30. Decisione: non usare quel voto come salto autonomo 22→30; acquisire input effettivo, contesto conversazionale ed estratti dei due turni. Stato: **ESEGUITO** per analisi documentale; causa tecnica **DA FARE**. Nessuna nuova inferenza o modifica runtime.
+
+
+### V5-REVISIONE-DOMANDE-01 — RD-003 e conferma RD-002-R1 (2026-10-28)
+Attività: confronto documentale di risposta/correzione 4-3-3 contro blocco basso e ulteriore giustificazione del 30 precedente. Script: nessuno nuovo. Commit: aggiornamento contestuale report/TODO/registro. Report: `docs/revisione_domande.md`. Risultato: 21→29/30 dichiarati dal valutatore; terminologia migliorata ma preventive centrali/play e applicazione dei cinque offensivi non sviluppate. Conferma RD-002 miscela 19 e 22/30 e premia forma senza colmare omissioni. Decisione: non utilizzare i voti alti come prova causale di autonomia; acquisire gli artefatti esistenti e stabilizzare rubrica/attribuzione, confrontando V6–V10.2. Stato: **ESEGUITO** per revisione; diagnosi tecnica **DA FARE**. Nessuna inferenza o modifica applicativa.

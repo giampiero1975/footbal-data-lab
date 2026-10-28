@@ -1128,3 +1128,6 @@ tecnica.
 
 - [x] **ESEGUITO** V5-REVISIONE-DOMANDE-01 / RD-002-R1: acquisito seguito del caso 22/30. RAG definisce coperta/scoperta ma non applica i compiti al caso; Gemini aggiunge l'applicazione e assegna 30/30. Voto non attribuibile alla prestazione autonoma RAG. Report `docs/revisione_domande.md`.
 - [ ] **DA FARE** verificare input effettivo/memoria dello scenario nel follow-up e confrontare estratti reali dei due turni; separare risposta RAG da completamento del valutatore. Nessun rerun incluso.
+
+- [x] **ESEGUITO** V5-REVISIONE-DOMANDE-01 / RD-003: 4-3-3 contro blocco basso, voti conversazionali 21→29/30. Correzione lessicale osservabile, ma compiti preventivi dei due centrali/play ancora omessi; voto non probante del target autonomo. Aggiornata anche conferma critica RD-002-R1. Report `docs/revisione_domande.md`.
+- [ ] **DA FARE** recuperare input/contesto/fonti/versione RD-003 e valutare separatamente copertura offensiva e preventive, senza attribuire al RAG concetti aggiunti dal valutatore. Nessun nuovo benchmark incluso.

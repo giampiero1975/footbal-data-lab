@@ -98,3 +98,46 @@ Possibili cause da distinguere: domanda di follow-up priva dello scenario comple
 - [ ] DA FARE — confrontare estratti reali dei due turni; non confrontare soltanto etichette F.
 - [ ] DA FARE — valutare la risposta RAG immutata prima di mostrare al valutatore soluzioni o riscritture; distinguere qualità teorica e copertura del caso iniziale. Nessuna nuova chiamata viene eseguita in questa revisione.
 Decisione: il salto autonomo 22→30 non è dimostrato da questo esempio. Il limite applicativo persiste nel testo osservato. Conservare il caso come evidenza di attribuzione errata del miglioramento e come indizio di restringimento della domanda.
+
+## RD-003 — Attacco 4-3-3 contro blocco basso e preventive; 21→29/30 dichiarati
+Acquisito 2026-10-28. Stato analisi: ESEGUITO. Nessuna nuova inferenza.
+Scenario: 4-3-3 contro 5-4-1 o 3-5-2 molto basso; nove avversari in meno di 15 metri. Richiesti organizzazione di ali/mezzali/punta per creare rifinitura e compiti specifici dei due centrali e del play sull'unica punta alta.
+
+### Prima risposta, valutata 21/30
+Mette “due esterni offensivi” sulla stessa fascia senza spiegare una rotazione; identifica il “quinto” con la mezzala; trasferisce catene e trasformazione in 5-4-1 alla propria squadra. Alle preventive sostituisce un racconto di centrale n.5, terzino n.3, centrocampista n.4 e aggiunta di un “quinto uomo” [F6]. Alla perdita parla di rientro dell'ala e trasformazione in 5-4-1 [F1].
+Errori osservabili: identità delle squadre/ruoli non mantenuta; possibile importazione della struttura avversaria; preventive prima della perdita confuse con rientro successivo; compiti dei due centrali e play non assegnati. Fedeltà degli estratti non verificabile.
+
+### Correzione ricevuta
+Richiesta mirata riportata: correggere struttura geometrica (ali, mezzali, centrali) e scaglione delle preventive.
+La nuova risposta:
+- nomina correttamente 4-3-3, ali, mezzali e centrali [F1–F3];
+- tratta filosofia dell'allenatore e caratteristiche dei giocatori [F1,F5];
+- sotto “fase difensiva” descrive sovrapposizione terzino/ala e angoli di sostegno al portatore [F6], mescolando ancora l'etichetta difensiva a comportamenti in possesso;
+- introduce congelamento dell'errore da parte dell'allenatore [F4];
+- richiama cross e occupazione dell'area senza una sequenza applicativa [F6];
+- conclude con adattabilità del modulo e identità [F1,F5,F6].
+NON specifica chi dei centrali marca la punta, chi copre, dove si colloca il play, quali linee protegge o come reagiscono alla perdita. NON sviluppa movimenti coordinati dei cinque offensivi contro il blocco indicato. La frase “se una mezzala si avvicina troppo al portatore, due avversari possono marcare lo stesso giocatore” resta ambigua.
+Miglioramento dimostrato: rimozione di alcuni ruoli impropri e maggiore regolarità espositiva. Completezza del quesito non dimostrata; restano contaminazione di fase e digressioni.
+
+### Valutazione Gemini: 29/30
+Gemini premia maturità metodologica, identità, sostegni e didattica. Attribuisce alla risposta mezzali nei mezzi spazi, mentre il testo dice genericamente che gestiscono il centro; introduce “terzo uomo” come spiegazione valutativa senza una triangolazione esplicita nel testo. Riconosce l'omissione delle preventive ma la tratta come difetto minimo che la qualità espositiva compenserebbe. Scrive “mezzo punto mancante” pur assegnando 29/30: ulteriore incoerenza interna del commento.
+Conclusione: il voto 29/30 non è evidenza affidabile del raggiungimento autonomo del target sulla domanda completa. Nessun voto sostitutivo viene inventato.
+
+### Confronto col seguito RD-002
+RD-002-R1: valutatore aggiunge materialmente la soluzione applicativa prima del 30.
+RD-003-R1: valutatore amplifica contenuti generici e riduce il peso di un intero sottocompito omesso prima del 29.
+Schema ricorrente nei due esempi: richiesta mirata → normalizzazione del lessico/focalizzazione → persistente incompletezza applicativa → voto conversazionale molto alto. I dati non dimostrano ancora il miglioramento autonomo di ragionamento attribuito inizialmente a Qwen.
+
+### Limiti anche della “soluzione ideale”
+La revisione Gemini non è un gold: “underlap” indica un movimento interno e non è sinonimo dello spazio “mezzo spazio”; un centravanti non vincola automaticamente tutti e tre i centrali; le prescrizioni sui terzini e sulle preventive vanno motivate dal contesto. Verificare sulle fonti prima di trasformare queste formulazioni in requisiti rigidi del generatore.
+
+### TODO e decisione
+- [x] ESEGUITO — registrare prima risposta, correzione e due voti; separare qualità lessicale da aderenza.
+- [ ] DA FARE — acquisire richieste effettive e contesto che raggiunge il modello nei due turni, estratti e versione runtime.
+- [ ] DA FARE — verificare per affermazione identità squadra, ruolo e fase; confrontare con controlli già implementati V6–V10.2.
+- [ ] DA FARE — tracciare separatamente copertura del quesito offensivo e dei compiti centrali/play; citare il passaggio preciso che soddisfa ogni requisito, senza completarlo nella valutazione.
+- [ ] DA FARE — stabilizzare rubrica e attribuzione prima di usare medie 26/30 come prova del miglioramento. Non accettare lessico o stile come compensazione automatica per omissioni strutturali.
+Attività → analisi documentale RD-003; Script → nessuno nuovo; Commit → aggiornamento simultaneo di questo report/TODO/registro; Report → docs/revisione_domande.md; Risultato → miglioramento lessicale ma preventive omesse, 29/30 non probante; Decisione → recupero artefatti esistenti e diagnosi, nessun rerun; Stato → ESEGUITO, diagnosi tecnica DA FARE.
+
+### Integrazione di RD-002-R1
+Il titolare conferma che la domanda inviata era quella mirata riportata, non una trascrizione abbreviata inventata dall'analista. Resta da verificare se il pannello aggiunga automaticamente lo scenario precedente. Ulteriore contestazione “30?? ma è meritato?”: Gemini conferma il voto invocando lessico accademico e limiti delle fonti, senza colmare omissioni nella risposta RAG. Richiama inoltre il 19/30 di RD-001 invece del 22/30 di RD-002, mescolando i casi. Il giudizio confermativo non costituisce una rivalutazione indipendente.
