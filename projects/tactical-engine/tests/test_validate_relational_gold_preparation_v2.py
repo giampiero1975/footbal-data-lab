@@ -1,5 +1,9 @@
 import copy
 import importlib.util
+import json
+import subprocess
+import sys
+import tempfile
 import unittest
 from pathlib import Path
 
@@ -84,8 +88,8 @@ def gold_v_case(status="completed_evaluable"):
     evaluable = status == "completed_evaluable"
     case = {
         "case_id": "v-1", "attempt_id": "attempt-1", "run_id": "run-1",
-        "input_reference": {"gold_e_manifest_sha256": H, "gold_e_case_id": "e-1", "input_sha256": H},
-        "generation_configuration": {"configuration_id": "config-1", "configuration_sha256": H},
+        "input_reference": {"gold_e_manifest_sha256": H, "gold_e_case_id": "e-1", "path": "input-1.json", "input_sha256": H},
+        "generation_configuration": {"configuration_id": "config-1", "path": "config-1.json", "configuration_sha256": H},
         "generation_result": {
             "status": status, "started_at": "2026-10-28T12:00:00Z", "completed_at": "2026-10-28T12:00:01Z",
             "elapsed_ms": 1000, "diagnostic": None if evaluable else {"code": status},
@@ -93,7 +97,7 @@ def gold_v_case(status="completed_evaluable"):
         },
         "gold_e_case_id": "e-1", "gold_e_requirement_ids": ["req-1"],
         "answer": "A deliberately wrong but available answer." if evaluable else None,
-        "answer_sha256": H if evaluable else None,
+        "answer_sha256": MODULE.sha256_document("A deliberately wrong but available answer.") if evaluable else None,
         "evidence": [],
         "relation_judgements": [{
             "requirement_id": "req-1", "status": "contradicted", "actor_task": "incorrect",
@@ -126,6 +130,70 @@ class RelationalGoldPreparationV2Tests(unittest.TestCase):
         self.ledger_e["records"][0]["annotated_object"]["artifact_sha256"] = MODULE.sha256_document(MODULE.normatively_order(self.gold_e["cases"][0]))
         self.ledger_v["records"][0]["annotated_object"]["artifact_version"] = self.gold_v["cases"][0]["annotation_version"]
         self.ledger_v["records"][0]["annotated_object"]["artifact_sha256"] = MODULE.sha256_document(self.gold_v["cases"][0]["answer"])
+
+    def _write_json(self, root, name, value):
+        path = Path(root) / name
+        path.write_text(json.dumps(value, ensure_ascii=False, indent=2), encoding="utf-8")
+        return path
+
+    def _frozen_manifest(self, kind, dataset_name, dataset, dependencies):
+        id_field = "attempt_id" if kind == "gold_v" else "case_id"
+        return {
+            "schema_version": "relational_gold_freeze_manifest_v2",
+            "manifest_status": "frozen",
+            "dataset": {"kind": kind, "version": "1.0.0", "path": dataset_name, "sha256": MODULE.sha256_document(MODULE.normatively_order(dataset))},
+            "canonicalization": "RFC 8785 restricted to null, booleans, I-JSON integers, valid Unicode strings, arrays and objects; floats rejected",
+            "normative_ordering": {},
+            "case_count": len(dataset["cases"]),
+            "cases": [{id_field: case[id_field], "sha256": MODULE.sha256_document(MODULE.normatively_order(case))} for case in dataset["cases"]],
+            "dependencies": dependencies,
+            "frozen_at": "2026-10-28T14:00:00Z",
+            "parent_manifest_sha256": None,
+            "supersedes_manifest_sha256": None,
+            "immutable_after_freeze": True,
+        }
+
+    def _write_complete_freeze_bundle(self, root, duplicate_case_attempt=False):
+        root = Path(root)
+        self._write_json(root, "registry.json", self.provenance)
+        self._write_json(root, "ledger-e.json", self.ledger_e)
+        self._write_json(root, "gold-e.json", self.gold_e)
+        manifest_e = self._frozen_manifest("gold_e", "gold-e.json", self.gold_e, [
+            {"dependency_type": "provenance_registry", "schema_version": "relational_gold_provenance_registry_v2", "artifact_version": "1.0.0", "path": "registry.json", "sha256": MODULE.sha256_document(MODULE.normatively_order(self.provenance)), "access_class": "restricted"},
+            {"dependency_type": "annotation_ledger", "schema_version": "relational_gold_annotation_ledger_v2", "artifact_version": "1.0.0", "path": "ledger-e.json", "sha256": MODULE.sha256_document(MODULE.normatively_order(self.ledger_e)), "access_class": "restricted"},
+        ])
+        self._write_json(root, "manifest-e.json", manifest_e)
+        manifest_e_hash = MODULE.sha256_document(MODULE.normatively_order(manifest_e))
+
+        input_doc = {"case_id": "e-1", "prompt": "synthetic"}
+        config_doc = {"model": "synthetic", "temperature": 0}
+        self._write_json(root, "input-1.json", input_doc)
+        self._write_json(root, "config-1.json", config_doc)
+        gold_v = copy.deepcopy(self.gold_v)
+        gold_v["gold_e_reference"]["manifest_sha256"] = manifest_e_hash
+        first = gold_v["cases"][0]
+        first["input_reference"]["gold_e_manifest_sha256"] = manifest_e_hash
+        first["input_reference"]["input_sha256"] = MODULE.sha256_document(MODULE.normatively_order(input_doc))
+        first["generation_configuration"]["configuration_sha256"] = MODULE.sha256_document(MODULE.normatively_order(config_doc))
+        ledger_v = copy.deepcopy(self.ledger_v)
+        if duplicate_case_attempt:
+            second = copy.deepcopy(first)
+            second["attempt_id"] = "attempt-2"
+            second["run_id"] = "run-2"
+            second["adjudication_record_id"] = "adj-v-2"
+            gold_v["cases"].append(second)
+            gold_v["expected_attempt_ids"].append("attempt-2")
+            second_ledger = copy.deepcopy(ledger_v["records"][0])
+            second_ledger["adjudication_record_id"] = "adj-v-2"
+            ledger_v["records"].append(second_ledger)
+        self._write_json(root, "gold-v.json", gold_v)
+        self._write_json(root, "ledger-v.json", ledger_v)
+        manifest_v = self._frozen_manifest("gold_v", "gold-v.json", gold_v, [
+            {"dependency_type": "gold_e_manifest", "schema_version": "relational_gold_freeze_manifest_v2", "artifact_version": "1.0.0", "path": "manifest-e.json", "sha256": manifest_e_hash, "access_class": "restricted"},
+            {"dependency_type": "annotation_ledger", "schema_version": "relational_gold_annotation_ledger_v2", "artifact_version": "1.0.0", "path": "ledger-v.json", "sha256": MODULE.sha256_document(MODULE.normatively_order(ledger_v)), "access_class": "restricted"},
+        ])
+        manifest_v_path = self._write_json(root, "manifest-v.json", manifest_v)
+        return manifest_v_path, manifest_e, gold_v, ledger_v
 
     def test_01_repository_contracts_are_valid_empty_and_v1_is_immutable(self):
         self.assertEqual(MODULE.validate_repository_preparation(ROOT), [])
@@ -236,6 +304,69 @@ class RelationalGoldPreparationV2Tests(unittest.TestCase):
                 text = path.read_text(encoding="utf-8")
                 self.assertNotIn("relational_gold_e_v2", text)
                 self.assertNotIn("validate_relational_gold_preparation_v2", text)
+
+    def test_13_complete_freeze_path_invokes_all_referential_validators(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, _, _ = self._write_complete_freeze_bundle(tmp)
+            self.assertEqual(MODULE.validate_freeze_manifest_path(manifest_v_path), [])
+
+    def test_14_gold_v_manifest_uses_attempt_id_for_multiple_attempts_of_same_case(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, _, _ = self._write_complete_freeze_bundle(tmp, duplicate_case_attempt=True)
+            manifest = json.loads(manifest_v_path.read_text(encoding="utf-8"))
+            self.assertEqual([item["attempt_id"] for item in manifest["cases"]], ["attempt-1", "attempt-2"])
+            self.assertEqual(MODULE.validate_freeze_manifest_path(manifest_v_path), [])
+
+    def test_15_freeze_recalculates_input_configuration_and_answer_hashes(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, gold_v, ledger_v = self._write_complete_freeze_bundle(tmp)
+            gold_v["cases"][0]["input_reference"]["input_sha256"] = H
+            gold_v["cases"][0]["generation_configuration"]["configuration_sha256"] = H
+            gold_v["cases"][0]["answer_sha256"] = H
+            self._write_json(tmp, "gold-v.json", gold_v)
+            manifest = json.loads(manifest_v_path.read_text(encoding="utf-8"))
+            manifest["dataset"]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_v))
+            manifest["cases"][0]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_v["cases"][0]))
+            self._write_json(tmp, "manifest-v.json", manifest)
+            errors = MODULE.validate_freeze_manifest_path(manifest_v_path)
+            self.assertTrue(any(error.startswith("GOLD_V_INPUT_HASH_MISMATCH") for error in errors))
+            self.assertTrue(any(error.startswith("GOLD_V_CONFIGURATION_HASH_MISMATCH") for error in errors))
+            self.assertTrue(any(error.startswith("GOLD_V_ANSWER_HASH_MISMATCH") for error in errors))
+
+    def test_16_gold_e_manifest_hash_must_match_dataset_and_every_attempt(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, gold_v, _ = self._write_complete_freeze_bundle(tmp)
+            gold_v["gold_e_reference"]["manifest_sha256"] = H
+            gold_v["cases"][0]["input_reference"]["gold_e_manifest_sha256"] = "b" * 64
+            self._write_json(tmp, "gold-v.json", gold_v)
+            manifest = json.loads(manifest_v_path.read_text(encoding="utf-8"))
+            manifest["dataset"]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_v))
+            manifest["cases"][0]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_v["cases"][0]))
+            self._write_json(tmp, "manifest-v.json", manifest)
+            errors = MODULE.validate_freeze_manifest_path(manifest_v_path)
+            self.assertIn("GOLD_V_GOLD_E_REFERENCE_MISMATCH", errors)
+            self.assertTrue(any(error.startswith("GOLD_V_INPUT_MANIFEST_MISMATCH") for error in errors))
+
+    def test_17_joint_freeze_rejects_non_frozen_dependencies(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, _, ledger_v = self._write_complete_freeze_bundle(tmp)
+            ledger_v["status"] = "annotation_in_progress"
+            self._write_json(tmp, "ledger-v.json", ledger_v)
+            manifest = json.loads(manifest_v_path.read_text(encoding="utf-8"))
+            dependency = next(item for item in manifest["dependencies"] if item["dependency_type"] == "annotation_ledger")
+            dependency["sha256"] = MODULE.sha256_document(MODULE.normatively_order(ledger_v))
+            self._write_json(tmp, "manifest-v.json", manifest)
+            self.assertIn("FREEZE_COMPONENT_STATE_INVALID", MODULE.validate_freeze_manifest_path(manifest_v_path))
+
+    def test_18_cli_executes_complete_freeze_validation(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, _, _ = self._write_complete_freeze_bundle(tmp)
+            result = subprocess.run(
+                [sys.executable, str(SCRIPT), "--root", str(ROOT), "--freeze-manifest", str(manifest_v_path)],
+                capture_output=True, text=True, check=False,
+            )
+            self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+            self.assertIn("STATUS V2_FREEZE_VALID", result.stdout)
 
 
 if __name__ == "__main__":

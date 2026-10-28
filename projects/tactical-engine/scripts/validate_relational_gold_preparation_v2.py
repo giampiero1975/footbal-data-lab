@@ -98,7 +98,7 @@ def normatively_order(value: Any) -> Any:
             for child in node.values():
                 visit(child)
             ordering = {
-                "cases": "case_id",
+                "cases": None,
                 "requirements": "requirement_id",
                 "request_parts": "request_part_id",
                 "records": None,
@@ -116,6 +116,8 @@ def normatively_order(value: Any) -> Any:
                     items.sort(key=lambda item: next((str(item.get(k, "")) for k in candidate_keys if isinstance(item, dict) and k in item), ""))
                 elif name == "dependencies":
                     items.sort(key=lambda item: (item.get("dependency_type", ""), item.get("artifact_version", ""), item.get("sha256", "")))
+                elif name == "cases":
+                    items.sort(key=lambda item: str(item.get("attempt_id", item.get("case_id", ""))) if isinstance(item, dict) else str(item))
                 elif key:
                     items.sort(key=lambda item: str(item.get(key, "")) if isinstance(item, dict) else str(item))
                 else:
@@ -247,11 +249,13 @@ def validate_gold_v(document: dict[str, Any], gold_e: dict[str, dict[str, Any]],
                 errors.append(f"GOLD_V_EVIDENCE_MISSING:{case_id}")
         status = case.get("generation_result", {}).get("status")
         evaluable = status == "completed_evaluable"
-        if not case.get("run_id") or not case.get("input_reference", {}).get("input_sha256") or not case.get("generation_configuration", {}).get("configuration_sha256"):
+        if not case.get("run_id") or not case.get("input_reference", {}).get("path") or not case.get("input_reference", {}).get("input_sha256") or not case.get("generation_configuration", {}).get("path") or not case.get("generation_configuration", {}).get("configuration_sha256"):
             errors.append(f"GOLD_V_ATTEMPT_PROVENANCE_INCOMPLETE:{case_id}")
         if evaluable:
             if not isinstance(case.get("answer"), str) or not case.get("answer", "").strip() or not case.get("answer_sha256"):
                 errors.append(f"GOLD_V_EVALUABLE_ANSWER_MISSING:{case_id}")
+            elif sha256_document(case.get("answer")) != case.get("answer_sha256"):
+                errors.append(f"GOLD_V_ANSWER_HASH_MISMATCH:{case_id}")
             if frozen:
                 expected_quality = {"completeness", "relational_coherence", "tactical_correctness", "documentary_support"}
                 if not case.get("relation_judgements") or set(case.get("quality_judgements") or {}) != expected_quality:
@@ -302,14 +306,97 @@ def validate_manifest(document: dict[str, Any], artifacts: dict[str, dict[str, A
     if document.get("case_count") != len(document.get("cases", [])):
         errors.append("MANIFEST_CASE_COUNT_MISMATCH")
     if path in artifacts:
-        dataset_cases = {case.get("case_id"): case for case in artifacts[path].get("cases", [])}
-        manifest_cases = {case.get("case_id"): case for case in document.get("cases", [])}
-        if set(dataset_cases) != set(manifest_cases):
+        id_field = "attempt_id" if dataset.get("kind") == "gold_v" else "case_id"
+        dataset_cases = {case.get(id_field): case for case in artifacts[path].get("cases", [])}
+        manifest_cases = {case.get(id_field): case for case in document.get("cases", [])}
+        if None in dataset_cases or None in manifest_cases or set(dataset_cases) != set(manifest_cases):
             errors.append("MANIFEST_CASE_SET_MISMATCH")
         else:
-            for case_id, case in dataset_cases.items():
-                if sha256_document(normatively_order(case)) != manifest_cases[case_id].get("sha256"):
-                    errors.append(f"MANIFEST_CASE_HASH_MISMATCH:{case_id}")
+            for record_id, case in dataset_cases.items():
+                if sha256_document(normatively_order(case)) != manifest_cases[record_id].get("sha256"):
+                    errors.append(f"MANIFEST_CASE_HASH_MISMATCH:{record_id}")
+    return errors
+
+
+def _resolved_json(base: Path, relative: str) -> tuple[Path, dict[str, Any]]:
+    path = (base / relative).resolve()
+    return path, load_json(path)
+
+
+def validate_freeze_manifest_path(manifest_path: Path, stack: tuple[str, ...] = ()) -> list[str]:
+    """Validate one frozen manifest and every referenced artifact on disk."""
+    errors: list[str] = []
+    manifest_path = manifest_path.resolve()
+    manifest = load_json(manifest_path)
+    manifest_hash = sha256_document(normatively_order(manifest))
+    if manifest_hash in stack:
+        return ["MANIFEST_DEPENDENCY_CYCLE"]
+    if manifest.get("manifest_status") != "frozen":
+        return ["FREEZE_MANIFEST_NOT_FROZEN"]
+    base = manifest_path.parent
+    artifacts: dict[str, dict[str, Any]] = {}
+    dataset_ref = manifest.get("dataset", {})
+    try:
+        _, dataset = _resolved_json(base, dataset_ref.get("path", ""))
+        artifacts[dataset_ref.get("path")] = dataset
+    except (OSError, ValueError, json.JSONDecodeError):
+        return ["FREEZE_DATASET_UNRESOLVABLE"]
+    dependency_paths: dict[str, Path] = {}
+    for dependency in manifest.get("dependencies", []):
+        try:
+            resolved_path, document = _resolved_json(base, dependency.get("path", ""))
+            artifacts[dependency.get("path")] = document
+            dependency_paths[dependency.get("dependency_type")] = resolved_path
+        except (OSError, ValueError, json.JSONDecodeError):
+            errors.append(f"FREEZE_DEPENDENCY_UNRESOLVABLE:{dependency.get('dependency_type')}")
+    errors.extend(validate_manifest(manifest, artifacts))
+    if errors:
+        return errors
+
+    kind = dataset_ref.get("kind")
+    ledger = artifacts[next(dep["path"] for dep in manifest["dependencies"] if dep["dependency_type"] == "annotation_ledger")]
+    errors.extend(validate_annotation_ledger(ledger, frozen=True))
+    ledger_records = {record.get("adjudication_record_id"): record for record in ledger.get("records", [])}
+    if dataset.get("status") != "frozen" or ledger.get("status") != "frozen":
+        errors.append("FREEZE_COMPONENT_STATE_INVALID")
+
+    if kind == "gold_e":
+        registry = artifacts[next(dep["path"] for dep in manifest["dependencies"] if dep["dependency_type"] == "provenance_registry")]
+        if registry.get("status") != "frozen":
+            errors.append("FREEZE_PROVENANCE_STATE_INVALID")
+        errors.extend(validate_provenance_registry(registry, frozen=True, as_of=manifest.get("frozen_at")))
+        provenance_ids = {record.get("provenance_record_id") for record in registry.get("records", [])}
+        errors.extend(validate_gold_e(dataset, provenance_ids, ledger_records, frozen=True))
+    elif kind == "gold_v":
+        gold_e_manifest_dep = next(dep for dep in manifest["dependencies"] if dep["dependency_type"] == "gold_e_manifest")
+        gold_e_manifest = artifacts[gold_e_manifest_dep["path"]]
+        gold_e_manifest_actual_hash = sha256_document(normatively_order(gold_e_manifest))
+        errors.extend(validate_freeze_manifest_path(dependency_paths["gold_e_manifest"], stack + (manifest_hash,)))
+        gold_e_dataset_path, gold_e_dataset = _resolved_json(dependency_paths["gold_e_manifest"].parent, gold_e_manifest.get("dataset", {}).get("path", ""))
+        del gold_e_dataset_path
+        gold_e_reference = dataset.get("gold_e_reference", {})
+        gold_e_manifest_version = gold_e_manifest.get("dataset", {}).get("version")
+        if gold_e_reference.get("manifest_sha256") != gold_e_manifest_actual_hash or gold_e_reference.get("dataset_version") != gold_e_manifest_version or gold_e_reference.get("freeze_status") != "frozen":
+            errors.append("GOLD_V_GOLD_E_REFERENCE_MISMATCH")
+        gold_e_cases = {case.get("case_id"): case for case in gold_e_dataset.get("cases", [])}
+        errors.extend(validate_gold_v(dataset, gold_e_cases, ledger_records, frozen=True))
+        for case in dataset.get("cases", []):
+            case_id = case.get("case_id", "<missing>")
+            input_ref = case.get("input_reference", {})
+            if input_ref.get("gold_e_manifest_sha256") != gold_e_manifest_actual_hash:
+                errors.append(f"GOLD_V_INPUT_MANIFEST_MISMATCH:{case_id}")
+            for reference, path_key, hash_key, code in (
+                (input_ref, "path", "input_sha256", "GOLD_V_INPUT_HASH_MISMATCH"),
+                (case.get("generation_configuration", {}), "path", "configuration_sha256", "GOLD_V_CONFIGURATION_HASH_MISMATCH"),
+            ):
+                try:
+                    _, content = _resolved_json(base, reference.get(path_key, ""))
+                    if sha256_document(normatively_order(content)) != reference.get(hash_key):
+                        errors.append(f"{code}:{case_id}")
+                except (OSError, ValueError, json.JSONDecodeError):
+                    errors.append(f"{code}:{case_id}")
+    else:
+        errors.append("FREEZE_DATASET_KIND_INVALID")
     return errors
 
 
@@ -372,17 +459,24 @@ def validate_repository_preparation(root: Path) -> list[str]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
+    parser.add_argument("--freeze-manifest", type=Path)
     args = parser.parse_args()
     errors = validate_repository_preparation(args.root)
+    if not errors and args.freeze_manifest:
+        errors.extend(validate_freeze_manifest_path(args.freeze_manifest))
     if errors:
         print("STATUS BLOCKED")
         for error in errors:
             print("BLOCKER", error)
         raise SystemExit(1)
-    print("STATUS V2_PREPARATION_VALID")
-    print("CASES 0")
-    print("INFERENCE NOT_RUN")
-    print("INDEPENDENT_GOLD BLOCKED")
+    if args.freeze_manifest:
+        print("STATUS V2_FREEZE_VALID")
+        print("MANIFEST", args.freeze_manifest)
+    else:
+        print("STATUS V2_PREPARATION_VALID")
+        print("CASES 0")
+        print("INFERENCE NOT_RUN")
+        print("INDEPENDENT_GOLD BLOCKED")
 
 
 if __name__ == "__main__":

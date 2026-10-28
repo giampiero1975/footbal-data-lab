@@ -25,11 +25,16 @@
       "type": "array",
       "items": {
         "type": "object", "additionalProperties": false,
-        "required": ["case_id", "sha256"],
         "properties": {
           "case_id": {"type": "string", "minLength": 1},
+          "attempt_id": {"type": "string", "minLength": 1},
           "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"}
-        }
+        },
+        "required": ["sha256"],
+        "oneOf": [
+          {"required": ["case_id"], "not": {"required": ["attempt_id"]}},
+          {"required": ["attempt_id"], "not": {"required": ["case_id"]}}
+        ]
       }
     },
     "dependencies": {
