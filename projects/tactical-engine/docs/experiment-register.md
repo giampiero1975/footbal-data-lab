@@ -1522,3 +1522,21 @@ compilazione e diff check PASS. HTML e profilo API predefinito invariati.
 Decisione: proporre validazione indipendente su casi congelati completi, senza
 attivare blocchi o integrazioni automatiche. Stato: **IMPLEMENTATO**,
 **ESEGUITO**, **VALIDATO** offline; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-FOURTH-PEER-RELATIONAL-REMEDIATION-01 — quarta revisione (2026-10-28)
+
+Attività: correggere esclusivamente i controesempi B2/B3/B4, qualificare A2/A3
+e separare l'estrazione di requisiti aperti/espliciti dalla loro verifica.
+Script: `scripts/v5_tactical_query_plan_v1.py`; test:
+`tests/test_v5_tactical_query_plan_v1.py`. Commit codice/test: `6f20bcd`.
+Report: `docs/fourth-peer-review-relational-remediation-01.md`. Risultato:
+inciso comitativo e soggetto postverbale delimitato riconosciuti; `uno/l'altro`
+non attribuito; polarità a quattro stati; sottodomande congelate e compiti
+atomici; requisiti aperti verificabili soltanto tramite relazione operativa.
+Nove test nuovi, planner/audit 38/38, compilazione e diff check PASS. Le suite
+contratto/API non sono state ripetute perché prive di file o dipendenze
+modificate. Nessuna chiamata esterna, VPS, inferenza o benchmark. Decisione:
+validare offline il solo delta e mantenere audit non bloccante. Gold E/Gold V
+sono definiti ma non disponibili: validazione indipendente **BLOCCATO**. Stato:
+correzioni **IMPLEMENTATO**, test **ESEGUITO**, perimetro differenziale
+**VALIDATO** offline; non **INTEGRATO** o **CERTIFICATO**.
