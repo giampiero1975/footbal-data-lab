@@ -107,6 +107,11 @@ class ApiTests(unittest.TestCase):
             self.assertEqual(config["evidence_limit"], 8)
             self.assertEqual(config["max_output_tokens"], 0)
 
+    def test_public_default_profile_does_not_enable_coverciano_gate(self):
+        self.assertNotIn("--tactical-plan", query.DEFAULT_PROFILE_FLAGS)
+        self.assertIn("--heading-routing", query.DEFAULT_PROFILE_FLAGS)
+        self.assertIn("--structural-routing", query.DEFAULT_PROFILE_FLAGS)
+
     def test_openrouter_usage_summary_includes_tokens_cost_and_provider(self):
         report = {"passes": [
             {"provider": "OpenAI", "usage": {"prompt_tokens": 10,
