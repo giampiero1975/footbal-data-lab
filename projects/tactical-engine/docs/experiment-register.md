@@ -1490,3 +1490,16 @@ Decisione: validare offline il backend e mantenere UI/deploy separati. Stato:
 supporto API **IMPLEMENTATO**, test **ESEGUITO**, recovery e retrocompatibilità
 **VALIDATO** offline; collegamento al pannello **DA FARE**, non **INTEGRATO** in
 produzione o **CERTIFICATO**.
+
+### RD-CONSOLIDATED-REMEDIATION-20261028 — regressione finale (2026-10-28)
+
+Attività: eseguire esclusivamente le regressioni pertinenti dopo le quattro
+correzioni isolate. Script/test: contratto relazionale, planner/audit e API.
+Report: `docs/consolidated-remediation-2026-10-28.md`. Risultato: 48/48 test
+contratto, 25/25 planner/audit e 32/32 API, totale 105/105 PASS; compilazione dei
+tre moduli e diff check PASS. Nessuna chiamata esterna, modifica al pannello,
+VPS, indice, corpus, modello, merge o deploy. Decisione: considerare validate
+offline le sole proprietà coperte e preservare come aperte integrazione Qwen,
+UI, validazione runtime indipendente e decisione di distribuzione. Stato:
+regressione **ESEGUITO**, perimetro offline **VALIDATO**; nuovi componenti non
+**INTEGRATI** o **CERTIFICATI**.
