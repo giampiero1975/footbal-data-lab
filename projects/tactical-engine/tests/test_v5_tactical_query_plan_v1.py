@@ -476,6 +476,40 @@ class RelationalAuditDifferentialTests(unittest.TestCase):
         result = planner.audit_relations(answer, [requirement])["requirements"][0]
         self.assertFalse(result["satisfied"])
 
+    def test_opponent_mention_does_not_invalidate_own_relation(self):
+        plan = planner.analyse("Come organizzi la copertura preventiva alla perdita del possesso?")
+        answer = ("Alla perdita il nostro centrale copre la profondità per impedire la ripartenza, "
+                  "mentre l'ala avversaria attacca la fascia.")
+        result = planner.audit_relations(answer, plan["relation_requirements"])["requirements"][0]
+        self.assertTrue(result["satisfied"])
+
+    def test_opponent_relation_cannot_borrow_own_actor_presence(self):
+        plan = planner.analyse("Come organizzi la copertura preventiva alla perdita del possesso?")
+        answer = ("Alla perdita l'ala avversaria copre la profondità "
+                  "mentre il nostro centrale attacca la fascia.")
+        result = planner.audit_relations(answer, plan["relation_requirements"])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+
+    def test_objective_groups_must_hold_in_one_relation_unit(self):
+        plan = planner.analyse("Come organizzi la copertura preventiva per impedire la ripartenza?")
+        unrelated = ("Alla perdita l'ala attacca la fascia, il centrale protegge la porta "
+                     "e l'avversario avvia la ripartenza.")
+        relevant = "Alla perdita il centrale protegge la profondità per impedire il contropiede."
+        self.assertFalse(planner.audit_relations(
+            unrelated, plan["relation_requirements"])["requirements"][0]["satisfied"])
+        self.assertTrue(planner.audit_relations(
+            relevant, plan["relation_requirements"])["requirements"][0]["satisfied"])
+
+    def test_current_trigger_frame_advances_across_three_segments(self):
+        plan = planner.analyse(
+            "Alla perdita il centrale copre la profondità, mentre alla riconquista l'ala attacca la fascia, "
+            "mentre la punta accompagna l'azione."
+        )
+        by_actor = {item["actor_terms"][0]: item for item in plan["relation_requirements"]}
+        self.assertEqual(by_actor["centrale"]["trigger_terms"], ["alla perdita"])
+        self.assertEqual(by_actor["ala"]["trigger_terms"], ["alla riconquista"])
+        self.assertEqual(by_actor["punta"]["trigger_terms"], ["alla riconquista"])
+
 
 if __name__ == "__main__":
     unittest.main()
