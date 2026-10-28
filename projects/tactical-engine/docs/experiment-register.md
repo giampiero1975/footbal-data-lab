@@ -1646,3 +1646,11 @@ automatici. Pilot 12, Gold E 60, Gold V 60 e quote 24/18/18 invariati. Nessun
 test, raccolta, annotazione, inferenza, benchmark o runtime modificato. Stato
 invariato: pianificazione **ESEGUITO**; G0–G8 **DA FARE**, G9 e validazione
 indipendente **BLOCCATO**.
+
+Compatibilità rilevata senza modifica degli schemi: Gold E v1 non tipizza
+autore/organizzazione/origine comune/licenza/retention e vieta proprietà
+aggiuntive; Gold V v1 richiede `answer` non vuoto e non rappresenta
+timeout/errori. Decisione: preservare gli hash v1 e sottoporre al titolare
+un'evoluzione versionata prima di G1/G6, senza usare campi provvisori o archivi
+paralleli. Stato della correzione schema: **DA FARE**; non impedisce la chiusura
+della pianificazione ma impedisce l'avvio corretto delle fasi interessate.

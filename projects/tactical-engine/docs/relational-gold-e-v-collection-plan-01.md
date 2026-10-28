@@ -407,6 +407,25 @@ aggiornamento della conoscenza RAG sono processi distinti. L'attività
 - Non si introduce ora alcun nuovo servizio o archivio: collocazione, accessi
   e retention operativi sono una decisione G0 precedente a G1.
 
+### Compatibilità con gli schemi v1 approvati
+
+La revisione documentale rileva due incompatibilità da risolvere con una
+decisione versionata, non con campi informali:
+
+1. `relational_gold_e_schema_v1.json` non dispone di campi distinti per
+   autore, organizzazione, `origin_cluster_id`, classificazione di
+   redistribuzione, licenza, retention e revoca; `additionalProperties: false`
+   impedisce di aggiungerli ai casi v1 senza evolvere lo schema.
+2. `relational_gold_v_schema_v1.json` richiede `answer` non vuoto e non espone
+   uno stato di generazione; timeout, errori e output vuoti non possono quindi
+   essere rappresentati correttamente come record Gold V v1.
+
+Gli schemi non vengono modificati in questa fase. Prima di G1 il titolare deve
+decidere una revisione compatibile e versionata dei metadati di provenienza;
+prima di G6 deve approvare la rappresentazione versionata degli esiti tecnici.
+Le versioni v1 e i relativi hash restano immutati e verificabili. Nessun dato
+viene raccolto in campi provvisori o archivi paralleli per aggirare il problema.
+
 ## 9. Rischi e misure preventive
 
 | Rischio | Misura |
@@ -454,8 +473,10 @@ Prima di G1 occorre decidere esplicitamente:
     `case_id` e trattamento di timeout/errori/risposte vuote;
 12. confermare isolamento Gold E/Gold V da retrieval, training, feedback e
     aggiornamenti automatici;
-13. solo dopo freeze Gold E, decidere separatamente sulle 60 inferenze G6;
-14. solo dopo freeze Gold V, decidere se avviare il benchmark G9.
+13. decidere l'evoluzione versionata degli schemi per metadati C1/C6 prima di
+    G1 e per timeout/errori/risposte vuote C5 prima di G6;
+14. solo dopo freeze Gold E, decidere separatamente sulle 60 inferenze G6;
+15. solo dopo freeze Gold V, decidere se avviare il benchmark G9.
 
 ## 11. Risultato e stato
 
