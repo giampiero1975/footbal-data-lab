@@ -1645,6 +1645,17 @@ aggiunto per evitare duplicazione prematura. Decisione: progettazione
 e snapshot. Nessun accesso VPS, test, Qwen, benchmark, modifica corpus/indice,
 merge o deploy; non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
 
+Correzione revisione indipendente del commit `5c0b6a3`: conservata l'identità
+derivata da hash storicamente verificato quando l'artefatto corrente è
+inaccessibile, senza confonderla con l'integrità corrente; introdotta la
+precondizione `inventory_completeness` per distinguere orfani reali da record
+non riconciliati; resi deterministici ordinamento e hash del contenuto tecnico
+del report separandoli dai timestamp di esecuzione; precisato che conteggi e ID
+prima/dopo sono controlli accessori e non provano la consistenza dello snapshot.
+Script: non applicabile. Test: nessuno. Perimetro esclusivamente documentale;
+stato invariato: progettazione **ESEGUITO**, implementazione **DA FARE**,
+runtime **BLOCCATO**, non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
+
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.

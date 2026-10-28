@@ -5,6 +5,12 @@ Ramo: `codex/tactical-state-contract-v1`
 Audit di base: commit `8650121`
 Script: non applicabile — progettazione documentale
 
+Revisione puntuale del commit `5c0b6a3`: recepite esclusivamente le quattro
+correzioni indipendenti su persistenza dell'identità documentale, completezza
+dell'inventario per classificare gli orfani, determinismo del report e prova
+della consistenza dello snapshot. Il perimetro e gli stati dell'attività non
+cambiano.
+
 ## 1. Stato riconciliato
 
 `RD-RAG-DOCUMENTARY-GAP-AUDIT-01` ha dimostrato che il codice conserva lo
@@ -55,9 +61,13 @@ secondo archivio di conoscenza.
 
 ### 2.2 Identità
 
-- `document_id`: `sha256:<pdf_sha256>` soltanto quando il PDF è accessibile e
-  l'hash è stato calcolato. Se non è accessibile si usa un `source_ref`
-  provvisorio e `document_id=null`; non si promuove il nome file a identità.
+- `document_id`: `sha256:<pdf_sha256>` quando l'hash è ricalcolato sui byte
+  correnti oppure quando lo stesso hash era stato verificato in precedenza ed è
+  associato a un'evidenza stabile e risolvibile. Nel secondo caso l'identità
+  persiste, mentre lo stato della verifica corrente resta `not_accessible`.
+  Un hash soltanto dichiarato non viene promosso a identità verificata. Se non
+  esiste evidenza affidabile si usa un `source_ref` provvisorio e
+  `document_id=null`; il nome file non diventa un'identità.
 - `extraction_id`: `sha256:<docling_json_sha256>`.
 - `chunk_id`: ID esatto memorizzato in Chroma.
 - `snapshot_id`: UUID o identificativo opaco generato una volta, distinto
@@ -97,6 +107,8 @@ Schema logico minimo:
     "chroma_version": null,
     "record_count": 0,
     "record_count_status": "declared",
+    "inventory_completeness": "complete|partial|unknown",
+    "inventory_completeness_evidence_ref": null,
     "distance_metric": null,
     "collection_metadata_sha256": null,
     "sorted_record_ids_sha256": null,
@@ -126,6 +138,11 @@ Record documento:
 {
   "source_ref": "stable-inventory-reference",
   "document_id": "sha256:<pdf-hash>|null",
+  "identity_evidence": {
+    "basis": "current_verified|historically_verified|declared_only|none",
+    "evidence_ref": null,
+    "evidence_sha256": null
+  },
   "original": {
     "relative_path": "formations/file.pdf",
     "size_bytes": 123,
@@ -183,11 +200,19 @@ Record chunk:
 
 1. Oggetti canonicalizzati; array non riordinati da RFC 8785. Ordinamento
    semantico definito prima: documenti per `document_id/source_ref`, chunk per
-   `chunk_id`, pagine numeriche crescenti. Gli heading preservano l'ordine.
+   `chunk_id`, pagine numeriche crescenti. Gli heading preservano l'ordine. Le
+   anomalie sono ordinate stabilmente per
+   `(code, document_id, source_ref, chunk_id, record_id)` usando stringa vuota
+   per i campi assenti; gli altri record tecnici dichiarano nello schema la
+   propria chiave totale di ordinamento.
 2. Hash in minuscolo, 64 caratteri esadecimali; nessun placeholder.
 3. `verified` richiede byte/record letto e hash ricalcolato nella stessa
    esecuzione.
-4. `document_id` non nullo richiede PDF `verified`.
+4. `document_id` non nullo richiede `identity_evidence.basis` uguale a
+   `current_verified` oppure `historically_verified`. Il secondo valore
+   richiede `evidence_ref` stabile e hash dell'evidenza; non modifica lo stato
+   corrente dell'originale, che può essere `not_accessible`. `declared_only` e
+   `none` richiedono `document_id=null`.
 5. Un chunk appartiene a un solo document record nello snapshot. Contenuti
    duplicati possono comparire, ma devono essere segnalati.
 6. `content_sha256` usa esattamente il campo `documents` restituito da Chroma,
@@ -200,6 +225,16 @@ Record chunk:
 9. Bibliografia e diritti mancanti restano null/unknown.
 10. Il manifest non contiene testo integrale, vettori, credenziali o percorsi
     assoluti.
+11. Il report separa `verified_content` da `run_metadata`. Il primo contiene
+    snapshot, confronti, anomalie e riepiloghi deterministici; il secondo
+    contiene timestamp, durata, host/tool e altri dati dell'esecuzione.
+12. Gli hash tecnici sono calcolati esclusivamente su `verified_content` dopo
+    ordinamento normativo e canonicalizzazione RFC 8785 ristretta. I timestamp
+    non partecipano a tali hash; in `run_metadata` sono UTC RFC 3339
+    normalizzati. A parità di snapshot e input verificati, il contenuto tecnico
+    e il suo hash devono coincidere anche se le esecuzioni avvengono in momenti
+    diversi. La utility esistente va riutilizzata senza modificare algoritmi o
+    hash Gold E/V v2.
 
 ## 4. Specifica del verificatore read-only
 
@@ -221,9 +256,13 @@ Record chunk:
 4. Ricostruire in memoria i chunk attesi dal JSON con la versione esatta del
    chunker, senza embedding e senza scrittura.
 5. Confrontare ID, contenuto e metadata attesi con i record Chroma a batch.
-6. Calcolare insiemi `expected_ids` e `actual_ids`:
+6. Determinare prima `inventory_completeness`. Il valore `complete` richiede
+   un'evidenza autorevole che il manifest copra l'universo documentale previsto
+   per quella collection; in assenza, il valore è `partial` o `unknown`.
+   Calcolare quindi gli insiemi `expected_ids` e `actual_ids`:
    - `expected - actual`: record mancanti;
-   - `actual - expected`: record orfani;
+   - `actual - expected`: record orfani soltanto con inventario `complete`;
+     con inventario `partial|unknown` sono record non riconciliati;
    - intersezione: confronto contenuto/metadata.
 7. Individuare duplicati PDF per hash, estrazioni per hash, contenuti chunk per
    hash e ID duplicati.
@@ -238,7 +277,10 @@ Record chunk:
 - `NOT_ACCESSIBLE`: artefatto dichiarato ma non leggibile;
 - `NOT_DECLARED`: riferimento o hash mancante;
 - `MISSING_RECORD`: chunk atteso assente;
-- `ORPHAN_RECORD`: record Chroma senza documento/estrazione risolvibile;
+- `ORPHAN_RECORD`: record Chroma senza documento/estrazione risolvibile,
+  dichiarabile soltanto rispetto a un inventario completo;
+- `UNRECONCILED_RECORD`: record esterno a un inventario parziale o di
+  completezza ignota, senza inferire che sia orfano;
 - `DUPLICATE_CONTENT`: stesso contenuto con identità differenti;
 - `METADATA_INCOMPLETE`: campo normativo assente;
 - `UNSUPPORTED_VERSION`: pipeline necessaria non riproducibile.
@@ -278,12 +320,17 @@ tattica o qualità delle risposte.
 Ordine raccomandato, subordinato a nuova autorizzazione:
 
 1. registrare commit, configurazione dichiarata, collection e conteggio atteso;
-2. acquisire snapshot filesystem/provider consistente di originali, processed
-   e Chroma, oppure una copia verificata a servizio invariato;
+2. acquisire uno snapshot consistente tramite un meccanismo filesystem/provider
+   con semantica atomica o transazionale documentata; registrare metodo,
+   perimetro, istante logico e prova del completamento. Una semplice copia a
+   servizio invariato non dimostra da sola consistenza;
 3. eseguire il verificatore sulla copia, non sul path operativo;
-4. se la copia non è disponibile, usare letture Chroma batch limitate e
-   rate-limited in una finestra concordata, senza caricare Qwen;
-5. confrontare conteggio/ID prima e dopo la sola lettura;
+4. se non esiste una garanzia documentata di acquisizione consistente,
+   qualificare il risultato come `snapshot_not_certifiable` e non dichiarare
+   l'integrità della collection verificata;
+5. l'eventuale confronto di conteggio e ID prima/dopo è soltanto un controllo
+   accessorio di stabilità osservata: anche se coincide, non sostituisce la
+   garanzia di consistenza dello snapshot;
 6. firmare/hashare manifest e report; non promuovere automaticamente nulla.
 
 Una copia filesystem non consistente non è accettabile. L'apertura simultanea
