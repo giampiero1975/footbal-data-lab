@@ -220,5 +220,77 @@ class TacticalQueryPlanTests(unittest.TestCase):
         self.assertEqual([row["id"] for row in revised], ["b", "c", "d"])
 
 
+class RelationalAuditDifferentialTests(unittest.TestCase):
+    def requirement(self, **overrides):
+        item = {
+            "requirement_id": "negative_transition_cover",
+            "required_dimensions": ["actor", "phase", "task", "space", "trigger", "purpose"],
+            "actor_terms": ["centrale"],
+            "phase_terms": ["transizione negativa"],
+            "task_terms": ["copre"],
+            "space_terms": ["profondità"],
+            "trigger_terms": ["alla perdita"],
+            "purpose_terms": ["per impedire"],
+        }
+        item.update(overrides)
+        return item
+
+    def test_lexical_coverage_without_clause_relation_is_not_sufficient(self):
+        answer = ("Il centrale è importante. In transizione negativa serve equilibrio. "
+                  "La squadra copre. La profondità è decisiva. Alla perdita si reagisce. "
+                  "Questo avviene per impedire la ripartenza.")
+        audit = planner.audit_relations(answer, [self.requirement()])
+        self.assertFalse(audit["requirements"][0]["satisfied"])
+        self.assertIn("relation_not_demonstrated", audit["requirements"][0]["issue_codes"])
+
+    def test_analyse_creates_non_prescriptive_subproblem_envelopes(self):
+        plan = planner.analyse(
+            "In transizione negativa, come proteggi la profondità e quando ripieghi?"
+        )
+        self.assertTrue(plan["relation_requirements"])
+        requirement = plan["relation_requirements"][0]
+        self.assertIn("phase", requirement["required_dimensions"])
+        self.assertNotIn("actor_terms", requirement)
+        self.assertNotIn("task_terms", requirement)
+
+    def test_correct_role_and_task_in_wrong_phase_are_distinguished(self):
+        answer = "In possesso, alla perdita il centrale copre la profondità per impedire la ripartenza."
+        audit = planner.audit_relations(answer, [self.requirement()])
+        self.assertIn("wrong_phase_for_task", audit["requirements"][0]["issue_codes"])
+
+    def test_task_assigned_to_wrong_actor_is_distinguished(self):
+        answer = "In transizione negativa, alla perdita l'ala copre la profondità per impedire la ripartenza."
+        audit = planner.audit_relations(answer, [self.requirement()])
+        self.assertIn("wrong_actor_for_task", audit["requirements"][0]["issue_codes"])
+
+    def test_generic_preventive_does_not_satisfy_operational_relation(self):
+        requirement = self.requirement(task_terms=["marca"], space_terms=["centravanti"])
+        answer = "In transizione negativa la squadra mantiene una buona preventiva e resta equilibrata."
+        audit = planner.audit_relations(answer, [requirement])
+        self.assertFalse(audit["requirements"][0]["satisfied"])
+
+    def test_one_complete_subproblem_does_not_hide_an_omitted_one(self):
+        first = self.requirement()
+        second = self.requirement(requirement_id="weak_side", actor_terms=["esterno"],
+                                  task_terms=["stringe"], space_terms=["lato debole"],
+                                  trigger_terms=["al cambio gioco"], purpose_terms=["per proteggere"])
+        answer = ("In transizione negativa, alla perdita il centrale copre la profondità "
+                  "per impedire la ripartenza.")
+        audit = planner.audit_relations(answer, [first, second])
+        self.assertTrue(audit["requirements"][0]["satisfied"])
+        self.assertFalse(audit["requirements"][1]["satisfied"])
+
+    def test_formally_valid_but_irrelevant_citation_is_reported(self):
+        requirement = self.requirement(evidence_terms=["marcatura preventiva"])
+        answer = ("In transizione negativa, alla perdita il centrale copre la profondità "
+                  "per impedire la ripartenza [F1].")
+        evidence = [{"id": "F1", "topic": "tecnica del dribbling", "text": "guida della palla"}]
+        audit = planner.audit_relations(answer, [requirement], evidence)
+        result = audit["requirements"][0]
+        self.assertTrue(result["satisfied"])
+        self.assertEqual(result["citation_status"], "formally_valid_but_irrelevant")
+        self.assertFalse(result["semantic_support_verified"])
+
+
 if __name__ == "__main__":
     unittest.main()

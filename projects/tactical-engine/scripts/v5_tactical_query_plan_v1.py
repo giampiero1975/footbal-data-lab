@@ -208,6 +208,33 @@ def normal(value: str) -> str:
     return re.sub(r"\s+", " ", value.casefold().replace("–", "-").replace("—", "-")).strip()
 
 
+def relation_requirements(plan: dict) -> list[dict]:
+    """Build conservative subproblem envelopes without prescribing solutions."""
+    phase_terms = {
+        "possession": ["in possesso", "fase offensiva"],
+        "non_possession": ["non possesso", "fase difensiva"],
+        "negative_transition": ["transizione negativa", "alla perdita"],
+        "positive_transition": ["transizione positiva", "alla riconquista"],
+    }
+    explicit_phases = []
+    for facet in plan.get("facets", []):
+        explicit_phases.extend(phase_terms.get(facet, []))
+    requirements = []
+    for index, part in enumerate(plan.get("request_parts", [])):
+        required = ["actor", "task", "space", "trigger", "purpose"]
+        item = {
+            "requirement_id": f"question_part:{index}",
+            "question_part": part,
+            "required_dimensions": required,
+        }
+        phases_in_part = [term for term in explicit_phases if term in normal(part)]
+        if phases_in_part:
+            item["required_dimensions"] = ["actor", "phase", "task", "space", "trigger", "purpose"]
+            item["phase_terms"] = phases_in_part
+        requirements.append(item)
+    return requirements
+
+
 def analyse(question: str) -> dict:
     query = normal(question)
     facets = [name for name, cues in FACETS.items() if any(cue in query for cue in cues)]
@@ -232,6 +259,7 @@ def analyse(question: str) -> dict:
     }
     plan["state_contract"] = build_question_plan(
         question, formations=formations, roles=roles, scenarios=scenarios)
+    plan["relation_requirements"] = relation_requirements(plan)
     return plan
 
 
@@ -399,6 +427,120 @@ def generation_contract(plan: dict) -> str:
     )
 
 
+RELATION_DIMENSION_CUES = {
+    "actor": ("portiere", "terzino", "braccetto", "centrale", "difensore", "mediano",
+              "mezzala", "ala", "esterno", "punta", "centravanti", "squadra", "reparto"),
+    "phase": ("in possesso", "non possesso", "transizione negativa", "transizione positiva",
+              "alla perdita", "alla riconquista", "fase offensiva", "fase difensiva"),
+    "task": ("scivola", "stringe", "esce", "copre", "marca", "pressa", "scherm", "attacca",
+             "si abbassa", "si alza", "accompagna", "intercetta", "raddoppia", "fissa"),
+    "space": ("fascia", "corridoio", "half-space", "interspazio", "area", "linea", "profondità",
+              "secondo palo", "primo palo", "limite area", "zona palla", "lato debole"),
+    "trigger": ("quando", "se ", "nel momento", "alla perdita", "alla riconquista", "sul passaggio",
+                "palla coperta", "palla scoperta", "al cambio gioco"),
+    "purpose": ("perché", "perche", "in modo da", "così da", "per evitare", "per impedire",
+                "per proteggere", "per creare", "costringe", "consente", "riduce il rischio"),
+}
+
+
+def _relation_clauses(answer: str) -> list[dict]:
+    """Extract clause-local signals without inferring missing tactical links."""
+    clauses = []
+    for index, raw in enumerate(re.split(r"[.;\n]+", answer)):
+        text = normal(raw)
+        if not text:
+            continue
+        dimensions = {
+            name: [cue for cue in cues if cue in text]
+            for name, cues in RELATION_DIMENSION_CUES.items()
+        }
+        clauses.append({
+            "clause_id": f"clause:{index}",
+            "text": text,
+            "dimensions": dimensions,
+            "citations": sorted(set(re.findall(r"\[(F\d+)\]", raw, re.I))),
+        })
+    return clauses
+
+
+def audit_relations(answer: str, requirements: list[dict] | None = None,
+                    evidence: list[dict] | None = None) -> dict:
+    """Non-blocking relational diagnosis, independent from the legacy gate.
+
+    A requirement is satisfied only when its required dimensions and explicit
+    constraints occur in the same clause.  The function never assigns a score,
+    repairs text, or changes ``audit_answer(...)["complete"]``.
+    """
+    requirements = requirements or []
+    evidence = evidence or []
+    clauses = _relation_clauses(answer)
+    evidence_by_id = {str(item.get("id", "")).upper(): item for item in evidence}
+    results = []
+    for index, requirement in enumerate(requirements):
+        required = requirement.get("required_dimensions") or ["actor", "phase", "task"]
+        constraints = {
+            dimension: [normal(term) for term in requirement.get(f"{dimension}_terms", [])]
+            for dimension in RELATION_DIMENSION_CUES
+        }
+        candidates = []
+        for clause in clauses:
+            present = {name: bool(values) for name, values in clause["dimensions"].items()}
+            constraint_matches = {
+                name: (not terms or any(term in clause["text"] for term in terms))
+                for name, terms in constraints.items()
+            }
+            if all(present.get(name, False) and constraint_matches.get(name, True) for name in required):
+                candidates.append(clause)
+        matched = candidates[0] if candidates else None
+        issue_codes = []
+        if not matched:
+            issue_codes.append("relation_not_demonstrated")
+            task_terms = constraints.get("task", [])
+            task_clauses = [item for item in clauses if task_terms and any(term in item["text"] for term in task_terms)]
+            if task_clauses:
+                actor_terms = constraints.get("actor", [])
+                phase_terms = constraints.get("phase", [])
+                if actor_terms and any(item["dimensions"]["actor"] and
+                                       not any(term in item["text"] for term in actor_terms)
+                                       for item in task_clauses):
+                    issue_codes.append("wrong_actor_for_task")
+                if phase_terms and any(item["dimensions"]["phase"] and
+                                       not any(term in item["text"] for term in phase_terms)
+                                       for item in task_clauses):
+                    issue_codes.append("wrong_phase_for_task")
+        citation_status = "not_applicable"
+        if matched and matched["citations"]:
+            valid = [evidence_by_id.get(item.upper()) for item in matched["citations"]]
+            if any(item is None for item in valid):
+                citation_status = "invalid_id"
+                issue_codes.append("invalid_citation_id")
+            else:
+                relevance_terms = [normal(term) for term in requirement.get("evidence_terms", [])]
+                relevant = not relevance_terms or any(
+                    any(term in normal(" ".join((str(item.get("topic", "")), str(item.get("text", "")))))
+                        for term in relevance_terms) for item in valid
+                )
+                citation_status = "formally_valid_relevant" if relevant else "formally_valid_but_irrelevant"
+                if not relevant:
+                    issue_codes.append("citation_tactically_irrelevant")
+        results.append({
+            "requirement_id": requirement.get("requirement_id", f"requirement:{index}"),
+            "satisfied": bool(matched),
+            "matched_clause_id": matched["clause_id"] if matched else None,
+            "issue_codes": issue_codes,
+            "citation_status": citation_status,
+            "semantic_support_verified": False,
+        })
+    return {
+        "schema": "tactical_relational_audit_v1",
+        "mode": "offline_non_blocking",
+        "requirements": results,
+        "all_relations_demonstrated": bool(results) and all(item["satisfied"] for item in results),
+        "clauses_examined": len(clauses),
+        "affects_legacy_gate": False,
+    }
+
+
 def audit_answer(answer: str, plan: dict) -> dict:
     """Conservative, deterministic completeness signals; never assigns a tactical score."""
     text = normal(answer)
@@ -494,5 +636,7 @@ def audit_answer(answer: str, plan: dict) -> dict:
         "detail_coverage": detail_coverage,
         "missing_details": missing_details,
         "semantic_issues": semantic_issues,
+        "relational_audit": audit_relations(
+            answer, plan.get("relation_requirements"), plan.get("audit_evidence")),
         "complete": not missing_facets and len(missing_operational) <= 1 and not missing_details and not semantic_issues,
     }
