@@ -348,6 +348,9 @@ class State:
                 job["openrouter_copilot"] = {"status": "unavailable",
                     "model": self.config["openrouter_copilot_models"][0], "provider": "openrouter",
                     "reason": "openrouter_copilot_invalid_result"}
+        feedback = self.feedback_for_job(job_id)
+        if feedback is not None:
+            job["feedback"] = feedback
         return job
 
     def recent_jobs(self, limit: int = 20) -> list[dict]:
@@ -483,10 +486,12 @@ class State:
     def record_feedback(self, job_id: str, helpful: bool) -> dict:
         with self.lock:
             job = self.jobs.get(job_id)
-            if job is None:
-                raise KeyError(job_id)
-            if job["status"] != "succeeded":
-                raise RuntimeError("job_not_succeeded")
+        if job is None:
+            job = self.persisted_job(job_id)
+        if job is None:
+            raise KeyError(job_id)
+        if job["status"] != "succeeded":
+            raise RuntimeError("job_not_succeeded")
         feedback = {
             "schema": "rag_api_feedback_v1",
             "job_id": job_id,
@@ -497,6 +502,22 @@ class State:
         temporary = path.with_name(f".{path.name}.tmp")
         temporary.write_text(json.dumps(feedback, sort_keys=True) + "\n", encoding="utf-8")
         os.replace(temporary, path)
+        path.chmod(0o600)
+        return feedback
+
+    def feedback_for_job(self, job_id: str) -> dict | None:
+        """Load one validated feedback sidecar without creating another archive."""
+        path = self.config["output_dir"] / f"{job_id}.feedback.json"
+        if not path.exists():
+            return None
+        try:
+            feedback = json.loads(path.read_text(encoding="utf-8"))
+        except (OSError, json.JSONDecodeError, TypeError):
+            return None
+        if (feedback.get("schema") != "rag_api_feedback_v1"
+                or feedback.get("job_id") != job_id
+                or not isinstance(feedback.get("helpful"), bool)):
+            return None
         return feedback
 
 
@@ -640,6 +661,9 @@ class Handler(BaseHTTPRequestHandler):
             if job["status"] == "succeeded":
                 result_path = self.state.config["output_dir"] / f"{job_id}.result.json"
                 job["result"] = json.loads(result_path.read_text(encoding="utf-8"))
+            feedback = self.state.feedback_for_job(job_id)
+            if feedback is not None:
+                job["feedback"] = feedback
             self.send_json(HTTPStatus.OK, job)
             return
         self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"})

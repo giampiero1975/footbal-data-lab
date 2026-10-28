@@ -306,6 +306,53 @@ class ApiTests(unittest.TestCase):
             with self.assertRaises(KeyError):
                 state.record_feedback("b" * 32, False)
 
+    def test_feedback_for_succeeded_job_survives_restart_and_is_recovered(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); job_id = "f" * 32
+            (output / f"{job_id}.request.json").write_text(
+                json.dumps({"id": job_id, "question": "Domanda persistita"}), encoding="utf-8")
+            (output / f"{job_id}.result.json").write_text(
+                json.dumps({"questions": [{"answer": "Risposta [F1]."}]}), encoding="utf-8")
+            first = api.State(self.config(output))
+            feedback = first.record_feedback(job_id, True)
+            self.assertEqual(feedback["job_id"], job_id)
+            restarted = api.State(self.config(output))
+            recovered = restarted.persisted_job(job_id)
+            self.assertEqual(recovered["status"], "succeeded")
+            self.assertEqual(recovered["feedback"], feedback)
+
+    def test_feedback_rejects_persisted_failed_job(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); job_id = "1" * 32
+            (output / f"{job_id}.request.json").write_text(
+                json.dumps({"id": job_id, "question": "Fallita"}), encoding="utf-8")
+            (output / f"{job_id}.job.json").write_text(
+                json.dumps({"id": job_id, "status": "failed", "finished_at": 2}), encoding="utf-8")
+            state = api.State(self.config(output))
+            with self.assertRaisesRegex(RuntimeError, "job_not_succeeded"):
+                state.record_feedback(job_id, False)
+
+    def test_mismatched_feedback_sidecar_is_not_associated(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); job_id = "2" * 32
+            (output / f"{job_id}.feedback.json").write_text(json.dumps({
+                "schema": "rag_api_feedback_v1", "job_id": "3" * 32,
+                "helpful": True, "created_at": 1,
+            }), encoding="utf-8")
+            state = api.State(self.config(output))
+            self.assertIsNone(state.feedback_for_job(job_id))
+
+    def test_feedback_update_keeps_single_atomic_sidecar(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); job_id = "4" * 32
+            state.jobs[job_id] = {"id": job_id, "status": "succeeded"}
+            state.record_feedback(job_id, True)
+            state.record_feedback(job_id, False)
+            files = list(output.glob(f"{job_id}.feedback.json"))
+            self.assertEqual(len(files), 1)
+            self.assertFalse(json.loads(files[0].read_text(encoding="utf-8"))["helpful"])
+            self.assertFalse((output / f".{job_id}.feedback.json.tmp").exists())
+
     def test_metrics_are_persisted_without_question_text(self):
         with tempfile.TemporaryDirectory() as tmp:
             state = api.State(self.config(Path(tmp)))
