@@ -420,11 +420,13 @@ decisione versionata, non con campi informali:
    uno stato di generazione; timeout, errori e output vuoti non possono quindi
    essere rappresentati correttamente come record Gold V v1.
 
-Gli schemi non vengono modificati in questa fase. Prima di G1 il titolare deve
-decidere una revisione compatibile e versionata dei metadati di provenienza;
-prima di G6 deve approvare la rappresentazione versionata degli esiti tecnici.
-Le versioni v1 e i relativi hash restano immutati e verificabili. Nessun dato
-viene raccolto in campi provvisori o archivi paralleli per aggirare il problema.
+Le versioni v1 e i relativi hash restano immutati e verificabili. Le
+incompatibilità sono state risolte offline dai contratti v2 al commit tecnico
+`d26f364`: Provenance Registry, Gold E/Gold V v2, Annotation Ledger e manifest
+v2 con validatore referenziale. La patch contiene soltanto template vuoti e
+fixture sintetiche; non autorizza G1 o G6 e non costituisce raccolta, freeze o
+validazione del gold indipendente. Nessun dato viene raccolto in campi
+provvisori o archivi paralleli.
 
 ## 9. Rischi e misure preventive
 

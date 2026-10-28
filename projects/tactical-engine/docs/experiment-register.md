@@ -1654,3 +1654,21 @@ timeout/errori. Decisione: preservare gli hash v1 e sottoporre al titolare
 un'evoluzione versionata prima di G1/G6, senza usare campi provvisori o archivi
 paralleli. Stato della correzione schema: **DA FARE**; non impedisce la chiusura
 della pianificazione ma impedisce l'avvio corretto delle fasi interessate.
+
+### RD-RELATIONAL-GOLD-E-V2-OFFLINE-CONTRACTS-01 — contratti v2 isolati (2026-10-28)
+
+Attività: implementare offline l'evoluzione v2 approvata congiuntamente da
+Codex e ChatGPT, preservando integralmente v1. Script:
+`scripts/validate_relational_gold_preparation_v2.py`; test:
+`tests/test_validate_relational_gold_preparation_v2.py`; report:
+`docs/relational-gold-e-v2-offline-contracts-01.md`; commit tecnico:
+`d26f364`. Risultato: Provenance Registry, Gold E/Gold V, Annotation Ledger e
+manifest v2 con template vuoti; quattro esiti tecnici Gold V, riferimenti Gold
+E senza duplicazione, ledger A/B/C, dipendenze tipizzate, hash/cicli/freeze e
+profilo RFC 8785 standard-library. JSON 10/10, compilazione PASS, validatore
+`V2_PREPARATION_VALID`, test v2 12/12 e regressione v1 5/5; sette SHA-256 v1
+invariati, `CASES 0`, `INFERENCE NOT_RUN`. Decisione: contratti
+**IMPLEMENTATO**, verifiche **ESEGUITO**, patch isolata **VALIDATO** offline.
+Raccolta, annotazione, adjudication e freeze **DA FARE**; gold indipendente e
+benchmark **BLOCCATO**. Nessun runtime, RAG, Qwen, corpus, indice, API,
+pannello, VPS, merge o deploy; non **INTEGRATO** o **CERTIFICATO**.
