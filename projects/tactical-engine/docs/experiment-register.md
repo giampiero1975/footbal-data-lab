@@ -1672,3 +1672,21 @@ invariati, `CASES 0`, `INFERENCE NOT_RUN`. Decisione: contratti
 Raccolta, annotazione, adjudication e freeze **DA FARE**; gold indipendente e
 benchmark **BLOCCATO**. Nessun runtime, RAG, Qwen, corpus, indice, API,
 pannello, VPS, merge o deploy; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-RELATIONAL-GOLD-E-V2-FREEZE-VALIDATION-01 — correzione freeze completo (2026-10-28)
+
+Attività: recepire la revisione indipendente del commit `dabfff6` senza
+duplicare i controlli già esistenti. Script aggiornato:
+`scripts/validate_relational_gold_preparation_v2.py`; test aggiornato:
+`tests/test_validate_relational_gold_preparation_v2.py`; report:
+`docs/relational-gold-e-v2-freeze-validation-correction-01.md`; commit tecnico:
+`596c4ba`. Risultato: CLI `--freeze-manifest` collega le verifiche
+referenziali su file effettivi; manifest Gold V indicizzato per `attempt_id`;
+hash di answer/input/configurazione ricalcolati; hash e versione del manifest
+Gold E coerenti fra dipendenza, dataset e tentativi; precondizioni di freeze,
+ledger A/B/C, stati e dipendenze validate congiuntamente e ricorsivamente. Sei
+test differenziali nuovi; v2 18/18 e v1 5/5, totale 23/23 PASS, compilazione e
+diff check PASS. Decisione: correzione **IMPLEMENTATO**, test **ESEGUITO**,
+percorso freeze offline **VALIDATO**. Nessun dato reale, inferenza, benchmark,
+runtime, pannello, RAG, Qwen, corpus, indice, API, VPS, merge o deploy. Gold
+indipendente ancora **BLOCCATO**; non **INTEGRATO** o **CERTIFICATO**.

@@ -133,3 +133,11 @@ Gold E/Gold V indipendenti e benchmark: **BLOCCATO**.
 Integrazione e certificazione: non eseguite.
 
 Non sono stati effettuati merge o deploy.
+
+## Revisione indipendente successiva
+
+La revisione del commit `dabfff6` ha richiesto il collegamento delle funzioni
+referenziali al freeze completo e la distinzione dei tentativi Gold V. Il
+delta è documentato in
+`docs/relational-gold-e-v2-freeze-validation-correction-01.md` e implementato
+al commit `596c4ba`. Il presente report resta l'evidenza della patch iniziale.
