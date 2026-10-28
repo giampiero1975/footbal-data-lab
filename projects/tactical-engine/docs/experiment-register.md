@@ -1618,3 +1618,18 @@ Attività: pianificare audit supervisionato della copertura documentale RAG e ge
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.
+
+### RD-RELATIONAL-GOLD-E-V-COLLECTION-PLANNING-01 — piano operativo (2026-10-28)
+
+Attività: definire la raccolta indipendente senza avviarla. Script: non
+applicabile, attività esclusivamente documentale; nessun eseguibile o test
+aggiunto. Report: `docs/relational-gold-e-v-collection-plan-01.md`. Risultato:
+proposti pilot procedurale 12 permanentemente escluso dal gold, Gold E 60
+domande in dieci famiglie con provenienza 24/18/18 e Gold V naturale 60
+risposte solo dopo freeze Gold E; definiti screening, ruoli A/B/C/D, flusso
+G0–G9, freeze, dati per diagnosi documentale, separazione auto-learning,
+rischi e decisioni del titolare. Nessuna raccolta, annotazione, inferenza,
+benchmark, chiamata esterna, modifica runtime, merge o deploy. Decisione:
+pianificazione **ESEGUITO**; raccolta/annotazione/freeze **DA FARE**,
+`RD-RELATIONAL-GOLD-E-V-01` **BLOCCATO**, audit documentale e auto-learning
+**DA FARE**; gold/audit non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
