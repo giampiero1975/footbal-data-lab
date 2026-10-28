@@ -72,3 +72,29 @@ Report → questo documento.
 Risultato → due casi distinti a 19/30 e 22/30; ricorrenza di perdita dello scenario e contaminazione tra fasi; causa tecnica non isolata.
 Decisione → raccogliere gli artefatti esistenti e la vera coppia prima/dopo; nessuna nuova inferenza o benchmark equivalente in questa sessione.
 Stato → ESEGUITO per raccolta/confronto; DA FARE per diagnosi causale e miglioramento.
+
+## RD-002-R1 — Seguito del caso 22/30, acquisito 2026-10-28
+Stato analisi documentale: ESEGUITO. Il titolare ha fornito il seguito: il valutatore suggerisce esplicitamente la regola “palla scoperta: scappare; coperta: accorciare” e propone di rifare il caso con coperta/scoperta e scivolamento. Il testo effettivamente inviato al RAG e la conservazione dello scenario nel suo contesto non sono ancora verificati.
+
+### Risposta RAG ricevuta
+1. Definisce palla coperta e scoperta in termini di pressione, tempo e spazio [F1].
+2. Le identifica come segnali visivi per organizzare il non possesso [F1,F2].
+3. Collega genericamente i segnali ai movimenti collettivi e ai parametri tempo/spazio [F1,F2].
+4. Dichiara che le fonti non specificano scivolamento o compiti dei singoli ruoli; non sviluppa quei comportamenti. Aggiunge una digressione su riconquista/possesso in assenza di pressioni estreme.
+Non applica esplicitamente scappare/accorciare ai ruoli del caso, non descrive i quattro difensori o l'aiuto dei centrocampisti. Il limite delle fonti è dichiarato, ma non verificabile senza F1/F2.
+
+### Attribuzione del 30/30
+Gemini afferma prima che manca ancora l'applicazione al 4-4-2 contro 4-3-3. Poi SCRIVE autonomamente i compiti di terzino, centrali, lato debole, raddoppio e centrocampisti, nonché arresto/risalita della linea. Infine assegna 30/30 motivando che il candidato avrebbe legato i concetti alle reazioni di reparto.
+Quell'applicazione è nel testo di Gemini, non nella risposta RAG trascritta. Pertanto il 30/30 è un voto conversazionale non attribuibile come prova autonoma alla risposta RAG. Nessun nuovo voto viene assegnato qui.
+
+### Cosa cambia e cosa non è dimostrato
+Il seguito è più focalizzato e meno dispersivo: tratta correttamente a livello definitorio i concetti sollecitati e dichiara limiti. Ma passa da una domanda applicativa a una risposta teorica ristretta; il completamento pratico è esterno.
+La prima risposta cita F1–F6 e questa F1/F2: gli ID sono locali alla risposta e non provano né cambio né identità delle fonti.
+Possibili cause da distinguere: domanda di follow-up priva dello scenario completo, assenza di memoria conversazionale nel pannello, retrieval ristretto alle definizioni, oppure mancata applicazione generativa a contesto sufficiente. Non dichiarare alcuna causa accertata senza richiesta effettiva e artefatti runtime.
+
+### TODO aggiuntivo
+- [x] ESEGUITO — acquisire una sequenza di seguito del caso RD-002 e distinguere contributo RAG/contributo Gemini.
+- [ ] DA FARE — recuperare testo esatto inviato al pannello e verificare se scenario, risposta precedente e rettifica raggiungono il modello.
+- [ ] DA FARE — confrontare estratti reali dei due turni; non confrontare soltanto etichette F.
+- [ ] DA FARE — valutare la risposta RAG immutata prima di mostrare al valutatore soluzioni o riscritture; distinguere qualità teorica e copertura del caso iniziale. Nessuna nuova chiamata viene eseguita in questa revisione.
+Decisione: il salto autonomo 22→30 non è dimostrato da questo esempio. Il limite applicativo persiste nel testo osservato. Conservare il caso come evidenza di attribuzione errata del miglioramento e come indizio di restringimento della domanda.

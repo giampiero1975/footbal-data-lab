@@ -1125,3 +1125,6 @@ tecnica.
 - [x] **ESEGUITO** confronto documentale di due casi forniti dal titolare: RD-001 costruzione 3-5-2 vs 4-2-3-1 (19/30), RD-002 difesa laterale 4-4-2 vs 4-3-3 (22/30). Il secondo cambia scenario: non prova il miglioramento dopo rettifica. Report e checklist: `docs/revisione_domande.md`.
 - [ ] **DA FARE** associare job/versione runtime e fonti F1–F6; confrontare affermazioni/estratti e acquisire una coppia reale prima/dopo rettifica. Miglioramento 29–30 riferito, non ancora verificato causalmente.
 - [ ] **DA FARE** localizzare la causa rispetto alle correzioni V6–V10.2 già esistenti prima di proporre patch o test. Target utente >=26/30 autonomo alla prima risposta; gate tecnico 10/10 non equivale al voto esterno. Nessuna nuova inferenza, modifica runtime o deploy inclusi.
+
+- [x] **ESEGUITO** V5-REVISIONE-DOMANDE-01 / RD-002-R1: acquisito seguito del caso 22/30. RAG definisce coperta/scoperta ma non applica i compiti al caso; Gemini aggiunge l'applicazione e assegna 30/30. Voto non attribuibile alla prestazione autonoma RAG. Report `docs/revisione_domande.md`.
+- [ ] **DA FARE** verificare input effettivo/memoria dello scenario nel follow-up e confrontare estratti reali dei due turni; separare risposta RAG da completamento del valutatore. Nessun rerun incluso.

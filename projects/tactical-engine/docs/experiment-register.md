@@ -1359,3 +1359,7 @@ documentata. Stato: **ESEGUITO**, non **VALIDATO**.
 ### V5-REVISIONE-DOMANDE-01 — 2026-10-28
 
 Attività: raccolta diagnostica di due trascrizioni d'esame e confronto con TODO, registro e report routing/V9/V10. Script: nessuno nuovo, sola lettura. Commit: quello che introduce `docs/revisione_domande.md` e questa voce insieme al TODO. Report: `docs/revisione_domande.md`. Risultato: RD-001 19/30 e RD-002 22/30, scenari distinti; perdita di aderenza e contaminazione tra fasi osservabili, causa retrieval/prompt/modello/deploy ancora da isolare. Il salto 29–30 dopo rettifica resta un comportamento riferito senza coppia comparabile acquisita. Decisione: riusare job e fonti esistenti, identificare versione runtime e verificare le correzioni V6–V10.2 prima di nuovi interventi. Nessuna nuova chiamata RAG/valutatore, test equivalente o modifica applicativa. Stato: **ESEGUITO** per revisione documentale; diagnosi causale **DA FARE**.
+
+
+### V5-REVISIONE-DOMANDE-01 — RD-002-R1 (2026-10-28)
+Attività: analizzare il seguito del 22/30 fornito in chat. Script: nessuno nuovo. Commit: quello che aggiorna insieme report/TODO/registro con RD-002-R1. Report: `docs/revisione_domande.md`. Risultato: risposta RAG limitata alle definizioni F1/F2; applicazione allo scenario scritta da Gemini prima del voto 30/30. Decisione: non usare quel voto come salto autonomo 22→30; acquisire input effettivo, contesto conversazionale ed estratti dei due turni. Stato: **ESEGUITO** per analisi documentale; causa tecnica **DA FARE**. Nessuna nuova inferenza o modifica runtime.
