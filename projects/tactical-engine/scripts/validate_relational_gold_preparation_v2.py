@@ -291,6 +291,8 @@ def validate_manifest(document: dict[str, Any], artifacts: dict[str, dict[str, A
         if dataset.get("sha256") is not None or document.get("frozen_at") is not None:
             errors.append("MANIFEST_DRAFT_CLAIMS_FREEZE")
         return errors
+    if status == "frozen" and not document.get("frozen_at"):
+        errors.append("MANIFEST_FROZEN_AT_MISSING")
     path = dataset.get("path")
     if path not in artifacts or sha256_document(normatively_order(artifacts[path])) != dataset.get("sha256"):
         errors.append("MANIFEST_DATASET_HASH_MISMATCH")
@@ -359,6 +361,10 @@ def validate_freeze_manifest_path(manifest_path: Path, stack: tuple[str, ...] = 
     ledger_records = {record.get("adjudication_record_id"): record for record in ledger.get("records", [])}
     if dataset.get("status") != "frozen" or ledger.get("status") != "frozen":
         errors.append("FREEZE_COMPONENT_STATE_INVALID")
+    for case in dataset.get("cases", []):
+        record_id = case.get("attempt_id", case.get("case_id", "<missing>"))
+        if case.get("freeze_status") != "frozen":
+            errors.append(f"FREEZE_CASE_STATE_INVALID:{record_id}")
 
     if kind == "gold_e":
         registry = artifacts[next(dep["path"] for dep in manifest["dependencies"] if dep["dependency_type"] == "provenance_registry")]
@@ -367,6 +373,9 @@ def validate_freeze_manifest_path(manifest_path: Path, stack: tuple[str, ...] = 
         errors.extend(validate_provenance_registry(registry, frozen=True, as_of=manifest.get("frozen_at")))
         provenance_ids = {record.get("provenance_record_id") for record in registry.get("records", [])}
         errors.extend(validate_gold_e(dataset, provenance_ids, ledger_records, frozen=True))
+        for case in dataset.get("cases", []):
+            if case.get("independence_status") != "independent_frozen":
+                errors.append(f"GOLD_E_INDEPENDENCE_STATE_INVALID:{case.get('case_id', '<missing>')}")
     elif kind == "gold_v":
         gold_e_manifest_dep = next(dep for dep in manifest["dependencies"] if dep["dependency_type"] == "gold_e_manifest")
         gold_e_manifest = artifacts[gold_e_manifest_dep["path"]]

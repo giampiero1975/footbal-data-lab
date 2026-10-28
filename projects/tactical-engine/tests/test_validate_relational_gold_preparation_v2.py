@@ -368,6 +368,37 @@ class RelationalGoldPreparationV2Tests(unittest.TestCase):
             self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
             self.assertIn("STATUS V2_FREEZE_VALID", result.stdout)
 
+    def test_19_frozen_manifest_requires_frozen_at(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, _, _ = self._write_complete_freeze_bundle(tmp)
+            manifest = json.loads(manifest_v_path.read_text(encoding="utf-8"))
+            manifest["frozen_at"] = None
+            self._write_json(tmp, "manifest-v.json", manifest)
+            self.assertIn("MANIFEST_FROZEN_AT_MISSING", MODULE.validate_freeze_manifest_path(manifest_v_path))
+
+    def test_20_frozen_manifest_rejects_non_frozen_case(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, _, gold_v, _ = self._write_complete_freeze_bundle(tmp)
+            gold_v["cases"][0]["freeze_status"] = "ready_for_freeze"
+            self._write_json(tmp, "gold-v.json", gold_v)
+            manifest = json.loads(manifest_v_path.read_text(encoding="utf-8"))
+            manifest["dataset"]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_v))
+            manifest["cases"][0]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_v["cases"][0]))
+            self._write_json(tmp, "manifest-v.json", manifest)
+            self.assertIn("FREEZE_CASE_STATE_INVALID:attempt-1", MODULE.validate_freeze_manifest_path(manifest_v_path))
+
+    def test_21_frozen_gold_e_requires_independent_frozen_cases(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            manifest_v_path, manifest_e, _, _ = self._write_complete_freeze_bundle(tmp)
+            del manifest_v_path
+            gold_e = json.loads((Path(tmp) / "gold-e.json").read_text(encoding="utf-8"))
+            gold_e["cases"][0]["independence_status"] = "eligible_independent"
+            self._write_json(tmp, "gold-e.json", gold_e)
+            manifest_e["dataset"]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_e))
+            manifest_e["cases"][0]["sha256"] = MODULE.sha256_document(MODULE.normatively_order(gold_e["cases"][0]))
+            manifest_e_path = self._write_json(tmp, "manifest-e.json", manifest_e)
+            self.assertIn("GOLD_E_INDEPENDENCE_STATE_INVALID:e-1", MODULE.validate_freeze_manifest_path(manifest_e_path))
+
 
 if __name__ == "__main__":
     unittest.main()
