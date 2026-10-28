@@ -1540,3 +1540,20 @@ validare offline il solo delta e mantenere audit non bloccante. Gold E/Gold V
 sono definiti ma non disponibili: validazione indipendente **BLOCCATO**. Stato:
 correzioni **IMPLEMENTATO**, test **ESEGUITO**, perimetro differenziale
 **VALIDATO** offline; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-FIFTH-PEER-RELATIONAL-REMEDIATION-01 — quinta revisione (2026-10-28)
+
+Attività: riprodurre e correggere soltanto i rischi residui su B3, pertinenza
+dei requisiti aperti, associazioni atomiche e polarità multipla. Script:
+`scripts/v5_tactical_query_plan_v1.py`; test:
+`tests/test_v5_tactical_query_plan_v1.py`. Commit codice/test: `b4eb68b`.
+Report: `docs/fifth-peer-review-relational-remediation-01.md`. Risultato: B3
+postverbale limitato al costrutto esplicito; obiettivo semantico congelato
+dalla domanda e osservabile separatamente; coordinazioni `mentre` segmentate
+con vincoli locali; polarità mista qualificata `AMBIGUOUS`. Quattro test nuovi,
+planner/audit 42/42, compilazione e diff check PASS. Contratto/API non ripetuti
+per assenza di dipendenze modificate; nessuna chiamata esterna, VPS, inferenza,
+benchmark, merge o deploy. Decisione: validare offline soltanto le proprietà
+differenziali, mantenere audit non bloccante e Gold E/Gold V **BLOCCATO**.
+Stato: correzioni **IMPLEMENTATO**, test **ESEGUITO**, delta **VALIDATO**
+offline; non **INTEGRATO** o **CERTIFICATO**.
