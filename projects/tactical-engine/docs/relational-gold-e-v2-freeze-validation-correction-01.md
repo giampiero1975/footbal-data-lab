@@ -87,3 +87,10 @@ Gold indipendente, raccolta, annotazione e freeze reali: **BLOCCATO** o
 
 La patch non è **INTEGRATO** o **CERTIFICATO** e non modifica runtime,
 pannello, RAG, Qwen, corpus, indici, API o VPS. Nessun merge o deploy.
+
+## Ultima precondizione differenziale
+
+La successiva revisione indipendente ha richiesto controlli sullo stato del
+singolo caso. Il delta è implementato al commit `454ebad` e documentato in
+`docs/relational-gold-e-v2-case-freeze-preconditions-01.md`. Questo report
+resta l'evidenza del percorso completo precedente.

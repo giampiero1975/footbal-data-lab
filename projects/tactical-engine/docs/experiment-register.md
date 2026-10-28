@@ -1690,3 +1690,19 @@ diff check PASS. Decisione: correzione **IMPLEMENTATO**, test **ESEGUITO**,
 percorso freeze offline **VALIDATO**. Nessun dato reale, inferenza, benchmark,
 runtime, pannello, RAG, Qwen, corpus, indice, API, VPS, merge o deploy. Gold
 indipendente ancora **BLOCCATO**; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-RELATIONAL-GOLD-E-V2-CASE-FREEZE-01 — precondizioni per caso (2026-10-28)
+
+Attività: chiudere l'unico limite residuo indicato dalla revisione indipendente
+di HEAD `40dfd73`, riutilizzando il percorso completo già validato. Script:
+`scripts/validate_relational_gold_preparation_v2.py`; test:
+`tests/test_validate_relational_gold_preparation_v2.py`; report:
+`docs/relational-gold-e-v2-case-freeze-preconditions-01.md`; commit tecnico:
+`454ebad`. Risultato: manifest congelato senza `frozen_at`, record non
+`frozen` e caso Gold E non `independent_frozen` sono rifiutati fail-closed.
+Tre test negativi nuovi; test positivo completo riutilizzato. V2 21/21 e v1
+5/5, totale 26/26 PASS, compilazione e diff check PASS. Decisione: delta
+**IMPLEMENTATO**, test **ESEGUITO**, percorso freeze aggiornato **VALIDATO**
+offline. Nessuna raccolta, annotazione reale, inferenza, benchmark, runtime,
+pannello, RAG, Qwen, corpus, indice, API, VPS, merge o deploy. Gold indipendente
+ancora **BLOCCATO**; non **INTEGRATO** o **CERTIFICATO**.
