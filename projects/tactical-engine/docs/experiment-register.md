@@ -1408,3 +1408,21 @@ Attività distinta: la verifica statica del feedback conferma che i file
 non è accettato da `record_feedback()` e il feedback individuale non è caricato da
 `persisted_job()`. Decisione: registrare `RD-FEEDBACK-RECOVERY-01` nel TODO senza
 modificare feedback in questa patch. Stato: **DA FARE**.
+
+### RD-TSC-V1-RELATIONAL-CORRECTION-01 — correzione deterministica (2026-10-28)
+
+Attività: recepire le lacune relazionali emerse nel confronto tecnico
+Codex–ChatGPT sulla prima patch, distinguendo il confronto fra colleghi
+dall'autorizzazione operativa del titolare. Script:
+`scripts/v5_tactical_state_contract_v1.py`; test
+`tests/test_v5_tactical_state_contract_v1.py`; regressione storica
+`tests/test_v5_tactical_query_plan_v1.py`. Commit codice/test `947e667`; report
+`docs/tactical-state-contract-v1-relational-correction-01.md`. Risultato: presenza
+autorevole per stato, ordine parziale aciclico, riferimenti concreti separati dai
+mapping astratti, controllo di sostituzioni/rotazioni/espulsioni e cardinalità,
+continuità completa quando dichiarata, provenienza ricorsiva e rendering che
+omette eventi bloccati. Suite 41/41 e 18/18 PASS, compilazione e diff check PASS;
+zero chiamate esterne. Decisione: pubblicare sul ramo dedicato per nuova revisione
+condivisa; nessuna seconda patch, merge o deploy. Stato: **IMPLEMENTATO** per il
+codice, **ESEGUITO** per i test, **VALIDATO** offline per gli invarianti coperti e
+l'isolamento; non INTEGRATO o CERTIFICATO.
