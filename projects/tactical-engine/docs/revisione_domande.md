@@ -157,3 +157,28 @@ Ipotesi: disabilitare la modalità deliberativa può contribuire agli errori di 
 Verifica differenziale DA FARE solo dopo riconciliazione delle evidenze esistenti: stesso modello installato/digest, domanda completa, prompt ed estratti congelati; confronto thinking off/on senza riavviare retrieval. Occorre verificare supporto locale e assicurare budget di generazione e timeout adeguati al thinking: il tetto attuale può rendere il confronto troncato. Dichiarare separatamente eventuali differenze di budget, misurare completezza, coerenza, supporto e latenza; nessuna garanzia di 26/30. Non cambiare simultaneamente prompt/retrieval/modello né effettuare una nuova campagna dieci casi per questa verifica.
 Decisione: dare priorità alla verifica di questa modalità prima di sostituire Qwen o accumulare altre regole. Nessuna modifica codice, deploy o inferenza in questa sessione.
 Traccia: Attività → ispezione; Script → tre file esistenti; Commit → commit documentale corrente; Report → questo documento; Risultato → think false esplicito in entrambe le generazioni; Decisione → confronto isolato da predisporre; Stato → ESEGUITO per verifica statica, DA FARE per effetto causale/runtime.
+
+## RD-THINK-01 — Esito runtime isolato
+
+Confronto completato il 2026-10-28 sul caso V10.2 congelato, senza nuovo
+retrieval e senza deploy. Runtime: commit `1a80fe0`, Ollama 0.40.5,
+`qwen3.5:9b` Q4_K_M digest `56671c2ab938…`, capability thinking verificata.
+
+- off: 204,932 s, 647 token, 348 parole, stop naturale;
+- on: 546,484 s, 4096 token tutti nel thinking, stop per lunghezza, risposta vuota;
+- repair on: 552,773 s, stesso esaurimento e risposta vuota.
+
+La modalità on non produce quindi un candidato valutabile col budget massimo
+ammesso dal runner attuale. Non dimostra un miglioramento e non può essere
+attivata in produzione. La risposta off supera il gate tecnico ma contiene una
+trasformazione 4-3-3→3-5-2 internamente contraddittoria: il gate non equivale a
+correttezza tattica e il target 26/30 non è dimostrato.
+
+Verificato inoltre che ogni query del pannello è indipendente: la cronologia
+non raggiunge Qwen. I follow-up devono reincludere lo scenario completo finché
+non esiste una sessione conversazionale esplicita e tracciata.
+
+Report completo: `docs/rd-think-01-runtime-01.md`. Artefatto:
+`evaluation/rd-think-01-result.json`. Stato: **ESEGUITO**; decisione:
+mantenere think off e affrontare separatamente falso positivo relazionale e
+contesto dei follow-up.

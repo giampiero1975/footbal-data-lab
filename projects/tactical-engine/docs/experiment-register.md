@@ -1371,3 +1371,18 @@ Attività: confronto documentale di risposta/correzione 4-3-3 contro blocco bass
 
 ### RD-THINK-01 — 2026-10-28
 Attività: verificare richiesta utente su thinking Qwen. Script: lettura runner smoke_test_rag_v5_e2e.py, wrapper query e API. Commit: aggiornamento documentale corrente. Report: `docs/revisione_domande.md`. Risultato: `think: False` esplicito nel payload iniziale e repair, anche main; documentazione ufficiale Ollama distingue modalità e visualizzazione. Decisione: priorità a confronto controllato off/on con contesto congelato e budget adeguato, previa verifica supporto locale; non attribuire causalità senza esito. Stato: **ESEGUITO** per verifica statica; runtime/causalità **DA FARE**. Nessuna nuova inferenza, patch o deploy.
+
+### RD-THINK-01 — confronto runtime isolato (2026-10-28)
+
+Attività: verificare modello/digest e memoria del pannello, quindi confrontare
+thinking off/on senza rieseguire retrieval. Script:
+`scripts/compare_frozen_thinking_rd01.py`. Commit: commit contestuale.
+Report: `docs/rd-think-01-runtime-01.md`; artefatto completo:
+`evaluation/rd-think-01-result.json`. Risultato: off termina naturalmente in
+204,932 s con 647 token e 348 parole; on esaurisce 4096 token di thinking in
+546,484 s senza output, e il repair replica l'esito in 552,773 s. La risposta
+off passa il gate ma contiene trasformazioni 4-3-3→3-5-2 contraddittorie:
+falso positivo sostanziale. Il pannello non invia cronologia ai nuovi job.
+Decisione: mantenere `think:false`; aprire controlli relazionali e gestione
+esplicita del contesto follow-up, senza deploy o nuova campagna. Stato:
+**ESEGUITO**, qualità >=26/30 non VALIDATA.
