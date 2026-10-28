@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path
 import queue
+import re
 import statistics
 import subprocess
 import threading
@@ -26,6 +27,49 @@ PYTHON = ROOT / ".venv/bin/python"
 PANEL = ROOT / "api/knowledge_panel.html"
 OPENROUTER_COPILOT = ROOT / "scripts/openrouter_tactical_copilot_v1.py"
 REJECTED_TOKENS = {"replace-with-at-least-32-random-characters"}
+
+
+def classify_failure(detail: str | None, status: str = "failed") -> dict:
+    """Turn noisy runner stderr into a stable, actionable API contract."""
+    raw = re.sub(r"\x1b\[[0-9;]*m", "", str(detail or "")).strip()
+    normalized = raw.lower()
+    if status == "timed_out" or "runner timeout" in normalized:
+        return {"code": "runner_timeout", "phase": "rag_generation",
+                "message": "Il motore RAG non ha concluso entro il tempo massimo.",
+                "action": "Riprova una volta; se ricapita, verifica Ollama e la durata del modello."}
+    known = (
+        ("tactical_quality_gate_failed", "quality_gate",
+         "La risposta è stata generata ma respinta dal controllo tattico sperimentale.",
+         "Usa il profilo pubblico senza tactical-plan oppure correggi il gate dedicato."),
+        ("missing_citations", "response_validation",
+         "La risposta non contiene citazioni verificabili.",
+         "Controlla retrieval e prompt di citazione prima di riprovare."),
+        ("invalid_citations", "response_validation",
+         "La risposta cita evidenze che non appartengono al contesto recuperato.",
+         "Controlla la mappatura F1–Fn e la generazione grounded."),
+        ("incomplete_report", "response_validation",
+         "Il runner ha prodotto un report incompleto.",
+         "Apri il risultato tecnico del job e verifica indice, domande ed errori."),
+        ("index count", "retrieval",
+         "L'indice RAG non corrisponde alla consistenza attesa.",
+         "Verifica collection, conteggio atteso e integrità dell'indice."),
+        ("connection refused", "model_runtime",
+         "Il servizio del modello locale non era raggiungibile.",
+         "Verifica che Ollama sia attivo e che il modello configurato sia disponibile."),
+    )
+    for needle, phase, message, action in known:
+        if needle in normalized:
+            return {"code": needle.replace(" ", "_"), "phase": phase,
+                    "message": message, "action": action}
+    incomplete = re.search(r"INCOMPLETE:\s*([a-zA-Z0-9_-]+)", raw)
+    if incomplete:
+        code = incomplete.group(1).lower()
+        return {"code": code, "phase": "response_validation",
+                "message": f"La risposta è stata respinta dal controllo finale ({code}).",
+                "action": "Consulta il report del job e correggi il controllo indicato."}
+    return {"code": "runner_failed", "phase": "rag_generation",
+            "message": "Il runner RAG è terminato con un errore.",
+            "action": "Consulta il dettaglio tecnico autenticato e i log del servizio."}
 
 
 def load_config(env=os.environ) -> dict:
@@ -99,7 +143,8 @@ class State:
 
     def record_event(self, event: str, **fields) -> None:
         allowed = {key: value for key, value in fields.items() if key in {
-            "job_id", "status", "duration_seconds", "reason", "started_at"
+            "job_id", "status", "duration_seconds", "reason", "started_at",
+            "phase", "error_code",
         }}
         row = {"timestamp": int(time.time()), "event": event, **allowed}
         with self.lock:
@@ -208,6 +253,7 @@ class State:
         os.replace(temporary_path, request_path)
         with self.lock:
             self.jobs[job_id] = job
+            self._persist_job_state(job_id)
         try:
             self.queue.put_nowait(job_id)
         except queue.Full:
@@ -221,23 +267,59 @@ class State:
         self.record_event("job_accepted", job_id=job_id, status="queued")
         return dict(job)
 
+    def _persist_job_state(self, job_id: str) -> None:
+        """Persist lifecycle metadata without duplicating question or answer text."""
+        job = self.jobs[job_id]
+        allowed = {key: job[key] for key in (
+            "id", "status", "created_at", "started_at", "finished_at", "failure",
+            "openrouter_copilot",
+        ) if key in job}
+        path = self.config["output_dir"] / f"{job_id}.job.json"
+        temporary = path.with_name(f".{path.name}.tmp")
+        temporary.write_text(json.dumps(allowed, ensure_ascii=False, sort_keys=True) + "\n",
+                             encoding="utf-8")
+        os.replace(temporary, path)
+        path.chmod(0o600)
+
     def persisted_job(self, job_id: str) -> dict | None:
-        """Reconstruct a completed job from private runtime files after restart."""
+        """Reconstruct successful and failed jobs from private files after restart."""
         request_path = self.config["output_dir"] / f"{job_id}.request.json"
         result_path = self.config["output_dir"] / f"{job_id}.result.json"
-        if not request_path.exists() or not result_path.exists():
+        state_path = self.config["output_dir"] / f"{job_id}.job.json"
+        if not request_path.exists():
             return None
         try:
             request = json.loads(request_path.read_text(encoding="utf-8"))
-            result = json.loads(result_path.read_text(encoding="utf-8"))
+            saved = json.loads(state_path.read_text(encoding="utf-8")) if state_path.exists() else {}
         except (OSError, json.JSONDecodeError, TypeError):
             return None
-        job = {"id": job_id, "status": "succeeded",
+        if not saved and not result_path.exists():
+            legacy_event = next((event for event in self.recent_events(10000)
+                                 if event.get("job_id") == job_id
+                                 and event.get("event") == "job_finished"), None)
+            if not legacy_event:
+                return None
+            legacy_status = legacy_event.get("status", "failed")
+            saved = {"status": legacy_status,
+                     "finished_at": legacy_event.get("timestamp", int(request_path.stat().st_mtime))}
+            if legacy_status != "succeeded":
+                saved["failure"] = classify_failure(legacy_event.get("reason"), legacy_status)
+        status = saved.get("status", "succeeded" if result_path.exists() else "failed")
+        job = {"id": job_id, "status": status,
                "created_at": int(request_path.stat().st_mtime),
                "started_at": int(request_path.stat().st_mtime),
-               "finished_at": int(result_path.stat().st_mtime),
-               "question": request.get("question", ""), "result": result,
+               "finished_at": int(saved.get("finished_at", (
+                   state_path if state_path.exists() else
+                   result_path if result_path.exists() else request_path
+               ).stat().st_mtime)),
+               "question": request.get("question", ""),
                "recovered_after_restart": True}
+        job.update({key: value for key, value in saved.items() if key not in {"id", "question", "result"}})
+        if status == "succeeded" and result_path.exists():
+            try:
+                job["result"] = json.loads(result_path.read_text(encoding="utf-8"))
+            except (OSError, json.JSONDecodeError, TypeError):
+                return None
         copilot_path = self.config["output_dir"] / f"{job_id}.openrouter-copilot.json"
         if copilot_path.exists():
             try:
@@ -268,12 +350,21 @@ class State:
                     "reason": "openrouter_copilot_invalid_result"}
         return job
 
-    def recent_completed_jobs(self, limit: int = 20) -> list[dict]:
-        paths = sorted(self.config["output_dir"].glob("*.result.json"),
+    def recent_jobs(self, limit: int = 20) -> list[dict]:
+        paths = list(self.config["output_dir"].glob("*.job.json"))
+        known = {path.name.removesuffix(".job.json") for path in paths}
+        paths.extend(path for path in self.config["output_dir"].glob("*.result.json")
+                     if path.name.removesuffix(".result.json") not in known)
+        known.update(path.name.removesuffix(".result.json") for path in paths
+                     if path.name.endswith(".result.json"))
+        paths.extend(path for path in self.config["output_dir"].glob("*.request.json")
+                     if path.name.removesuffix(".request.json") not in known)
+        paths = sorted(paths,
                        key=lambda path: path.stat().st_mtime, reverse=True)
         jobs = []
         for path in paths:
-            job_id = path.name.removesuffix(".result.json")
+            job_id = (path.name.removesuffix(".job.json").removesuffix(".result.json")
+                      .removesuffix(".request.json"))
             if len(job_id) == 32 and job_id.isalnum():
                 job = self.persisted_job(job_id)
                 if job:
@@ -281,6 +372,10 @@ class State:
             if len(jobs) >= limit:
                 break
         return jobs
+
+    def recent_completed_jobs(self, limit: int = 20) -> list[dict]:
+        """Backward-compatible alias; history now includes failed jobs too."""
+        return self.recent_jobs(limit)
 
     def run_openrouter_copilot(self, job_id: str, result_path: Path) -> dict:
         """Run the opt-in two-pass copilot; never make the RAG result depend on it."""
@@ -331,6 +426,7 @@ class State:
                 request = json.loads(request_path.read_text(encoding="utf-8"))
                 with self.lock:
                     self.jobs[job_id].update(status="running", started_at=int(time.time()))
+                    self._persist_job_state(job_id)
                 self.record_event("job_running", job_id=job_id, status="running")
                 command = [str(PYTHON), str(RUNNER), "--question", request["question"], "--request-id", job_id,
                            "--output", str(output_path), "--collection", self.config["collection"],
@@ -349,6 +445,7 @@ class State:
                         if self.config["openrouter_copilot_enabled"]:
                             with self.lock:
                                 self.jobs[job_id]["status"] = "reviewing"
+                            self._persist_job_state(job_id)
                             copilot = self.run_openrouter_copilot(job_id, output_path)
                         else:
                             copilot = {"status": "disabled", "provider": "openrouter"}
@@ -362,13 +459,19 @@ class State:
                 with self.lock:
                     self.jobs[job_id].update(status=status, finished_at=int(time.time()))
                     if detail:
-                        self.jobs[job_id]["error"] = detail
+                        failure = classify_failure(detail, status)
+                        self.jobs[job_id]["failure"] = failure
+                        self.jobs[job_id]["error"] = failure["message"]
+                    self._persist_job_state(job_id)
                     self.metrics[status] += 1
                     duration=max(0,self.jobs[job_id]["finished_at"]-self.jobs[job_id].get("started_at",self.jobs[job_id]["created_at"]))
                     self.metrics["durations_seconds"]=(self.metrics["durations_seconds"]+[duration])[-200:]
                     self._persist_metrics()
-                reason = "runner_failed" if status == "failed" else "runner_timeout" if status == "timed_out" else None
-                self.record_event("job_finished", job_id=job_id, status=status, duration_seconds=duration, reason=reason)
+                failure = self.jobs[job_id].get("failure", {})
+                reason = failure.get("code")
+                self.record_event("job_finished", job_id=job_id, status=status,
+                                  duration_seconds=duration, reason=reason,
+                                  error_code=failure.get("code"), phase=failure.get("phase"))
                 self.queue.task_done()
 
     def catalog(self) -> dict:

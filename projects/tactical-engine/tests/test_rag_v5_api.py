@@ -202,6 +202,43 @@ class ApiTests(unittest.TestCase):
             recent = state.recent_completed_jobs(20)
             self.assertEqual([item["id"] for item in recent], [job_id])
 
+    def test_failed_job_and_actionable_cause_survive_restart(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); job_id = "d" * 32
+            (output / f"{job_id}.request.json").write_text(json.dumps({
+                "id": job_id, "question": "Domanda tattica fallita ma recuperabile"
+            }), encoding="utf-8")
+            state.jobs[job_id] = {"id": job_id, "status": "failed", "created_at": 1,
+                                  "started_at": 2, "finished_at": 330,
+                                  "failure": api.classify_failure(
+                                      "INCOMPLETE: tactical_quality_gate_failed")}
+            state._persist_job_state(job_id)
+            recovered = state.persisted_job(job_id)
+            self.assertEqual(recovered["status"], "failed")
+            self.assertEqual(recovered["failure"]["code"], "tactical_quality_gate_failed")
+            self.assertEqual(recovered["failure"]["phase"], "quality_gate")
+            self.assertIn("profilo pubblico", recovered["failure"]["action"])
+            self.assertEqual(state.recent_jobs(10)[0]["id"], job_id)
+
+    def test_failure_classifier_hides_noisy_runtime_output(self):
+        failure = api.classify_failure(
+            "Warning: HF_TOKEN missing\nLoading weights 100%\nINCOMPLETE: missing_citations")
+        self.assertEqual(failure["code"], "missing_citations")
+        self.assertEqual(failure["phase"], "response_validation")
+        self.assertNotIn("HF_TOKEN", json.dumps(failure))
+
+    def test_legacy_failed_job_is_recovered_from_private_event_log(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); job_id = "e" * 32
+            (output / f"{job_id}.request.json").write_text(json.dumps({
+                "id": job_id, "question": "Domanda precedente senza sidecar"
+            }), encoding="utf-8")
+            state.record_event("job_finished", job_id=job_id, status="failed",
+                               reason="tactical_quality_gate_failed", duration_seconds=328)
+            recovered = state.persisted_job(job_id)
+            self.assertEqual(recovered["status"], "failed")
+            self.assertEqual(recovered["failure"]["code"], "tactical_quality_gate_failed")
+
     def test_catalog_is_loaded_once(self):
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(api, "load_catalog", return_value={"documents":[],"chunks":[]}) as loader:
             state = api.State(self.config(Path(tmp)))
