@@ -1,0 +1,27 @@
+{
+  "schema_version": "relational_gold_freeze_manifest_v1",
+  "manifest_status": "draft",
+  "dataset_kind": null,
+  "dataset_version": null,
+  "dataset_path": null,
+  "dataset_sha256": null,
+  "canonicalization": "UTF-8 JSON, sorted object keys, compact separators, terminal newline excluded",
+  "case_count": 0,
+  "cases": [],
+  "frozen_at": null,
+  "annotator_ids": [],
+  "reviewer_ids": [],
+  "adjudicator_ids": [],
+  "adjudication_status": "not_started",
+  "source_inventory": [],
+  "exclusions": [],
+  "development_separation": {
+    "regression_case_ids": [],
+    "independent_case_ids": [],
+    "screening_method": null,
+    "screening_result": "not_run"
+  },
+  "parent_manifest_sha256": null,
+  "supersedes_manifest_sha256": null,
+  "immutable_after_freeze": true
+}

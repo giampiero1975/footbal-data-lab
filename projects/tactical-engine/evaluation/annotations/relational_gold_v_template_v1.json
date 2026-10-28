@@ -1,0 +1,12 @@
+{
+  "schema_version": "relational_gold_v_v1",
+  "dataset_kind": "gold_v",
+  "dataset_version": "0.0.0",
+  "status": "template",
+  "gold_e_reference": {
+    "dataset_version": null,
+    "manifest_sha256": null,
+    "freeze_status": "not_available"
+  },
+  "cases": []
+}
