@@ -1503,3 +1503,22 @@ offline le sole proprietà coperte e preservare come aperte integrazione Qwen,
 UI, validazione runtime indipendente e decisione di distribuzione. Stato:
 regressione **ESEGUITO**, perimetro offline **VALIDATO**; nuovi componenti non
 **INTEGRATI** o **CERTIFICATI**.
+
+### RD-SECOND-PEER-REVIEW-DIFFERENTIAL-01 — seconda revisione (2026-10-28)
+
+Attività: verificare criticamente e correggere soltanto le lacune differenziali
+segnalate nella seconda revisione paritaria del commit `ebc6722`. Script:
+`scripts/v5_tactical_query_plan_v1.py`,
+`scripts/v5_tactical_state_contract_v1.py`, `api/rag_v5_api.py`; relativi test.
+Commit codice/test `d34ad7c`; report:
+`docs/second-peer-review-differential-remediation-01.md`. Risultato: relazioni
+negate e associazioni fra due attori non sono più promosse; requisiti generici
+restano non dimostrati; finestra anaforica limitata; riferimenti job vincolati a
+sessione/caso; snapshot paginato metadata-only; provenienza descritta come
+dichiarazione del client; feedback concorrente serializzato; mapping concreto
+verificato con presenza parziale; rientro non ordinabile qualificato. Nove test
+nuovi; planner 29/29, contratto 50/50, API 35/35, totale 114/114 PASS;
+compilazione e diff check PASS. HTML e profilo API predefinito invariati.
+Decisione: proporre validazione indipendente su casi congelati completi, senza
+attivare blocchi o integrazioni automatiche. Stato: **IMPLEMENTATO**,
+**ESEGUITO**, **VALIDATO** offline; non **INTEGRATO** o **CERTIFICATO**.
