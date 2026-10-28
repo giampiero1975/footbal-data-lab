@@ -1557,3 +1557,19 @@ benchmark, merge o deploy. Decisione: validare offline soltanto le proprietà
 differenziali, mantenere audit non bloccante e Gold E/Gold V **BLOCCATO**.
 Stato: correzioni **IMPLEMENTATO**, test **ESEGUITO**, delta **VALIDATO**
 offline; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-SIXTH-PEER-RELATIONAL-VERIFICATION-01 — sesta verifica (2026-10-28)
+
+Attività: verificare prestito della pertinenza, trasferimento di trigger/fasi e
+permissività residua di B3. Script: `scripts/v5_tactical_query_plan_v1.py`;
+test: `tests/test_v5_tactical_query_plan_v1.py`. Commit codice/test: `9e63efc`.
+Report: `docs/sixth-peer-review-relational-verification-01.md`. Risultato: A
+riprodotto in due varianti e corretto con gruppi-obiettivo e ambito attore; B1
+riprodotto e corretto dando priorità ai valori locali, preservando la cornice
+comune B2; C non riprodotto, quindi nessuna patch al costrutto postverbale.
+Quattro test nuovi, planner/audit 46/46, compilazione e diff check PASS.
+Contratto/API non ripetuti per assenza di dipendenze modificate; zero chiamate
+esterne, VPS, inferenze, benchmark, merge o deploy. Decisione: validare offline
+soltanto A/B e registrare C come non riprodotto; Gold E/Gold V resta
+**BLOCCATO**. Stato: correzioni **IMPLEMENTATO**, test **ESEGUITO**, delta
+**VALIDATO** offline; non **INTEGRATO** o **CERTIFICATO**.
