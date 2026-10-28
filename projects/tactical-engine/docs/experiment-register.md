@@ -1628,6 +1628,23 @@ hash completo, diritti e copertura complessiva **BLOCCATO/DA FARE**. Nessun
 download, inferenza, indicizzazione, benchmark, modifica pipeline, VPS, merge o
 deploy; non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
 
+### RAG-CORPUS-PROVENANCE-INTEGRITY-DESIGN-01 — progettazione (2026-10-28)
+
+Attività: progettare il collegamento verificabile PDF originale → estrazione
+Docling → chunk → record Chroma a seguito dell'audit `8650121`. Script: non
+applicabile, sola progettazione documentale. Report:
+`docs/rag-corpus-provenance-integrity-design-01.md`. Risultato: definiti root
+manifest content-addressed, record documento/chunk, stati di verifica,
+canonicalizzazione, verificatore read-only, anomalie, snapshot su copia
+consistente, rapporto con categorie A–F, rollback e cancelli G0–G4. Previsto
+riuso di SHA ingestion, ID deterministici chunk e utility RFC 8785 da rendere
+comune; il Provenance Registry Gold resta separato. Nessun validatore statico
+aggiunto per evitare duplicazione prematura. Decisione: progettazione
+**ESEGUITO**; schema/template/verificatore/fixture **DA FARE**; runtime
+**BLOCCATO** fino a nuova autorizzazione e decisioni su collocazione, custodia
+e snapshot. Nessun accesso VPS, test, Qwen, benchmark, modifica corpus/indice,
+merge o deploy; non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
+
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.
