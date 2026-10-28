@@ -1367,3 +1367,7 @@ Attività: analizzare il seguito del 22/30 fornito in chat. Script: nessuno nuov
 
 ### V5-REVISIONE-DOMANDE-01 — RD-003 e conferma RD-002-R1 (2026-10-28)
 Attività: confronto documentale di risposta/correzione 4-3-3 contro blocco basso e ulteriore giustificazione del 30 precedente. Script: nessuno nuovo. Commit: aggiornamento contestuale report/TODO/registro. Report: `docs/revisione_domande.md`. Risultato: 21→29/30 dichiarati dal valutatore; terminologia migliorata ma preventive centrali/play e applicazione dei cinque offensivi non sviluppate. Conferma RD-002 miscela 19 e 22/30 e premia forma senza colmare omissioni. Decisione: non utilizzare i voti alti come prova causale di autonomia; acquisire gli artefatti esistenti e stabilizzare rubrica/attribuzione, confrontando V6–V10.2. Stato: **ESEGUITO** per revisione; diagnosi tecnica **DA FARE**. Nessuna inferenza o modifica applicativa.
+
+
+### RD-THINK-01 — 2026-10-28
+Attività: verificare richiesta utente su thinking Qwen. Script: lettura runner smoke_test_rag_v5_e2e.py, wrapper query e API. Commit: aggiornamento documentale corrente. Report: `docs/revisione_domande.md`. Risultato: `think: False` esplicito nel payload iniziale e repair, anche main; documentazione ufficiale Ollama distingue modalità e visualizzazione. Decisione: priorità a confronto controllato off/on con contesto congelato e budget adeguato, previa verifica supporto locale; non attribuire causalità senza esito. Stato: **ESEGUITO** per verifica statica; runtime/causalità **DA FARE**. Nessuna nuova inferenza, patch o deploy.

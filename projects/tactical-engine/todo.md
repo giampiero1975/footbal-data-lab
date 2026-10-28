@@ -1131,3 +1131,6 @@ tecnica.
 
 - [x] **ESEGUITO** V5-REVISIONE-DOMANDE-01 / RD-003: 4-3-3 contro blocco basso, voti conversazionali 21→29/30. Correzione lessicale osservabile, ma compiti preventivi dei due centrali/play ancora omessi; voto non probante del target autonomo. Aggiornata anche conferma critica RD-002-R1. Report `docs/revisione_domande.md`.
 - [ ] **DA FARE** recuperare input/contesto/fonti/versione RD-003 e valutare separatamente copertura offensiva e preventive, senza attribuire al RAG concetti aggiunti dal valutatore. Nessun nuovo benchmark incluso.
+
+- [x] **ESEGUITO** RD-THINK-01: verifica statica conferma `think: False` in prima generazione e repair su main e ramo remediation; API→query→runner verificati. Report `docs/revisione_domande.md`. Non è una conferma live VPS.
+- [ ] **DA FARE** RD-THINK-01: verificare supporto modello installato e confronto isolato off/on su domanda/fonti congelate, con budget/timeout adeguati e differenze dichiarate; causalità e target 26/30 non dimostrati. Nessuna inferenza o modifica runtime inclusa nella revisione.

@@ -141,3 +141,19 @@ Attività → analisi documentale RD-003; Script → nessuno nuovo; Commit → a
 
 ### Integrazione di RD-002-R1
 Il titolare conferma che la domanda inviata era quella mirata riportata, non una trascrizione abbreviata inventata dall'analista. Resta da verificare se il pannello aggiunga automaticamente lo scenario precedente. Ulteriore contestazione “30?? ma è meritato?”: Gemini conferma il voto invocando lessico accademico e limiti delle fonti, senza colmare omissioni nella risposta RAG. Richiama inoltre il 19/30 di RD-001 invece del 22/30 di RD-002, mescolando i casi. Il giudizio confermativo non costituisce una rivalutazione indipendente.
+
+## RD-THINK-01 — Verifica modalità thinking Qwen (2026-10-28)
+Richiesta del titolare: verificare se il ragionamento è disabilitato e se possa spiegare gli errori.
+Attività: ispezione read-only di main e codex/rag-coverciano-remediation, dopo lettura TODO/registro. Script esaminati: scripts/smoke_test_rag_v5_e2e.py, scripts/run_rag_v5_query.py, api/rag_v5_api.py.
+Risultato statico ESEGUITO:
+- Nel runner generativo, riga 218 sul ramo ispezionato, payload iniziale contiene esplicitamente "think": False.
+- Anche repair, riga 276, contiene "think": False.
+- Stessa impostazione presente su main.
+- Wrapper query richiama il runner; modello predefinito qwen3.5:9b. Config API espone modello/contesto/token, ma non un flag thinking nel percorso letto.
+- Limite num_predict e temperatura zero sono passati tramite options; non modificati.
+Semantica verificata sulla documentazione ufficiale https://docs.ollama.com/capabilities/thinking : think controlla la modalità, distinta dalla semplice visualizzazione; supporto e valori dipendono dal modello e si verificano con /api/show. Scheda https://ollama.com/library/qwen3.5:9b indica supporto thinking.
+Limite: non è stata interrogata la VPS; il codice GitHub dimostra l'impostazione richiesta, non l'effettivo payload dei job storici o il comportamento dell'artefatto modello installato.
+Ipotesi: disabilitare la modalità deliberativa può contribuire agli errori di relazioni/ruoli e copertura in quesiti complessi. Non implica assenza di ogni capacità di ragionamento, non dimostra causalità e non ripara automaticamente contesto insufficiente o valutatore incoerente.
+Verifica differenziale DA FARE solo dopo riconciliazione delle evidenze esistenti: stesso modello installato/digest, domanda completa, prompt ed estratti congelati; confronto thinking off/on senza riavviare retrieval. Occorre verificare supporto locale e assicurare budget di generazione e timeout adeguati al thinking: il tetto attuale può rendere il confronto troncato. Dichiarare separatamente eventuali differenze di budget, misurare completezza, coerenza, supporto e latenza; nessuna garanzia di 26/30. Non cambiare simultaneamente prompt/retrieval/modello né effettuare una nuova campagna dieci casi per questa verifica.
+Decisione: dare priorità alla verifica di questa modalità prima di sostituire Qwen o accumulare altre regole. Nessuna modifica codice, deploy o inferenza in questa sessione.
+Traccia: Attività → ispezione; Script → tre file esistenti; Commit → commit documentale corrente; Report → questo documento; Risultato → think false esplicito in entrambe le generazioni; Decisione → confronto isolato da predisporre; Stato → ESEGUITO per verifica statica, DA FARE per effetto causale/runtime.
