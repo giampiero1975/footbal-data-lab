@@ -1,0 +1,233 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv7_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer": "**1. Principio di attacco spazio e chiusura linee (Possesso)**\nLa squadra in possesso deve impedire relazioni comode al portatore avversario [F1]. L'azione si basa su due vettori simultanei: il giocatore più vicino attacca immediatamente lo spazio del portatore, mentre gli altri chiudono appoggi e sostegni per ritardare la progressione [F1], [F3]. Il possessore deve evitare dribbling azzardati in zona offensiva, privilegiando soluzioni intelligenti per non perdere palla [F4].\n\n**2. Differenza: Contro-pressing uomo vs. linee di passaggio (Non Possesso)**\n*   **Orientato sull'uomo:** Si realizza tramite marcatura preventiva degli appoggi corti e sostegni, cercando di non concedere la palla intermedia [F1], [F3]. L'obiettivo è infastidire costantemente il possessore per limitare le giocate utili [F4].\n*   **Orientato sulle linee/spazio:** Si concentra sull'intercettamento delle soluzioni in disimpegno (scarico, passaggio su appoggio) e sulla copertura degli appoggi lunghi, sfruttando la rapidità nell'accorciare sul portatore piuttosto che solo sulla superiorità numerica [F4].\n\n**3. Comportamenti difensori in copertura e tempo massimo di esecuzione (Transizione)**\nI difensori rimasti in copertura devono riorganizzare l'azione di riconquista mantenendo solidarietà tra vicini, rientrando nelle posizioni a seconda di chi è più vicino alla palla persa [F1]. Il tempo massimo operativo per la ricerca immediata del pallone è di circa 5 secondi (\"regola dei cinque secondi\"); qualora questo limite venga superato o il recupero fallisca, la squadra deve interrompere l'azione e scappare in blocco verso la propria porta [F2], [F1]. La riaggressione cessa se la palla viene scoperta o se non si riesce a riconquistarla entro questa finestra temporale breve [F2].\n\n**4. Stato della palla e densità (covered_or_uncovered_ball)**\nLa qualità dell'azione dipende dalla capacità di assicurare superiorità numerica e di posizione attorno al pallone quando coperto [F1]. Se la palla diventa scoperta o il possesso avversario si stabilizza, la densità difensiva deve cedere per evitare rischi residui, interrompendo l'azione di pressione immediata [F2], [F4].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "d444cd050561428b185da296f220003d98dae419a8941955406927a420c7be7e",
+          "source": "Allegati_2311201293017",
+          "canonical_source": "Allegati_2311201293017",
+          "source_relative": "formations-and-systems/Allegati_2311201293017.json",
+          "pages": "[15]",
+          "distance": null,
+          "headings": [
+            "Comportamento e atteggiamento dei difensori nel 2vs2"
+          ],
+          "text": "Comportamento e atteggiamento dei difensori nel 2vs2\nLe condizioni necessarie perché ciò avvenga sono: Una predisposizione immediata a recuperare il pallone una volta perso. Cercare di evitare relazioni su spazi contrari a dove si è perso il pallone. Ritardare o annullare le possibilità imminenti di progressione del gioco avversario. Impedire che il possessore di palla si relazioni comodamente, infastidendolo costantemente. Assicurare superiorità numerica e di posizione attorno al pallone. Solidarietà tra giocatori vicini per recuperare il pallone. Non concedere la palla intermedia, tramite marcatura preventiva. Per esercitare la squadra a reagire in modo corretto alla transizione negativa, potremmo proporre una partitina, alquanto semplice ma efficace, nella quale le due squadre si alterneranno in due tempi di 10` ad affrontare la perdita di possesso. In questa partita, obbligatoriamente, una squadra, persa palla, attacca subito il portatore di palla con il giocatore più vicino mentre gli altri marcano gli appoggi cercando di riconquistare subito il possesso o interrompendo sul nascere l`azione avversaria (anche tramite fallo tattico). L`altra squadra invece reagisce in maniera più razionale riequilibrandosi velocemente. In questo caso i giocatori ripiegheranno verso la propria porta riorganizzando successivamente l`azione di riconquista. Il recupero delle posizioni sono di squadra e non proprie del giocatore. Il rientro, avviene nelle suddette, a seconda di chi e` più vicino."
+        },
+        {
+          "label": "F2",
+          "id": "575044c20c3d85eeda15bc2ce1e6a61f843a8f2bf7bff026435a62556a1ce8d8",
+          "source": "contran_uefa-pro",
+          "canonical_source": "contran_uefa-pro",
+          "source_relative": "formations-and-systems/contran_uefa-pro.json",
+          "pages": "[76, 77]",
+          "distance": null,
+          "headings": [
+            "PEP GUARDIOLA - BARCELLONA - BAYERN MONACO - MANCHESTER CITY"
+          ],
+          "text": "PEP GUARDIOLA - BARCELLONA - BAYERN MONACO - MANCHESTER CITY\nPep Guardiola Nel momento in cui si perde palla il tecnico spagnolo chiede ai giocatori più vicini la \"caccia\" del pallone. Immediata riaggressione a palla persa. Occorre sfruttare la superiorità numerica vicino alla palla per cercare un'immediata riconquista. Guardiola introduce la \"regola dei cinque secondi\" tempo per ricercare un'immediata riconquista attraverso un'azione aggressiva prima di ritornare sottolinea palla, qualora fosse fallito il recupero del pallone.\n27 Diego Franzoso - I Concetti Chiave nel Barcellona di Guardiola - www.ideacalcio.net/il-gioco-piu-bello/articoli-vari/i-concetti-chiave-delbarcellona-di-guardiola.html\nFigura 82 - Riaggressione del Barcellona dopo una palla persa\nIl 16 gennaio 2013 Guardiola viene annunciato come nuovo allenatore del Bayern Monaco in sostituzione di Jupp Heynckes, che si sarebbe ritirato al termine di quella stagione. Esordisce in gara ufficiale affrontando il Borussia Dortmund in occasione della Supercoppa di Germania, perdendola. Vince la Supercoppa Europea contro il Chelsea. Il 24 marzo 2014 il Bayern Monaco si laurea campione di Germania con sette turni d'anticipo. Vince la Coppa di Germania ma viene eliminato in semifinale di Champions League dal Real Madrid."
+        },
+        {
+          "label": "F3",
+          "id": "ac70f6d99580c0dc79aef9be8a9939e63996bc3d2e0b6153d4c4e0199aca5f78",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[15]",
+          "distance": 0.29875,
+          "headings": [
+            "∞ Azione manovrata su riaggressione"
+          ],
+          "text": "∞ Azione manovrata su riaggressione\nSviluppo del gioco della squadra in possesso quando viene immediatamente pressata dopo aver recuperato il pallone. Le discriminanti della riaggressione sono il tentativo immediato di recuperare il pallone da parte di un componente della squadra che lo perde ed il contemporaneo marcamento di appoggi e sostegni del giocatore in possesso di palla."
+        },
+        {
+          "label": "F4",
+          "id": "e7ed0ae8128ae09bbbffe783e5770d0c2fc00279f6f939291900d2f10d6229b7",
+          "source": "Pressing ultra-offensivo",
+          "canonical_source": "Pressing ultra-offensivo",
+          "source_relative": "formations-and-systems/Pressing ultra-offensivo.json",
+          "pages": "[1]",
+          "distance": 0.27665,
+          "headings": [
+            "Pressing ultra-offensivo"
+          ],
+          "text": "Pressing ultra-offensivo\nIl pressing offensivo o meglio, il pressing immediato in zona offensiva si basa più sull'abilità della squadra nell'accorciare con rapidità sul possessore e sugli appoggi e sostegni che non sulla capacità di creare situazioni di superiorità numerica. Il giocatore che viene a trovarsi in situazione di possesso nella propria metà campo sente, ovviamente, molto di più la responsabilità di una eventuale perdita del pallone che non il giocatore che si trova ad amministrare la palla nei pressi dell'area avversaria. Tutto ciò fa si che le giocate utili o intelligenti a sua disposizione diminuiscano (ad esempio il dribbling diventa una scelta estremamente azzardata e quindi inutilizzabile) e che il possessore pensi più ad evitare di perder palla che non ad alimentare l'azione di attacco. Ecco quindi che una delle soluzioni più ricercate da parte del possessore sotto pressione sarà il rinvio. In conseguenza di ciò, per effettuare un efficace pressing immediato è necessario:\n- mettere pressione sul possessore;\n- chiudere con tempismo le possibili soluzioni in disimpegno (scarico, passaggio su appoggio corto) al possessore;\n- essere abili nella copertura degli appoggi lunghi su cui verrà indirizzato il lancio lungo.\nIL PRESSING IN ZONA OFFENSIVA"
+        },
+        {
+          "label": "F5",
+          "id": "511e45a7c3bbe390a6e1aa7b237b5853755922bb0adab9e09928bc0068b9c23d",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[9]",
+          "distance": 0.30922,
+          "headings": [
+            "1 - OGGETTIVARE LE FASI DI GIOCO"
+          ],
+          "text": "1 - OGGETTIVARE LE FASI DI GIOCO\nCostruzione su rinvio dal fondo, NON POSSESSO PALLA = Pressing su rinvio dal fondo. Azione manovrata su pressing, NON POSSESSO PALLA = Pressing su azione manovrata. Azione manovrata nella propria metà campo, NON POSSESSO PALLA = Linea d'attesa nella metà campo offensiva. Azione manovrata nella metà campo offensiva, NON POSSESSO PALLA = Linea d'attesa nella metà campo difensiva. Azione manovrata su palla che torna, NON POSSESSO PALLA = Pressing su palla che torna. Azione manovrata su riaggressione, NON POSSESSO PALLA = Riaggressione. Transizione offensiva, NON POSSESSO PALLA = Transizione difensiva. PALLE INATTIVE OFFENSIVA, NON POSSESSO PALLA = PALLE INATTIVE DIFENSIVE. Corner a favore, NON POSSESSO PALLA = Corner contro. Punizioni a favore, NON POSSESSO PALLA = Punizioni contro. Rigore a favore, NON POSSESSO PALLA = Rigore contro. Rimessa laterale a favore, NON POSSESSO PALLA = Rimessa laterale contro. PAUSA DI GIOCO, NON POSSESSO PALLA = PAUSA DI GIOCO"
+        },
+        {
+          "label": "F6",
+          "id": "c2ee1b2832c3b469e4e3c9fffa78f7a131e51d3d19e4c6c481f267b8e2cca6f6",
+          "source": "Attacco delle fasce",
+          "canonical_source": "Attacco delle fasce",
+          "source_relative": "formations-and-systems/Attacco delle fasce.json",
+          "pages": "[1]",
+          "distance": 0.43731,
+          "headings": [
+            "Si rileva inoltre che:"
+          ],
+          "text": "Si rileva inoltre che:\n1. I cross creano concrete possibilità di realizzazione per gli attaccanti che stanno in movimento nell'area di rigore.\n2. Eventuali disimpegni difensivi scarsamente precisi presentano una seconda opportunità di andare al goal o, almeno, di proseguire la fase offensiva.\n3. I cross effettuati con precisione mettono in apprensione la difesa e creano una pressione psicologica con la possibilità di una deviazione nella propria rete.\n4. Se si perde il possesso della palla dopo un cross nell'area avversaria esiste un minor pericolo di transizione negativa in quanto molti giocatori della propria squadra saranno dietro la linea della palla e gli attaccanti vicino alla sfera, pronti a mettere pressione sul portatore.\nCome mostrato dallo studio di José Maria Yagùe Cabezòn e Julio Paz Fernàndez nella ricerca intitolata 'La mappa del gol', pubblicata dalla rivista del Settore Tecnico n. 4 del luglio-agosto 1996, il 39% dei gol sono portati a termine da passaggi ricevuti dalle fasce. Il campione considerato era costituito da 100 gol segnati nel campionato spagnolo di serie A su un totale di 52 partite selezionate in maniera casuale. Considerando sia le palle attive che quelle inattive è evidenziato che il 22% dei gol è realizzato dopo passaggi dalla sinistra ed il 17% dalla fascia destra. Queste informazioni portano a dedurre che i passaggi dalle fasce sono un veicolo importante di possibilità realizzative e, di conseguenza, una serie di sedute finalizzate diventa fondamentale nella programmazione degli allenamenti."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Attacco delle fasce",
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "facets": [
+          "possession",
+          "negative_transition"
+        ],
+        "scenarios": [
+          "counterpress_deadline"
+        ],
+        "formations": [],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). specifichi",
+          "i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "ac70f6d99580c0dc79aef9be8a9939e63996bc3d2e0b6153d4c4e0199aca5f78",
+        "e7ed0ae8128ae09bbbffe783e5770d0c2fc00279f6f939291900d2f10d6229b7"
+      ],
+      "tactical_covered": {
+        "possession": "ac70f6d99580c0dc79aef9be8a9939e63996bc3d2e0b6153d4c4e0199aca5f78",
+        "negative_transition": "e7ed0ae8128ae09bbbffe783e5770d0c2fc00279f6f939291900d2f10d6229b7"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+        "contropressing uomo linee passaggio marcatura preventiva cinque sei secondi ripiegamento",
+        "transizione negativa riaggressione ripiegamento palla coperta palla scoperta marcatura preventiva densita zona perdita",
+        "fase di possesso costruzione sviluppo rifinitura"
+      ],
+      "tactical_anchors": [
+        "regola dei cinque secondi",
+        "entro i 6 secondi",
+        "marcatura preventiva"
+      ],
+      "tactical_anchor_candidate_ids": [
+        "575044c20c3d85eeda15bc2ce1e6a61f843a8f2bf7bff026435a62556a1ce8d8",
+        "d444cd050561428b185da296f220003d98dae419a8941955406927a420c7be7e"
+      ],
+      "tactical_anchor_reserved_ids": [
+        "575044c20c3d85eeda15bc2ce1e6a61f843a8f2bf7bff026435a62556a1ce8d8",
+        "d444cd050561428b185da296f220003d98dae419a8941955406927a420c7be7e"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": true,
+          "negative_transition": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {
+          "density_or_proximity": true,
+          "covered_or_uncovered_ball": false,
+          "field_zone": true,
+          "preventive_structure": true,
+          "man_vs_lane": true,
+          "preventive_defenders": true,
+          "five_six_seconds": true
+        },
+        "missing_details": [
+          "covered_or_uncovered_ball"
+        ],
+        "complete": false
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "4"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 244.53,
+      "generation": {
+        "total_duration_ns": 84222027480,
+        "load_duration_ns": 2178166,
+        "prompt_eval_duration_ns": 18248864000,
+        "eval_duration_ns": 65933729000,
+        "eval_count": 516,
+        "prompt_eval_count": 3224,
+        "done_reason": "stop",
+        "repair_reasons": [
+          "copertura incompleta: covered_or_uncovered_ball"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

@@ -1,0 +1,247 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv7_04",
+      "question": "Il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). Ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. Si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere.",
+      "answer": "1. **Struttura geometrica e cinque corridoi**: La squadra assume una piramide sugli attacchi centrali [F5] con difensori a semicerchio per garantire ampiezza [F1]. Si occupano esplicitamente fascia, half-space, centro, half-space e fascia tramite triangoli di gioco mai in linea [F2]. Il n. 6 copre mentre la palla gira verso il n. 3 o il n. 2 che sgancia in ampiezza [F1].\n\n2. **Ricezione tra le linee (between_lines_receiving)**: I difensori scalano orizzontalmente verso il portatore di palla per coprire posizioni vacanti e non presentarsi \"piatti\" [F5]. Il ricevente si posiziona in half-space o centro, sfruttando la mobilità per disorientare la difesa [F2]. La palla deve muoversi con rapidità verticale, riducendo i tocchi per rifinire l'azione nel minor tempo possibile [F6].\n\n3. **Azione successiva (next_action)**: Dopo il passaggio, si esegue un cambio di ritmo aggredendo spazi tramite sovrapposizioni o tagli a divergere/convergere [F6]. Se il n. 2 viene attaccato, il n. 6 copre e il n. 5 avanza per ricevere mentre il n. 3 stringe [F1]. In caso di perdita del possesso, si recupera velocemente le posizioni a difesa della porta [F1].\n\n4. **Funzioni preventive**: I giocatori orientati pessimisticamente organizzano marcature preventive accettando la parità numerica per non farsi sorprendere da movimenti in profondità [F3]. La strategia prevede un abbassamento sulla diagonale lunga di un centrocampista per proteggere la zona cieca alle spalle dei difensori [F5].\n\n5. **Superiorità posizionale e socio-affettiva**: La superiorità nasce da appoggi coordinati (es. n. 6 che dà copertura al n. 3) e dalla conoscenza reciproca tra reparti [F1]. L'equilibrio tra funzioni offensive, regolatorie e preventive mantiene l'identità di squadra senza perdere coesione [F3].\n\n6",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "622a017228e4164948055b608f28d00edf4e9974832c4c457e5456e05daa88dd",
+          "source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "canonical_source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "source_relative": "formations-and-systems/la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti.json",
+          "pages": "[9, 10, 11]",
+          "distance": 0.32576,
+          "headings": [
+            "LE FASI DI TRANSIZIONE E OFFENSIVA DEI QUATTRO DIFENSORI"
+          ],
+          "text": "LE FASI DI TRANSIZIONE E OFFENSIVA DEI QUATTRO DIFENSORI\nNon ultimo, per importanza, è l'aspetto che riguarda il possesso palla dei quattro difensori.\nIn fase offensiva, i quattro difensori assumono una posizione scaglionata che permette la copertura al portatore di palla e lo sviluppo, in ampiezza, del gioco.\nPer ovvie ragioni di equilibrio difficilmente si può sviluppare un possesso in verticalità, che viene permesso con la presenza dei centrocampisti.\nVediamo nelle figure seguenti (Fig. 15A, 15B, 15C) i possibili movimenti:\nFig. 15A La palla gira da destra verso sinistra, con i 4 difensori disposti a semicerchio, con il n. 6 che da' copertura. la palla gira velocemente fino ad arrivare al n. 3.\nFig. 15B La palla gira da sinistra verso destra. Si salta un centrale e si arriva al 2 che va in sganciamento. Gli altri 3 difensori si spostano verso destra.\nFig. 15C Il 2 viene attaccato. il 6 copre e il 5 si fa vedere con un movimento in avanti e riceve. Il 3 stringe.\nBisogna, inoltre, fare comprendere i due momenti della fase di passaggio: l'eventuale perdita del possesso (negativa) con il recupero veloce delle posizioni a difesa della porta (Fig. 16A); la \"ripartenza\" veloce sulla conquista della palla (positiva) magari con una uscita esterna (Fig. 16B).\nNelle esercitazioni e nelle situazioni presentate bisogna sempre prevedere l'allenamento a questo continuo passaggio da una fase all'altra."
+        },
+        {
+          "label": "F2",
+          "id": "8bf31933e9aa64a4fde2b10bb9ef462144278af0327e31fc8d64a9df6d4c6888",
+          "source": "il_3412_Giustinetti",
+          "canonical_source": "il_3412_Giustinetti",
+          "source_relative": "formations-and-systems/il_3412_Giustinetti.json",
+          "pages": "[9]",
+          "distance": 0.31148,
+          "headings": [
+            "GLI SVILUPPI DELLA FASE OFFENSIVA"
+          ],
+          "text": "GLI SVILUPPI DELLA FASE OFFENSIVA\nOgni squadra che tenta di arrivare alla conclusione in porta non casuale deve conoscere e sfruttare i principi del gioco offensivo e deve sfruttare la penetrazione, l'ampiezza, la mobilità, l'improvvisazione, l'imprevedibilità e lo scaglionamento.\nPer scaglionamento si intende il disporsi su più linee di campo, in modo che i giocatori formino triangoli di gioco mai in linea.\nPer penetrazione si intende la capacità di muovere la palla attraverso la difesa avversaria con la maggiore precisione e rapidità possibili.\nPer ampiezza si intende la capacità di una squadra, in possesso di palla, di sfruttare tutta la larghezza del campo, allo scopo di ampliare la concentrazione difensiva avversaria e di trovare gli spazi per operare in profondità.\nPer mobilità si intende una variazione delle posizioni degli attaccanti allo scopo di disorientare l'organizzazione difensiva dell'avversario.\nL'improvvisazione è la capacità di superare le difese avversarie, sempre più organizzate, attraverso l'estro dei singoli giocatori.\nPer imprevedibilità si intende la necessità di non ripetere sempre in modo stereotipato gli stessi movimenti di manovra."
+        },
+        {
+          "label": "F3",
+          "id": "845350c08a1f310e3ab1363db2e64504106fd5ad00635091c25f89a4580d4ffb",
+          "source": "tesi-coverciano-soncin-pdf",
+          "canonical_source": "tesi-coverciano-soncin-pdf",
+          "source_relative": "tesi-coverciano-soncin-pdf.json",
+          "pages": "[49]",
+          "distance": 0.30347,
+          "headings": [
+            "ORGANIZZA LE PREVENTIVE"
+          ],
+          "text": "ORGANIZZA LE PREVENTIVE\nIn una squadra votata all'invasione della metà campo avversaria, i giocatori avranno ruoli, funzioni e soprattutto pensieri diversi. I giocatori che partecipano alla manovra offensiva avranno la convinzione di poter scardinare il blocco difensivo avversario (ottimistico orientati) (fig.69), poi ci sono quei giocatori che hanno la funzione di regolare i tempi e le fasi di gioco (regolatori) ed infine quelli che devono organizzare le marcature e le coperture preventive, quindi pensare in termini negativi riguardo lo sviluppo offensivo (pessimistico orientati) (fig.70). L'equilibrio di queste tre funzioni differenti all'interno della squadra permette alla stessa di non perdere la propria identità. Il mio pensiero riguardo le marcature preventive è quello di accettare la parità numerica chiedendo, ad i giocatori impiegati in questa situazione, di non farsi sorprendere dal movimento in profondità pur mantenendo il coraggio di accorciare in avanti per provare l'anticipo. Poi ovviamente la strategia di gara e le caratteristiche dell'avversario possono di volta in volta modificare questa visione, per esempio non accettando la parità numerica richiedendo un difendente in più, anche in funzione di caratteristiche particolari degli avversari. Rimanere in superiorità in fase preventiva ci porta ovviamente il vantaggio di correre meno rischi nel momento in cui perdo il possesso, di contro potrebbe rendere il mio sviluppo offensivo meno efficace. Diventa proprio una questione numerica/matematica, come per la fase di sviluppo."
+        },
+        {
+          "label": "F4",
+          "id": "bc94848c8d85dc6bb4a40e9dbb81aceb13d643770e3a444e14211fa92fe53093",
+          "source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale.json",
+          "pages": "[6]",
+          "distance": 0.42368,
+          "headings": [
+            "07. Cambio contro blocco medio"
+          ],
+          "text": "07. Cambio contro blocco medio\nOrganico: 14-16 · Spazio: 60×45 m · Carico proposto: 4×7 min. Organizzazione: 7v7/8v8, difesa scivola in blocco; attacco cerca ricezione progressiva lato debole. Correzioni: Riconoscere finestra temporale. Progressione/verifica: Difesa aumenta velocità di scivolamento."
+        },
+        {
+          "label": "F5",
+          "id": "2cef39137993bc5674288d2f61e931105bd602aeed832316bcc0c0ae631869a5",
+          "source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "canonical_source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "source_relative": "formations-and-systems/la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti.json",
+          "pages": "[3, 5]",
+          "distance": 0.35935,
+          "headings": [
+            "DIAGONALI, PIRAMIDI, LINEE DI COPERTURA, SCALATE E SLITTAMENTI, ELASTICO DIFENSIVO"
+          ],
+          "text": "DIAGONALI, PIRAMIDI, LINEE DI COPERTURA, SCALATE E SLITTAMENTI, ELASTICO DIFENSIVO\nLa posizione dei 4 difensori è primariamente condizionata dalla posizione della palla e della porta. Sulla base di ciò risulta rilevante analizzare varie soluzioni, come la piramide sugli attacchi centrali (Fig. 1A e 1B).\nLe linee di copertura in riferimento al portatore di palla possono essere, come si vede nelle figure seguenti (Fig. 2A e 2B) a due linee o a una linea. Quest'ultima è una scelta che da' troppa profondità all'attacco e, quindi, con essa sarà più difficile applicare la tattica del fuorigioco collettivo.\nIl concetto di copertura è fondamentale per tutta la difesa a zona, soprattutto per non fare l'errore di presentarsi \"piatti\" sul portatore di palla.\nI giocatori mantengono una distanza ottimale tra loro che permette, su un attacco esterno, di occupare gli spazi in direzione del portatore di palla, lasciando libero l'eventuale lato debole (Fig. 3A).\nSolitamente, si prevede in una posizione del campo bassa un abbassamento sulla diagonale lunga di un giocatore del centrocampo, per non essere attaccati sulla zona cieca, cioè quella alle spalle di tutti i difensori (Fig. 3B).\nIn caso di attacco centrale ci si dispone come nella figura successiva (Fig. 3C).\nQuando viene a mancare un giocatore della linea difensiva, si deve scalare orizzontalmente verso il portatore di palla, coprendo la posizione del compagno mancante (Fig. 4)."
+        },
+        {
+          "label": "F6",
+          "id": "6e2a92b8c4a7e00eb21aa49439ceec6ef21316e54d50676a08017479bedca27a",
+          "source": "preview1",
+          "canonical_source": "preview1",
+          "source_relative": "formations-and-systems/preview1.json",
+          "pages": "[6, 7]",
+          "distance": 0.35336,
+          "headings": [
+            "POSSESSO DI PALLA SEMPLICE (ORIZZONTALE) E COMPLESSO (VERTICALE)"
+          ],
+          "text": "POSSESSO DI PALLA SEMPLICE (ORIZZONTALE) E COMPLESSO (VERTICALE)\nVi è quindi un passaggio da una fase d'attesa del possesso palla (l'avanzamento di uomini e palla in zone utili alla rifinitura nei pressi della difesa rivale e la ricerca/creazione di spazi liberi e situazioni di sovrannumero), ad una fase di accelerazione del possesso palla. In questa fase occorre infatti imprimere un vero e proprio cambio di ritmo, aggredendo gli spazi tramite movimenti complessi che hanno la peculiarità di modificare nettamente la posizione in campo rispetto ai compagni da parte di chi li compie (sovrapposizioni, inserimenti, tagli a divergere o a convergere). La palla deve muoversi con ancora più rapidità in senso prevalentemente verticale, diminuendo il numero di tocchi per ogni possessore, in modo da rifinire e concludere l'azione nel minor tempo possibile. In seguito a quanto esposto, la manovra appare chiaramente strutturata in due sottofasi ben distinte: la costruzione del gioco e la sua rifinitura."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+        "I movimenti della difesa a 3",
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco",
+        "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": [
+          "ampiezza"
+        ]
+      },
+      "tactical_plan": {
+        "facets": [
+          "possession",
+          "non_possession",
+          "prevention",
+          "width",
+          "inside_space",
+          "five_lanes",
+          "relational_superiority"
+        ],
+        "scenarios": [],
+        "formations": [],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "622a017228e4164948055b608f28d00edf4e9974832c4c457e5456e05daa88dd",
+        "8bf31933e9aa64a4fde2b10bb9ef462144278af0327e31fc8d64a9df6d4c6888",
+        "845350c08a1f310e3ab1363db2e64504106fd5ad00635091c25f89a4580d4ffb",
+        "bc94848c8d85dc6bb4a40e9dbb81aceb13d643770e3a444e14211fa92fe53093"
+      ],
+      "tactical_covered": {
+        "possession": "622a017228e4164948055b608f28d00edf4e9974832c4c457e5456e05daa88dd",
+        "non_possession": "8bf31933e9aa64a4fde2b10bb9ef462144278af0327e31fc8d64a9df6d4c6888",
+        "prevention": "845350c08a1f310e3ab1363db2e64504106fd5ad00635091c25f89a4580d4ffb",
+        "width": "bc94848c8d85dc6bb4a40e9dbb81aceb13d643770e3a444e14211fa92fe53093"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). Ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. Si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere.",
+        "cambio gioco tempo di volo lato debole lato forte scivolamento mediano schermo",
+        "rifinitura tra le linee ricezione orientata scarico inserimento attacco linea difensiva",
+        "fase di possesso costruzione sviluppo rifinitura",
+        "fase di non possesso blocco difesa difendere"
+      ],
+      "tactical_anchors": [],
+      "tactical_anchor_candidate_ids": [],
+      "tactical_anchor_reserved_ids": [],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": false,
+          "non_possession": true,
+          "prevention": true,
+          "width": true,
+          "inside_space": true,
+          "five_lanes": true,
+          "relational_superiority": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": false,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [
+          "possession"
+        ],
+        "missing_operational": [
+          "reason"
+        ],
+        "detail_coverage": {
+          "strong_and_weak_side": false,
+          "ball_flight_trigger": false,
+          "between_lines_receiving": true,
+          "next_action": false,
+          "five_lane_geometry": true,
+          "residual_structure": false
+        },
+        "missing_details": [
+          "strong_and_weak_side",
+          "ball_flight_trigger",
+          "next_action",
+          "residual_structure"
+        ],
+        "complete": false
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 284.53,
+      "generation": {
+        "total_duration_ns": 87333050293,
+        "load_duration_ns": 3733716,
+        "prompt_eval_duration_ns": 26344932000,
+        "eval_duration_ns": 60942559000,
+        "eval_count": 472,
+        "prompt_eval_count": 3624,
+        "done_reason": "length",
+        "repair_reasons": [
+          "copertura incompleta: reason, between_lines_receiving, next_action"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

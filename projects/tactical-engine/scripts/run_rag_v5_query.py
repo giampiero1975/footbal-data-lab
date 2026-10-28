@@ -11,6 +11,16 @@ from pathlib import Path
 import run_rag_v5_locked_candidate_v2 as locked
 
 
+DEFAULT_PROFILE_FLAGS = (
+    "--source-aware",
+    "--exercise-candidate",
+    "--priority-exact",
+    "--targeted-coverage",
+    "--heading-routing",
+    "--structural-routing",
+)
+
+
 def validate_question(value: str) -> str:
     value = " ".join(value.split())
     if not 10 <= len(value) <= 2000:
@@ -33,6 +43,8 @@ def validate_report(report: dict) -> None:
         raise RuntimeError("invalid_citations")
     if not item.get("has_any_citation"):
         raise RuntimeError("missing_citations")
+    if item.get("tactical_plan") and (item.get("generation") or {}).get("quality_gate_passed") is not True:
+        raise RuntimeError("tactical_quality_gate_failed")
 
 
 def main() -> None:
@@ -67,10 +79,7 @@ def main() -> None:
     if args.max_output_tokens:
         argv.extend(["--num-predict", str(args.max_output_tokens)])
     if not args.legacy_profile:
-        argv.extend([
-            "--source-aware", "--exercise-candidate", "--priority-exact",
-            "--targeted-coverage", "--heading-routing", "--structural-routing",
-        ])
+        argv.extend(DEFAULT_PROFILE_FLAGS)
     sys.argv = argv
     v5.main()
     report = json.loads(args.output.read_text(encoding="utf-8"))

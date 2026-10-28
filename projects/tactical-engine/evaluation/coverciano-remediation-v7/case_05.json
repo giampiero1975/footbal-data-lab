@@ -1,0 +1,233 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv7_05",
+      "question": "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+      "answer": "1. **Sotto-blocco e scivolamento lato debole/lato forte**: Il difensore lontano (quinto/quarto) sul lato debole non stringe verticalmente verso il centro, ma valuta traiettoria e tempo di volo della palla [F1]. Se reagisce solo alla ricezione avversaria, il nuovo portatore ottiene vantaggio numerico; quindi, lo scivolamento deve essere anticipato per accorciare le distanze prima dell'arrivo del pallone [F2]. Il blocco segue la palla mantenendo distanze corte senza trasformare lo scivolamento in ripiegamento verticale [F6].\n\n2. **Tempo di volo come innesco**: La dinamica si basa sul tempo di volo: se la squadra reagisce tardivamente, il corridoio interno si apre. L'obiettivo è intervenire per alterare i tempi avversari e limitare la profondità del loro gioco [F3]. Il nuovo lato forte si definisce quando l'esterno esce sul ricevente solo dopo aver calcolato il tempo di volo, evitando che il cambio gioco lungo garantisca avanzamento in avanti all'avversario [F4], [F2].\n\n3. **Mediano metodista e spazio di imbucata**: Il mediano presidia lo schermo davanti alla difesa (spazio di imbucata) per evitare l'apertura di corridoi interni. Questo comportamento rientra nel principio di concentrazione, dove più elementi difendono la zona pericolosa davanti alla porta [F3]. L'azione ritardatrice serve a far perdere tempo alla squadra avversaria nella profondità, impedendo la giocata verticale quando il piede d'appoggio è distante dalla palla [F4], [F3].\n\n4. **Mantenere squadra corta e stretta**: Per evitare l'apertura di corridoi interni, la squadra deve scaglionarsi per stringere il campo libero agli avversari, garantendo copertura reciproca [F3]. Il blocco medio-basso non scivola inutilmente cambiando lato; invece, avanza sul lato esterno solo se genera vantaggio concreto, mantenendo compatto al centro l'area di rigore avversaria [F5]. Le linee mantengono distanze corte per chiudere le maglie senza trasformare la difesa in una struttura offensiva.",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "a24a77c980ce917e4da9a0f8ff1f9891ced4e6dee64b57472caa06a96e152c09",
+          "source": "FOOTBALL_DATA_LAB_Scalate_Difensive_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Scalate_Difensive_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Scalate_Difensive_Manuale.json",
+          "pages": "[18]",
+          "distance": null,
+          "headings": [
+            "Principio e definizione operativa"
+          ],
+          "text": "Principio e definizione operativa\nLa scalata sul lato forte produce quasi sempre un costo potenziale sul lato debole. Il difendente lontano deve valutare avversari, traiettoria e tempo di volo della palla, non semplicemente stringere verso il centro."
+        },
+        {
+          "label": "F2",
+          "id": "aaf768806d37cd9ca84ba2948038a6128a34dc1203ef78484a0aa67cb5fb544c",
+          "source": "FOOTBALL_DATA_LAB_Coperture_Difensive_Manuale_Tecnico",
+          "canonical_source": "FOOTBALL_DATA_LAB_Coperture_Difensive_Manuale_Tecnico",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Coperture_Difensive_Manuale_Tecnico.json",
+          "pages": "[17]",
+          "distance": null,
+          "headings": [
+            "Lettura operativa"
+          ],
+          "text": "Lettura operativa\nIl punto critico è il tempo di volo del pallone: se la squadra reagisce solo dopo la ricezione, il nuovo portatore può affrontare la difesa in vantaggio."
+        },
+        {
+          "label": "F3",
+          "id": "c5f717ca44be18f08a0124ec606d22b27ca36a69988bf8d7d383d045c493e7ca",
+          "source": "La tattica nel calcio",
+          "canonical_source": "La tattica nel calcio",
+          "source_relative": "formations-and-systems/La tattica nel calcio.json",
+          "pages": "[2, 3]",
+          "distance": 0.35099,
+          "headings": [
+            "Partita Di Calcio"
+          ],
+          "text": "Partita Di Calcio\nPenetrazione: o anche profondità e verticalizzazione. Bisogna arrivare prima possibile nelle vicinanze dell'area di rigore degli avversari, per essere in zona pericolosa per gli avversari e lontani da quella di pericolo per la nostra squadra.\nAmpiezza: sfruttare tutta l'ampiezza del terreno di gioco per creare spazi utili ed aprire le maglie della difesa avversaria\nMobilità o movimento: il gioco del calcio è movimento. La creazione di spazio è dettata dai movimenti dei singoli\nImprevedibilità: ogni situazione deve essere resa imprevedibile per gli avversari, anche se ripetuta, attraverso finte ecc…\nI principi di gioco in fase di non possesso palla sono:\nScaglionamento: bisogna disporsi in modo tale per stringere più possibile il campo libero agli avversari. Scaglionarsi significa anche essere in grado di dare copertura reciproca ai compagni.\nAzione ritardatrice:intervenire per alterare i tempi di gioco degli avversari, facendo perdere tempo alla squadra avversaria nella profondità, oppure limitando i tempi di gioco. Si può attuare attraverso due atteggiamenti diversi: temporeggiamento; pressing e fuorigioco\nConcentrazione: riferita alla dislocazione sul terreno di gioco. La difesa deve essere posizionata in modo tale da difendere con più elementi la zona pericolosa del campo, cioè quella davanti alla nostra porta.\nEquilibrio: mantenere la possibilità di copertura reciproca in ogni circostanza"
+        },
+        {
+          "label": "F4",
+          "id": "1b6ac18f1835cd1ad0523a5fdd29f8e9ef585cece1b5485365bba2781c3503a3",
+          "source": "movimenti_difensivi_442",
+          "canonical_source": "movimenti_difensivi_442",
+          "source_relative": "formations-and-systems/movimenti_difensivi_442.json",
+          "pages": "[7]",
+          "distance": 0.34747,
+          "headings": [
+            "SCUOLA ALLENATORI TECNICO-TATTICA"
+          ],
+          "text": "SCUOLA ALLENATORI TECNICO-TATTICA\n- l'avversario sotto pressione non ha la giocata verticale;\n- su rinvio del portiere;\n- su calcio liberatorio o su una respinta del difensore (far osservare alla difesa che il tragitto della palla in avanti dà tempo di avanzare e di guadagnare campo in avanti);\n- quando l'avversario conduce o si libera della palla con spalle alla porta nella nostra metà campo;\n- su un cambio gioco lungo;\n- tutte le volte che l'avversario guida palla ed il piede d'appoggio è distante dalla palla stessa.\nLa difesa in generale scivola all'indietro quando:\n- c'è inferiorità numerica sull'attacco avversario, l'obiettivo è guadagnare un tempo di gioco per permettere ai compagni di rientrare;\n- si subisce un break e si è costretti a difendere partendo da una posizione sbilanciata degli uomini in campo.\nSituazioni tattiche che meritano una particolare attenzione sono il taglio in profondità dell'attaccante ed il movimento incontro a ricevere.\nNel primo caso il difensore che vede e \"prende\" il taglio dovrà compiere il movimento \"prendo e mollo\", dovrà quindi in un primo momento accompagnare il marcamento della punta per poi salire ad integrarsi con il reparto non appena l'avversario avrà superato la linea ed il passaggio non sarà stato ancora eseguito, lasciando l'attaccante in fuorigioco."
+        },
+        {
+          "label": "F5",
+          "id": "17821b81afb2848471f86b22cbc2f6fad166e7005166e28e4befbb3d450425a4",
+          "source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale.json",
+          "pages": "[4]",
+          "distance": 0.34877,
+          "headings": [
+            "Blocco che non scivola"
+          ],
+          "text": "Blocco che non scivola\nL'avversario resta compatto al centro e concede ampiezza. Risposta: avanzare sul lato esterno e generare un vantaggio concreto, senza cambiare lato inutilmente."
+        },
+        {
+          "label": "F6",
+          "id": "0e84d19c5f3bd8312f47f20476c1d61fe7b307acf6c508cb2735e49bac9ba3b9",
+          "source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale.json",
+          "pages": "[4]",
+          "distance": 0.34234,
+          "headings": [
+            "Scivolamento rapido"
+          ],
+          "text": "Scivolamento rapido\nIl blocco segue la palla mantenendo distanze. Risposta: cambio gioco anticipato, cambio di ritmo, ricezione intermedia o attacco del corridoio centrale lasciato aperto."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [
+          "mediano"
+        ],
+        "principles": []
+      },
+      "tactical_plan": {
+        "facets": [
+          "non_possession",
+          "width"
+        ],
+        "scenarios": [
+          "lateral_shift"
+        ],
+        "formations": [],
+        "roles": [
+          "mediano"
+        ],
+        "request_parts": [
+          "il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "c5f717ca44be18f08a0124ec606d22b27ca36a69988bf8d7d383d045c493e7ca",
+        "1b6ac18f1835cd1ad0523a5fdd29f8e9ef585cece1b5485365bba2781c3503a3"
+      ],
+      "tactical_covered": {
+        "non_possession": "c5f717ca44be18f08a0124ec606d22b27ca36a69988bf8d7d383d045c493e7ca",
+        "width": "1b6ac18f1835cd1ad0523a5fdd29f8e9ef585cece1b5485365bba2781c3503a3"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+        "cambio gioco tempo volo scivolamento lato debole forte mediano schermo imbucata mediano",
+        "cambio gioco tempo di volo lato debole lato forte scivolamento mediano schermo mediano",
+        "fase di non possesso blocco difesa difendere mediano"
+      ],
+      "tactical_anchors": [
+        "punto critico è il tempo di volo",
+        "difendente lontano deve valutare"
+      ],
+      "tactical_anchor_candidate_ids": [
+        "a24a77c980ce917e4da9a0f8ff1f9891ced4e6dee64b57472caa06a96e152c09",
+        "aaf768806d37cd9ca84ba2948038a6128a34dc1203ef78484a0aa67cb5fb544c",
+        "ea089c5d9b67578d4d7acd344fad0b863e5d6b802c099265d850f7c73d7fc8ab"
+      ],
+      "tactical_anchor_reserved_ids": [
+        "a24a77c980ce917e4da9a0f8ff1f9891ced4e6dee64b57472caa06a96e152c09",
+        "aaf768806d37cd9ca84ba2948038a6128a34dc1203ef78484a0aa67cb5fb544c"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "non_possession": true,
+          "width": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {
+          "strong_and_weak_side": true,
+          "ball_flight_trigger": true,
+          "flight_time": true,
+          "new_strong_side": true,
+          "weak_side_squeeze": true,
+          "midfielder_screen": true
+        },
+        "missing_details": [],
+        "complete": true
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 135.49,
+      "generation": {
+        "total_duration_ns": 123815370194,
+        "load_duration_ns": 1126444,
+        "prompt_eval_duration_ns": 65152080000,
+        "eval_duration_ns": 58356407000,
+        "eval_count": 470,
+        "prompt_eval_count": 1905,
+        "done_reason": "stop",
+        "repair_reasons": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

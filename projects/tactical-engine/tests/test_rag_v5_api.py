@@ -91,11 +91,38 @@ class ApiTests(unittest.TestCase):
             with self.assertRaises(RuntimeError):
                 query.validate_report({"questions":[item],"index_unchanged":True})
 
+    def test_query_report_fails_closed_on_tactical_quality(self):
+        good={"questions":[{"invalid_citation_ids":[],"has_any_citation":True,
+            "tactical_plan":{"facets":["possession"]},
+            "generation":{"quality_gate_passed":True}}],"index_unchanged":True}
+        query.validate_report(good)
+        bad=json.loads(json.dumps(good))
+        bad["questions"][0]["generation"]["quality_gate_passed"]=False
+        with self.assertRaisesRegex(RuntimeError,"tactical_quality_gate_failed"):
+            query.validate_report(bad)
+
     def test_performance_profile_defaults_are_locked_compatible(self):
         with tempfile.TemporaryDirectory() as tmp:
             config = self.config(Path(tmp))
             self.assertEqual(config["evidence_limit"], 8)
             self.assertEqual(config["max_output_tokens"], 0)
+
+    def test_public_default_profile_does_not_enable_coverciano_gate(self):
+        self.assertNotIn("--tactical-plan", query.DEFAULT_PROFILE_FLAGS)
+        self.assertIn("--heading-routing", query.DEFAULT_PROFILE_FLAGS)
+        self.assertIn("--structural-routing", query.DEFAULT_PROFILE_FLAGS)
+
+    def test_openrouter_usage_summary_includes_tokens_cost_and_provider(self):
+        report = {"passes": [
+            {"provider": "OpenAI", "usage": {"prompt_tokens": 10,
+             "completion_tokens": 4, "total_tokens": 14, "cost": 0.001}},
+            {"provider": "OpenAI", "usage": {"prompt_tokens": 20,
+             "completion_tokens": 6, "total_tokens": 26, "cost": 0.002}},
+        ]}
+        self.assertEqual(api.summarize_openrouter_usage(report), {
+            "prompt_tokens": 30, "completion_tokens": 10, "total_tokens": 40,
+            "cost_usd": 0.003, "route_providers": ["OpenAI"],
+        })
 
     def test_performance_profile_is_forwarded_to_runner(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -107,58 +134,33 @@ class ApiTests(unittest.TestCase):
                 "RAG_API_MODEL": "qwen3.5:4b",
                 "RAG_API_CONTEXT_WINDOW": "4096",
                 "RAG_API_KEEP_ALIVE": "30m",
-                "RAG_GROQ_COPILOT_ENABLED": "1",
-                "RAG_GROQ_COPILOT_MODEL": "openai/gpt-oss-120b",
+                "RAG_OPENROUTER_COPILOT_ENABLED": "1",
+                "RAG_OPENROUTER_COPILOT_MODELS": "openai/gpt-oss-120b,openai/gpt-6.1-sol",
             })
             self.assertEqual(config["evidence_limit"], 6)
             self.assertEqual(config["max_output_tokens"], 700)
             self.assertEqual(config["model"], "qwen3.5:4b")
             self.assertEqual(config["context_window"], 4096)
             self.assertEqual(config["keep_alive"], "30m")
-            self.assertTrue(config["groq_copilot_enabled"])
-            self.assertEqual(config["groq_copilot_model"], "openai/gpt-oss-120b")
+            self.assertTrue(config["openrouter_copilot_enabled"])
+            self.assertEqual(config["openrouter_copilot_models"],
+                             ["openai/gpt-oss-120b", "openai/gpt-6.1-sol"])
 
-    def test_gemini_review_is_opt_in_and_uses_stable_model(self):
+    def test_openrouter_reviewer_is_opt_in(self):
         with tempfile.TemporaryDirectory() as tmp:
             config = self.config(Path(tmp))
-            self.assertFalse(config["gemini_review_enabled"])
-            self.assertEqual(config["gemini_review_model"], "gemini-3.6-flash")
+            self.assertFalse(config["openrouter_copilot_enabled"])
             enabled = api.load_config({
                 "RAG_API_TOKEN": "x" * 32,
                 "RAG_API_OUTPUT_DIR": tmp,
-                "RAG_GEMINI_REVIEW_ENABLED": "true",
-                "RAG_GEMINI_REVIEW_DAILY_LIMIT": "250",
+                "RAG_OPENROUTER_COPILOT_ENABLED": "true",
             })
-            self.assertTrue(enabled["gemini_review_enabled"])
-            self.assertEqual(enabled["gemini_review_daily_limit"], 250)
+            self.assertTrue(enabled["openrouter_copilot_enabled"])
 
-    def test_gemini_review_returns_bounded_verified_summary(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            output = Path(tmp)
-            config = self.config(output); config["gemini_review_enabled"] = True
-            state = api.State(config)
-            result_path = output / ("a" * 32 + ".result.json")
-            result_path.write_text('{"questions":[]}', encoding="utf-8")
-            report = {
-                "status": "ESEGUITO", "model": "gemini-3.6-flash",
-                "reviews": [{"id": "case_01", "score": 8.5, "verdict": "PASS",
-                             "strengths": ["coerente"], "structural_errors": [],
-                             "evidence_issues": [], "minimum_fix": "nessuna"}],
-            }
-            def reviewer(command, **kwargs):
-                review_path = Path(command[command.index("--output") + 1])
-                review_path.write_text(json.dumps(report), encoding="utf-8")
-                return mock.Mock(returncode=0, stderr="")
-            with mock.patch.object(api.subprocess, "run", side_effect=reviewer):
-                summary = state.run_gemini_review("a" * 32, result_path)
-            self.assertEqual(summary["status"], "verified")
-            self.assertEqual(summary["score"], 8.5)
-            self.assertNotIn("raw_review", summary)
-
-    def test_groq_copilot_returns_verified_revised_answer(self):
+    def test_openrouter_copilot_returns_verified_revised_answer(self):
         with tempfile.TemporaryDirectory() as tmp:
             output = Path(tmp); config = self.config(output)
-            config["groq_copilot_enabled"] = True
+            config["openrouter_copilot_enabled"] = True
             state = api.State(config)
             result_path = output / ("b" * 32 + ".result.json")
             result_path.write_text('{"questions":[]}', encoding="utf-8")
@@ -174,7 +176,7 @@ class ApiTests(unittest.TestCase):
                 path.write_text(json.dumps(report), encoding="utf-8")
                 return mock.Mock(returncode=0, stderr="")
             with mock.patch.object(api.subprocess, "run", side_effect=copilot):
-                summary = state.run_groq_copilot("b" * 32, result_path)
+                summary = state.run_openrouter_copilot("b" * 32, result_path)
             self.assertEqual(summary["status"], "verified")
             self.assertEqual(summary["revised_answer"], "Risposta corretta [F1].")
             self.assertNotIn("pass1", summary)
@@ -187,18 +189,55 @@ class ApiTests(unittest.TestCase):
             result = {"questions": [{"answer": "Bozza recuperata [F1].", "evidence": [],
                                       "elapsed_seconds": 42}]}
             (output / f"{job_id}.result.json").write_text(json.dumps(result), encoding="utf-8")
-            (output / f"{job_id}.groq-copilot.json").write_text(json.dumps({
+            (output / f"{job_id}.openrouter-copilot.json").write_text(json.dumps({
                 "status": "BLOCCATO", "model": "openai/gpt-oss-120b",
-                "reason": "GROQ_PASS2_FINDING_COVERAGE"}), encoding="utf-8")
+                "reason": "PASS2_FINDING_COVERAGE"}), encoding="utf-8")
             state = api.State(self.config(output))
             recovered = state.persisted_job(job_id)
             self.assertEqual(recovered["status"], "succeeded")
             self.assertTrue(recovered["recovered_after_restart"])
             self.assertEqual(recovered["question"], "Domanda tattica persistente")
             self.assertEqual(recovered["result"], result)
-            self.assertEqual(recovered["groq_copilot"]["status"], "unavailable")
+            self.assertEqual(recovered["openrouter_copilot"]["status"], "unavailable")
             recent = state.recent_completed_jobs(20)
             self.assertEqual([item["id"] for item in recent], [job_id])
+
+    def test_failed_job_and_actionable_cause_survive_restart(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); job_id = "d" * 32
+            (output / f"{job_id}.request.json").write_text(json.dumps({
+                "id": job_id, "question": "Domanda tattica fallita ma recuperabile"
+            }), encoding="utf-8")
+            state.jobs[job_id] = {"id": job_id, "status": "failed", "created_at": 1,
+                                  "started_at": 2, "finished_at": 330,
+                                  "failure": api.classify_failure(
+                                      "INCOMPLETE: tactical_quality_gate_failed")}
+            state._persist_job_state(job_id)
+            recovered = state.persisted_job(job_id)
+            self.assertEqual(recovered["status"], "failed")
+            self.assertEqual(recovered["failure"]["code"], "tactical_quality_gate_failed")
+            self.assertEqual(recovered["failure"]["phase"], "quality_gate")
+            self.assertIn("profilo pubblico", recovered["failure"]["action"])
+            self.assertEqual(state.recent_jobs(10)[0]["id"], job_id)
+
+    def test_failure_classifier_hides_noisy_runtime_output(self):
+        failure = api.classify_failure(
+            "Warning: HF_TOKEN missing\nLoading weights 100%\nINCOMPLETE: missing_citations")
+        self.assertEqual(failure["code"], "missing_citations")
+        self.assertEqual(failure["phase"], "response_validation")
+        self.assertNotIn("HF_TOKEN", json.dumps(failure))
+
+    def test_legacy_failed_job_is_recovered_from_private_event_log(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); job_id = "e" * 32
+            (output / f"{job_id}.request.json").write_text(json.dumps({
+                "id": job_id, "question": "Domanda precedente senza sidecar"
+            }), encoding="utf-8")
+            state.record_event("job_finished", job_id=job_id, status="failed",
+                               reason="tactical_quality_gate_failed", duration_seconds=328)
+            recovered = state.persisted_job(job_id)
+            self.assertEqual(recovered["status"], "failed")
+            self.assertEqual(recovered["failure"]["code"], "tactical_quality_gate_failed")
 
     def test_catalog_is_loaded_once(self):
         with tempfile.TemporaryDirectory() as tmp, mock.patch.object(api, "load_catalog", return_value={"documents":[],"chunks":[]}) as loader:
@@ -214,7 +253,7 @@ class ApiTests(unittest.TestCase):
         self.assertIn("allDocuments", panel)
         self.assertIn("/v1/metrics", panel)
         self.assertIn("Qualità operativa", panel)
-        self.assertIn("Cronologia della sessione", panel)
+        self.assertIn("Cronologia delle analisi", panel)
         self.assertIn("item.evidence", panel)
         self.assertIn("done_reason", panel)
         self.assertIn("askButton", panel)
@@ -222,7 +261,9 @@ class ApiTests(unittest.TestCase):
         self.assertIn("exportMarkdown", panel)
         self.assertIn("<details", panel)
         self.assertIn("guida rapida", panel)
-        self.assertIn("Copilot tattico Groq", panel)
+        self.assertIn("Revisore AI via OpenRouter", panel)
+        self.assertIn("cost_usd", panel)
+        self.assertIn("total_tokens", panel)
         self.assertIn('id="finalAnswer"', panel)
         self.assertIn('id="askButton" disabled', panel)
         self.assertIn('id="searchButton" disabled', panel)
@@ -239,7 +280,12 @@ class ApiTests(unittest.TestCase):
         self.assertIn("Interrotto ·", panel)
         self.assertIn("/v1/jobs/recent", panel)
         self.assertIn("loadRecentJobs", panel)
-        self.assertIn("job.groq_copilot", panel)
+        self.assertIn("job.openrouter_copilot", panel)
+        self.assertIn("renderFailure", panel)
+        self.assertIn("job.failure", panel)
+        self.assertIn("error_code", panel)
+        self.assertIn("Benchmark RAG-only", panel)
+        self.assertIn("openrouter_copilot_enabled", panel)
         self.assertIn("il token resta soltanto nella memoria", panel)
         self.assertIn("normalizeToken", panel)
         self.assertIn("probabilmente è una password", panel)
@@ -256,6 +302,7 @@ class ApiTests(unittest.TestCase):
             self.assertNotIn("non salvare", stored)
             self.assertNotIn("question", stored)
             snapshot = state.metrics_snapshot()
+            self.assertFalse(snapshot["openrouter_copilot_enabled"])
             self.assertEqual(snapshot["feedback"], {"total": 1, "helpful": 1, "not_helpful": 0})
             state.record_feedback(job_id, False)
             self.assertEqual(state.metrics_snapshot()["feedback"], {"total": 1, "helpful": 0, "not_helpful": 1})

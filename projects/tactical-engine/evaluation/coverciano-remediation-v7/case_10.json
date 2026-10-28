@@ -1,0 +1,263 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv7_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer": "1. **Criteri metodologici per la modifica della struttura**: L'allenatore monitora costantemente efficacia tattica, condizione fisica e psicologica [F1]. La scelta del cambio (es. 4-3-3 a 3-5-2) deve garantire equilibrio, elasticità e razionalità rispetto alle caratteristiche dei giocatori [F4]. Si sfruttano le cinque sostituzioni per gestire dinamicamente le risorse e adattarsi all'andamento del match [F5].\n\n2. **Impatto emotivo/strategico e comunicazione**: L'allenatore trasmette idee tramite parole, gesti e segni, senza fermarsi al movimento del campo [F2]. La comunicazione efficace richiede sincronizzazione visiva e motoria tra compagni [F3]. Il messaggio deve essere semplice dato prima dell'ingresso per evitare disallineamento.\n\n**Esempio applicativo: Cambio dal 4-3-3 al 3-5-2 in vantaggio (ultimi 15 min)**\n*   **CHI agisce**: Un difensore centrale",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "030664fe088a29144a727883ce67c637d3f7f1d0c614cd90e7c655e0a1c4b98b",
+          "source": "La gestione tattica della gara.",
+          "canonical_source": "La gestione tattica della gara.",
+          "source_relative": "formations-and-systems/La gestione tattica della gara..json",
+          "pages": "[1]",
+          "distance": 0.36192,
+          "headings": [
+            "Le soluzioni a disposizione del tecnico e l'importanza di disporre di un metodo per comunicare con la squadra."
+          ],
+          "text": "Le soluzioni a disposizione del tecnico e l'importanza di disporre di un metodo per comunicare con la squadra.\nSebbene, nel momento in cui l'arbitro fischia il calcio d'inizio, prestazione e risultato della squadra dipendano prevalentemente da quanto i giocatori sapranno fare sul campo, il compito dell'allenatore non deve considerarsi esaurito al termine della preparazione tattica e strategica della gara.\nIl tecnico, proprio in funzione dell'atteggiamento tattico preordinato, deve costantemente monitorare l'efficacia delle proprie scelte e la validità della performance espressa dalla propria squadra durante la gara.\nLa valutazione oltre che in ambito tecnico-tattico sarà incentrata sull'analisi della prestazione da un punto di vista fisico e psicologico.\nPur non avendo l'ampiezza dei mezzi a disposizione dell'allenatore di basket (cambi illimitati, time out ecc.) il tecnico ha comunque una serie di possibilità a sua disposizione che deve saper utilizzare al meglio per \"indirizzare\" la partita.\nL'allenatore di calcio può \"correggere\" atteggiamento ed efficacia della prestazione dei suoi ragazzi attraverso le seguenti decisioni:\n- suggerimenti individuali da dare ai singoli giocatori;\n- cambio di posizione tra due (o più) giocatori all'interno del sistema di gioco;\n- cambio degli sviluppi offensivi e/o difensivi preordinati, senza modifica del sistema di gioco;\n- cambio del sistema di gioco."
+        },
+        {
+          "label": "F2",
+          "id": "b9bc0cae57dbf5cb52375802e09470c7f23da92cf416b4058f10c2008a15aadf",
+          "source": "Dolcetti",
+          "canonical_source": "Dolcetti",
+          "source_relative": "formations-and-systems/Dolcetti.json",
+          "pages": "[20]",
+          "distance": 0.35944,
+          "headings": [
+            "CONCLUSIONI"
+          ],
+          "text": "CONCLUSIONI\nFASI DELLA GARA - Alla fine ci sono sempre un avversario e una partita. Uno scontro dove tecnica, tattica e atletica possono più o meno essere decisivi, al pari di precisi momenti dove la condizione psichica ha dei sobbalzi in positivo o in negativo. Com'è giusto prevedere la gestione dello svantaggio, del vantaggio, delle mosse tattiche dell'avversario o delle proprie sostituzioni, è altresì sostanzioso prepararsi alle fasi della gara che vanno dall'impatto iniziale alla zona calda che precede il triplice fischio.\nCOMUNICAZIONE - Questi atteggiamenti di squadra hanno bisogno, per essere assimilati, di una comunicazione efficace. L'allenatore bravo deve farsi capire, deve trovare il modo di trasferire ai giocatori le sue idee, non deve mai fermarsi perché intorno tutto si muove. Parole, gesti, segni e video: tutto si può usare se si ha metodo e capacità d'intuire quale modulazione offrire.\nHo sentito alcune frasi molto acute, dette da Emir Kusturica (regista cinematografico vincitore di due \"Leone d'Oro\" di Venezia e di due \"Palma d'Oro\" di Cannes) e che regalo a chi vuole farle un po' sue. \"Ci sono molte persone che disprezzano i calciatori, eppure non esiste nessun grande calciatore che sia stupido: il calcio giocato bene è pura geometria, raffinata empatia e complessa capacità di anticipazione e astrazione\"."
+        },
+        {
+          "label": "F3",
+          "id": "5549790113f56760b992a3eeef2f44f1d90d28ea744bcadcf1dcd2a4bf7f533f",
+          "source": "FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2",
+          "canonical_source": "FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2",
+          "source_relative": "formations-and-systems/FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2.json",
+          "pages": "[7]",
+          "distance": null,
+          "headings": [
+            "4. Orientamento corporeo, scansione e ricezione"
+          ],
+          "text": "4. Orientamento corporeo, scansione e ricezione\nIl giocatore che riceve nella catena deve controllare prima della ricezione la posizione di avversario diretto, sostegno e spazio alle spalle. La scansione non è un gesto rituale: serve a scegliere l'orientamento del primo controllo e la soluzione successiva.\nRicevere aperti permette di giocare avanti con meno tocchi, ma non è sempre possibile. Con pressione sul lato esterno, la protezione del pallone e l'appoggio all'indietro possono diventare la scelta migliore per attivare un terzo uomo.\nLa postura del portatore è un segnale per i compagni. Un controllo verso l'interno può invitare una sovrapposizione; una ricezione orientata verso la linea laterale può richiedere un sostegno corto. La comunicazione efficace è soprattutto sincronizzazione visiva e motoria.\nCorrezione: non chiedere soltanto \"gioca a due tocchi\". Chiedere al ricevente quale informazione aveva raccolto prima del controllo, quale pressione ha percepito e perché ha scelto una direzione."
+        },
+        {
+          "label": "F4",
+          "id": "eaa77d55397900d923ced673a6c6d1ac92e779a922483d917f11264d8d65a3cd",
+          "source": "Allegati_179201015532",
+          "canonical_source": "Allegati_179201015532",
+          "source_relative": "formations-and-systems/Allegati_179201015532.json",
+          "pages": "[4, 5]",
+          "distance": 0.38448,
+          "headings": [
+            "2. Sistema di gioco"
+          ],
+          "text": "2. Sistema di gioco\nIl sistema di gioco rappresenta e spiega la dislocazione di base, attraverso i compiti e le funzioni dei giocatori in campo.\nQualsiasi sistema di gioco si desideri attuare deve tenere conto delle caratteristiche fondamentali e indispensabili che rappresentano i principi generali di qualsiasi sistema\nEsse esigono che un sistema di gioco sia:\n- square4 Equilibrato: che tenga in considerazione allo stesso modo e allo stesso tempo le due fasi in qualsiasi momento di gioco.\n- square4 Elastico: che si possa facilmente adattare a qualsiasi avversario mantenendo sempre gli equilibri.\n- square4 Razionale: che si adatti alle caratteristiche dei calciatori a disposizione.\nLa mia scelta per la stagione in corso, viste le caratteristiche psico-fisiche dei giocatori a disposizione, è stata quella di adottare un 4-4-2 a zona (Figura 1), ritenendolo un sistema in grado di\ngarantire compattezza, equilibrio e sicurezza in fase difensiva ed efficacia e varietà in quella offensiva.\nInoltre è un sistema di gioco che permette di mantenere la squadra corta in entrambe le fasi di gioco, di aggredire costantemente l'avversario e di occupare ottimamente gli spazi cercando di sfruttare al meglio le fasce laterali.\nFigura 1: dislocazione nel 4-4-2\n1 Portiere\n2 Laterale difensivo dx\n5 Centrale difensivo dx\n6 Centrale difensivo sx\n3 Laterale difensivo sx\n7 Centrocampista\nesterno dx\n4 Centrocampista\ncentrale dx\n8 Centrocampista\ncentrale sx\n11 Centrocampista"
+        },
+        {
+          "label": "F5",
+          "id": "4375c9867a870faedb0fb585d610afd5bcf76d74c6b053f1b9b63a530c2f48ac",
+          "source": "spalla_tesi-uefa-pro",
+          "canonical_source": "spalla_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/spalla_tesi-uefa-pro.json",
+          "pages": "[75]",
+          "distance": 0.36441,
+          "headings": [
+            "LÕaccelerazione del cambiamento: Comunicazione e Calcio"
+          ],
+          "text": "LÕaccelerazione del cambiamento: Comunicazione e Calcio\nLa seconda modifica, introdotta dopo la ripresa delle attivitˆ calcistiche dopo il Covid nel maggio 2020, riguarda la possibilitˆ di effettuare cinque sostituzioni durante le partite, rispetto alle tre previste in precedenza. Questa regola, confermata per le stagioni successive, ha trasformato le strategie degli allenatori, permettendo una gestione pi dinamica dei giocatori. L'aumento delle sostituzioni ha portato a un uso pi strategico delle risorse, con cambiamenti frequenti durante l'intervallo e la possibilitˆ di effettuare sostituzioni multiple contemporaneamente. Questo ha inciso profondamente sulla preparazione e sulla conduzione delle partite, influenzando il modo in cui gli allenatori pianificano e adattano le loro strategie in base allÕandamento del match.\nIn conclusione, il mondo del calcio ha attraversato un cambiamento significativo e rapido negli ultimi decenni, simile a quello vissuto dalla comunicazione. L'evoluzione tecnologica e le modifiche regolamentari hanno creato nuove opportunitˆ e sfide, costringendo allenatori e professionisti a adattarsi e innovare continuamente. Questo processo di trasformazione continua a plasmare il futuro del calcio, richiedendo una continua capacitˆ di apprendere, adattarsi e rimanere competitivi in un ambiente in continua evoluzione."
+        },
+        {
+          "label": "F6",
+          "id": "bf83d2c7716f18df494dd13ff029a6b7dc596733ae26f7613a8d6e2bb78b1e0f",
+          "source": "spalla_tesi-uefa-pro",
+          "canonical_source": "spalla_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/spalla_tesi-uefa-pro.json",
+          "pages": "[94]",
+          "distance": 0.35433,
+          "headings": [
+            "Considerazioni finali"
+          ],
+          "text": "Considerazioni finali\nCosa ci riserva il futuro? Forse, per esporlo in modo pi semplice e diretto, possiamo citare una frase di Sun Tzu tratta dal famoso libro ÒLÕarte della GuerraÓ, antico trattato di strategia militare:\nÒLÕattacco migliore quello che non fa capire dove difendersi. La difesa migliore quella che non fa capire dove attaccare.Ó\nQuesta frase, se applicata alle partite di calcio, suggerisce che, a partire da un'analisi approfondita delle caratteristiche della propria squadra e dei singoli calciatori, gli allenatori possano sviluppare la capacitˆ di adattare la strategia in base alle specifiche esigenze di ciascuna partita, e persino durante la stessa, grazie anche alla possibilitˆ di effettuare cinque sostituzioni. Gli allenatori dovranno preparare i propri calciatori a svolgere diverse funzioni all'interno della gara, indipendentemente dai moduli e dai ruoli, in relazione al gioco dei propri compagni. Le squadre dovranno essere abituate a mantenere atteggiamenti multipli nella fase di non possesso, come la difesa a blocco basso, l'attesa, il pressing e l'aggressione uomo contro uomo. Nella fase di possesso, sarˆ fondamentale insegnare ai calciatori a pensare e riconoscere il gioco, a muoversi in base alla situazione reale e immediata, interpretando le intenzioni difensive dellÕavversario e trovando soluzioni offensive in modo autonomo."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "La gestione tattica della gara.",
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco",
+        "corso_allenatore_base_tesina_tecnica_tattica_calcistica_4_2_3_1"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [
+        "7a77d986ad4ac33b39bf0d6bbc016d7f09143a10f7ec6779a64546a63b30dfa1",
+        "404ef0724482a92cd885127b2b8317a759b932e3dbcb2a53d062324c8500ac1b",
+        "78aa59000d66eea74aade98f8fb89dcbc9673d436e2dd6cb9c12ed601bd7cefb"
+      ],
+      "structural_signals": {
+        "formations": [
+          "3-5-2",
+          "4-2-3-1",
+          "4-3-3"
+        ],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "facets": [
+          "prevention",
+          "substitutions",
+          "communication",
+          "psychology"
+        ],
+        "scenarios": [
+          "game_management"
+        ],
+        "formations": [
+          "3-5-2",
+          "4-2-3-1",
+          "4-3-3"
+        ],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi la gestione strategica della gara attraverso le sostituzioni e i cambi di sistema di gioco (tattica in itinere). ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "eaa77d55397900d923ced673a6c6d1ac92e779a922483d917f11264d8d65a3cd",
+        "4375c9867a870faedb0fb585d610afd5bcf76d74c6b053f1b9b63a530c2f48ac",
+        "b9bc0cae57dbf5cb52375802e09470c7f23da92cf416b4058f10c2008a15aadf",
+        "030664fe088a29144a727883ce67c637d3f7f1d0c614cd90e7c655e0a1c4b98b"
+      ],
+      "tactical_covered": {
+        "prevention": "eaa77d55397900d923ced673a6c6d1ac92e779a922483d917f11264d8d65a3cd",
+        "substitutions": "4375c9867a870faedb0fb585d610afd5bcf76d74c6b053f1b9b63a530c2f48ac",
+        "communication": "b9bc0cae57dbf5cb52375802e09470c7f23da92cf416b4058f10c2008a15aadf",
+        "psychology": "030664fe088a29144a727883ce67c637d3f7f1d0c614cd90e7c655e0a1c4b98b"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+        "cambio sistema gara ruoli entra esce comunicazione fiducia preventive seconde palle 3-5-2 4-2-3-1 4-3-3",
+        "cambio sistema in gara giocatore esce entra compiti comunicazione equilibrio transizione 3-5-2 4-2-3-1 4-3-3",
+        "preventiv seconda palla equilibrio 3-5-2 4-2-3-1 4-3-3",
+        "comunicazione comando leader segnale 3-5-2 4-2-3-1 4-3-3"
+      ],
+      "tactical_anchors": [
+        "cambio del sistema di gioco",
+        "comunicazione efficace"
+      ],
+      "tactical_anchor_candidate_ids": [
+        "030664fe088a29144a727883ce67c637d3f7f1d0c614cd90e7c655e0a1c4b98b",
+        "5549790113f56760b992a3eeef2f44f1d90d28ea744bcadcf1dcd2a4bf7f533f",
+        "72d96d72324fe4854edbdb55a97fe8dc0ae302c899a047da17e08b4b7aac63dd",
+        "b9bc0cae57dbf5cb52375802e09470c7f23da92cf416b4058f10c2008a15aadf"
+      ],
+      "tactical_anchor_reserved_ids": [
+        "030664fe088a29144a727883ce67c637d3f7f1d0c614cd90e7c655e0a1c4b98b",
+        "5549790113f56760b992a3eeef2f44f1d90d28ea744bcadcf1dcd2a4bf7f533f",
+        "b9bc0cae57dbf5cb52375802e09470c7f23da92cf416b4058f10c2008a15aadf"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "prevention": true,
+          "substitutions": true,
+          "communication": true,
+          "psychology": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": false,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [
+          "reason"
+        ],
+        "detail_coverage": {
+          "players_in_out": true,
+          "new_structure": true,
+          "live_communication": false,
+          "observable_psychology": false,
+          "concrete_role_change": true,
+          "transition_balance": false,
+          "live_message": true,
+          "emotional_effect": false
+        },
+        "missing_details": [
+          "live_communication",
+          "observable_psychology",
+          "transition_balance",
+          "emotional_effect"
+        ],
+        "complete": false
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 247.54,
+      "generation": {
+        "total_duration_ns": 51703631822,
+        "load_duration_ns": 2228342,
+        "prompt_eval_duration_ns": 22615239000,
+        "eval_duration_ns": 29020133000,
+        "eval_count": 224,
+        "prompt_eval_count": 3872,
+        "done_reason": "length",
+        "repair_reasons": [
+          "copertura incompleta: live_communication, transition_balance"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

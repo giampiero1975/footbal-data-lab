@@ -63,3 +63,10 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - Evidenza: `docs/panel-ui-information-architecture-01.md`.
 
 - Verifica differenziale UI 2026-10-27: **VALIDATO** solo controllo statico (43 ID, 11 handler, sintassi JS, struttura e deep-link legacy); **DA FARE** browser desktop/mobile, interazioni reali e successiva decisione su merge. Report `docs/panel-ui-information-architecture-01.md`; commit `ccf4db3`.
+
+## 2026-10-28 — Diagnostica e cronologia affidabili
+
+- [x] **IMPLEMENTATO e VALIDATO offline**: persistenza server-side di successi, fallimenti e timeout con recupero dopo riavvio.
+- [x] **IMPLEMENTATO e VALIDATO offline**: errore strutturato con `phase`, `code`, messaggio comprensibile e azione consigliata; registro tecnico senza domande, risposte o token.
+- [x] **IMPLEMENTATO e VALIDATO in anteprima**: la nuova UI mostra fallimenti nella cronologia, distingue RAG e revisore opzionale e non presenta più Groq come componente attivo.
+- [ ] **DA FARE**: deploy VPS e smoke autenticata del caso storico `ae4a0e8d`; nessun nuovo benchmark generativo necessario per validare la sola diagnostica.

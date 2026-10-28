@@ -18,7 +18,8 @@ def pass1():
         "answered_parts": ["x"], "missing_parts": [], "digressions": [], "confirmed_points": [],
         "findings": [{"finding_id": "f01", "kind": "POSSIBILE_LACUNA", "claim": "c",
                       "why": "w", "priority": 1, "needs_document_check": True}],
-        "improvement_plan": ["m"], "retrieval_needs": ["r"]}], "limitations": []}
+        "improvement_plan": ["m"], "replacement_answer": "Piano operativo completo. " * 25,
+        "retrieval_needs": ["r"]}], "limitations": []}
 
 
 def pass2():
@@ -66,6 +67,7 @@ class CopilotOfflineTests(unittest.TestCase):
         body = json.loads(request["messages"][1]["content"])
         self.assertEqual(body["cases"][0]["evidence"][0]["label"], "F1")
         self.assertEqual(body["cases"][0]["findings"][0]["finding_id"], "f01")
+        self.assertIn("Piano operativo completo", body["cases"][0]["replacement_answer"])
 
     def test_pass2_uses_provider_compatible_static_schema(self):
         request = copilot.build_pass2(cases(), pass1())

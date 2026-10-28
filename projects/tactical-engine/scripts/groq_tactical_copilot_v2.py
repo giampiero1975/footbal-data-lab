@@ -24,16 +24,46 @@ correttezza di ruoli/movimenti/tempi/spazi, completezza e azioni concrete di
 miglioramento. Non inventare fonti, pagine o attribuzioni. Assegna a ogni
 osservazione un finding_id univoco e indica se richiede verifica documentale."""
 
+PASS1_PROMPT += """ Valuta come una commissione esigente: preserva sistema,
+lato, ruolo, punteggio, minuto e vincoli della domanda. Non confondere terzino,
+ala, esterno di centrocampo, mezzala e mediano. Ogni finding deve proporre una
+correzione concreta, non ripetere l'errore della bozza. Per una situazione di
+gara verifica sempre struttura in possesso, occupazione degli spazi, movimenti
+sincroni, preventiva/transizione e uso esplicito dei cambi disponibili.
+Oltre alla diagnosi scrivi replacement_answer: una nuova risposta completa da
+esame, operativa e autosufficiente. Deve dire chi fa cosa, dove e quando;
+rispondere a ogni vincolo numerico della domanda (cambi, slot, minuto, risultato);
+definire struttura, catene/rotazioni, occupazione dell'area, preventiva e trigger.
+Non limitarti a spiegare perche la bozza e sbagliata e non usare l'assenza di una
+fonte come motivo per evitare una scelta logico-tattica esplicitamente qualificata.
+Prima di scrivere costruisci mentalmente una mappa: NOSTRA squadra/AVVERSARIO,
+lato destro/sinistro, ruolo iniziale e ruolo trasformato. Il lato destro
+avversario fronteggia il nostro lato sinistro e viceversa. Non spostare dalla
+zona decisiva il giocatore che sta gia vincendo il duello: usa compagni vicini,
+rotazioni e corse nel mezzo spazio per rompere il raddoppio. Non inventare ruoli
+assenti nel sistema dichiarato. Se sono indicati N cambi e M slot, nomina tutti
+gli N cambi in ordine e raggruppali esattamente negli M slot, spiegando per
+ciascuno uscita, entrata, nuova posizione e impatto strutturale."""
+
 PASS2_PROMPT = """Sei il verificatore documentale della revisione tattica.
 Ricevi osservazioni gia formulate ed estratti selezionati. Per ogni finding_id
-classifica esclusivamente: SUPPORTATO, ULTERIORE_RETRIEVAL o NON_SUPPORTATO.
+classifica esclusivamente: SUPPORTATO, GIUDIZIO_TECNICO,
+ULTERIORE_RETRIEVAL o NON_SUPPORTATO. Usa GIUDIZIO_TECNICO soltanto per una
+correzione logico-tattica che nel finding dichiara needs_document_check=false;
+non associarle evidence_labels.
 Usa soltanto evidence_labels realmente disponibili. Non controllare la sintassi
 delle citazioni della risposta: quella responsabilita appartiene al software.
 Non inventare fonti, pagine, citazioni o contenuti assenti dagli estratti."""
 
-PASS2_PROMPT += """ Dopo i controlli, riscrivi una risposta finale concreta e
-completa per ogni caso. Applica soltanto finding classificati SUPPORTATO; lascia
-gli altri in unresolved_findings. Ogni affermazione documentale deve citare una
+PASS2_PROMPT += """ Dopo i controlli, usa replacement_answer come ossatura e
+riscrivi una risposta finale concreta e completa per ogni caso: non produrre una
+diagnosi della bozza. La risposta deve avere sezioni operative su obiettivo e
+struttura, compiti e movimenti coordinati, utilizzo di tutti i cambi/slot o altri
+vincoli espliciti, occupazione dell'area, preventiva/transizione e trigger
+decisionali. Applica soltanto finding classificati SUPPORTATO o
+GIUDIZIO_TECNICO; lascia gli altri in unresolved_findings. Preserva le parti
+corrette della bozza, ma sostituisci integralmente quelle errate. Non presentare
+i GIUDIZIO_TECNICO come fatti documentali. Ogni affermazione documentale deve citare una
 evidence label disponibile nel formato [F1]. Non aggiungere bibliografie o
 fonti esterne e non dichiarare verificato cio che richiede ulteriore retrieval."""
 
@@ -55,7 +85,8 @@ PASS1_SCHEMA = {
         "reviews": {"type": "array", "items": {
             "type": "object", "additionalProperties": False,
             "required": ["id", "score", "verdict", "answered_parts", "missing_parts", "digressions",
-                         "confirmed_points", "findings", "improvement_plan", "retrieval_needs"],
+                         "confirmed_points", "findings", "improvement_plan", "replacement_answer",
+                         "retrieval_needs"],
             "properties": {
                 "id": {"type": "string"}, "score": {"type": "number", "minimum": 0, "maximum": 10},
                 "verdict": {"type": "string", "enum": ["PASS", "REVISIONE"]},
@@ -65,6 +96,7 @@ PASS1_SCHEMA = {
                 "confirmed_points": {"type": "array", "items": {"type": "string"}},
                 "findings": {"type": "array", "items": FINDING},
                 "improvement_plan": {"type": "array", "items": {"type": "string"}},
+                "replacement_answer": {"type": "string"},
                 "retrieval_needs": {"type": "array", "items": {"type": "string"}},
             }}},
         "limitations": {"type": "array", "items": {"type": "string"}},
@@ -80,7 +112,7 @@ PASS2_SCHEMA = {
             "required": ["id", "finding_id", "classification", "evidence_labels", "rationale"],
             "properties": {
                 "id": {"type": "string"}, "finding_id": {"type": "string"},
-                "classification": {"type": "string", "enum": ["SUPPORTATO", "ULTERIORE_RETRIEVAL", "NON_SUPPORTATO"]},
+                "classification": {"type": "string", "enum": ["SUPPORTATO", "GIUDIZIO_TECNICO", "ULTERIORE_RETRIEVAL", "NON_SUPPORTATO"]},
                 "evidence_labels": {"type": "array", "items": {"type": "string"}},
                 "rationale": {"type": "string"},
             }}},
@@ -169,6 +201,9 @@ def validate_pass1(parsed: dict, case_ids: list[str]) -> dict:
             raise ValueError("PASS1_SCORE")
         if (float(score) >= 8) != (row.get("verdict") == "PASS"):
             raise ValueError("PASS1_VERDICT")
+        replacement = row.get("replacement_answer")
+        if not isinstance(replacement, str) or len(replacement.strip()) < 400:
+            raise ValueError("PASS1_REPLACEMENT_ANSWER")
         for finding in row.get("findings", []):
             fid = finding.get("finding_id")
             if not fid or fid in finding_ids:
@@ -179,7 +214,11 @@ def validate_pass1(parsed: dict, case_ids: list[str]) -> dict:
 
 def build_pass2(cases: list[dict], pass1: dict, model: str = DEFAULT_MODEL) -> dict:
     by_id = {row["id"]: row for row in pass1["reviews"]}
-    body = {"cases": [{"id": c["id"], "findings": by_id[c["id"]]["findings"],
+    body = {"cases": [{"id": c["id"], "question": c["question"],
+                        "original_answer": c["answer"],
+                        "replacement_answer": by_id[c["id"]]["replacement_answer"],
+                        "improvement_plan": by_id[c["id"]]["improvement_plan"],
+                        "findings": by_id[c["id"]]["findings"],
                         "evidence": c["evidence"]} for c in cases]}
     # Schema names are immutable provider-side contract identifiers.  The v1
     # name was used by an experimental dynamic schema, so the restored static
@@ -243,7 +282,16 @@ def normalize_pass2(parsed: dict, cases: list[dict], pass1: dict) -> tuple[dict,
     by_case = {row.get("id"): row for row in revised if isinstance(row, dict)}
     if len(by_case) != len(revised):
         raise ValueError("PASS2_REVISED_DUPLICATE_ID")
-    supported = {(r["id"], r["finding_id"]) for r in checks if r.get("classification") == "SUPPORTATO"}
+    needs_check = {(row["id"], finding["finding_id"]): finding.get("needs_document_check", True)
+                   for row in pass1["reviews"] for finding in row["findings"]}
+    for row in checks:
+        key = (row["id"], row["finding_id"])
+        if row.get("classification") == "GIUDIZIO_TECNICO" and needs_check.get(key, True):
+            row["classification"] = "ULTERIORE_RETRIEVAL"
+            row["evidence_labels"] = []
+            notes.append(f"{row['id']}:{row['finding_id']}:EXPERT_JUDGMENT_DOWNGRADED")
+    supported = {(r["id"], r["finding_id"]) for r in checks
+                 if r.get("classification") in {"SUPPORTATO", "GIUDIZIO_TECNICO"}}
     for case in cases:
         case_id = case["id"]
         row = by_case.get(case_id)
@@ -284,7 +332,14 @@ def validate_pass2(parsed: dict, cases: list[dict], pass1: dict) -> dict:
     case_ids = {c["id"] for c in cases}
     if not isinstance(revised, list) or {r.get("id") for r in revised} != case_ids:
         raise ValueError("PASS2_REVISED_CASE_COVERAGE")
-    supported = {(r["id"], r["finding_id"]) for r in checks if r["classification"] == "SUPPORTATO"}
+    needs_check = {(row["id"], finding["finding_id"]): finding.get("needs_document_check", True)
+                   for row in pass1["reviews"] for finding in row["findings"]}
+    for row in checks:
+        key = (row["id"], row["finding_id"])
+        if row["classification"] == "GIUDIZIO_TECNICO" and needs_check.get(key, True):
+            raise ValueError("PASS2_INVALID_EXPERT_JUDGMENT")
+    supported = {(r["id"], r["finding_id"]) for r in checks
+                 if r["classification"] in {"SUPPORTATO", "GIUDIZIO_TECNICO"}}
     expected_by_case = {case_id: {fid for cid, fid in expected if cid == case_id} for case_id in case_ids}
     for row in revised:
         case_id = row["id"]
@@ -400,7 +455,9 @@ def preflight(paths: list[Path], output: Path, model: str) -> None:
     request1 = build_pass1(cases, model)
     synthetic_pass1 = {"reviews": [{"id": c["id"], "score": 0, "verdict": "REVISIONE",
         "answered_parts": [], "missing_parts": [], "digressions": [], "confirmed_points": [],
-        "findings": [], "improvement_plan": [], "retrieval_needs": []} for c in cases], "limitations": []}
+        "findings": [], "improvement_plan": [],
+        "replacement_answer": "Preflight placeholder operativo. " * 20,
+        "retrieval_needs": []} for c in cases], "limitations": []}
     validate_pass1(synthetic_pass1, list(mapping))
     request2 = build_pass2(cases, synthetic_pass1, model)
     atomic_new(output, {"schema": "groq_tactical_copilot_preflight_v2", "status": "VALIDATO",
