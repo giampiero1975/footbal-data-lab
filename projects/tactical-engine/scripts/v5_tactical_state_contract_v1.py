@@ -87,9 +87,14 @@ def _formation_slots(formation, side="own"):
 
 
 def _explicit_actor_refs(question):
+    numbers = set(re.findall(r"\b(?:numero|n\.)\s*(\d{1,2})\b", question, re.I))
+    for pattern in (
+            r"(?:esce|togli(?:e|ere)?)\s+(?:il\s+)?(\d{1,2})\b",
+            r"(?:entra|inserisc(?:e|o|i))\s+(?:il\s+)?(\d{1,2})\b"):
+        numbers.update(re.findall(pattern, question, re.I))
     return [entity(f"actor:explicit:number:{number}", "actor_ref", f"numero {number}",
                    "explicit", availability="unknown")
-            for number in sorted(set(re.findall(r"\b(?:numero|n\.)\s*(\d{1,2})\b", question, re.I)))]
+            for number in sorted(numbers)]
 
 
 def _explicit_role_refs(roles):
@@ -274,7 +279,23 @@ def _timeline(states, events, issues):
         visiting.remove(node); visited.add(node); return True
     if not all(visit(node) for node in graph):
         issues.append(issue("timeline_cycle", "BLOCKING", "events", "Timeline ciclica."))
-    return edges
+    return edges, graph
+
+
+def _reachable(graph, source, target):
+    """Return True only for a demonstrated directed path in the partial order."""
+    if source is None or target is None:
+        return False
+    pending, visited = [source], set()
+    while pending:
+        node = pending.pop()
+        if node == target:
+            return True
+        if node in visited:
+            continue
+        visited.add(node)
+        pending.extend(graph.get(node, []))
+    return False
 
 
 def _unknown_severity(event):
@@ -307,10 +328,9 @@ def validate_contract(plan):
     if mode not in SUBSTITUTION_MODES:
         issues.append(issue("invalid_substitution_mode", "BLOCKING", "substitution_mode", "Modalità sostituzioni non valida."))
     states, events = plan.get("phase_states", []), plan.get("events", [])
-    edges = _timeline(states, events, issues)
+    edges, timeline_graph = _timeline(states, events, issues)
     presence_by_state = _presence_maps(states, entities, issues)
     state_by_id = {item.get("state_id"): item for item in states}
-    exited = set()
     for index, event in enumerate(events):
         path, kind = f"events.{index}", event.get("type")
         if kind not in EVENT_TYPES:
@@ -334,12 +354,6 @@ def validate_contract(plan):
                 _check_status(before.get(in_id), {"off_field"}, event, path, issues, "incoming_not_off_field")
                 _check_status(after.get(out_id), {"off_field"}, event, path, issues, "outgoing_effect_missing")
                 _check_status(after.get(in_id), {"on_field"}, event, path, issues, "incoming_effect_missing")
-            if in_id in exited:
-                severity = "BLOCKING" if mode == "standard_no_reentry" else "QUALIFICATION_REQUIRED" if mode == "unknown" else None
-                if severity:
-                    issues.append(issue("actor_reentry", severity, path, "Rientro incompatibile o non verificabile."))
-            if out_id:
-                exited.add(out_id)
         elif kind == "rotation":
             actor = _resolve(event.get("subject_ref"), entities, {"actor_ref", "candidate_actor"}, path + ".subject_ref", issues)
             actor_id = (actor or {}).get("id")
@@ -364,13 +378,17 @@ def validate_contract(plan):
             if team == "own" and source and target and actor_id:
                 _check_status(before.get(actor_id), {"on_field"}, event, path, issues, "expelled_actor_not_present")
                 _check_status(after.get(actor_id), {"unavailable"}, event, path, issues, "expulsion_effect_missing")
-        if source and target:
-            before_count = state_by_id[source].get("effective_players", {}).get("value")
-            after_count = state_by_id[target].get("effective_players", {}).get("value")
-            if before_count is not None and after_count is not None:
-                delta = -1 if kind == "expulsion" and event.get("team", {}).get("value") == "own" else 0
-                if after_count != before_count + delta:
-                    issues.append(issue("cardinality_mismatch", "BLOCKING", path, "Cardinalità incoerente."))
+    substitutions = [(index, event) for index, event in enumerate(events) if event.get("type") == "substitution"]
+    for earlier_index, earlier in substitutions:
+        exited_actor = (earlier.get("out_ref") or {}).get("id")
+        for later_index, later in substitutions:
+            if earlier_index == later_index or exited_actor != (later.get("in_ref") or {}).get("id"):
+                continue
+            if _reachable(timeline_graph, earlier.get("to_state_id"), later.get("from_state_id")):
+                severity = "BLOCKING" if mode == "standard_no_reentry" else "QUALIFICATION_REQUIRED" if mode == "unknown" else None
+                if severity:
+                    issues.append(issue("actor_reentry", severity, f"events.{later_index}",
+                                        "Rientro incompatibile o non verificabile."))
     for s_index, state_item in enumerate(states):
         if state_item.get("phase", "unknown") not in PHASES:
             issues.append(issue("invalid_phase", "BLOCKING", f"phase_states.{s_index}.phase", "Fase non valida."))
@@ -392,6 +410,13 @@ def validate_contract(plan):
                 issues.append(issue("assignment_actor_not_on_field", "BLOCKING", path, "Attore assegnato ma non in campo."))
             elif subject_id and status in {None, "unknown"}:
                 issues.append(issue("assignment_presence_unknown", "QUALIFICATION_REQUIRED", path, "Presenza non verificata."))
+        if state_item.get("presence_complete", {}).get("value") is True:
+            effective = state_item.get("effective_players", {}).get("value")
+            present_count = sum(status == "on_field" for status in presence_by_state.get(state_item.get("state_id"), {}).values())
+            if effective is not None and present_count != effective:
+                issues.append(issue("complete_presence_cardinality_mismatch", "BLOCKING",
+                                    f"phase_states.{s_index}",
+                                    "L'elenco completo dei presenti non coincide con la cardinalità dichiarata."))
     mapping_from, mapping_to = set(), set()
     for index, mapping in enumerate(plan.get("structural_mappings", [])):
         path = f"structural_mappings.{index}"
@@ -424,6 +449,32 @@ def validate_contract(plan):
         actual = {actor for actor, status in presence_by_state[target].items() if status == "on_field"}
         if expected != actual:
             issues.append(issue("actor_continuity_mismatch", "BLOCKING", f"{source}->{target}", "Continuità attori incoerente."))
+        before_assignments = {(item.get("subject_ref") or {}).get("id"): (item.get("position_ref") or {}).get("id")
+                              for item in before_state.get("assignments", [])}
+        after_assignments = {(item.get("subject_ref") or {}).get("id"): (item.get("position_ref") or {}).get("id")
+                             for item in after_state.get("assignments", [])}
+        mapping = {(item.get("from_slot_ref") or {}).get("id"): (item.get("to_slot_ref") or {}).get("id")
+                   for item in plan.get("structural_mappings", [])}
+        if mapping and before_assignments and after_assignments:
+            for actor_id in expected & actual:
+                source_slot, target_slot = before_assignments.get(actor_id), after_assignments.get(actor_id)
+                if source_slot is None or target_slot is None:
+                    issues.append(issue("assignment_continuity_incomplete", "QUALIFICATION_REQUIRED",
+                                        f"{source}->{target}", "Assegnazioni concrete insufficienti per ricostruire la trasformazione."))
+                elif mapping.get(source_slot) != target_slot:
+                    issues.append(issue("assignment_mapping_mismatch", "BLOCKING", f"{source}->{target}",
+                                        "La posizione finale dell'attore contraddice il mapping strutturale dichiarato."))
+    transition_deltas = {}
+    for source, target, index in edges:
+        event = events[index]
+        delta = -1 if event.get("type") == "expulsion" and event.get("team", {}).get("value") == "own" else 0
+        transition_deltas[(source, target)] = transition_deltas.get((source, target), 0) + delta
+    for (source, target), delta in transition_deltas.items():
+        before_count = state_by_id[source].get("effective_players", {}).get("value")
+        after_count = state_by_id[target].get("effective_players", {}).get("value")
+        if before_count is not None and after_count is not None and after_count != before_count + delta:
+            issues.append(issue("cardinality_mismatch", "BLOCKING", f"{source}->{target}",
+                                "Cardinalità incoerente con il delta aggregato della transizione."))
     blocking = [item for item in issues if item["severity"] == "BLOCKING"]
     return {"schema": "tactical_state_validation_v1", "valid": not blocking, "issues": issues,
             "counts": {level: sum(item["severity"] == level for item in issues) for level in SEVERITIES}}
@@ -445,6 +496,14 @@ def render_validated_structure(plan, validation=None):
     if plan.get("position_slots"):
         lines.append("FATTI VALIDATI — Gli slot sono posizioni astratte, non identità o disponibilità.")
     blocked_events = {int(item["path"].split(".")[1]) for item in blocking if re.match(r"events\.\d+", item["path"])}
+    if any(item["path"] == "events" for item in blocking):
+        blocked_events.update(range(len(plan.get("events", []))))
+    for item in blocking:
+        if "->" not in item["path"]:
+            continue
+        source, target = item["path"].split("->", 1)
+        blocked_events.update(index for index, event in enumerate(plan.get("events", []))
+                              if event.get("from_state_id") == source and event.get("to_state_id") == target)
     for index, event in enumerate(plan.get("events", [])):
         if index in blocked_events:
             continue

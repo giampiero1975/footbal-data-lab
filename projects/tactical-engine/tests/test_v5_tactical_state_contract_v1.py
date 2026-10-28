@@ -305,5 +305,96 @@ class DifferentialCorrectionTests(unittest.TestCase):
         self.assertTrue(contract.validate_contract(plan)["valid"])
 
 
+class ConsolidatedRemediationTests(unittest.TestCase):
+    """Seven non-equivalent cases found after the v1.1 independent review."""
+
+    def test_25_two_own_expulsions_aggregate_transition_delta(self):
+        plan = contract.build_question_plan("Numero 4 e numero 5 espulsi.")
+        ids = actors(plan)
+        plan["actors"][0]["team"] = contract.value("own", "explicit")
+        plan["actors"][1]["team"] = contract.value("own", "explicit")
+        plan["events"] = []
+        for index, actor in enumerate((ids["4"], ids["5"]), 1):
+            plan["events"].append({"event_id": f"red:{index}", "type": "expulsion",
+                "from_state_id": "s1", "to_state_id": "s2",
+                "subject_ref": contract.ref(actor, "actor_ref"),
+                "team": contract.value("own", "explicit"),
+                "temporal_relation": contract.value("between_states", "explicit"),
+                "assertion_mode": "question_observation", "cardinality_delta": -1,
+                "provenance": "explicit"})
+        plan["phase_states"] = [
+            contract.state("s1", actor_presence=[known_presence(ids["4"], "on_field"), known_presence(ids["5"], "on_field")],
+                           effective_players=contract.value(11, "explicit")),
+            contract.state("s2", actor_presence=[known_presence(ids["4"], "unavailable"), known_presence(ids["5"], "unavailable")],
+                           effective_players=contract.value(9, "explicit"))]
+        self.assertNotIn("cardinality_mismatch", codes(contract.validate_contract(plan)))
+
+    def test_26_reentry_is_independent_of_event_serialization(self):
+        plan = contract.build_question_plan("Numero 11 e numero 5.")
+        ids = actors(plan); plan["substitution_mode"] = contract.value("standard_no_reentry", "explicit")
+        first = substitution(ids["11"], ids["5"], "s1", "s2")
+        second = substitution(ids["5"], ids["11"], "s2", "s3"); second["event_id"] = "sub:2"
+        plan["events"] = [second, first]
+        plan["phase_states"] = [
+            contract.state("s1", actor_presence=[known_presence(ids["11"], "on_field"), known_presence(ids["5"], "off_field")]),
+            contract.state("s2", actor_presence=[known_presence(ids["11"], "off_field"), known_presence(ids["5"], "on_field")]),
+            contract.state("s3", actor_presence=[known_presence(ids["11"], "on_field"), known_presence(ids["5"], "off_field")])]
+        self.assertIn("actor_reentry", codes(contract.validate_contract(plan), "BLOCKING"))
+
+    def test_27_global_cycle_hides_involved_events_from_renderer(self):
+        plan = contract.build_question_plan("Numero 11 si abbassa.")
+        actor = actors(plan)["11"]
+        first = rotation(actor, "s1", "s2")
+        second = rotation(actor, "s2", "s1"); second["event_id"] = "rot:2"
+        plan["events"] = [first, second]
+        plan["phase_states"] = [
+            contract.state("s1", actor_presence=[known_presence(actor, "on_field")]),
+            contract.state("s2", actor_presence=[known_presence(actor, "on_field")])]
+        rendered = contract.render_validated_structure(plan)
+        self.assertIn("Timeline ciclica", rendered)
+        self.assertNotIn("Rotazione:", rendered)
+
+    def test_28_edge_to_missing_state_returns_structured_issue(self):
+        plan = contract.build_question_plan("Numero 11 si abbassa.")
+        actor = actors(plan)["11"]
+        plan["events"] = [rotation(actor, "state:initial", "missing")]
+        validation = contract.validate_contract(plan)
+        self.assertIn("invalid_event_edge", codes(validation, "BLOCKING"))
+
+    def test_29_bare_numbers_in_substitution_are_registered(self):
+        plan = contract.build_question_plan("Esce il 7, entra il 9.")
+        self.assertEqual({item["label"] for item in plan["actors"]}, {"numero 7", "numero 9"})
+        self.assertEqual(len(plan["events"]), 1)
+        self.assertNotIn("unknown_reference", codes(contract.validate_contract(plan)))
+
+    def test_30_complete_presence_must_match_cardinality(self):
+        plan = contract.build_question_plan("Numero 11, siamo in 10.")
+        actor = actors(plan)["11"]
+        plan["phase_states"] = [contract.state("s1", actor_presence=[known_presence(actor, "on_field")],
+                                               effective_players=contract.value(10, "explicit"), presence_complete=True)]
+        self.assertIn("complete_presence_cardinality_mismatch", codes(contract.validate_contract(plan), "BLOCKING"))
+
+    def test_31_concrete_assignment_must_follow_declared_mapping(self):
+        plan = contract.build_question_plan("Numero 11, dal 4-3-3 al 3-5-2.", ["4-3-3", "3-5-2"])
+        actor = actors(plan)["11"]
+        source = next(item for item in plan["position_slots"] if item["id"].endswith(":lw"))
+        correct_target = next(item for item in plan["position_slots"] if item["id"].endswith(":lf"))
+        wrong_target = next(item for item in plan["position_slots"] if item["id"].endswith(":rf"))
+        plan["structural_mappings"] = [{"from_slot_ref": contract.ref(source["id"], "position_slot"),
+                                        "to_slot_ref": contract.ref(correct_target["id"], "position_slot"),
+                                        "provenance": "explicit"}]
+        plan["events"] = [rotation(actor, "s1", "s2")]
+        plan["phase_states"] = [
+            contract.state("s1", actor_presence=[known_presence(actor, "on_field")], presence_complete=True,
+                           effective_players=contract.value(1, "explicit"), assignments=[{
+                               "subject_ref": contract.ref(actor, "actor_ref"),
+                               "position_ref": contract.ref(source["id"], "position_slot"), "provenance": "explicit"}]),
+            contract.state("s2", actor_presence=[known_presence(actor, "on_field")], presence_complete=True,
+                           effective_players=contract.value(1, "explicit"), assignments=[{
+                               "subject_ref": contract.ref(actor, "actor_ref"),
+                               "position_ref": contract.ref(wrong_target["id"], "position_slot"), "provenance": "explicit"}])]
+        self.assertIn("assignment_mapping_mismatch", codes(contract.validate_contract(plan), "BLOCKING"))
+
+
 if __name__ == "__main__":
     unittest.main()
