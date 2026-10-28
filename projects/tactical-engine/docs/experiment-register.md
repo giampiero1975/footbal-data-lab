@@ -1386,3 +1386,25 @@ falso positivo sostanziale. Il pannello non invia cronologia ai nuovi job.
 Decisione: mantenere `think:false`; aprire controlli relazionali e gestione
 esplicita del contesto follow-up, senza deploy o nuova campagna. Stato:
 **ESEGUITO**, qualità >=26/30 non VALIDATA.
+### RD-TSC-V1-GITHUB-EVIDENCE-01 — prima patch deterministica (2026-10-28)
+
+Attività: implementare e pubblicare separatamente il Tactical State Contract v1
+deterministico, senza generazione, API o deploy. Script:
+`scripts/v5_tactical_state_contract_v1.py`; ingresso riutilizzato
+`scripts/v5_tactical_query_plan_v1.py::analyse`; test
+`tests/test_v5_tactical_state_contract_v1.py` e regressione planner esistente.
+Commit implementazione/test: `c1c2b233f048873368b94900dad779cf14649679`;
+report `docs/tactical-state-contract-v1-deterministic-01.md`. Risultato: 17/17
+test nuovi e 18/18 storici PASS, `py_compile` e `git diff --check` PASS; nessuna
+chiamata Qwen/Ollama o servizio esterno. Sono distinti attori, ruoli, slot e
+candidati, con provenienza, eventi, fasi, cardinalità, invarianti relazionali,
+normalizzazioni conservative, errori classificati e rendering qualificato.
+Decisione: sottoporre lo stesso commit GitHub a revisione indipendente; seconda
+patch generativa DA FARE soltanto dopo nuova autorizzazione. Stato: **VALIDATO**
+offline per la componente deterministica; non INTEGRATO o CERTIFICATO.
+
+Attività distinta: la verifica statica del feedback conferma che i file
+`*.feedback.json` alimentano metriche aggregate, ma un job recuperato dopo riavvio
+non è accettato da `record_feedback()` e il feedback individuale non è caricato da
+`persisted_job()`. Decisione: registrare `RD-FEEDBACK-RECOVERY-01` nel TODO senza
+modificare feedback in questa patch. Stato: **DA FARE**.
