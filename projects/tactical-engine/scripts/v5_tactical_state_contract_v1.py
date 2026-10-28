@@ -389,6 +389,11 @@ def validate_contract(plan):
                 if severity:
                     issues.append(issue("actor_reentry", severity, f"events.{later_index}",
                                         "Rientro incompatibile o non verificabile."))
+            elif (mode != "rolling_reentry_allowed"
+                  and not _reachable(timeline_graph, later.get("to_state_id"), earlier.get("from_state_id"))):
+                issues.append(issue("actor_reentry_order_unknown", "QUALIFICATION_REQUIRED",
+                                    f"events.{later_index}",
+                                    "Il possibile rientro non è verificabile nella timeline parziale."))
     for s_index, state_item in enumerate(states):
         if state_item.get("phase", "unknown") not in PHASES:
             issues.append(issue("invalid_phase", "BLOCKING", f"phase_states.{s_index}.phase", "Fase non valida."))
@@ -438,17 +443,6 @@ def validate_contract(plan):
         edge_events.setdefault((source, target), []).append(events[index])
     for (source, target), linked in edge_events.items():
         before_state, after_state = state_by_id[source], state_by_id[target]
-        if before_state.get("presence_complete", {}).get("value") is not True or after_state.get("presence_complete", {}).get("value") is not True:
-            continue
-        expected = {actor for actor, status in presence_by_state[source].items() if status == "on_field"}
-        for event in linked:
-            if event.get("type") == "substitution":
-                expected.discard((event.get("out_ref") or {}).get("id")); expected.add((event.get("in_ref") or {}).get("id"))
-            elif event.get("type") == "expulsion" and event.get("team", {}).get("value") == "own":
-                expected.discard((event.get("subject_ref") or {}).get("id"))
-        actual = {actor for actor, status in presence_by_state[target].items() if status == "on_field"}
-        if expected != actual:
-            issues.append(issue("actor_continuity_mismatch", "BLOCKING", f"{source}->{target}", "Continuità attori incoerente."))
         before_assignments = {(item.get("subject_ref") or {}).get("id"): (item.get("position_ref") or {}).get("id")
                               for item in before_state.get("assignments", [])}
         after_assignments = {(item.get("subject_ref") or {}).get("id"): (item.get("position_ref") or {}).get("id")
@@ -456,14 +450,25 @@ def validate_contract(plan):
         mapping = {(item.get("from_slot_ref") or {}).get("id"): (item.get("to_slot_ref") or {}).get("id")
                    for item in plan.get("structural_mappings", [])}
         if mapping and before_assignments and after_assignments:
-            for actor_id in expected & actual:
+            for actor_id in set(before_assignments) & set(after_assignments):
                 source_slot, target_slot = before_assignments.get(actor_id), after_assignments.get(actor_id)
-                if source_slot is None or target_slot is None:
+                if source_slot is None or target_slot is None or source_slot not in mapping:
                     issues.append(issue("assignment_continuity_incomplete", "QUALIFICATION_REQUIRED",
                                         f"{source}->{target}", "Assegnazioni concrete insufficienti per ricostruire la trasformazione."))
                 elif mapping.get(source_slot) != target_slot:
                     issues.append(issue("assignment_mapping_mismatch", "BLOCKING", f"{source}->{target}",
                                         "La posizione finale dell'attore contraddice il mapping strutturale dichiarato."))
+        if (before_state.get("presence_complete", {}).get("value") is True
+                and after_state.get("presence_complete", {}).get("value") is True):
+            expected = {actor for actor, status in presence_by_state[source].items() if status == "on_field"}
+            for event in linked:
+                if event.get("type") == "substitution":
+                    expected.discard((event.get("out_ref") or {}).get("id")); expected.add((event.get("in_ref") or {}).get("id"))
+                elif event.get("type") == "expulsion" and event.get("team", {}).get("value") == "own":
+                    expected.discard((event.get("subject_ref") or {}).get("id"))
+            actual = {actor for actor, status in presence_by_state[target].items() if status == "on_field"}
+            if expected != actual:
+                issues.append(issue("actor_continuity_mismatch", "BLOCKING", f"{source}->{target}", "Continuità attori incoerente."))
     transition_deltas = {}
     for source, target, index in edges:
         event = events[index]

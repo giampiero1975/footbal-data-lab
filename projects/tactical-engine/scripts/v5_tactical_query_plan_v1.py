@@ -231,6 +231,13 @@ def relation_requirements(plan: dict) -> list[dict]:
         if phases_in_part:
             item["required_dimensions"] = ["actor", "phase", "task", "space", "trigger", "purpose"]
             item["phase_terms"] = phases_in_part
+        actor_terms = [cue for cue in RELATION_DIMENSION_CUES["actor"] if cue in normal(part)]
+        task_terms = [cue for cue in RELATION_DIMENSION_CUES["task"] if cue in normal(part)]
+        if actor_terms:
+            item["actor_terms"] = actor_terms
+        if task_terms:
+            item["task_terms"] = task_terms
+        item["specificity"] = "explicit_relation" if actor_terms and task_terms else "underspecified"
         requirements.append(item)
     return requirements
 
@@ -432,7 +439,7 @@ RELATION_DIMENSION_CUES = {
               "mezzala", "ala", "esterno", "punta", "centravanti", "squadra", "reparto"),
     "phase": ("in possesso", "non possesso", "transizione negativa", "transizione positiva",
               "alla perdita", "alla riconquista", "fase offensiva", "fase difensiva"),
-    "task": ("scivola", "stringe", "esce", "copre", "marca", "pressa", "scherm", "attacca",
+    "task": ("scivola", "stringe", "esce", "copre", "proteg", "accorc", "marca", "pressa", "scherm", "attacca",
              "si abbassa", "si alza", "accompagna", "intercetta", "raddoppia", "fissa"),
     "space": ("fascia", "corridoio", "half-space", "interspazio", "area", "linea", "profondità",
               "secondo palo", "primo palo", "limite area", "zona palla", "lato debole"),
@@ -446,7 +453,8 @@ RELATION_DIMENSION_CUES = {
 def _relation_clauses(answer: str) -> list[dict]:
     """Extract clause-local signals without inferring missing tactical links."""
     clauses = []
-    for index, raw in enumerate(re.split(r"[.;\n]+", answer)):
+    raw_clauses = [raw for raw in re.split(r"[.;\n]+", answer) if raw.strip()]
+    for index, raw in enumerate(raw_clauses):
         text = normal(raw)
         if not text:
             continue
@@ -460,7 +468,49 @@ def _relation_clauses(answer: str) -> list[dict]:
             "dimensions": dimensions,
             "citations": sorted(set(re.findall(r"\[(F\d+)\]", raw, re.I))),
         })
+    base = list(clauses)
+    for index in range(len(base) - 1):
+        second = base[index + 1]["text"]
+        if not re.match(r"^(?:in questo modo|cos[iì]|questo|questa|tale)\b", second):
+            continue
+        combined_text = base[index]["text"] + ". " + second
+        clauses.append({
+            "clause_id": f"window:{index}-{index + 1}",
+            "text": combined_text,
+            "dimensions": {
+                name: [cue for cue in cues if cue in combined_text]
+                for name, cues in RELATION_DIMENSION_CUES.items()
+            },
+            "citations": sorted(set(base[index]["citations"] + base[index + 1]["citations"])),
+        })
     return clauses
+
+
+def _task_is_negated(text: str, task_terms: list[str]) -> bool:
+    for term in task_terms:
+        for match in re.finditer(re.escape(term), text):
+            prefix = text[max(0, match.start() - 35):match.start()]
+            if re.search(r"\bnon\b(?:\s+\w+){0,3}\s*$", prefix):
+                return True
+    return False
+
+
+def _actor_task_linked(text: str, actor_terms: list[str], task_terms: list[str]) -> bool:
+    """Conservatively require the requested actor to be the nearest actor before the task."""
+    if not actor_terms or not task_terms:
+        return False
+    actors = []
+    for cue in RELATION_DIMENSION_CUES["actor"]:
+        actors.extend((match.start(), cue) for match in re.finditer(r"\b" + re.escape(cue) + r"\b", text))
+    for term in task_terms:
+        for task in re.finditer(re.escape(term), text):
+            preceding = [(position, cue) for position, cue in actors if position < task.start()]
+            if not preceding:
+                continue
+            _, nearest = max(preceding)
+            if any(expected in nearest or nearest in expected for expected in actor_terms):
+                return True
+    return False
 
 
 def audit_relations(answer: str, requirements: list[dict] | None = None,
@@ -483,18 +533,36 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
             for dimension in RELATION_DIMENSION_CUES
         }
         candidates = []
+        rejected_negation = False
+        rejected_association = False
+        specified = bool(constraints.get("actor") and constraints.get("task"))
         for clause in clauses:
             present = {name: bool(values) for name, values in clause["dimensions"].items()}
             constraint_matches = {
                 name: (not terms or any(term in clause["text"] for term in terms))
                 for name, terms in constraints.items()
             }
-            if all(present.get(name, False) and constraint_matches.get(name, True) for name in required):
-                candidates.append(clause)
+            if not all(present.get(name, False) and constraint_matches.get(name, True) for name in required):
+                continue
+            if not specified:
+                continue
+            if _task_is_negated(clause["text"], constraints["task"]):
+                rejected_negation = True
+                continue
+            if not _actor_task_linked(clause["text"], constraints["actor"], constraints["task"]):
+                rejected_association = True
+                continue
+            candidates.append(clause)
         matched = candidates[0] if candidates else None
         issue_codes = []
         if not matched:
             issue_codes.append("relation_not_demonstrated")
+            if not specified:
+                issue_codes.append("requirement_underspecified")
+            if rejected_negation:
+                issue_codes.append("required_relation_negated")
+            if rejected_association:
+                issue_codes.append("actor_task_link_not_demonstrated")
             task_terms = constraints.get("task", [])
             task_clauses = [item for item in clauses if task_terms and any(term in item["text"] for term in task_terms)]
             if task_clauses:

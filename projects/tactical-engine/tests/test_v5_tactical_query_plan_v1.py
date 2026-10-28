@@ -251,7 +251,8 @@ class RelationalAuditDifferentialTests(unittest.TestCase):
         requirement = plan["relation_requirements"][0]
         self.assertIn("phase", requirement["required_dimensions"])
         self.assertNotIn("actor_terms", requirement)
-        self.assertNotIn("task_terms", requirement)
+        self.assertEqual(requirement["task_terms"], ["proteg"])
+        self.assertEqual(requirement["specificity"], "underspecified")
 
     def test_correct_role_and_task_in_wrong_phase_are_distinguished(self):
         answer = "In possesso, alla perdita il centrale copre la profondità per impedire la ripartenza."
@@ -290,6 +291,39 @@ class RelationalAuditDifferentialTests(unittest.TestCase):
         self.assertTrue(result["satisfied"])
         self.assertEqual(result["citation_status"], "formally_valid_but_irrelevant")
         self.assertFalse(result["semantic_support_verified"])
+
+    def test_negated_required_relation_is_not_satisfied(self):
+        answer = ("In transizione negativa, alla perdita il centrale non copre la profondità "
+                  "per impedire la ripartenza.")
+        result = planner.audit_relations(answer, [self.requirement()])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+        self.assertIn("required_relation_negated", result["issue_codes"])
+
+    def test_second_actor_cannot_borrow_first_actor_identity(self):
+        answer = ("In transizione negativa il centrale resta largo, mentre l'ala copre la profondità "
+                  "alla perdita per impedire la ripartenza.")
+        result = planner.audit_relations(answer, [self.requirement()])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+        self.assertIn("actor_task_link_not_demonstrated", result["issue_codes"])
+
+    def test_anaphoric_adjacent_sentence_window_preserves_relation(self):
+        requirement = self.requirement(task_terms=["accorc"])
+        answer = ("Alla perdita, in transizione negativa, il centrale accorcia immediatamente verso la profondità. "
+                  "In questo modo protegge la linea per impedire la ripartenza avversaria.")
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertTrue(result["satisfied"])
+        self.assertTrue(result["matched_clause_id"].startswith("window:"))
+
+    def test_automatic_overlapping_subproblems_remain_underspecified(self):
+        plan = planner.analyse(
+            "Come proteggi la profondità? Inoltre come proteggi il lato debole?"
+        )
+        answer = "La squadra protegge lo spazio quando serve per evitare rischi."
+        audit = planner.audit_relations(answer, plan["relation_requirements"])
+        self.assertEqual(len(audit["requirements"]), 2)
+        self.assertTrue(all(not item["satisfied"] for item in audit["requirements"]))
+        self.assertTrue(all("requirement_underspecified" in item["issue_codes"]
+                            for item in audit["requirements"]))
 
 
 if __name__ == "__main__":

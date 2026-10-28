@@ -4,6 +4,7 @@ from pathlib import Path
 import queue
 import sys
 import tempfile
+import threading
 import unittest
 from unittest import mock
 
@@ -106,7 +107,8 @@ class ApiTests(unittest.TestCase):
             self.assertIn("Siamo in dieci.", request["effective_question"])
             self.assertIn(question, request["effective_question"])
             self.assertNotIn("risposta precedente", request["effective_question"].casefold())
-            self.assertEqual(request["context_policy"], "explicit_confirmed_facts_only")
+            self.assertEqual(request["context_policy"], "authenticated_client_declared_context")
+            self.assertEqual(request["context_provenance"], "client_declared")
 
     def test_failed_or_placeholder_prior_job_cannot_become_context(self):
         with tempfile.TemporaryDirectory() as tmp:
@@ -134,10 +136,52 @@ class ApiTests(unittest.TestCase):
             snapshot = restarted.session_snapshot("sessione-ripresa")
             self.assertEqual(snapshot["total"], 1)
             item = snapshot["items"][0]
-            self.assertEqual(item["question"], "Come modifico la struttura in possesso?")
-            self.assertEqual(item["confirmed_context"], ["Modulo iniziale 4-3-3."])
-            self.assertEqual(item["result"], result)
-            self.assertEqual(snapshot["context_policy"], "explicit_confirmed_facts_only")
+            self.assertEqual(item["case_id"], "caso-a")
+            self.assertNotIn("question", item)
+            self.assertNotIn("result", item)
+            detail = restarted.persisted_job(job["id"])
+            self.assertEqual(detail["question"], "Come modifico la struttura in possesso?")
+            self.assertEqual(detail["confirmed_context"], ["Modulo iniziale 4-3-3."])
+            self.assertEqual(detail["result"], result)
+            self.assertEqual(snapshot["context_policy"], "authenticated_client_declared_context")
+            self.assertEqual(snapshot["access_model"], "single_operator_shared_token")
+
+    def test_prior_job_must_match_session_and_case(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); prior_id = "6" * 32
+            (output / f"{prior_id}.request.json").write_text(json.dumps({
+                "id": prior_id, "question": "Domanda precedente valida",
+                "session_id": "sessione-a", "case_id": "caso-a",
+            }), encoding="utf-8")
+            (output / f"{prior_id}.result.json").write_text(
+                json.dumps({"questions": [{"answer": "Risposta [F1]."}]}), encoding="utf-8")
+            context = {"session_id": "sessione-b", "case_id": "caso-a",
+                       "confirmed_context": [], "prior_job_ids": [prior_id]}
+            with self.assertRaisesRegex(RuntimeError, "prior_job_context_mismatch"):
+                state.submit("Domanda contestuale sufficientemente lunga", context)
+            context.update(session_id="sessione-a", case_id="caso-b")
+            with self.assertRaisesRegex(RuntimeError, "prior_job_context_mismatch"):
+                state.submit("Domanda contestuale sufficientemente lunga", context)
+
+    def test_large_session_history_is_paginated_and_metadata_only(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output))
+            for index in range(75):
+                job_id = f"{index:032d}"
+                (output / f"{job_id}.request.json").write_text(json.dumps({
+                    "id": job_id, "question": "Domanda " + ("x" * 200),
+                    "session_id": "sessione-grande", "case_id": f"caso-{index}",
+                }), encoding="utf-8")
+                (output / f"{job_id}.result.json").write_text(json.dumps({
+                    "questions": [{"answer": "Risposta " + ("y" * 2000)}]
+                }), encoding="utf-8")
+            first = state.session_snapshot("sessione-grande", 0, 20)
+            last = state.session_snapshot("sessione-grande", 60, 20)
+            self.assertEqual(first["total"], 75)
+            self.assertEqual(len(first["items"]), 20)
+            self.assertEqual(len(last["items"]), 15)
+            self.assertTrue(all("result" not in item and "question" not in item for item in first["items"]))
+            self.assertLess(len(json.dumps(first)), 20000)
 
     def test_query_report_fails_closed_on_citations(self):
         good={"questions":[{"invalid_citation_ids":[],"has_any_citation":True}],"index_unchanged":True}
@@ -409,6 +453,26 @@ class ApiTests(unittest.TestCase):
             files = list(output.glob(f"{job_id}.feedback.json"))
             self.assertEqual(len(files), 1)
             self.assertFalse(json.loads(files[0].read_text(encoding="utf-8"))["helpful"])
+            self.assertFalse((output / f".{job_id}.feedback.json.tmp").exists())
+
+    def test_concurrent_feedback_updates_are_atomic(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            output = Path(tmp); state = api.State(self.config(output)); job_id = "7" * 32
+            state.jobs[job_id] = {"id": job_id, "status": "succeeded"}
+            barrier = threading.Barrier(3); errors = []
+            def update(value):
+                try:
+                    barrier.wait(); state.record_feedback(job_id, value)
+                except Exception as exc:  # pragma: no cover - asserted below
+                    errors.append(exc)
+            threads = [threading.Thread(target=update, args=(value,)) for value in (True, False)]
+            for thread in threads: thread.start()
+            barrier.wait()
+            for thread in threads: thread.join()
+            self.assertEqual(errors, [])
+            stored = json.loads((output / f"{job_id}.feedback.json").read_text(encoding="utf-8"))
+            self.assertIn(stored["helpful"], (True, False))
+            self.assertEqual(len(list(output.glob(f"{job_id}.feedback.json"))), 1)
             self.assertFalse((output / f".{job_id}.feedback.json.tmp").exists())
 
     def test_metrics_are_persisted_without_question_text(self):

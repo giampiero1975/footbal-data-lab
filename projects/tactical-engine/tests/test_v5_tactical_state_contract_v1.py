@@ -395,6 +395,36 @@ class ConsolidatedRemediationTests(unittest.TestCase):
                                "position_ref": contract.ref(wrong_target["id"], "position_slot"), "provenance": "explicit"}])]
         self.assertIn("assignment_mapping_mismatch", codes(contract.validate_contract(plan), "BLOCKING"))
 
+    def test_32_partial_presence_does_not_hide_concrete_mapping_contradiction(self):
+        plan = contract.build_question_plan("Numero 11, dal 4-3-3 al 3-5-2.", ["4-3-3", "3-5-2"])
+        actor = actors(plan)["11"]
+        source = next(item for item in plan["position_slots"] if item["id"].endswith(":lw"))
+        correct_target = next(item for item in plan["position_slots"] if item["id"].endswith(":lf"))
+        wrong_target = next(item for item in plan["position_slots"] if item["id"].endswith(":rf"))
+        plan["structural_mappings"] = [{"from_slot_ref": contract.ref(source["id"], "position_slot"),
+                                        "to_slot_ref": contract.ref(correct_target["id"], "position_slot"),
+                                        "provenance": "explicit"}]
+        plan["events"] = [rotation(actor, "s1", "s2")]
+        plan["phase_states"] = [
+            contract.state("s1", actor_presence=[known_presence(actor, "on_field")], assignments=[{
+                "subject_ref": contract.ref(actor, "actor_ref"),
+                "position_ref": contract.ref(source["id"], "position_slot"), "provenance": "explicit"}]),
+            contract.state("s2", actor_presence=[known_presence(actor, "on_field")], assignments=[{
+                "subject_ref": contract.ref(actor, "actor_ref"),
+                "position_ref": contract.ref(wrong_target["id"], "position_slot"), "provenance": "explicit"}])]
+        self.assertIn("assignment_mapping_mismatch", codes(contract.validate_contract(plan), "BLOCKING"))
+
+    def test_33_unordered_possible_reentry_is_qualified_not_invented(self):
+        plan = contract.build_question_plan("Numero 11 e numero 5.")
+        ids = actors(plan); plan["substitution_mode"] = contract.value("standard_no_reentry", "explicit")
+        first = substitution(ids["11"], ids["5"], "s1", "s2")
+        second = substitution(ids["5"], ids["11"], "s3", "s4"); second["event_id"] = "sub:2"
+        plan["events"] = [first, second]
+        plan["phase_states"] = [contract.state(name) for name in ("s1", "s2", "s3", "s4")]
+        validation = contract.validate_contract(plan)
+        self.assertNotIn("actor_reentry", codes(validation, "BLOCKING"))
+        self.assertIn("actor_reentry_order_unknown", codes(validation, "QUALIFICATION_REQUIRED"))
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -297,6 +297,9 @@ class State:
                 prior_job = prior_job or self.persisted_job(prior_id)
                 if not prior_job or prior_job.get("status") != "succeeded":
                     raise RuntimeError("prior_job_not_succeeded")
+                if (prior_job.get("session_id") != context["session_id"]
+                        or prior_job.get("case_id") != context["case_id"]):
+                    raise RuntimeError("prior_job_context_mismatch")
             job.update(session_id=context["session_id"], case_id=context["case_id"])
         request_path = self.config["output_dir"] / f"{job_id}.request.json"
         temporary_path = self.config["output_dir"] / f".{job_id}.request.tmp"
@@ -306,7 +309,8 @@ class State:
                 "schema": "rag_api_contextual_request_v1",
                 **context,
                 "effective_question": effective_question(question, context["confirmed_context"]),
-                "context_policy": "explicit_confirmed_facts_only",
+                "context_policy": "authenticated_client_declared_context",
+                "context_provenance": "client_declared",
             })
         temporary_path.write_text(
             json.dumps(request, ensure_ascii=False) + "\n", encoding="utf-8"
@@ -376,7 +380,7 @@ class State:
                "question": request.get("question", ""),
                "recovered_after_restart": True}
         for key in ("schema", "session_id", "case_id", "confirmed_context", "prior_job_ids",
-                    "effective_question", "context_policy"):
+                    "effective_question", "context_policy", "context_provenance"):
             if key in request:
                 job[key] = request[key]
         job.update({key: value for key, value in saved.items() if key not in {"id", "question", "result"}})
@@ -418,11 +422,13 @@ class State:
             job["feedback"] = feedback
         return job
 
-    def session_snapshot(self, session_id: str) -> dict:
+    def session_snapshot(self, session_id: str, offset: int = 0, limit: int = 20) -> dict:
         """Rebuild one session from existing job files; no parallel archive."""
         if not isinstance(session_id, str) or not SESSION_ID_RE.fullmatch(session_id):
             raise ValueError("invalid_session_id")
-        items = []
+        if not isinstance(offset, int) or offset < 0 or not isinstance(limit, int) or not 1 <= limit <= 50:
+            raise ValueError("invalid_pagination")
+        matched = []
         for path in self.config["output_dir"].glob("*.request.json"):
             try:
                 request = json.loads(path.read_text(encoding="utf-8"))
@@ -431,13 +437,21 @@ class State:
             if request.get("session_id") != session_id:
                 continue
             job_id = request.get("id", "")
-            job = self.persisted_job(job_id) if isinstance(job_id, str) else None
+            if isinstance(job_id, str) and len(job_id) == 32 and job_id.isalnum():
+                matched.append((int(path.stat().st_mtime), job_id))
+        matched.sort(key=lambda item: (item[0], item[1]))
+        items = []
+        for _, job_id in matched[offset:offset + limit]:
+            job = self.persisted_job(job_id)
             if job:
-                items.append(job)
-        items.sort(key=lambda item: (item.get("created_at", 0), item["id"]))
+                items.append({key: job[key] for key in (
+                    "id", "status", "created_at", "started_at", "finished_at",
+                    "session_id", "case_id", "failure",
+                ) if key in job} | {"has_feedback": "feedback" in job})
         return {"schema": "rag_api_session_v1", "session_id": session_id,
-                "items": items, "total": len(items),
-                "context_policy": "explicit_confirmed_facts_only"}
+                "items": items, "total": len(matched), "offset": offset, "limit": limit,
+                "context_policy": "authenticated_client_declared_context",
+                "access_model": "single_operator_shared_token"}
 
     def recent_jobs(self, limit: int = 20) -> list[dict]:
         paths = list(self.config["output_dir"].glob("*.job.json"))
@@ -585,10 +599,13 @@ class State:
             "created_at": int(time.time()),
         }
         path = self.config["output_dir"] / f"{job_id}.feedback.json"
-        temporary = path.with_name(f".{path.name}.tmp")
-        temporary.write_text(json.dumps(feedback, sort_keys=True) + "\n", encoding="utf-8")
-        os.replace(temporary, path)
-        path.chmod(0o600)
+        # One current vote per job. Concurrent updates are serialized and the
+        # last completed call wins while each visible write remains atomic.
+        with self.lock:
+            temporary = path.with_name(f".{path.name}.tmp")
+            temporary.write_text(json.dumps(feedback, sort_keys=True) + "\n", encoding="utf-8")
+            os.replace(temporary, path)
+            path.chmod(0o600)
         return feedback
 
     def feedback_for_job(self, job_id: str) -> dict | None:
@@ -727,9 +744,12 @@ class Handler(BaseHTTPRequestHandler):
         if parsed.path.startswith(session_prefix):
             session_id = parsed.path[len(session_prefix):]
             try:
-                snapshot = self.state.session_snapshot(session_id)
+                query = parse_qs(parsed.query)
+                offset = int(query.get("offset", ["0"])[0])
+                limit = int(query.get("limit", ["20"])[0])
+                snapshot = self.state.session_snapshot(session_id, offset, limit)
             except ValueError:
-                self.send_json(HTTPStatus.NOT_FOUND, {"error": "not_found"}); return
+                self.send_json(HTTPStatus.BAD_REQUEST, {"error": "invalid_session_request"}); return
             self.send_json(HTTPStatus.OK, snapshot)
             return
         prefix = "/v1/jobs/"
@@ -806,8 +826,8 @@ class Handler(BaseHTTPRequestHandler):
             self.send_json(HTTPStatus.SERVICE_UNAVAILABLE, {"error": "queue_full"})
             return
         except RuntimeError as exc:
-            if str(exc) == "prior_job_not_succeeded":
-                self.send_json(HTTPStatus.CONFLICT, {"error": "prior_job_not_succeeded"})
+            if str(exc) in {"prior_job_not_succeeded", "prior_job_context_mismatch"}:
+                self.send_json(HTTPStatus.CONFLICT, {"error": str(exc)})
                 return
             raise
         self.send_json(HTTPStatus.ACCEPTED, job)
