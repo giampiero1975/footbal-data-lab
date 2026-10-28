@@ -1460,3 +1460,18 @@ viene dichiarato verificato e l'esito non modifica `complete`. Decisione:
 mantenere l'audit offline e non bloccante; richiedere casi indipendenti completi
 prima dell'integrazione. Stato: **IMPLEMENTATO**, **ESEGUITO**, **VALIDATO**
 offline per il comportamento coperto; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-FEEDBACK-RECOVERY-01 — feedback dei job persistiti (2026-10-28)
+
+Attività: consentire raccolta e consultazione del feedback dopo riavvio senza
+creare un secondo archivio. Script: `api/rag_v5_api.py`; test:
+`tests/test_rag_v5_api.py`. Commit codice/test `8102eb1`; report:
+`docs/feedback-recovery-01.md`. Risultato: recupero del job persistito prima
+della validazione dello stato, associazione del sidecar al job live o
+ricostruito, verifica schema/job/tipo, scrittura atomica e singolo voto corrente
+per job. Casi riuscito, fallito, inesistente/mismatch e aggiornamento coperti;
+suite API 28/28, compilazione e diff check PASS. Decisione: chiudere il difetto
+offline preservando `/v1/feedback` e `rag_api_feedback_v1`; non equiparare il
+feedback a diagnosi o apprendimento. Stato: **IMPLEMENTATO**, **ESEGUITO**,
+**VALIDATO** offline; non distribuito, quindi non **INTEGRATO** in produzione o
+**CERTIFICATO**.
