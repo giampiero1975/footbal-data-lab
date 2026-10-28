@@ -1354,3 +1354,8 @@ voto 0/30. Decisione: target autonomo >=26/30 respinto; non continuare oltre
 sottoproblemi, retrieval per fase/ruolo, gate di copertura, risposta applicativa
 e normalizzazione terminologica; ripetere soltanto dopo una differenza tecnica
 documentata. Stato: **ESEGUITO**, non **VALIDATO**.
+
+
+### V5-REVISIONE-DOMANDE-01 — 2026-10-28
+
+Attività: raccolta diagnostica di due trascrizioni d'esame e confronto con TODO, registro e report routing/V9/V10. Script: nessuno nuovo, sola lettura. Commit: quello che introduce `docs/revisione_domande.md` e questa voce insieme al TODO. Report: `docs/revisione_domande.md`. Risultato: RD-001 19/30 e RD-002 22/30, scenari distinti; perdita di aderenza e contaminazione tra fasi osservabili, causa retrieval/prompt/modello/deploy ancora da isolare. Il salto 29–30 dopo rettifica resta un comportamento riferito senza coppia comparabile acquisita. Decisione: riusare job e fonti esistenti, identificare versione runtime e verificare le correzioni V6–V10.2 prima di nuovi interventi. Nessuna nuova chiamata RAG/valutatore, test equivalente o modifica applicativa. Stato: **ESEGUITO** per revisione documentale; diagnosi causale **DA FARE**.

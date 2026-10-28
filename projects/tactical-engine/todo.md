@@ -1119,3 +1119,9 @@ tecnica.
   impedire l'invio di segnaposto/stati incompleti e consentire export cumulativo
   auditabile. La cronologia soltanto browser non e sufficiente.
 - [x] **ESEGUITO** V5-GROQ-01-SIM: simulazione Python esterna illustrativa 5/5 casi mock fail-closed e calcolo quote (285k token=2 giorni teorici; 500k=3). Report nello stesso documento. Non VALIDATO per implementazione, API, qualita tattica o integrazione; non ripetere test equivalenti senza differenza tecnica.
+
+## V5-REVISIONE-DOMANDE-01 — Raccolta diagnostica 2026-10-28
+
+- [x] **ESEGUITO** confronto documentale di due casi forniti dal titolare: RD-001 costruzione 3-5-2 vs 4-2-3-1 (19/30), RD-002 difesa laterale 4-4-2 vs 4-3-3 (22/30). Il secondo cambia scenario: non prova il miglioramento dopo rettifica. Report e checklist: `docs/revisione_domande.md`.
+- [ ] **DA FARE** associare job/versione runtime e fonti F1–F6; confrontare affermazioni/estratti e acquisire una coppia reale prima/dopo rettifica. Miglioramento 29–30 riferito, non ancora verificato causalmente.
+- [ ] **DA FARE** localizzare la causa rispetto alle correzioni V6–V10.2 già esistenti prima di proporre patch o test. Target utente >=26/30 autonomo alla prima risposta; gate tecnico 10/10 non equivale al voto esterno. Nessuna nuova inferenza, modifica runtime o deploy inclusi.
