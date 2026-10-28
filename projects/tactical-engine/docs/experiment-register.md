@@ -1591,3 +1591,22 @@ arrestare il ciclo di euristiche costruite e passare alla sola preparazione
 indipendente Gold E/Gold V. Stato: correzioni **IMPLEMENTATO**, test
 **ESEGUITO**, delta **VALIDATO** offline; audit non **INTEGRATO** o
 **CERTIFICATO**, validazione indipendente ancora **BLOCCATO**.
+
+### RD-RELATIONAL-GOLD-E-V-PREPARATION-01 — preparazione metodologica (2026-10-28)
+
+Attività: predisporre senza popolare il processo indipendente Gold E
+(estrazione requisiti dalla sola domanda) e Gold V (verifica relazionale su
+requisiti umani congelati). Script:
+`scripts/validate_relational_gold_preparation_v1.py`; test:
+`tests/test_validate_relational_gold_preparation_v1.py`; protocollo:
+`docs/relational-gold-e-v-protocol-v1.md`; schemi e template in
+`evaluation/annotations/`. Commit tecnico: `6f4579f`. Risultato: schemi
+`relational_gold_e_v1`, `relational_gold_v_v1` e manifest v1, template con
+zero casi, provenienza/indipendenza, doppia review, adjudication, freeze e
+metriche documentati. Validatore `PREPARATION_VALID`, 5/5 test, compilazione e
+diff check PASS. Nessun caso generato o annotato, modello, benchmark, modifica
+al motore, merge, deploy o VPS. Decisione: preparazione metodologica
+**VALIDATO offline**; raccolta/annotazione/freeze **DA FARE** e validazione
+indipendente `RD-RELATIONAL-GOLD-E-V-01` ancora **BLOCCATO**. Gold e audit non
+**INTEGRATO** o **CERTIFICATO**. Report:
+`docs/relational-gold-e-v-preparation-01.md`.
