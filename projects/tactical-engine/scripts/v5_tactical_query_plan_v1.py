@@ -208,6 +208,32 @@ def normal(value: str) -> str:
     return re.sub(r"\s+", " ", value.casefold().replace("–", "-").replace("—", "-")).strip()
 
 
+RELATION_OBJECTIVE_MAP = {
+    "copertura preventiva": ("copr", "proteg", "preventiv", "scherm", "marca", "intercetta", "raddoppia"),
+    "marcatura preventiva": ("marca", "copr", "proteg", "preventiv", "scherm"),
+    "ripartenza": ("ripartenza", "transizione", "profondità", "preventiv", "seconda palla"),
+}
+
+
+def _explicit_actor_terms(text: str) -> list[str]:
+    return [
+        cue for cue in RELATION_DIMENSION_CUES["actor"]
+        if re.search(
+            r"(?:^|\b(?:il|lo|la|i|gli|le|un|una|del|dello|della|al|allo|alla|con|tra|fra)\s+|\bl['’]\s*)"
+            + re.escape(cue) + r"\b",
+            text,
+        )
+    ]
+
+
+def _objective_terms(text: str) -> list[str]:
+    terms = []
+    for cue, alternatives in RELATION_OBJECTIVE_MAP.items():
+        if cue in text:
+            terms.extend(alternatives)
+    return list(dict.fromkeys(terms))
+
+
 def relation_requirements(plan: dict) -> list[dict]:
     """Build frozen, part-local obligations without prescribing a solution.
 
@@ -228,44 +254,44 @@ def relation_requirements(plan: dict) -> list[dict]:
     requirements = []
     for index, part in enumerate(plan.get("request_parts", [])):
         part_text = normal(part)
-        phases_in_part = [term for term in explicit_phases if term in part_text]
-        actors_in_part = [
-            cue for cue in RELATION_DIMENSION_CUES["actor"]
-            if re.search(
-                r"(?:^|\b(?:il|lo|la|i|gli|le|un|una|del|dello|della|al|allo|alla|con|tra|fra)\s+)"
-                + re.escape(cue) + r"\b",
-                part_text,
-            )
-        ]
-        tasks_in_part = [cue for cue in RELATION_DIMENSION_CUES["task"] if cue in part_text]
-        explicit_by_dimension = {
-            "phase": phases_in_part,
-            "space": [cue for cue in RELATION_DIMENSION_CUES["space"] if cue in part_text],
-            "trigger": [cue for cue in RELATION_DIMENSION_CUES["trigger"] if cue in part_text],
-            "purpose": [cue for cue in RELATION_DIMENSION_CUES["purpose"] if cue in part_text],
-        }
-        task_atoms = tasks_in_part or [None]
-        for atom_index, task in enumerate(task_atoms):
-            unambiguous_actor = actors_in_part if len(actors_in_part) == 1 else []
-            item = {
-                "requirement_id": f"question_part:{index}:relation:{atom_index}",
-                "question_part_id": f"question_part:{index}",
-                "question_part": part,
-                "requirement_type": "explicit" if unambiguous_actor and task else "open",
-                "required_dimensions": ["actor", "task"],
+        shared_phases = [term for term in explicit_phases if term in part_text]
+        shared_triggers = [cue for cue in RELATION_DIMENSION_CUES["trigger"] if cue in part_text]
+        objective_terms = _objective_terms(part_text)
+        segments = [segment.strip(" ,") for segment in re.split(r"\bmentre\b", part_text) if segment.strip(" ,")]
+        for segment_index, segment in enumerate(segments):
+            actors_in_segment = _explicit_actor_terms(segment)
+            tasks_in_segment = [cue for cue in RELATION_DIMENSION_CUES["task"] if cue in segment]
+            local_dimensions = {
+                "phase": shared_phases,
+                "space": [cue for cue in RELATION_DIMENSION_CUES["space"] if cue in segment],
+                "trigger": shared_triggers,
+                "purpose": [cue for cue in RELATION_DIMENSION_CUES["purpose"] if cue in segment],
             }
-            for dimension, terms in explicit_by_dimension.items():
-                if terms:
-                    item["required_dimensions"].append(dimension)
-                    item[f"{dimension}_terms"] = terms
-            if unambiguous_actor:
-                item["actor_terms"] = unambiguous_actor
-            if task:
-                item["task_terms"] = [task]
-            item["specificity"] = (
-                "explicit_relation" if item["requirement_type"] == "explicit" else "underspecified"
-            )
-            requirements.append(item)
+            task_atoms = tasks_in_segment or [None]
+            for atom_index, task in enumerate(task_atoms):
+                unambiguous_actor = actors_in_segment if len(actors_in_segment) == 1 else []
+                item = {
+                    "requirement_id": f"question_part:{index}:segment:{segment_index}:relation:{atom_index}",
+                    "question_part_id": f"question_part:{index}",
+                    "question_part": part,
+                    "relation_segment": segment,
+                    "requirement_type": "explicit" if unambiguous_actor and task else "open",
+                    "required_dimensions": ["actor", "task"],
+                }
+                for dimension, terms in local_dimensions.items():
+                    if terms:
+                        item["required_dimensions"].append(dimension)
+                        item[f"{dimension}_terms"] = terms
+                if unambiguous_actor:
+                    item["actor_terms"] = unambiguous_actor
+                if task:
+                    item["task_terms"] = [task]
+                if objective_terms:
+                    item["objective_terms"] = objective_terms
+                item["specificity"] = (
+                    "explicit_relation" if item["requirement_type"] == "explicit" else "underspecified"
+                )
+                requirements.append(item)
     return requirements
 
 
@@ -468,7 +494,7 @@ RELATION_DIMENSION_CUES = {
               "alla perdita", "alla riconquista", "fase offensiva", "fase difensiva"),
     "task": ("scivola", "stringe", "esce", "copr", "proteg", "accorc", "marca", "pressa", "scherm", "attacca",
              "si abbassa", "si alza", "accompagna", "intercetta", "raddoppia", "fissa"),
-    "space": ("fascia", "corridoio", "half-space", "interspazio", "area", "linea", "profondità",
+    "space": ("fascia", "corridoio", "half-space", "interspazio", "area", "linea", "profondità", "portatore",
               "secondo palo", "primo palo", "limite area", "zona palla", "lato debole"),
     "trigger": ("quando", "se ", "nel momento", "alla perdita", "alla riconquista", "sul passaggio",
                 "palla coperta", "palla scoperta", "al cambio gioco"),
@@ -534,14 +560,19 @@ def _task_polarity(text: str, task_terms: list[str]) -> str:
     if protection_requested and re.search(
             r"\bnon\s+(?:deve\s+mai\s+)?(?:lascia(?:re)?\s+scopert\w*|abbandona(?:re)?)\b", text):
         return POLARITY_AMBIGUOUS
-    found = False
+    occurrences = []
     for term in task_terms:
         for match in re.finditer(_task_pattern(term), text):
-            found = True
             prefix = text[max(0, match.start() - 35):match.start()]
             if re.search(r"\bnon\b(?:\s+\w+){0,3}\s*$", prefix):
-                return POLARITY_NEGATED
-    return POLARITY_AFFIRMED if found else POLARITY_NOT_FOUND
+                occurrences.append(POLARITY_NEGATED)
+            else:
+                occurrences.append(POLARITY_AFFIRMED)
+    if POLARITY_NEGATED in occurrences and POLARITY_AFFIRMED in occurrences:
+        return POLARITY_AMBIGUOUS
+    if POLARITY_NEGATED in occurrences:
+        return POLARITY_NEGATED
+    return POLARITY_AFFIRMED if occurrences else POLARITY_NOT_FOUND
 
 
 def _task_is_negated(text: str, task_terms: list[str]) -> bool:
@@ -557,14 +588,19 @@ def _actor_task_link_status(text: str, actor_terms: list[str], task_terms: list[
     for cue in RELATION_DIMENSION_CUES["actor"]:
         actors.extend((match.start(), cue) for match in re.finditer(r"\b" + re.escape(cue) + r"\b", text))
     for term in task_terms:
+        for expected in actor_terms:
+            cleft = (
+                r"(?:^|[,;])\s*a\s+" + _task_pattern(term) +
+                r"\b[^,;:.]{0,80}?\b(?:e|è)\s+(?:il|lo|la|l['’])?\s*" +
+                re.escape(expected) + r"\b"
+            )
+            if re.search(cleft, text):
+                return "LINKED"
+    for term in task_terms:
         for task in re.finditer(_task_pattern(term), text):
             prefix = text[max(0, task.start() - 55):task.start()]
             if len({cue for _, cue in actors}) >= 2 and re.search(r"\b(?:uno|l['’]altro)\b", prefix):
                 return "AMBIGUOUS"
-            suffix = text[task.end():task.end() + 90]
-            for expected in actor_terms:
-                if re.search(r"\b(?:e|è)\s+(?:il|lo|la|l['’])?\s*" + re.escape(expected) + r"\b", suffix):
-                    return "LINKED"
             preceding = [(position, cue) for position, cue in actors if position < task.start()]
             if not preceding:
                 continue
@@ -605,11 +641,13 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
             dimension: [normal(term) for term in requirement.get(f"{dimension}_terms", [])]
             for dimension in RELATION_DIMENSION_CUES
         }
+        objective_terms = [normal(term) for term in requirement.get("objective_terms", [])]
         candidates = []
         rejected_negation = False
         ambiguous_polarity = False
         rejected_association = False
         ambiguous_association = False
+        rejected_objective = False
         specified = bool(constraints.get("actor") and constraints.get("task"))
         for clause in clauses:
             present = {name: bool(values) for name, values in clause["dimensions"].items()}
@@ -642,6 +680,10 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
                 if link_status != "LINKED":
                     rejected_association = True
                     continue
+            if objective_terms and not any(
+                    re.search(_task_pattern(term), clause["text"]) for term in objective_terms):
+                rejected_objective = True
+                continue
             candidates.append(clause)
         matched = candidates[0] if candidates else None
         issue_codes = []
@@ -658,6 +700,8 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
                 issue_codes.append("actor_task_link_not_demonstrated")
             if ambiguous_association:
                 issue_codes.append("actor_task_association_ambiguous")
+            if rejected_objective:
+                issue_codes.append("relation_objective_not_demonstrated")
             task_terms = constraints.get("task", [])
             task_clauses = [item for item in clauses if task_terms and any(
                 re.search(_task_pattern(term), item["text"]) for term in task_terms)]
@@ -693,6 +737,11 @@ def audit_relations(answer: str, requirements: list[dict] | None = None,
             "matched_clause_id": matched["clause_id"] if matched else None,
             "issue_codes": issue_codes,
             "citation_status": citation_status,
+            "objective_relevance": (
+                "relevant" if matched and objective_terms else
+                "not_demonstrated" if objective_terms else
+                "not_applicable"
+            ),
             "polarity_status": (
                 POLARITY_AFFIRMED if matched else
                 POLARITY_AMBIGUOUS if ambiguous_polarity else

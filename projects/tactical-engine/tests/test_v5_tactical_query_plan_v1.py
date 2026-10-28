@@ -400,6 +400,45 @@ class RelationalAuditDifferentialTests(unittest.TestCase):
         result = planner.audit_relations(answer, [requirement])["requirements"][0]
         self.assertFalse(result["satisfied"])
 
+    def test_postverbal_actor_with_unrelated_responsibility_is_not_linked(self):
+        for separator in (";", ","):
+            with self.subTest(separator=separator):
+                answer = ("In transizione negativa, alla perdita l'ala copre la profondità" + separator +
+                          " il responsabile della comunicazione è il centrale, "
+                          "per impedire la ripartenza.")
+                result = planner.audit_relations(answer, [self.requirement()])["requirements"][0]
+                self.assertFalse(result["satisfied"])
+
+    def test_open_requirement_rejects_operational_but_irrelevant_relation(self):
+        plan = planner.analyse("Come organizzi la copertura preventiva contro una ripartenza centrale?")
+        result = planner.audit_relations(
+            "Alla perdita l'ala attacca la fascia.", plan["relation_requirements"]
+        )["requirements"][0]
+        self.assertFalse(result["satisfied"])
+        self.assertIn("relation_objective_not_demonstrated", result["issue_codes"])
+
+    def test_coordinated_relations_keep_local_actor_task_and_space(self):
+        plan = planner.analyse(
+            "Alla perdita il centrale copre la profondità, mentre l'ala accorcia sul portatore."
+        )
+        requirements = plan["relation_requirements"]
+        self.assertEqual(len(requirements), 2)
+        central = next(item for item in requirements if item.get("actor_terms") == ["centrale"])
+        wing = next(item for item in requirements if item.get("actor_terms") == ["ala"])
+        self.assertEqual(central["task_terms"], ["copr"])
+        self.assertEqual(central["space_terms"], ["profondità"])
+        self.assertEqual(wing["task_terms"], ["accorc"])
+        self.assertEqual(wing["space_terms"], ["portatore"])
+        self.assertEqual(central["trigger_terms"], ["alla perdita"])
+        self.assertEqual(wing["trigger_terms"], ["alla perdita"])
+
+    def test_mixed_polarity_is_ambiguous_not_satisfied(self):
+        requirement = self.requirement(required_dimensions=["actor", "task", "space"])
+        answer = "Il centrale non copre inizialmente la profondità, ma successivamente la copre."
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+        self.assertEqual(result["polarity_status"], "AMBIGUOUS")
+
 
 if __name__ == "__main__":
     unittest.main()
