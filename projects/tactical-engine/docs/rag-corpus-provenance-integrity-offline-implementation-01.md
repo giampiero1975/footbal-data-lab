@@ -5,6 +5,10 @@ Ramo: `codex/tactical-state-contract-v1`
 Specifica approvata: commit `38df9c5`
 Commit tecnico: `d12d636fa33411f24a390fe5d2666b08f3f9316a`
 
+Revisione correttiva indipendente: commit tecnico `f77cb9dfa694367430719022c1e01cb143168ada`.
+Le evidenze aggiornate sono descritte in
+`rag-corpus-provenance-integrity-offline-corrections-01.md`.
+
 ## 1. Attività e perimetro
 
 È stato implementato il percorso offline isolato progettato in
@@ -51,6 +55,12 @@ Il validatore applica:
 - hash dell'esatto testo UTF-8 e dei metadata canonicalizzati;
 - rilevamento di mancanti, mismatch, duplicati e metadata incompleti;
 - fail-closed per versione chunker non supportata;
+- derivazione Docling → chunk riproducibile per il solo contratto sintetico;
+  il chunker reale senza adapter esatto produce `UNVERIFIABLE_RELATION`;
+- applicazione completa del sottoinsieme JSON Schema effettivamente usato dal
+  contratto, incluse proprietà aggiuntive, required, tipi, enum e pattern;
+- verifica tramite file/hash delle evidenze di consistenza snapshot e identità
+  storica;
 - `SNAPSHOT_NOT_CERTIFIABLE` quando manca una garanzia documentata;
 - ordinamento totale di documenti, chunk, record e anomalie;
 - separazione `verified_content` / `run_metadata`;
@@ -75,6 +85,7 @@ Il report può contenere:
 - `DUPLICATE_CONTENT`;
 - `METADATA_INCOMPLETE`;
 - `UNSUPPORTED_VERSION`;
+- `UNVERIFIABLE_RELATION`;
 - `SNAPSHOT_NOT_CERTIFIABLE`.
 
 L'integrità assume valore `verified` soltanto in assenza di anomalie.
@@ -87,7 +98,8 @@ Comando:
 python -m unittest projects/tactical-engine/tests/test_validate_rag_corpus_integrity_v1.py
 ```
 
-Risultato: **16/16 OK**, 0 errori, 0 fallimenti.
+Risultato iniziale: **16/16 OK**. Dopo la revisione indipendente e la patch
+correttiva: **22/22 OK**, 0 errori, 0 fallimenti.
 
 Copertura dimostrata:
 
@@ -107,6 +119,12 @@ Copertura dimostrata:
 14. schema e template conservativo;
 15. verifica di hash manifest e ID ordinati;
 16. esecuzione CLI con report separato.
+17. mismatch derivazione Docling → chunk con hash individuali corretti;
+18. violazioni JSON Schema su required, tipi, enum, proprietà e hash;
+19. evidenza snapshot dichiarata ma non verificata;
+20. evidenza storica non risolvibile o con hash differente;
+21. hash degli ID sulla sequenza completa con duplicati preservati;
+22. chunker reale privo di adapter esatto qualificato non verificabile.
 
 È stata inoltre eseguita la compilazione Python del nuovo script con Python
 3.13.15: **OK**.
@@ -130,10 +148,10 @@ validatore o test Gold E/V è stato modificato.
 - I valori storici 6.410 record / 157 fonti non sono riconfermati.
 - Lo snapshot operativo futuro richiede un meccanismo consistente e
   documentato; uguaglianza di conteggio/ID non è sufficiente.
-- Il validatore comprende il contratto dei chunker dichiarati, ma la futura
-  riconciliazione runtime richiederà un adapter esatto per la versione Docling,
-  tokenizer e configurazione realmente usati. Versioni non supportate restano
-  fail-closed.
+- Il validatore ricostruisce soltanto il contratto sintetico. Il chunker reale
+  richiede ancora un adapter esatto per versione Docling, tokenizer e
+  configurazione: fino ad allora la relazione restituisce
+  `UNVERIFIABLE_RELATION` e non può contribuire a un'integrità completa.
 - Bibliografia e diritti richiedono evidenze umane verificabili.
 - Nessun risultato autorizza remediation, indicizzazione o promozione.
 

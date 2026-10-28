@@ -1676,6 +1676,22 @@ report canonicale deterministico e CLI atomico **IMPLEMENTATO**. Test nuovi:
 Qwen, embedding, indicizzazione, benchmark, merge o deploy; non **INTEGRATO** o
 **CERTIFICATO**.
 
+### RAG-CORPUS-PROVENANCE-INTEGRITY-OFFLINE-CORRECTIONS-01 — correzione differenziale (2026-10-29)
+
+Attività: chiudere cinque lacune della revisione indipendente senza estendere il
+perimetro. Script: `scripts/validate_rag_corpus_integrity_v1.py`. Commit
+tecnico: `f77cb9dfa694367430719022c1e01cb143168ada`. Report:
+`docs/rag-corpus-provenance-integrity-offline-corrections-01.md`. Risultato:
+derivazione sintetica Docling→chunk verificata; chunker reale privo di adapter
+qualificato `UNVERIFIABLE_RELATION`; sottoinsieme JSON Schema applicato
+integralmente; evidenze snapshot e identità storica risolte e confrontate per
+hash; hash ID calcolato sulla sequenza completa con duplicati preservati.
+Test Corpus Integrity 22/22 OK, regressione Gold E/V 21/21 OK, compilazione
+Python 3.13.15 OK. Decisione: correzioni **IMPLEMENTATO**, test **ESEGUITO**,
+controlli sintetici **VALIDATO**; chunker reale e runtime **BLOCCATO**. Nessun
+accesso VPS, Chroma operativo, Qwen, embedding, indicizzazione, benchmark,
+merge o deploy; non **INTEGRATO** o **CERTIFICATO**.
+
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.
