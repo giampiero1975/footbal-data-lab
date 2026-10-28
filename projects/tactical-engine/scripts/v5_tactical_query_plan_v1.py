@@ -7,7 +7,18 @@ different facets.  It never writes to the index and contains no benchmark IDs.
 """
 from __future__ import annotations
 
+import importlib.util
 import re
+from pathlib import Path
+
+try:
+    from v5_tactical_state_contract_v1 import build_question_plan
+except ModuleNotFoundError:  # Support direct importlib loading used by offline tests.
+    _contract_spec = importlib.util.spec_from_file_location(
+        "v5_tactical_state_contract_v1", Path(__file__).with_name("v5_tactical_state_contract_v1.py"))
+    _contract_module = importlib.util.module_from_spec(_contract_spec)
+    _contract_spec.loader.exec_module(_contract_module)
+    build_question_plan = _contract_module.build_question_plan
 
 
 FACETS = {
@@ -211,7 +222,7 @@ def analyse(question: str) -> dict:
         if len(part.split()) >= 4 and part not in request_parts:
             request_parts.append(part)
     scenarios = [name for name, cues in SCENARIOS.items() if all(cue in query for cue in cues)]
-    return {
+    plan = {
         "question_text": query,
         "facets": facets,
         "scenarios": scenarios,
@@ -219,6 +230,9 @@ def analyse(question: str) -> dict:
         "roles": roles,
         "request_parts": request_parts[:8],
     }
+    plan["state_contract"] = build_question_plan(
+        question, formations=formations, roles=roles, scenarios=scenarios)
+    return plan
 
 
 def retrieval_queries(question: str, plan: dict, maximum: int = 5) -> list[str]:
