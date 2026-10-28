@@ -62,11 +62,13 @@
         "snapshot_consistency": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["status", "method", "evidence_ref"],
+          "required": ["status", "verification_status", "method", "evidence_ref", "evidence_sha256"],
           "properties": {
             "status": {"enum": ["certifiable", "not_certifiable"]},
+            "verification_status": {"$ref": "#/$defs/verification_status"},
             "method": {"type": ["string", "null"]},
-            "evidence_ref": {"type": ["string", "null"]}
+            "evidence_ref": {"type": ["string", "null"]},
+            "evidence_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}
           }
         },
         "embedding": {

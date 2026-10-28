@@ -13,6 +13,7 @@ import copy
 import hashlib
 import importlib.util
 import json
+import re
 import time
 from collections import defaultdict
 from datetime import datetime, timezone
@@ -32,13 +33,15 @@ IDENTITY_BASES = {
     "current_verified", "historically_verified", "declared_only", "none"
 }
 INVENTORY_COMPLETENESS = {"complete", "partial", "unknown"}
-SUPPORTED_CHUNKER_VERSIONS = {
-    # Support here means that the manifest/snapshot contract is understood.
-    # Byte-for-byte chunk reconstruction remains a separate adapter concern.
-    "rag-v5-docling-hybrid-v1",
-    "synthetic-fixture-v1",
-}
+SYNTHETIC_CHUNKER_VERSION = "synthetic-fixture-v1"
+KNOWN_UNVERIFIABLE_CHUNKER_VERSIONS = {"rag-v5-docling-hybrid-v1"}
 MUTATING_METHODS = ("add", "upsert", "update", "delete", "create_collection")
+CONTRACT_SCHEMA_PATH = (
+    Path(__file__).resolve().parents[1]
+    / "evaluation"
+    / "corpus_integrity"
+    / "rag_corpus_integrity_manifest_schema_v1.json"
+)
 
 
 def _load_gold_canonicalizer() -> Any:
@@ -166,35 +169,127 @@ def manifest_hash(manifest: dict[str, Any]) -> str:
     return sha256_document(normatively_order(payload))
 
 
+def _json_type_matches(value: Any, expected: str) -> bool:
+    if expected == "null":
+        return value is None
+    if expected == "object":
+        return isinstance(value, dict)
+    if expected == "array":
+        return isinstance(value, list)
+    if expected == "string":
+        return isinstance(value, str)
+    if expected == "integer":
+        return isinstance(value, int) and not isinstance(value, bool)
+    if expected == "number":
+        return isinstance(value, (int, float)) and not isinstance(value, bool)
+    if expected == "boolean":
+        return isinstance(value, bool)
+    return False
+
+
+def _resolve_local_ref(root_schema: dict[str, Any], reference: str) -> dict[str, Any]:
+    if not reference.startswith("#/"):
+        raise ValueError(f"JSON_SCHEMA_EXTERNAL_REF_UNSUPPORTED:{reference}")
+    node: Any = root_schema
+    for token in reference[2:].split("/"):
+        token = token.replace("~1", "/").replace("~0", "~")
+        if not isinstance(node, dict) or token not in node:
+            raise ValueError(f"JSON_SCHEMA_REF_NOT_FOUND:{reference}")
+        node = node[token]
+    if not isinstance(node, dict):
+        raise ValueError(f"JSON_SCHEMA_REF_NOT_OBJECT:{reference}")
+    return node
+
+
+def validate_json_schema_subset(
+    instance: Any,
+    schema: dict[str, Any],
+    *,
+    root_schema: dict[str, Any] | None = None,
+    path: str = "$",
+) -> list[str]:
+    """Apply every JSON Schema keyword used by the repository contract.
+
+    Supported keywords are deliberately explicit: local $ref, type, const,
+    enum, required, properties, additionalProperties=false, items, pattern,
+    minLength and minimum.  Unknown assertion keywords fail closed.
+    """
+    root_schema = root_schema or schema
+    errors: list[str] = []
+    allowed_annotations = {"$schema", "$id", "title", "$defs"}
+    supported_assertions = {
+        "$ref", "type", "const", "enum", "required", "properties",
+        "additionalProperties", "items", "pattern", "minLength", "minimum",
+    }
+    unknown = set(schema) - allowed_annotations - supported_assertions
+    if unknown:
+        errors.append(f"{path}:UNSUPPORTED_SCHEMA_KEYWORDS:{','.join(sorted(unknown))}")
+        return errors
+    if "$ref" in schema:
+        target = _resolve_local_ref(root_schema, schema["$ref"])
+        return validate_json_schema_subset(instance, target, root_schema=root_schema, path=path)
+
+    expected_type = schema.get("type")
+    if expected_type is not None:
+        choices = expected_type if isinstance(expected_type, list) else [expected_type]
+        if not any(_json_type_matches(instance, choice) for choice in choices):
+            return [f"{path}:TYPE:{'|'.join(choices)}"]
+    if "const" in schema and instance != schema["const"]:
+        errors.append(f"{path}:CONST")
+    if "enum" in schema and instance not in schema["enum"]:
+        errors.append(f"{path}:ENUM")
+    if isinstance(instance, str):
+        if "minLength" in schema and len(instance) < schema["minLength"]:
+            errors.append(f"{path}:MIN_LENGTH")
+        if "pattern" in schema and re.fullmatch(schema["pattern"], instance) is None:
+            errors.append(f"{path}:PATTERN")
+    if isinstance(instance, int) and not isinstance(instance, bool):
+        if "minimum" in schema and instance < schema["minimum"]:
+            errors.append(f"{path}:MINIMUM")
+    if isinstance(instance, dict):
+        required = schema.get("required", [])
+        for name in required:
+            if name not in instance:
+                errors.append(f"{path}.{name}:REQUIRED")
+        properties = schema.get("properties", {})
+        if schema.get("additionalProperties") is False:
+            for name in sorted(set(instance) - set(properties)):
+                errors.append(f"{path}.{name}:ADDITIONAL_PROPERTY")
+        for name, child in properties.items():
+            if name in instance:
+                errors.extend(validate_json_schema_subset(
+                    instance[name], child, root_schema=root_schema,
+                    path=f"{path}.{name}",
+                ))
+    if isinstance(instance, list) and "items" in schema:
+        for index, item in enumerate(instance):
+            errors.extend(validate_json_schema_subset(
+                item, schema["items"], root_schema=root_schema,
+                path=f"{path}[{index}]",
+            ))
+    return errors
+
+
 def validate_manifest_contract(manifest: dict[str, Any]) -> list[str]:
     """Validate invariants needed by the verifier without external packages."""
-    errors: list[str] = []
-    required = {
-        "schema_version", "manifest_version", "snapshot_id", "snapshot_kind",
-        "canonicalization", "collection", "documents",
-    }
-    missing = sorted(required - set(manifest))
-    errors.extend(f"MANIFEST_REQUIRED_FIELD_MISSING:{name}" for name in missing)
-    if manifest.get("schema_version") != SCHEMA_VERSION:
-        errors.append("MANIFEST_SCHEMA_VERSION_UNSUPPORTED")
-    if manifest.get("canonicalization") != CANONICALIZATION:
-        errors.append("MANIFEST_CANONICALIZATION_UNSUPPORTED")
+    schema = load_json(CONTRACT_SCHEMA_PATH)
+    errors = [f"JSON_SCHEMA:{item}" for item in validate_json_schema_subset(manifest, schema)]
     if not isinstance(manifest.get("documents"), list):
-        errors.append("MANIFEST_DOCUMENTS_NOT_ARRAY")
         return sorted(errors)
 
     collection = manifest.get("collection")
     if not isinstance(collection, dict):
         errors.append("MANIFEST_COLLECTION_MISSING")
         return sorted(errors)
-    if collection.get("inventory_completeness") not in INVENTORY_COMPLETENESS:
-        errors.append("INVENTORY_COMPLETENESS_INVALID")
     if collection.get("inventory_completeness") == "complete" and not collection.get("inventory_completeness_evidence_ref"):
         errors.append("INVENTORY_COMPLETENESS_EVIDENCE_MISSING")
     snapshot = collection.get("snapshot_consistency")
-    if not isinstance(snapshot, dict) or snapshot.get("status") not in {"certifiable", "not_certifiable"}:
-        errors.append("SNAPSHOT_CONSISTENCY_INVALID")
-    elif snapshot.get("status") == "certifiable" and (not snapshot.get("method") or not snapshot.get("evidence_ref")):
+    if isinstance(snapshot, dict) and snapshot.get("status") == "certifiable" and (
+        snapshot.get("verification_status") != "verified"
+        or not snapshot.get("method")
+        or not snapshot.get("evidence_ref")
+        or not _is_sha256(snapshot.get("evidence_sha256"))
+    ):
         errors.append("SNAPSHOT_CONSISTENCY_EVIDENCE_MISSING")
 
     document_ids: set[str] = set()
@@ -223,6 +318,12 @@ def validate_manifest_contract(manifest: dict[str, Any]) -> list[str]:
                 errors.append(f"DOCUMENT_VERIFIED_ID_MISSING:{source_ref}")
             if basis == "historically_verified" and (not identity.get("evidence_ref") or not _is_sha256(identity.get("evidence_sha256"))):
                 errors.append(f"DOCUMENT_HISTORICAL_EVIDENCE_MISSING:{source_ref}")
+            original = document.get("original", {})
+            original_hash = original.get("sha256") if isinstance(original, dict) else None
+            if isinstance(document_id, str) and _is_sha256(original_hash) and document_id != f"sha256:{original_hash}":
+                errors.append(f"DOCUMENT_ID_HASH_MISMATCH:{source_ref}")
+            if basis == "current_verified" and original.get("verification_status") != "verified":
+                errors.append(f"DOCUMENT_CURRENT_ID_STATUS_MISMATCH:{source_ref}")
         elif document_id is not None:
             errors.append(f"DOCUMENT_UNVERIFIED_ID_PROMOTED:{source_ref}")
         if isinstance(document_id, str):
@@ -300,6 +401,99 @@ class ReadOnlySnapshotAdapter:
     add = upsert = update = delete = create_collection = _refuse
 
 
+def _verify_evidence_file(
+    root: Path,
+    evidence_ref: Any,
+    expected_sha256: Any,
+    anomalies: list[dict[str, Any]],
+    *,
+    context: str,
+    document_id: str | None = None,
+    source_ref: str | None = None,
+) -> bool:
+    path = _safe_relative(root, evidence_ref)
+    if path is None or not path.is_file():
+        anomalies.append(_anomaly(
+            "NOT_ACCESSIBLE", document_id=document_id, source_ref=source_ref,
+            detail=f"{context}: evidence not accessible",
+        ))
+        return False
+    if not _is_sha256(expected_sha256):
+        anomalies.append(_anomaly(
+            "NOT_DECLARED", document_id=document_id, source_ref=source_ref,
+            detail=f"{context}: evidence sha256 not declared",
+        ))
+        return False
+    if sha256_file(path) != expected_sha256:
+        anomalies.append(_anomaly(
+            "MISMATCH", document_id=document_id, source_ref=source_ref,
+            detail=f"{context}: evidence sha256 mismatch",
+        ))
+        return False
+    return True
+
+
+def _reconstruct_synthetic_chunks(
+    extraction_path: Path,
+    document: dict[str, Any],
+    anomalies: list[dict[str, Any]],
+) -> None:
+    source_ref = document.get("source_ref")
+    document_id = document.get("document_id")
+    try:
+        extraction = load_json(extraction_path)
+    except (OSError, ValueError, json.JSONDecodeError) as error:
+        anomalies.append(_anomaly(
+            "MISMATCH", document_id=document_id, source_ref=source_ref,
+            detail=f"synthetic extraction cannot be reconstructed: {type(error).__name__}",
+        ))
+        return
+    if extraction.get("schema_version") != "synthetic_docling_chunks_v1" or not isinstance(extraction.get("chunks"), list):
+        anomalies.append(_anomaly(
+            "MISMATCH", document_id=document_id, source_ref=source_ref,
+            detail="synthetic extraction contract invalid",
+        ))
+        return
+    reconstructed: dict[str, dict[str, Any]] = {}
+    for item in extraction["chunks"]:
+        if not isinstance(item, dict) or not isinstance(item.get("chunk_id"), str):
+            anomalies.append(_anomaly(
+                "MISMATCH", document_id=document_id, source_ref=source_ref,
+                detail="synthetic extraction chunk identity invalid",
+            ))
+            continue
+        reconstructed[item["chunk_id"]] = item
+    declared = {
+        item.get("chunk_id"): item for item in document.get("chunks", [])
+        if isinstance(item, dict) and isinstance(item.get("chunk_id"), str)
+    }
+    if set(reconstructed) != set(declared):
+        anomalies.append(_anomaly(
+            "MISMATCH", document_id=document_id, source_ref=source_ref,
+            detail="Docling-to-chunk identity set mismatch",
+        ))
+    for chunk_id in sorted(set(reconstructed) & set(declared)):
+        source = reconstructed[chunk_id]
+        target = declared[chunk_id]
+        stored_document = source.get("document")
+        metadata = source.get("metadata")
+        if not isinstance(stored_document, str) or sha256_bytes(stored_document.encode("utf-8")) != target.get("content_sha256"):
+            anomalies.append(_anomaly(
+                "MISMATCH", document_id=document_id, source_ref=source_ref,
+                chunk_id=chunk_id, detail="Docling-to-chunk content mismatch",
+            ))
+        if not isinstance(metadata, dict) or sha256_document(metadata) != target.get("metadata_sha256"):
+            anomalies.append(_anomaly(
+                "MISMATCH", document_id=document_id, source_ref=source_ref,
+                chunk_id=chunk_id, detail="Docling-to-chunk metadata mismatch",
+            ))
+        if source.get("pages") != target.get("pages") or source.get("headings") != target.get("headings"):
+            anomalies.append(_anomaly(
+                "MISMATCH", document_id=document_id, source_ref=source_ref,
+                chunk_id=chunk_id, detail="Docling-to-chunk provenance mismatch",
+            ))
+
+
 def _verify_artifact(
     root: Path,
     document: dict[str, Any],
@@ -371,12 +565,24 @@ def verify_integrity(
 
     collection = manifest.get("collection", {}) if isinstance(manifest.get("collection"), dict) else {}
     chunker_version = collection.get("chunker_version")
-    if chunker_version not in SUPPORTED_CHUNKER_VERSIONS:
+    if chunker_version in KNOWN_UNVERIFIABLE_CHUNKER_VERSIONS:
+        anomalies.append(_anomaly(
+            "UNVERIFIABLE_RELATION",
+            detail=f"exact runtime chunker adapter unavailable: {chunker_version}",
+        ))
+    elif chunker_version != SYNTHETIC_CHUNKER_VERSION:
         anomalies.append(_anomaly(
             "UNSUPPORTED_VERSION", detail=f"chunker_version={chunker_version!r}"
         ))
     consistency = collection.get("snapshot_consistency", {})
-    if consistency.get("status") != "certifiable":
+    snapshot_evidence_verified = False
+    if consistency.get("status") == "certifiable" and consistency.get("verification_status") == "verified":
+        snapshot_evidence_verified = _verify_evidence_file(
+            input_root, consistency.get("evidence_ref"),
+            consistency.get("evidence_sha256"), anomalies,
+            context="snapshot consistency",
+        )
+    if consistency.get("status") != "certifiable" or not snapshot_evidence_verified:
         anomalies.append(_anomaly(
             "SNAPSHOT_NOT_CERTIFIABLE",
             detail="snapshot lacks documented consistent acquisition",
@@ -398,16 +604,37 @@ def verify_integrity(
         if isinstance(document.get("extraction"), dict):
             _verify_artifact(input_root, document, "extraction", anomalies)
         basis = document.get("identity_evidence", {}).get("basis")
+        if basis == "historically_verified":
+            identity = document.get("identity_evidence", {})
+            _verify_evidence_file(
+                input_root, identity.get("evidence_ref"),
+                identity.get("evidence_sha256"), anomalies,
+                context="historical identity", document_id=document.get("document_id"),
+                source_ref=document.get("source_ref"),
+            )
         if basis == "declared_only":
             anomalies.append(_anomaly(
                 "NOT_DECLARED", source_ref=document.get("source_ref"),
                 detail="declared hash is not a verified document identity",
             ))
+        extraction_path = _safe_relative(
+            input_root, document.get("extraction", {}).get("relative_path")
+        )
+        if (
+            chunker_version == SYNTHETIC_CHUNKER_VERSION
+            and extraction_path is not None
+            and extraction_path.is_file()
+        ):
+            _reconstruct_synthetic_chunks(extraction_path, document, anomalies)
         for chunk in document["chunks"]:
             if isinstance(chunk, dict) and isinstance(chunk.get("chunk_id"), str):
                 expected.setdefault(chunk["chunk_id"], (document, chunk))
 
     actual_records = adapter.records()
+    actual_id_sequence = [
+        record.get("id") for record in actual_records
+        if isinstance(record, dict) and isinstance(record.get("id"), str) and record.get("id")
+    ]
     actual: dict[str, dict[str, Any]] = {}
     for record in actual_records:
         record_id = record.get("id") if isinstance(record, dict) else None
@@ -492,7 +719,7 @@ def verify_integrity(
 
     declared_ids_hash = collection.get("sorted_record_ids_sha256")
     if declared_ids_hash is not None:
-        actual_ids_hash = sha256_document(sorted(actual_ids))
+        actual_ids_hash = sha256_document(sorted(actual_id_sequence))
         if declared_ids_hash != actual_ids_hash:
             anomalies.append(_anomaly(
                 "MISMATCH", detail="sorted_record_ids_sha256 mismatch"
@@ -535,7 +762,7 @@ def verify_integrity(
         "snapshot_certifiability": consistency.get("status", "not_certifiable"),
         "integrity_status": "verified" if not anomalies else "not_verified",
         "expected_record_count": len(expected_ids),
-        "actual_record_count": len(actual_ids),
+        "actual_record_count": adapter.count(),
         "available_document_ids": sorted(available_document_ids),
         "anomaly_counts": dict(sorted(counts.items())),
         "anomalies": anomalies,

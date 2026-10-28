@@ -27,13 +27,29 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
         self.pdf.parent.mkdir()
         self.extraction.parent.mkdir()
         self.pdf.write_bytes(b"synthetic pdf bytes")
-        self.extraction.write_text('{"synthetic":"docling"}', encoding="utf-8")
         self.text = "synthetic stored document"
         self.metadata = {
             "source_relative": "processed/source.json",
             "page_numbers": "[1]",
             "headings": "[\"Synthetic\"]",
         }
+        self.synthetic_extraction = {
+            "schema_version": "synthetic_docling_chunks_v1",
+            "chunks": [{
+                "chunk_id": "chunk-1",
+                "document": self.text,
+                "metadata": self.metadata,
+                "pages": [1],
+                "headings": ["Synthetic"],
+            }],
+        }
+        self.extraction.write_text(
+            json.dumps(self.synthetic_extraction, ensure_ascii=False), encoding="utf-8"
+        )
+        self.evidence_dir = self.input_root / "evidence"
+        self.evidence_dir.mkdir()
+        self.snapshot_evidence = self.evidence_dir / "snapshot.json"
+        self.snapshot_evidence.write_bytes(b"synthetic consistent snapshot evidence")
         self.chunk = {
             "chunk_id": "chunk-1",
             "chunk_index": 0,
@@ -100,8 +116,10 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
                 "sorted_record_ids_sha256": None,
                 "snapshot_consistency": {
                     "status": "certifiable",
+                    "verification_status": "verified",
                     "method": "synthetic atomic fixture",
-                    "evidence_ref": "synthetic-snapshot-evidence",
+                    "evidence_ref": "evidence/snapshot.json",
+                    "evidence_sha256": MODULE.sha256_file(self.snapshot_evidence),
                 },
                 "embedding": {
                     "model": None,
@@ -148,11 +166,13 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
 
     def test_03_inaccessible_pdf_keeps_historically_verified_identity(self):
         manifest = copy.deepcopy(self.manifest)
+        history_evidence = self.evidence_dir / "history.json"
+        history_evidence.write_bytes(b"synthetic historical identity evidence")
         identity = manifest["documents"][0]["identity_evidence"]
         identity.update({
             "basis": "historically_verified",
             "evidence_ref": "evidence/history.json",
-            "evidence_sha256": "a" * 64,
+            "evidence_sha256": MODULE.sha256_file(history_evidence),
         })
         manifest["documents"][0]["original"]["verification_status"] = "not_accessible"
         self.pdf.unlink()
@@ -242,7 +262,8 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
     def test_12_uncertified_snapshot_is_not_certifiable(self):
         manifest = copy.deepcopy(self.manifest)
         manifest["collection"]["snapshot_consistency"] = {
-            "status": "not_certifiable", "method": None, "evidence_ref": None
+            "status": "not_certifiable", "verification_status": "not_declared",
+            "method": None, "evidence_ref": None, "evidence_sha256": None
         }
         report = self.report(manifest)
         self.assertIn("SNAPSHOT_NOT_CERTIFIABLE", self.codes(report))
@@ -298,6 +319,93 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
         report = json.loads(output_path.read_text(encoding="utf-8"))
         self.assertEqual(report["verified_content"]["integrity_status"], "verified")
         self.assertEqual(report["run_metadata"]["generated_at"], "2026-10-29T10:00:00Z")
+
+    def test_17_docling_to_chunk_derivation_mismatch(self):
+        extraction = copy.deepcopy(self.synthetic_extraction)
+        extraction["chunks"][0]["document"] = "different derived chunk"
+        self.extraction.write_text(json.dumps(extraction), encoding="utf-8")
+        manifest = copy.deepcopy(self.manifest)
+        artifact = manifest["documents"][0]["extraction"]
+        artifact["sha256"] = MODULE.sha256_file(self.extraction)
+        artifact["size_bytes"] = self.extraction.stat().st_size
+        report = self.report(manifest)
+        self.assertIn("MISMATCH", self.codes(report))
+        self.assertTrue(any(
+            item["detail"] == "Docling-to-chunk content mismatch"
+            for item in report["verified_content"]["anomalies"]
+        ))
+
+    def test_18_json_schema_required_types_enums_extra_properties_and_hashes(self):
+        variants = []
+        missing = copy.deepcopy(self.manifest)
+        del missing["snapshot_id"]
+        variants.append(missing)
+        wrong_type = copy.deepcopy(self.manifest)
+        wrong_type["collection"]["record_count"] = "one"
+        variants.append(wrong_type)
+        wrong_enum = copy.deepcopy(self.manifest)
+        wrong_enum["collection"]["inventory_completeness"] = "maybe"
+        variants.append(wrong_enum)
+        extra = copy.deepcopy(self.manifest)
+        extra["unexpected"] = True
+        variants.append(extra)
+        bad_hash = copy.deepcopy(self.manifest)
+        bad_hash["documents"][0]["original"]["sha256"] = "not-a-hash"
+        variants.append(bad_hash)
+        for index, manifest in enumerate(variants):
+            with self.subTest(variant=index):
+                errors = MODULE.validate_manifest_contract(manifest)
+                self.assertTrue(any(error.startswith("JSON_SCHEMA:") for error in errors), errors)
+
+    def test_19_declared_snapshot_evidence_is_not_certifiable(self):
+        manifest = copy.deepcopy(self.manifest)
+        consistency = manifest["collection"]["snapshot_consistency"]
+        consistency["verification_status"] = "declared"
+        consistency["evidence_ref"] = "evidence/missing-snapshot.json"
+        consistency["evidence_sha256"] = "a" * 64
+        report = self.report(manifest)
+        self.assertIn("SNAPSHOT_NOT_CERTIFIABLE", self.codes(report))
+
+    def test_20_unresolvable_or_mismatched_historical_evidence_is_not_verified(self):
+        manifest = copy.deepcopy(self.manifest)
+        document = manifest["documents"][0]
+        document["identity_evidence"] = {
+            "basis": "historically_verified",
+            "evidence_ref": "evidence/missing-history.json",
+            "evidence_sha256": "a" * 64,
+        }
+        document["original"]["verification_status"] = "not_accessible"
+        self.pdf.unlink()
+        report = self.report(manifest)
+        self.assertIn("NOT_ACCESSIBLE", self.codes(report))
+
+        evidence = self.evidence_dir / "history.json"
+        evidence.write_bytes(b"actual history")
+        manifest["documents"][0]["identity_evidence"]["evidence_ref"] = "evidence/history.json"
+        report = self.report(manifest)
+        self.assertIn("MISMATCH", self.codes(report))
+
+    def test_21_repeated_ids_remain_in_ordered_id_hash_and_are_rejected(self):
+        snapshot = copy.deepcopy(self.snapshot)
+        snapshot["records"].append(copy.deepcopy(snapshot["records"][0]))
+        manifest = copy.deepcopy(self.manifest)
+        manifest["collection"]["record_count"] = 2
+        manifest["collection"]["sorted_record_ids_sha256"] = MODULE.sha256_document([
+            "chunk-1", "chunk-1"
+        ])
+        report = self.report(manifest, snapshot)
+        self.assertIn("METADATA_INCOMPLETE", self.codes(report))
+        self.assertFalse(any(
+            item["detail"] == "sorted_record_ids_sha256 mismatch"
+            for item in report["verified_content"]["anomalies"]
+        ))
+
+    def test_22_real_chunker_without_exact_adapter_is_unverifiable(self):
+        manifest = copy.deepcopy(self.manifest)
+        manifest["collection"]["chunker_version"] = "rag-v5-docling-hybrid-v1"
+        report = self.report(manifest)
+        self.assertIn("UNVERIFIABLE_RELATION", self.codes(report))
+        self.assertEqual(report["verified_content"]["integrity_status"], "not_verified")
 
 
 if __name__ == "__main__":

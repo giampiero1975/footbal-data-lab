@@ -21,8 +21,10 @@
     "sorted_record_ids_sha256": null,
     "snapshot_consistency": {
       "status": "not_certifiable",
+      "verification_status": "not_declared",
       "method": null,
-      "evidence_ref": null
+      "evidence_ref": null,
+      "evidence_sha256": null
     },
     "embedding": {
       "model": null,
