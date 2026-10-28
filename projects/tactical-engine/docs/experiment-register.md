@@ -1444,3 +1444,19 @@ esterne. Decisione: chiudere `RD-RELATION-01` sul solo perimetro deterministico
 offline e procedere separatamente con l'audit tattico relazionale non
 bloccante. Stato: **IMPLEMENTATO** codice, **ESEGUITO** test, **VALIDATO**
 offline; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-TACTICAL-RELATIONAL-AUDIT-01 — audit offline non bloccante (2026-10-28)
+
+Attività: distinguere copertura lessicale e relazione tattica per
+sottoproblema senza riattivare il blocco globale. Script:
+`scripts/v5_tactical_query_plan_v1.py`; test:
+`tests/test_v5_tactical_query_plan_v1.py`. Commit codice/test `b4a5f64`;
+report `docs/tactical-relational-audit-offline-01.md`. Risultato: segnali
+clause-local per attore, fase, compito, spazio, trigger e finalità; diagnosi di
+attore/fase errati, omissioni indipendenti e citazioni formalmente valide ma
+non pertinenti. Sette test differenziali nuovi; planner/audit 25/25, contratto
+48/48, compilazione e diff check PASS. Il supporto semantico documentale non
+viene dichiarato verificato e l'esito non modifica `complete`. Decisione:
+mantenere l'audit offline e non bloccante; richiedere casi indipendenti completi
+prima dell'integrazione. Stato: **IMPLEMENTATO**, **ESEGUITO**, **VALIDATO**
+offline per il comportamento coperto; non **INTEGRATO** o **CERTIFICATO**.
