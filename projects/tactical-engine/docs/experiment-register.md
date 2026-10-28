@@ -1610,3 +1610,7 @@ al motore, merge, deploy o VPS. Decisione: preparazione metodologica
 indipendente `RD-RELATIONAL-GOLD-E-V-01` ancora **BLOCCATO**. Gold e audit non
 **INTEGRATO** o **CERTIFICATO**. Report:
 `docs/relational-gold-e-v-preparation-01.md`.
+
+### RD-RAG-DOCUMENTARY-GAP-AUDIT-01 — registrazione della ricognizione (2026-10-28)
+
+Attività: pianificare audit supervisionato della copertura documentale RAG e gestione delle lacune, separato da Gold E/Gold V e dall'apprendimento. Script: nessuno; sola registrazione documentale nel TODO e nel registro. Risultato: perimetro definito per distinguere assenza reale del documento, mancato retrieval, evidenza insufficiente e fonti in conflitto; richiesta riconciliazione di originali, estrazioni, chunk, indici, provenienza e diritti prima di diagnosticare lacune. Decisione: eseguire in futuro ricognizione delle evidenze esistenti e predisporre registro lacune e flusso di approvazione prima di qualsiasi acquisizione o indicizzazione. Nessun test, inferenza, download, deploy o modifica pipeline. Stato: **DA FARE**. Registrazione TODO: commit `28d802b1`.
