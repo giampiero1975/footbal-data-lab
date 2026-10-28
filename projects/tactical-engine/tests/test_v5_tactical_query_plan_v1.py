@@ -325,6 +325,81 @@ class RelationalAuditDifferentialTests(unittest.TestCase):
         self.assertTrue(all("requirement_underspecified" in item["issue_codes"]
                             for item in audit["requirements"]))
 
+    def test_comitative_inciso_preserves_grammatical_head(self):
+        answer = ("In transizione negativa, alla perdita il centrale, insieme all'ala, "
+                  "copre la profondità per impedire la ripartenza.")
+        result = planner.audit_relations(answer, [self.requirement()])["requirements"][0]
+        self.assertTrue(result["satisfied"])
+
+    def test_explicit_postverbal_subject_is_linked(self):
+        answer = ("In transizione negativa, alla perdita, a coprire la profondità è il centrale, "
+                  "mentre l'ala resta alta per impedire la ripartenza.")
+        result = planner.audit_relations(answer, [self.requirement()])["requirements"][0]
+        self.assertTrue(result["satisfied"])
+
+    def test_indefinite_pronoun_does_not_select_one_of_two_actors(self):
+        requirement = self.requirement(required_dimensions=["actor", "task", "space"])
+        answer = ("Il centrale e l'ala si coordinano: uno copre la profondità "
+                  "mentre l'altro accorcia.")
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+        self.assertIn("actor_task_association_ambiguous", result["issue_codes"])
+
+    def test_risky_behaviour_negation_is_diagnostically_ambiguous(self):
+        requirement = self.requirement(required_dimensions=["actor", "task", "space"],
+                                       task_terms=["copre"])
+        answer = "Alla perdita il centrale non lascia scoperta la profondità."
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+        self.assertEqual(result["polarity_status"], "AMBIGUOUS")
+
+    def test_modal_negation_is_diagnostically_ambiguous(self):
+        requirement = self.requirement(required_dimensions=["actor", "task", "space"],
+                                       task_terms=["copre"])
+        answer = "Alla perdita il centrale non deve mai abbandonare la copertura della profondità."
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+        self.assertEqual(result["polarity_status"], "AMBIGUOUS")
+
+    def test_multipart_requirements_keep_open_and_explicit_parts_independent(self):
+        plan = planner.analyse(
+            "Come organizzi la copertura preventiva contro una ripartenza centrale? "
+            "Inoltre, alla perdita come copre la profondità il centrale?"
+        )
+        self.assertEqual(len(plan["relation_requirements"]), 2)
+        self.assertEqual(plan["relation_requirements"][0]["requirement_type"], "open")
+        self.assertEqual(plan["relation_requirements"][1]["requirement_type"], "explicit")
+        self.assertNotIn("actor_terms", plan["relation_requirements"][0])
+        self.assertEqual(plan["relation_requirements"][1]["actor_terms"], ["centrale"])
+
+    def test_overlapping_task_terms_become_independent_atoms(self):
+        plan = planner.analyse("Come copre e accorcia il centrale in profondità?")
+        requirements = plan["relation_requirements"]
+        self.assertEqual(len(requirements), 2)
+        self.assertEqual({tuple(item["task_terms"]) for item in requirements},
+                         {("copr",), ("accorc",)})
+        self.assertEqual(len({item["requirement_id"] for item in requirements}), 2)
+
+    def test_open_requirement_accepts_concrete_answer_relation(self):
+        requirement = {
+            "requirement_id": "open:preventive",
+            "requirement_type": "open",
+            "required_dimensions": ["actor", "task", "space", "trigger"],
+        }
+        answer = "Alla perdita il mediano copre la profondità."
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertTrue(result["satisfied"])
+
+    def test_open_requirement_rejects_generic_lexical_answer(self):
+        requirement = {
+            "requirement_id": "open:preventive",
+            "requirement_type": "open",
+            "required_dimensions": ["actor", "task", "space", "trigger"],
+        }
+        answer = "La copertura preventiva è importante per l'equilibrio generale."
+        result = planner.audit_relations(answer, [requirement])["requirements"][0]
+        self.assertFalse(result["satisfied"])
+
 
 if __name__ == "__main__":
     unittest.main()
