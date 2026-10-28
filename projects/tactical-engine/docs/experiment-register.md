@@ -1573,3 +1573,21 @@ esterne, VPS, inferenze, benchmark, merge o deploy. Decisione: validare offline
 soltanto A/B e registrare C come non riprodotto; Gold E/Gold V resta
 **BLOCCATO**. Stato: correzioni **IMPLEMENTATO**, test **ESEGUITO**, delta
 **VALIDATO** offline; non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-SEVENTH-PEER-RELATIONAL-VERIFICATION-01 — chiusura differenziale (2026-10-28)
+
+Attività: verificare ambito misto proprio/avversario, co-localizzazione dei
+gruppi-obiettivo e aggiornamento della cornice su tre segmenti. Script:
+`scripts/v5_tactical_query_plan_v1.py`; test:
+`tests/test_v5_tactical_query_plan_v1.py`. Commit codice/test: `084cb5b`.
+Report: `docs/seventh-peer-review-relational-verification-01.md`. Risultato: A
+positivo era un falso negativo ed è corretto associando ambito e obiettivi a
+unità relazionali interne; A negativo resta respinto; B1 e B2 erano già
+corretti e restano tali senza sinonimi ad hoc; C corretto con cornice corrente
+aggiornata dal trigger locale. Quattro test nuovi, planner/audit 50/50,
+compilazione e diff check PASS. Contratto/API non ripetuti perché indipendenti;
+zero chiamate esterne, VPS, inferenze, benchmark, merge o deploy. Decisione:
+arrestare il ciclo di euristiche costruite e passare alla sola preparazione
+indipendente Gold E/Gold V. Stato: correzioni **IMPLEMENTATO**, test
+**ESEGUITO**, delta **VALIDATO** offline; audit non **INTEGRATO** o
+**CERTIFICATO**, validazione indipendente ancora **BLOCCATO**.
