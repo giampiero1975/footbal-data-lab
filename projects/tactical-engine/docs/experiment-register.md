@@ -1656,6 +1656,26 @@ Script: non applicabile. Test: nessuno. Perimetro esclusivamente documentale;
 stato invariato: progettazione **ESEGUITO**, implementazione **DA FARE**,
 runtime **BLOCCATO**, non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
 
+Nota di stato successiva: `DA FARE` descrive lo stato storico alla chiusura del
+design; l'implementazione offline è registrata separatamente nella voce
+seguente. Il runtime rimane **BLOCCATO**.
+
+### RAG-CORPUS-PROVENANCE-INTEGRITY-OFFLINE-IMPLEMENTATION-01 — patch offline (2026-10-29)
+
+Attività: implementare senza runtime il contratto approvato al commit
+`38df9c5`. Script: `scripts/validate_rag_corpus_integrity_v1.py`. Commit
+tecnico: `d12d636fa33411f24a390fe5d2666b08f3f9316a`. Report:
+`docs/rag-corpus-provenance-integrity-offline-implementation-01.md`.
+Risultato: schema/template manifest v1, snapshot adapter JSON read-only,
+validazione di identità/hash/relazioni, classificazione completa/parziale,
+report canonicale deterministico e CLI atomico **IMPLEMENTATO**. Test nuovi:
+`python -m unittest projects/tactical-engine/tests/test_validate_rag_corpus_integrity_v1.py`,
+16/16 OK; regressione Gold E/V v2 21/21 OK prima e dopo; compilazione Python
+3.13.15 OK. Decisione: percorso offline su fixture **VALIDATO**, test
+**ESEGUITO**, runtime **BLOCCATO**. Nessun accesso VPS, collection operativa,
+Qwen, embedding, indicizzazione, benchmark, merge o deploy; non **INTEGRATO** o
+**CERTIFICATO**.
+
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.
