@@ -1615,6 +1615,19 @@ indipendente `RD-RELATIONAL-GOLD-E-V-01` ancora **BLOCCATO**. Gold e audit non
 
 Attività: pianificare audit supervisionato della copertura documentale RAG e gestione delle lacune, separato da Gold E/Gold V e dall'apprendimento. Script: nessuno; sola registrazione documentale nel TODO e nel registro. Risultato: perimetro definito per distinguere assenza reale del documento, mancato retrieval, evidenza insufficiente e fonti in conflitto; richiesta riconciliazione di originali, estrazioni, chunk, indici, provenienza e diritti prima di diagnosticare lacune. Decisione: eseguire in futuro ricognizione delle evidenze esistenti e predisporre registro lacune e flusso di approvazione prima di qualsiasi acquisizione o indicizzazione. Nessun test, inferenza, download, deploy o modifica pipeline. Stato: **DA FARE**. Registrazione TODO: commit `28d802b1`.
 
+Aggiornamento conclusivo: ricognizione statica eseguita su codice, report,
+inventari e prove GitHub; script non applicabile. Report:
+`docs/rag-documentary-gap-audit-01.md`. Ricostruita la catena PDF → Docling →
+chunk → embedding Qwen → Chroma → dense24/rerank → evidenze F → risposta e
+citazioni. Riutilizzati audit preesistenti senza ripetere query o benchmark.
+Consolidati cinque rilievi storici accertati di retrieval/chunking, un errore
+Qwen già corretto e due limiti F non determinabili; nessuna assenza A dichiarata
+dal solo checkout. Schema registro e procedura controllata documentati;
+implementazione **DA FARE**. Decisione: ricognizione **ESEGUITO**; snapshot runtime, linkage
+hash completo, diritti e copertura complessiva **BLOCCATO/DA FARE**. Nessun
+download, inferenza, indicizzazione, benchmark, modifica pipeline, VPS, merge o
+deploy; non **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
+
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.
