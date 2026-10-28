@@ -1,6 +1,216 @@
 # Registro autorevole esperimenti — Tactical Engine
 
-Ultimo aggiornamento: 2026-10-25. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
+Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
+
+### 2026-10-27 — Fix pannello: rimozione `--tactical-plan` dal profilo default
+
+Attività: diagnosticare e risolvere il blocco totale del pannello pubblico sulla VPS.
+Script: `scripts/run_rag_v5_query.py`; commit: `7c018f9` su `codex/rag-coverciano-remediation`.
+Risultato: il branch aveva introdotto `--tactical-plan` nel profilo default del runner
+del pannello, attivando il quality gate di `audit_answer` (`v5_tactical_query_plan_v1.py`)
+su tutte le domande. Il gate richiedeva `complete=True` (zero `missing_facets`,
+`missing_operational <= 1`, zero `missing_details`, zero `semantic_issues`); le risposte
+RAG generiche fallivano su `unsupported_rigid_player_numbers` e altri criteri Coverciano.
+Tutti i job restituivano `INCOMPLETE: tactical_quality_gate_failed`. Rimossa la riga
+`--tactical-plan` dalla lista argv del profilo default; gate e audit preservati per gli
+script Coverciano. Deploy: git pull VPS + restart `football-rag-api`; pannello ripristinato.
+Decisione: `--tactical-plan` rimane fuori dal profilo default del pannello finché non
+validato su domande generiche. Stato: **VALIDATO e INTEGRATO**.
+
+### 2026-10-27 — Chiusura differenziale V10.1/V10.2
+
+Attività: rerun esclusivo dei casi 5, 6, 8 e 10 dopo gli errori V10. Risultato:
+5/6/8 PASS; caso 10 rigenerato una seconda volta con geometria coerente e senza
+numeri inventati. Il FAIL residuo dipendeva solo dall'audit, che riconosceva
+`comando/segnale` ma non `comandi/segnali`; re-audit dopo correzione PASS.
+Nessuna nuova inferenza per gli altri casi. Decisione: set logico finale 10/10
+VALIDATO tecnicamente; aprire il cancello esterno con almeno dieci domande
+inedite Gemini, risposta RAG invariata, spalla disabilitata e soglia media
+>=28/30. Stato: V10.1/V10.2 **ESEGUITA e VALIDATA tecnicamente**; voto esterno
+**DA FARE**.
+
+### 2026-10-27 — Terzo giro V10 e correzione mirata V10.1
+
+Attività: terzo rerun RAG-only 10/10 con gate di contaminazione rafforzato;
+report `docs/rag-coverciano-remediation-v10-runtime-01.md`, risultati
+`evaluation/coverciano-remediation-v10/`. Risultato: indice 6.410 invariato,
+zero troncamenti/citazioni invalide, media 224,95 s, gate PASS 8/10. Casi 5 e 6
+respinti; audit umano ha inoltre respinto i falsi PASS 8 (numeri inventati) e 10
+(ruoli incoerenti). Decisione: V10 non VALIDATA; V10.1 ripete esclusivamente i
+quattro casi interessati dopo sanificazione sottrattiva e nuovi gate. Stato:
+V10 **ESEGUITA, NON VALIDATA**; V10.1 **IMPLEMENTATA**, validazione/runtime
+**DA FARE**.
+
+### 2026-10-27 — Preparazione terzo giro V10
+
+Attività: audit manuale-applicativo dei dieci testi V9 prima di ripetere il test.
+Evidenze: contaminazione da cross nel caso 2; numeri non richiesti nei casi 4 e
+8; scivolamento descritto come arretramento e compiti quinto/mediano confusi nel
+caso 5; etichetta interna nel caso 6; ruolo del limite area invertito nel caso
+8; trasformazione con tre sostituzioni generiche nel caso 10. Script:
+`v5_tactical_query_plan_v1.py`, `smoke_test_rag_v5_e2e.py`; test planner.
+Decisione: introdurre questi gate e istruzioni correttive come differenza
+tecnica V10, quindi rieseguire lo stesso set senza spalla. Stato:
+**IMPLEMENTATO**; validazione offline e runtime **DA FARE**.
+
+### 2026-10-27 — Runtime V9 e chiusura tecnica del set congelato
+
+Attività: terzo rerun differenziale RAG-only delle dieci domande congelate;
+report `docs/rag-coverciano-remediation-v9-runtime-01.md`, risultati
+`evaluation/coverciano-remediation-v9/`. Risultato: 10/10 file, indice 6.410
+invariato, zero citazioni invalide, zero troncamenti, media 215,72 s; gate 9/10.
+Il solo FAIL era un falso positivo: una clausola associava correttamente palla
+scoperta ad arretramento e descriveva una risalita solo successiva. V9.1 rende
+l'audit sensibile alla sequenza; re-audit degli output conservati 10/10, senza
+nuova inferenza. Confronto con i rilievi Gemini congelati: omissioni note ora
+coperte, ma nessun nuovo voto esterno richiesto. Decisione: chiudere la
+remediation tecnica del set; non dichiarare il target medio >=26/30 finché non
+viene valutato esternamente il testo RAG invariato. Stato: V9 **ESEGUITA e
+VALIDATA tecnicamente**; voto esterno **DA VALIDARE**.
+
+### 2026-10-27 — Runtime V8 e correzione differenziale V9
+
+Attività: rieseguire i dieci casi congelati con gate relazionale fail-closed,
+contesto 8.192 e spalla disabilitata. Report
+`docs/rag-coverciano-remediation-v8-runtime-01.md`; risultati
+`evaluation/coverciano-remediation-v8/`. Risultato: 10/10, indice 6.410
+invariato, zero citazioni invalide, zero troncamenti, media 254,05 s; gate PASS
+3/10. Errori reali nei casi 7-10 e falsi negativi di audit nei casi 3, 4 e 6.
+Decisione: V8 non VALIDATA; implementare V9 con attivazione contestuale dei
+requisiti, match relazionale, divieto numeri non richiesti e repair in linguaggio
+tattico naturale, quindi ripetere lo stesso set. Stato: V8 **ESEGUITA, NON
+VALIDATA**; V9 **IMPLEMENTATA**, validazione offline e runtime **DA FARE**.
+
+### 2026-10-27 — Remediation V8 gate relazionale e selezione repair
+
+Attività: correggere le tre cause residue dimostrate dal runtime V7 senza
+spalla e senza modificare la pipeline locked. Script:
+`v5_tactical_query_plan_v1.py`, `smoke_test_rag_v5_e2e.py`,
+`run_rag_v5_query.py`; test planner/API/catalogo. Implementazione: rilevamento
+di associazioni tattiche contraddittorie e contaminazioni di fase, divieto di
+esporre etichette interne o numeri rigidi non richiesti, confronto deterministico
+fra prima risposta e repair, selezione del candidato con minori omissioni,
+telemetria `quality_gate_*` e rifiuto fail-closed del wrapper se il candidato
+finale non supera il gate. Risultato offline: 43/43 test, compilazione e diff
+check PASS. Decisione: distribuire sul ramo dedicato e ripetere da zero le dieci
+domande con contesto 8.192 per evitare troncamenti; continuare l'affinamento
+dopo il confronto. Stato: **IMPLEMENTATO e VALIDATO offline**; runtime **DA
+FARE**.
+
+### 2026-10-27 — Runtime Coverciano remediation V7
+
+Attività: secondo rerun differenziale 10/10 con ancoraggi documentali esatti,
+audit scenario-specifico e singolo repair automatico; spalla disabilitata e
+nessuna chiamata Gemini. Script: `v5_tactical_query_plan_v1.py`,
+`smoke_test_rag_v5_e2e.py`; report
+`docs/rag-coverciano-remediation-v7-runtime-01.md`; risultati
+`evaluation/coverciano-remediation-v7/`. Risultato: indice 6.410 invariato,
+zero citazioni invalide, media 227,45 s (-22,6% su V6), repair 6/10, due
+troncamenti e solo tre risposte realmente complete; il caso 9 supera
+erroneamente il gate pur contenendo una contraddizione palla coperta/scoperta.
+Decisione: target 26/30 non dimostrato; non validare. Rafforzare audit
+relazionale e fail-closed post-repair prima di altri benchmark. Stato:
+**ESEGUITO, NON VALIDATO**.
+
+### 2026-10-27 — Runtime V6 e correzione gate semantico V7
+
+Attività: eseguire il rerun differenziale dei dieci casi Coverciano congelati e
+confrontarlo con i rilievi Gemini storici, senza spalla né nuove chiamate
+esterne. Script: `v5_tactical_query_plan_v1.py`,
+`smoke_test_rag_v5_e2e.py`; report
+`docs/rag-coverciano-remediation-v6-runtime-01.md`; risultati
+`evaluation/coverciano-remediation-v6/`. Risultato V6: 10/10, indice 6.410
+invariato, zero citazioni invalide, tempo medio 293,95 s; quattro audit
+incompleti, due troncamenti e errori semantici residui nei casi 5, 6, 9 e 10.
+Decisione: V6 non VALIDATA e target 26/30 non dimostrato. Correzione V7:
+scenari generici, query prioritarie, vincoli decisionali, audit relazionale e
+singola rigenerazione su omissione/troncamento. Stato: V6 **ESEGUITA, NON
+VALIDATA**. Primo gate retrieval-only 4/4: ha rilevato che passaggi esatti gia
+presenti nel corpus non entravano nel contesto; aggiunta espansione bounded per
+frasi esatte con massimo tre riserve sottoposte al reranker. Suite aggiornata
+39/39. V7 **IMPLEMENTATA e VALIDATA offline**; nuovo gate retrieval e runtime
+**DA FARE**.
+
+### 2026-10-26 — Remediation autonoma RAG sui dieci casi Coverciano
+
+Attività: analizzare la baseline 199/300 e correggere il RAG senza riattivare
+OpenRouter né ripetere chiamate Gemini. Script:
+`scripts/v5_tactical_query_plan_v1.py`, integrazione opt-in applicativa in
+`smoke_test_rag_v5_e2e.py` e default del solo wrapper
+`run_rag_v5_query.py`; test `test_v5_tactical_query_plan_v1.py`. Report:
+`docs/rag-coverciano-remediation-01.md`. Risultato: parser e piano dei
+sottoproblemi, retrieval multi-query, penalità fase opposta, riserva multi-facet,
+contratto applicativo e audit post-risposta implementati; test planner/router
+11/11, API 19/19, catalogo 7/7, compilazione e diff check PASS. Decisione:
+preservare il default locked, distribuire sul ramo dedicato e svolgere un solo
+rerun differenziale dei dieci casi congelati; 26/30 resta soglia minima e non è
+ancora dimostrata. Stato: **IMPLEMENTATO e VALIDATO offline**; runtime **DA
+FARE**, benchmark non VALIDATO.
+
+### 2026-10-26 — Reset benchmark Coverciano RAG-only 100
+
+Attivita: sostituire il benchmark inficiato dalla riscrittura OpenRouter con un
+nuovo percorso che valuta esclusivamente il RAG autonomo. Script: API e pannello
+in modalità spalla disabilitata; protocollo
+`docs/coverciano-rag-only-100-protocol-01.md`. Risultato iniziale: requisito
+congelato; casi precedenti esclusi dalla nuova media; OpenRouter conservato nel
+codice ma flag runtime impostato a zero. Decisione: Gemini Cloud genera e valuta,
+il pannello esegue soltanto RAG; target medio >=26/30; continuare fino al caso
+100 e poi arrestarsi con report completo. Stato: requisiti **IMPLEMENTATI**;
+test/deploy **DA FARE**; benchmark **DA FARE**.
+
+### 2026-10-26 — Migrazione revisore applicativo a OpenRouter
+
+Attività: sostituire nel percorso applicativo i collegamenti diretti Gemini e
+Groq con un unico trasporto OpenRouter, preservando integralmente storico e
+pipeline RAG certificata. Script: `scripts/openrouter_tactical_copilot_v1.py`,
+API e pannello; report `docs/openrouter-reviewer-migration-01.md`. Risultato:
+adapter a due passaggi con fallback ordinato, structured output e validazione
+fail-closed; configurazione, worker e UI non invocano più i provider diretti.
+Suite API/adapter 22/22, compilazione Python e sintassi JavaScript PASS; zero
+chiamate esterne. Decisione: mantenere gli artefatti storici per audit e
+installare la nuova chiave solo nel file privato VPS. Stato: **IMPLEMENTATO**;
+deploy e singola verifica pubblica **DA FARE**.
+
+### 2026-10-26 — Prima prova pubblica OpenRouter e cardinalità PASS1
+
+Attività: eseguire dal pannello il caso storico 4-3-3 contro 5-4-1 per
+confrontabilità. Job `7cb0da28`; report
+`docs/openrouter-reviewer-migration-01.md`. Risultato: RAG 128,2 s, totale
+187 s, 555 token e quattro evidenze; OpenRouter raggiunto con modello riportato
+`openai/gpt-oss-120b`, output bloccato da `PASS1_CASE_COUNT_MISMATCH` dopo
+circa 34 s. Decisione: imporre nello schema per-request esattamente un elemento
+per caso in `reviews` e `revised_answers`, senza allentare i gate semantici.
+Suite 23/23, compilazione PASS, nessuna API nella correzione. Stato: prova
+**ESEGUITA**, correzione **IMPLEMENTATA e VALIDATA offline**, runtime **DA FARE**.
+
+### 2026-10-26 — OpenRouter GPT-4o completo, costo e giudizio esterno
+
+Attività: sostituire il primario lento `gpt-oss-120b` con `openai/gpt-4o` dopo
+il timeout differenziale del job `111f3235`, quindi completare dal pannello lo
+stesso caso e sottoporre la risposta finale alla conversazione Gemini
+esaminatrice. Job `efb84ad8`; report
+`docs/openrouter-reviewer-migration-01.md`. Risultato: RAG 127,6 s, OpenRouter
+21,6 s, totale 171 s; structured output e due passaggi verificati. Uso: 3.087
+token input, 1.256 output, 4.343 totali; costo $0,0202775. Revisore 5/10;
+Gemini esterno 18/30 con errori di ruoli, geometria, preventiva e uso dei cambi.
+Decisione: mantenere GPT-4o primario per l'interattività, non validare la
+qualità e tracciare nel pannello costo/token/modello per ogni caso. Stato:
+flusso **ESEGUITO**, trasporto **VALIDATO**, qualità tattica **DA FARE**;
+telemetria costo **IMPLEMENTATA**.
+
+### 2026-10-26 — Remediation tattica successiva al 18/30
+
+Attività: correggere le cause strutturali della risposta finale incompleta senza
+allentare la verifica documentale. Script: contratto condiviso copilot, adapter
+OpenRouter, API e pannello; report `docs/openrouter-reviewer-migration-01.md`.
+Risultato: PASS2 riceve ora domanda e bozza integrali; prompt vincolato a ruoli,
+lati e uso dei cambi; introdotto `GIUDIZIO_TECNICO` esclusivamente per finding
+con `needs_document_check=false`, senza evidence labels e con downgrade
+fail-closed in caso di abuso. Aggiunta telemetria di costo/token al pannello.
+Suite 40/40 e compilazione PASS, zero API. Decisione: nuova prova differenziale
+dal pannello e iterazione fino a voto esterno >=28/30. Stato: **IMPLEMENTATO e
+VALIDATO offline**, runtime **DA FARE**.
 
 ### 2026-10-26 — Benchmark live Coverciano caso 001 e gate PASS2
 
@@ -1052,3 +1262,106 @@ report fallimento con soli codici HTTP/rete/timeout/schema, senza contenuti o
 segreti; test 27/27. Decisione: pubblicare la diagnostica, non ripetere la
 chiamata senza nuova autorizzazione esplicita. Stato: smoke **ESEGUITA**,
 copilot live **BLOCCATO**, diagnostica **IMPLEMENTATA**.
+
+### 2026-10-27 — Revisione UI Knowledge Panel per compiti
+
+Attività: separare il pannello monolitico in panoramica, analisi, esplora, biblioteca, monitor FIGC e monitoraggio senza toccare le logiche. Script: `api/knowledge_panel.html`; commit `a78181f3`; report `docs/panel-ui-information-architecture-01.md`. Risultato: blocco JS applicativo invariato e 43 ID preservati in verifica statica; introdotti solo CSS, markup e navigazione UI. Decisione: PR draft senza deploy, collaudo browser e regressione DOM prima di integrare. Stato: **IMPLEMENTATO**; verifica runtime **DA FARE**.
+
+### 2026-10-27 — Verifica statica differenziale della UI
+
+Attività: confrontare `main` e branch UI senza test generativi. Script: `api/knowledge_panel.html`; commit correttivo `ccf4db3`; report `docs/panel-ui-information-architecture-01.md`. Risultato: 43/43 ID conservati, zero duplicati, 11/11 handler conservati, JavaScript applicativo identico, sintassi dei due blocchi JS PASS, tag strutturali bilanciati e sei viste presenti. Compatibilità hash legacy `#ask`/`#diagnostics` ripristinata. Decisione: struttura statica **VALIDATA**, browser/responsive **DA FARE**; nessun merge o deploy, nessun benchmark RAG.
+
+### 2026-10-28 — Riallineamento UI e diagnostica persistente
+
+Attività: integrare il branch `ui/panel-information-architecture-20261027` con il runtime RAG corrente e correggere il registro opaco dei fallimenti. Script: `api/rag_v5_api.py`, `api/knowledge_panel.html`, test `tests/test_rag_v5_api.py`; report `docs/panel-ui-information-architecture-01.md`. Risultato: job riusciti/falliti/scaduti persistenti, errori strutturati per fase/codice/azione, recupero legacy da eventi, UI RAG-only con revisore separato; suite 116/116 e anteprima browser Panoramica/Analisi/Monitor PASS. Nessuna query RAG o chiamata esterna. Decisione: validare con deploy e smoke autenticata prima dell'integrazione in produzione. Stato: **VALIDATO offline e in anteprima**, deploy **DA FARE**.
+### V5-OPENROUTER-QUALITY-02 — Contesto preservato (2026-10-26)
+
+Attività: seconda prova differenziale dal pannello sul caso Coverciano 001,
+job `8de1cbcc`. Risultato: RAG 73,3 s, OpenRouter 15,701 s, totale 113 s,
+5.155 token, costo $0,02551, stato `verified`; valutazione Gemini **25/30**.
+Decisione: miglioramento reale rispetto a 18/30, ma risposta ancora diagnostica
+e non proattiva; omessi tre cambi/due slot. Implementare risposta sostitutiva
+completa nei due passaggi e ripetere una sola volta. Stato: **ESEGUITO**.
+
+### V5-OPENROUTER-QUALITY-03 — Risposta sostitutiva (2026-10-26)
+
+Attività: job pannello `08f5015c` con risposta sostitutiva obbligatoria.
+Risultato: RAG 128,27 s, revisore 18,993 s, totale 170 s; 5.505 token, costo
+$0,0290325; voto interno 3/10. Errori: lato invertito, ruolo inesistente e cambi
+generici. Decisione: non inviare a Gemini; introdurre mappa geometrica e distinta
+N cambi/M slot, quindi usare `openai/gpt-6.1-sol` come primario. Stato:
+**ESEGUITO**, non VALIDATO.
+
+### V5-OPENROUTER-QUALITY-04 — Root cause adapter PASS2 (2026-10-26)
+
+Attività: job pannello `6d5e64b6`. Risultato: 117 s totali, 6.125 token,
+$0,032585, fallback GPT-4o, voto interno 2/10. Causa verificata: override
+OpenRouter di PASS2 ometteva domanda, bozza, risposta sostitutiva e piano;
+`temperature` rendeva GPT-6.1 non eleggibile col gate parametri. Decisione:
+correggere payload e usare reasoning high senza temperatura; nuova prova
+giustificata, nessun invio Gemini dell'output respinto. Stato: **ESEGUITO**.
+
+### V5-OPENROUTER-QUALITY-05 — Timeout reasoning high (2026-10-26)
+
+Attività: job pannello `24ae6aba` con payload PASS2 completo e GPT-6.1 Sol.
+Risultato: RAG 71,39 s; timeout revisore 240 s; totale 334 s e fallback sulla
+bozza. Usage locale assente per completion non conclusa. Decisione: ridurre
+reasoning a low e riconciliare il costo tramite telemetria OpenRouter; nessun
+invio Gemini. Stato: **ESEGUITO**.
+
+### V5-RAG-COPILOT-ATTRIBUTION-01 — Audit preliminare 70/30 (2026-10-26)
+
+Attivita: riconciliare il ruolo effettivo di RAG e spalla OpenRouter nelle
+prime 16 prove Coverciano eseguite dal pannello, senza nuove chiamate. Evidenze:
+bozze RAG e revisioni conservate nella cronologia della sessione, valutazioni
+interne frequentemente comprese fra 2 e 4/10 nei casi recenti, risposte finali
+valutate dalla commissione esterna 29-30/30 nei primi 15 casi; valutazione del
+caso 16 ancora pendente. Risultato: stima qualitativa preliminare RAG 25-35% e
+spalla 65-75%; il retrieval e il grounding restano prevalentemente RAG, mentre
+la maggioranza del miglioramento di ragionamento ed esposizione proviene oggi
+dalla spalla. Decisione: obiettivo RAG >=70%, spalla <=30% e bozza autonoma
+>=26/30; progettare attribuzione per caso sui concetti preservati, corretti,
+aggiunti e non supportati prima di dichiarare una percentuale validata. Vietata
+la sostituzione integrale della risposta da parte del revisore. Stato:
+**ESEGUITO** per l'audit preliminare; misura causale **DA FARE**, non VALIDATA.
+
+### V5-COVERCIANO-RAG-AUTONOMY-AUDIT-01 — Stop e diagnosi (2026-10-26)
+
+Attivita: sospendere il benchmark e analizzare senza nuove chiamate le prime 16
+prove conservate nella sessione del pannello, il runner, il prompt RAG e i due
+passaggi OpenRouter. Report:
+`docs/v5-coverciano-rag-autonomy-audit-01.md`. Risultato: 15/16 bozze a 2-4/10,
+media interna 3,06/10, mediana 2/10; risposta finale mediamente 2,87x piu
+lunga. Accertato che il copilot richiede una `replacement_answer` e la usa come
+ossatura per una riscrittura integrale. Retrieval e generazione non impongono
+una mappa strutturale generale; i gate API controllano citazioni sintattiche e
+indice, non coerenza tattica. Il voto nominale 28/30 della prova 16 e INVALIDO:
+dopo perdita della sessione e stato trasmesso il segnaposto `Connettiti per
+iniziare`, dal quale la commissione ha inferito impropriamente un giudizio usando
+la cronologia. Decisione: non usare domanda 17, non proseguire il benchmark;
+implementare parser/gate strutturale, retrieval per sottoproblemi, spalla
+delta-only e gate autonomia su tre casi congelati. Stato: **ESEGUITO** per
+l'audit; correzioni **DA FARE**, benchmark sospeso.
+
+Decisione aggiuntiva del titolare: la perdita della sessione dimostra che
+persistenza e tracciamento devono diventare un requisito tecnico autonomo.
+Attivita `V5-PANEL-PERSISTENT-HISTORY-01` aperta nel TODO: storico server-side,
+ripresa sicura, associazione caso/job, blocco dei placeholder ed export
+cumulativo. Stato: **DA FARE**; nessuna implementazione o test eseguito.
+
+### V5-COVERCIANO-RAG-ONLY-100-01 — Baseline autonoma ridotta a 10 casi (2026-10-26)
+
+Attivita: eseguire dal pannello il flusso Gemini Cloud esaminatore → RAG-only →
+Gemini Cloud valutatore, con risposta RAG invariata e spalla OpenRouter
+disabilitata. Il titolare ha ridotto esplicitamente il perimetro da 100 a 10 e
+richiesto l'arresto esatto al caso 10. Script: pannello pubblico e pipeline API
+gia integrata; nessuna modifica alla pipeline durante la baseline. Commit:
+DA FARE. Report: `docs/coverciano-rag-only-100-report-01.md`. Risultato: 10/10
+job `succeeded`, 199/300, media 19,90/30, mediana 21,50, minimo 0 e massimo 26;
+tempo RAG totale 1.512,17 s, media 151,22 s; 5.506 token complessivi. Caso 9:
+retrieval di sole due evidenze generiche e risposta completamente astensiva,
+voto 0/30. Decisione: target autonomo >=26/30 respinto; non continuare oltre
+10 e non riattivare la spalla per compensare. Aprire remediation su parsing dei
+sottoproblemi, retrieval per fase/ruolo, gate di copertura, risposta applicativa
+e normalizzazione terminologica; ripetere soltanto dopo una differenza tecnica
+documentata. Stato: **ESEGUITO**, non **VALIDATO**.

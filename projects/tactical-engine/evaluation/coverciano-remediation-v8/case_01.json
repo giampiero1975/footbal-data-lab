@@ -1,0 +1,215 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv8_01",
+      "question": "Il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). In particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). Quali sono i fattori situazionali e strutturali che determinano questa scelta?",
+      "answer": "1. **Criteri per Riaggressione Immediata (Contro-pressing)**\n   - **CHI**: Giocatore che perde palla e compagni vicini.\n   - **COSÀ**: Pressione immediata sul portatore, chiusura delle linee di passaggio, recupero rapido.\n   - **DOVE**: Zona di perdita del pallone, preferibilmente alta o in zona pericolosa.\n   - **QUANDO/INNESCO**: Subito dopo la perdita, se l'avversario è isolato o lento a reagire.\n   - **PERCHÉ**: Recuperare palla prima che l'avversario organizzi il contrattacco; sfruttare l'errore avversario [F1], [F5].\n   - **COPERTURA/RISCHIO**: Rischio di essere contropressati se la squadra non è compatta o se la perdita avviene troppo in profondità senza supporto immediato.\n\n2. **Criteri per Ripiegamento Collettivo (Scappata)**\n   - **CHI**: Linea difensiva e centrocampisti vicini alla palla.\n   - **COSÀ**: Abbassamento del baricentro, chiusura della zona dietro la linea di perdita, temporeggiare l'azione avversaria.\n   - **DOVE**: Quando la perdita avviene in profondità o se la densità attorno alla palla è insufficiente per il pressing [F2], [F3].\n   - **QUANDO/INNESCO**: Se l'avversario ha opzioni di passaggio sicure o se la squadra non può coprire tutti gli spazi immediatamente.\n   - **PERCHÉ**: Ridurre la profondità dell'azione avversaria, costringere a scelte difficili e riorganizzare la difesa [F3], [F5].\n   - **COPERTURA/RISCHIO**: Rischio di subire gol se il portatore di palla avversario è veloce o se le coperture difensive non sono immediate.\n\n**Matrice Comparativa Fattori Situazionali e Strutturali**\n- **Prossimità/Densità**: Se alta attorno alla palla, favorisce riaggressione [F2]; se bassa, richiede ripiegamento per creare densità [F3].\n- **Zona del Campo**: Perdita alta o in zona pericolosa spinge al contro-pressing; perdita bassa o in profondità favorisce la scappata [F3].\n- **Palla Coperta/Scoperta**: Palla coperta (avversario isolato) permette riaggressione; palla scoperta (molte opzioni avversarie) richiede ripiegamento.\n- **Qualità Avversario**: Adversario veloce o tecnico richiede spesso ripiegamento per evitare errori costosi; avversario lento o meno tecnico può essere pressato [F5].\n- **Preventive Predisposte**: Se la squadra ha già strutturato un pressing alto, si usa riaggressione; se predisposta a scappare, si usa ripiegamento [F6].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "988b54912df728e1264631ef21662953f3669613058dfc40fd304e830c337a1e",
+          "source": "Transizioni.Ussia",
+          "canonical_source": "Transizioni.Ussia",
+          "source_relative": "formations-and-systems/Transizioni.Ussia.json",
+          "pages": "[4, 5]",
+          "distance": 0.30958,
+          "headings": [
+            "Definizione"
+          ],
+          "text": "Definizione\nLa transizione è, dunque , una fase importante del nostro calcio che rappresenta il momento in cui si perde o si riconquista una palla. Pertanto oltre alla fase offensiva e difensiva, quindi di possesso o non possesso palla, esiste una terza fase, cosiddetta di transizione, che identifica il momento della riconquista o della perdita della palla.\nLa transizione dunque è, nel calcio odierno, una fase fondamentale per fare o per non subire goal. In un'ottica di questo tipo diventa quindi \"strategico\" allenare in maniera diversa dal solito i calciatori, affinché non abbiano pause nel passare da una fase di gioco all'altra.\nLa fase di transizione, dunque va analizzata nei suoi due aspetti:\n- 1) sotto l'aspetto difensivo in quanto la perdita del possesso palla può determinare, come abbiamo visto, una situazione ad alto rischio (transizione negativa)."
+        },
+        {
+          "label": "F2",
+          "id": "ed5e5d20d5f952dd176bc6f097ea374ca28d019ad11eb5372edfb379ca8adda6",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[32]",
+          "distance": 0.29389,
+          "headings": [
+            "3.4 LE TRANSIZIONI NEGATIVE"
+          ],
+          "text": "3.4 LE TRANSIZIONI NEGATIVE\nUn altro aspetto che era importante allenare e chiarire, oltre alle due fasi di Possesso e Non Possesso palla, è il saper gestire e come comportarsi nei momenti immediati alla perdita o alla conquista della palla: le Transizioni.\nPer quanto riguarda le Transizioni Negative, come ho evidenziato nella Fig.3 pag.6. dove sono indicati i nostri Principi di Gioco, appena la palla viene persa, l'obiettivo della squadra è quello di recuperarla nel minor tempo possibile. Qualora non fosse possibile, la squadra si abbassa creando densità e sviluppando un'azione ritardatrice degli avversari.\nAlcune Esercitazioni utilizzate da noi per allenare la transizione negativa (fig.21-22) e un esempio in gara (fig.23)"
+        },
+        {
+          "label": "F3",
+          "id": "b7d53536cad0f60d8869005315f536fd62dcd131479b1dfb226432c3e838f308",
+          "source": "Allegati_2311201293017",
+          "canonical_source": "Allegati_2311201293017",
+          "source_relative": "formations-and-systems/Allegati_2311201293017.json",
+          "pages": "[14]",
+          "distance": 0.25697,
+          "headings": [
+            "Comportamento e atteggiamento dei difensori nel 2vs2"
+          ],
+          "text": "Comportamento e atteggiamento dei difensori nel 2vs2\nOltre alle fasi di possesso o non possesso palla, esiste una terza fase, cosiddetta di transizione, che identifica il momento della riconquista (transizione positiva) o della perdita della palla(transizione negativa). Nel calcio moderno si dà molta importanza a questo aspetto poiché dai rilievi statistici, sempre più utili e avanzati, si è notato che una parte consistente dei gol che vengono realizzati, nascono da una perdita di possesso palla e dal successivo contrattacco veloce. L`aspetto psicologico è importante in quanto occorre un rapido adattamento mentale del giocatore dalla fase offensiva a quella difensiva. Se quindi è importante una reazione immediata a livello individuale e` anche vero che risulta necessaria un organizzazione tattica che preveda una reazione collettiva. La transizione negativa può essere affrontata ripiegando più velocemente possibile dietro la linea della palla, scappando con la linea di difesa e centrocampo, al massimo cercando di ritardare l`azione del portatore di palla con un`azione di disturbo del giocatore più vicino. In questo caso la squadra dovrà temporeggiare per poi una volta ricompattata cominciare ad attaccare il portatore di palla. Lo scopo principale diventa quello di togliere profondità alla squadra avversaria di modo che non si conceda una ripartenza veloce. Un altro modo di affrontare la transizione negativa è quello che in questi ultimi anni viene proposto soprattutto dal Barcellona."
+        },
+        {
+          "label": "F4",
+          "id": "8120ab0003ee06683e8cfdc4e9b43ec74d836c87d3dcabccdeffd213c76d5577",
+          "source": "Transizioni.Ussia",
+          "canonical_source": "Transizioni.Ussia",
+          "source_relative": "formations-and-systems/Transizioni.Ussia.json",
+          "pages": "[2]",
+          "distance": 0.31326,
+          "headings": [
+            "Premessa"
+          ],
+          "text": "Premessa\nLa convinzione personale dell'importanza di questo aspetto è dettata anche dall'esperienza che mi sono costruito negli anni sia nel calcio giocato come calciatore, sia come allenatore di squadre giovanili, ma anche di squadre di campionati di Eccellenza, di serie D, di lega Pro sia in prima che in seconda divisione, sia come responsabile, da quattro anni a questa parte del settore giovanile della Nocerina. Non solo ma anche come responsabile degli osservatori della società Molossa mi sono occupato, seguendo gli incontri, dello studio e quindi delle relazioni tecniche di numerosissime partite dei vari campionati di Primavera, Lega Pro, Serie B, e campionati esteri, che mi hanno convinto fortemente che nel gioco del calcio la dinamicità collettiva e di conseguenza le ripartenze in fase offensiva o i recuperi in fase difensiva o semplicemente \" transizioni\" sono effettivamente di grande importanza. Addirittura in diverse partite ho potuto notare che l'atteggiamento delle squadre in fase offensiva era condizionato dalle transizioni positive dell'avversario e ciò frenava l'azione offensiva delle stesse oppure veniva fatta con meno uomini.\nPer questo motivo, uno degli aspetti che un allenatore deve allenare con maggior costanza in fase difensiva è la transizione negativa in tutte le situazioni di gioco collegate."
+        },
+        {
+          "label": "F5",
+          "id": "910b6ed75cf70ce59dc13f3471f33f5200fcea57fe38b68104a9eba18c928fcd",
+          "source": "vincenzo-italiano_tesi",
+          "canonical_source": "vincenzo-italiano_tesi",
+          "source_relative": "formations-and-systems/vincenzo-italiano_tesi.json",
+          "pages": "[9]",
+          "distance": 0.3211,
+          "headings": [
+            "2.2 Fase di non possesso Ð recupero palla"
+          ],
+          "text": "2.2 Fase di non possesso Ð recupero palla\nIn fase di transizione negativa, lÕobiettivo quello di recuperare il pallone pi velocemente possibile subito dopo averlo perso, o comunque di riorganizzare e riconquistare il possesso, costringere lÕavversario ad effettuare scelte difficili o comunque poco ragionate o preparate. Non mi piace avere una squadra attendista o con un baricentro molto basso, cos\" come non mi piace subire ripetutamente il dominio avversario nel possesso palla. Quanto premesso, richiede ovviamente un grande spirito di sacrificio da parte dei giocatori, coraggio (e non timore) per esempio da parte della linea difensiva nello stare alta che di conseguenza porta la squadra ad alzare il baricentro; Centrocampisti ed attaccanti che devono essere capaci di aggredire in avanti ma allo stesso tempo pronti a ripiegare allÕindietro, quando la situazione lo richiede."
+        },
+        {
+          "label": "F6",
+          "id": "511e45a7c3bbe390a6e1aa7b237b5853755922bb0adab9e09928bc0068b9c23d",
+          "source": "tesi-lorenzon-uefa-pro",
+          "canonical_source": "tesi-lorenzon-uefa-pro",
+          "source_relative": "formations-and-systems/tesi-lorenzon-uefa-pro.json",
+          "pages": "[9]",
+          "distance": 0.30922,
+          "headings": [
+            "1 - OGGETTIVARE LE FASI DI GIOCO"
+          ],
+          "text": "1 - OGGETTIVARE LE FASI DI GIOCO\nCostruzione su rinvio dal fondo, NON POSSESSO PALLA = Pressing su rinvio dal fondo. Azione manovrata su pressing, NON POSSESSO PALLA = Pressing su azione manovrata. Azione manovrata nella propria metà campo, NON POSSESSO PALLA = Linea d'attesa nella metà campo offensiva. Azione manovrata nella metà campo offensiva, NON POSSESSO PALLA = Linea d'attesa nella metà campo difensiva. Azione manovrata su palla che torna, NON POSSESSO PALLA = Pressing su palla che torna. Azione manovrata su riaggressione, NON POSSESSO PALLA = Riaggressione. Transizione offensiva, NON POSSESSO PALLA = Transizione difensiva. PALLE INATTIVE OFFENSIVA, NON POSSESSO PALLA = PALLE INATTIVE DIFENSIVE. Corner a favore, NON POSSESSO PALLA = Corner contro. Punizioni a favore, NON POSSESSO PALLA = Punizioni contro. Rigore a favore, NON POSSESSO PALLA = Rigore contro. Rimessa laterale a favore, NON POSSESSO PALLA = Rimessa laterale contro. PAUSA DI GIOCO, NON POSSESSO PALLA = PAUSA DI GIOCO"
+        }
+      ],
+      "source_aware_source": "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [
+        "8120ab0003ee06683e8cfdc4e9b43ec74d836c87d3dcabccdeffd213c76d5577",
+        "910b6ed75cf70ce59dc13f3471f33f5200fcea57fe38b68104a9eba18c928fcd"
+      ],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": [
+          "transizione negativa"
+        ]
+      },
+      "tactical_plan": {
+        "facets": [
+          "negative_transition"
+        ],
+        "scenarios": [],
+        "formations": [],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). in particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). quali sono i fattori situazionali e strutturali che determinano questa scelta"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "988b54912df728e1264631ef21662953f3669613058dfc40fd304e830c337a1e"
+      ],
+      "tactical_covered": {
+        "negative_transition": "988b54912df728e1264631ef21662953f3669613058dfc40fd304e830c337a1e"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). In particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). Quali sono i fattori situazionali e strutturali che determinano questa scelta?",
+        "transizione negativa riaggressione ripiegamento palla coperta palla scoperta marcatura preventiva densita zona perdita"
+      ],
+      "tactical_anchors": [],
+      "tactical_anchor_candidate_ids": [],
+      "tactical_anchor_reserved_ids": [],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "negative_transition": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {
+          "density_or_proximity": true,
+          "covered_or_uncovered_ball": true,
+          "field_zone": true,
+          "preventive_structure": true
+        },
+        "missing_details": [],
+        "semantic_issues": [],
+        "complete": true
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 189.8,
+      "generation": {
+        "total_duration_ns": 180319438432,
+        "load_duration_ns": 11151805536,
+        "prompt_eval_duration_ns": 87381245000,
+        "eval_duration_ns": 81746525000,
+        "eval_count": 638,
+        "prompt_eval_count": 2565,
+        "done_reason": "stop",
+        "repair_reasons": [],
+        "quality_gate_passed": true,
+        "quality_gate_missing": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

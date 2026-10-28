@@ -1,0 +1,232 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv6_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer": "1. **Costruzione Alta e Cambio Gioco**: La squadra in possesso sviluppa l'azione con ampiezza per muovere un blocco basso avversario [F3]. Il cambio gioco avviene lateralmente: il portatore su lato palla passa alla fascia, mentre il compagno sul lato debole scivola verso la zona cieca o il centro, creando superiorità numerica e costringendo il difensore esterno a scegliere tra uscire (lasciando spazio) o restare (perdendo il duello 1vs1) [F2], [F6].\n\n2. **Attacco all'Area e Finalizzazione**: Per lo sviluppo verso l'area, si utilizzano inserimenti esterni che liberano spazi per i compagni di fascia [F1]. Il codice prevede:\n   - *Primo palo*: Attaccato dall'esterno difensivo che sovrappone o dalla punta centrale in corsa [F1].\n   - *Secondo palo/Zona dischetto*: Occupato dal centrocampista interno o dal secondo esterno che scivola nel mezzo spazio, pronto per il traversone [F3], [F6].\n   - *Fuori area*: Ricoperta da un giocatore (es. terzino opposto) che si posiziona in profondità per ricevere cross arretrati o tagliare verso la porta [F3].\n\n3. **Gestione del 1vs1 e Scivolamenti**: Le corsie esterne vengono sfruttate tramite inserimenti tempestivi dell'esterno offensivo che punta il diretto avversario, costringendolo a un duello fisico o tattico [F1], [F4]. Il compagno esterno difensivo attacca lo spazio liberato dall'inserimento del partner per creare opzioni di cross o passaggio in profondità [F1].\n\n**Rischio residuo**: La difesa avversaria potrebbe contrattaccare rapidamente se il portatore di palla non gestisce con precisione la fase di costruzione, esponendo le linee difensive alla controffensiva [F2], [F5].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "b18dc0db34b6e4f538deca114fdb7ae7e69939f5efd79d858c258c359719ca08",
+          "source": "corso_allenatore_base_tesina_tecnica_tattica_calcistica_4_2_3_1",
+          "canonical_source": "corso_allenatore_base_tesina_tecnica_tattica_calcistica_4_2_3_1",
+          "source_relative": "formations-and-systems/corso_allenatore_base_tesina_tecnica_tattica_calcistica_4_2_3_1.json",
+          "pages": "[9]",
+          "distance": 0.34802,
+          "headings": [
+            "4. Possibili sviluppi in fase di possesso palla e loro allenamento"
+          ],
+          "text": "4. Possibili sviluppi in fase di possesso palla e loro allenamento\nI possibili sviluppi della fase offensiva sono stati affrontati in ordine sparso nella trattazione finora presentata ; li riassumiamo brevemente :\n1. Inserimento 1-2 ( note : per un'esecuzione efficace l'esterno deve puntare il diretto avversario e la punta centrale deve venirgli incontro ) , come da figura 2 ;\n2. Inserimento 1-2-3- senza cambio di gioco , come da figura 3 ;\n3. Inserimento 1-2-3 con cambio di gioco , come da figura 4 ;\n4. Cross dell'esterno difensivo da sovrapposizione , come da figura 8 ;\n5. esterno difensivo che attacca lo spazio liberato dall'inserimento dell'esterno offensivo , come da figura 9 ;\nFra gli sviluppi codificabili, ve ne sono altri tre che non sono stati trattati e che costituiscono un'ottima opportunità di segnatura in relazione a possibili errori della difesa avversaria :"
+        },
+        {
+          "label": "F2",
+          "id": "475ec23b62530c6d8ad73b5e2a8d61767d0223813024e051b0cd4ef14e8fa57d",
+          "source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale.json",
+          "pages": "[6]",
+          "distance": 0.38093,
+          "headings": [
+            "08. Cambio contro blocco basso"
+          ],
+          "text": "08. Cambio contro blocco basso\nOrganico: 16-18 · Spazio: 2/3 campo · Carico proposto: 4×7 min. Organizzazione: Attacco posizionale con due esterni larghi; obiettivo creare ingresso in area dopo cambio. Correzioni: Coordinare secondo palo e rimorchio. Progressione/verifica: Difesa può contrattaccare in miniporte."
+        },
+        {
+          "label": "F3",
+          "id": "dbc917de1d1714bd966bc7d04ab35c1e0a8bdd57c58ce354ee4aed45d815cb11",
+          "source": "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale.json",
+          "pages": "[5]",
+          "distance": 0.36457,
+          "headings": [
+            "Scenario C: difesa bassa e compatta"
+          ],
+          "text": "Scenario C: difesa bassa e compatta\nNon esiste un corridoio profondo ampio. Attacco con ampiezza e taglio breve sul lato cieco; obiettivo cross arretrato o ricezione nel mezzo spazio."
+        },
+        {
+          "label": "F4",
+          "id": "0e09164e699b01bd79176294f9b4496c4aa71240d5d3efd5d31667c6cbf11b48",
+          "source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "canonical_source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "source_relative": "formations-and-systems/la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti.json",
+          "pages": "[2]",
+          "distance": 0.44683,
+          "headings": [
+            "REQUISITI DEI DIFENSORI"
+          ],
+          "text": "REQUISITI DEI DIFENSORI\n- la facilità nel calciare la palla in maniera precisa, sia nel gioco corto che in quello lungo;\n- la capacità di controllare in modo orientato (stop a seguire) la palla, difendendola dall'avversario;\n- la capacità di guidare velocemente in verticale la palla;\n- la capacità di crossare dal fondo e dalla trequarti del campo;\n- la capacità di contrastare e marcare l'avversario;\n- la capacità di percepire e intervenire sulle traiettorie alte della palla (gioco aereo).\nDal punto di vista tattico-situazionale il difensore esterno deve:\n- saper marcare d'anticipo l'avversario, ponendosi sempre sulla linea interna;\n- sempre in fase difensiva, porsi in maniera opportuna, stringendo gli spazi verso il centro del campo su un attacco dal fronte opposto per dare copertura e, nello stesso tempo, poter intervenire anche nella zona cieca, su un eventuale cambio veloce di gioco;\n- saper temporeggiare, in caso di contropiede;\n- saper attaccare l'avversario in possesso palla nel momento più opportuno, facendo pressing;\n- in fase offensiva, saper supportare il centrocampo e l'attacco con azioni di sostegno e appoggio;\n- saper attaccare gli spazi vuoti con inserimenti tempestivi sulle fasce laterali."
+        },
+        {
+          "label": "F5",
+          "id": "cdb6b9fec2241f32b7c07b001ca56bc1253fe5279cf3df71c7a50cffda4e4475",
+          "source": "19_prestigiacomo",
+          "canonical_source": "19_prestigiacomo",
+          "source_relative": "formations-and-systems/19_prestigiacomo.json",
+          "pages": "[1, 2]",
+          "distance": 0.39709,
+          "headings": [
+            "INTRODUZIONE."
+          ],
+          "text": "INTRODUZIONE.\nLa sottofase di costruzione è, fra quelle relative alla fase offensiva, la più delicata e fondamentale per le possibilità della squadra di attaccare con efficacia e spettacolarità.\nRicordando che la fase di costruzione è finalizzata ad avvicinare la sfera e il blocco squadra alla metà campo altrui, superando l'opposizione del centrocampo rivale per guadagnare una zona di campo utile all'effettuazione della rifinitura (figura 1, in cui sono evidenziate le zone di campo dove tipicamente viene elaborata la manovra), è chiaro come questa fase sia essenziale affinchè la manovra si svolga in maniera ottimale.\nLa fase di costruzione deve quindi\ntendere alla preparazione di possibilità di rifinitura che esaltino le caratteristiche finalizzatori oltre che degli assist-men stessi.\nAd esempio, se si dispongono di punte forti dal punto di vista aereo, la costruzione del gioco deve essere sviluppata per linee prevalentemente orizzontali in modo da giungere alla rifinitura tramite cross.\nAvere valide e numerose modalità di rifinitura e finalizzazione non è sufficiente se la squadra, e in particolare i centrocampisti, non sono in grado di sviluppare l'azione da dietro in maniera fluida, precisa, continuativa e con chiarezza di idee.\nEcco perché è indispensabile che il tecnico curi alla perfezione questo delicato aspetto di organizzazione collettiva, dotando i giocatori di soluzioni di gioco adeguate e addestrandoli meticolosamente durante tutta la stagione attraverso esercitazioni mirate."
+        },
+        {
+          "label": "F6",
+          "id": "2cef39137993bc5674288d2f61e931105bd602aeed832316bcc0c0ae631869a5",
+          "source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "canonical_source": "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti",
+          "source_relative": "formations-and-systems/la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti.json",
+          "pages": "[3, 5]",
+          "distance": 0.47491,
+          "headings": [
+            "DIAGONALI, PIRAMIDI, LINEE DI COPERTURA, SCALATE E SLITTAMENTI, ELASTICO DIFENSIVO"
+          ],
+          "text": "DIAGONALI, PIRAMIDI, LINEE DI COPERTURA, SCALATE E SLITTAMENTI, ELASTICO DIFENSIVO\nLa posizione dei 4 difensori è primariamente condizionata dalla posizione della palla e della porta. Sulla base di ciò risulta rilevante analizzare varie soluzioni, come la piramide sugli attacchi centrali (Fig. 1A e 1B).\nLe linee di copertura in riferimento al portatore di palla possono essere, come si vede nelle figure seguenti (Fig. 2A e 2B) a due linee o a una linea. Quest'ultima è una scelta che da' troppa profondità all'attacco e, quindi, con essa sarà più difficile applicare la tattica del fuorigioco collettivo.\nIl concetto di copertura è fondamentale per tutta la difesa a zona, soprattutto per non fare l'errore di presentarsi \"piatti\" sul portatore di palla.\nI giocatori mantengono una distanza ottimale tra loro che permette, su un attacco esterno, di occupare gli spazi in direzione del portatore di palla, lasciando libero l'eventuale lato debole (Fig. 3A).\nSolitamente, si prevede in una posizione del campo bassa un abbassamento sulla diagonale lunga di un giocatore del centrocampo, per non essere attaccati sulla zona cieca, cioè quella alle spalle di tutti i difensori (Fig. 3B).\nIn caso di attacco centrale ci si dispone come nella figura successiva (Fig. 3C).\nQuando viene a mancare un giocatore della linea difensiva, si deve scalare orizzontalmente verso il portatore di palla, coprendo la posizione del compagno mancante (Fig. 4)."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+        "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+        "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+        "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+        "I movimenti della difesa a 3",
+        "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco",
+        "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [
+        "475e1f0a44b14c002c0eacd3cc0b77532eece4da0f62e0b5f8d75b11d2652be3",
+        "82204250903bb23edad45d97e4bcf9f3dd58efa7854c614a9a659277a67c86be",
+        "772b49a51aa3e161987520fec7eaff8e16aa882ce08c19d87b71907371463e9b"
+      ],
+      "structural_signals": {
+        "formations": [
+          "4-5-1",
+          "5-4-1"
+        ],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "facets": [
+          "possession",
+          "non_possession",
+          "width",
+          "box"
+        ],
+        "formations": [
+          "4-5-1",
+          "5-4-1"
+        ],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi la fase di \"costruzione alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\")"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "b18dc0db34b6e4f538deca114fdb7ae7e69939f5efd79d858c258c359719ca08",
+        "475ec23b62530c6d8ad73b5e2a8d61767d0223813024e051b0cd4ef14e8fa57d",
+        "dbc917de1d1714bd966bc7d04ab35c1e0a8bdd57c58ce354ee4aed45d815cb11",
+        "0e09164e699b01bd79176294f9b4496c4aa71240d5d3efd5d31667c6cbf11b48"
+      ],
+      "tactical_covered": {
+        "possession": "b18dc0db34b6e4f538deca114fdb7ae7e69939f5efd79d858c258c359719ca08",
+        "non_possession": "475ec23b62530c6d8ad73b5e2a8d61767d0223813024e051b0cd4ef14e8fa57d",
+        "width": "dbc917de1d1714bd966bc7d04ab35c1e0a8bdd57c58ce354ee4aed45d815cb11",
+        "box": "0e09164e699b01bd79176294f9b4496c4aa71240d5d3efd5d31667c6cbf11b48"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+        "fase di possesso costruzione sviluppo rifinitura 4-5-1 5-4-1",
+        "fase di non possesso blocco difesa difendere 4-5-1 5-4-1",
+        "ampiezza corsia laterale cambio gioco cambio di gioco 4-5-1 5-4-1",
+        "area di rigore primo palo secondo palo dischetto 4-5-1 5-4-1"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": true,
+          "non_possession": true,
+          "width": true,
+          "box": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {},
+        "missing_details": [],
+        "complete": true
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 166.84,
+      "generation": {
+        "total_duration_ns": 147523323003,
+        "load_duration_ns": 1057211,
+        "prompt_eval_duration_ns": 93096033000,
+        "eval_duration_ns": 54225551000,
+        "eval_count": 428,
+        "prompt_eval_count": 2713,
+        "done_reason": "stop",
+        "repair_reasons": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

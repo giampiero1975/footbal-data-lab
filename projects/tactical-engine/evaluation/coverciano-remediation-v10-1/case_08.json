@@ -1,0 +1,275 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv10_1_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer": "1. **Costruzione Alta e Cambio Gioco**: Contro blocco basso, si usa l'ampiezza per creare corridoi interni. Il portatore laterale (es. 7) guida palla verso il centro; il compagno interno (es. 2) sovrappone [F2]. Questo movimento sincronizzato libera lo spazio tra le linee avversarie. Se il cambio di gioco avviene, l'esterno opposto (es. 3) si propone in fascia mentre il centrocampista centrale (es. 10) taglia dentro sotto la punta (9), creando un nuovo lato forte senza aprire il corridoio interno [F3].\n\n2. **Palla Viaggia e Duelli 1vs1**: La \"palla viaggia\" serve a muovere la struttura avversaria arretrata. Quando il portatore laterale difensivo (es. 7) riceve palla andando incontro al compagno (4), esegue un giro e entra nel campo; l'esterno offensivo (2) sovrappone per creare duello 1vs1 sulle corsie [F2]. L'obiettivo è scatenare il contrasto esterno per poi verticalizzare o crossare.\n\n3. **Attacco all'Area e Ruoli**: In previsione di cross, si definiscono quattro occupazioni distinte: primo palo (attacco diretto), zona centrale/dischetto (protezione porta), secondo palo (riempimento) e limite area (fuori area). Il giocatore sul corto 1 è in proiezione primo palo; uno sul dischetto rigore; un terzo in proiezione secondo palo [F1]. Gli altri marcano o stanno al limite dell'area.\n\n4. **Cross e Segnali**: Il cross non è automatico ma legato a segnale del portatore (es. 9) che riceve palla da 7 dopo taglio di 2. Il portatore (9) finta per il compagno (11), si gira e va a ricevere passaggio di ritorno, mentre 10 attacca primo palo [F2]. Il cross avviene quando l'esterno difensivo da sovrapposizione batte palla; il compagno interno (es. 8) inserisce dopo taglio sotto le punte dell'esterno 7 [F3].\n\n5. **Gestione Spazio e Rischi**: Se la difesa avversaria chiude zona, si usa taglio breve sul lato cieco per cross arretrato o ricezione nel mezzo spazio [F6]. Il rischio residuo è il contrattacco avversario; quindi si coordina secondo palo e rimorchio per coordinare la copertura. La priorità assoluta è difendere prima di ripartire se gli avversari sono distanti [F1].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "0c35062364acd526f009cfca620c6d99960ef4bab17a5d7839ac70ddcf9723b7",
+          "source": "Allegati_2742011135329",
+          "canonical_source": "Allegati_2742011135329",
+          "source_relative": "formations-and-systems/Allegati_2742011135329.json",
+          "pages": "[25, 26]",
+          "distance": null,
+          "headings": [
+            "PALLE INATTIVE"
+          ],
+          "text": "PALLE INATTIVE\nSulle stesse situazioni, ma a sfavore, l'atteggiamento della mia squadra è semplice. Difendo con tutti i miei effettivi ed occupo a zona dei punti dell'area di rigore. Sugli angoli metto un giocatore sul palo, uno sul vertice, uno o due fuori area per evitare il tiro da fuori e gli altri in marcatura. Se ci sono meno uomini da marcare, preferisco chiudere a zona il secondo palo e lo spazio tra i due uomini sul primo palo. Sulle punizioni laterali c'è già una discriminante sul tipo di battuta. Ad esempio, se fosse a rientrare, posiziono davanti alla battuta due uomini per dare meno spazio. Se fosse ad uscire, ne basterebbe solo uno in barriera. E' chiaro che, indipendentemente dal tipo di calcio, se sul pallone ci fossero due uomini, anch'io chiedo di portare lo stesso numero di giocatori.\n25\nA zona si posiziona uno sul corto 1 (in proiezione primo palo), uno, leggermente in diagonale sul dischetto rigore ed un terzo (in proiezione secondo palo), anch'esso un po' in diagonale rispetto all'uomo in mezzo che solitamente cerca palla.\nfig. 8 Sulle punizioni laterali a rientrare, queste sono le posizioni in zona, mentre gli altri marcano e quelli che rimangono stanno al limite dell'area di rigore.\nTutti gli altri marcano o sono in altre zone sul limite dell'area che pensano e si concentrano a difendere.\nLa priorità assoluta è la difesa, perché non posso pensare subito a ripartire, essi sono troppo distanti."
+        },
+        {
+          "label": "F2",
+          "id": "630485ce692604b73cbdf371bb8845f8535d151f56933ea7bf647e2776e00d70",
+          "source": "442_punte_Catania",
+          "canonical_source": "442_punte_Catania",
+          "source_relative": "formations-and-systems/442_punte_Catania.json",
+          "pages": "[16, 17, 18]",
+          "distance": null,
+          "headings": [
+            "TATTICA"
+          ],
+          "text": "TATTICA\n(fig. 22).\n\"2\" dà a \"7\" che gli era andato incontro, quando\"7\" porta dentro la palla, \"2\" gli si sovrappone. A questo punto \"9\" e \"11\" incrociano , \"7\" serve quest'ultimo sul taglio , \"11\" passa a \"2\" che crossa per \"9\" sul secondo palo e \"10\" che con un taglio lungo attacca il primo palo (fig. 23).\n\"7\" dopo un contro-movimento riceve la palla da \"2\"; di prima intenzione passa a \"9\" che gli era andato in appoggio, \"9\" scarica su \"4\" che può passare a\"11\" che taglia, a \"10\" che si inserisce oppure a \"2\" andato in sovrapposizione (fig. 24).\n\"3\" in possesso di palla, non trovando compagni liberi, la guida verso \"10\" che, a un certo punto, gli va incontro. Eseguono un \"velo\", quando \"10\" esce dal \"velo\" e può verticalizzare, passa la palla alla punta più lontana \"9\", \"11\" che era andato in appoggio a \"10\" si gira internamente per riceverne il passaggio: a destra avviene il taglio di \"7\" mentre a sinistra dopo il \"velo\", \"3\" si era sovrapposto (fig. 25).\n\"7\" riceve la palla andando incontro a \"4\". Si gira ed entra \"dentro\" al campo; \"2\" gli si sovrappone. \"7\" esegue un passaggio teso su \"9\" che gli era andato in appoggio, \"9\" finta (\"esca\") per \"11\", si gira velocemente e va a riceverne il passaggio di ritorno (fig. 26)."
+        },
+        {
+          "label": "F3",
+          "id": "e473ae1ee6619cfeac2aa746f3f0118dbd57df0d08f0d21b961adcbdeaf8e919",
+          "source": "Allegati_14112014151551",
+          "canonical_source": "Allegati_14112014151551",
+          "source_relative": "formations-and-systems/Allegati_14112014151551.json",
+          "pages": "[4, 5]",
+          "distance": null,
+          "headings": [
+            "1-4-4-2 vs 1-4-4-2"
+          ],
+          "text": "1-4-4-2 vs 1-4-4-2\n- t3: 8 scarica su 4, 10 taglia il campo dentro, 3 si propone in fascia.\nt4: 4 passa a 10, 3 continua la sua corsa, 9 - 11 e 7 si propongono per ricevere in profondità, 8 gli dà sostegno.\n- t5: 10 effettua uno stop a seguire, 9 si propone tagliando nella zona del primo palo, 11 e 7 si propongono con un attacco alle spalle dei rispettivi difensori, 8 si propone sopra la linea della palla.\nt6: 10 effettua un attacco su passaggio passante verso 11. t7: 11 controlla e conclude.\n- 5- INTERSCAMBIO TRA GLI ESTERNI 10 - 3 E PASSAGGIO PASSANTE SU 11. t1: Con palla al difensore centrale di dx 5, 10 taglia dentro e sotto la punta 9, 4 si propone sulla sua verticale, 7 si propone in fascia, 11 si propone incontro. t2: 5 serve 10 dentro al campo, 3 si propone in fascia, 11 e 7 si propongono in profondità, 4 e 8 danno sostegno.\n- t3: 10 effettua uno stop a seguire, 11 si propone alle spalle del proprio difensore, effettuando un movimento fuori linea, 7 si propone in fascia. t4: 10 effettua un passaggio passante a 11.\n- t5: 11 effettua uno stop a seguire e va alla conclusione.\n7- TAGLIO SOTTO LE PUNTE DELL'ESTERNO 7 E PASSAGGIO PASSANTE PER L'INSERIMENTO DI 8.\nt1: 2 guida palla fino a metà campo, 9 e 11 danno profondità, 7 si propone con un taglio dentro e sotto le punte, 4 gli va a sostegno."
+        },
+        {
+          "label": "F4",
+          "id": "b18dc0db34b6e4f538deca114fdb7ae7e69939f5efd79d858c258c359719ca08",
+          "source": "corso_allenatore_base_tesina_tecnica_tattica_calcistica_4_2_3_1",
+          "canonical_source": "corso_allenatore_base_tesina_tecnica_tattica_calcistica_4_2_3_1",
+          "source_relative": "formations-and-systems/corso_allenatore_base_tesina_tecnica_tattica_calcistica_4_2_3_1.json",
+          "pages": "[9]",
+          "distance": 0.34802,
+          "headings": [
+            "4. Possibili sviluppi in fase di possesso palla e loro allenamento"
+          ],
+          "text": "4. Possibili sviluppi in fase di possesso palla e loro allenamento\nI possibili sviluppi della fase offensiva sono stati affrontati in ordine sparso nella trattazione finora presentata ; li riassumiamo brevemente :\n1. Inserimento 1-2 ( note : per un'esecuzione efficace l'esterno deve puntare il diretto avversario e la punta centrale deve venirgli incontro ) , come da figura 2 ;\n2. Inserimento 1-2-3- senza cambio di gioco , come da figura 3 ;\n3. Inserimento 1-2-3 con cambio di gioco , come da figura 4 ;\n4. Cross dell'esterno difensivo da sovrapposizione , come da figura 8 ;\n5. esterno difensivo che attacca lo spazio liberato dall'inserimento dell'esterno offensivo , come da figura 9 ;\nFra gli sviluppi codificabili, ve ne sono altri tre che non sono stati trattati e che costituiscono un'ottima opportunità di segnatura in relazione a possibili errori della difesa avversaria :"
+        },
+        {
+          "label": "F5",
+          "id": "475ec23b62530c6d8ad73b5e2a8d61767d0223813024e051b0cd4ef14e8fa57d",
+          "source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale.json",
+          "pages": "[6]",
+          "distance": 0.38093,
+          "headings": [
+            "08. Cambio contro blocco basso"
+          ],
+          "text": "08. Cambio contro blocco basso\nOrganico: 16-18 · Spazio: 2/3 campo · Carico proposto: 4×7 min. Organizzazione: Attacco posizionale con due esterni larghi; obiettivo creare ingresso in area dopo cambio. Correzioni: Coordinare secondo palo e rimorchio. Progressione/verifica: Difesa può contrattaccare in miniporte."
+        },
+        {
+          "label": "F6",
+          "id": "dbc917de1d1714bd966bc7d04ab35c1e0a8bdd57c58ce354ee4aed45d815cb11",
+          "source": "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale.json",
+          "pages": "[5]",
+          "distance": 0.36457,
+          "headings": [
+            "Scenario C: difesa bassa e compatta"
+          ],
+          "text": "Scenario C: difesa bassa e compatta\nNon esiste un corridoio profondo ampio. Attacco con ampiezza e taglio breve sul lato cieco; obiettivo cross arretrato o ricezione nel mezzo spazio."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "FOOTBALL_DATA_LAB_Ampiezza_e_Cambio_Gioco_Manuale",
+        "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+        "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+        "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+        "I movimenti della difesa a 3",
+        "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco",
+        "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [
+        "772b49a51aa3e161987520fec7eaff8e16aa882ce08c19d87b71907371463e9b",
+        "aa4fdad84b7a18bfbf6e0c86721155b270306f3def5259a36c208720dcd3c1c1"
+      ],
+      "structural_signals": {
+        "formations": [
+          "4-5-1",
+          "5-4-1"
+        ],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "question_text": "il candidato analizzi la fase di \"costruzione alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+        "facets": [
+          "possession",
+          "non_possession",
+          "width",
+          "box"
+        ],
+        "scenarios": [
+          "cross_attack"
+        ],
+        "formations": [
+          "4-5-1",
+          "5-4-1"
+        ],
+        "roles": [],
+        "request_parts": [
+          "il candidato analizzi la fase di \"costruzione alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\")"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "b18dc0db34b6e4f538deca114fdb7ae7e69939f5efd79d858c258c359719ca08",
+        "475ec23b62530c6d8ad73b5e2a8d61767d0223813024e051b0cd4ef14e8fa57d",
+        "dbc917de1d1714bd966bc7d04ab35c1e0a8bdd57c58ce354ee4aed45d815cb11",
+        "0e09164e699b01bd79176294f9b4496c4aa71240d5d3efd5d31667c6cbf11b48"
+      ],
+      "tactical_covered": {
+        "possession": "b18dc0db34b6e4f538deca114fdb7ae7e69939f5efd79d858c258c359719ca08",
+        "non_possession": "475ec23b62530c6d8ad73b5e2a8d61767d0223813024e051b0cd4ef14e8fa57d",
+        "width": "dbc917de1d1714bd966bc7d04ab35c1e0a8bdd57c58ce354ee4aed45d815cb11",
+        "box": "0e09164e699b01bd79176294f9b4496c4aa71240d5d3efd5d31667c6cbf11b48"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+        "cambio gioco uno contro uno cross primo palo dischetto secondo palo limite area segnale 4-5-1 5-4-1",
+        "cambio gioco tempo di volo lato debole lato forte scivolamento mediano schermo 4-5-1 5-4-1",
+        "cross attacco area primo palo dischetto secondo palo limite area oppure difesa palla uomo portiere 4-5-1 5-4-1",
+        "fase di possesso costruzione sviluppo rifinitura 4-5-1 5-4-1"
+      ],
+      "tactical_anchors": [
+        "primo palo",
+        "secondo palo",
+        "dischetto"
+      ],
+      "tactical_anchor_candidate_ids": [
+        "0c35062364acd526f009cfca620c6d99960ef4bab17a5d7839ac70ddcf9723b7",
+        "1d6dce7b8e5be0b6e9b3bff19efde84f4ea5eb0196b20118562fbe98716e200d",
+        "37eb62183c5060b407f8a7a3ac88ae2cecae2057d6c5f9756b012b1956095cb5",
+        "40fa58ef4e27a541eff09ae4bfa44f4a2cc27de61a9a3f29de563fac06fbcb84",
+        "554901d7090157b7b06800abbbd208038f6ab855ebcf78145183916ac228f214",
+        "5ca244a129ad4dd779df01d14757d66b488def8fd9fbf8a3877f3cf43bc4da30",
+        "630485ce692604b73cbdf371bb8845f8535d151f56933ea7bf647e2776e00d70",
+        "77a8efb169f0b714d66202fd309b5238404dda6bdd5364fff6ea3ac03ce2f387",
+        "788fa0847f2b4db634682b3341be01938467fabfb2c9ffaa1cc20f796f50fdfb",
+        "7b55fcd0704750fc1d844003be01c2a06307bb2640efe6492665eaa1d8db400d",
+        "888c08dedea4f6cd202d3f10a888523281a52b91265b7bc39e2b5cbbefa22aca",
+        "ac072f8b1afbd52a49be10c65ed81f6e0b08ccf09e3b851a954208a4ac0d4343",
+        "b0f35c80c2543f04d0f01b3d37cc7bc1c6064da87ce15c67928e48216c242414",
+        "c3e451e72e7f2087fd23de56fa3502ce0118976627461c727859f06df4257031",
+        "c92e65a3026c6a7e72a39ac2eba0a94d133c110cd84405cf5650d3196e998674",
+        "cb8cecbd44f1f9382dd048ed5b76a29ad67671149bc8321c7e45357ee78b71f5",
+        "e2890411c994c8dd5a5ba7ba682c9be238da71999de89c8078154a7cb50316c2",
+        "e473ae1ee6619cfeac2aa746f3f0118dbd57df0d08f0d21b961adcbdeaf8e919"
+      ],
+      "tactical_anchor_reserved_ids": [
+        "0c35062364acd526f009cfca620c6d99960ef4bab17a5d7839ac70ddcf9723b7",
+        "630485ce692604b73cbdf371bb8845f8535d151f56933ea7bf647e2776e00d70",
+        "e473ae1ee6619cfeac2aa746f3f0118dbd57df0d08f0d21b961adcbdeaf8e919"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": true,
+          "non_possession": true,
+          "width": true,
+          "box": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [],
+        "missing_operational": [],
+        "detail_coverage": {
+          "strong_and_weak_side": true,
+          "ball_flight_trigger": true,
+          "box_roles": true,
+          "first_post": true,
+          "penalty_spot": true,
+          "far_post": true,
+          "edge_of_box": true,
+          "cross_signal": true
+        },
+        "missing_details": [],
+        "semantic_issues": [],
+        "complete": true
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 199.56,
+      "generation": {
+        "total_duration_ns": 178151042458,
+        "load_duration_ns": 1084404,
+        "prompt_eval_duration_ns": 105497230000,
+        "eval_duration_ns": 72400707000,
+        "eval_count": 569,
+        "prompt_eval_count": 3098,
+        "done_reason": "stop",
+        "repair_reasons": [],
+        "quality_gate_passed": true,
+        "quality_gate_missing": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

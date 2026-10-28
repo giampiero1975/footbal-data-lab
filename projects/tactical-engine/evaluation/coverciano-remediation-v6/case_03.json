@@ -1,0 +1,216 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv6_03",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "answer": "1. **Principio di Protezione della Porta**: Il difensore assume una posizione attiva tra palla e porta per oscurare la luce visiva all'avversario o respingere la conclusione [F4]. In caso di uscita del portiere, il difensore può scegliere di anteporsi per facilitare l'uscita fluida o, viceversa, difendere direttamente la porta in base alle caratteristiche del portiere (es. alto/abile nelle uscite) [F1]. La decisione dipende dalla traiettoria e dal rischio calcolato dal portiere [F6].\n\n2. **Coordinazione Posturale dei Difensori Centrali**: Il difensore deve assumere una presa di posizione attiva, evitando il dorso alla palla, con orientamento dello sguardo focalizzato sulla palla per intuirne la direzione [F4]. La postura deve permettere un'uscita fluida del portiere o una copertura efficace della luce senza commettere fallo in area [F1].\n\n3. **Gestione del Duello Individuale**: In zona, si applica marcatura a uomo con scivolamenti controllati per non commettere fallo di rigore; in pura marcatura a uomo, l'obiettivo è impedire la conclusione oscurando la porta [F4], [F1]. Il difensore deve essere reattivo al massimo, agendo come \"portiere senza mani\" [F4].\n\n4. **Lettura della Traiettoria e Ripartizione Compiti**: Tutti i giocatori contribuiscono in fase di non possesso; difensori e portiere sono i principali interpreti del principio [F4]. Il portiere decide uscita/permanenza basandosi su traiettoria, traffico e distanza [F6]. I difensori n. 4-6-2 vanno in protezione del portiere, mentre altri ruoli (es. n. 7, n. 11) gestiscono spazi specifici o la prima barriera [F3].\n\n5. **Postura, Sguardo e Spazio**: Il difensore deve guardare la palla per intuirne la direzione, interponendo il corpo tra palla e porta [F4]. La gestione dello spazio prevede di non farsi oltrepassare dagli avversari durante l'uscita del portiere [F1], [F3].\n\n**Rischio Residuo**: Possibile errore di valutazione sulla traiettoria o tempistica dell'uscita del portiere, richiedendo una comunicazione costante tra difensori e portiere per evitare sovrapposizioni o spazi vuoti.",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "06a71bf5295661988085b721f3f00f33abef84287036024d456dd91ee5e8f49e",
+          "source": "Allegati_17122013122448",
+          "canonical_source": "Allegati_17122013122448",
+          "source_relative": "formations-and-systems/Allegati_17122013122448.json",
+          "pages": "[91, 92, 93, 94]",
+          "distance": 0.27417,
+          "headings": [
+            "4.3 Protezione del portiere da cross"
+          ],
+          "text": "4.3 Protezione del portiere da cross\nIl difensore, dopo un cross dal fondo o traversone dalla trequarti, che vede il proprio portiere impegnato in uscita sulla palla, deve anteporsi tra lui e l'avversario con una distanza che permetta un'uscita fluida e agevole e che ne consenta la protezione.\nDeve fare una sorta di \"blocco\" corretto senza essere troppo aggressivo sull'avversario per non commettere fallo che in area potrebbe essere sanzionato con il calcio di rigore.\nLa protezione del portiere può essere anche a protezione della porta: quando il portiere è in uscita, invece di anteporsi tra lui e l'avversario, prende posizione a difesa della porta.\nE' importante per il difensore conoscere le peculiarità tecniche del proprio portiere in uscita e le caratteristiche morfologiche dello stesso (con un portiere molto alto e abile nelle uscite, il difensore sarà sempre più portato a difesa della porta, viceversa spesso andrà a protezione dell'uscita del proprio portiere).\nprotezione del portiere da cross dal fondo (blocco corretto)\nprotezione del portiere da cross dal fondo (difesa della porta)\nprotezione errata del portiere da cross dal fondo (troppo vicino al portiere)\ndifesa della porta (difensore corre per oscurare la luce della porta)\ndifesa della porta (difensore oscura la luce della porta)"
+        },
+        {
+          "label": "F2",
+          "id": "ad2923bc138d87809d154c100f5499735ad763fcf28515f6185999f16008ea01",
+          "source": "La gestione tattica della gara.",
+          "canonical_source": "La gestione tattica della gara.",
+          "source_relative": "formations-and-systems/La gestione tattica della gara..json",
+          "pages": "[3]",
+          "distance": 0.3581,
+          "headings": [
+            "5. L'azione del reparto difensivo è efficace?"
+          ],
+          "text": "5. L'azione del reparto difensivo è efficace?\n- Il reparto riesce a leggere efficacemente la situazione della palla (in \"volo\": in \"possesso\" -> coperta/scoperta o aperta/chiusa) ed a compiere gli opportuni movimenti in verticale (elastico) allo scopo di togliere profondità all'azione avversaria?\n- Il reparto riesce a leggere efficacemente la situazione della palla e ad attaccare il possessore quando non è più possibile \"scappare\" (il reparto sa difendere la zona prospiciente l'area di rigore)?\n- Il reparto riesce a scalare con la giusta tempistica?\n- Il reparto riesce a reggere collettivamente ed individualmente ed a tamponare efficacemente le rifiniture avversarie (tagli, sponde, cross, combinazioni)?\n6. Il portiere sa leggere la situazione tattica e riesce a difendere lo spazio oltre che la porta quando è necessario?\n7. Quali sono i giocatori all'interno dei vari reparti che non riescono a muoversi tatticamente in modo opportuno ottimizzando tempi e partecipazione alla fase di non possesso (è sufficiente un richiamo od occorre prendere in considerazione un riposizionamento all'interno del campo o la sostituzione con un giocatore a disposizione) ?"
+        },
+        {
+          "label": "F3",
+          "id": "df72ae7a4fd50fea908d6ca05cabc8e8cf9305de096eb53cf22cd876f5df0d58",
+          "source": "palle_inattive_Indiani",
+          "canonical_source": "palle_inattive_Indiani",
+          "source_relative": "formations-and-systems/palle_inattive_Indiani.json",
+          "pages": "[15]",
+          "distance": 0.32483,
+          "headings": [
+            "Comportamento dopo la battuta"
+          ],
+          "text": "Comportamento dopo la battuta\nI calciatori n. 4 - 6 - 2 hanno il compito di andare in protezione del portiere, non facendosi oltrepassare dagli avversari. Il calciatore n. 7 rimane a difendere lo spazio di partenza. Il calciatore n. 11, se piazzato di fianco alla prima barriera, va in protezione del portiere dalla parte della battuta; se piazzato insieme ai calciatori n. 4 - 6 - 2 rimane a difendere lo spazio di partenza; se fuori area rimane a difendere quello spazio. Il calciatore n. 3, se uscito per attaccare, rimane a difendere lo spazio fuori area; se in barriera difende lo spazio dietro la prima barriera. I calciatori n. 8 - 5 - 9 - 10 si slegano dal blocco unico appena passata la palla: i primi componenti n. 8 e n. 5, specialmente senza la presenza in quello spazio del n. 11, difendono lo spazio verso il portiere ed i n. 9 e n. 10 rimangono a difendere lo spazio di partenza. (Fig. 54a diretta e fig. 54b indiretta)"
+        },
+        {
+          "label": "F4",
+          "id": "dd27f997442e8911337e59e9c1d0a3831312d004f3a184a063b95530cd71fe1c",
+          "source": "Allegati_17122013122448",
+          "canonical_source": "Allegati_17122013122448",
+          "source_relative": "formations-and-systems/Allegati_17122013122448.json",
+          "pages": "[88, 89]",
+          "distance": 0.29193,
+          "headings": [
+            "4.1 Proteggiamo il nostro portiere: difesa della porta"
+          ],
+          "text": "4.1 Proteggiamo il nostro portiere: difesa della porta\nE' uno dei cinque principi della tattica individuale di non possesso palla.\nE' il principio secondo il quale, in occasione di conclusioni verso la nostra porta, oppure situazioni di gara nel corso delle quali il portiere esce per affrontare un avversario lanciato a rete (uno contro uno e quindi lasciando incustodita la porta) il difensore corre per coprire il più possibile la luce della porta interponendo il proprio corpo tra la palla e la porta in modo da dissuadere l'attaccante dalla conclusione (in quanto \"non vede\" la porta) o altresì in modo da respingere con il corpo la conclusione stessa. Deve assumere una presa di posizione attiva (non deve dare mai il dorso alla palla), essere reattivo al massimo, deve essere un portiere senza mani. Deve guardare la palla cercando di intuirne la possibile direzione. Tutti i giocatori (e non solo il portiere) indipendentemente dal ruolo, sono chiamati in fase di non possesso e in misura variabile a seconda dei compiti tattici loro assegnati dall'allenatore, ad assolvere questo compito. E' evidente che difensori e portiere devono essere i migliori interpreti di questo principio difensivo.\nPer quanto riguarda invece la protezione del portiere il difensore, dopo conclusioni a rete o cross dal fondo, o traversoni verso la porta magari dalla trequarti deve assumere una posizione che gli permetta di proteggere il portiere da eventuali imperfezioni nella presa della palla, oppure deviazioni non perfette."
+        },
+        {
+          "label": "F5",
+          "id": "b9856b749b0280d467a76f48d688ef103266be9ef7779c5f5c077ff9b1623a92",
+          "source": "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale.json",
+          "pages": "[1]",
+          "distance": 0.3781,
+          "headings": [
+            "LA DIFESA DELL'AREA DI RIGORE"
+          ],
+          "text": "LA DIFESA DELL'AREA DI RIGORE\nCross, cutback, marcature, coperture, portiere, seconde palle e transizioni.\nEdizione di studio - ottobre 2026. Schemi, esercitazioni e criteri di osservazione proposti dall'autore; non equivalgono a protocolli federali validati."
+        },
+        {
+          "label": "F6",
+          "id": "9f580eadd68b4a5b71e64e5077b3a06512832a682a8d6a4bf31afcecc613b73c",
+          "source": "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale.json",
+          "pages": "[2]",
+          "distance": 0.39058,
+          "headings": [
+            "Competenza territoriale"
+          ],
+          "text": "Competenza territoriale\nIl portiere decide uscita, permanenza o respinta in base a traiettoria, traffico, distanza e rischio; non ogni cross va attaccato."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "Dislocazione a triangoli in una squadra di calcio nella fase di possesso palla",
+        "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+        "I movimenti della difesa a 3",
+        "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+        "La gestione tattica della gara.",
+        "la_difesa_a_20_4_20_nelle_2_fasi_gioco_Tassotti"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": []
+      },
+      "tactical_plan": {
+        "facets": [
+          "non_possession",
+          "goalkeeper",
+          "box"
+        ],
+        "formations": [],
+        "roles": [
+          "portiere"
+        ],
+        "request_parts": [
+          "il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "06a71bf5295661988085b721f3f00f33abef84287036024d456dd91ee5e8f49e",
+        "ad2923bc138d87809d154c100f5499735ad763fcf28515f6185999f16008ea01",
+        "df72ae7a4fd50fea908d6ca05cabc8e8cf9305de096eb53cf22cd876f5df0d58"
+      ],
+      "tactical_covered": {
+        "non_possession": "06a71bf5295661988085b721f3f00f33abef84287036024d456dd91ee5e8f49e",
+        "goalkeeper": "ad2923bc138d87809d154c100f5499735ad763fcf28515f6185999f16008ea01",
+        "box": "df72ae7a4fd50fea908d6ca05cabc8e8cf9305de096eb53cf22cd876f5df0d58"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+        "fase di non possesso blocco difesa difendere portiere",
+        "portiere estremo difensore portiere",
+        "area di rigore primo palo secondo palo dischetto portiere"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "non_possession": true,
+          "goalkeeper": true,
+          "box": false
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [
+          "box"
+        ],
+        "missing_operational": [],
+        "detail_coverage": {},
+        "missing_details": [],
+        "complete": false
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "3",
+        "4",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 380.73,
+      "generation": {
+        "total_duration_ns": 320616404534,
+        "load_duration_ns": 132227971064,
+        "prompt_eval_duration_ns": 121562598000,
+        "eval_duration_ns": 66772933999,
+        "eval_count": 534,
+        "prompt_eval_count": 2305,
+        "done_reason": "stop",
+        "repair_reasons": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

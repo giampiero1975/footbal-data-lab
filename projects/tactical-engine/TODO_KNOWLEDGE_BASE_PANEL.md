@@ -55,3 +55,18 @@ Architettura applicativa verificata: nessun consumer preesistente nel repository
 - [x] Integrare vista Qualità operativa con worker, coda, job, errori e latenze persistenti.
 - [x] Riprogettare e collaudare la UX pubblica con flusso Analisi → RAG/fonti → copilot → risposta finale, biblioteca e diagnostica (`a77420e`).
 - [x] Integrare catalogo FIGC e stati di scoperta/download/presenza nel corpus — **VALIDATO e INTEGRATO**; conversione e ingestion restano separate (`docs/figc-catalog-panel-integration-01.md`).
+
+## 2026-10-27 — Riorganizzazione UI del pannello
+
+- **IMPLEMENTATO** su branch `ui/panel-information-architecture-20261027`, commit `a78181f3`: panoramica, navigazione per compiti, sezioni dedicate e dettagli espandibili; invariati JS applicativo, ID, API e token.
+- **DA FARE**: revisione diff, collaudo browser desktop/mobile, verifica interazioni e navigazione, poi decisione sul merge/deploy. Non ripetere benchmark generativi: nessuna logica RAG è cambiata.
+- Evidenza: `docs/panel-ui-information-architecture-01.md`.
+
+- Verifica differenziale UI 2026-10-27: **VALIDATO** solo controllo statico (43 ID, 11 handler, sintassi JS, struttura e deep-link legacy); **DA FARE** browser desktop/mobile, interazioni reali e successiva decisione su merge. Report `docs/panel-ui-information-architecture-01.md`; commit `ccf4db3`.
+
+## 2026-10-28 — Diagnostica e cronologia affidabili
+
+- [x] **IMPLEMENTATO e VALIDATO offline**: persistenza server-side di successi, fallimenti e timeout con recupero dopo riavvio.
+- [x] **IMPLEMENTATO e VALIDATO offline**: errore strutturato con `phase`, `code`, messaggio comprensibile e azione consigliata; registro tecnico senza domande, risposte o token.
+- [x] **IMPLEMENTATO e VALIDATO in anteprima**: la nuova UI mostra fallimenti nella cronologia, distingue RAG e revisore opzionale e non presenta più Groq come componente attivo.
+- [ ] **DA FARE**: deploy VPS e smoke autenticata del caso storico `ae4a0e8d`; nessun nuovo benchmark generativo necessario per validare la sola diagnostica.

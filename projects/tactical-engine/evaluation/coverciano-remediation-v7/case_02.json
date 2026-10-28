@@ -1,0 +1,253 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv7_02",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "answer": "1. **Ruolo del Portiere e Uscita Strategica**: Il portiere funge da \"terzo uomo\" della prima linea o come pivot che si abbassa per creare superiorità numerica [F6]. Evita di appoggiarsi al difensore vicino, preferendo rilanci rapidi verso la zona centrale o passaggi laterali precisi con le mani per cambiare il fronte d'azione [F2]. La scelta è tra l'uscita corta per coinvolgere il pressing e la soluzione lunga preparata con una struttura specifica per la seconda palla [F6].\n\n2. **Sequenza Terzo Uomo e Svuotamento Spazi**: Per superare la pressione uomo su uomo, si attiva una sequenza portatore-appoggio-terzo uomo. Il portiere attira la prima pressione; un compagno si smarca opposto mentre il \"terzo uomo\" (spesso terzino o mezzala) si muove per ricevere in zona 14 o mezzo spazio [F5]. Questo movimento libera lo spazio alle spalle della linea difensiva avversaria e anticipa la copertura [F1].\n\n3. **Gestione del Rischio e Rotazioni**: La squadra controlla la protezione centrale per non esporsi alla transizione, trasformando un 2v1 apparente in un 2v2 se necessario [F1]. Il portiere può uscire alta per supportare i compagni contro attacchi laterali, mantenendo reattività e forza esplosiva [F2]. Le rotazioni spostano il riferimento di pressione o combinazioni rapide anticipano la copertura difensiva avversaria [F1].\n\n4. **Applicazione Pratica (Chi, Cosa, Dove)**:\n   - **CHI**: Portiere e primo attaccante; **COSÌ**: Il portiere rilancia forte/radente mentre il compagno si muove in profondità; **DOVE**: Zona centrale o mezzo spazio; **QUANDO/INNESCO**: Al momento del passaggio che ingaggia la pressione; **PERCHÉ**: Per rompere la densità vicino all'area e creare occasioni dinamiche [F1].\n   - **Rischio residuo**: Possibile perdita se il \"terzo uomo\" non legge se il difensore centrale segue o consegna la marcatura, richiedendo una conduzione che impegni un difensore prima della rotazione [F1].\n\n5. **Verifica Obbligatoria**: La copertura include *goalkeeper_decision* (scelta tra uscita corta/lunga), *third_man_sequence* (movimento portatore-appoggio-terzo uomo), *goalkeeper_spare_man* (supporto laterale/uscita alta), *third_man_escape* (smarcamento in zona 14/mezzo) e *long_exit_and_second_ball* (struttura per la seconda palla) [F2], [F5], [F6].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "752248e0dbab7c0a7acce65b6e0368a648db0ef3e0254576dad23621104204eb",
+          "source": "FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2",
+          "canonical_source": "FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2",
+          "source_relative": "formations-and-systems/FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2.json",
+          "pages": "[14]",
+          "distance": null,
+          "headings": [
+            "11. Catene contro blocco basso"
+          ],
+          "text": "11. Catene contro blocco basso\nContro un blocco basso, la densità vicino all'area rende difficili le corse interne e riduce gli spazi alle spalle. La catena deve spostare la difesa orizzontalmente, alternare ampiezza e attacco del mezzo spazio e creare occasioni di ricezione dinamica.\nLa circolazione paziente non deve diventare possesso sterile. È utile inserire una conduzione che impegni un difensore, una rotazione che sposti il riferimento o una combinazione rapida che anticipi la copertura.\nSe il terzino avversario è protetto da un esterno basso, il 2v1 apparente può diventare 2v2. La mezzala può aggiungere il terzo uomo, ma la squadra deve controllare la protezione centrale per non esporsi alla transizione.\nContro una linea a cinque, il braccetto può uscire sul mezzo spazio lasciando spazio alle spalle: la catena deve leggere se il centrale resta, segue o consegna la marcatura."
+        },
+        {
+          "label": "F2",
+          "id": "b65e9577645d484ce239cd6d95e494cd770df1e11d80e022cb6ad69315db95b1",
+          "source": "334_principi_Glerean",
+          "canonical_source": "334_principi_Glerean",
+          "source_relative": "formations-and-systems/334_principi_Glerean.json",
+          "pages": "[14]",
+          "distance": null,
+          "headings": [
+            "1. Portiere"
+          ],
+          "text": "1. Portiere\nÈ il giocatore che inizia l'azione e dalla sua scelta dipende gran parte della probabilità di successo della stessa. Di conseguenza deve essere dotato di buona tecnica di rilancio della palla e soprattutto intelligente dal punto di vista tattico.\nDeve rinviare la palla più o meno velocemente nella zona centrale della trequarti avversaria, cercando di calciare la palla forte e radente la testa dei compagni.\nNon deve, in via generale, \"appoggiarsi\" con palla al difensore vicino.\nEventualmente può cercare con le mani il passaggio preciso, veloce e laterale verso metà campo per cambiare rapidamente fronte d'azione.\nPer ottimizzare queste doti e saper interpretare e gestire i tempi di manovra è necessario:\n- coinvolgere il portiere negli allenamenti tecnico-tattici della squadra\n- richiedere la sua partecipazione attiva nello sviluppo dell'azione di attacco e di difesa\nPer quanto riguarda la tecnica di difesa, il portiere deve essere predisposto all'uscita alta per essere di supporto ai compagni in caso di possibili attacchi laterali; allo stesso tempo deve possedere buone doti e soprattutto buon tempo di uscita bassa centrale per scongiurare i \"tagli\" avversari.\nAltro requisito importante richiesto al portiere che viene impiegato in questo modulo è il sostegno verbale ai compagni nelle azioni di ripiego o di possesso palla nella propria trequarti. Fisicamente deve essere di altezza superiore alla media, reattivo e dotato di buoni valori di forza esplosiva e abile nel destreggiarsi."
+        },
+        {
+          "label": "F3",
+          "id": "6c0964c11203433f9035872613df831827c9ee7f56d4ef83eb20dbcab8a6a155",
+          "source": "Allegati_255201293236",
+          "canonical_source": "Allegati_255201293236",
+          "source_relative": "formations-and-systems/Allegati_255201293236.json",
+          "pages": "[23, 24, 25]",
+          "distance": null,
+          "headings": [
+            "4)Esercitazioni e situazioni di tecnica, tattica individuale e collettiva"
+          ],
+          "text": "4)Esercitazioni e situazioni di tecnica, tattica individuale e collettiva\nFig. n. 10\nL'ultima esercitazione avviene tra 5 giocatori in un quadrato: il primo guida palla effettua lo scambio con il compagno sul vertice adiacente e cambia al terzo uomo sul vertice opposto che ripete l'azione e così via. (fig. n.11) E' importante che al vertice di partenza ci siano 2 giocatori.\nFig. n. 11\nVediamo ora una progressione sulla guida della palla per andare al cross.\nIl giocatore guida la palla in velocità sulla fascia e crossa per il compagno al centro che si muove sul primo o sul secondo palo. Si effettua, sia a destra, sia a sinistra del terreno di gioco. (fig. n. 12)\nFig. n. 12\nInseriamo ora anche un controllo orientato in movimento prima della guida: il compagno che conclude a rete lancia l'esterno che ripete l'azione precedente (fig.13)\nFig. n. 13\nQuesta esercitazione di tecnica calcistica individuale si trasforma progressivamente in una situazione di tattica individuale. In fig.14 vediamo l'aggiunta di un avversario inseguitore dell'esterno che parte al momento del controllo, e un avversario marcatore del compagno che deve concludere sul cross. Situazione facilitata di 2 c 2.\nFig. n. 14\nPer concludere si può creare un 2 c 1 al centro dell'area per obbligare l'esterno a scegliere il cross sul compagno smarcato in area (fig.15). Situazione di 3 c 2.\nFig. n. 15"
+        },
+        {
+          "label": "F4",
+          "id": "dd24133b1bf22711ecd550cd4582b9de2d7bf6a08cba1773fd4265cc4cd5a98e",
+          "source": "maldera_tesi-uefa-pro",
+          "canonical_source": "maldera_tesi-uefa-pro",
+          "source_relative": "formations-and-systems/maldera_tesi-uefa-pro.json",
+          "pages": "[14]",
+          "distance": 0.40581,
+          "headings": [
+            "PRINCIPI, STRATEGIA E PERCORSO TATTICO"
+          ],
+          "text": "PRINCIPI, STRATEGIA E PERCORSO TATTICO\nPortiere in situazione di costruzione bassa, due o più scelte - Principio uscita sul terzo uomo-\nLipsia 2020-2021 all. Julian Nagelsmann"
+        },
+        {
+          "label": "F5",
+          "id": "cd42986b9462d40caba026046e328480208c298f97ec7b4c6f6e3acb920de6d6",
+          "source": "FOOTBALL_DATA_LAB_Il_Terzo_Uomo_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Il_Terzo_Uomo_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Il_Terzo_Uomo_Manuale.json",
+          "pages": "[8]",
+          "distance": 0.38638,
+          "headings": [
+            "08 - Blocco basso e terzo uomo"
+          ],
+          "text": "08 - Blocco basso e terzo uomo\nRegole: Attacco posizionale contro 7-8 difendenti e portiere; terzo uomo per ricevere in zona 14 o mezzo\nOrganico e spazio: 14-18 giocatori; 60 × 45 m. Carico proposto: 4 × 7 min. spazio. Correzioni: Non cercare profondità inesistente; attivare scarico e tiro. Progressione: Difesa può contrattaccare su due porticine. Verifica: Occasioni create e transizioni subite.\nNota: tempi e dimensioni sono proposte originali da adattare a età, livello, numero di palloni, recupero e calendario."
+        },
+        {
+          "label": "F6",
+          "id": "08578b835b39168811092082ec72638d780da1ff38674c100d41888af1e23091",
+          "source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale.json",
+          "pages": "[4]",
+          "distance": 0.38522,
+          "headings": [
+            "Pressione a due"
+          ],
+          "text": "Pressione a due\nPortiere come terzo uomo della prima linea, oppure pivot che si abbassa; soluzione alternativa è palla oltre i due attaccanti, con attacco preparato sulla seconda palla."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": [
+          "terzo uomo"
+        ]
+      },
+      "tactical_plan": {
+        "facets": [
+          "possession",
+          "goalkeeper",
+          "third_man"
+        ],
+        "scenarios": [
+          "build_out"
+        ],
+        "formations": [],
+        "roles": [
+          "portiere"
+        ],
+        "request_parts": [
+          "il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "dd24133b1bf22711ecd550cd4582b9de2d7bf6a08cba1773fd4265cc4cd5a98e",
+        "cd42986b9462d40caba026046e328480208c298f97ec7b4c6f6e3acb920de6d6",
+        "08578b835b39168811092082ec72638d780da1ff38674c100d41888af1e23091"
+      ],
+      "tactical_covered": {
+        "possession": "dd24133b1bf22711ecd550cd4582b9de2d7bf6a08cba1773fd4265cc4cd5a98e",
+        "goalkeeper": "cd42986b9462d40caba026046e328480208c298f97ec7b4c6f6e3acb920de6d6",
+        "third_man": "08578b835b39168811092082ec72638d780da1ff38674c100d41888af1e23091"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+        "costruzione dal basso portiere uomo libero terzo uomo uscita pressione seconda palla portiere",
+        "portiere costruzione superiorita pressione uscita corta palla lunga oppure portiere cross chiamata uscita difensori portiere",
+        "terzo uomo portatore appoggio pressione uomo su uomo liberare spazio portiere",
+        "fase di possesso costruzione sviluppo rifinitura portiere"
+      ],
+      "tactical_anchors": [
+        "terzo uomo",
+        "portiere"
+      ],
+      "tactical_anchor_candidate_ids": [
+        "080664ee51fa0806e999fb05f0a82eae029ada526199a0ae0f8734e9ed8bebb4",
+        "2db6e0e010fcb1448ceeae0bd1725bd15652bac96f8ee800c9bc9efcebd1f011",
+        "5549790113f56760b992a3eeef2f44f1d90d28ea744bcadcf1dcd2a4bf7f533f",
+        "6c0964c11203433f9035872613df831827c9ee7f56d4ef83eb20dbcab8a6a155",
+        "752248e0dbab7c0a7acce65b6e0368a648db0ef3e0254576dad23621104204eb",
+        "7fbe18631415619b42adaca258c98c4c327bbabb550bc94d992c1400df1684c5",
+        "9687e13ba70f185f83dc46c25918ab23f2627c74292f3cb8430dbc11b4460448",
+        "9c5402b834cf7324ecbc2deed502894ddcaf6dd1b9110e45cf73bda8c5494ac7",
+        "9eb9f02fa2b75d4f2487cc74610f9b380381a569249d6731e12c4e76cf812837",
+        "a6708b1b3ab8f9ac9ef0deb7db25022cc35f386b015065e12e9340961ca874f6",
+        "b65e9577645d484ce239cd6d95e494cd770df1e11d80e022cb6ad69315db95b1",
+        "b9154565d486e8996fc627e174d312df0752dcb06ec4bba8cdbc533ff32b84ff",
+        "cdffb8072fadd414c356f3e44b93660d8ec24e546adc88df58661f19599c346f",
+        "cf4460a5abde06bc7bcf687a1c67bee8ac8a63e59e4cf22fcd71e46b2a0570ab",
+        "d257d2cd10db338fb74adb777ea30b9541e0f249c93634944ea2f3c58f00d61d",
+        "d8c7d6fe6981ac0c97449c35c549a22dddcee723e85c63b768d6ffac7ed93b49"
+      ],
+      "tactical_anchor_reserved_ids": [
+        "6c0964c11203433f9035872613df831827c9ee7f56d4ef83eb20dbcab8a6a155",
+        "752248e0dbab7c0a7acce65b6e0368a648db0ef3e0254576dad23621104204eb",
+        "b65e9577645d484ce239cd6d95e494cd770df1e11d80e022cb6ad69315db95b1"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": false,
+          "goalkeeper": true,
+          "third_man": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": true,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [
+          "possession"
+        ],
+        "missing_operational": [],
+        "detail_coverage": {
+          "goalkeeper_decision": true,
+          "third_man_sequence": true,
+          "goalkeeper_spare_man": true,
+          "third_man_escape": true,
+          "long_exit_and_second_ball": true
+        },
+        "missing_details": [],
+        "complete": false
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 251.77,
+      "generation": {
+        "total_duration_ns": 97657012848,
+        "load_duration_ns": 3365236,
+        "prompt_eval_duration_ns": 21748088000,
+        "eval_duration_ns": 75860291000,
+        "eval_count": 601,
+        "prompt_eval_count": 2807,
+        "done_reason": "stop",
+        "repair_reasons": [
+          "copertura incompleta: possession"
+        ]
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}

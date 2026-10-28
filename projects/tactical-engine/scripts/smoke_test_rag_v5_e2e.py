@@ -7,6 +7,7 @@ does not change Chroma, PDF, source JSON, or production configuration.
 from __future__ import annotations
 import argparse
 from collections import Counter
+import gc
 import hashlib
 import json
 from pathlib import Path
@@ -23,6 +24,10 @@ from v5_heading_reservation_v2 import reserve as heading_reserve
 from v5_source_semantic_rank_v3 import semantic_source_ranking
 from v5_source_hybrid_rank_v4 import select_source as hybrid_source_select
 from v5_structural_scenario_routing_v1 import reserve as structural_reserve
+from v5_tactical_query_plan_v1 import (analyse as tactical_analyse,
+    audit_answer as tactical_audit_answer, diversify as tactical_diversify,
+    generation_contract, reserve_anchor_candidates, retrieval_anchors,
+    retrieval_queries)
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -162,8 +167,38 @@ def reserve_explicit_manual(question, rows, scores, selected, limit):
     winner=max(candidates,key=lambda i:float(scores[i]))
     revised=list(selected[:max(0,limit-1)])+[rows[winner]]
     return revised,[rows[winner]["id"]]
+def unload_ollama_model(model, timeout=30):
+    """Release an opt-in retrieval model before CPU-bound generation."""
+    payload={"model":model,"keep_alive":0,"stream":False}
+    request=Request("http://127.0.0.1:11434/api/generate",
+                    data=json.dumps(payload).encode(),
+                    headers={"Content-Type":"application/json"},method="POST")
+    try:
+        with urlopen(request,timeout=timeout) as response:
+            json.load(response)
+        return True
+    except (HTTPError,URLError,TimeoutError,json.JSONDecodeError):
+        return False
+def sanitize_tactical_output(answer):
+    """Remove exposed audit artefacts and one self-contradictory surface form.
+
+    The sanitizer only deletes/rephrases material already present; it never
+    adds tactical claims or citations.
+    """
+    labels=("goalkeeper_decision", "third_man_sequence", "box_roles", "next_action",
+            "between_lines_receiving", "transition_balance", "emotional_effect",
+            "field_zone", "live_message", "density_or_proximity")
+    cleaned=answer
+    for label in labels:
+        cleaned=re.sub(rf"\s*\({re.escape(label)}\)", "", cleaned, flags=re.I)
+        cleaned=re.sub(rf"\b{re.escape(label)}\b\s*[:=-]?\s*", "", cleaned, flags=re.I)
+    cleaned=re.sub(r"scivol\w*\s+all['’]indietro\s+traslando\s+lateralmente",
+                   "trasli lateralmente", cleaned, flags=re.I)
+    return cleaned
+
+
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,
-         num_predict=0,context_window=8192,keep_alive=None):
+         num_predict=0,context_window=8192,keep_alive=None,tactical_plan=None):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
                          for i,r in enumerate(evidence,1))
     phase_guard=(" Nella sezione sul possesso usa soltanto movimenti con la propria squadra in controllo del pallone; "
@@ -181,7 +216,7 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
     if num_predict:
         options["num_predict"]=num_predict
     payload={"model":model,"stream":False,"think":False,
-             "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")+(generation_guidance(question) if heading_routing else "")+concise},
+             "messages":[{"role":"system","content":SYSTEM+(scoped_guidance(question) if targeted_coverage else "")+(generation_guidance(question) if heading_routing else "")+(generation_contract(tactical_plan) if tactical_plan else "")+concise},
                          {"role":"user","content":f"DOMANDA:\n{question}\n\nFONTI:\n{context}"}],
              "options":options}
     if keep_alive:
@@ -192,7 +227,9 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
     with urlopen(request,timeout=timeout) as response:
         obj=json.load(response)
     msg=obj.get("message") or {}
-    answer=msg.get("content","")
+    answer=sanitize_tactical_output(msg.get("content",""))
+    first_answer=answer
+    first_obj=obj
     repair_reasons=[]
     if num_predict and "perd" in question.casefold():
         sections=re.split(r"\n\s*2[.)]",answer,maxsplit=1)
@@ -202,22 +239,74 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
             repair_reasons.append("la sezione 1 contiene azioni di non possesso")
         if any(term in second for term in ("appena riconquistata", "dopo la riconquista", "il portatore deve scegliere")):
             repair_reasons.append("la sezione 2 prosegue oltre la riconquista")
+    if tactical_plan:
+        first_audit=tactical_audit_answer(answer,tactical_plan)
+        missing=(first_audit["missing_facets"]+first_audit["missing_operational"]+
+                 first_audit["missing_details"])
+        if missing:
+            repair_reasons.append("copertura incompleta: "+", ".join(missing))
+        if first_audit.get("semantic_issues"):
+            repair_reasons.append("incoerenze semantiche: "+", ".join(first_audit["semantic_issues"]))
+    if obj.get("done_reason")=="length":
+        repair_reasons.append("risposta troncata dal limite di generazione")
     if repair_reasons:
+        repair_labels = {
+            "reason": "spiega il perche tattico di ogni scelta",
+            "box_roles": "distingui i compiti difensivi su cross senza importarvi le occupazioni offensive dell'area",
+            "ball_flight_trigger": "usa il tempo di volo del cambio gioco come innesco dello scivolamento",
+            "next_action": "specifica l'azione immediatamente successiva alla ricezione",
+            "between_lines_receiving": "specifica smarcamento alle spalle del centrocampo, postura aperta e ricezione orientata",
+            "covered_or_uncovered_ball": "distingui esplicitamente palla coperta e scoperta",
+            "live_communication": "indica comando verbale o gesto, chi lo da e quando",
+            "cross_attack_contaminated_by_defensive_phase": "resta nell'attacco del cross senza inserire la difesa del cross",
+            "unsupported_rigid_player_numbers": "elimina numeri di maglia non presenti nella domanda",
+            "build_out_contaminated_by_cross_attack": "resta nella costruzione dal basso ed elimina cross e occupazioni dell'area offensiva",
+            "lateral_shift_mapped_to_vertical_drop": "descrivi una traslazione laterale e non uno scivolamento all'indietro",
+            "wide_defender_given_midfielder_screen": "separa il quarto/quinto che esce sul ricevente dal mediano che scherma l'imbucata",
+            "edge_of_box_role_inverted": "assegna il limite area alla respinta e alla preventiva, non a evitare tiri della propria squadra",
+            "generic_triple_substitution": "proponi una trasformazione coerente con cambi ruolo o sostituzioni nominate una per una",
+            "incoherent_role_transformation": "ricostruisci coerentemente la linea a tre, i quinti e le due punte senza trasformare i terzini in mediani generici",
+            "internal_audit_labels_exposed": "rimuovi tutte le etichette tecniche del controllo interno",
+        }
+        readable_reasons=[]
+        for reason in repair_reasons:
+            for label, explanation in repair_labels.items():
+                reason=reason.replace(label, explanation)
+            readable_reasons.append(reason)
         repair={"model":model,"stream":False,"think":False,
                 "messages":[payload["messages"][0],payload["messages"][1],
                             {"role":"assistant","content":answer},
-                            {"role":"user","content":"Correggi la risposta senza aggiungere nuove fonti. Problemi: "+"; ".join(repair_reasons)+". Mantieni le citazioni e riscrivi entrambe le sezioni."}],
+                            {"role":"user","content":"Riscrivi integralmente la risposta senza aggiungere nuove fonti o affermazioni non sostenute. Problemi da correggere: "+"; ".join(readable_reasons)+". Copri prima tutti i requisiti obbligatori, mantieni le citazioni accanto ai principi documentali, elimina formule astratte e resta entro il limite."}],
                 "options":options}
         request=Request("http://127.0.0.1:11434/api/chat",data=json.dumps(repair,ensure_ascii=False).encode(),headers={"Content-Type":"application/json"},method="POST")
         with urlopen(request,timeout=timeout) as response:
-            obj=json.load(response)
-        answer=(obj.get("message") or {}).get("content","")
+            repair_obj=json.load(response)
+        repair_answer=sanitize_tactical_output((repair_obj.get("message") or {}).get("content",""))
         # Fail closed on the two observed cross-phase sentence families when the
         # corrective generation repeats them. This removes claims; it never adds any.
-        answer=re.sub(r"In caso di passaggio[^\n]*?(?:esce in pressione|ruolo di pressante)[^\n]*?\[F3\]\.[ ]*", "", answer, flags=re.I)
-        answer=re.sub(r"In fase di contropressione[^\n]*?(?:appena riconquistata|il portatore deve scegliere)[^\n]*?\[F5\]\.[ ]*", "", answer, flags=re.I)
+        repair_answer=re.sub(r"In caso di passaggio[^\n]*?(?:esce in pressione|ruolo di pressante)[^\n]*?\[F3\]\.[ ]*", "", repair_answer, flags=re.I)
+        repair_answer=re.sub(r"In fase di contropressione[^\n]*?(?:appena riconquistata|il portatore deve scegliere)[^\n]*?\[F5\]\.[ ]*", "", repair_answer, flags=re.I)
+        first_audit=tactical_audit_answer(first_answer,tactical_plan) if tactical_plan else None
+        repair_audit=tactical_audit_answer(repair_answer,tactical_plan) if tactical_plan else None
+        def candidate_key(candidate_answer,candidate_obj,candidate_audit):
+            missing_count=(len(candidate_audit["missing_facets"])+
+                           len(candidate_audit["missing_operational"])+
+                           len(candidate_audit["missing_details"])+
+                           len(candidate_audit.get("semantic_issues",[]))) if candidate_audit else 0
+            return (0 if candidate_audit and candidate_audit["complete"] else 1,
+                    missing_count,
+                    1 if candidate_obj.get("done_reason")=="length" else 0,
+                    -len(candidate_answer.split()))
+        candidates=[(first_answer,first_obj,first_audit,"first"),
+                    (repair_answer,repair_obj,repair_audit,"repair")]
+        answer,obj,selected_audit,selected_generation=min(
+            candidates,key=lambda item:candidate_key(item[0],item[1],item[2]))
+        repair_reasons.append("generazione selezionata: "+selected_generation)
+    else:
+        selected_audit=tactical_audit_answer(answer,tactical_plan) if tactical_plan else None
     if not answer.strip():
         raise RuntimeError(f"Empty model answer: {str(obj)[:300]}")
+    final_audit=selected_audit if tactical_plan else None
     return answer,{"total_duration_ns":obj.get("total_duration"),
                    "load_duration_ns":obj.get("load_duration"),
                    "prompt_eval_duration_ns":obj.get("prompt_eval_duration"),
@@ -225,7 +314,11 @@ def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing
                    "eval_count":obj.get("eval_count"),
                    "prompt_eval_count":obj.get("prompt_eval_count"),
                    "done_reason":obj.get("done_reason"),
-                   "repair_reasons":repair_reasons}
+                   "repair_reasons":repair_reasons,
+                   "quality_gate_passed":bool(final_audit and final_audit["complete"]) if tactical_plan else None,
+                   "quality_gate_missing":((final_audit["missing_facets"]+final_audit["missing_operational"]+
+                                             final_audit["missing_details"]+final_audit.get("semantic_issues",[]))
+                                            if final_audit else [])}
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument("--model",default="qwen3.5:9b")
@@ -243,6 +336,7 @@ def main():
     ap.add_argument("--targeted-coverage",action="store_true")
     ap.add_argument("--heading-routing",action="store_true",help="Opt-in generic metadata heading expansion; no benchmark ID rules")
     ap.add_argument("--structural-routing",action="store_true",help="Opt-in generic formation/role/principle context reservation")
+    ap.add_argument("--tactical-plan",action="store_true",help="Opt-in subproblem coverage, phase-aware reservation and generation contract")
     ap.add_argument("--source-ranking-trace",action="store_true",help="Record source-level semantic scores; requires heading routing and retrieval-only")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
@@ -270,11 +364,11 @@ def main():
             raise RuntimeError(f"Unexpected exercise candidate count {candidate_count}; expected 34")
     if count!=args.expected_count:raise RuntimeError(f"V5 record count changed: {count}; expected {args.expected_count}; refusing test")
     embed=OllamaEmbedding(model_name="qwen3-embedding:0.6b",base_url="http://127.0.0.1:11434")
-    rerank=CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
+    rerank=None if args.tactical_plan else CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
     report={"collection":args.collection,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
-            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[
+            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"tactical_plan_enabled":args.tactical_plan,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -282,6 +376,7 @@ def main():
         for qid,question in questions:
             start=time.monotonic()
             print(f"START {qid}: {question}",flush=True)
+            tactical_plan=tactical_analyse(question) if args.tactical_plan else None
             embedding=embed.get_query_embedding(question)
             got=coll.query(query_embeddings=[embedding],n_results=24,
                            include=["documents","metadatas","distances"])
@@ -294,6 +389,41 @@ def main():
                              "pages":meta.get("page_numbers"),"text":doc,"headings":heading_list(meta.get("headings")),
                              "distance":float(dist),
                              "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+            tactical_queries=retrieval_queries(question,tactical_plan) if tactical_plan else [question]
+            for tactical_query in tactical_queries[1:]:
+                sub_embedding=embed.get_query_embedding(tactical_query)
+                sub=coll.query(query_embeddings=[sub_embedding],n_results=8,
+                               include=["documents","metadatas","distances"])
+                known={row["id"] for row in rows}
+                for cid,doc,meta,dist in zip(sub["ids"][0],sub["documents"][0],sub["metadatas"][0],sub["distances"][0]):
+                    if cid in known:
+                        continue
+                    raw=meta.get("raw_text") or doc
+                    rows.append({"id":cid,"source":meta["source"],
+                                 "source_relative":meta.get("source_relative"),
+                                 "pages":meta.get("page_numbers"),"text":doc,
+                                 "headings":heading_list(meta.get("headings")),
+                                 "distance":float(dist),
+                                 "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+                    known.add(cid)
+            tactical_anchors=retrieval_anchors(tactical_plan) if tactical_plan else []
+            tactical_anchor_candidate_ids=[]
+            for anchor in tactical_anchors:
+                anchored=coll.get(where_document={"$contains":anchor},limit=8,
+                                  include=["documents","metadatas"])
+                known={row["id"] for row in rows}
+                for cid,doc,meta in zip(anchored["ids"],anchored["documents"],anchored["metadatas"]):
+                    tactical_anchor_candidate_ids.append(cid)
+                    if cid in known:
+                        continue
+                    raw=meta.get("raw_text") or doc
+                    rows.append({"id":cid,"source":meta["source"],
+                                 "source_relative":meta.get("source_relative"),
+                                 "pages":meta.get("page_numbers"),"text":doc,
+                                 "headings":heading_list(meta.get("headings")),
+                                 "distance":None,
+                                 "fingerprint":hashlib.sha256(norm(raw).encode()).hexdigest()})
+                    known.add(cid)
             source_hint = None
             named_sources=[]
             if args.source_aware:
@@ -330,6 +460,9 @@ def main():
             if args.source_aware:
                 known={r["id"] for r in rows}
                 rows.extend(explicit_manual_candidates(coll,embedding,question,known))
+            embedding_model_released=False
+            if args.tactical_plan and not args.retrieval_only:
+                embedding_model_released=unload_ollama_model("qwen3-embedding:0.6b")
             candidate_ids=[]
             if candidate is not None and re.search(r"\bussia\b",question,re.I):
                 extra=candidate.query(query_embeddings=[embedding],n_results=min(24,candidate_count),include=["documents","metadatas","distances"])
@@ -356,8 +489,9 @@ def main():
                                          "pages":r["pages"],"text":r["text"],"distance":None,
                                          "fingerprint":hashlib.sha256(norm(r["text"]).encode()).hexdigest()})
                             existing.add(r["id"])
-            scores=rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if (args.targeted_coverage and qid == "fresh_03") or (args.heading_routing and heading_applicable(question)) else r["text"]) for r in rows],
-                                  batch_size=1,show_progress_bar=False)
+            active_rerank=rerank or CrossEncoder("cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",device="cpu",max_length=512)
+            scores=active_rerank.predict([(question, (" / ".join(r.get("headings") or []) + " " + r["text"]).strip() if (args.targeted_coverage and qid == "fresh_03") or (args.heading_routing and heading_applicable(question)) else r["text"]) for r in rows],
+                                  batch_size=8 if args.tactical_plan else 1,show_progress_bar=False)
             selected=[];seen=set();dropped=0
             for index in sorted(range(len(rows)),key=lambda i:float(scores[i]),reverse=True):
                 r=rows[index]
@@ -390,18 +524,27 @@ def main():
             source_ranking_trace=[]
             source_selection_trace={}
             if args.heading_routing:
-                revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit,reranker=rerank)
+                revised, heading_reserved=heading_reserve(rows,scores,question,ALIASES,args.limit,reranker=active_rerank)
                 if revised is not None:
                     selected=revised
                 if args.source_ranking_trace:
-                    source_ranking_trace=semantic_source_ranking(question,rows,rerank)
-                    selected_source, hybrid_trace=hybrid_source_select(question,rows,rerank)
+                    source_ranking_trace=semantic_source_ranking(question,rows,active_rerank)
+                    selected_source, hybrid_trace=hybrid_source_select(question,rows,active_rerank)
                     source_selection_trace={"selected_source":selected_source,"semantic_margin":1.5,"candidates":hybrid_trace}
             structural_reserved=[]
             structural_signals={}
             if args.structural_routing:
                 selected,structural_reserved,structural_signals=structural_reserve(rows,scores,selected,question,args.limit)
                 structural_signals={key:sorted(value) for key,value in structural_signals.items()}
+            tactical_reserved=[]
+            tactical_covered={}
+            tactical_anchor_reserved=[]
+            if tactical_plan:
+                selected,tactical_reserved,tactical_covered=tactical_diversify(rows,scores,selected,tactical_plan,args.limit)
+                selected,tactical_anchor_reserved=reserve_anchor_candidates(
+                    rows,scores,selected,tactical_anchor_candidate_ids,args.limit)
+                del active_rerank
+                gc.collect()
             evidence=[{"label":f"F{i}","id":r["id"],"source":r["source"],
                        "canonical_source":ALIASES.get(r["source"],r["source"]),
                        "source_relative":r["source_relative"],"pages":r["pages"],
@@ -411,13 +554,20 @@ def main():
                 evidence=prioritize_exact(evidence,priority_ids)
             answer,stats=("",{}) if args.retrieval_only else chat(
                 args.model,question,evidence,args.timeout,args.targeted_coverage,
-                args.heading_routing,args.num_predict,args.context_window,args.keep_alive)
+                args.heading_routing,args.num_predict,args.context_window,args.keep_alive,tactical_plan)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
+            tactical_answer_audit=tactical_audit_answer(answer,tactical_plan) if tactical_plan and answer else None
             valid={str(i) for i in range(1,len(evidence)+1)}
             entry={"id":qid,"question":question,"answer":answer,"evidence":evidence,
                    "source_aware_source":source_hint,"source_aware_sources":named_sources,"targeted_source":targeted_source,"targeted_page":targeted_page,"targeted_promoted_ids":targeted_promoted,"consolidation_excluded_ids":consolidation_excluded,"post_loss_excluded_ids":post_loss_excluded,"source_scope_excluded_ids":source_scope_excluded,"explicit_manual_reserved_ids":explicit_manual_reserved,"heading_reserved_ids":heading_reserved,"source_ranking_trace":source_ranking_trace,"source_selection_trace":source_selection_trace,"exercise_candidate_ids":candidate_ids,
                    "priority_exact_enabled":args.priority_exact,"priority_exact_candidate_ids":sorted(priority_ids),
                    "structural_reserved_ids":structural_reserved,"structural_signals":structural_signals,
+                   "tactical_plan":tactical_plan,"tactical_reserved_ids":tactical_reserved,"tactical_covered":tactical_covered,
+                   "tactical_queries":tactical_queries,"tactical_anchors":tactical_anchors,
+                   "tactical_anchor_candidate_ids":sorted(set(tactical_anchor_candidate_ids)),
+                   "tactical_anchor_reserved_ids":tactical_anchor_reserved,
+                   "tactical_answer_audit":tactical_answer_audit,
+                   "embedding_model_released_before_generation":embedding_model_released,
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
                    "alias_chunks_skipped":dropped,

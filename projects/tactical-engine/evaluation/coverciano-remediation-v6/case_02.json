@@ -1,0 +1,218 @@
+{
+  "collection": "dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1",
+  "count_before": 6410,
+  "model": "qwen3.5:9b",
+  "retrieval": "dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
+  "alias_pairs": {
+    "Allegati_222010155625": "LA TECNICA APPLICATA COME PRESUPPOSTO DEL GIOCO COLLETTIVO",
+    "Allegati_45201211489": "Conseiderazione sul sistema di gioco 4-3-2-1",
+    "Allegati_71201095736": "IL CONCETTO DI MARCAMENTO NELLA DIFESA AD UOMO E A ZONA",
+    "Categoria_Tattiche del calcio - Wikipedia(1)": "Categoria_Tattiche del calcio - Wikipedia"
+  },
+  "source_aware_enabled": true,
+  "exercise_candidate_enabled": true,
+  "exercise_candidate_count_before": 34,
+  "priority_exact_enabled": true,
+  "targeted_coverage_enabled": true,
+  "retrieval_only": false,
+  "heading_routing_enabled": true,
+  "tactical_plan_enabled": true,
+  "source_ranking_trace_enabled": false,
+  "questions": [
+    {
+      "id": "remediationv6_02",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "answer": "1. **Ruolo del Portiere e Gestione della Prima Linea**: Il portiere agisce come \"terzo uomo\" per la prima linea di pressione [F4], orientando il pressing avversario e scegliendo tra uscita corta o soluzione oltre la pressione [F4]. Crea superiorità numerica temporanea, permettendo al portatore di servire un appoggio che altrimenti sarebbe coperto.\n\n2. **Codici di Movimento e Terzo Uomo**: La sequenza operativa è Portatore -> Appoggio -> Terzo uomo [F3]. Il portatore cerca il compagno in appoggio; se schermato o sotto pressione, l'appoggio non deve forzare il passaggio ma riconoscere la necessità di un terzo uomo per rendere raggiungibile lo spazio [F3]. Questo movimento libera uno spazio specifico nel settore centrale o laterale.\n\n3. **Svuotamento e Rotazioni**: Per superare il pressing alto orientato sull'uomo, si utilizzano rotazioni e svuotamento degli spazi: se il pressante curva la corsa per schermare il ritorno, il passaggio laterale verso un compagno che ha svuotato lo spazio può essere una trappola efficace [F5]. Il movimento deve avvenire nel momento in cui la pressione è massima ma l'orientamento difensivo è compromesso.\n\n4. **Gestione del Rischio e Scelta della Soluzione**: La scelta tra passaggio corto, intermedio o lungo dipende dalla lettura della pressione; una soluzione lunga o intermedia può essere la migliore risposta al pressing se il terzo uomo non è immediatamente disponibile [F1]. Il rischio residuo è l'intercetto diretto da parte di un difensore che alterna marcatura uomo e zona [F6], richiedendo decisioni rapide per evitare perdite centrali [F2].\n\n5. **Applicazione allo Scenario**: La squadra propria deve organizzare la prima progressione dalla zona difensiva verso uno spazio o un giocatore in vantaggio, evitando l'obbligo di passaggi corti se non necessari [F1]. L'applicazione prevede che il portiere e i centrocampisti abbassino il baricentro per servire il \"terzo uomo\" sotto pressione, sfruttando la relazione temporanea tra pressione, appoggio e spazio [F3].",
+      "evidence": [
+        {
+          "label": "F1",
+          "id": "8fbd4671e54bd1b59326e5bf2d9ddf0b70c81ab86cc406707729b40b4725d497",
+          "source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale.json",
+          "pages": "[1]",
+          "distance": 0.34144,
+          "headings": [
+            "LA COSTRUZIONE DAL BASSO"
+          ],
+          "text": "LA COSTRUZIONE DAL BASSO\nManuale tecnico-tattico: principi, alternative, pro e contro, pressing avversario, allenamento e match analysis.\nEdizione di lavoro - ottobre 2026. Testo e schemi originali; fonti ufficiali FIFA indicate in bibliografia. Non è una pubblicazione federale.\nLa costruzione dal basso non è un obbligo di effettuare passaggi corti: è l'organizzazione della prima progressione, dalla zona difensiva verso uno spazio o un giocatore in vantaggio. Una scelta lunga o intermedia può essere la migliore risposta al pressing."
+        },
+        {
+          "label": "F2",
+          "id": "e004b54b7a38b002d9e11642b442479615a2a571696a4ba306e95927bfbbec66",
+          "source": "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Attacco_della_Profondita_Manuale.json",
+          "pages": "[6]",
+          "distance": 0.28927,
+          "headings": [
+            "E05 · Terzo uomo in profondità"
+          ],
+          "text": "E05 · Terzo uomo in profondità\nOrganico: 9-13 + portiere. Spazio: 45×30 m. Carico proposto: 4×5 min. Regole: A-B in appoggio, C attacca dietro; due difendenti con coperture. Coaching: B sceglie se scaricare, girarsi o restituire. Progressione: Aggiungere pressione su A. Misura: Progressioni senza perdite centrali."
+        },
+        {
+          "label": "F3",
+          "id": "12a8e618a21b06b3c22067696359950d2d97f27c20c90ed5e87f1740b31899e1",
+          "source": "FOOTBALL_DATA_LAB_Il_Terzo_Uomo_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Il_Terzo_Uomo_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Il_Terzo_Uomo_Manuale.json",
+          "pages": "[1]",
+          "distance": 0.2989,
+          "headings": [
+            "IL TERZO UOMO"
+          ],
+          "text": "IL TERZO UOMO\nCombinazioni a tre, appoggio-scarico-profondità, letture difensive e metodologia di allenamento. Manuale tecnico-tattico a 360°.\nEdizione di lavoro - ottobre 2026. Elaborazione originale, con fonti ufficiali FIFA e UEFA esplicitate. Non è un manuale ufficiale federale.\nTesi centrale: il terzo uomo non è una sequenza da ripetere a memoria; è un modo per rendere raggiungibile un giocatore che il portatore non può servire direttamente, sfruttando una relazione temporanea tra pressione, appoggio e spazio."
+        },
+        {
+          "label": "F4",
+          "id": "08578b835b39168811092082ec72638d780da1ff38674c100d41888af1e23091",
+          "source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale.json",
+          "pages": "[4]",
+          "distance": 0.35095,
+          "headings": [
+            "Pressione a due"
+          ],
+          "text": "Pressione a due\nPortiere come terzo uomo della prima linea, oppure pivot che si abbassa; soluzione alternativa è palla oltre i due attaccanti, con attacco preparato sulla seconda palla."
+        },
+        {
+          "label": "F5",
+          "id": "cf99f1d2b6052527823b17de901367bb33766f360e40f05a0c081aace4e14509",
+          "source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale.json",
+          "pages": "[4]",
+          "distance": 0.4204,
+          "headings": [
+            "Pressing orientato sul lato"
+          ],
+          "text": "Pressing orientato sul lato\nSe il pressante curva la corsa per schermare il ritorno, il passaggio laterale può essere una trappola. Riconoscere il momento per cambiare lato attraverso portiere, terzo uomo o palla lunga diagonale.\nSchema didattico originale, non in scala: P portiere, DC centrali, M centrocampista, E esterni, X pressanti. Linee gialle: possibili passaggi, da verificare in base alla pressione."
+        },
+        {
+          "label": "F6",
+          "id": "612fbae415433c1040a050fd9844bdc3e537b4c9170ebabdd62b7f9968e695d5",
+          "source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "canonical_source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "source_relative": "formations-and-systems/FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale.json",
+          "pages": "[7]",
+          "distance": 0.3192,
+          "headings": [
+            "E05 - Terzo uomo sotto pressione"
+          ],
+          "text": "E05 - Terzo uomo sotto pressione\nOrganico: 10-13 giocatori; 35 × 30 m. Dose indicativa: 4 × 5 min. Regole: Portiere/centrale A trova B in appoggio per servire C oltre la linea. Difendenti attivi. Coaching: Non forzare B se schermato; riconoscere passaggio diretto. Variante: Difendenti alternano uomo e zona.\nValutazione: Progressioni, intercetti e decisioni alternative."
+        }
+      ],
+      "source_aware_source": null,
+      "source_aware_sources": [
+        "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+        "Una fondamentale problematica di tattica collettiva in un 3-4-3_ il movimento della punta esterna sul lato forte di gioco"
+      ],
+      "targeted_source": null,
+      "targeted_page": null,
+      "targeted_promoted_ids": [],
+      "consolidation_excluded_ids": [],
+      "post_loss_excluded_ids": [],
+      "source_scope_excluded_ids": [],
+      "explicit_manual_reserved_ids": [],
+      "heading_reserved_ids": [],
+      "source_ranking_trace": [],
+      "source_selection_trace": {},
+      "exercise_candidate_ids": [],
+      "priority_exact_enabled": true,
+      "priority_exact_candidate_ids": [],
+      "structural_reserved_ids": [],
+      "structural_signals": {
+        "formations": [],
+        "roles": [],
+        "principles": [
+          "terzo uomo"
+        ]
+      },
+      "tactical_plan": {
+        "facets": [
+          "possession",
+          "goalkeeper",
+          "third_man"
+        ],
+        "formations": [],
+        "roles": [
+          "portiere"
+        ],
+        "request_parts": [
+          "il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario"
+        ]
+      },
+      "tactical_reserved_ids": [
+        "8fbd4671e54bd1b59326e5bf2d9ddf0b70c81ab86cc406707729b40b4725d497",
+        "e004b54b7a38b002d9e11642b442479615a2a571696a4ba306e95927bfbbec66",
+        "12a8e618a21b06b3c22067696359950d2d97f27c20c90ed5e87f1740b31899e1"
+      ],
+      "tactical_covered": {
+        "possession": "8fbd4671e54bd1b59326e5bf2d9ddf0b70c81ab86cc406707729b40b4725d497",
+        "goalkeeper": "e004b54b7a38b002d9e11642b442479615a2a571696a4ba306e95927bfbbec66",
+        "third_man": "12a8e618a21b06b3c22067696359950d2d97f27c20c90ed5e87f1740b31899e1"
+      },
+      "tactical_queries": [
+        "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+        "fase di possesso costruzione sviluppo rifinitura portiere",
+        "portiere estremo difensore portiere",
+        "terzo uomo 3° uomo portiere"
+      ],
+      "tactical_answer_audit": {
+        "facet_coverage": {
+          "possession": false,
+          "goalkeeper": true,
+          "third_man": true
+        },
+        "operational_coverage": {
+          "who": true,
+          "where": true,
+          "trigger": true,
+          "reason": false,
+          "coverage_or_risk": true
+        },
+        "missing_facets": [
+          "possession"
+        ],
+        "missing_operational": [
+          "reason"
+        ],
+        "detail_coverage": {},
+        "missing_details": [],
+        "complete": false
+      },
+      "embedding_model_released_before_generation": true,
+      "citation_ids": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "invalid_citation_ids": [],
+      "has_any_citation": true,
+      "alias_chunks_skipped": 0,
+      "elapsed_seconds": 322.05,
+      "generation": {
+        "total_duration_ns": 282918708490,
+        "load_duration_ns": 150708747169,
+        "prompt_eval_duration_ns": 73417967000,
+        "eval_duration_ns": 58758064000,
+        "eval_count": 468,
+        "prompt_eval_count": 1527,
+        "done_reason": "stop",
+        "repair_reasons": []
+      }
+    }
+  ],
+  "notes": [
+    "Citation checks are syntactic only, not factual faithfulness or correctness.",
+    "Only four full-text-equal document pairs are aliased; other sources stay separate.",
+    "All source IDs and pages refer to existing Chroma metadata."
+  ],
+  "count_after": 6410,
+  "exercise_candidate_count_after": 34,
+  "index_unchanged": true
+}
