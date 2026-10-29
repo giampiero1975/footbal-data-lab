@@ -1878,6 +1878,14 @@ discordanti o non riconciliati impediscono la completezza documentale e i
 conteggi filtrati non provano quella dell'intera collection. Decisione:
 pianificazione **ESEGUITO**; acquisizione **DA FARE**; verificatore
 sintetico precedente **VALIDATO**; adapter reale e collection **BLOCCATO**.
+Pre-acquisizione: aggiunta nello stesso report una checklist non eseguita con
+percorsi verificati/storici/da confermare, cancelli di autorizzazione e
+snapshot, hash pre/post, doppio export e riconciliazione ID, provenienza della
+stessa run, manifest e riuso di `sha256_file`, `manifest_hash`,
+`validate_manifest_contract`, `ReadOnlySnapshotAdapter` e `verify_integrity`.
+Decisione nuova: l'acquisizione non è autorizzabile finché titolare e custode
+non confermano snapshot isolato, staging riservato, sorgenti, retention e
+perimetro copiabile; stato operativo invariato.
 Nessun accesso VPS/Chroma, export, download, test, inferenza, indicizzazione,
 merge o deploy; nulla di nuovo **IMPLEMENTATO**, **INTEGRATO** o
 **CERTIFICATO**.

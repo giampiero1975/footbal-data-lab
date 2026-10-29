@@ -238,3 +238,154 @@ Nessun adapter viene progettato o implementato in questa fase.
 Il passo successivo richiede autorizzazione separata per una ricognizione
 read-only con percorsi esatti e staging riservato. Questo piano si ferma prima
 di qualunque accesso o acquisizione.
+
+## 9. Appendice pre-acquisizione — checklist operativa definitiva
+
+Questa appendice rende eseguibile il piano senza introdurre un nuovo piano o
+un adapter. Le caselle restano intenzionalmente non eseguite.
+
+### 9.1 Percorsi e identità
+
+#### Verificati in Git
+
+- [ ] Baseline Git uguale al commit approvato dell'attività.
+- [ ] Builder da esaminare:
+  `projects/tactical-engine/scripts/build_rag_index_v5_multisource.py`.
+- [ ] Ingestor storico:
+  `projects/tactical-engine/scripts/ingest_pdfs.py`.
+- [ ] Diagnostici, da non usare come acquisitori:
+  `projects/tactical-engine/scripts/inspect_ussia_4a_chunk_mapping_v1.py` e
+  `projects/tactical-engine/scripts/inspect_ussia_4a_index_v1.py`.
+- [ ] Validatore offline:
+  `projects/tactical-engine/scripts/validate_rag_corpus_integrity_v1.py`.
+- [ ] Schema e template:
+  `projects/tactical-engine/evaluation/corpus_integrity/rag_corpus_integrity_manifest_schema_v1.json`
+  e `rag_corpus_integrity_manifest_template_v1.json`.
+
+#### Storicamente attestati, da confermare prima di accedere
+
+- [ ] JSON Docling nominale:
+  `/opt/football-data-lab/knowledge/processed/formations-and-systems/Transizioni.Ussia.json`.
+- [ ] Collection nominale: `dribbling_tactics_v5_multisource`.
+- [ ] Archivio operativo nominale:
+  `/opt/football-data-lab/knowledge/rag/chroma`; questo percorso **non deve
+  essere aperto** dalla procedura di acquisizione.
+- [ ] `source="Transizioni.Ussia"` e
+  `source_relative="formations-and-systems/Transizioni.Ussia.json"`.
+- [ ] ID di controllo
+  `ece84a07265cfef1078c9fdd42027511dd8d27053d014dfe2b98e49e52c465b6`.
+
+#### Da fornire o confermare nell'autorizzazione successiva
+
+- [ ] Percorso esatto e accessibilità del PDF originale.
+- [ ] Percorso esatto del sidecar `.meta.json`; la convenzione dell'ingestor
+  non prova che il file storico sia ancora presente.
+- [ ] Metodo e percorso di uno snapshot coerente già isolato della collection.
+- [ ] Directory di staging riservata, custode, accessi, retention e procedura
+  di distruzione; nessun valore viene scelto implicitamente.
+- [ ] Percorsi di log/manifest della run, ambiente Python e cache tokenizer.
+- [ ] Identità del record di autorizzazione e perimetro preciso dei contenuti
+  che possono essere copiati.
+
+### 9.2 Prerequisiti bloccanti
+
+- [ ] Autorizzazione esplicita riferita ai percorsi confermati e a una sola
+  acquisizione Ussia.
+- [ ] Snapshot creato mediante meccanismo coerente documentato e già separato
+  dall'archivio operativo; uguaglianza di soli conteggi/ID non basta.
+- [ ] Staging riservato vuoto e distinto da repository, corpus e indici.
+- [ ] Verifica che la fase offline possa essere eseguita senza rete.
+- [ ] Regole di riservatezza approvate: nessun PDF, JSON integrale, testo record,
+  cache o remote code riservato su GitHub.
+- [ ] Spazio e permessi sufficienti verificati senza modificare le sorgenti.
+
+Se uno di questi prerequisiti manca, l'acquisizione non inizia.
+
+### 9.3 Sequenza di copia e hash
+
+- [ ] Registrare per ogni sorgente percorso, dimensione, timestamp osservato e
+  SHA-256 **prima** della copia.
+- [ ] Copiare soltanto nello staging autorizzato, preservando il percorso
+  relativo necessario alla provenienza.
+- [ ] Ricalcolare dimensione e SHA-256 sulla copia; mismatch = arresto e nessuna
+  promozione del bundle.
+- [ ] Registrare separatamente valore corrente verificato, valore storico
+  attestato e valore soltanto dichiarato.
+- [ ] Ripetere gli invarianti dello snapshot al termine della copia; variazioni
+  o garanzia non qualificabile = `snapshot_not_certifiable`.
+
+### 9.4 Export e riconciliazione del solo documento
+
+Questa fase opera esclusivamente sulla copia isolata, mai sull'archivio
+operativo.
+
+- [ ] Esportare una volta tutti i record con
+  `source="Transizioni.Ussia"`.
+- [ ] Esportare separatamente tutti i record con
+  `source_relative="formations-and-systems/Transizioni.Ussia.json"`.
+- [ ] Conservare ID, documento, metadata completi e ordine; non deduplicare.
+- [ ] Confrontare gli insiemi per ID e classificare: riconciliato,
+  `source_relative` mancante, valore discordante, presente in un solo filtro.
+- [ ] Verificare ID duplicati, ID di controllo e coerenza interna dei metadata.
+- [ ] Qualunque divergenza irrisolta limita il bundle a parziale o non
+  utilizzabile; nessun conteggio filtrato certifica l'intera collection.
+- [ ] Calcolare SHA-256 del file canonicale e della sequenza ordinata completa
+  degli ID, preservando i duplicati come anomalia.
+
+### 9.5 Evidenze della stessa run
+
+- [ ] Risolvere `run_id`, comando/log/manifest e commit builder effettivo.
+- [ ] Risolvere versioni effettive di Python, Docling, docling-core e
+  Transformers.
+- [ ] Materializzare opzioni del converter, `max_tokens`, `merge_peers`,
+  contextualizzazione, gestione vuoti, formula ID e normalizzazione path.
+- [ ] Risolvere repository e revisione immutabile del tokenizer.
+- [ ] Inventariare file tokenizer e remote code effettivamente caricati con
+  dimensioni e SHA-256.
+- [ ] Collegare ogni evidenza alla stessa run. Ambiente o cache osservati oggi
+  senza tale legame restano evidenza di un possibile replay, non provenienza
+  storica.
+
+### 9.6 Manifest e verifica offline
+
+- [ ] Partire dal template esistente, senza alterare schema o controlli.
+- [ ] Dichiarare inventario del documento `complete`, `partial` o `unknown`
+  soltanto secondo le evidenze G2–G4.
+- [ ] Inserire riferimenti relativi sicuri, hash, dimensioni, provenienza,
+  snapshot consistency, sequenza ID e limiti.
+- [ ] Calcolare `manifest_sha256` con la canonicalizzazione esistente.
+- [ ] Eseguire il validatore soltanto sullo staging offline con
+  `--manifest`, `--snapshot`, `--input-root` e un `--output` nuovo e separato.
+- [ ] Conservare `verified_content_sha256`, anomalie e stato; un esito
+  strutturalmente valido non colma informazioni storiche mancanti.
+
+Funzioni riutilizzabili senza duplicazione:
+
+- `sha256_file`, `manifest_hash`, `technical_hash` e `normatively_order` per
+  integrità e contenuto tecnico deterministico;
+- `validate_manifest_contract` per il contratto JSON;
+- `ReadOnlySnapshotAdapter` esclusivamente sull'export JSON isolato;
+- `verify_integrity`, `_verify_artifact` e `_verify_evidence_file` per il
+  controllo offline complessivo.
+
+I diagnostici Ussia forniscono soltanto chiavi e confronti storici. Non sono
+richiamati dalla checklist.
+
+### 9.7 Arresto e classificazione finale
+
+Arresto immediato prima o durante l'acquisizione se manca autorizzazione,
+snapshot coerente, isolamento, riservatezza, corrispondenza degli hash o
+isolabilità del documento. Record non riconciliabili impediscono la
+completezza.
+
+- **Completo/probatorio:** tutti i cancelli superati e stessa run dimostrata.
+- **Parziale:** artefatti integri, ma provenienza storica o completezza non
+  interamente attribuibile; nessuna certificazione o sblocco automatico.
+- **Non utilizzabile:** integrità, isolamento o linkage essenziale falliti.
+
+### 9.8 Condizioni minime per la prossima autorizzazione
+
+Il titolare deve indicare o approvare esplicitamente: sorgenti confermate,
+metodo/percorso dello snapshot isolato, staging riservato, custode e retention,
+perimetro dei dati copiabili e finestra della singola acquisizione. Prima di
+questi dati l'acquisizione resta **DA FARE** e non deve essere tentata.
