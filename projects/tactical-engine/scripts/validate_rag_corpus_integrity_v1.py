@@ -24,6 +24,7 @@ from typing import Any
 SCHEMA_VERSION = "rag_corpus_integrity_manifest_v1"
 SNAPSHOT_SCHEMA_VERSION = "rag_chroma_snapshot_v1"
 REPORT_SCHEMA_VERSION = "rag_corpus_integrity_report_v1"
+EVIDENCE_SCHEMA_VERSION = "rag_corpus_integrity_evidence_v1"
 CANONICALIZATION = "RFC 8785 restricted profile"
 SHA256_CHARS = frozenset("0123456789abcdef")
 VERIFICATION_STATUSES = {
@@ -408,9 +409,21 @@ def _verify_evidence_file(
     anomalies: list[dict[str, Any]],
     *,
     context: str,
+    evidence_type: str,
+    expected_bindings: dict[str, Any],
+    evidence_checks: list[dict[str, Any]],
     document_id: str | None = None,
     source_ref: str | None = None,
 ) -> bool:
+    check = {
+        "context": context,
+        "evidence_ref": evidence_ref if isinstance(evidence_ref, str) else None,
+        "accessible": False,
+        "hash_verified": False,
+        "content_pertinent": False,
+        "guarantee_qualified": False,
+    }
+    evidence_checks.append(check)
     path = _safe_relative(root, evidence_ref)
     if path is None or not path.is_file():
         anomalies.append(_anomaly(
@@ -418,6 +431,7 @@ def _verify_evidence_file(
             detail=f"{context}: evidence not accessible",
         ))
         return False
+    check["accessible"] = True
     if not _is_sha256(expected_sha256):
         anomalies.append(_anomaly(
             "NOT_DECLARED", document_id=document_id, source_ref=source_ref,
@@ -430,6 +444,34 @@ def _verify_evidence_file(
             detail=f"{context}: evidence sha256 mismatch",
         ))
         return False
+    check["hash_verified"] = True
+    try:
+        evidence = load_json(path)
+    except (OSError, ValueError, json.JSONDecodeError) as error:
+        anomalies.append(_anomaly(
+            "METADATA_INCOMPLETE", document_id=document_id, source_ref=source_ref,
+            detail=f"{context}: evidence content is not a JSON object ({type(error).__name__})",
+        ))
+        return False
+    content_pertinent = (
+        evidence.get("schema_version") == EVIDENCE_SCHEMA_VERSION
+        and evidence.get("evidence_type") == evidence_type
+        and all(evidence.get(key) == value for key, value in expected_bindings.items())
+    )
+    if not content_pertinent:
+        anomalies.append(_anomaly(
+            "MISMATCH", document_id=document_id, source_ref=source_ref,
+            detail=f"{context}: evidence content is not pertinent to the referenced subject",
+        ))
+        return False
+    check["content_pertinent"] = True
+    if evidence.get("qualification_status") != "qualified":
+        anomalies.append(_anomaly(
+            "NOT_DECLARED", document_id=document_id, source_ref=source_ref,
+            detail=f"{context}: evidence guarantee is not qualified",
+        ))
+        return False
+    check["guarantee_qualified"] = True
     return True
 
 
@@ -455,6 +497,7 @@ def _reconstruct_synthetic_chunks(
         ))
         return
     reconstructed: dict[str, dict[str, Any]] = {}
+    extraction_chunk_ids: set[str] = set()
     for item in extraction["chunks"]:
         if not isinstance(item, dict) or not isinstance(item.get("chunk_id"), str):
             anomalies.append(_anomaly(
@@ -462,7 +505,16 @@ def _reconstruct_synthetic_chunks(
                 detail="synthetic extraction chunk identity invalid",
             ))
             continue
-        reconstructed[item["chunk_id"]] = item
+        chunk_id = item["chunk_id"]
+        if chunk_id in extraction_chunk_ids:
+            anomalies.append(_anomaly(
+                "METADATA_INCOMPLETE", document_id=document_id,
+                source_ref=source_ref, chunk_id=chunk_id,
+                detail="duplicate chunk_id in synthetic extraction",
+            ))
+            continue
+        extraction_chunk_ids.add(chunk_id)
+        reconstructed[chunk_id] = item
     declared = {
         item.get("chunk_id"): item for item in document.get("chunks", [])
         if isinstance(item, dict) and isinstance(item.get("chunk_id"), str)
@@ -552,6 +604,7 @@ def verify_integrity(
 ) -> dict[str, Any]:
     started = time.monotonic()
     anomalies: list[dict[str, Any]] = []
+    evidence_checks: list[dict[str, Any]] = []
     for error in validate_manifest_contract(manifest):
         anomalies.append(_anomaly("METADATA_INCOMPLETE", detail=error))
     declared_manifest_hash = manifest.get("manifest_sha256")
@@ -581,6 +634,13 @@ def verify_integrity(
             input_root, consistency.get("evidence_ref"),
             consistency.get("evidence_sha256"), anomalies,
             context="snapshot consistency",
+            evidence_type="snapshot_consistency",
+            expected_bindings={
+                "snapshot_id": manifest.get("snapshot_id"),
+                "collection_name": collection.get("name"),
+                "method": consistency.get("method"),
+            },
+            evidence_checks=evidence_checks,
         )
     if consistency.get("status") != "certifiable" or not snapshot_evidence_verified:
         anomalies.append(_anomaly(
@@ -611,6 +671,12 @@ def verify_integrity(
                 identity.get("evidence_sha256"), anomalies,
                 context="historical identity", document_id=document.get("document_id"),
                 source_ref=document.get("source_ref"),
+                evidence_type="historical_identity",
+                expected_bindings={
+                    "document_id": document.get("document_id"),
+                    "original_sha256": document.get("original", {}).get("sha256"),
+                },
+                evidence_checks=evidence_checks,
             )
         if basis == "declared_only":
             anomalies.append(_anomaly(
@@ -620,12 +686,16 @@ def verify_integrity(
         extraction_path = _safe_relative(
             input_root, document.get("extraction", {}).get("relative_path")
         )
-        if (
-            chunker_version == SYNTHETIC_CHUNKER_VERSION
-            and extraction_path is not None
-            and extraction_path.is_file()
-        ):
-            _reconstruct_synthetic_chunks(extraction_path, document, anomalies)
+        if chunker_version == SYNTHETIC_CHUNKER_VERSION:
+            if extraction_path is not None and extraction_path.is_file():
+                _reconstruct_synthetic_chunks(extraction_path, document, anomalies)
+            else:
+                anomalies.append(_anomaly(
+                    "UNVERIFIABLE_RELATION",
+                    document_id=document.get("document_id"),
+                    source_ref=document.get("source_ref"),
+                    detail="synthetic Docling-to-chunk derivation cannot be reconstructed because extraction is not accessible",
+                ))
         for chunk in document["chunks"]:
             if isinstance(chunk, dict) and isinstance(chunk.get("chunk_id"), str):
                 expected.setdefault(chunk["chunk_id"], (document, chunk))
@@ -764,6 +834,10 @@ def verify_integrity(
         "expected_record_count": len(expected_ids),
         "actual_record_count": adapter.count(),
         "available_document_ids": sorted(available_document_ids),
+        "evidence_checks": sorted(
+            evidence_checks,
+            key=lambda item: (str(item.get("context") or ""), str(item.get("evidence_ref") or "")),
+        ),
         "anomaly_counts": dict(sorted(counts.items())),
         "anomalies": anomalies,
     }

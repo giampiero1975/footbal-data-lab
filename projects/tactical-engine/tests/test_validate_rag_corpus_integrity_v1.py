@@ -49,7 +49,14 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
         self.evidence_dir = self.input_root / "evidence"
         self.evidence_dir.mkdir()
         self.snapshot_evidence = self.evidence_dir / "snapshot.json"
-        self.snapshot_evidence.write_bytes(b"synthetic consistent snapshot evidence")
+        self.write_evidence(self.snapshot_evidence, {
+            "schema_version": MODULE.EVIDENCE_SCHEMA_VERSION,
+            "evidence_type": "snapshot_consistency",
+            "qualification_status": "qualified",
+            "snapshot_id": "synthetic-snapshot-1",
+            "collection_name": "synthetic-collection",
+            "method": "synthetic atomic fixture",
+        })
         self.chunk = {
             "chunk_id": "chunk-1",
             "chunk_index": 0,
@@ -141,6 +148,10 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
     def tearDown(self):
         self.temporary.cleanup()
 
+    @staticmethod
+    def write_evidence(path, value):
+        path.write_text(json.dumps(value, ensure_ascii=False), encoding="utf-8")
+
     def report(self, manifest=None, snapshot=None, timestamp="2026-10-29T10:00:00Z"):
         return MODULE.verify_integrity(
             manifest or self.manifest,
@@ -167,7 +178,13 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
     def test_03_inaccessible_pdf_keeps_historically_verified_identity(self):
         manifest = copy.deepcopy(self.manifest)
         history_evidence = self.evidence_dir / "history.json"
-        history_evidence.write_bytes(b"synthetic historical identity evidence")
+        self.write_evidence(history_evidence, {
+            "schema_version": MODULE.EVIDENCE_SCHEMA_VERSION,
+            "evidence_type": "historical_identity",
+            "qualification_status": "qualified",
+            "document_id": self.document["document_id"],
+            "original_sha256": self.document["original"]["sha256"],
+        })
         identity = manifest["documents"][0]["identity_evidence"]
         identity.update({
             "basis": "historically_verified",
@@ -406,6 +423,49 @@ class RagCorpusIntegrityV1Tests(unittest.TestCase):
         report = self.report(manifest)
         self.assertIn("UNVERIFIABLE_RELATION", self.codes(report))
         self.assertEqual(report["verified_content"]["integrity_status"], "not_verified")
+
+    def test_23_duplicate_chunk_id_in_synthetic_extraction_is_blocking(self):
+        extraction = copy.deepcopy(self.synthetic_extraction)
+        extraction["chunks"].append(copy.deepcopy(extraction["chunks"][0]))
+        self.extraction.write_text(json.dumps(extraction), encoding="utf-8")
+        manifest = copy.deepcopy(self.manifest)
+        artifact = manifest["documents"][0]["extraction"]
+        artifact["sha256"] = MODULE.sha256_file(self.extraction)
+        artifact["size_bytes"] = self.extraction.stat().st_size
+        report = self.report(manifest)
+        self.assertIn("METADATA_INCOMPLETE", self.codes(report))
+        self.assertTrue(any(
+            item["detail"] == "duplicate chunk_id in synthetic extraction"
+            for item in report["verified_content"]["anomalies"]
+        ))
+        self.assertEqual(report["verified_content"]["integrity_status"], "not_verified")
+
+    def test_24_inaccessible_synthetic_extraction_is_also_unverifiable(self):
+        self.extraction.unlink()
+        report = self.report()
+        self.assertIn("NOT_ACCESSIBLE", self.codes(report))
+        self.assertIn("UNVERIFIABLE_RELATION", self.codes(report))
+
+    def test_25_integral_but_irrelevant_snapshot_evidence_is_not_certifiable(self):
+        manifest = copy.deepcopy(self.manifest)
+        self.write_evidence(self.snapshot_evidence, {
+            "schema_version": MODULE.EVIDENCE_SCHEMA_VERSION,
+            "evidence_type": "historical_identity",
+            "qualification_status": "qualified",
+            "document_id": self.document["document_id"],
+            "original_sha256": self.document["original"]["sha256"],
+        })
+        manifest["collection"]["snapshot_consistency"]["evidence_sha256"] = (
+            MODULE.sha256_file(self.snapshot_evidence)
+        )
+        report = self.report(manifest)
+        self.assertIn("SNAPSHOT_NOT_CERTIFIABLE", self.codes(report))
+        self.assertIn("MISMATCH", self.codes(report))
+        check = report["verified_content"]["evidence_checks"][0]
+        self.assertTrue(check["accessible"])
+        self.assertTrue(check["hash_verified"])
+        self.assertFalse(check["content_pertinent"])
+        self.assertFalse(check["guarantee_qualified"])
 
 
 if __name__ == "__main__":
