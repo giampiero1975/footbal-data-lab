@@ -130,3 +130,47 @@ richiede una procedura distinta: esecuzione manuale, da parte del titolare, di
 un comando metadata-only previamente revisionato oppure disponibilità di un
 terminale Codex con accesso di rete SSH effettivo. Nessuna delle due procedure
 è autorizzata implicitamente da questo report.
+
+## 9. Esecuzione manuale metadata-only autorizzata
+
+Il titolare ha autorizzato ed eseguito una sola volta il comando metadata-only
+revisionato, dopo autenticazione SSH manuale come utente `football`. Il comando
+ha usato esclusivamente test shell e `stat` sui tre percorsi letterali, senza
+lettura di contenuti, enumerazione di directory, hash, copie, snapshot, export,
+Chroma, SQLite, Python, privilegi aggiuntivi o modifiche remote.
+
+Output restituito integralmente e verificato:
+
+| Etichetta | Stato | Tipo | Dimensione | Mtime | Proprietario:gruppo | Permessi |
+|---|---|---|---:|---|---|---|
+| JSON | `confirmed` | regular file | 501909 | `2026-10-21 03:16:21.319698605 +0200` | `football:football` | `-rw-------` (`600`) |
+| SIDECAR | `confirmed` | regular file | 500 | `2026-10-21 03:16:24.888796756 +0200` | `football:football` | `-rw-------` (`600`) |
+| CHROMA_ROOT | `confirmed` | directory | 4096 | `2026-10-29 09:01:05.208828426 +0100` | `football:football` | `drwxrwxr-x` (`775`) |
+
+Nessun percorso è stato riportato come link simbolico e non sono stati
+restituiti errori di accesso ai metadati. `confirmed` prova esclusivamente
+l'osservazione del percorso e dei metadati sopra riportati: non prova integrità,
+provenienza storica, appartenenza alla stessa run, completezza documentale,
+consistenza della collection o disponibilità di uno snapshot probatorio.
+
+## 10. Recupero accesso tecnico Codex
+
+Separatamente dal preflight, è stata creata una chiave Ed25519 locale dedicata
+e la sola chiave pubblica è stata aggiunta dal titolare all'account `football`
+con opzione OpenSSH `restrict`. Un unico test autorizzato, con password e
+fallback interattivi disabilitati, ha restituito:
+
+```text
+SSH_KEY_ACCESS_OK
+```
+
+La chiave privata non è nel repository. Il test dimostra soltanto
+l'autenticazione tramite la chiave dedicata; non amplia il perimetro delle
+future operazioni, che restano soggette ad autorizzazione.
+
+## 11. Decisione conclusiva
+
+Il preflight metadata-only è **ESEGUITO**: i tre percorsi nominali sono ora
+`confirmed`. L'acquisizione del bundle resta **DA FARE** e non è autorizzata da
+questa evidenza. Restano **BLOCCATO** lo snapshot probatorio, l'adapter reale e
+la verifica della collection runtime. Nulla è **INTEGRATO** o **CERTIFICATO**.

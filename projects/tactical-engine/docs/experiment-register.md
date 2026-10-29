@@ -1916,3 +1916,18 @@ credenziali o della VPS, ma l'indisponibilità della connessione SSH nel contest
 processo Codex impiegato. Decisione: preflight ancora **BLOCCATO**; tre percorsi
 `nominal_unconfirmed`; eventuale procedura manuale metadata-only o diverso
 terminale con rete effettiva richiedono perimetro e autorizzazione distinti.
+
+Closeout: con autorizzazione distinta il titolare ha eseguito una sola volta il
+comando manuale metadata-only revisionato. Risultato: JSON Ussia `confirmed`,
+regular file, 501909 byte, mtime `2026-10-21 03:16:21.319698605 +0200`,
+`football:football`, mode `600`; sidecar `confirmed`, regular file, 500 byte,
+mtime `2026-10-21 03:16:24.888796756 +0200`, `football:football`, mode `600`;
+root Chroma `confirmed`, directory, 4096 byte, mtime
+`2026-10-29 09:01:05.208828426 +0100`, `football:football`, mode `775`.
+Nessun contenuto, enumerazione, hash, copia, snapshot, export o modifica.
+Separatamente, chiave Ed25519 locale dedicata con pubblica `restrict` installata
+dal titolare e singolo test non interattivo `SSH_KEY_ACCESS_OK`; la privata non
+è nel repository e non costituisce autorizzazione permanente alle operazioni.
+Decisione: preflight **ESEGUITO**, tre percorsi `confirmed`; acquisizione **DA
+FARE**; snapshot probatorio, adapter reale e collection runtime **BLOCCATO**;
+non **INTEGRATO** o **CERTIFICATO**.
