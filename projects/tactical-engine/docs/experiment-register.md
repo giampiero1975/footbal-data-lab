@@ -1856,3 +1856,21 @@ progettazione documentale **ESEGUITO**; acquisizione **DA FARE**; adapter reale
 e runtime **BLOCCATO**. Nessun test ripetuto, VPS, download, indicizzazione,
 inferenza, merge o deploy; non **IMPLEMENTATO**, **VALIDATO**, **INTEGRATO** o
 **CERTIFICATO**.
+
+### RAG-CORPUS-REAL-CHUNKER-PILOT-BUNDLE-PLAN-01 — piano acquisizione (2026-10-29)
+
+Attività: preparare, senza accessi runtime, il piano per acquisire in futuro un
+solo bundle probatorio read-only. Script: nessuno; ricognizione statica degli
+strumenti Ussia già esistenti. Baseline: `3137c6f`. Report:
+`docs/rag-corpus-real-chunker-pilot-bundle-plan-01.md`. Risultato:
+`Transizioni.Ussia` proposto come candidato provvisorio grazie a source path,
+riferimenti Docling `#/texts/151`–`154`, ID target completo e mapping già
+inventariato; l'idoneità resta subordinata alla presenza degli artefatti e
+all'attribuzione alla stessa run. Definiti cancelli G0–G5, export completo del
+solo documento, fingerprint run/tokenizer/remote code, manifest
+content-addressed, riservatezza e criteri completo/parziale/non utilizzabile.
+Decisione: pianificazione **ESEGUITO**; acquisizione **DA FARE**; verificatore
+sintetico precedente **VALIDATO**; adapter reale e collection **BLOCCATO**.
+Nessun accesso VPS/Chroma, export, download, test, inferenza, indicizzazione,
+merge o deploy; nulla di nuovo **IMPLEMENTATO**, **INTEGRATO** o
+**CERTIFICATO**.
