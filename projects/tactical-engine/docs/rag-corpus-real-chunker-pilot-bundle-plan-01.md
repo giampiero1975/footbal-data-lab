@@ -82,23 +82,31 @@ un candidato utilizzabile.
 
 ### G2 — export documentale dei record
 
-1. Da uno snapshot consistente/read-only della collection, selezionare con
-   chiave esatta `source_relative`, usando `source` solo come controllo
+1. Da uno snapshot coerente e isolato della collection, estrarre separatamente
+   sia i record con `source_relative` esatto sia quelli con
+   `source="Transizioni.Ussia"`. Il builder reale produce `source_relative`,
+   mentre i diagnostici storici Ussia filtrano per `source`: nessuno dei due
+   insiemi può essere assunto completo o usato soltanto come controllo
    secondario.
 2. Esportare per ogni risultato `id`, `document`, metadata completi e posizione
    nell'ordine restituito; non usare un insieme deduplicato.
 3. Registrare collection, conteggio totale osservato, conteggio del documento,
    criterio di filtro e metodo di snapshot.
-4. Verificare che tutti i record esportati abbiano lo stesso
-   `source_relative`, che gli ID siano unici e che l'ID noto atteso sia
-   presente quando pertinente.
-5. Calcolare hash sia del file canonicale sia della sequenza ordinata degli ID.
+4. Confrontare i due insiemi per ID e classificare esplicitamente: record
+   riconciliati; record con `source` corretto ma `source_relative` assente;
+   record con valori discordanti; record presenti in uno solo dei due filtri.
+5. Verificare che gli ID siano unici e che l'ID noto atteso sia presente quando
+   pertinente. Qualunque divergenza irrisolta impedisce di dichiarare completa
+   la raccolta documentale.
+6. Calcolare hash sia del file canonicale sia della sequenza ordinata degli ID.
 
 La completezza così ottenuta riguarda **soltanto tutti i record restituiti per
 quel documento nello snapshot dichiarato**. Non dimostra la completezza
 dell'intera collection. Per dichiarare completo il documento serve inoltre un
 inventario affidabile del perimetro atteso o la ricostruzione esatta della
-stessa run; in sua assenza l'esito resta parziale.
+stessa run; in sua assenza l'esito resta parziale. Il conteggio di uno o di
+entrambi gli export filtrati non dimostra da solo la completezza della
+collection.
 
 ### G3 — provenienza della run
 
@@ -187,6 +195,10 @@ crea un bundle probatorio.
 ## 6. Isolamento e riservatezza
 
 - sole letture e copia controllata da sorgenti dichiarate;
+- la collection operativa non viene aperta direttamente durante
+  l'acquisizione: si usa uno snapshot coerente, isolato e documentato;
+- hash, dimensioni e altri invarianti dello snapshot vengono verificati prima
+  e dopo la copia, fallendo chiuso su qualunque variazione;
 - nessuna scrittura o lock applicativo sulla collection attiva;
 - nessuna reindicizzazione, inferenza o generazione embedding;
 - staging distinto da corpus, Chroma e repository;
@@ -199,12 +211,19 @@ crea un bundle probatorio.
 
 ## 7. Strumenti esistenti da riutilizzare
 
-Gli script Ussia esistenti dimostrano il filtro read-only e i punti di
-riconciliazione, ma non sono da eseguire né da considerare un acquisitore
-probatorio. Il futuro export deve riutilizzare la semantica di filtro e i
-controlli Corpus Integrity già implementati, aggiungendo soltanto l'involucro
-di acquisizione content-addressed autorizzato. Nessun adapter viene progettato
-o implementato in questa fase.
+Gli script Ussia esistenti sono diagnostici, non acquisitori probatori, e non
+sono da eseguire in questa fase. Entrambi aprono l'archivio tramite
+`chromadb.PersistentClient`: il fatto che il codice applicativo chiami soltanto
+`get()` e `count()` non dimostra l'assenza di scritture interne, lock o
+modifiche ausiliarie della libreria. Inoltre
+`inspect_ussia_4a_index_v1.py` crea directory e scrive un report JSON su disco.
+
+Per questo la futura acquisizione non deve aprire direttamente l'archivio
+operativo come se fosse immutabile. Deve operare su uno snapshot coerente e
+isolato, con integrità controllata prima e dopo la copia. Il futuro export può
+riutilizzare la semantica dei due filtri e i controlli Corpus Integrity già
+implementati, aggiungendo soltanto l'involucro content-addressed autorizzato.
+Nessun adapter viene progettato o implementato in questa fase.
 
 ## 8. Decisione e stati
 

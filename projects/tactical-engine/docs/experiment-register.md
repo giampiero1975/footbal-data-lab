@@ -1869,7 +1869,14 @@ inventariato; l'idoneità resta subordinata alla presenza degli artefatti e
 all'attribuzione alla stessa run. Definiti cancelli G0–G5, export completo del
 solo documento, fingerprint run/tokenizer/remote code, manifest
 content-addressed, riservatezza e criteri completo/parziale/non utilizzabile.
-Decisione: pianificazione **ESEGUITO**; acquisizione **DA FARE**; verificatore
+Closeout documentale: `PersistentClient` con sole chiamate applicative
+`get()`/`count()` non costituisce garanzia di assenza di effetti interni e il
+secondo diagnostico scrive un report; l'acquisizione futura deve operare su
+snapshot coerente e isolato, verificato prima/dopo. Gli export per `source` e
+`source_relative` devono essere confrontati per ID; record mancanti,
+discordanti o non riconciliati impediscono la completezza documentale e i
+conteggi filtrati non provano quella dell'intera collection. Decisione:
+pianificazione **ESEGUITO**; acquisizione **DA FARE**; verificatore
 sintetico precedente **VALIDATO**; adapter reale e collection **BLOCCATO**.
 Nessun accesso VPS/Chroma, export, download, test, inferenza, indicizzazione,
 merge o deploy; nulla di nuovo **IMPLEMENTATO**, **INTEGRATO** o
