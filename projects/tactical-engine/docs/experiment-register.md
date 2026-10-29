@@ -1906,3 +1906,13 @@ utilizzabile. Piano **ESEGUITO**, acquisizione **DA FARE**, verificatore
 sintetico **VALIDATO**, adapter e runtime **BLOCCATO**. Nessun contenuto letto
 o copiato, nessun Chroma/SQLite, hash, export, modifica, test, merge o deploy;
 non **INTEGRATO** o **CERTIFICATO**.
+
+Aggiornamento differenziale: il titolare ha confermato accesso SSH manuale
+riuscito con password. Un secondo e singolo tentativo Codex, espressamente
+autorizzato, è terminato con `ssh: connect to host 163.5.26.155 port 22:
+Permission denied` prima del prompt password; nessun comando remoto è stato
+eseguito e non è seguito alcun retry. Il blocco non prova un difetto delle
+credenziali o della VPS, ma l'indisponibilità della connessione SSH nel contesto
+processo Codex impiegato. Decisione: preflight ancora **BLOCCATO**; tre percorsi
+`nominal_unconfirmed`; eventuale procedura manuale metadata-only o diverso
+terminale con rete effettiva richiedono perimetro e autorizzazione distinti.

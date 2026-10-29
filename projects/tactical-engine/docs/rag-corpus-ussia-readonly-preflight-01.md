@@ -95,3 +95,38 @@ qualsiasi osservazione. Nessun tentativo aggiuntivo senza nuova autorizzazione.
 - adapter reale: **BLOCCATO**;
 - collection reale/runtime: **BLOCCATO**;
 - nulla di nuovo **INTEGRATO** o **CERTIFICATO**.
+
+## 8. Secondo tentativo autorizzato e diagnosi differenziale
+
+Il titolare ha successivamente confermato di avere aperto manualmente una
+sessione `ssh football@163.5.26.155` e di essersi autenticato con password.
+Questa evidenza dimostra l'utilizzabilità del metodo interattivo dal suo
+terminale, ma non autorizza né prova l'accesso dal processo isolato Codex.
+
+Con una nuova autorizzazione limitata a una sola connessione, Codex ha tentato
+di aprire una sessione SSH interattiva con pseudo-terminale. Il client è
+terminato prima di mostrare la richiesta della password:
+
+```text
+ssh: connect to host 163.5.26.155 port 22: Permission denied
+```
+
+Il messaggio differisce dal precedente rifiuto di autenticazione
+`football@... Permission denied (publickey,password)`: in questo secondo caso
+non risulta avviato lo scambio di autenticazione e il titolare non ha avuto la
+possibilità di inserire la password. Non è quindi corretto attribuire il
+fallimento a password, account o configurazione SSH della VPS. L'evidenza
+circoscrive il blocco al percorso di rete/processo del contesto Codex usato per
+il tentativo.
+
+In rispetto del limite autorizzato non è stato effettuato alcun retry. Nessun
+comando remoto è stato eseguito e le classificazioni dei tre percorsi restano
+`nominal_unconfirmed`.
+
+Decisione aggiornata: preflight ancora **BLOCCATO**, ora per impossibilità del
+processo Codex di aprire la connessione interattiva autorizzata, non per
+indisponibilità dimostrata dell'autenticazione a password. Un passo successivo
+richiede una procedura distinta: esecuzione manuale, da parte del titolare, di
+un comando metadata-only previamente revisionato oppure disponibilità di un
+terminale Codex con accesso di rete SSH effettivo. Nessuna delle due procedure
+è autorizzata implicitamente da questo report.
