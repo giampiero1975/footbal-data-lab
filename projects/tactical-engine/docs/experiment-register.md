@@ -1931,3 +1931,22 @@ dal titolare e singolo test non interattivo `SSH_KEY_ACCESS_OK`; la privata non
 Decisione: preflight **ESEGUITO**, tre percorsi `confirmed`; acquisizione **DA
 FARE**; snapshot probatorio, adapter reale e collection runtime **BLOCCATO**;
 non **INTEGRATO** o **CERTIFICATO**.
+
+### RAG-CORPUS-USSIA-GATE-A-READONLY-01 — readiness snapshot (2026-10-29)
+
+Attività: singola ricognizione SSH autorizzata e preventivamente delimitata su
+metadati, mount/dispositivi, unità/timer, processi/file descriptor accessibili,
+cron e parent dello staging. Script: inline non persistito; due errori di
+composizione locale sono avvenuti prima dell'invocazione SSH, quindi una sola
+connessione remota effettiva. Baseline `3bbb3c6`; report
+`docs/rag-corpus-ussia-gate-a-readonly-01.md`. Risultato: Chroma su ext4 diretto
+`/dev/vda1`, 41.794.781.184 byte liberi; comandi LVM/Btrfs presenti ma backing
+store non LVM/Btrfs/ZFS, nessuno snapshot atomico locale dimostrato. API RAG
+`active/running`, maintenance e FIGC service inattivi con timer attivi; un
+processo Python visibile mantiene un descriptor sotto Chroma. Nessun cron
+pertinente osservato. Parent staging `evidence` mode `700`, directory `ussia`
+assente. Decisione: Gate A **ESEGUITO**; raccomandata cold copy con quiescenza,
+ma stop/start, staging, dimensionamento, copia e hash richiedono Gate B. Nessun
+contenuto corpus, Chroma/SQLite, stop, snapshot, copia, hash o modifica.
+Acquisizione **DA FARE**; snapshot/adattatore/runtime **BLOCCATO**; non
+**VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
