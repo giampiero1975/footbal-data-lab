@@ -1692,6 +1692,24 @@ controlli sintetici **VALIDATO**; chunker reale e runtime **BLOCCATO**. Nessun
 accesso VPS, Chroma operativo, Qwen, embedding, indicizzazione, benchmark,
 merge o deploy; non **INTEGRATO** o **CERTIFICATO**.
 
+### RAG-CORPUS-PROVENANCE-INTEGRITY-OFFLINE-CLOSEOUT-01 — chiusura residui (2026-10-29)
+
+Attività: chiudere le tre osservazioni residue della revisione indipendente,
+senza ripetere l'audit né ampliare il perimetro. Script:
+`scripts/validate_rag_corpus_integrity_v1.py`. Commit tecnico:
+`66752e0aad42f89e28d6aed8a2b33357abb72f0b`. Report:
+`docs/rag-corpus-provenance-integrity-offline-closeout-01.md`. Risultato: gli
+ID duplicati nell'estrazione sintetica sono rilevati prima del dizionario;
+l'estrazione sintetica inaccessibile conserva `NOT_ACCESSIBLE` e aggiunge
+`UNVERIFIABLE_RELATION`; le evidenze distinguono accessibilità, hash,
+pertinenza al soggetto e garanzia qualificata mediante attestazione JSON
+tipizzata e legata agli identificativi verificati. Tre test differenziali
+nuovi; Corpus Integrity 25/25 OK, regressione Gold E/V 21/21 OK, compilazione
+Python e diff check PASS. Decisione: codice **IMPLEMENTATO**, test
+**ESEGUITO**, controlli sintetici **VALIDATO**; chunker reale e runtime
+**BLOCCATO**. Nessuna VPS, Chroma operativo, Qwen, embedding, indicizzazione,
+benchmark, merge o deploy; non **INTEGRATO** o **CERTIFICATO**.
+
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.
