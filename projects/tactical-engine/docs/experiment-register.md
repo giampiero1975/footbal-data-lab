@@ -1837,3 +1837,22 @@ PASS. Decisione: chiudere il difetto esclusivamente frontend. Stato:
 correzione **IMPLEMENTATO**, test **ESEGUITO**, comportamento coperto
 **VALIDATO offline**; nessun Qwen, benchmark, merge o deploy, quindi non
 **INTEGRATO** o **CERTIFICATO** nel pannello pubblico.
+
+### RAG-CORPUS-REAL-CHUNKER-EVIDENCE-READINESS-01 — inventario GitHub (2026-10-29)
+
+Attività: verificare se gli artefatti già pubblicati permettono di predisporre
+il bundle probatorio del chunker reale senza accedere a VPS o indici. Script:
+nessuno; sola ricognizione Git e documentale. Baseline: `83b235c`. Report:
+`docs/rag-corpus-real-chunker-evidence-readiness-01.md`. Risultato: algoritmo,
+costanti e storia del builder disponibili; evidenze di hash PDF, versioni,
+fingerprint e record diagnostici soltanto parziali; assenti dal checkout JSON
+Docling reali con hash, export record della stessa run, revisione/hash del
+tokenizer e del remote code e collegamento extraction→record. I file runtime
+inventariati in `runtime_evidence_manifest_v1.json` conservano percorso,
+dimensione e hash, ma non sono pubblicati con il loro contenuto. Decisione:
+**Caso B** invariato; definito contratto minimo per un singolo bundle pilota
+read-only da acquisire solo con autorizzazione separata. Stato: inventario e
+progettazione documentale **ESEGUITO**; acquisizione **DA FARE**; adapter reale
+e runtime **BLOCCATO**. Nessun test ripetuto, VPS, download, indicizzazione,
+inferenza, merge o deploy; non **IMPLEMENTATO**, **VALIDATO**, **INTEGRATO** o
+**CERTIFICATO**.
