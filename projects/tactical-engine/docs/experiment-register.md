@@ -1710,6 +1710,24 @@ Python e diff check PASS. Decisione: codice **IMPLEMENTATO**, test
 **BLOCCATO**. Nessuna VPS, Chroma operativo, Qwen, embedding, indicizzazione,
 benchmark, merge o deploy; non **INTEGRATO** o **CERTIFICATO**.
 
+### RAG-CORPUS-INTEGRITY-REAL-CHUNKER-ADAPTER-01 — decisione di riproducibilità (2026-10-29)
+
+Attività: verificare se il chunker reale V5 fosse ricostruibile esattamente dal
+solo codice ed evidenze offline disponibili. Script esaminati:
+`scripts/ingest_pdfs.py` e `scripts/build_rag_index_v5_multisource.py`;
+nessun nuovo script. Report: `docs/rag-corpus-real-chunker-adapter-01.md`.
+Risultato: algoritmo statico ricostruito fino a ID, testo contextualizzato,
+metadata, pagine e heading; la riproducibilità esatta non è dimostrabile perché
+il tokenizer `nomic-ai/nomic-embed-text-v1.5` non ha revision/digest congelati
+e abilita codice remoto, versioni/configurazione non sono legate alla singola
+run e manca un bundle reale isolato estrazione→record. Dipendenze locali
+docling-core/Transformers/Chroma assenti e non scaricate. Decisione: **Caso B**,
+nessun adapter approssimativo, nessun test artificiale e nessuna ripetizione
+delle regressioni non necessarie. Ricostruzione statica **ESEGUITO**;
+verificatore sintetico precedente **VALIDATO**; adapter reale e runtime
+**BLOCCATO**. Nessuna VPS, collection operativa, indicizzazione, embedding,
+Qwen/Ollama, benchmark, merge o deploy; non **INTEGRATO** o **CERTIFICATO**.
+
 ### RD-SUPERVISED-AUTO-LEARNING-DESIGN-01 — registrazione progettazione (2026-10-28)
 
 Attività: progettare auto-learning supervisionato separato dalla verifica intelligente dei documenti, senza attivare apprendimento. Script: nessuno; registrazione documentale. Risultato: perimetro previsto per feedback, correzioni tattiche approvate, lacune RAG, versionamento delle conoscenze, controllo umano, rollback, separazione dati di sviluppo/gold e misurazione indipendente. Decisione: riconciliare componenti e prove esistenti prima di progettare, distinguere aggiornamento controllato RAG da fine-tuning Qwen; subordinare futura implementazione e attivazione a Gold E/V e audit documentale, con autorizzazioni separate. Nessun test, training, inferenza, download, indicizzazione, deploy o modifica della pipeline. Stato: **DA FARE**. Registrazione TODO: commit `7be4d826`.
