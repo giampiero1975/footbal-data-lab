@@ -1889,3 +1889,20 @@ perimetro copiabile; stato operativo invariato.
 Nessun accesso VPS/Chroma, export, download, test, inferenza, indicizzazione,
 merge o deploy; nulla di nuovo **IMPLEMENTATO**, **INTEGRATO** o
 **CERTIFICATO**.
+
+### RAG-CORPUS-USSIA-READONLY-PREFLIGHT-01 — metadati filesystem (2026-10-29)
+
+Attività: eseguire una sola connessione SSH autorizzata per `stat` e controllo
+di accessibilità teorica sui percorsi letterali JSON Ussia, sidecar e root
+Chroma, senza leggere contenuti o enumerare directory. Script: nessuno; comando
+SSH non interattivo predisposto inline. Baseline: `bc752fd`. Report:
+`docs/rag-corpus-ussia-readonly-preflight-01.md`. Risultato: autenticazione
+rifiutata con `Permission denied (publickey,password)` prima dell'esecuzione di
+qualunque comando remoto. Nessun secondo tentativo, in rispetto del limite di
+una connessione. I tre percorsi restano `nominal_unconfirmed`; PDF, snapshot,
+staging e provenienza restano non verificati. Decisione: preflight
+**BLOCCATO**; nuovo tentativo solo con nuova autorizzazione e autenticazione
+utilizzabile. Piano **ESEGUITO**, acquisizione **DA FARE**, verificatore
+sintetico **VALIDATO**, adapter e runtime **BLOCCATO**. Nessun contenuto letto
+o copiato, nessun Chroma/SQLite, hash, export, modifica, test, merge o deploy;
+non **INTEGRATO** o **CERTIFICATO**.
