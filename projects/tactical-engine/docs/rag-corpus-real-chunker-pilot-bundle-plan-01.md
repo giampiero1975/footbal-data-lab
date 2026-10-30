@@ -389,3 +389,133 @@ Il titolare deve indicare o approvare esplicitamente: sorgenti confermate,
 metodo/percorso dello snapshot isolato, staging riservato, custode e retention,
 perimetro dei dati copiabili e finestra della singola acquisizione. Prima di
 questi dati l'acquisizione resta **DA FARE** e non deve essere tentata.
+
+### 9.9 Gate B — gestione systemd e quiescenza controllata
+
+La diagnostica SSH read-only Gate B ha identificato conclusivamente, nel
+perimetro osservato, il processo API PID `76562`, PPID `939`, utente
+`football`, come processo principale dell'unità systemd utente
+`football-rag-api.service`. Il processo apparteneva al cgroup:
+
+`/user.slice/user-1000.slice/user@1000.service/app.slice/football-rag-api.service`
+
+L'unit file osservato era:
+
+`/home/football/.config/systemd/user/football-rag-api.service`
+
+L'API risultava `active/running`, `enabled`, con `MainPID=76562`,
+`Restart=on-failure`, `RestartSec=5s` e `TimeoutStopSec=30s`. Il manager
+systemd utente era il processo padre diretto dell'API. Il semplice comando
+`systemctl` nel manager di sistema non identifica l'unità applicativa
+corretta: nella futura procedura autorizzata deve essere usato
+`systemctl --user`.
+
+Uno stop esplicito mediante:
+
+`systemctl --user stop football-rag-api.service`
+
+non attiva normalmente `Restart=on-failure`. Non impedisce tuttavia nuovi
+avvii richiesti da altri attori, un riavvio del manager utente o un reboot.
+Non deve essere usato `kill` come metodo ordinario di arresto.
+
+Al momento della diagnostica erano attivi e in attesa:
+
+- `football-rag-maintenance.timer`;
+- `football-figc-discovery.timer`.
+
+I servizi oneshot corrispondenti risultavano `inactive/dead`. Il maintenance
+job è un potenziale utilizzatore diretto di Chroma. La sospensione del timer
+FIGC è prudenziale: non gli viene attribuito un accesso Chroma non dimostrato.
+Fermare un timer non arresta un oneshot già in esecuzione; lo stato dei due
+servizi deve quindi essere verificato separatamente.
+
+La futura procedura autorizzata deve registrare, in un'area riservata, lo
+stato iniziale di API, timer e oneshot prima di qualsiasi arresto,
+distinguendo `active` da `enabled`. Deve inoltre registrare boot ID, PID del
+manager systemd utente, MainPID, cgroup e vecchio PID dell'API.
+
+Ogni tentativo di arresto deve avere un esito individuale registrato come:
+
+- completato;
+- fallito;
+- non ancora tentato.
+
+Il trap di ripristino deve essere predisposto prima del primo arresto e deve
+usare sia lo stato iniziale sia gli esiti delle singole operazioni. Un errore
+dopo l'arresto del primo timer non deve impedire il ripristino delle unità già
+modificate. Il ripristino deve essere idempotente e non deve avviare
+automaticamente alcuna unità che risultasse originariamente inattiva.
+
+Prima della copia devono risultare contemporaneamente:
+
+- entrambi i timer inattivi;
+- entrambi i servizi oneshot non in esecuzione;
+- API con `ActiveState=inactive`;
+- API con `MainPID=0`;
+- cgroup API privo di processi;
+- vecchio PID API assente;
+- assenza di writer concorrenti identificati;
+- controllo privilegiato dei descriptor completato, se separatamente
+  autorizzato;
+- assenza di meccanismi di riavvio non controllati.
+
+La quiescenza deve essere mantenuta per l'intera durata della copia. Devono
+essere sorvegliati almeno:
+
+- stato di API, timer e oneshot;
+- boot ID;
+- identità e continuità del manager systemd utente;
+- MainPID e cgroup dell'API;
+- processi pertinenti e riattivazioni inattese;
+- permanenza della capacità di osservare lo stato.
+
+La procedura deve fallire chiusa in caso di:
+
+- riavvio dell'API;
+- attivazione di un oneshot pertinente;
+- comparsa di un processo Chroma non previsto;
+- riavvio o sostituzione del manager utente;
+- reboot;
+- perdita della capacità di osservazione;
+- timeout o errore non riconciliato.
+
+I controlli periodici tramite `lsof` sono evidenze complementari e non
+dimostrano l'assenza di accessi tra due campionamenti. La consistenza richiede
+il controllo dei writer e dei relativi meccanismi di avvio durante l'intera
+finestra. Se tale controllo non è dimostrabile, la cold copy resta
+**BLOCCATO**.
+
+Non viene introdotto automaticamente un runtime mask. `Restart=on-failure`
+non lo rende necessario dopo uno stop esplicito. Un eventuale
+`systemctl --user mask --runtime` sarebbe una modifica di stato distinta,
+richiederebbe autorizzazione separata, dovrebbe essere reversibile e non
+sostituirebbe il controllo degli altri writer.
+
+Il trap non garantisce il recupero dopo SIGKILL, blackout o reboot. Un
+cambiamento del boot ID o dell'identità del manager systemd utente invalida
+definitivamente il tentativo di acquisizione in corso. La cold copy non deve
+riprendere automaticamente.
+
+Dopo reboot o sostituzione del manager, lo stato iniziale registrato prima
+dell'interruzione non deve essere riapplicato ciecamente. Occorrono una nuova
+ricognizione dello stato corrente e un recupero manuale controllato, con
+priorità al ripristino dell'operatività.
+
+Un bundle incompleto deve rimanere isolato, privato e classificato
+`incomplete/non_promotable`. Non deve essere cancellato automaticamente dal
+trap, utilizzato come prova validata o sbloccare adapter reale, runtime,
+integrazione o certificazione. Questa regola vale anche per bundle rimasti
+incompleti a seguito di SIGKILL, blackout, reboot o riavvio del manager.
+
+Dimensionamento, spazio di riserva, durata, timeout e margine di ripristino
+restano **DA FARE** e devono essere determinati prima di qualsiasi arresto.
+Non viene assunta una finestra fissa di quindici minuti.
+
+Per staging, inventari, hash, hard link, integrità, retention, custodia e
+classificazione finale si applicano le sezioni 9.1–9.8, senza duplicarne i
+requisiti.
+
+Stati: diagnostica SSH Gate B **ESEGUITO**; preflight dimensionale **DA
+FARE**; ulteriori controlli privilegiati **DA FARE** se necessari; cold copy,
+adapter reale e certificazione runtime **BLOCCATO**. Nessuna nuova attività è
+**VALIDATO**, **INTEGRATO** o **CERTIFICATO**.

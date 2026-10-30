@@ -1950,3 +1950,60 @@ ma stop/start, staging, dimensionamento, copia e hash richiedono Gate B. Nessun
 contenuto corpus, Chroma/SQLite, stop, snapshot, copia, hash o modifica.
 Acquisizione **DA FARE**; snapshot/adattatore/runtime **BLOCCATO**; non
 **VALIDATO**, **INTEGRATO** o **CERTIFICATO**.
+
+### RAG-CORPUS-USSIA-GATE-B-SSH-DIAGNOSTIC-01 — processo API e avvio (2026-10-30)
+
+Attività: singola diagnostica SSH read-only autorizzata per identificare il
+processo API e i meccanismi di avvio pertinenti, senza ripetere il controllo
+privilegiato `lsof +D`. Script: nessuno; comandi diagnostici inline non
+persistiti. Baseline `9bcc033`.
+
+Evidenze osservate: PID `76562`, PPID `939`, utente `football`, comando
+`rag_v5_api.py` tramite virtualenv; cgroup
+`/user.slice/user-1000.slice/user@1000.service/app.slice/football-rag-api.service`.
+`systemctl --user` ha risolto l'unità `football-rag-api.service`, caricata da
+`/home/football/.config/systemd/user/football-rag-api.service`,
+`active/running`, `enabled`, `MainPID=76562`, `Restart=on-failure`,
+`RestartSec=5s`, `TimeoutStopSec=30s`. Il padre era il manager systemd utente
+PID `939`; non sono stati osservati processi figli. I timer
+`football-rag-maintenance.timer` e `football-figc-discovery.timer` risultavano
+`active/waiting` ed `enabled`; i relativi oneshot erano `inactive/dead`.
+Nessun crontab per `football`, job `at` o process manager Supervisor, PM2,
+Docker o Podman pertinente è stato osservato. `Linger=yes` e avvio automatico
+dopo reboot erano già documentati e validati in attività precedenti.
+
+Inferenze tecniche: la futura procedura autorizzata deve arrestare l'API con
+`systemctl --user stop football-rag-api.service`, non con `kill`; uno stop
+esplicito non attiva normalmente `Restart=on-failure`. Il timer maintenance è
+un potenziale utilizzatore diretto di Chroma; la sospensione FIGC è
+prudenziale e non gli attribuisce accessi Chroma non dimostrati. Fermare un
+timer non arresta un oneshot già avviato.
+
+Limiti: la diagnostica non dimostra l'assenza universale di writer
+privilegiati o invisibili, né la quiescenza continua durante una futura copia.
+Campionamenti periodici dei descriptor non escludono accessi fra due
+osservazioni. API `enabled` e `Linger=yes` lasciano un rischio di nuovo avvio
+in caso di reboot, riavvio del manager utente o richiesta esterna. Nessun
+runtime mask, stop, restart, copia, snapshot, hash o accesso Chroma/SQLite è
+stato eseguito.
+
+Decisione: integrare queste evidenze e i controlli di quiescenza nella sezione
+9.9 del piano esistente, senza creare un piano parallelo. La procedura deve
+registrare lo stato iniziale prima degli arresti e l'esito individuale di ogni
+operazione, affinché un arresto parziale possa essere ripristinato in modo
+idempotente senza avviare unità originariamente inattive.
+
+Un cambiamento del boot ID o dell'identità del manager utente invalida il
+tentativo: nessuna ripresa automatica e nessuna riapplicazione cieca dello
+stato precedente. Sono richiesti una nuova ricognizione dello stato corrente
+e un recupero manuale controllato. Eventuali bundle incompleti restano
+`incomplete/non_promotable`.
+
+La cold copy non è autorizzata e resta **BLOCCATO** finché dimensionamento,
+controllo dei writer per l'intera finestra, autorizzazioni operative e
+ripristino non siano definiti e verificabili.
+
+Stato: diagnostica SSH **ESEGUITO**; preflight successivo **DA FARE**;
+ulteriori controlli privilegiati **DA FARE** se necessari; cold copy, adapter
+reale e certificazione runtime **BLOCCATO**. Non **VALIDATO**, **INTEGRATO** o
+**CERTIFICATO**.
