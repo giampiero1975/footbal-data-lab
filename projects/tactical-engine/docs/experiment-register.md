@@ -2007,3 +2007,29 @@ Stato: diagnostica SSH **ESEGUITO**; preflight successivo **DA FARE**;
 ulteriori controlli privilegiati **DA FARE** se necessari; cold copy, adapter
 reale e certificazione runtime **BLOCCATO**. Non **VALIDATO**, **INTEGRATO** o
 **CERTIFICATO**.
+
+### RAG-CORPUS-USSIA-GATE-B-DIMENSIONAL-PREFLIGHT-INTEGRATION-01 — consolidamento locale (2026-10-30)
+
+Attività: integrazione locale byte-per-byte dello script metadata-only USSIA
+Gate B Derived 05, dopo revisione statica indipendente. Baseline
+`23508fc3a7bb4f0b33ab95687ae5d55b6c6be6ab`; commit tecnico
+`7e9dae3211c3a65113524cef3ca980e77eae5c77`. Script:
+`scripts/ussia_gate_b_dimensional_preflight_v1.sh`, modalità Git `100755`,
+1.486 righe, 36.372 byte, SHA-256
+`2644d06899c74d1eae49c1de6bdbdde82e88382844993200bdee98edf3f800dd`.
+Sorgente e destinazione hanno identità byte-per-byte; il commit tecnico
+contiene soltanto il nuovo script.
+
+Evidenze: fetch del solo branch GitHub pertinente, locale/remoto sulla stessa
+baseline con divergenza `0/0`, working tree iniziale pulito, destinazione
+assente, nessuno script Bash equivalente, hash/byte/righe e modalità
+verificati, diff statico circoscritto. Report:
+`docs/rag-corpus-ussia-gate-b-dimensional-preflight-integration-01.md`.
+
+Decisione: revisione Derived 05 **VALIDATO** esclusivamente nel perimetro
+statico; script **IMPLEMENTATO** localmente. Non sono stati eseguiti script,
+`bash -n`, ShellCheck, test, SSH/VPS, Chroma/SQLite, snapshot, stop di
+servizi o cold copy. Preflight dimensionale e misurazione RSS **DA FARE**;
+cold copy, adapter reale e certificazione runtime **BLOCCATO**. I commit
+locali non sono ancora pubblicati su GitHub; non **VALIDATO runtime**,
+**INTEGRATO** o **CERTIFICATO**.
