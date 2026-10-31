@@ -61,6 +61,31 @@ Lo script è **IMPLEMENTATO** localmente al commit tecnico
 I commit locali non costituiscono ancora tracciamento GitHub remoto e non
 saranno pubblicati senza autorizzazione separata.
 
+## Addendum post-pubblicazione
+
+Il consolidamento locale documentato sopra è stato successivamente pubblicato
+sul branch GitHub `codex/tactical-state-contract-v1`.
+
+HEAD remoto verificato:
+
+`032bd5594b7939bb23c36eb05d436adbc317632a`
+
+Catena pubblicata:
+
+`23508fc3a7bb4f0b33ab95687ae5d55b6c6be6ab`
+
+→ `7e9dae3211c3a65113524cef3ca980e77eae5c77`
+
+→ `032bd5594b7939bb23c36eb05d436adbc317632a`
+
+Pubblicazione GitHub: **ESEGUITO**.
+
+Questa pubblicazione non modifica gli altri stati: revisione statica
+**VALIDATO** esclusivamente nel perimetro statico; script **IMPLEMENTATO**;
+preflight dimensionale e misurazione RSS **DA FARE**; cold copy, adapter reale
+e certificazione runtime **BLOCCATO**. Non **VALIDATO runtime**, **INTEGRATO**
+o **CERTIFICATO**.
+
 ## Limiti residui
 
 - preflight dimensionale non eseguito;

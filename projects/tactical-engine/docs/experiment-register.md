@@ -2033,3 +2033,16 @@ servizi o cold copy. Preflight dimensionale e misurazione RSS **DA FARE**;
 cold copy, adapter reale e certificazione runtime **BLOCCATO**. I commit
 locali non sono ancora pubblicati su GitHub; non **VALIDATO runtime**,
 **INTEGRATO** o **CERTIFICATO**.
+
+Closeout post-pubblicazione: il branch GitHub
+`codex/tactical-state-contract-v1` espone il commit documentale pubblicato
+`032bd5594b7939bb23c36eb05d436adbc317632a`, discendente diretto del commit
+tecnico `7e9dae3211c3a65113524cef3ca980e77eae5c77`. Lo script
+`scripts/ussia_gate_b_dimensional_preflight_v1.sh`, modalità Git `100755`,
+mantiene SHA-256 `2644d06899c74d1eae49c1de6bdbdde82e88382844993200bdee98edf3f800dd`.
+Pubblicazione GitHub **ESEGUITO**; script **IMPLEMENTATO**; revisione statica
+**VALIDATO** esclusivamente nel perimetro statico. Nessuna esecuzione runtime.
+Preflight dimensionale e misurazione RSS **DA FARE**; cold copy, adapter reale
+e certificazione runtime **BLOCCATO**. La pubblicazione non equivale a
+integrazione nella pipeline o certificazione: non **VALIDATO runtime**,
+**INTEGRATO** o **CERTIFICATO**.
