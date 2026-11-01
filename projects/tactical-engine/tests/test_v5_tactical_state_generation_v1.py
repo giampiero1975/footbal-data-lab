@@ -132,6 +132,20 @@ class ContractGenerationTests(unittest.TestCase):
         self.assertIn("question_compatibility", diagnostic["failed_scope"])
         self.assertEqual(diagnostic["promoted_answer"], "")
 
+    def test_incomplete_question_alignment_reports_missing_reasons(self):
+        plan = applied_plan()
+        del plan["phase_states"]
+        diagnostic = contract.generation_diagnostic(
+            applied_plan(), envelope(plan), tactical_audit=complete_audit())
+        self.assertEqual(diagnostic["overall_status"], "blocked")
+        self.assertIn("question_compatibility", diagnostic["failed_scope"])
+        alignment = diagnostic["controls"]["question_compatibility"]
+        self.assertEqual(alignment["status"], "incomplete")
+        self.assertFalse(alignment["failures"])
+        self.assertTrue(any(item["code"] == "missing_contract_field" for item in alignment["missing"]))
+        self.assertIn("missing_contract_field", diagnostic["reasons"])
+        self.assertEqual(diagnostic["promoted_answer"], "")
+
     def test_structural_contradiction_is_blocked(self):
         plan = applied_plan("Nel 4-3-3 il numero 11 stringe.")
         plan["actors"].append(deepcopy(plan["actors"][0]))
