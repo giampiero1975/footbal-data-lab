@@ -26,7 +26,9 @@ query = load("tsc_generation_query", SCRIPTS / "run_rag_v5_query.py")
 
 
 def applied_plan(question="Come organizzi il 4-3-3?"):
-    return contract.build_question_plan(question, ["4-3-3"])
+    plan = contract.build_question_plan(question, ["4-3-3"])
+    plan["final_formation"] = contract.value("4-3-3", "explicit")
+    return plan
 
 
 def envelope(plan=None, explanation="Nel 4-3-3 mantengo equilibrio e copertura [F1]."):
@@ -62,7 +64,56 @@ class ContractGenerationTests(unittest.TestCase):
         plan["actors"] = "not-an-array"
         diagnostic = contract.generation_diagnostic(applied_plan(), envelope(plan), tactical_audit=complete_audit())
         self.assertEqual(diagnostic["overall_status"], "not_evaluable")
-        self.assertIn("invalid_contract_shape", diagnostic["reasons"])
+        self.assertIn("invalid_nested_type", diagnostic["reasons"])
+
+    def test_malformed_state_container_is_not_evaluable(self):
+        plan = applied_plan()
+        plan["phase_states"][0]["assignments"] = {"not": "an-array"}
+        diagnostic = contract.generation_diagnostic(applied_plan(), envelope(plan), tactical_audit=complete_audit())
+        self.assertEqual(diagnostic["overall_status"], "not_evaluable")
+        self.assertIn("invalid_nested_type", diagnostic["reasons"])
+
+    def test_malformed_typed_reference_is_not_evaluable(self):
+        plan = applied_plan()
+        plan["events"] = [{"event_id": "sub:1", "type": "substitution",
+                           "out_ref": "actor:11", "in_ref": {"id": "actor:5", "kind": "actor_ref"},
+                           "from_state_id": None, "to_state_id": None,
+                           "assertion_mode": "question_observation", "cardinality_delta": 0,
+                           "provenance": "explicit"}]
+        diagnostic = contract.generation_diagnostic(applied_plan(), envelope(plan), tactical_audit=complete_audit())
+        self.assertEqual(diagnostic["overall_status"], "not_evaluable")
+        self.assertIn("invalid_typed_ref_shape", diagnostic["reasons"])
+
+    def test_empty_critical_scope_is_not_assessable(self):
+        plan = applied_plan()
+        del plan["final_formation"]
+        diagnostic = contract.generation_diagnostic(plan, envelope(plan), tactical_audit=complete_audit())
+        alignment = diagnostic["controls"]["plan_prose_alignment"]
+        self.assertEqual(alignment["checked_scope"], [])
+        self.assertEqual(alignment["status"], "not_assessable")
+        self.assertEqual(diagnostic["overall_status"], "not_evaluable")
+
+    def test_insufficient_substitution_coverage_is_not_assessable(self):
+        plan = applied_plan("Nel 4-3-3 il numero 11 esce ed entra il numero 5.")
+        actors = {item["label"].split()[-1]: item["id"] for item in plan["actors"]}
+        plan["events"] = [{"event_id": "sub:1", "type": "substitution",
+                           "from_state_id": None, "to_state_id": None,
+                           "out_ref": contract.ref(actors["11"], "actor_ref"),
+                           "in_ref": contract.ref(actors["5"], "actor_ref"),
+                           "assertion_mode": "question_observation", "cardinality_delta": 0,
+                           "provenance": "explicit"}]
+        text = "Nel 4-3-3 sono citati numero 11 e numero 5 [F1]."
+        diagnostic = contract.generation_diagnostic(plan, envelope(plan, text), tactical_audit=complete_audit())
+        alignment = diagnostic["controls"]["plan_prose_alignment"]
+        self.assertEqual(alignment["status"], "not_assessable")
+        self.assertIn("substitution:sub:1:direction_and_role_effect", alignment["unassessed_scope"])
+        self.assertEqual(diagnostic["overall_status"], "not_evaluable")
+
+    def test_unassessable_documentary_audit_prevents_validation(self):
+        diagnostic = contract.generation_diagnostic(applied_plan(), envelope(), tactical_audit={"status": "not_assessable"})
+        self.assertEqual(diagnostic["overall_status"], "not_evaluable")
+        self.assertIn("tactical_documentary_audit", diagnostic["unassessed_scope"])
+        self.assertIn("tactical_documentary_audit_not_assessable", diagnostic["reasons"])
 
     def test_normalization_never_changes_actor_or_event_content(self):
         plan = applied_plan("Nel 4-3-3 il numero 11 stringe.")

@@ -98,6 +98,55 @@ def parse_generation_content(raw_content):
     return parsed if not errors else None, changes, errors
 
 
+def validate_generation_shape(applied_plan):
+    """Validate JSON container types only; domain rules stay in validate_contract()."""
+    issues = []
+    object_fields = ("question", "effective_players", "substitution_mode", "trace")
+    object_list_fields = ("formations", "actors", "role_refs", "position_slots",
+                          "candidate_actors", "events", "phase_states",
+                          "structural_mappings", "constraints")
+    for key in object_fields:
+        if key in applied_plan and not isinstance(applied_plan[key], dict):
+            issues.append(issue("invalid_nested_type", "BLOCKING", key, "È richiesto un oggetto JSON."))
+    for key in object_list_fields:
+        value = applied_plan.get(key)
+        if value is None:
+            continue
+        if not isinstance(value, list):
+            issues.append(issue("invalid_nested_type", "BLOCKING", key, "È richiesto un array JSON."))
+            continue
+        for index, item in enumerate(value):
+            if not isinstance(item, dict):
+                issues.append(issue("invalid_nested_item_type", "BLOCKING", f"{key}.{index}", "È richiesto un oggetto JSON."))
+    if "scenarios" in applied_plan and not isinstance(applied_plan["scenarios"], list):
+        issues.append(issue("invalid_nested_type", "BLOCKING", "scenarios", "È richiesto un array JSON."))
+    for index, state_item in enumerate(applied_plan.get("phase_states", []) if isinstance(applied_plan.get("phase_states", []), list) else []):
+        if not isinstance(state_item, dict):
+            continue
+        for key in ("sequence", "formation", "effective_players", "presence_complete"):
+            if key in state_item and not isinstance(state_item[key], dict):
+                issues.append(issue("invalid_nested_type", "BLOCKING", f"phase_states.{index}.{key}", "È richiesto un oggetto JSON."))
+        for key in ("actor_presence", "assignments"):
+            if key in state_item and not isinstance(state_item[key], list):
+                issues.append(issue("invalid_nested_type", "BLOCKING", f"phase_states.{index}.{key}", "È richiesto un array JSON."))
+    typed_refs = {
+        "events": ("out_ref", "in_ref", "subject_ref"),
+        "structural_mappings": ("from_slot_ref", "to_slot_ref"),
+    }
+    for collection, fields in typed_refs.items():
+        values = applied_plan.get(collection, [])
+        if not isinstance(values, list):
+            continue
+        for index, item in enumerate(values):
+            if not isinstance(item, dict):
+                continue
+            for key in fields:
+                if key in item and item[key] is not None and not isinstance(item[key], dict):
+                    issues.append(issue("invalid_typed_ref_shape", "BLOCKING", f"{collection}.{index}.{key}", "Il riferimento deve essere un oggetto JSON."))
+    return {"schema": "tactical_generation_shape_validation_v1",
+            "valid": not issues, "issues": issues}
+
+
 def _domain_plan(plan):
     if isinstance(plan, dict) and isinstance(plan.get("state_contract"), dict):
         return plan["state_contract"]
@@ -161,10 +210,11 @@ def compare_question_and_applied_plan(question_plan, applied_plan):
 def compare_plan_and_explanation(applied_plan, explanation):
     """Detect explicit structural contradictions, not general semantic equivalence."""
     text = " ".join(str(explanation or "").split()).casefold()
-    failures, checked = [], []
+    failures, checked, required, unassessed = [], [], [], []
     allowed_formations = _explicit_values(applied_plan, "formations")
     final = applied_plan.get("final_formation", {})
     if isinstance(final, dict) and final.get("value"):
+        required.append("final_formation")
         allowed_formations.add(final["value"])
         checked.append("final_formation")
         if final["value"].casefold() not in text:
@@ -185,12 +235,35 @@ def compare_plan_and_explanation(applied_plan, explanation):
         in_id = (event.get("in_ref") or {}).get("id")
         out_label = str((entities.get(out_id) or {}).get("label", "")).casefold()
         in_label = str((entities.get(in_id) or {}).get("label", "")).casefold()
-        checked.append("substitution:" + str(event.get("event_id")))
+        relation = "substitution:" + str(event.get("event_id"))
+        required.append(relation)
+        checked.append(relation + ":actor_mentions")
         if out_label and in_label and not (out_label in text and in_label in text):
             failures.append({"code": "substitution_not_explained", "event_id": event.get("event_id")})
+        unassessed.append(relation + ":direction_and_role_effect")
+    for event in applied_plan.get("events", []):
+        if event.get("type") in {"expulsion", "rotation"}:
+            relation = str(event.get("type")) + ":" + str(event.get("event_id"))
+            required.append(relation)
+            unassessed.append(relation)
+    if applied_plan.get("structural_mappings"):
+        required.append("structural_mappings")
+        unassessed.append("structural_mappings")
+    if any(state_item.get("assignments") for state_item in applied_plan.get("phase_states", [])
+           if isinstance(state_item, dict)):
+        required.append("phase_assignments")
+        unassessed.append("phase_assignments")
+    coverage_sufficient = bool(required) and not unassessed
+    if failures:
+        status = "failed"
+    elif not coverage_sufficient:
+        status = "not_assessable"
+    else:
+        status = "passed"
     return {"schema": "tactical_plan_prose_alignment_v1",
-            "status": "failed" if failures else "passed",
-            "checked_scope": checked, "failures": failures,
+            "status": status, "checked_scope": checked, "required_scope": required,
+            "unassessed_scope": unassessed, "coverage_sufficient": coverage_sufficient,
+            "failures": failures,
             "semantic_support_verified": False}
 
 
@@ -209,7 +282,7 @@ def generation_diagnostic(question_plan, raw_content, done_reason=None, tactical
         structural = {"schema": "tactical_state_validation_v1", "valid": False,
                       "issues": transport_issues, "counts": {level: sum(x["severity"] == level for x in transport_issues) for level in SEVERITIES}}
         question_alignment = {"schema": "tactical_question_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "missing": []}
-        prose_alignment = {"schema": "tactical_plan_prose_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "semantic_support_verified": False}
+        prose_alignment = {"schema": "tactical_plan_prose_alignment_v1", "status": "not_assessable", "checked_scope": [], "required_scope": [], "unassessed_scope": [], "coverage_sufficient": False, "failures": [], "semantic_support_verified": False}
         audit = tactical_audit or {"status": "not_assessable"}
         status = "not_evaluable"
         explanation = ""
@@ -217,6 +290,9 @@ def generation_diagnostic(question_plan, raw_content, done_reason=None, tactical
     else:
         applied_plan, explanation = parsed["applied_plan"], parsed["explanation"].strip()
         try:
+            shape_validation = validate_generation_shape(applied_plan)
+            if not shape_validation["valid"]:
+                raise TypeError("; ".join(f"{item['path']}: {item['message']}" for item in shape_validation["issues"]))
             applied_plan, contract_changes = normalize_contract(applied_plan)
             normalizations.extend(contract_changes)
             structural = validate_contract(applied_plan)
@@ -224,16 +300,23 @@ def generation_diagnostic(question_plan, raw_content, done_reason=None, tactical
             prose_alignment = compare_plan_and_explanation(applied_plan, explanation)
             audit = tactical_audit or {"status": "not_assessable"}
             audit_passed = audit.get("complete") is True
-            blocking = (not structural["valid"] or question_alignment["status"] != "passed"
-                        or prose_alignment["status"] != "passed")
-            status = "blocked" if blocking else "validated" if audit_passed else "blocked"
+            demonstrated_failure = (not structural["valid"]
+                                    or question_alignment["status"] in {"failed", "incomplete"}
+                                    or prose_alignment["status"] == "failed"
+                                    or audit.get("complete") is False)
+            mandatory_unassessed = (question_alignment["status"] == "not_assessable"
+                                    or prose_alignment["status"] == "not_assessable"
+                                    or audit.get("complete") is None)
+            status = "blocked" if demonstrated_failure else "not_evaluable" if mandatory_unassessed else "validated" if audit_passed else "not_evaluable"
         except (AttributeError, KeyError, TypeError, ValueError) as exc:
-            shape_issue = issue("invalid_contract_shape", "BLOCKING", "applied_plan", str(exc))
+            shape_issues = (shape_validation.get("issues", []) if "shape_validation" in locals() else [])
+            if not shape_issues:
+                shape_issues = [issue("invalid_contract_shape", "BLOCKING", "applied_plan", str(exc))]
             structural = {"schema": "tactical_state_validation_v1", "valid": False,
-                          "issues": [shape_issue],
-                          "counts": {level: int(level == "BLOCKING") for level in SEVERITIES}}
+                          "issues": shape_issues,
+                          "counts": {level: sum(item["severity"] == level for item in shape_issues) for level in SEVERITIES}}
             question_alignment = {"schema": "tactical_question_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "missing": []}
-            prose_alignment = {"schema": "tactical_plan_prose_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "semantic_support_verified": False}
+            prose_alignment = {"schema": "tactical_plan_prose_alignment_v1", "status": "not_assessable", "checked_scope": [], "required_scope": [], "unassessed_scope": [], "coverage_sufficient": False, "failures": [], "semantic_support_verified": False}
             audit = tactical_audit or {"status": "not_assessable"}
             status = "not_evaluable"
     controls = {"structural_validity": structural,
@@ -250,6 +333,12 @@ def generation_diagnostic(question_plan, raw_content, done_reason=None, tactical
     reasons = [item["code"] for item in structural.get("issues", []) if item.get("severity") == "BLOCKING"]
     reasons.extend(item["code"] for item in question_alignment.get("failures", []))
     reasons.extend(item["code"] for item in prose_alignment.get("failures", []))
+    if prose_alignment.get("status") == "not_assessable":
+        reasons.append("plan_prose_alignment_not_assessable")
+    if question_alignment.get("status") == "not_assessable":
+        reasons.append("question_compatibility_not_assessable")
+    if audit.get("complete") is None:
+        reasons.append("tactical_documentary_audit_not_assessable")
     if audit.get("complete") is False:
         reasons.append("tactical_documentary_audit_failed")
     return {"transport_schema": GENERATION_TRANSPORT_SCHEMA,
