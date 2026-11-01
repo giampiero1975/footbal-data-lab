@@ -2087,3 +2087,21 @@ Test nuovi 19/19, regressione mirata totale 154/154, compilazione in memoria
 proprietà coperte **VALIDATO** offline. Compatibilità reale del formato
 Ollama/Qwen, qualità tattica e stabilità runtime **DA FARE**; API, pannello,
 corpus, indici e deploy invariati. Non **INTEGRATO** o **CERTIFICATO**.
+
+### RD-TSC-GENERATIVE-OFFLINE-CORRECTIONS-01 — fail-closed conservativo (2026-11-01)
+
+Attività: correggere esclusivamente i rilievi della revisione indipendente sul
+commit `5992c5818fecef174fde4bd21fc839f14323e0cd`. Script:
+`v5_tactical_state_contract_v1.py`; test:
+`test_v5_tactical_state_generation_v1.py`. Commit tecnico: `21bfd36`.
+Report: `docs/tactical-state-contract-generative-offline-corrections-01.md`.
+Risultato: il controllo piano-prosa non passa più con scope critico vuoto o
+insufficiente; le verifiche obbligatorie non valutabili impediscono
+`validated`; forma JSON annidata e riferimenti tipizzati sono controllati e
+classificati prima della validazione del dominio. Il modello tattico rimane
+unicamente `tactical_state_contract_v1`; nessuna regex tattica ad hoc aggiunta.
+Cinque test nuovi, suite generativa 24/24, regressione mirata totale 159/159,
+compilazione 2/2 e diff check PASS. Decisione: correzioni **IMPLEMENTATO**,
+test **ESEGUITO**, comportamento coperto **VALIDATO** offline. Runtime
+Ollama/Qwen, qualità e stabilità **DA FARE**; percorso non **INTEGRATO** o
+**CERTIFICATO**.
