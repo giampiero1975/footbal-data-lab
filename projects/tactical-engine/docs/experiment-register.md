@@ -2067,3 +2067,23 @@ l'approvazione non autorizza attività runtime. Stato: formalizzazione
 documentale **ESEGUITO**; preflight dimensionale e RSS **DA FARE**; cold copy,
 adapter reale e certificazione runtime **BLOCCATO**; non **INTEGRATO** o
 **CERTIFICATO**.
+
+### RD-TSC-GENERATIVE-OFFLINE-01 — integrazione generativa opt-in (2026-11-01)
+
+Attività: implementare offline il nuovo percorso
+`--tactical-state-contract`, distinto da `--tactical-plan` e disattivato nel
+profilo pubblico. Script: `v5_tactical_state_contract_v1.py`,
+`smoke_test_rag_v5_e2e.py`, `run_rag_v5_query.py`; test:
+`test_v5_tactical_state_generation_v1.py`. Commit tecnico:
+`acb7f7178e971173dbde1b6ff742fa5b67eebc5c`. Report:
+`docs/tactical-state-contract-generative-offline-01.md`. Risultato: singola
+funzione di trasporto e una sola chiamata per costruzione; nessun repair;
+schema di trasporto che riusa `tactical_state_contract_v1`; controlli separati
+per struttura, domanda-piano, piano-prosa e audit esistente; raw output,
+normalizzazioni e motivazioni preservati. Solo `validated` promuove `answer`;
+gli altri esiti sono fail-closed e il wrapper non li considera query complete.
+Test nuovi 19/19, regressione mirata totale 154/154, compilazione in memoria
+4/4 e diff check PASS. Decisione: codice **IMPLEMENTATO**, test **ESEGUITO**,
+proprietà coperte **VALIDATO** offline. Compatibilità reale del formato
+Ollama/Qwen, qualità tattica e stabilità runtime **DA FARE**; API, pannello,
+corpus, indici e deploy invariati. Non **INTEGRATO** o **CERTIFICATO**.
