@@ -2105,3 +2105,7 @@ compilazione 2/2 e diff check PASS. Decisione: correzioni **IMPLEMENTATO**,
 test **ESEGUITO**, comportamento coperto **VALIDATO** offline. Runtime
 Ollama/Qwen, qualità e stabilità **DA FARE**; percorso non **INTEGRATO** o
 **CERTIFICATO**.
+
+## RD-TSC-GENERATIVE-DIAGNOSTIC-MISSING-01 — Correzione motivazioni incomplete (2026-11-01)
+
+Attività: propagare i codici dei campi mancanti del controllo domanda–piano nel riepilogo `reasons`, mantenendo `blocked`, `failed_scope` e la diagnostica originale. Script: `scripts/v5_tactical_state_contract_v1.py`; test mirato aggiunto a `tests/test_v5_tactical_state_generation_v1.py`. Commit codice: `480cd9e8f73cd3f2e3fcd54235d6d5c6245935fb`; commit test: `42a97b2dc3f64d7aff177fc1e23a2d8c7f92e812`. Report: `docs/tactical-state-contract-generative-diagnostic-missing-01.md`. Risultato: modifica **IMPLEMENTATO**, test aggiunto ma non eseguito; verifica **BLOCCATO** in assenza di ambiente eseguibile. Decisione: eseguire solo il test differenziale mirato prima di promuovere a **VALIDATO** offline. Nessuna inferenza Qwen/Ollama, VPS, API o deploy.
