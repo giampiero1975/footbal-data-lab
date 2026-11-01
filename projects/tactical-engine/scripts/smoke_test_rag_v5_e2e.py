@@ -28,6 +28,11 @@ from v5_tactical_query_plan_v1 import (analyse as tactical_analyse,
     audit_answer as tactical_audit_answer, diversify as tactical_diversify,
     generation_contract, reserve_anchor_candidates, retrieval_anchors,
     retrieval_queries)
+from v5_tactical_state_contract_v1 import (
+    generation_diagnostic as tactical_state_generation_diagnostic,
+    generation_transport_schema as tactical_state_transport_schema,
+    parse_generation_content as parse_tactical_state_generation,
+)
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -197,6 +202,66 @@ def sanitize_tactical_output(answer):
     return cleaned
 
 
+def _ollama_chat_once(payload, timeout):
+    """The only transport call used by the structured tactical-state path."""
+    request=Request("http://127.0.0.1:11434/api/chat",
+                    data=json.dumps(payload,ensure_ascii=False).encode(),
+                    headers={"Content-Type":"application/json"},method="POST")
+    with urlopen(request,timeout=timeout) as response:
+        return json.load(response)
+
+
+def chat_tactical_state_once(model,question,evidence,timeout,question_plan,
+                             context_window=8192,keep_alive=None,num_predict=0):
+    """Generate plan and prose once; every failure after transport is deterministic."""
+    context="\n\n".join(f"[F{i}] Fonte: {row['source']} | Pagine: {row['pages']}\n{row['text']}"
+                         for i,row in enumerate(evidence,1))
+    options={"temperature":0,"num_ctx":context_window}
+    if num_predict:
+        options["num_predict"]=num_predict
+    instruction=(
+        SYSTEM+"\nRestituisci esclusivamente l'oggetto JSON richiesto. "
+        "Produci applied_plan conforme a tactical_state_contract_v1 e explanation in italiano. "
+        "Il piano deve rispettare i fatti espliciti della domanda; unknown non è un fatto. "
+        "La spiegazione deve rispettare il piano, restare entro 350 parole e citare le fonti [F1], [F2]. "
+        "Non aggiungere attori, ruoli, eventi o compiti non sostenuti. Non usare Markdown attorno al JSON."
+    )
+    payload={"model":model,"stream":False,"think":False,
+             "format":tactical_state_transport_schema(),
+             "messages":[{"role":"system","content":instruction},
+                         {"role":"user","content":
+                          "DOMANDA:\n"+question+"\n\nQUESTION PLAN:\n"+
+                          json.dumps(question_plan.get("state_contract",question_plan),ensure_ascii=False,sort_keys=True)+
+                          "\n\nFONTI:\n"+context}],
+             "options":options}
+    if keep_alive:
+        payload["keep_alive"]=keep_alive
+    try:
+        obj=_ollama_chat_once(payload,timeout)
+        raw=(obj.get("message") or {}).get("content","")
+        parsed,_,_=parse_tactical_state_generation(raw)
+        explanation=(parsed or {}).get("explanation","")
+        audit=tactical_audit_answer(explanation,question_plan) if explanation else {"status":"not_assessable"}
+        diagnostic=tactical_state_generation_diagnostic(
+            question_plan,raw,done_reason=obj.get("done_reason"),tactical_audit=audit)
+    except (TimeoutError, URLError) as exc:
+        obj={}
+        diagnostic=tactical_state_generation_diagnostic(
+            question_plan,"",tactical_audit={"status":"not_assessable"},transport_error=exc)
+    answer=diagnostic["promoted_answer"]
+    stats={"total_duration_ns":obj.get("total_duration"),
+           "load_duration_ns":obj.get("load_duration"),
+           "prompt_eval_duration_ns":obj.get("prompt_eval_duration"),
+           "eval_duration_ns":obj.get("eval_duration"),
+           "eval_count":obj.get("eval_count"),
+           "prompt_eval_count":obj.get("prompt_eval_count"),
+           "done_reason":obj.get("done_reason"),
+           "repair_reasons":[],
+           "quality_gate_passed":diagnostic["overall_status"]=="validated",
+           "quality_gate_missing":diagnostic["reasons"]}
+    return answer,stats,diagnostic
+
+
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,
          num_predict=0,context_window=8192,keep_alive=None,tactical_plan=None):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
@@ -337,6 +402,7 @@ def main():
     ap.add_argument("--heading-routing",action="store_true",help="Opt-in generic metadata heading expansion; no benchmark ID rules")
     ap.add_argument("--structural-routing",action="store_true",help="Opt-in generic formation/role/principle context reservation")
     ap.add_argument("--tactical-plan",action="store_true",help="Opt-in subproblem coverage, phase-aware reservation and generation contract")
+    ap.add_argument("--tactical-state-contract",action="store_true",help="Opt-in one-call structured Tactical State Contract generation")
     ap.add_argument("--source-ranking-trace",action="store_true",help="Record source-level semantic scores; requires heading routing and retrieval-only")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
@@ -368,7 +434,7 @@ def main():
     report={"collection":args.collection,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
-            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"tactical_plan_enabled":args.tactical_plan,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[
+            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"tactical_plan_enabled":args.tactical_plan,"tactical_state_contract_enabled":args.tactical_state_contract,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -377,6 +443,7 @@ def main():
             start=time.monotonic()
             print(f"START {qid}: {question}",flush=True)
             tactical_plan=tactical_analyse(question) if args.tactical_plan else None
+            state_question_plan=tactical_analyse(question) if args.tactical_state_contract else None
             embedding=embed.get_query_embedding(question)
             got=coll.query(query_embeddings=[embedding],n_results=24,
                            include=["documents","metadatas","distances"])
@@ -552,9 +619,17 @@ def main():
                       for i,r in enumerate(selected,1)]
             if args.priority_exact and priority_ids:
                 evidence=prioritize_exact(evidence,priority_ids)
-            answer,stats=("",{}) if args.retrieval_only else chat(
-                args.model,question,evidence,args.timeout,args.targeted_coverage,
-                args.heading_routing,args.num_predict,args.context_window,args.keep_alive,tactical_plan)
+            tactical_state_diagnostic=None
+            if args.retrieval_only:
+                answer,stats="",{}
+            elif args.tactical_state_contract:
+                answer,stats,tactical_state_diagnostic=chat_tactical_state_once(
+                    args.model,question,evidence,args.timeout,state_question_plan,
+                    args.context_window,args.keep_alive,args.num_predict)
+            else:
+                answer,stats=chat(
+                    args.model,question,evidence,args.timeout,args.targeted_coverage,
+                    args.heading_routing,args.num_predict,args.context_window,args.keep_alive,tactical_plan)
             cited=sorted(set(re.findall(r"\[F(\d+)\]",answer)),key=int)
             tactical_answer_audit=tactical_audit_answer(answer,tactical_plan) if tactical_plan and answer else None
             valid={str(i) for i in range(1,len(evidence)+1)}
@@ -567,6 +642,7 @@ def main():
                    "tactical_anchor_candidate_ids":sorted(set(tactical_anchor_candidate_ids)),
                    "tactical_anchor_reserved_ids":tactical_anchor_reserved,
                    "tactical_answer_audit":tactical_answer_audit,
+                   "tactical_state_contract":tactical_state_diagnostic,
                    "embedding_model_released_before_generation":embedding_model_released,
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),

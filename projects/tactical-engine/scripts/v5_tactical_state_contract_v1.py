@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import re
 from copy import deepcopy
 
@@ -28,6 +29,237 @@ SAFE_ENUM_ALIASES = {
     "transizione_negativa": "negative_transition", "transizione negativa": "negative_transition",
     "sostituzione": "substitution", "espulsione": "expulsion", "rotazione": "rotation",
 }
+
+GENERATION_TRANSPORT_SCHEMA = "tactical_state_generation_v1"
+GENERATION_STATUSES = {"validated", "partial", "blocked", "not_evaluable"}
+
+
+def generation_transport_schema():
+    """Return the Ollama transport schema; the domain remains this contract."""
+    domain_fields = {
+        "schema": {"const": SCHEMA},
+        "contract_version": {"type": "string"},
+        "scenario_id": {"type": "string"},
+        "question": {"type": "object"},
+        "formations": {"type": "array", "items": {"type": "object"}},
+        "effective_players": {"type": "object"},
+        "substitution_mode": {"type": "object"},
+        "actors": {"type": "array", "items": {"type": "object"}},
+        "role_refs": {"type": "array", "items": {"type": "object"}},
+        "position_slots": {"type": "array", "items": {"type": "object"}},
+        "candidate_actors": {"type": "array", "items": {"type": "object"}},
+        "events": {"type": "array", "items": {"type": "object"}},
+        "phase_states": {"type": "array", "items": {"type": "object"}},
+        "structural_mappings": {"type": "array", "items": {"type": "object"}},
+        "constraints": {"type": "array", "items": {"type": "object"}},
+        "trace": {"type": "object"},
+        "scenarios": {"type": "array"},
+    }
+    return {
+        "type": "object",
+        "additionalProperties": False,
+        "required": ["applied_plan", "explanation"],
+        "properties": {
+            "applied_plan": {
+                "type": "object",
+                "required": list(domain_fields),
+                "properties": domain_fields,
+                "additionalProperties": True,
+            },
+            "explanation": {"type": "string"},
+        },
+    }
+
+
+def parse_generation_content(raw_content):
+    """Parse JSON with representation-only normalization and no semantic repair."""
+    if not isinstance(raw_content, str) or not raw_content.strip():
+        return None, [], [issue("empty_model_output", "BLOCKING", "transport", "Output del modello vuoto.")]
+    candidate = raw_content.strip()
+    changes = []
+    fenced = re.fullmatch(r"```(?:json)?\s*(.*?)\s*```", candidate, re.I | re.S)
+    if fenced:
+        candidate = fenced.group(1).strip()
+        changes.append({"path": "transport", "rule_id": "strip_outer_json_fence:v1"})
+    try:
+        parsed = json.loads(candidate)
+    except (TypeError, ValueError) as exc:
+        return None, changes, [issue("invalid_generation_json", "BLOCKING", "transport", str(exc))]
+    errors = []
+    if not isinstance(parsed, dict):
+        errors.append(issue("invalid_generation_envelope", "BLOCKING", "transport", "L'output deve essere un oggetto JSON."))
+        return None, changes, errors
+    if set(parsed) != {"applied_plan", "explanation"}:
+        errors.append(issue("invalid_generation_fields", "BLOCKING", "transport", "Campi di trasporto mancanti o inattesi."))
+    if not isinstance(parsed.get("applied_plan"), dict):
+        errors.append(issue("invalid_applied_plan", "BLOCKING", "applied_plan", "Piano applicato assente o non strutturato."))
+    if not isinstance(parsed.get("explanation"), str) or not parsed.get("explanation", "").strip():
+        errors.append(issue("invalid_explanation", "BLOCKING", "explanation", "Spiegazione assente o vuota."))
+    return parsed if not errors else None, changes, errors
+
+
+def _domain_plan(plan):
+    if isinstance(plan, dict) and isinstance(plan.get("state_contract"), dict):
+        return plan["state_contract"]
+    return plan if isinstance(plan, dict) else {}
+
+
+def _explicit_values(plan, key):
+    return {item.get("value") for item in plan.get(key, [])
+            if isinstance(item, dict) and item.get("provenance") == "explicit" and item.get("value") is not None}
+
+
+def _event_signature(event):
+    def identifier(name):
+        value = event.get(name)
+        return value.get("id") if isinstance(value, dict) else None
+    return (event.get("type"), identifier("out_ref"), identifier("in_ref"),
+            identifier("subject_ref"), event.get("actor_label"))
+
+
+def compare_question_and_applied_plan(question_plan, applied_plan):
+    """Check only explicit question facts; unknown data never becomes a conflict."""
+    question_plan = _domain_plan(question_plan)
+    failures, missing, checked = [], [], []
+    required_fields = ("schema", "contract_version", "actors", "events", "phase_states")
+    for key in required_fields:
+        if key not in applied_plan:
+            missing.append({"code": "missing_contract_field", "path": key})
+    expected_formations = _explicit_values(question_plan, "formations")
+    actual_formations = _explicit_values(applied_plan, "formations")
+    checked.append("explicit_formations")
+    for formation in sorted(expected_formations - actual_formations):
+        failures.append({"code": "explicit_formation_missing", "value": formation})
+    expected_players = question_plan.get("effective_players", {})
+    if expected_players.get("provenance") == "explicit":
+        checked.append("effective_players")
+        if applied_plan.get("effective_players", {}).get("value") != expected_players.get("value"):
+            failures.append({"code": "effective_players_mismatch", "expected": expected_players.get("value")})
+    expected_actors = {item.get("id") for item in question_plan.get("actors", [])
+                       if item.get("provenance") == "explicit"}
+    actual_actors = {item.get("id") for item in applied_plan.get("actors", [])}
+    checked.append("explicit_actors")
+    for actor_id in sorted(expected_actors - actual_actors):
+        failures.append({"code": "explicit_actor_missing", "actor_ref": actor_id})
+    actual_events = {_event_signature(item) for item in applied_plan.get("events", [])}
+    for event in question_plan.get("events", []):
+        if event.get("provenance") != "explicit":
+            continue
+        checked.append("explicit_event:" + str(event.get("event_id")))
+        if _event_signature(event) not in actual_events:
+            failures.append({"code": "explicit_event_mismatch", "event_id": event.get("event_id")})
+    if failures:
+        status = "failed"
+    elif missing:
+        status = "incomplete"
+    else:
+        status = "passed"
+    return {"schema": "tactical_question_alignment_v1", "status": status,
+            "checked_scope": checked, "failures": failures, "missing": missing}
+
+
+def compare_plan_and_explanation(applied_plan, explanation):
+    """Detect explicit structural contradictions, not general semantic equivalence."""
+    text = " ".join(str(explanation or "").split()).casefold()
+    failures, checked = [], []
+    allowed_formations = _explicit_values(applied_plan, "formations")
+    final = applied_plan.get("final_formation", {})
+    if isinstance(final, dict) and final.get("value"):
+        allowed_formations.add(final["value"])
+        checked.append("final_formation")
+        if final["value"].casefold() not in text:
+            failures.append({"code": "final_formation_not_explained", "value": final["value"]})
+    mentioned_formations = set(re.findall(r"(?<!\d)(?:[1-9]-){2,3}[1-9](?!\d)", text))
+    for formation in sorted(mentioned_formations - allowed_formations):
+        failures.append({"code": "explanation_formation_mismatch", "value": formation})
+    actor_numbers = {match.group(1) for item in applied_plan.get("actors", [])
+                     if (match := re.search(r"\b(\d{1,2})\b", str(item.get("label", ""))))}
+    for number in re.findall(r"\b(?:numero|n[.°]?)\s*(\d{1,2})\b", text):
+        checked.append("actor_number:" + number)
+        if number not in actor_numbers:
+            failures.append({"code": "explanation_unknown_actor", "number": number})
+    substitutions = [item for item in applied_plan.get("events", []) if item.get("type") == "substitution"]
+    entities = {item.get("id"): item for key in ("actors", "candidate_actors") for item in applied_plan.get(key, [])}
+    for event in substitutions:
+        out_id = (event.get("out_ref") or {}).get("id")
+        in_id = (event.get("in_ref") or {}).get("id")
+        out_label = str((entities.get(out_id) or {}).get("label", "")).casefold()
+        in_label = str((entities.get(in_id) or {}).get("label", "")).casefold()
+        checked.append("substitution:" + str(event.get("event_id")))
+        if out_label and in_label and not (out_label in text and in_label in text):
+            failures.append({"code": "substitution_not_explained", "event_id": event.get("event_id")})
+    return {"schema": "tactical_plan_prose_alignment_v1",
+            "status": "failed" if failures else "passed",
+            "checked_scope": checked, "failures": failures,
+            "semantic_support_verified": False}
+
+
+def generation_diagnostic(question_plan, raw_content, done_reason=None, tactical_audit=None,
+                          transport_error=None):
+    """Compose four independent controls and a fail-closed promotion decision."""
+    normalizations = []
+    if transport_error:
+        transport_issues = [issue("generation_transport_error", "BLOCKING", "transport", str(transport_error))]
+        parsed = None
+    else:
+        parsed, normalizations, transport_issues = parse_generation_content(raw_content)
+    if done_reason == "length":
+        transport_issues.append(issue("generation_truncated", "BLOCKING", "transport", "Output troncato dal limite di generazione."))
+    if parsed is None or transport_issues:
+        structural = {"schema": "tactical_state_validation_v1", "valid": False,
+                      "issues": transport_issues, "counts": {level: sum(x["severity"] == level for x in transport_issues) for level in SEVERITIES}}
+        question_alignment = {"schema": "tactical_question_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "missing": []}
+        prose_alignment = {"schema": "tactical_plan_prose_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "semantic_support_verified": False}
+        audit = tactical_audit or {"status": "not_assessable"}
+        status = "not_evaluable"
+        explanation = ""
+        applied_plan = None
+    else:
+        applied_plan, explanation = parsed["applied_plan"], parsed["explanation"].strip()
+        try:
+            applied_plan, contract_changes = normalize_contract(applied_plan)
+            normalizations.extend(contract_changes)
+            structural = validate_contract(applied_plan)
+            question_alignment = compare_question_and_applied_plan(question_plan, applied_plan)
+            prose_alignment = compare_plan_and_explanation(applied_plan, explanation)
+            audit = tactical_audit or {"status": "not_assessable"}
+            audit_passed = audit.get("complete") is True
+            blocking = (not structural["valid"] or question_alignment["status"] != "passed"
+                        or prose_alignment["status"] != "passed")
+            status = "blocked" if blocking else "validated" if audit_passed else "blocked"
+        except (AttributeError, KeyError, TypeError, ValueError) as exc:
+            shape_issue = issue("invalid_contract_shape", "BLOCKING", "applied_plan", str(exc))
+            structural = {"schema": "tactical_state_validation_v1", "valid": False,
+                          "issues": [shape_issue],
+                          "counts": {level: int(level == "BLOCKING") for level in SEVERITIES}}
+            question_alignment = {"schema": "tactical_question_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "missing": []}
+            prose_alignment = {"schema": "tactical_plan_prose_alignment_v1", "status": "not_assessable", "checked_scope": [], "failures": [], "semantic_support_verified": False}
+            audit = tactical_audit or {"status": "not_assessable"}
+            status = "not_evaluable"
+    controls = {"structural_validity": structural,
+                "question_compatibility": question_alignment,
+                "plan_prose_alignment": prose_alignment,
+                "tactical_documentary_audit": audit}
+    passed = [name for name, result in controls.items()
+              if result.get("valid") is True or result.get("status") == "passed" or result.get("complete") is True]
+    failed = [name for name, result in controls.items()
+              if result.get("valid") is False or result.get("status") in {"failed", "incomplete"}
+              or result.get("complete") is False]
+    unassessed = [name for name, result in controls.items()
+                  if result.get("status") == "not_assessable"]
+    reasons = [item["code"] for item in structural.get("issues", []) if item.get("severity") == "BLOCKING"]
+    reasons.extend(item["code"] for item in question_alignment.get("failures", []))
+    reasons.extend(item["code"] for item in prose_alignment.get("failures", []))
+    if audit.get("complete") is False:
+        reasons.append("tactical_documentary_audit_failed")
+    return {"transport_schema": GENERATION_TRANSPORT_SCHEMA,
+            "raw_model_content": raw_content if isinstance(raw_content, str) else "",
+            "parsed_output": parsed, "applied_plan": applied_plan,
+            "normalizations": normalizations, "controls": controls,
+            "overall_status": status, "passed_scope": passed,
+            "failed_scope": failed, "unassessed_scope": unassessed,
+            "reasons": list(dict.fromkeys(reasons)),
+            "promoted_answer": explanation if status == "validated" else ""}
 
 
 def value(item=None, provenance="unknown", rule_id=None):
