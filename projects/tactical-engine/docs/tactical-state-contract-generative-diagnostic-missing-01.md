@@ -9,6 +9,16 @@ Commit test: `42a97b2dc3f64d7aff177fc1e23a2d8c7f92e812`
 
 Correzione minima in `generation_diagnostic()` per aggiungere i codici di `question_alignment.missing` a `reasons` mantenendo la deduplicazione finale. Un solo test differenziale aggiunto, che controlla `blocked`, `failed_scope`, `missing`, `reasons` e `promoted_answer` vuoto.
 
-Risultato verificato: commit pubblicati su GitHub. **Non sono stati eseguiti test** in questa sessione: il repository privato non è disponibile nell'ambiente locale e il connettore GitHub non offre esecuzione. Nessuna attestazione PASS è possibile.
+Risultato verificato: commit pubblicati su GitHub. Il 2026-11-01 è stato
+eseguito esclusivamente il test differenziale mirato
+`ContractGenerationTests.test_incomplete_question_alignment_reports_missing_reasons`:
+1 test in 0,004 s, esito `OK`. Il caso verifica congiuntamente stato
+`blocked`, `question_compatibility` in `failed_scope`, dettaglio `missing`
+preservato, codice `missing_contract_field` propagato in `reasons` e
+`promoted_answer` vuoto. La deduplicazione delle motivazioni resta preservata
+da `list(dict.fromkeys(reasons))`.
 
-Decisione: prima della convalida offline eseguire solo il test mirato, ad esempio `python -B -m unittest projects/tactical-engine/tests/test_v5_tactical_state_generation_v1.py` (suite generativa, senza ripetere campagne storiche). Stato: codice **IMPLEMENTATO**; verifica **BLOCCATO** finché non vengono acquisiti risultati eseguibili; non **INTEGRATO** né **CERTIFICATO**. Nessuna inferenza, runtime, VPS o deploy.
+Decisione: correzione diagnostica **VALIDATO offline** nel solo perimetro del
+test differenziale. Codice **IMPLEMENTATO**, test **ESEGUITO**; percorso
+generativo non **INTEGRATO** né **CERTIFICATO**. Nessuna suite o campagna
+storica ripetuta; nessuna inferenza, runtime, VPS o deploy.
