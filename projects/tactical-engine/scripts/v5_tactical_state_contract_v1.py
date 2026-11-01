@@ -332,6 +332,7 @@ def generation_diagnostic(question_plan, raw_content, done_reason=None, tactical
                   if result.get("status") == "not_assessable"]
     reasons = [item["code"] for item in structural.get("issues", []) if item.get("severity") == "BLOCKING"]
     reasons.extend(item["code"] for item in question_alignment.get("failures", []))
+    reasons.extend(item["code"] for item in question_alignment.get("missing", []))
     reasons.extend(item["code"] for item in prose_alignment.get("failures", []))
     if prose_alignment.get("status") == "not_assessable":
         reasons.append("plan_prose_alignment_not_assessable")
