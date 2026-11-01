@@ -112,3 +112,48 @@ o **CERTIFICATO**.
 
 Non sono assegnati gli stati **VALIDATO runtime**, **INTEGRATO** o
 **CERTIFICATO**.
+
+## Decisione contrattuale sulle attestazioni (2026-11-01)
+
+Il titolare ha approvato espressamente, nel solo perimetro documentale,
+l'alternativa B. Il risultato del futuro preflight deve essere descritto
+mediante quattro attestazioni indipendenti:
+
+1. `dimensional_collection_status`: `complete`, `incomplete` oppure
+   `indeterminate`. `complete` richiede evidenze positive, integre,
+   attribuibili e verificabili per tutte le misure obbligatorie; non può essere
+   dedotto dal solo exit code `2`.
+2. `structural_assessment`: separa `completeness`
+   (`complete|incomplete|indeterminate`) e `outcome`
+   (`favorable|unfavorable|not_assessable`). Una valutazione completa e
+   sfavorevole non autorizza alcuna promozione della capacità.
+3. `quota_verification_status`: distingue verifica effettiva, mancata verifica
+   e non applicabilità. La verifica deve coprire tutti i domini applicabili;
+   `not_applicable` richiede evidenza positiva. Derived 05 non attribuisce
+   autonomamente `VERIFIED`.
+4. `capacity_readiness_status`: `verified_favorable`,
+   `verified_unfavorable`, `incomplete` oppure `indeterminate`.
+   `verified_favorable` richiede tutte le dipendenze obbligatorie complete,
+   favorevoli e verificabili.
+
+`verified_unfavorable` può essere attribuito in presenza di una condizione
+bloccante positivamente dimostrata, completa, attribuibile e conclusiva, anche
+quando altre dipendenze rimangono incomplete, purché tali dipendenze non
+possano invalidare il blocco né modificarne la conclusione. L'esito non
+implica la verifica completa delle altre attestazioni.
+
+Timeout, output parziale, interruzione, misure non affidabili o attribuzione
+incerta non possono essere trasformati in esiti negativi verificati. L'exit
+code `2` è ammesso per una raccolta informativa non promuovibile, ma non prova
+da solo completezza, integrità o attribuzione. L'alternativa A resta quindi
+solo informativa; l'alternativa C resta necessaria per una futura verifica
+effettiva delle quote.
+
+Nessuna attestazione, singola o combinata, autorizza la cold copy. La decisione
+è esclusivamente documentale e non autorizza preflight, wrapper, SSH/VPS,
+controlli privilegiati, misurazioni RSS, snapshot, cold copy o deploy.
+
+Formalizzazione documentale del contratto B: **ESEGUITO** con il commit che
+include questa sezione. Preflight dimensionale e misurazione RSS restano
+**DA FARE**; cold copy, adapter reale e certificazione runtime restano
+**BLOCCATO**.

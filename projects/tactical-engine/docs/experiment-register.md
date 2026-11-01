@@ -2046,3 +2046,24 @@ Preflight dimensionale e misurazione RSS **DA FARE**; cold copy, adapter reale
 e certificazione runtime **BLOCCATO**. La pubblicazione non equivale a
 integrazione nella pipeline o certificazione: non **VALIDATO runtime**,
 **INTEGRATO** o **CERTIFICATO**.
+
+### RAG-CORPUS-USSIA-GATE-B-ATTESTATION-CONTRACT-01 — formalizzazione alternativa B (2026-11-01)
+
+Attività: formalizzazione documentale della decisione espressa dal titolare
+sul contratto USSIA Gate B. Script: Derived 05 invariato, SHA-256
+`2644d06899c74d1eae49c1de6bdbdde82e88382844993200bdee98edf3f800dd`;
+nessuna esecuzione. Report aggiornato:
+`docs/rag-corpus-ussia-gate-b-dimensional-preflight-integration-01.md`.
+Risultato: adottata l'alternativa B con quattro attestazioni indipendenti
+(completezza dimensionale, valutazione strutturale con completezza ed esito,
+verifica quote, idoneità finale della capacità). L'alternativa A resta
+informativa e non promuovibile; l'alternativa C resta requisito separato per
+la verifica effettiva delle quote. Exit `2` non dimostra completezza. Un esito
+`verified_unfavorable` richiede una condizione bloccante positivamente
+dimostrata, completa, attribuibile e conclusiva; timeout, output parziale,
+misure non affidabili o attribuzione incerta non sono esiti negativi
+verificati. Decisione: nessuna attestazione autorizza la cold copy e
+l'approvazione non autorizza attività runtime. Stato: formalizzazione
+documentale **ESEGUITO**; preflight dimensionale e RSS **DA FARE**; cold copy,
+adapter reale e certificazione runtime **BLOCCATO**; non **INTEGRATO** o
+**CERTIFICATO**.
