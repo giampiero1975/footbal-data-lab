@@ -2253,3 +2253,18 @@ operativo invariato a `1a80fe0`; Python 3.12.3, time e timeout presenti. Per arr
 fail-closed non e stata aperta la collection e il count corrente non e attestato.
 Decisione: staging/preflight/Gate/integrazione/certificazione **BLOCCATO**. Nessuna
 inferenza, Chroma/API, servizio, codice o checkout operativo modificato.
+
+## RD-TSC-V2-GIT-BUNDLE-TRANSFER-01 — staging isolato (2026-11-03)
+
+Attivita: trasferire in modo verificabile la baseline tecnica TSC V2 senza usare le
+credenziali GitHub della VPS. Bundle locale/remoto: 1926658 byte, SHA-256
+`70f7f5b4325513f78f4f42480bb7654bd4f9145398fd8b3b58b5e07b4c848e7d`;
+`git bundle verify` PASS su entrambi, storia completa e ref del branch a `6526384`.
+Clone indipendente creato in
+`/home/football/.local/share/football-data-lab/staging/tsc-v2-965d6b6`, detached
+HEAD `965d6b6`, status pulito, `.git` autonomo e nessun alternate. Evaluation regolare
+e scrivibile; quattro artefatti Gate assenti. Fingerprint HEAD/status del checkout
+operativo e dello staging V1 invariati. Report:
+`docs/tactical-state-contract-v2-git-bundle-transfer-01.md`. Decisione: bundle e
+staging **VALIDATO**; collection, Gate, integrazione e certificazione **BLOCCATO**.
+Nessuna inferenza, Chroma/API, test E2E, servizio o checkout preesistente modificato.
