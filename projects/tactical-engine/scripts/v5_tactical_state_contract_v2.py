@@ -133,19 +133,25 @@ def project_relation_requirements(question_plan):
     if not isinstance(requirements, list) or not isinstance(state_contract, dict):
         raise ValueError("invalid_relation_requirements_projection")
     requirement_ids = []
+    allowed_dimensions = {"actor", "task", "space", "trigger", "purpose", "phase"}
     for requirement in requirements:
         if not isinstance(requirement, dict):
             raise ValueError("invalid_relation_requirement")
         requirement_id = requirement.get("requirement_id")
         if not isinstance(requirement_id, str) or not requirement_id.strip():
             raise ValueError("missing_requirement_id")
+        requirement_type = requirement.get("requirement_type")
+        specificity = requirement.get("specificity")
+        required_dimensions = requirement.get("required_dimensions")
         if (not isinstance(requirement.get("question_part_id"), str) or
                 not requirement["question_part_id"].strip() or
-                requirement.get("requirement_type") not in {"explicit", "open", "inferred", "ambiguous"} or
-                requirement.get("specificity") not in {"explicit_relation", "underspecified"} or
-                not isinstance(requirement.get("required_dimensions"), list) or
-                any(item not in {"actor", "task", "space", "trigger", "purpose", "phase"}
-                    for item in requirement.get("required_dimensions", []))):
+                not isinstance(requirement_type, str) or
+                requirement_type not in {"explicit", "open", "inferred", "ambiguous"} or
+                not isinstance(specificity, str) or
+                specificity not in {"explicit_relation", "underspecified"} or
+                not isinstance(required_dimensions, list) or
+                any(not isinstance(item, str) or item not in allowed_dimensions
+                    for item in required_dimensions)):
             raise ValueError("incomplete_relation_requirement_projection")
         requirement_ids.append(requirement_id)
     if len(requirement_ids) != len(set(requirement_ids)):
@@ -262,8 +268,9 @@ def _term_matches(actual, expected):
 def _typed_ref_error(value, allowed_kinds):
     if not isinstance(value, dict) or set(value) != {"id", "kind"}:
         return True
+    kind = value.get("kind")
     return (not isinstance(value.get("id"), str) or not value["id"].strip() or
-            value.get("kind") not in allowed_kinds)
+            not isinstance(kind, str) or kind not in allowed_kinds)
 
 
 def _term_errors(value, path):
@@ -272,7 +279,7 @@ def _term_errors(value, path):
         return [{"code": "invalid_operational_term_shape", "path": path}]
     provenance = value.get("provenance")
     rule_id = value.get("rule_id")
-    if provenance not in v1.PROVENANCE:
+    if not isinstance(provenance, str) or provenance not in v1.PROVENANCE:
         return [{"code": "invalid_operational_term_provenance", "path": path}]
     if provenance == "unknown":
         if any(value.get(key) is not None for key in ("term_id", "source_term", "normalized_term", "rule_id")):
@@ -284,7 +291,7 @@ def _term_errors(value, path):
     if normalize_term(value["source_term"]) != value["normalized_term"] or term_id(value["source_term"]) != value["term_id"]:
         return [{"code": "invalid_operational_term_identity", "path": path}]
     if provenance == "derived":
-        if rule_id not in ALLOWED_RULE_IDS:
+        if not isinstance(rule_id, str) or rule_id not in ALLOWED_RULE_IDS:
             return [{"code": "invalid_operational_term_rule", "path": path}]
     elif rule_id is not None:
         return [{"code": "unexpected_operational_term_rule", "path": path}]
@@ -319,13 +326,14 @@ def _relation_shape_errors(relation, index):
         errors.extend(_term_errors(space["term"], f"{path}.space.term"))
         if space["position_ref"] is not None and _typed_ref_error(space["position_ref"], {"position_slot"}):
             errors.append({"code": "invalid_position_ref", "path": f"{path}.space.position_ref"})
-    if relation["assertion_mode"] not in v1.ASSERTION_MODES:
+    assertion_mode = relation["assertion_mode"]
+    if not isinstance(assertion_mode, str) or assertion_mode not in v1.ASSERTION_MODES:
         errors.append({"code": "invalid_operational_assertion_mode", "path": path})
     provenance, rule_id = relation["provenance"], relation["rule_id"]
-    if provenance not in v1.PROVENANCE:
+    if not isinstance(provenance, str) or provenance not in v1.PROVENANCE:
         errors.append({"code": "invalid_operational_relation_provenance", "path": path})
     elif provenance == "derived":
-        if rule_id not in ALLOWED_RULE_IDS:
+        if not isinstance(rule_id, str) or rule_id not in ALLOWED_RULE_IDS:
             errors.append({"code": "operational_relation_unknown_rule", "path": path})
     elif rule_id is not None:
         errors.append({"code": "unexpected_operational_relation_rule", "path": path})
@@ -347,8 +355,11 @@ def validate_operational_relations(question_plan, applied_plan):
         relations = []
     for index, relation in enumerate(relations):
         failures.extend(_relation_shape_errors(relation, index))
-    relation_ids = [item.get("relation_id") for item in relations if isinstance(item, dict)]
-    if len(relation_ids) != len(relations) or len(relation_ids) != len(set(relation_ids)) or None in relation_ids:
+    relation_ids = [item.get("relation_id") for item in relations
+                    if isinstance(item, dict) and
+                    isinstance(item.get("relation_id"), str) and
+                    item["relation_id"].strip()]
+    if len(relation_ids) != len(relations) or len(relation_ids) != len(set(relation_ids)):
         failures.append({"code": "duplicate_operational_relation_id"})
     if not isinstance(question_plan, dict) or "relation_requirements" not in question_plan:
         unassessed.append({"code": "relation_requirements_projection_absent"})

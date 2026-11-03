@@ -55,6 +55,65 @@ def relation_fixture(plan):
 
 
 class OperationalRelationsV2Tests(unittest.TestCase):
+    def test_non_hashable_provenance_is_structured_failure(self):
+        plan = question_plan()
+        candidate, relation, _ = relation_fixture(plan)
+        relation["task"]["provenance"] = ["explicit"]
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("invalid_operational_term_provenance",
+                      [item["code"] for item in result["failures"]])
+
+    def test_non_hashable_assertion_mode_is_structured_failure(self):
+        plan = question_plan()
+        candidate, relation, _ = relation_fixture(plan)
+        relation["assertion_mode"] = {"mode": "executable"}
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("invalid_operational_assertion_mode",
+                      [item["code"] for item in result["failures"]])
+
+    def test_non_hashable_relation_id_is_structured_failure(self):
+        plan = question_plan()
+        candidate, relation, _ = relation_fixture(plan)
+        relation["relation_id"] = ["relation:invalid"]
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("invalid_operational_relation_id",
+                      [item["code"] for item in result["failures"]])
+
+    def test_non_hashable_reference_kind_is_structured_failure(self):
+        plan = question_plan()
+        candidate, relation, _ = relation_fixture(plan)
+        relation["actor_ref"]["kind"] = ["role_ref"]
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("invalid_actor_ref",
+                      [item["code"] for item in result["failures"]])
+
+    def test_non_hashable_required_dimension_is_not_assessable(self):
+        plan = question_plan()
+        plan["relation_requirements"][0]["required_dimensions"].append(["phase"])
+        candidate = v2.build_v2_plan(plan["state_contract"])
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "not_assessable")
+        self.assertIn("incomplete_relation_requirement_projection",
+                      [item["code"] for item in result["unassessed_scope"]])
+
+    def test_non_hashable_equivalent_fields_fail_without_exception(self):
+        plan = question_plan()
+        plan["relation_requirements"][0]["requirement_type"] = ["explicit"]
+        candidate = v2.build_v2_plan(plan["state_contract"])
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "not_assessable")
+        candidate, relation, _ = relation_fixture(question_plan())
+        relation["provenance"] = "derived"
+        relation["rule_id"] = ["relation_requirement_projection:v1"]
+        result = v2.validate_operational_relations(question_plan(), candidate)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("operational_relation_unknown_rule",
+                      [item["code"] for item in result["failures"]])
+
     def test_malformed_relation_shape_and_additional_property_fail_closed(self):
         plan = question_plan()
         candidate, relation, _ = relation_fixture(plan)
