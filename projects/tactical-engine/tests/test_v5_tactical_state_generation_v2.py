@@ -32,7 +32,62 @@ def question_plan():
     return planner.analyse(QUESTION)
 
 
+def valid_raw(plan=None):
+    plan = plan or question_plan()
+    preflight = generation.prepare_generation_request(plan)
+    relation = preflight["mandatory_relations"][0]
+    phase = generation.applied_plan_state_phase(
+        preflight["authorized_applied_plan"], relation["phase_state_ref"]["id"])
+    explanation = "\n".join([
+        f"[REL {relation['relation_id']}]", f"Attore: {relation['actor_ref']['id']}",
+        f"Compito: {relation['task']['source_term']}",
+        f"Spazio: {relation['space']['term']['source_term']}",
+        f"Trigger: {relation['trigger']['source_term']}",
+        f"Finalità: {relation['purpose']['source_term']}", f"Fase: {phase}",
+        "Evidenze: [F1]",
+    ])
+    return preflight, json.dumps({"applied_plan": preflight["authorized_applied_plan"],
+                                  "explanation": explanation}, ensure_ascii=False)
+
+
 class TacticalStateGenerationV2Tests(unittest.TestCase):
+    def test_length_truncation_is_not_evaluable_and_keeps_raw(self):
+        plan = question_plan()
+        preflight, raw = valid_raw(plan)
+        result = generation.generation_diagnostic(
+            plan, raw, ["F1"], done_reason="length", preflight=preflight,
+            tactical_audit={"complete": True, "missing_facets": [],
+                            "missing_operational": [], "missing_details": [],
+                            "semantic_issues": []})
+        self.assertEqual(result["overall_status"], "not_evaluable")
+        self.assertEqual(result["promoted_answer"], "")
+        self.assertEqual(result["raw_model_content"], raw)
+        self.assertIn("generation_truncated_length", result["reasons"])
+
+    def test_negative_audit_with_complete_true_is_blocked(self):
+        plan = question_plan()
+        preflight, raw = valid_raw(plan)
+        result = generation.generation_diagnostic(
+            plan, raw, ["F1"], preflight=preflight,
+            tactical_audit={"complete": True, "semantic_issues": ["unsupported_claim"]})
+        self.assertEqual(result["overall_status"], "blocked")
+        self.assertEqual(result["promoted_answer"], "")
+        self.assertIn("tactical_documentary_audit_failed", result["reasons"])
+
+    def test_malformed_nested_relation_is_structured_failure(self):
+        plan = question_plan()
+        preflight, _ = valid_raw(plan)
+        malformed = deepcopy(preflight["authorized_applied_plan"])
+        malformed["operational_relations"][0]["space"] = ["invalid"]
+        raw = json.dumps({"applied_plan": malformed, "explanation": "invalid"})
+        result = generation.generation_diagnostic(
+            plan, raw, ["F1"], preflight=preflight,
+            tactical_audit={"complete": True})
+        self.assertEqual(result["overall_status"], "blocked")
+        self.assertEqual(result["promoted_answer"], "")
+        self.assertEqual(result["raw_model_content"], raw)
+        self.assertIn("invalid_canonical_relation_shape", result["reasons"])
+
     def test_explicit_negative_transition_materializes_valid_state(self):
         result = generation.prepare_generation_request(question_plan())
         self.assertEqual(result["status"], "ready")
@@ -144,7 +199,7 @@ class WrapperCompatibilityTests(unittest.TestCase):
         response = {"message": {"content": raw}, "done_reason": "stop"}
         evidence = [{"source": "fixture", "pages": [1], "text": "fixture"}]
         with patch.object(smoke, "_ollama_chat_once", return_value=response) as transport, \
-             patch.object(smoke, "tactical_audit_answer", return_value={"status": "passed", "complete": True}):
+             patch.object(smoke, "tactical_audit_answer", return_value={"complete": True}):
             _, stats, _ = smoke.chat_tactical_state_v2_once(
                 "mock", QUESTION, evidence, 1, plan)
         self.assertEqual(transport.call_count, 1)

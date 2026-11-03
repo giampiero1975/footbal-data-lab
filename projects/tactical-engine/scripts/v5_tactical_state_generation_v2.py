@@ -128,47 +128,82 @@ def parse_generation_content(raw_content):
 
 
 def _canonical_blocks(applied_plan, explanation, evidence_ids):
-    relations = applied_plan.get("operational_relations", [])
+    if not isinstance(applied_plan, dict):
+        return {"status": "failed", "required_scope": [], "checked_scope": [],
+                "failures": [{"code": "invalid_canonical_applied_plan"}],
+                "unassessed_scope": []}
+    relations = applied_plan.get("operational_relations")
+    if not isinstance(relations, list):
+        return {"status": "failed", "required_scope": [], "checked_scope": [],
+                "failures": [{"code": "invalid_canonical_relations_container"}],
+                "unassessed_scope": []}
     lines = explanation.splitlines() if isinstance(explanation, str) else []
     blocks, index, failures = [], 0, []
-    for relation in relations:
+    required_scope = []
+    for relation_index, relation in enumerate(relations):
+        if not isinstance(relation, dict):
+            failures.append({"code": "invalid_canonical_relation_shape",
+                             "index": relation_index})
+            continue
+        relation_id = relation.get("relation_id")
+        actor_ref = relation.get("actor_ref")
+        task = relation.get("task")
+        space = relation.get("space")
+        trigger = relation.get("trigger")
+        purpose = relation.get("purpose")
+        phase_ref = relation.get("phase_state_ref")
+        display_values = (
+            isinstance(relation_id, str) and bool(relation_id),
+            isinstance(actor_ref, dict) and isinstance(actor_ref.get("id"), str),
+            isinstance(task, dict) and isinstance(task.get("source_term"), str),
+            isinstance(space, dict) and isinstance(space.get("term"), dict) and
+            isinstance(space["term"].get("source_term"), str),
+            isinstance(trigger, dict) and isinstance(trigger.get("source_term"), str),
+            isinstance(purpose, dict) and isinstance(purpose.get("source_term"), str),
+            isinstance(phase_ref, dict) and isinstance(phase_ref.get("id"), str),
+        )
+        if not all(display_values):
+            failures.append({"code": "invalid_canonical_relation_shape",
+                             "index": relation_index})
+            continue
+        required_scope.append(relation_id)
         expected = [
-            f"[REL {relation['relation_id']}]",
-            f"Attore: {relation['actor_ref']['id']}",
-            f"Compito: {relation['task']['source_term']}",
-            f"Spazio: {relation['space']['term']['source_term']}",
-            f"Trigger: {relation['trigger']['source_term']}",
-            f"Finalità: {relation['purpose']['source_term']}",
-            f"Fase: {applied_plan_state_phase(applied_plan, relation['phase_state_ref']['id'])}",
+            f"[REL {relation_id}]", f"Attore: {actor_ref['id']}",
+            f"Compito: {task['source_term']}", f"Spazio: {space['term']['source_term']}",
+            f"Trigger: {trigger['source_term']}", f"Finalità: {purpose['source_term']}",
+            f"Fase: {applied_plan_state_phase(applied_plan, phase_ref['id'])}",
         ]
         if lines[index:index + len(expected)] != expected:
             failures.append({"code": "canonical_relation_block_mismatch",
-                             "relation_id": relation["relation_id"]})
+                             "relation_id": relation_id})
             continue
         index += len(expected)
         if index >= len(lines) or not lines[index].startswith("Evidenze: "):
             failures.append({"code": "canonical_evidence_line_missing",
-                             "relation_id": relation["relation_id"]})
+                             "relation_id": relation_id})
             continue
         cited = [token[1:-1] for token in lines[index][10:].split()
                  if token.startswith("[F") and token.endswith("]")]
         if not cited or any(item not in evidence_ids for item in cited):
             failures.append({"code": "invalid_canonical_evidence_id",
-                             "relation_id": relation["relation_id"]})
+                             "relation_id": relation_id})
         index += 1
         if index < len(lines) and lines[index] == "":
             index += 1
-        blocks.append(relation["relation_id"])
+        blocks.append(relation_id)
     if index != len(lines):
         failures.append({"code": "noncanonical_free_prose"})
     status = "failed" if failures else "passed" if relations else "not_assessable"
-    return {"status": status, "required_scope": [r["relation_id"] for r in relations],
+    return {"status": status, "required_scope": required_scope,
             "checked_scope": blocks, "failures": failures,
             "unassessed_scope": [] if relations else ["no_operational_relations"]}
 
 
 def applied_plan_state_phase(plan, state_id):
-    matches = [item.get("phase") for item in plan.get("phase_states", [])
+    phase_states = plan.get("phase_states", []) if isinstance(plan, dict) else []
+    if not isinstance(phase_states, list):
+        return "unknown"
+    matches = [item.get("phase") for item in phase_states
                if isinstance(item, dict) and item.get("state_id") == state_id]
     return matches[0] if len(matches) == 1 else "unknown"
 
@@ -196,22 +231,40 @@ def generation_diagnostic(question_plan, raw_content, evidence_ids,
     question = v1.compare_question_and_applied_plan(question_plan, plan)
     operational = structural["operational_coverage"]
     alignment = _canonical_blocks(plan if isinstance(plan, dict) else {}, explanation, set(evidence_ids))
-    audit = tactical_audit or {"status": "not_assessable", "complete": False}
+    audit = tactical_audit if isinstance(tactical_audit, dict) else {
+        "status": "not_assessable", "complete": False}
     controls = {"preflight": preflight, "structural_v1_v2": structural,
                 "question_compatibility": question, "operational_coverage": operational,
                 "plan_prose_alignment": alignment, "tactical_documentary_audit": audit}
+    audit_status = audit.get("status")
+    audit_negative_details = any(audit.get(key) for key in (
+        "missing_facets", "missing_operational", "missing_details", "semantic_issues"))
+    audit_explicit_negative = audit_status not in {None, "not_assessable"}
+    audit_positive = (audit.get("complete") is True and not audit_negative_details and
+                      audit_status is None)
     demonstrated = (not structural.get("valid") or question.get("status") == "failed" or
                     operational.get("status") == "failed" or alignment["status"] == "failed" or
-                    audit.get("complete") is False and audit.get("status") not in {"not_assessable", None})
+                    audit_explicit_negative or audit_negative_details)
     unassessed = (question.get("status") in {"incomplete", "not_assessable"} or
                   operational.get("status") == "not_assessable" or
-                  alignment["status"] == "not_assessable" or not audit.get("complete"))
+                  alignment["status"] == "not_assessable" or not audit_positive)
+    truncated = done_reason == "length"
     status = "blocked" if demonstrated else "not_evaluable" if unassessed else "validated"
+    if truncated and status == "validated":
+        status = "not_evaluable"
     reasons = []
     for value in controls.values():
         for key in ("failures", "missing", "unassessed_scope"):
             for item in value.get(key, []) if isinstance(value, dict) else []:
                 reasons.append(item.get("code") if isinstance(item, dict) else str(item))
+    if audit_explicit_negative:
+        reasons.append("tactical_documentary_audit_negative")
+    if audit_negative_details:
+        reasons.append("tactical_documentary_audit_failed")
+    if not audit_positive and not (audit_explicit_negative or audit_negative_details):
+        reasons.append("tactical_documentary_audit_not_assessable")
+    if truncated:
+        reasons.append("generation_truncated_length")
     promoted = explanation if status == "validated" else ""
     return {"schema": SCHEMA, "overall_status": status, "promoted_answer": promoted,
             "raw_model_content": raw_content, "normalizations": normalizations,
