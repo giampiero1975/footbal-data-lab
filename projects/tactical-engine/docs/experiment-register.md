@@ -2318,3 +2318,18 @@ La variazione hash di `chroma.sqlite3` non e attribuibile al Gate o a client
 concorrenti e il count 6410 e solo un controllo logico. Decisione: revisione forense
 **VALIDATO**; Gate, integrazione e certificazione **BLOCCATO**. Proposta, non
 implementata: distinguere offline relazione omessa da presente-ma-invalida.
+
+## RD-TSC-V2-AUDIT-CONTRACT-COMPATIBILITY-01 — revisione contrattuale (2026-11-03)
+
+Attivita: ricostruire dal codice alla baseline `965d6b6` l'intersezione fra formato
+canonico TSC V2 e `audit_answer()` V1. Script: nessuno eseguito; nessun test,
+inferenza, retrieval o accesso runtime. Report:
+`docs/tactical-state-contract-v2-audit-compatibility-01.md`. Risultato: intersezione
+generale dimostrabilmente non vuota solo quando i source term autorizzati contengono
+tutti i cue lessicali audit. Per il piano `tscv2gate01` l'intersezione e vuota: il
+blocco canonico esatto non contiene i quattro dettagli obbligatori di transizione
+negativa e non puo aggiungerli senza cambiare piano o produrre prosa non canonica.
+Decisione: revisione **VALIDATO**; raccomandata Opzione D, piano canonico e spiegazione
+documentale separata ma collegata, entrambi fail-closed. Decisione architetturale non
+ancora approvata; nessuna implementazione. Gate, integrazione e certificazione
+**BLOCCATO**.
