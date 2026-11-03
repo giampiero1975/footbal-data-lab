@@ -2172,3 +2172,24 @@ Decisione: correzione **IMPLEMENTATO**, test differenziali **ESEGUITO**,
 sicurezza tipi JSON **VALIDATO offline**. TSC V1, planner V1, retrieval,
 runner, prompt, API e pannello invariati. Runtime, integrazione e
 certificazione **BLOCCATO**; nessuna inferenza, retry, repair, deploy o merge.
+
+## RD-TSC-V2-GENERATIVE-HANDOFF-IMPLEMENTATION-01 — Blocco pre-implementativo (2026-11-03)
+
+Attivita: riconciliare il piano implementativo approvato con planner V1 e
+dominio V2 prima di modificare i quattro file tecnici. Script: nessuno
+modificato o eseguito. Report:
+`docs/tactical-state-contract-v2-generative-handoff-blocker-01.md`.
+
+Risultato: `relation_requirements()` puo produrre una fase esplicita
+`negative_transition`, mentre `build_question_plan()` materializza soltanto
+`state:initial` con fase `unknown`. Il contratto approvato impone di risolvere
+`phase_state_ref` soltanto su stati gia presenti nel question plan e vieta di
+derivare nuovi state ID. L'handoff non puo quindi soddisfare il contratto per
+le relazioni esplicite di fase senza rendere il caso `not_evaluable` o
+modificare planner/dominio fuori perimetro.
+
+Decisione: arresto fail-closed prima dell'implementazione. Handoff generativo
+TSC V2 **BLOCCATO** in attesa di una decisione separata del titolare; dominio
+TSC V2 precedente resta **VALIDATO offline**. Nessun test, inferenza, retry,
+repair, Ollama, Chroma, API, deploy o merge eseguito; TSC V1, planner,
+dominio V2, retrieval, runner, prompt e pannello invariati.
