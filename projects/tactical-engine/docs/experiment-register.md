@@ -2125,3 +2125,27 @@ Attivita: implementare in un modulo isolato l'estensione versionata TSC V2 per r
 Risultato: proiezione deterministica dei `relation_requirements` con normalizzazione NFC/casefold, SHA-256 dei termini e fingerprint canonicale del requisito; rule ID e tabella fase chiusi; `position_ref` soltanto su risoluzione esatta univoca. `operational_relations` verifica fingerprint, riferimenti, attore, task, spazio, trigger, finalita e fase; il solo ID non copre un requisito. Solo `explicit_representable` e obbligatorio; open, inferiti e ambigui restano `unassessed`. Test V2 13/13, regressioni V1/generazione/planner 125/125, compilazione in memoria 2/2 e diff check PASS.
 
 Decisione: codice **IMPLEMENTATO**, test **ESEGUITO**, controlli differenziali **VALIDATO offline**. Nessun handoff al prompt o runner e nessun flag V2: generazione V2, runtime, API e pannello **DA FARE**; integrazione e certificazione runtime **BLOCCATO**. Nessuna inferenza, retry, repair, query Ollama/Chroma/API, modifica al retrieval, deploy o merge.
+
+### Remediation fail-closed conclusiva (2026-11-03)
+
+Attivita: correggere esclusivamente la validazione offline V2 rilevata dalla
+revisione indipendente. Script e test: gli stessi dell'esperimento; commit
+tecnico `fa56b8b`; report aggiornato
+`docs/tactical-state-contract-v2-operational-relations-offline-01.md`.
+
+Risultato: applicata la validazione strutturale deterministica di campi, tipi,
+proprieta aggiuntive, riferimenti, cardinalita e provenienza; riferimenti ad
+attore, fase e posizione verificati per ogni relazione; ID requisito mancanti
+o duplicati rifiutati; fingerprint legato anche alla provenienza di
+estrazione; proiezione assente o incompleta distinta da input malformato e da
+assenza esplicita verificata; risoluzione della fase fail-closed in presenza di
+termini sconosciuti. Eseguiti soltanto otto test differenziali nuovi e una
+regressione positiva direttamente interessata: 9/9 PASS in 0,019 s. Le
+campagne precedenti 13/13 e 125/125 non sono state ripetute; `git diff --check`
+PASS.
+
+Decisione: remediation **IMPLEMENTATO**, test mirati **ESEGUITO**, proprieta
+corrette **VALIDATO offline**. TSC V1, planner V1, retrieval, runner, prompt,
+API e pannello invariati. Handoff generativo e runtime **DA FARE**;
+integrazione e certificazione runtime **BLOCCATO**. Nessuna inferenza, retry,
+repair, accesso Ollama/Chroma/API, deploy o merge.

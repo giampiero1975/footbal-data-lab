@@ -79,3 +79,35 @@ integrazione e certificazione runtime **BLOCCATO**.
 
 Nessun test runtime, inferenza, retry, repair, accesso Ollama/Chroma/API,
 modifica al retrieval, deploy o merge e stato eseguito.
+
+## Remediation fail-closed conclusiva
+
+Commit tecnico: `fa56b8b`.
+
+La revisione indipendente del primo consolidamento ha rilevato che lo schema
+di `operational_relations` era esposto ma non applicato integralmente dal
+validatore. La remediation applica una validazione strutturale deterministica
+senza dipendenze aggiuntive e senza duplicare i controlli tattici o
+documentali. Sono ora bloccanti campi mancanti o inattesi, tipi e riferimenti
+non validi, cardinalita, provenienza/rule ID incoerenti, ID requisito mancanti
+o duplicati e fingerprint non corrispondenti.
+
+I riferimenti ad attore, fase e posizione sono risolti per ogni relazione,
+anche quando il requisito non e promuovibile. Una proiezione assente o
+incompleta resta `not_assessable`; un input malformato o una violazione
+dimostrata e `failed`; soltanto una lista esplicitamente vuota costituisce
+evidenza verificata dell'assenza di requisiti espliciti. La risoluzione della
+fase rifiuta combinazioni di termini noti e sconosciuti. La provenienza di
+estrazione e inclusa nel fingerprint perche concorre all'identita e alla
+classificazione dell'obbligo.
+
+Test eseguiti esclusivamente sul delta: otto casi differenziali nuovi e una
+regressione positiva direttamente interessata, 9/9 PASS in 0,019 s. Non sono
+state ripetute automaticamente le campagne 13/13 o 125/125 gia concluse.
+`git diff --check` PASS. TSC V1, planner V1, retrieval, runner, prompt, API e
+pannello sono invariati.
+
+Risultato: remediation **IMPLEMENTATO**; test mirati **ESEGUITO**; proprieta
+fail-closed corrette **VALIDATO offline** nel solo perimetro differenziale.
+Handoff generativo, runtime, API e pannello restano **DA FARE**; integrazione e
+certificazione runtime restano **BLOCCATO**.
