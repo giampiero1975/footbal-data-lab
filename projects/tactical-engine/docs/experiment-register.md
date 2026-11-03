@@ -2347,3 +2347,20 @@ supporto e coerenza hanno controlli separati; semantica non dimostrabile resta
 `not_evaluable`, nessuna partial promotion. Decisione: specifica **VALIDATO**;
 implementazione **DA FARE** e soggetta ad approvazione. Gate, integrazione e
 certificazione **BLOCCATO**.
+
+## RD-TSC-V2-DUAL-OUTPUT-IMPLEMENTATION-01 — implementazione offline (2026-11-03)
+
+Attivita: implementare D3 opt-in senza cambiare V1, dominio V2, planner o audit V1.
+Script: `scripts/v5_tactical_state_dual_output_v1.py`, integrazione isolata in
+`scripts/smoke_test_rag_v5_e2e.py` e `scripts/run_rag_v5_query.py`; test:
+`tests/test_v5_tactical_state_dual_output_v1.py`; commit tecnico `f544589`; report:
+`docs/tactical-state-contract-v2-dual-output-implementation-01.md`. Risultato: piano,
+fingerprint e rendering restano sistemici; Qwen puo produrre soltanto explanation con
+refs e claim. Schema, cardinalita, copertura, sei dimensioni, polarita, citazioni,
+anchor, audit e promozione sono fail-closed. Anchor presente non equivale a supporto:
+senza assessment affidabile `not_evaluable`; bounded inference/uncertainty non sono
+promossi. Nuovi differenziali 17/17 PASS e regressione V2 direttamente interessata
+16/16 PASS; `git diff --check` PASS. Decisione: D3 **IMPLEMENTATO**, test **ESEGUITO**,
+proprieta deterministiche **VALIDATO offline**. Supporto semantico automatico, Gate,
+integrazione e certificazione **BLOCCATO**. Nessun runtime, Qwen, retrieval, Chroma,
+API/pannello o deploy.
