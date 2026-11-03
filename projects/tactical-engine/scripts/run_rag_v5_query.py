@@ -34,7 +34,8 @@ def validate_request_id(value: str) -> str:
     return value
 
 
-def validate_report(report: dict, require_tactical_state_contract: bool = False) -> None:
+def validate_report(report: dict, require_tactical_state_contract: bool = False,
+                    require_tactical_state_contract_v2: bool = False) -> None:
     questions = report.get("questions", [])
     if len(questions) != 1 or report.get("error") or not report.get("index_unchanged"):
         raise RuntimeError("incomplete_report")
@@ -43,6 +44,10 @@ def validate_report(report: dict, require_tactical_state_contract: bool = False)
         diagnostic = item.get("tactical_state_contract") or {}
         if diagnostic.get("overall_status") != "validated":
             raise RuntimeError("tactical_state_contract_" + diagnostic.get("overall_status", "missing"))
+    if require_tactical_state_contract_v2:
+        diagnostic = item.get("tactical_state_contract_v2") or {}
+        if diagnostic.get("overall_status") != "validated":
+            raise RuntimeError("tactical_state_contract_v2_" + diagnostic.get("overall_status", "missing"))
     if item.get("invalid_citation_ids"):
         raise RuntimeError("invalid_citations")
     if not item.get("has_any_citation"):
@@ -64,7 +69,9 @@ def main() -> None:
     parser.add_argument("--model", default="qwen3.5:9b")
     parser.add_argument("--context-window", type=int, choices=range(2048, 8193), default=8192)
     parser.add_argument("--keep-alive", default=None)
-    parser.add_argument("--tactical-state-contract", action="store_true")
+    tactical_group = parser.add_mutually_exclusive_group()
+    tactical_group.add_argument("--tactical-state-contract", action="store_true")
+    tactical_group.add_argument("--tactical-state-contract-v2", action="store_true")
     args = parser.parse_args()
     if args.max_output_tokens and not 128 <= args.max_output_tokens <= 4096:
         parser.error("max-output-tokens must be 0 or between 128 and 4096")
@@ -85,13 +92,16 @@ def main() -> None:
         argv.extend(["--num-predict", str(args.max_output_tokens)])
     if args.tactical_state_contract:
         argv.append("--tactical-state-contract")
+    if args.tactical_state_contract_v2:
+        argv.append("--tactical-state-contract-v2")
     if not args.legacy_profile:
         argv.extend(DEFAULT_PROFILE_FLAGS)
     sys.argv = argv
     v5.main()
     report = json.loads(args.output.read_text(encoding="utf-8"))
     try:
-        validate_report(report, require_tactical_state_contract=args.tactical_state_contract)
+        validate_report(report, require_tactical_state_contract=args.tactical_state_contract,
+                        require_tactical_state_contract_v2=args.tactical_state_contract_v2)
     except RuntimeError as exc:
         raise SystemExit(f"INCOMPLETE: {exc}") from exc
     print(f"QUERY COMPLETE request_id={args.request_id}", flush=True)
