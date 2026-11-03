@@ -34,6 +34,7 @@ from v5_tactical_state_contract_v1 import (
     parse_generation_content as parse_tactical_state_generation,
 )
 import v5_tactical_state_generation_v2 as tactical_state_generation_v2
+import v5_tactical_state_dual_output_v1 as tactical_state_dual_output
 
 DB="/opt/football-data-lab/knowledge/rag/chroma"
 COLLECTION="dribbling_tactics_v5_multisource"
@@ -309,6 +310,47 @@ def chat_tactical_state_v2_once(model,question,evidence,timeout,question_plan,
     return diagnostic["promoted_answer"],stats,diagnostic
 
 
+def chat_tactical_state_v2_dual_output_once(model,question,evidence,timeout,question_plan,
+                                            context_window=8192,keep_alive=None,num_predict=0):
+    """D3: authoritative plan/rendering, one documentary generation, no repair."""
+    preflight=tactical_state_dual_output.prepare_dual_output_request(question_plan)
+    if preflight["status"]!="ready":
+        diagnostic=tactical_state_dual_output.documentary_diagnostic(
+            question_plan,"",evidence,preflight=preflight)
+        return "",{"repair_reasons":[],"quality_gate_passed":False,
+                   "quality_gate_missing":diagnostic["reasons"]},diagnostic
+    prompt=tactical_state_dual_output.build_documentary_prompt(question,preflight,evidence)
+    options={"temperature":0,"num_ctx":context_window}
+    if num_predict: options["num_predict"]=num_predict
+    payload={"model":model,"stream":False,"think":False,
+             "format":tactical_state_dual_output.generation_transport_schema(),
+             "messages":[{"role":"system","content":prompt["system"]},
+                         {"role":"user","content":prompt["user"]}],"options":options}
+    if keep_alive: payload["keep_alive"]=keep_alive
+    obj={}
+    try:
+        obj=_ollama_chat_once(payload,timeout)
+        raw=(obj.get("message") or {}).get("content","")
+        parsed,_=tactical_state_dual_output.parse_documentary_content(raw)
+        sections=(((parsed or {}).get("documentary_explanation") or {}).get("sections") or [])
+        prose="\n\n".join(item.get("text","") for item in sections if isinstance(item,dict))
+        audit=tactical_audit_answer(prose,question_plan) if prose else {
+            "status":"not_assessable","complete":False}
+        diagnostic=tactical_state_dual_output.documentary_diagnostic(
+            question_plan,raw,evidence,preflight=preflight,tactical_audit=audit,
+            done_reason=obj.get("done_reason"))
+    except (TimeoutError,URLError) as exc:
+        diagnostic=tactical_state_dual_output.documentary_diagnostic(
+            question_plan,"",evidence,preflight=preflight,transport_error=exc)
+    stats={"total_duration_ns":obj.get("total_duration"),"load_duration_ns":obj.get("load_duration"),
+           "prompt_eval_duration_ns":obj.get("prompt_eval_duration"),"eval_duration_ns":obj.get("eval_duration"),
+           "eval_count":obj.get("eval_count"),"prompt_eval_count":obj.get("prompt_eval_count"),
+           "done_reason":obj.get("done_reason"),"repair_reasons":[],
+           "quality_gate_passed":diagnostic["overall_status"]=="validated",
+           "quality_gate_missing":diagnostic["reasons"]}
+    return diagnostic["promoted_answer"],stats,diagnostic
+
+
 def chat(model,question,evidence,timeout,targeted_coverage=False,heading_routing=False,
          num_predict=0,context_window=8192,keep_alive=None,tactical_plan=None):
     context="\n\n".join(f"[F{i}] Fonte: {r['source']} | Pagine: {r['pages']}\n{r['text']}"
@@ -452,6 +494,7 @@ def main():
     tactical_group.add_argument("--tactical-plan",action="store_true",help="Opt-in subproblem coverage, phase-aware reservation and generation contract")
     tactical_group.add_argument("--tactical-state-contract",action="store_true",help="Opt-in one-call structured Tactical State Contract generation")
     tactical_group.add_argument("--tactical-state-contract-v2",action="store_true",help="Opt-in one-call TSC V2 operational-relations generation")
+    tactical_group.add_argument("--tactical-state-contract-v2-dual-output",action="store_true",help="Opt-in D3 authoritative-plan/documentary generation")
     ap.add_argument("--source-ranking-trace",action="store_true",help="Record source-level semantic scores; requires heading routing and retrieval-only")
     ap.add_argument("--retrieval-only",action="store_true",help="Skip generation; produce retrieval evidence only")
     ap.add_argument("--probe-question",help="One explicit diagnostic question, never the locked gold")
@@ -483,7 +526,7 @@ def main():
     report={"collection":args.collection,"count_before":count,"model":args.model,
             "retrieval":"dense24 -> mMARCO CPU -> exact-alias chunk collapse -> top8",
             "alias_pairs":ALIASES,"source_aware_enabled":args.source_aware,
-            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"tactical_plan_enabled":args.tactical_plan,"tactical_state_contract_enabled":args.tactical_state_contract,"tactical_state_contract_v2_enabled":args.tactical_state_contract_v2,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[
+            "exercise_candidate_enabled":args.exercise_candidate,"exercise_candidate_count_before":candidate_count,"priority_exact_enabled":args.priority_exact,"targeted_coverage_enabled":args.targeted_coverage,"retrieval_only":args.retrieval_only,"heading_routing_enabled":args.heading_routing,"tactical_plan_enabled":args.tactical_plan,"tactical_state_contract_enabled":args.tactical_state_contract,"tactical_state_contract_v2_enabled":args.tactical_state_contract_v2,"tactical_state_contract_v2_dual_output_enabled":args.tactical_state_contract_v2_dual_output,"source_ranking_trace_enabled":args.source_ranking_trace,"questions":[],"notes":[
                 "Citation checks are syntactic only, not factual faithfulness or correctness.",
                 "Only four full-text-equal document pairs are aliased; other sources stay separate.",
                 "All source IDs and pages refer to existing Chroma metadata."]}
@@ -493,7 +536,7 @@ def main():
             print(f"START {qid}: {question}",flush=True)
             tactical_plan=tactical_analyse(question) if args.tactical_plan else None
             state_question_plan=tactical_analyse(question) if args.tactical_state_contract else None
-            state_question_plan_v2=tactical_analyse(question) if args.tactical_state_contract_v2 else None
+            state_question_plan_v2=tactical_analyse(question) if (args.tactical_state_contract_v2 or args.tactical_state_contract_v2_dual_output) else None
             embedding=embed.get_query_embedding(question)
             got=coll.query(query_embeddings=[embedding],n_results=24,
                            include=["documents","metadatas","distances"])
@@ -671,6 +714,7 @@ def main():
                 evidence=prioritize_exact(evidence,priority_ids)
             tactical_state_diagnostic=None
             tactical_state_diagnostic_v2=None
+            tactical_state_dual_output_diagnostic=None
             if args.retrieval_only:
                 answer,stats="",{}
             elif args.tactical_state_contract:
@@ -679,6 +723,10 @@ def main():
                     args.context_window,args.keep_alive,args.num_predict)
             elif args.tactical_state_contract_v2:
                 answer,stats,tactical_state_diagnostic_v2=chat_tactical_state_v2_once(
+                    args.model,question,evidence,args.timeout,state_question_plan_v2,
+                    args.context_window,args.keep_alive,args.num_predict)
+            elif args.tactical_state_contract_v2_dual_output:
+                answer,stats,tactical_state_dual_output_diagnostic=chat_tactical_state_v2_dual_output_once(
                     args.model,question,evidence,args.timeout,state_question_plan_v2,
                     args.context_window,args.keep_alive,args.num_predict)
             else:
@@ -699,6 +747,7 @@ def main():
                    "tactical_answer_audit":tactical_answer_audit,
                    "tactical_state_contract":tactical_state_diagnostic,
                    "tactical_state_contract_v2":tactical_state_diagnostic_v2,
+                   "tactical_state_contract_v2_dual_output":tactical_state_dual_output_diagnostic,
                    "embedding_model_released_before_generation":embedding_model_released,
                    "citation_ids":cited,"invalid_citation_ids":[x for x in cited if x not in valid],
                    "has_any_citation":bool(cited),
