@@ -2301,3 +2301,20 @@ integri; count 6410/6410. Anomalia: stesso size e nessun sidecar, ma hash/mtime 
 `chroma.sqlite3` cambiati fra pre e post; causa non determinata. Decisione: singola
 esecuzione **ESEGUITO**, fail-closed **VALIDATO**, Gate complessivo/integrazione/
 certificazione **BLOCCATO**. Nessun secondo tentativo, deploy o modifica correttiva.
+
+## RD-TSC-V2-RUNTIME-GATE-FORENSIC-01 — revisione statica (2026-11-03)
+
+Attivita: analizzare offline l'unico Gate V2 usando esclusivamente artefatti, codice
+alla baseline e report esistenti. Script: nessuno eseguito; nessun test, inferenza o
+accesso Chroma/API. Report:
+`docs/tactical-state-contract-v2-runtime-gate-forensic-01.md`. Risultato: gli SHA-256
+dei quattro artefatti coincidono prima/dopo; dimostrate violazioni generative
+dell'identita dei termini e del blocco canonico. Il requisito esplicito e presente
+nel raw ma la relazione invalida viene esclusa dall'indice di copertura: la successiva
+etichetta `explicit_operational_requirement_omitted` e diagnostica fuorviante, pur
+restando corretti fallimento della copertura e fail-closed. Audit negativo confermato;
+ripartizione completa fra output e compatibilita col formato canonico non determinata.
+La variazione hash di `chroma.sqlite3` non e attribuibile al Gate o a client
+concorrenti e il count 6410 e solo un controllo logico. Decisione: revisione forense
+**VALIDATO**; Gate, integrazione e certificazione **BLOCCATO**. Proposta, non
+implementata: distinguere offline relazione omessa da presente-ma-invalida.
