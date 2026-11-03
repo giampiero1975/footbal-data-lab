@@ -2285,3 +2285,19 @@ artefatti Gate assenti. Report:
 `docs/tactical-state-contract-v2-runtime-prerequisites-01.md`. Decisione:
 prerequisiti **VALIDATO**; Gate **DA FARE** previa autorizzazione, integrazione e
 certificazione **BLOCCATO**. Nessuna inferenza, query semantica o servizio modificato.
+
+## RD-TSC-V2-RUNTIME-GATE-01 — prima esecuzione controllata (2026-11-03)
+
+Attivita: eseguire una sola volta il Gate V2 sulla candidata FIGC5 dopo preflight
+positivo. Script: comando approvato con `--legacy-profile` e
+`--tactical-state-contract-v2`; nessun retry/repair. Report:
+`docs/tactical-state-contract-v2-runtime-gate-01.md`. Risultato: exit 1,
+`overall_status=blocked`, `done_reason=stop`, una risposta Qwen osservata dal client,
+raw 5015 caratteri, answer vuota. Preflight `ready` e question compatibility
+`passed`; struttura V1/V2, operational coverage, blocchi canonici e audit non
+superati. Motivi: `invalid_operational_term_identity`, requisito esplicito omesso,
+blocco canonico divergente, prosa non canonica e audit fallito. Quattro artefatti
+integri; count 6410/6410. Anomalia: stesso size e nessun sidecar, ma hash/mtime di
+`chroma.sqlite3` cambiati fra pre e post; causa non determinata. Decisione: singola
+esecuzione **ESEGUITO**, fail-closed **VALIDATO**, Gate complessivo/integrazione/
+certificazione **BLOCCATO**. Nessun secondo tentativo, deploy o modifica correttiva.
