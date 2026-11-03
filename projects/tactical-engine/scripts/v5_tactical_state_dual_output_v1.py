@@ -7,6 +7,7 @@ import json
 import unicodedata
 
 import v5_tactical_state_generation_v2 as generation_v2
+import v5_tactical_semantic_support_s1 as semantic_support_s1
 
 
 TRANSPORT_SCHEMA = "tactical_state_documentary_explanation_v1"
@@ -99,11 +100,21 @@ def generation_transport_schema():
               "properties": {"evidence_ref": {"type": "string", "pattern": "^F[1-9][0-9]*$"},
                              "exact_text": {"type": "string", "minLength": 1}}}
     claim = {"type": "object", "additionalProperties": False,
-             "required": ["claim_id", "relation_refs", "dimensions", "bindings",
+             "required": ["claim_id", "statement", "section_span", "conditions",
+                          "relation_refs", "requirement_refs", "dimensions", "bindings",
                           "polarity", "evidence_refs", "support_mode", "evidence_anchors"],
              "properties": {
                  "claim_id": {"type": "string", "minLength": 1},
+                 "statement": {"type": "string", "minLength": 1},
+                 "section_span": {
+                     "type": "object", "additionalProperties": False,
+                     "required": ["start", "end"],
+                     "properties": {"start": {"type": "integer", "minimum": 0},
+                                    "end": {"type": "integer", "minimum": 1}}},
+                 "conditions": {"type": "array", "uniqueItems": True,
+                                "items": {"type": "string", "minLength": 1}},
                  "relation_refs": {**string_array, "minItems": 1},
+                 "requirement_refs": {**string_array, "minItems": 1},
                  "dimensions": {"type": "array", "minItems": 1, "uniqueItems": True,
                                 "items": {"enum": sorted(DIMENSIONS)}},
                  "bindings": {"type": "object", "additionalProperties": False,
@@ -175,7 +186,7 @@ def _failure(code, **details):
 
 def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=None,
                            tactical_audit=None, done_reason=None,
-                           transport_error=None, support_assessments=None):
+                           transport_error=None, attempt_id="offline"):
     """Validate D3 deterministically; unknown semantic support stays not_evaluable."""
     preflight = preflight or prepare_dual_output_request(question_plan)
     base = {"schema": DIAGNOSTIC_SCHEMA, "overall_status": preflight.get("status", "not_evaluable"),
@@ -220,7 +231,7 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
     section_ids, claim_ids, covered_relations, covered_requirements = set(), set(), set(), set()
     referenced_relations, referenced_requirements = set(), set()
     claim_count, total_chars = 0, 0
-    support_assessments = support_assessments or {}
+    generated_assessments = []
 
     for section_index, section in enumerate(sections):
         path = f"sections.{section_index}"
@@ -258,6 +269,8 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
             failures.append(_failure("invalid_documentary_text", path=path))
             text = ""
         total_chars += len(text)
+        normalized_text = semantic_support_s1.normalize_text(text) if text else ""
+        section_spans = []
         if not _unique_string_list(section["evidence_refs"], maximum=8):
             failures.append(_failure("invalid_section_evidence_refs", path=path))
         elif set(section["evidence_refs"]) - set(evidence_by_id):
@@ -270,7 +283,9 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
         section_has_conclusive_claim = False
         for claim_index, claim in enumerate(claims):
             claim_path = f"{path}.claims.{claim_index}"
-            claim_required = {"claim_id", "relation_refs", "dimensions", "bindings",
+            claim_required = {"claim_id", "statement", "section_span", "conditions",
+                              "requirement_refs",
+                              "relation_refs", "dimensions", "bindings",
                               "polarity", "evidence_refs", "support_mode", "evidence_anchors"}
             if not isinstance(claim, dict) or set(claim) != claim_required:
                 failures.append(_failure("invalid_documentary_claim_shape", path=claim_path))
@@ -280,11 +295,38 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
                 failures.append(_failure("invalid_or_duplicate_claim_id", path=claim_path))
                 continue
             claim_ids.add(claim_id)
+            statement = claim["statement"]
+            span = claim["section_span"]
+            conditions = claim["conditions"]
+            valid_statement = isinstance(statement, str) and bool(statement)
+            valid_span = (isinstance(span, dict) and set(span) == {"start", "end"} and
+                          isinstance(span.get("start"), int) and not isinstance(span.get("start"), bool) and
+                          isinstance(span.get("end"), int) and not isinstance(span.get("end"), bool) and
+                          0 <= span["start"] < span["end"] <= len(normalized_text))
+            if not valid_statement or not valid_span:
+                failures.append(_failure("invalid_claim_statement_span", claim_id=claim_id))
+            elif normalized_text[span["start"]:span["end"]] != semantic_support_s1.normalize_text(statement):
+                failures.append(_failure("statement_span_mismatch", claim_id=claim_id))
+            else:
+                section_spans.append((span["start"], span["end"], claim_id))
+            if not _unique_string_list(conditions):
+                failures.append(_failure("invalid_claim_conditions", claim_id=claim_id))
+                conditions = []
+            elif valid_statement and any(
+                    semantic_support_s1.normalize_text(item) not in semantic_support_s1.normalize_text(statement)
+                    for item in conditions):
+                failures.append(_failure("claim_condition_not_in_statement", claim_id=claim_id))
             claim_relations = claim["relation_refs"]
+            claim_requirements = claim["requirement_refs"]
             dimensions = claim["dimensions"]
             if not _unique_string_list(claim_relations, minimum=1) or set(claim_relations) - set(relation_by_id):
                 failures.append(_failure("invalid_claim_relation_refs", claim_id=claim_id))
                 claim_relations = []
+            if (not _unique_string_list(claim_requirements, minimum=1) or
+                    set(claim_requirements) - requirement_ids or
+                    not set(claim_requirements) <= set(requirement_refs)):
+                failures.append(_failure("invalid_claim_requirement_refs", claim_id=claim_id))
+                claim_requirements = []
             if (not _unique_string_list(dimensions, minimum=1, maximum=len(DIMENSIONS)) or
                     not set(dimensions) <= DIMENSIONS):
                 failures.append(_failure("invalid_claim_dimensions", claim_id=claim_id))
@@ -330,11 +372,21 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
                             source is None or _nfc_lines(exact) not in _nfc_lines(str(source.get("text", "")))):
                         failures.append(_failure("evidence_anchor_mismatch", claim_id=claim_id,
                                                  evidence_ref=evidence_ref))
-                assessment = support_assessments.get(claim_id)
-                if assessment == "unsupported":
+                assessment = semantic_support_s1.assess_claim(
+                    attempt_id, preflight["authorized_plan_fingerprint"], claim, evidence_by_id)
+                generated_assessments.append(assessment)
+                assessment_errors = semantic_support_s1.verify_assessment(
+                    assessment, attempt_id, preflight["authorized_plan_fingerprint"],
+                    claim, evidence_by_id)
+                if assessment_errors:
+                    failures.extend(_failure(code, claim_id=claim_id)
+                                    for code in assessment_errors)
+                elif assessment["aggregate_verdict"] == "unsupported":
                     failures.append(_failure("documentary_claim_unsupported", claim_id=claim_id))
-                elif assessment != "supported":
-                    unassessed.append(_failure("semantic_support_not_evaluable", claim_id=claim_id))
+                elif assessment["aggregate_verdict"] != "supported":
+                    unassessed.append(_failure(
+                        "semantic_support_not_evaluable", claim_id=claim_id,
+                        reason_codes=assessment["reason_codes"]))
             elif support_mode == "bounded_inference":
                 unassessed.append(_failure("bounded_inference_not_evaluable", claim_id=claim_id))
             else:
@@ -342,6 +394,17 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
             if support_mode != "uncertainty" and claim["polarity"] == "affirmed":
                 covered_relations.update(claim_relations)
                 section_has_conclusive_claim = True
+        ordered_spans = sorted(section_spans)
+        for left, right in zip(ordered_spans, ordered_spans[1:]):
+            if right[0] < left[1]:
+                failures.append(_failure("incompatible_claim_span_overlap",
+                                         claim_ids=[left[2], right[2]]))
+        uncovered = [index for index, char in enumerate(normalized_text)
+                     if not char.isspace() and not any(start <= index < end
+                                                      for start, end, _ in section_spans)]
+        if uncovered:
+            unassessed.append(_failure("substantive_prose_coverage_not_evaluable",
+                                       section_id=section_id))
         if section["kind"] != "uncertainty" and section_has_conclusive_claim:
             covered_requirements.update(requirement_refs)
 
@@ -383,6 +446,7 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
             "covered_requirements": sorted(covered_requirements),
         },
         "tactical_documentary_audit": audit,
+        "semantic_support_assessments": generated_assessments,
     }
     status = "blocked" if failures else "not_evaluable" if unassessed else "validated"
     reasons = [item["code"] for item in failures + unassessed]

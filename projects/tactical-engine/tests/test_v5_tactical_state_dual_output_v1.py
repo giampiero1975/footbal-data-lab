@@ -43,7 +43,11 @@ def fixture():
     requirement = preflight["v2_preflight"]["projected_requirements"][0]
     claim = {
         "claim_id": "claim:1",
+        "statement": EVIDENCE_TEXT,
+        "section_span": {"start": 0, "end": len(EVIDENCE_TEXT)},
+        "conditions": [],
         "relation_refs": [relation["relation_id"]],
+        "requirement_refs": [requirement["requirement_id"]],
         "dimensions": ["actor", "task", "space", "trigger", "purpose", "phase"],
         "bindings": dual.relation_bindings(relation),
         "polarity": "affirmed",
@@ -69,12 +73,12 @@ def fixture():
     return plan, preflight, envelope, evidence
 
 
-def diagnose(envelope, *, audit=None, support=None, done_reason=None):
+def diagnose(envelope, *, audit=None, done_reason=None):
     plan, preflight, _, evidence = fixture()
     return dual.documentary_diagnostic(
         plan, json.dumps(envelope, ensure_ascii=False), evidence,
         preflight=preflight, tactical_audit=audit or positive_audit(),
-        support_assessments=support, done_reason=done_reason)
+        attempt_id="test-attempt", done_reason=done_reason)
 
 
 class DualOutputDeterministicTests(unittest.TestCase):
@@ -94,30 +98,32 @@ class DualOutputDeterministicTests(unittest.TestCase):
 
     def test_supported_direct_claim_can_validate_offline(self):
         _, _, envelope, _ = fixture()
-        result = diagnose(envelope, support={"claim:1": "supported"})
+        result = diagnose(envelope)
         self.assertEqual(result["overall_status"], "validated")
         self.assertEqual(result["promoted_answer"], EVIDENCE_TEXT)
 
-    def test_anchor_alone_never_promotes_semantic_support(self):
+    def test_statement_span_mismatch_is_blocked(self):
         _, _, envelope, _ = fixture()
+        envelope["documentary_explanation"]["sections"][0]["claims"][0][
+            "statement"] = "L'ala protegge la zona."
         result = diagnose(envelope)
-        self.assertEqual(result["overall_status"], "not_evaluable")
+        self.assertEqual(result["overall_status"], "blocked")
         self.assertEqual(result["promoted_answer"], "")
-        self.assertIn("semantic_support_not_evaluable", result["reasons"])
+        self.assertIn("statement_span_mismatch", result["reasons"])
 
     def test_bounded_inference_is_not_evaluable(self):
         _, _, envelope, _ = fixture()
         claim = envelope["documentary_explanation"]["sections"][0]["claims"][0]
         claim["support_mode"] = "bounded_inference"
         claim["evidence_anchors"] = []
-        result = diagnose(envelope, support={"claim:1": "supported"})
+        result = diagnose(envelope)
         self.assertEqual(result["overall_status"], "not_evaluable")
         self.assertIn("bounded_inference_not_evaluable", result["reasons"])
 
     def test_fingerprint_mismatch_is_blocked(self):
         _, _, envelope, _ = fixture()
         envelope["authorized_plan_fingerprint"] = "sha256:" + "0" * 64
-        result = diagnose(envelope, support={"claim:1": "supported"})
+        result = diagnose(envelope)
         self.assertEqual(result["overall_status"], "blocked")
         self.assertIn("authorized_plan_fingerprint_mismatch", result["reasons"])
 
@@ -127,7 +133,7 @@ class DualOutputDeterministicTests(unittest.TestCase):
         self.assertEqual(malformed["overall_status"], "not_evaluable")
         truncated = dual.documentary_diagnostic(
             plan, json.dumps(envelope), evidence, preflight=preflight,
-            tactical_audit=positive_audit(), support_assessments={"claim:1": "supported"},
+            tactical_audit=positive_audit(), attempt_id="test-attempt",
             done_reason="length")
         self.assertEqual(truncated["overall_status"], "not_evaluable")
         self.assertEqual(truncated["promoted_answer"], "")
@@ -137,7 +143,7 @@ class DualOutputDeterministicTests(unittest.TestCase):
         envelope["documentary_explanation"]["sections"] = [
             deepcopy(envelope["documentary_explanation"]["sections"][0])
             for _ in range(dual.MAX_SECTIONS + 1)]
-        result = diagnose(envelope, support={"claim:1": "supported"})
+        result = diagnose(envelope)
         self.assertEqual(result["overall_status"], "blocked")
         self.assertIn("invalid_documentary_section_cardinality", result["reasons"])
 
@@ -145,7 +151,7 @@ class DualOutputDeterministicTests(unittest.TestCase):
         _, _, envelope, _ = fixture()
         section = envelope["documentary_explanation"]["sections"][0]
         section["relation_refs"] = ["relation:unknown", "relation:unknown"]
-        result = diagnose(envelope, support={"claim:1": "supported"})
+        result = diagnose(envelope)
         self.assertEqual(result["overall_status"], "blocked")
         self.assertIn("invalid_relation_refs", result["reasons"])
 
@@ -153,7 +159,7 @@ class DualOutputDeterministicTests(unittest.TestCase):
         _, _, envelope, _ = fixture()
         claims = envelope["documentary_explanation"]["sections"][0]["claims"]
         claims.append(deepcopy(claims[0]))
-        result = diagnose(envelope, support={"claim:1": "supported"})
+        result = diagnose(envelope)
         self.assertEqual(result["overall_status"], "blocked")
         self.assertIn("invalid_or_duplicate_claim_id", result["reasons"])
 
@@ -163,7 +169,7 @@ class DualOutputDeterministicTests(unittest.TestCase):
                 _, _, envelope, _ = fixture()
                 envelope["documentary_explanation"]["sections"][0]["claims"][0][
                     "bindings"][dimension] = "wrong"
-                result = diagnose(envelope, support={"claim:1": "supported"})
+                result = diagnose(envelope)
                 self.assertEqual(result["overall_status"], "blocked")
                 self.assertIn(f"documentary_{dimension}_mismatch", result["reasons"])
 
@@ -180,7 +186,7 @@ class DualOutputDeterministicTests(unittest.TestCase):
         claim = envelope["documentary_explanation"]["sections"][0]["claims"][0]
         claim["evidence_refs"] = ["F9"]
         claim["evidence_anchors"] = [{"evidence_ref": "F9", "exact_text": "missing"}]
-        result = diagnose(envelope, support={"claim:1": "supported"})
+        result = diagnose(envelope)
         self.assertEqual(result["overall_status"], "blocked")
         self.assertIn("invalid_claim_evidence_refs", result["reasons"])
         self.assertIn("evidence_anchor_mismatch", result["reasons"])
@@ -199,11 +205,11 @@ class DualOutputDeterministicTests(unittest.TestCase):
         negative = positive_audit()
         negative["complete"] = False
         negative["missing_details"] = ["field_zone"]
-        result = diagnose(envelope, audit=negative, support={"claim:1": "supported"})
+        result = diagnose(envelope, audit=negative)
         self.assertEqual(result["overall_status"], "blocked")
         self.assertIn("tactical_documentary_audit_failed", result["reasons"])
-        no_support = diagnose(envelope, audit=positive_audit())
-        self.assertEqual(no_support["overall_status"], "not_evaluable")
+        positive = diagnose(envelope, audit=positive_audit())
+        self.assertEqual(positive["overall_status"], "validated")
 
 
 class DualOutputWrapperTests(unittest.TestCase):
@@ -235,8 +241,8 @@ class DualOutputWrapperTests(unittest.TestCase):
         self.assertNotIn("applied_plan", payload["format"]["properties"])
         self.assertNotIn("canonical_relations", payload["format"]["properties"])
         self.assertEqual(stats["repair_reasons"], [])
-        self.assertEqual(answer, "")
-        self.assertEqual(diagnostic["overall_status"], "not_evaluable")
+        self.assertEqual(answer, EVIDENCE_TEXT)
+        self.assertEqual(diagnostic["overall_status"], "validated")
 
     def test_new_flag_is_opt_in_and_report_validation_isolated(self):
         query = load("tsc_query_dual_output_tests", SCRIPTS / "run_rag_v5_query.py")

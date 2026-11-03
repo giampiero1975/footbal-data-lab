@@ -311,7 +311,8 @@ def chat_tactical_state_v2_once(model,question,evidence,timeout,question_plan,
 
 
 def chat_tactical_state_v2_dual_output_once(model,question,evidence,timeout,question_plan,
-                                            context_window=8192,keep_alive=None,num_predict=0):
+                                            context_window=8192,keep_alive=None,num_predict=0,
+                                            attempt_id="offline"):
     """D3: authoritative plan/rendering, one documentary generation, no repair."""
     preflight=tactical_state_dual_output.prepare_dual_output_request(question_plan)
     if preflight["status"]!="ready":
@@ -338,7 +339,7 @@ def chat_tactical_state_v2_dual_output_once(model,question,evidence,timeout,ques
             "status":"not_assessable","complete":False}
         diagnostic=tactical_state_dual_output.documentary_diagnostic(
             question_plan,raw,evidence,preflight=preflight,tactical_audit=audit,
-            done_reason=obj.get("done_reason"))
+            done_reason=obj.get("done_reason"),attempt_id=attempt_id)
     except (TimeoutError,URLError) as exc:
         diagnostic=tactical_state_dual_output.documentary_diagnostic(
             question_plan,"",evidence,preflight=preflight,transport_error=exc)
@@ -726,9 +727,12 @@ def main():
                     args.model,question,evidence,args.timeout,state_question_plan_v2,
                     args.context_window,args.keep_alive,args.num_predict)
             elif args.tactical_state_contract_v2_dual_output:
+                assessment_attempt_id="sha256:"+hashlib.sha256(
+                    f"{args.output.resolve()}|{qid}".encode("utf-8")).hexdigest()
                 answer,stats,tactical_state_dual_output_diagnostic=chat_tactical_state_v2_dual_output_once(
                     args.model,question,evidence,args.timeout,state_question_plan_v2,
-                    args.context_window,args.keep_alive,args.num_predict)
+                    args.context_window,args.keep_alive,args.num_predict,
+                    attempt_id=assessment_attempt_id)
             else:
                 answer,stats=chat(
                     args.model,question,evidence,args.timeout,args.targeted_coverage,
