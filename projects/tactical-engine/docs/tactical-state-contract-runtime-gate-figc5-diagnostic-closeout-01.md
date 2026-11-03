@@ -71,13 +71,23 @@ JSON del Gate.
 | Pressing immediato in transizione | F3 | Non supportata dalle evidenze disponibili | F3 condiziona il pressing a prerequisiti tattici; non documenta un contropressing sempre immediato |
 | Punta e ala opposta sono appoggi immediati per la ripartenza propria | F2 | Non determinabile | F2 parla di "ripartenza" ma il frammento isolato non rende univoco quale squadra riparta; non e lecito trasformarlo in contraddizione certa |
 | Punta e ala opposta sostengono pressing o copertura laterale | F2/F3 | Non supportata dalle evidenze disponibili | Le fonti disponibili non attribuiscono loro entrambe queste responsabilita operative |
-| Densita e prossimita come criterio operativo | Nessuna fra le otto evidenze | Non supportata dalle evidenze disponibili | L'audit registra `density_or_proximity` mancante |
-| Palla coperta/scoperta come trigger operativo | Nessuna fra le otto evidenze | Non supportata dalle evidenze disponibili | L'audit registra `covered_or_uncovered_ball` mancante |
-| Responsabilita complete attore-compito-spazio-trigger-finalita | F2/F3/F8 solo parziali | Non supportata come relazione completa | L'audit registra relazione non dimostrata, requisito sottospecificato e pertinenza di attore/obiettivo non dimostrata |
 
 Nessun claim esaminato puo essere classificato con certezza come "in
 contraddizione con la fonte". Il caso degli appoggi alla ripartenza resta
 ambiguo e quindi non determinabile, non un errore certo del modello.
+
+### Requisiti tattico-documentali mancanti secondo l'audit
+
+Gli elementi seguenti non sono attribuiti automaticamente all'`explanation`:
+sono requisiti che l'audit registra come mancanti o non dimostrati. In assenza
+di una presenza testuale verificabile nell'`explanation`, non costituiscono
+claim del modello.
+
+| Requisito dell'audit | Evidenza disponibile | Esito dell'audit |
+|---|---|---|
+| Densita o prossimita | Nessuna copertura identificata fra F1-F8 | `density_or_proximity` mancante |
+| Palla coperta/scoperta | Nessuna copertura identificata fra F1-F8 | `covered_or_uncovered_ball` mancante |
+| Relazione completa attore-compito-spazio-trigger-finalita | F2/F3/F8 coprono soltanto componenti parziali | relazione non dimostrata, requisito sottospecificato e pertinenza di attore/obiettivo non dimostrata |
 
 ## Copertura documentale
 
@@ -98,12 +108,16 @@ retrieval, che non e autorizzato.
 
 ### Causa tecnica diretta
 
-`plan_prose_alignment.status=not_assessable` e
-`tactical_documentary_audit.complete=false` sono composti da
-`generation_diagnostic()` in `overall_status=blocked` (righe 270-352). Il
-wrapper rifiuta quindi il report come query completata e restituisce exit `1`.
-La prosa non viene promossa (`promoted_answer=""`). Questo comportamento
-fail-closed e osservato e **VALIDATO** per il singolo caso.
+`tactical_documentary_audit.complete=false` determina
+`demonstrated_failure=true` e quindi `overall_status=blocked` in
+`generation_diagnostic()` (righe 303-310). Separatamente,
+`plan_prose_alignment.status=not_assessable` determina
+`mandatory_unassessed=true`: in assenza di un fallimento dimostrato avrebbe
+comunque impedito `validated`, producendo `not_evaluable`. Nel caso osservato
+la precedenza del fallimento dimostrato rende l'esito `blocked`. Il wrapper
+rifiuta quindi il report come query completata e restituisce exit `1`; la prosa
+non viene promossa (`promoted_answer=""`). Questo comportamento fail-closed e
+osservato e **VALIDATO** per il singolo caso.
 
 ### Difetti sostanziali concorrenti
 
