@@ -2396,3 +2396,20 @@ negativa affidabile era disponibile: `unsupported` non e stato inventato. Test S
 Decisione: checker **IMPLEMENTATO**, test **ESEGUITO**, proprieta coperte **VALIDATO
 offline**. S2, Gate, integrazione e certificazione **BLOCCATO**; nessuna inferenza,
 NLI, retrieval, Chroma/API, pannello o deploy.
+
+## RD-TSC-V2-D3-SEMANTIC-SUPPORT-S2-READINESS-01 — ricognizione statica (2026-11-03)
+
+Attivita: valutare i candidati S2 esistenti senza eseguire modelli o test. Script:
+nessuno eseguito; letti NLI diretto V2, alignment, Ragas Faithfulness, reviewer
+Gemini/Groq, contratti Gold E/V e worksheet. Report:
+`docs/tactical-state-contract-v2-semantic-support-s2-readiness-01.md`. Risultato:
+NLI V2 ha contratto a tre label e dataset riutilizzabili, ma i report principali
+sono solo registrati nel manifest content-addressed, non presenti nel ramo; il gold
+non e indipendente, lo stesso Qwen del generatore riduce l'indipendenza e i controlli
+atomic/contrastive/alignment documentano errori su scope, quantificatori e opposizioni.
+Gemini/Groq non hanno calibrazione claim-level; Ragas e binario/due chiamate; Gold E/V
+ha zero casi ed e relazionale, non Gold S2. Decisione **B**: NLI V2 riutilizzabile
+soltanto in shadow; readiness **ESEGUITO**, nessuna promozione a **VALIDATO** per S2.
+Recuperare prima i report storici verificandone gli hash, poi predisporre un Gold S2
+indipendente con doppia review/adjudication/freeze; nessuna nuova inferenza implicita.
+S2, Gold S2, Gate, integrazione e certificazione **BLOCCATO**.
