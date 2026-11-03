@@ -2239,3 +2239,17 @@ caso minimo di transizione negativa, distinto dal Gate FIGC5, e predisposto coma
 non eseguito. Decisione: **BLOCCATO** per assenza di un checkout runtime attestato
 alla baseline `965d6b6` e di una conferma live corrente della collection candidata
 e del count 6410. Nessuna inferenza, Chroma/API, test E2E o modifica tecnica.
+
+## RD-TSC-V2-RUNTIME-STAGING-PREFLIGHT-01 — staging/metadata preflight (2026-11-03)
+
+Attivita: verificare staging, ambiente e collection prima del Gate V2. Script:
+sole letture SSH metadata-only e un tentativo autorizzato di clone indipendente;
+nessun test o Gate. Report:
+`docs/tactical-state-contract-v2-runtime-staging-preflight-01.md`. Risultato:
+parent staging regolare con spazio disponibile, staging V1 esistente ma non idoneo,
+commit `965d6b6` assente dai repository VPS. Il clone diretto GitHub e fallito per
+autenticazione public key prima del checkout e non ha lasciato il target. Checkout
+operativo invariato a `1a80fe0`; Python 3.12.3, time e timeout presenti. Per arresto
+fail-closed non e stata aperta la collection e il count corrente non e attestato.
+Decisione: staging/preflight/Gate/integrazione/certificazione **BLOCCATO**. Nessuna
+inferenza, Chroma/API, servizio, codice o checkout operativo modificato.
