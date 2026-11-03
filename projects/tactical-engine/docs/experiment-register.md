@@ -2364,3 +2364,18 @@ promossi. Nuovi differenziali 17/17 PASS e regressione V2 direttamente interessa
 proprieta deterministiche **VALIDATO offline**. Supporto semantico automatico, Gate,
 integrazione e certificazione **BLOCCATO**. Nessun runtime, Qwen, retrieval, Chroma,
 API/pannello o deploy.
+
+## RD-TSC-V2-D3-SEMANTIC-SUPPORT-DESIGN-01 — progettazione statica (2026-11-03)
+
+Attivita: individuare il meccanismo minimo di support assessment indipendente dal
+generatore. Script: nessuno eseguito; nessun test, modello, retrieval o runtime.
+Report: `docs/tactical-state-contract-v2-semantic-support-design-01.md`. Risultato:
+ID, anchor, bindings, polarita e audit esistenti non provano entailment; NLI shadow,
+Gemini/Groq e Gold/human workflow sono riutilizzabili ma nessuno e oggi VALIDATO come
+gate D3. Raccomandata S3 incrementale, prima fase S1-only: statement/span atomico,
+assessment content-addressed prodotto fuori dal payload Qwen e supported automatico
+solo per exact atomic quotation; parafrasi e bounded inference restano
+`not_evaluable`, contraddizioni dimostrate `unsupported`. NLI/reviewer restano shadow,
+S4 umano serve gold/adjudication. Decisione: design **VALIDATO**, implementazione
+**DA FARE** previa approvazione. D3 semantic support, Gate, integrazione e
+certificazione **BLOCCATO**.
