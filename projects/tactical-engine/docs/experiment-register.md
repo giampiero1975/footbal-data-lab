@@ -2379,3 +2379,20 @@ solo per exact atomic quotation; parafrasi e bounded inference restano
 S4 umano serve gold/adjudication. Decisione: design **VALIDATO**, implementazione
 **DA FARE** previa approvazione. D3 semantic support, Gate, integrazione e
 certificazione **BLOCCATO**.
+
+## RD-TSC-V2-D3-SEMANTIC-SUPPORT-S1-IMPLEMENTATION-01 — checker offline (2026-11-03)
+
+Attivita: sostituire l'assessment sintetico D3 con un produttore S1 deterministico e
+content-addressed, limitato alla classe exact atomic. Script:
+`scripts/v5_tactical_semantic_support_s1.py`; integrazione esclusiva nel percorso D3
+opt-in e commit tecnico `de457a9`. Il claim richiede statement/span NFC semiaperto,
+conditions e requirement refs; digest di piano, statement ed evidenze, allowlist e
+config fingerprint sono ricalcolati prima del consumo. Il payload modello non puo
+autocertificarsi. Supported richiede un'unica evidenza/anchor e l'identita dell'intera
+unita documentale; casi fuori copertura restano `not_evaluable`. Nessuna regola
+negativa affidabile era disponibile: `unsupported` non e stato inventato. Test S1/D3
+29/29 e regressioni TSC V2 43/43, totale 72/72 PASS; diff check PASS. Report:
+`docs/tactical-state-contract-v2-semantic-support-s1-implementation-01.md`.
+Decisione: checker **IMPLEMENTATO**, test **ESEGUITO**, proprieta coperte **VALIDATO
+offline**. S2, Gate, integrazione e certificazione **BLOCCATO**; nessuna inferenza,
+NLI, retrieval, Chroma/API, pannello o deploy.
