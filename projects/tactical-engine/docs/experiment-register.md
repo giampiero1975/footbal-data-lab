@@ -2209,3 +2209,20 @@ test differenziali della nuova suite: 13/13 PASS; `git diff --check` PASS. Repor
 **IMPLEMENTATO**, test **ESEGUITO**, proprieta differenziali **VALIDATO offline**.
 Nessuna inferenza Qwen/Ollama, query Chroma/API, runtime o deploy; integrazione e
 certificazione restano **BLOCCATO**.
+
+## RD-TSC-V2-GENERATIVE-HANDOFF-REMEDIATION-01 — fail-closed offline (2026-11-03)
+
+Attivita: correggere esclusivamente troncamento, audit negativo e relazioni
+malformate nel percorso generativo TSC V2. Script:
+`scripts/v5_tactical_state_generation_v2.py`; test:
+`tests/test_v5_tactical_state_generation_v2.py`; commit tecnico `8a16a73`.
+Risultato: `done_reason=length` e `not_evaluable` salvo violazioni dimostrate;
+un audit richiede completezza e assenza di segnali negativi; il confronto canonico
+restituisce errori strutturati per container, riferimenti e termini malformati.
+Eseguiti soltanto i tre nuovi casi differenziali, 3/3 PASS in 0,015 s, e una
+regressione positiva direttamente interessata, 1/1 PASS in 0,097 s. Non ripetuta la
+campagna 13/13; `git diff --check` PASS. Report:
+`docs/tactical-state-contract-v2-generative-handoff-remediation-01.md`. Decisione:
+remediation **IMPLEMENTATO**, test **ESEGUITO**, proprieta **VALIDATO offline**;
+runtime, integrazione e certificazione **BLOCCATO**. Nessuna inferenza o accesso
+Ollama/Chroma/API.
