@@ -111,3 +111,26 @@ Risultato: remediation **IMPLEMENTATO**; test mirati **ESEGUITO**; proprieta
 fail-closed corrette **VALIDATO offline** nel solo perimetro differenziale.
 Handoff generativo, runtime, API e pannello restano **DA FARE**; integrazione e
 certificazione runtime restano **BLOCCATO**.
+
+## Remediation finale sicurezza tipi JSON
+
+Commit tecnico: `ac4100d`.
+
+Le operazioni di appartenenza a insiemi e deduplicazione sono ora precedute da
+guardie esplicite sui tipi JSON. `provenance`, `assertion_mode`, `kind`,
+`relation_id` e ogni elemento di `required_dimensions` accettano soltanto
+stringhe conformi; liste, oggetti, numeri, booleani e null producono diagnostica
+strutturata invece di eccezioni Python. La ricognizione statica delle chiamate
+dirette ha rilevato e corretto due difetti equivalenti nello stesso percorso:
+`requirement_type`/`specificity` e `rule_id` potevano raggiungere confronti con
+insiemi senza una preventiva verifica del tipo.
+
+Sono stati eseguiti esclusivamente cinque casi obbligatori, un caso per i
+difetti equivalenti e una regressione positiva direttamente interessata: 7/7
+PASS in 0,063 s. `git diff --check` PASS. Non sono state ripetute le campagne
+13/13, 125/125 o 9/9 precedenti.
+
+Risultato: correzione **IMPLEMENTATO**; test differenziali **ESEGUITO**;
+sicurezza dei tipi JSON nel perimetro corretto **VALIDATO offline**. TSC V1,
+planner V1, retrieval, runner, prompt, API e pannello invariati. Runtime,
+integrazione e certificazione restano **BLOCCATO**.

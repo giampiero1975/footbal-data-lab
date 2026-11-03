@@ -2149,3 +2149,26 @@ corrette **VALIDATO offline**. TSC V1, planner V1, retrieval, runner, prompt,
 API e pannello invariati. Handoff generativo e runtime **DA FARE**;
 integrazione e certificazione runtime **BLOCCATO**. Nessuna inferenza, retry,
 repair, accesso Ollama/Chroma/API, deploy o merge.
+
+### Remediation finale sicurezza tipi JSON (2026-11-03)
+
+Attivita: rendere fail-closed le operazioni su valori JSON non hashable nel
+solo modulo offline V2. Script e test: gli stessi dell'esperimento; commit
+tecnico `ac4100d`; report aggiornato
+`docs/tactical-state-contract-v2-operational-relations-offline-01.md`.
+
+Risultato: guardie di tipo applicate a provenance, assertion mode, kind,
+relation ID e required dimensions prima di appartenenza a insiemi o
+deduplicazione. La ricognizione statica delle funzioni modificate e delle
+chiamate dirette ha individuato e corretto gli equivalenti requirement
+type/specificity e rule ID. Input lista, oggetto, numero, booleano o null non
+genera piu `TypeError`: il piano applicato malformato e `failed`, mentre una
+proiezione incompleta resta `not_assessable`. Eseguiti soltanto cinque casi
+obbligatori, un caso equivalente e una regressione positiva: 7/7 PASS in
+0,063 s; `git diff --check` PASS. Non ripetute le campagne 13/13, 125/125 o
+9/9 gia concluse.
+
+Decisione: correzione **IMPLEMENTATO**, test differenziali **ESEGUITO**,
+sicurezza tipi JSON **VALIDATO offline**. TSC V1, planner V1, retrieval,
+runner, prompt, API e pannello invariati. Runtime, integrazione e
+certificazione **BLOCCATO**; nessuna inferenza, retry, repair, deploy o merge.
