@@ -2193,3 +2193,19 @@ TSC V2 **BLOCCATO** in attesa di una decisione separata del titolare; dominio
 TSC V2 precedente resta **VALIDATO offline**. Nessun test, inferenza, retry,
 repair, Ollama, Chroma, API, deploy o merge eseguito; TSC V1, planner,
 dominio V2, retrieval, runner, prompt e pannello invariati.
+
+## RD-TSC-V2-GENERATIVE-HANDOFF-IMPLEMENTATION-01 — implementazione offline (2026-11-03)
+
+Attivita: sbloccare il phase-state nel solo applied plan V2 e implementare l'handoff
+generativo opt-in senza modificare planner V1 o dominio V2. Script:
+`scripts/v5_tactical_state_generation_v2.py`, integrazioni mirate in
+`scripts/smoke_test_rag_v5_e2e.py` e `scripts/run_rag_v5_query.py`; test:
+`tests/test_v5_tactical_state_generation_v2.py`. Commit tecnico `307064c`.
+Risultato: materializzazione deterministica `state:phase:<canonical_phase>`, uno stato
+per fase compatibile, question plan originale immutato, preflight fail-closed,
+massimo una chiamata trasporto simulata e zero repair. Eseguiti esclusivamente i 13
+test differenziali della nuova suite: 13/13 PASS; `git diff --check` PASS. Report:
+`docs/tactical-state-contract-v2-generative-handoff-offline-01.md`. Decisione: codice
+**IMPLEMENTATO**, test **ESEGUITO**, proprieta differenziali **VALIDATO offline**.
+Nessuna inferenza Qwen/Ollama, query Chroma/API, runtime o deploy; integrazione e
+certificazione restano **BLOCCATO**.
