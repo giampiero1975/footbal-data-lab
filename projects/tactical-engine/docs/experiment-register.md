@@ -2333,3 +2333,17 @@ Decisione: revisione **VALIDATO**; raccomandata Opzione D, piano canonico e spie
 documentale separata ma collegata, entrambi fail-closed. Decisione architetturale non
 ancora approvata; nessuna implementazione. Gate, integrazione e certificazione
 **BLOCCATO**.
+
+## RD-TSC-V2-DUAL-OUTPUT-DESIGN-01 — specifica architetturale (2026-11-03)
+
+Attivita: progettare la separazione fra piano canonico V2 e spiegazione documentale
+senza modificare V1 o audit V1. Script: nessuno eseguito; nessun test, runtime o
+modifica tecnica. Report: `docs/tactical-state-contract-v2-dual-output-design-01.md`.
+Risultato: raccomandata D3 opt-in. Il sistema mantiene piano autorevole, fingerprint
+e rendering; Qwen produce una explanation strutturata con relation, requirement ed
+evidence refs e claim. Audit V1 riceve tramite adattatore soltanto la prosa; il suo
+PASS e necessario ma non sufficiente. Riferimenti, copertura, polarita, citazioni,
+supporto e coerenza hanno controlli separati; semantica non dimostrabile resta
+`not_evaluable`, nessuna partial promotion. Decisione: specifica **VALIDATO**;
+implementazione **DA FARE** e soggetta ad approvazione. Gate, integrazione e
+certificazione **BLOCCATO**.
