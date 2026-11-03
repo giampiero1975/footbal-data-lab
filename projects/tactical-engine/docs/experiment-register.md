@@ -2226,3 +2226,16 @@ campagna 13/13; `git diff --check` PASS. Report:
 remediation **IMPLEMENTATO**, test **ESEGUITO**, proprieta **VALIDATO offline**;
 runtime, integrazione e certificazione **BLOCCATO**. Nessuna inferenza o accesso
 Ollama/Chroma/API.
+
+## RD-TSC-V2-RUNTIME-GATE-PREFLIGHT-01 — preflight statico (2026-11-03)
+
+Attivita: definire senza esecuzione il primo Gate runtime del percorso
+`--tactical-state-contract-v2`. Script: nessuno eseguito; ispezionati wrapper,
+runner, handoff V2 e documentazione consolidata. Report:
+`docs/tactical-state-contract-v2-runtime-gate-preflight-01.md`. Risultato: confermati
+flag opt-in, mutua esclusione pre-runtime, preflight deterministico, una sola chiamata
+possibile, zero retry/repair, diagnostica e promozione fail-closed. Selezionato un
+caso minimo di transizione negativa, distinto dal Gate FIGC5, e predisposto comando
+non eseguito. Decisione: **BLOCCATO** per assenza di un checkout runtime attestato
+alla baseline `965d6b6` e di una conferma live corrente della collection candidata
+e del count 6410. Nessuna inferenza, Chroma/API, test E2E o modifica tecnica.
