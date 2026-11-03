@@ -71,7 +71,7 @@ def requirement_fingerprint(projection):
     content = {key: projection[key] for key in (
         "schema", "requirement_id", "question_part_id", "classification",
         "required_dimensions", "actor_ref", "task", "space", "trigger",
-        "purpose", "phase")}
+        "purpose", "phase", "extraction_provenance")}
     return "sha256:" + hashlib.sha256(
         canonical_json(content).encode("utf-8")).hexdigest()
 
@@ -106,7 +106,8 @@ def _resolve_actor(requirement, state_contract):
 
 def _resolve_phase(terms):
     phases = {PHASE_TERM_MAP.get(normalize_term(term)) for term in terms}
-    phases.discard(None)
+    if None in phases:
+        return None
     return next(iter(phases)) if len(phases) == 1 else None
 
 
@@ -123,9 +124,34 @@ def _resolve_position(space_term, state_contract):
 
 def project_relation_requirements(question_plan):
     """Return a stable projection; only explicit representable rows are mandatory."""
-    state_contract = question_plan.get("state_contract", {})
+    if not isinstance(question_plan, dict):
+        raise ValueError("invalid_question_plan")
+    if "relation_requirements" not in question_plan:
+        raise ValueError("relation_requirements_projection_absent")
+    requirements = question_plan["relation_requirements"]
+    state_contract = question_plan.get("state_contract")
+    if not isinstance(requirements, list) or not isinstance(state_contract, dict):
+        raise ValueError("invalid_relation_requirements_projection")
+    requirement_ids = []
+    for requirement in requirements:
+        if not isinstance(requirement, dict):
+            raise ValueError("invalid_relation_requirement")
+        requirement_id = requirement.get("requirement_id")
+        if not isinstance(requirement_id, str) or not requirement_id.strip():
+            raise ValueError("missing_requirement_id")
+        if (not isinstance(requirement.get("question_part_id"), str) or
+                not requirement["question_part_id"].strip() or
+                requirement.get("requirement_type") not in {"explicit", "open", "inferred", "ambiguous"} or
+                requirement.get("specificity") not in {"explicit_relation", "underspecified"} or
+                not isinstance(requirement.get("required_dimensions"), list) or
+                any(item not in {"actor", "task", "space", "trigger", "purpose", "phase"}
+                    for item in requirement.get("required_dimensions", []))):
+            raise ValueError("incomplete_relation_requirement_projection")
+        requirement_ids.append(requirement_id)
+    if len(requirement_ids) != len(set(requirement_ids)):
+        raise ValueError("duplicate_requirement_id")
     projected = []
-    for requirement in question_plan.get("relation_requirements", []):
+    for requirement in requirements:
         actor_ref = _resolve_actor(requirement, state_contract)
         task_terms = _unique_terms(requirement, "task")
         space_terms = _unique_terms(requirement, "space")
@@ -179,7 +205,9 @@ def operational_relation_schema():
     typed_ref = {"type": "object", "additionalProperties": False,
                  "required": ["id", "kind"],
                  "properties": {"id": {"type": "string", "minLength": 1},
-                                "kind": {"type": "string"}}}
+                                "kind": {"enum": ["actor_ref", "role_ref", "candidate_actor",
+                                                    "position_slot", "phase_state",
+                                                    "relation_requirement"]}}}
     term = {"type": "object", "additionalProperties": False,
             "required": ["term_id", "source_term", "normalized_term", "provenance", "rule_id"],
             "properties": {
@@ -193,9 +221,9 @@ def operational_relation_schema():
                              "actor_ref", "task", "space", "trigger", "purpose",
                              "phase_state_ref", "assertion_mode", "provenance", "rule_id"],
                 "properties": {
-                    "relation_id": {"type": "string"},
+                    "relation_id": {"type": "string", "minLength": 1},
                     "requirement_ref": typed_ref,
-                    "requirement_fingerprint": {"type": "string"},
+                    "requirement_fingerprint": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
                     "actor_ref": typed_ref,
                     "task": term,
                     "space": {"type": "object", "additionalProperties": False,
@@ -231,24 +259,115 @@ def _term_matches(actual, expected):
     return actual.get("term_id") == expected.get("term_id") and actual.get("provenance") in {"explicit", "derived"}
 
 
+def _typed_ref_error(value, allowed_kinds):
+    if not isinstance(value, dict) or set(value) != {"id", "kind"}:
+        return True
+    return (not isinstance(value.get("id"), str) or not value["id"].strip() or
+            value.get("kind") not in allowed_kinds)
+
+
+def _term_errors(value, path):
+    required = {"term_id", "source_term", "normalized_term", "provenance", "rule_id"}
+    if not isinstance(value, dict) or set(value) != required:
+        return [{"code": "invalid_operational_term_shape", "path": path}]
+    provenance = value.get("provenance")
+    rule_id = value.get("rule_id")
+    if provenance not in v1.PROVENANCE:
+        return [{"code": "invalid_operational_term_provenance", "path": path}]
+    if provenance == "unknown":
+        if any(value.get(key) is not None for key in ("term_id", "source_term", "normalized_term", "rule_id")):
+            return [{"code": "invalid_unknown_operational_term", "path": path}]
+        return []
+    if not all(isinstance(value.get(key), str) and value[key]
+               for key in ("term_id", "source_term", "normalized_term")):
+        return [{"code": "invalid_operational_term_value", "path": path}]
+    if normalize_term(value["source_term"]) != value["normalized_term"] or term_id(value["source_term"]) != value["term_id"]:
+        return [{"code": "invalid_operational_term_identity", "path": path}]
+    if provenance == "derived":
+        if rule_id not in ALLOWED_RULE_IDS:
+            return [{"code": "invalid_operational_term_rule", "path": path}]
+    elif rule_id is not None:
+        return [{"code": "unexpected_operational_term_rule", "path": path}]
+    return []
+
+
+def _relation_shape_errors(relation, index):
+    required = {"relation_id", "requirement_ref", "requirement_fingerprint", "actor_ref",
+                "task", "space", "trigger", "purpose", "phase_state_ref",
+                "assertion_mode", "provenance", "rule_id"}
+    path = f"operational_relations.{index}"
+    if not isinstance(relation, dict) or set(relation) != required:
+        return [{"code": "invalid_operational_relation_shape", "path": path}]
+    errors = []
+    if not isinstance(relation["relation_id"], str) or not relation["relation_id"].strip():
+        errors.append({"code": "invalid_operational_relation_id", "path": path})
+    if _typed_ref_error(relation["requirement_ref"], {"relation_requirement"}):
+        errors.append({"code": "invalid_requirement_ref", "path": path})
+    if (not isinstance(relation["requirement_fingerprint"], str) or
+            re.fullmatch(r"sha256:[0-9a-f]{64}", relation["requirement_fingerprint"]) is None):
+        errors.append({"code": "invalid_requirement_fingerprint", "path": path})
+    if _typed_ref_error(relation["actor_ref"], {"actor_ref", "role_ref", "candidate_actor"}):
+        errors.append({"code": "invalid_actor_ref", "path": path})
+    if _typed_ref_error(relation["phase_state_ref"], {"phase_state"}):
+        errors.append({"code": "invalid_phase_state_ref", "path": path})
+    for name in ("task", "trigger", "purpose"):
+        errors.extend(_term_errors(relation[name], f"{path}.{name}"))
+    space = relation["space"]
+    if not isinstance(space, dict) or set(space) != {"term", "position_ref"}:
+        errors.append({"code": "invalid_operational_space_shape", "path": f"{path}.space"})
+    else:
+        errors.extend(_term_errors(space["term"], f"{path}.space.term"))
+        if space["position_ref"] is not None and _typed_ref_error(space["position_ref"], {"position_slot"}):
+            errors.append({"code": "invalid_position_ref", "path": f"{path}.space.position_ref"})
+    if relation["assertion_mode"] not in v1.ASSERTION_MODES:
+        errors.append({"code": "invalid_operational_assertion_mode", "path": path})
+    provenance, rule_id = relation["provenance"], relation["rule_id"]
+    if provenance not in v1.PROVENANCE:
+        errors.append({"code": "invalid_operational_relation_provenance", "path": path})
+    elif provenance == "derived":
+        if rule_id not in ALLOWED_RULE_IDS:
+            errors.append({"code": "operational_relation_unknown_rule", "path": path})
+    elif rule_id is not None:
+        errors.append({"code": "unexpected_operational_relation_rule", "path": path})
+    return errors
+
+
 def validate_operational_relations(question_plan, applied_plan):
     """Validate V2 structure and exact coverage without semantic similarity."""
     failures, unassessed, checked = [], [], []
+    if not isinstance(applied_plan, dict):
+        return {"schema": RELATION_SCHEMA, "status": "failed", "checked_scope": [],
+                "failures": [{"code": "invalid_applied_plan"}], "unassessed_scope": [],
+                "projected_requirements": []}
     if applied_plan.get("schema") != SCHEMA or applied_plan.get("contract_version") != CONTRACT_VERSION:
         failures.append({"code": "invalid_v2_identity"})
     relations = applied_plan.get("operational_relations")
     if not isinstance(relations, list):
         failures.append({"code": "invalid_operational_relations_container"})
         relations = []
+    for index, relation in enumerate(relations):
+        failures.extend(_relation_shape_errors(relation, index))
     relation_ids = [item.get("relation_id") for item in relations if isinstance(item, dict)]
-    if len(relation_ids) != len(set(relation_ids)) or None in relation_ids:
+    if len(relation_ids) != len(relations) or len(relation_ids) != len(set(relation_ids)) or None in relation_ids:
         failures.append({"code": "duplicate_operational_relation_id"})
-    projected = project_relation_requirements(question_plan)
+    if not isinstance(question_plan, dict) or "relation_requirements" not in question_plan:
+        unassessed.append({"code": "relation_requirements_projection_absent"})
+        projected = []
+        projection_complete = False
+    else:
+        try:
+            projected = project_relation_requirements(question_plan)
+            projection_complete = True
+        except ValueError as exc:
+            target = (unassessed if str(exc) == "incomplete_relation_requirement_projection"
+                      else failures)
+            target.append({"code": str(exc)})
+            projected = []
+            projection_complete = False
     requirements = {item["requirement_id"]: item for item in projected}
     by_requirement = {}
     for index, relation in enumerate(relations):
-        if not isinstance(relation, dict):
-            failures.append({"code": "invalid_operational_relation", "index": index})
+        if _relation_shape_errors(relation, index):
             continue
         ref = relation.get("requirement_ref")
         req_id = ref.get("id") if isinstance(ref, dict) and ref.get("kind") == "relation_requirement" else None
@@ -256,10 +375,26 @@ def validate_operational_relations(question_plan, applied_plan):
             failures.append({"code": "unknown_relation_requirement", "index": index})
             continue
         by_requirement.setdefault(req_id, []).append(relation)
-    state_by_id = {item.get("state_id"): item for item in applied_plan.get("phase_states", [])}
+    state_by_id = {item.get("state_id"): item for item in applied_plan.get("phase_states", [])
+                   if isinstance(item, dict)}
     entities = {item.get("id"): item for key in ("actors", "role_refs", "candidate_actors")
-                for item in applied_plan.get(key, [])}
-    positions = {item.get("id"): item for item in applied_plan.get("position_slots", [])}
+                for item in applied_plan.get(key, []) if isinstance(item, dict)}
+    positions = {item.get("id"): item for item in applied_plan.get("position_slots", [])
+                 if isinstance(item, dict)}
+    for req_id, candidates in by_requirement.items():
+        for relation in candidates:
+            actor_ref = relation["actor_ref"]
+            entity = entities.get(actor_ref["id"])
+            if entity is None or entity.get("kind") != actor_ref["kind"]:
+                failures.append({"code": "unresolved_operational_actor_ref", "requirement_id": req_id})
+            phase_ref = relation["phase_state_ref"]
+            if phase_ref["id"] not in state_by_id:
+                failures.append({"code": "unresolved_operational_phase_state_ref", "requirement_id": req_id})
+            position_ref = relation["space"]["position_ref"]
+            if position_ref is not None:
+                position = positions.get(position_ref["id"])
+                if position is None or position.get("kind") != "position_slot":
+                    failures.append({"code": "unresolved_operational_position_ref", "requirement_id": req_id})
     for requirement in projected:
         req_id = requirement["requirement_id"]
         classification = requirement["classification"]
@@ -278,7 +413,7 @@ def validate_operational_relations(question_plan, applied_plan):
         if relation.get("requirement_fingerprint") != requirement["fingerprint"]:
             failures.append({"code": "requirement_fingerprint_mismatch", "requirement_id": req_id})
         actor_ref = relation.get("actor_ref") or {}
-        if actor_ref != requirement["actor_ref"] or actor_ref.get("id") not in entities:
+        if actor_ref != requirement["actor_ref"]:
             failures.append({"code": "operational_actor_mismatch", "requirement_id": req_id})
         for dimension in ("task", "trigger", "purpose"):
             if dimension in requirement["required_dimensions"] and not _term_matches(relation.get(dimension), requirement[dimension]):
@@ -288,7 +423,7 @@ def validate_operational_relations(question_plan, applied_plan):
             if not _term_matches(actual_space.get("term"), requirement["space"]["term"]):
                 failures.append({"code": "operational_space_mismatch", "requirement_id": req_id})
             expected_position = requirement["space"].get("position_ref")
-            if expected_position is not None and (actual_space.get("position_ref") != expected_position or expected_position.get("id") not in positions):
+            if expected_position is not None and actual_space.get("position_ref") != expected_position:
                 failures.append({"code": "operational_position_mismatch", "requirement_id": req_id})
         phase_ref = relation.get("phase_state_ref") or {}
         state = state_by_id.get(phase_ref.get("id")) if phase_ref.get("kind") == "phase_state" else None
@@ -296,8 +431,8 @@ def validate_operational_relations(question_plan, applied_plan):
             failures.append({"code": "operational_phase_mismatch", "requirement_id": req_id})
         if relation.get("provenance") in {"assumed", "unknown"}:
             failures.append({"code": "operational_relation_unverified_provenance", "requirement_id": req_id})
-        if relation.get("provenance") == "derived" and relation.get("rule_id") not in ALLOWED_RULE_IDS:
-            failures.append({"code": "operational_relation_unknown_rule", "requirement_id": req_id})
+    if projection_complete and not projected:
+        checked.append("verified_no_explicit_requirements")
     status = "failed" if failures else "not_assessable" if unassessed else "passed"
     return {"schema": RELATION_SCHEMA, "status": status,
             "checked_scope": checked, "failures": failures,

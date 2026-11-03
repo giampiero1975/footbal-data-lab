@@ -55,6 +55,93 @@ def relation_fixture(plan):
 
 
 class OperationalRelationsV2Tests(unittest.TestCase):
+    def test_malformed_relation_shape_and_additional_property_fail_closed(self):
+        plan = question_plan()
+        candidate, relation, _ = relation_fixture(plan)
+        del relation["assertion_mode"]
+        relation["unexpected"] = True
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("invalid_operational_relation_shape",
+                      [item["code"] for item in result["failures"]])
+
+    def test_invalid_typed_reference_and_provenance_rule_fail_closed(self):
+        plan = question_plan()
+        candidate, relation, _ = relation_fixture(plan)
+        relation["actor_ref"]["kind"] = "position_slot"
+        relation["provenance"] = "derived"
+        relation["rule_id"] = "unknown:rule"
+        result = v2.validate_operational_relations(plan, candidate)
+        codes = [item["code"] for item in result["failures"]]
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("invalid_actor_ref", codes)
+        self.assertIn("operational_relation_unknown_rule", codes)
+
+    def test_refs_are_resolved_even_for_unassessed_requirement(self):
+        plan = question_plan()
+        candidate, relation, _ = relation_fixture(plan)
+        plan["relation_requirements"][0]["requirement_type"] = "inferred"
+        relation["actor_ref"] = {"id": "actor:missing", "kind": "actor_ref"}
+        relation["phase_state_ref"] = {"id": "state:missing", "kind": "phase_state"}
+        relation["space"]["position_ref"] = {"id": "slot:missing", "kind": "position_slot"}
+        result = v2.validate_operational_relations(plan, candidate)
+        codes = [item["code"] for item in result["failures"]]
+        self.assertEqual(result["status"], "failed")
+        self.assertIn("unresolved_operational_actor_ref", codes)
+        self.assertIn("unresolved_operational_phase_state_ref", codes)
+        self.assertIn("unresolved_operational_position_ref", codes)
+
+    def test_missing_and_duplicate_requirement_ids_are_rejected(self):
+        missing = question_plan()
+        missing["relation_requirements"][0].pop("requirement_id")
+        candidate = v2.build_v2_plan(missing["state_contract"])
+        missing_result = v2.validate_operational_relations(missing, candidate)
+        self.assertIn("missing_requirement_id", [item["code"] for item in missing_result["failures"]])
+        duplicate = question_plan()
+        duplicate["relation_requirements"].append(deepcopy(duplicate["relation_requirements"][0]))
+        duplicate_result = v2.validate_operational_relations(duplicate, candidate)
+        self.assertIn("duplicate_requirement_id", [item["code"] for item in duplicate_result["failures"]])
+
+    def test_absent_projection_is_not_assessable_but_verified_empty_passes(self):
+        absent = question_plan()
+        absent.pop("relation_requirements")
+        candidate = v2.build_v2_plan(absent["state_contract"])
+        absent_result = v2.validate_operational_relations(absent, candidate)
+        self.assertEqual(absent_result["status"], "not_assessable")
+        self.assertIn("relation_requirements_projection_absent",
+                      [item["code"] for item in absent_result["unassessed_scope"]])
+        empty = question_plan()
+        empty["relation_requirements"] = []
+        empty_result = v2.validate_operational_relations(empty, candidate)
+        self.assertEqual(empty_result["status"], "passed")
+        self.assertIn("verified_no_explicit_requirements", empty_result["checked_scope"])
+
+    def test_incomplete_projection_is_not_assessable(self):
+        plan = question_plan()
+        plan["relation_requirements"][0].pop("question_part_id")
+        candidate = v2.build_v2_plan(plan["state_contract"])
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "not_assessable")
+        self.assertIn("incomplete_relation_requirement_projection",
+                      [item["code"] for item in result["unassessed_scope"]])
+
+    def test_mixed_known_and_unknown_phase_is_not_representable(self):
+        plan = question_plan()
+        plan["relation_requirements"][0]["phase_terms"] = ["alla perdita", "fase aliena"]
+        projected = v2.project_relation_requirements(plan)
+        self.assertEqual(projected[0]["classification"], "explicit_not_representable")
+        self.assertIsNone(projected[0]["phase"])
+        candidate = v2.build_v2_plan(plan["state_contract"])
+        result = v2.validate_operational_relations(plan, candidate)
+        self.assertEqual(result["status"], "not_assessable")
+
+    def test_extraction_provenance_is_fingerprint_bound(self):
+        projected = v2.project_relation_requirements(question_plan())[0]
+        changed = deepcopy(projected)
+        changed["extraction_provenance"] = {"provenance": "explicit", "rule_id": None}
+        self.assertNotEqual(v2.requirement_fingerprint(projected),
+                            v2.requirement_fingerprint(changed))
+
     def test_v1_identity_and_schema_remain_unchanged(self):
         self.assertEqual(v1.SCHEMA, "tactical_state_contract_v1")
         self.assertEqual(v1.CONTRACT_VERSION, "1.1.0")
