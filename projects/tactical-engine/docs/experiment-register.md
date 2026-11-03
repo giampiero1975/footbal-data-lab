@@ -2268,3 +2268,20 @@ operativo e dello staging V1 invariati. Report:
 `docs/tactical-state-contract-v2-git-bundle-transfer-01.md`. Decisione: bundle e
 staging **VALIDATO**; collection, Gate, integrazione e certificazione **BLOCCATO**.
 Nessuna inferenza, Chroma/API, test E2E, servizio o checkout preesistente modificato.
+
+## RD-TSC-V2-RUNTIME-PREREQUISITES-01 — collection/ambiente (2026-11-03)
+
+Attivita: attestare collection candidata e compatibilita Python senza Gate. Metodo:
+SQLite stdlib URI `mode=ro&immutable=1`, `PRAGMA query_only=ON`, schema osservato e
+conteggio aggregato `collections → segments → embeddings`; nessun PersistentClient,
+documento, embedding o retrieval letto. Risultato: collection
+`dribbling_tactics_v5_multisource_drive11_figc5_candidate_v1`, dimensione 1024,
+count logico 6410. Database invariato prima/dopo per SHA-256
+`0d19fbea4df3c4f418e7b55c182c0e268862a53d4f903ddc6cd8a7fe8e74a35b`, size,
+mtime e sidecar assenti. Python 3.12.3; chromadb 1.5.9,
+llama-index-embeddings-ollama 0.10.0 e sentence-transformers 6.1.0 presenti;
+sei file staging analizzati con AST senza import applicativi. Checkout invariati e
+artefatti Gate assenti. Report:
+`docs/tactical-state-contract-v2-runtime-prerequisites-01.md`. Decisione:
+prerequisiti **VALIDATO**; Gate **DA FARE** previa autorizzazione, integrazione e
+certificazione **BLOCCATO**. Nessuna inferenza, query semantica o servizio modificato.
