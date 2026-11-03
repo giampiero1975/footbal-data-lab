@@ -2413,3 +2413,19 @@ soltanto in shadow; readiness **ESEGUITO**, nessuna promozione a **VALIDATO** pe
 Recuperare prima i report storici verificandone gli hash, poi predisporre un Gold S2
 indipendente con doppia review/adjudication/freeze; nessuna nuova inferenza implicita.
 S2, Gold S2, Gate, integrazione e certificazione **BLOCCATO**.
+
+## RD-TSC-V2-D3-S2-HISTORICAL-EVIDENCE-RECOVERY-01 — riconciliazione probatoria (2026-11-03)
+
+Attivita: recuperare gli originali NLI/alignment gia eseguiti senza rigenerarli.
+Script: nessun test o benchmark; sole ricerche nominali, letture e confronti metadata
+in Git/storia, checkout locali, allegati e checkout operativo/staging V1/V2 sulla VPS.
+Manifest: `evaluation/nli_historical_evidence_reconciliation_v1.json`; report:
+`docs/tactical-state-contract-v2-s2-historical-evidence-recovery-01.md`. Risultato:
+11 artefatti cercati, 0 verificati, 0 parzialmente verificati, 11 non reperiti e 0
+con integrita divergente. Le directory archivio VPS esistono ma contengono soltanto
+evidenze FIGC discovery/Drive11 non pertinenti; `evaluation/reports` operativo e
+assente. Nessun hash osservato, predizione o matrice e stato ricostruito. Decisione:
+ricognizione **VALIDATO** per completezza probatoria; recupero dei singoli originali
+**BLOCCATO** fino a un backup/copia nominata e autorizzata. Metriche aggregate e
+decisione readiness B invariati; Gold S2, S2, Gate, integrazione e certificazione
+**BLOCCATO**. Nessuna inferenza, NLI, reviewer, test, Chroma o modifica runtime.
