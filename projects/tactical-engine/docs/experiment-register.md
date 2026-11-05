@@ -2446,6 +2446,22 @@ decidere volume, fonti/diritti, ruoli e indipendenza autore. Schema/validator e
 inventario fonti **DA FARE**; raccolta, annotazione, adjudication, freeze, Gold S2,
 S2, Gate, integrazione e certificazione **BLOCCATO** fino ad autorizzazioni separate.
 
+## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
+
+Attivita: attribuire il falso positivo reale `q3_04` usando soltanto artefatto,
+dataset e codice pubblicati. Script: nessuno eseguito; report:
+`docs/tactical-semantic-support-s2-q3-04-forensic-01.md`. Risultato: SHA-256
+artefatto `0768ca58...` conforme; claim/evidenza e digest riconciliati; input NLI
+ricostruito integralmente. Fonte `toglie spazio` e claim `lascia molto spazio`
+sono incompatibili sullo stesso soggetto e spazio. Ordine, serializzazione,
+mapping, parsing e fail-closed corretti; nessun fallback o troncamento osservato.
+Decisione: causa **B, errore semantico del judge**, con ragionamento interno non
+determinabile per assenza di raw response/rationale; analisi **ESEGUITO** e
+ricostruzione **VALIDATO** offline. Unica remediation proposta, non implementata:
+contratto versionato che renda esplicito il controllo della direzione relazionale.
+Correzione **DA FARE**; affidabilita, Gate, integrazione e certificazione
+**BLOCCATO**. Nessuna inferenza, test o modifica applicativa.
+
 ## RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 — Fase B (2026-11-05)
 
 Attivita: eseguire una sola osservazione reale D3→S2→NLI V2→Qwen 3.5 9B nella

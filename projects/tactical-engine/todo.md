@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO e VALIDATO offline; remediation DA FARE**
+  RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01: artefatto runtime verificato e percorso
+  fixture→runner→S2→bridge→judge→label ricostruito senza inferenze. Claim e fonte
+  condividono soggetto e spazio, ma la fonte dice `toglie spazio` e la claim
+  `lascia molto spazio`: `contradicted` resta corretta. Nessuna perdita,
+  inversione, rimappatura, troncamento o fallback dimostrato; causa classificata
+  **B, errore semantico del judge**, con meccanismo interno non determinabile per
+  assenza di raw response/rationale. Proposta una sola rettifica versionata del
+  contratto sulla direzione delle relazioni, non implementata. Affidabilita,
+  Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-q3-04-forensic-01.md`.
+
 - [x] **ESEGUITO; percorso tecnico VALIDATO nel singolo tentativo, semantica BLOCCATO**
   RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 Fase B: unico run reale autorizzato
   completato in 52 s, exit 0, tre inferenze e zero errori/retry/repair. Tre
