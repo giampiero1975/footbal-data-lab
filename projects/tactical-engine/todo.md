@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO nel perimetro digest cross-platform**
+  RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 remediation: aggiunta regola
+  `text eol=lf` limitata al dataset e allineata la fixture al digest del blob Git
+  `8e3933f...`; blob `4523eb7...`, contenuto JSON e tre casi congelati invariati.
+  Clone Windows fresco con `core.autocrlf=true`: 7.612 byte, 139 LF, zero CRLF,
+  digest conforme; dataset Linux osservato con stessi byte/digest. Test mirati
+  4/4 PASS, incluso rifiuto del dataset alterato. Il nuovo commit non e stato
+  applicato allo staging Linux protetto; Fase B **DA FARE** e **BLOCCATO** fino
+  ad autorizzazione separata. Report
+  `docs/tactical-semantic-support-s2-cross-platform-digest-remediation-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline nel perimetro mock**
   RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 Fase A: aggiunti runner opt-in e
   fixture content-addressed per tre casi umani gia versionati (`supported`,

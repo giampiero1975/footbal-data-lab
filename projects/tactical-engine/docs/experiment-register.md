@@ -2446,6 +2446,21 @@ decidere volume, fonti/diritti, ruoli e indipendenza autore. Schema/validator e
 inventario fonti **DA FARE**; raccolta, annotazione, adjudication, freeze, Gold S2,
 S2, Gate, integrazione e certificazione **BLOCCATO** fino ad autorizzazioni separate.
 
+## RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 — digest cross-platform (2026-11-05)
+
+Attivita: correggere il solo mismatch CRLF/LF mantenendo la verifica byte-for-byte.
+Script: runner invariato; `.gitattributes` limita `text eol=lf` al dataset;
+fixture e aspettativa del test aggiornate al digest blob `8e3933f...`; commit
+tecnico `596bc3c6808bbd2d6d9353a0ef8eff823883a605`; report:
+`docs/tactical-semantic-support-s2-cross-platform-digest-remediation-01.md`.
+Risultato: blob Git `4523eb7...`, 7.612 byte e JSON invariati; clone Windows
+fresco con `core.autocrlf=true` materializza 139 LF, zero CRLF e digest conforme;
+dataset Linux gia presente osservato con stessi byte/digest. Test mirati 4/4
+PASS, incluso rifiuto di un digest alterato. Decisione: remediation
+**IMPLEMENTATO**, verifiche **ESEGUITO**, proprieta coperte **VALIDATO** nel
+perimetro dichiarato. Staging Linux non aggiornato; Fase B **DA FARE** e
+**BLOCCATO** fino ad autorizzazione distinta. Nessuna inferenza o modifica VPS.
+
 ## RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 — preparazione offline (2026-11-05)
 
 Attivita: predisporre, senza inferenze, il primo esperimento reale controllato
