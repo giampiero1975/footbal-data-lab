@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://football-data-lab.local/schemas/tactical_semantic_support_gold_s2_v1.json",
+  "title": "FOOTBALL-DATA-LAB Tactical Semantic Support Gold S2 V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "dataset_version", "status", "canonicalization_profile",
+    "independence_policy", "provenance_records", "review_ledger", "qa_records",
+    "holder_authorizations", "cases", "dataset_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "tactical_semantic_support_gold_s2_v1"},
+    "dataset_version": {"type": "string", "minLength": 1},
+    "status": {"enum": ["draft", "frozen"]},
+    "canonicalization_profile": {"const": "gold_s2_rfc8785_nfc_v1"},
+    "independence_policy": {"$ref": "#/$defs/independencePolicy"},
+    "provenance_records": {"type": "array", "items": {"$ref": "#/$defs/provenanceRecord"}},
+    "review_ledger": {"type": "array", "items": {"$ref": "#/$defs/reviewRecord"}},
+    "qa_records": {"type": "array", "items": {"$ref": "#/$defs/qaRecord"}},
+    "holder_authorizations": {"type": "array", "items": {"$ref": "#/$defs/authorization"}},
+    "cases": {"type": "array", "items": {"$ref": "#/$defs/case"}},
+    "dataset_sha256": {"oneOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]}
+  },
+  "$defs": {
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "id": {"type": "string", "minLength": 1},
+    "split": {"enum": ["development", "calibration", "holdout", "adversarial"]},
+    "label": {"enum": ["supported", "contradicted", "insufficient"]},
+    "span": {
+      "type": "object", "additionalProperties": false,
+      "required": ["start", "end", "text"],
+      "properties": {
+        "start": {"type": "integer", "minimum": 0},
+        "end": {"type": "integer", "minimum": 0},
+        "text": {"type": "string"}
+      }
+    },
+    "independencePolicy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_disjoint_required", "document_disjoint_required", "near_duplicate_disjoint_required", "author_disjoint_required"],
+      "properties": {
+        "source_disjoint_required": {"type": "boolean"},
+        "document_disjoint_required": {"type": "boolean"},
+        "near_duplicate_disjoint_required": {"type": "boolean"},
+        "author_disjoint_required": {"type": "boolean"}
+      }
+    },
+    "provenanceRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["provenance_record_id", "source_id", "document_id", "document_version", "author_group_id", "near_duplicate_cluster_id", "source_content", "source_sha256", "rights_status", "availability_status"],
+      "properties": {
+        "provenance_record_id": {"$ref": "#/$defs/id"},
+        "source_id": {"$ref": "#/$defs/id"},
+        "document_id": {"$ref": "#/$defs/id"},
+        "document_version": {"$ref": "#/$defs/id"},
+        "author_group_id": {"oneOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+        "near_duplicate_cluster_id": {"oneOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+        "source_content": {"type": ["string", "null"]},
+        "source_sha256": {"$ref": "#/$defs/hash"},
+        "rights_status": {"enum": ["active", "revoked", "unknown"]},
+        "availability_status": {"enum": ["verified", "unavailable", "unknown"]}
+      }
+    },
+    "reviewRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["review_id", "case_id", "role", "reviewer_id", "object_sha256", "label", "evidence_spans", "rationale", "blinded_to_peer", "blinded_to_model", "created_at"],
+      "properties": {
+        "review_id": {"$ref": "#/$defs/id"}, "case_id": {"$ref": "#/$defs/id"},
+        "role": {"enum": ["A", "B", "C"]}, "reviewer_id": {"$ref": "#/$defs/id"},
+        "object_sha256": {"$ref": "#/$defs/hash"}, "label": {"$ref": "#/$defs/label"},
+        "evidence_spans": {"type": "array", "items": {"$ref": "#/$defs/evidenceSpanRef"}},
+        "rationale": {"type": "string", "minLength": 1},
+        "blinded_to_peer": {"type": "boolean"}, "blinded_to_model": {"type": "boolean"},
+        "created_at": {"type": "string", "minLength": 1}
+      }
+    },
+    "qaRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["qa_id", "case_id", "reviewer_id", "object_sha256", "status", "checks", "rationale", "created_at"],
+      "properties": {
+        "qa_id": {"$ref": "#/$defs/id"}, "case_id": {"$ref": "#/$defs/id"},
+        "reviewer_id": {"$ref": "#/$defs/id"}, "object_sha256": {"$ref": "#/$defs/hash"},
+        "status": {"enum": ["pass", "fail"]},
+        "checks": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "rationale": {"type": "string", "minLength": 1}, "created_at": {"type": "string", "minLength": 1}
+      }
+    },
+    "authorization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["authorization_id", "scope", "dataset_version", "holder_id", "approved_at"],
+      "properties": {
+        "authorization_id": {"$ref": "#/$defs/id"}, "scope": {"const": "freeze"},
+        "dataset_version": {"$ref": "#/$defs/id"}, "holder_id": {"$ref": "#/$defs/id"},
+        "approved_at": {"type": "string", "minLength": 1}
+      }
+    },
+    "condition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["condition_id", "text", "assertion"],
+      "properties": {
+        "condition_id": {"$ref": "#/$defs/id"}, "text": {"type": "string", "minLength": 1},
+        "assertion": {"enum": ["explicit", "inferred", "unknown"]}
+      }
+    },
+    "quantifier": {
+      "type": "object", "additionalProperties": false,
+      "required": ["quantifier_id", "text", "scope"],
+      "properties": {
+        "quantifier_id": {"$ref": "#/$defs/id"}, "text": {"type": "string", "minLength": 1},
+        "scope": {"type": "string", "minLength": 1}
+      }
+    },
+    "actor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["actor_id", "label"],
+      "properties": {"actor_id": {"$ref": "#/$defs/id"}, "label": {"type": "string", "minLength": 1}}
+    },
+    "evidenceUnit": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "provenance_record_id", "location_refs", "text", "context_before", "context_after", "normalization", "evidence_sha256"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/id"}, "provenance_record_id": {"$ref": "#/$defs/id"},
+        "location_refs": {"type": "array", "items": {"type": "string", "minLength": 1}, "minItems": 1},
+        "text": {"type": "string", "minLength": 1}, "context_before": {"type": "string"},
+        "context_after": {"type": "string"}, "normalization": {"const": "utf8_nfc_lf_v1"},
+        "evidence_sha256": {"$ref": "#/$defs/hash"}
+      }
+    },
+    "evidenceSpanRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "span"],
+      "properties": {"evidence_id": {"$ref": "#/$defs/id"}, "span": {"$ref": "#/$defs/span"}}
+    },
+    "case": {
+      "type": "object", "additionalProperties": false,
+      "required": ["case_id", "case_version", "split_id", "evidence", "composition", "claim", "taxonomy", "gold_label", "gold_rationale", "reviews", "case_subject_sha256", "freeze"],
+      "properties": {
+        "case_id": {"$ref": "#/$defs/id"}, "case_version": {"$ref": "#/$defs/id"},
+        "split_id": {"$ref": "#/$defs/split"},
+        "evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidenceUnit"}},
+        "composition": {
+          "type": "object", "additionalProperties": false,
+          "required": ["mode", "declared_evidence_ids"],
+          "properties": {
+            "mode": {"enum": ["single_source", "multi_source"]},
+            "declared_evidence_ids": {"type": "array", "items": {"$ref": "#/$defs/id"}, "minItems": 1}
+          }
+        },
+        "claim": {
+          "type": "object", "additionalProperties": false,
+          "required": ["text", "context", "conditions", "quantifiers", "actors", "phase", "relation_refs", "requirement_refs", "claim_sha256"],
+          "properties": {
+            "text": {"type": "string", "minLength": 1}, "context": {"type": "string"},
+            "conditions": {"type": "array", "items": {"$ref": "#/$defs/condition"}},
+            "quantifiers": {"type": "array", "items": {"$ref": "#/$defs/quantifier"}},
+            "actors": {"type": "array", "items": {"$ref": "#/$defs/actor"}},
+            "phase": {"type": "string", "minLength": 1},
+            "relation_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+            "requirement_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+            "claim_sha256": {"$ref": "#/$defs/hash"}
+          }
+        },
+        "taxonomy": {
+          "type": "object", "additionalProperties": false,
+          "required": ["primary_category", "cross_cutting_properties"],
+          "properties": {
+            "primary_category": {"enum": ["direct_literal_support", "faithful_paraphrase", "partial_or_missing_support", "explicit_incompatibility", "valid_multi_source_support", "invalid_multi_source_composition", "context_dependent", "terminological_ambiguity"]},
+            "cross_cutting_properties": {"type": "array", "uniqueItems": true, "items": {"enum": ["negation", "universal_or_absolute_quantifier", "restricted_quantifier", "necessary_condition", "sufficient_condition", "omitted_condition", "correct_causality", "inverted_causality", "correct_actor", "wrong_actor", "correct_phase", "wrong_phase", "scope_or_generalization", "complex_tactical_relation", "multi_proposition_adversarial", "minimal_contrast", "single_source", "multi_source", "terminological_ambiguity", "document_context_dependency"]}}
+          }
+        },
+        "gold_label": {"oneOf": [{"$ref": "#/$defs/label"}, {"type": "null"}]},
+        "gold_rationale": {
+          "type": "object", "additionalProperties": false,
+          "required": ["evidence_spans", "explanation", "scope_notes", "ambiguity"],
+          "properties": {
+            "evidence_spans": {"type": "array", "items": {"$ref": "#/$defs/evidenceSpanRef"}},
+            "explanation": {"type": "string"}, "scope_notes": {"type": "string"},
+            "ambiguity": {"enum": ["none", "declared", "not_adjudicable"]}
+          }
+        },
+        "reviews": {
+          "type": "object", "additionalProperties": false,
+          "required": ["review_a_id", "review_b_id", "disagreement_declared", "adjudication_id", "qa_d_id"],
+          "properties": {
+            "review_a_id": {"type": ["string", "null"]}, "review_b_id": {"type": ["string", "null"]},
+            "disagreement_declared": {"type": "boolean"}, "adjudication_id": {"type": ["string", "null"]},
+            "qa_d_id": {"type": ["string", "null"]}
+          }
+        },
+        "case_subject_sha256": {"oneOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+        "freeze": {
+          "type": "object", "additionalProperties": false,
+          "required": ["status", "case_sha256", "dataset_version"],
+          "properties": {
+            "status": {"enum": ["draft", "frozen"]},
+            "case_sha256": {"oneOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]},
+            "dataset_version": {"type": "string", "minLength": 1}
+          }
+        },
+        "d3_mapping": {"oneOf": [{"$ref": "#/$defs/d3Mapping"}, {"type": "null"}]}
+      }
+    },
+    "d3Mapping": {
+      "type": "object", "additionalProperties": false,
+      "required": ["statement", "section_text", "section_span", "conditions", "relation_refs", "requirement_refs", "evidence_refs", "evidence_anchors", "plan_fingerprint", "statement_sha256", "assessment_s1"],
+      "properties": {
+        "statement": {"type": "string", "minLength": 1}, "section_text": {"type": "string", "minLength": 1},
+        "section_span": {"$ref": "#/$defs/span"}, "conditions": {"type": "array", "items": {"$ref": "#/$defs/condition"}},
+        "relation_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "requirement_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "evidence_anchors": {"type": "array", "items": {"$ref": "#/$defs/evidenceSpanRef"}},
+        "plan_fingerprint": {"$ref": "#/$defs/hash"}, "statement_sha256": {"$ref": "#/$defs/hash"},
+        "assessment_s1": {
+          "oneOf": [
+            {"type": "null"},
+            {"type": "object", "additionalProperties": false, "required": ["content", "sha256"], "properties": {"content": {"type": ["object", "null"]}, "sha256": {"$ref": "#/$defs/hash"}}}
+          ]
+        }
+      }
+    }
+  }
+}

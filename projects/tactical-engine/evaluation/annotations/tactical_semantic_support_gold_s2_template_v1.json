@@ -1,0 +1,18 @@
+{
+  "schema_version": "tactical_semantic_support_gold_s2_v1",
+  "dataset_version": "0.0.0-draft",
+  "status": "draft",
+  "canonicalization_profile": "gold_s2_rfc8785_nfc_v1",
+  "independence_policy": {
+    "source_disjoint_required": true,
+    "document_disjoint_required": true,
+    "near_duplicate_disjoint_required": true,
+    "author_disjoint_required": false
+  },
+  "provenance_records": [],
+  "review_ledger": [],
+  "qa_records": [],
+  "holder_authorizations": [],
+  "cases": [],
+  "dataset_sha256": null
+}
