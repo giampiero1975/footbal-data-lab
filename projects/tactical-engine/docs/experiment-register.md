@@ -2574,3 +2574,19 @@ inventari 34/157; questo non prova indipendenza. Validazione mirata `STATUS VALI
 errori 0. Decisione: registrazione **ESEGUITO**, struttura/digest **VALIDATO**;
 candidato `blocked_unknown`, nessuno split; diritti operativi, exposure,
 indipendenza, selezione, Gold e S2 **BLOCCATO**. Nessuna attivita VPS/runtime.
+
+## RD-TSC-V2-D3-SEMANTIC-SUPPORT-S2-SHADOW-ADAPTER-01 — offline (2026-11-05)
+
+Attivita: collegare claim D3 ed evidenze a un judge semantico iniettato senza
+alterare l'autorita S1. Script: nuovo
+`scripts/v5_tactical_semantic_support_s2.py`, hook opt-in in
+`scripts/v5_tactical_state_dual_output_v1.py`; commit tecnico
+`8aa248957a9c6500861a049c6621ea71aa02bc61`; report:
+`docs/tactical-state-contract-v2-d3-semantic-support-s2-shadow-adapter-01.md`.
+Risultato: record shadow content-addressed con digest attempt/piano/claim/S1/
+evidenze/config, binding autorevoli, label+rationale, aggregazione conservativa,
+`promotion_authorized=false`; errori e output malformati `not_evaluable`.
+Test nuovi 8/8, regressioni S1 12/12 e dual 17/17 PASS; compilazione e diff check
+PASS. Decisione: adapter **IMPLEMENTATO**, test **ESEGUITO**, orchestrazione,
+isolamento e fail-closed **VALIDATO offline**. Affidabilita semantica, Gold S2,
+Gate, integrazione e certificazione **BLOCCATO**. Nessuna inferenza o runtime.

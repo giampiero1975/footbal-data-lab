@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline nel perimetro mock**
+  RD-TSC-V2-D3-SEMANTIC-SUPPORT-S2-SHADOW-ADAPTER-01: aggiunto adapter D3→S2
+  content-addressed con judge esclusivamente iniettato, verifica di attempt/piano,
+  claim, S1, evidenze e binding, aggregazione senza maggioranza e
+  `promotion_authorized=false`. Hook dual-output strettamente opt-in: S1,
+  `overall_status` e `promoted_answer` invariati. Test 8/8 S2 + 12/12 S1 + 17/17
+  dual PASS; compilazione e diff check PASS. Nessuna inferenza reale. Affidabilita
+  semantica, Gold S2, Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-state-contract-v2-d3-semantic-support-s2-shadow-adapter-01.md`.
+
 - [x] **ESEGUITO; record VALIDATO, eleggibilita BLOCCATO**
   RD-S2-FIRST-REAL-SOURCE-CANDIDATE-01: registrato nel Candidate Registry V1
   l'articolo Frontiers DOI `10.3389/fspor.2022.1019990`. Identita/version of
