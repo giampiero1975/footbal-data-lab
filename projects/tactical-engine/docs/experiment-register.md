@@ -2511,3 +2511,19 @@ holdout 0. Decisione: arricchimento **ESEGUITO**, ma fattibilita 390/606 non
 dimostrata; provenienza/diritti **DA FARE**, selezione, Gold S2, S2, Gate,
 integrazione e certificazione **BLOCCATO**. Nessun download, contenuto, Chroma,
 retrieval, modello, benchmark, caso, label o freeze.
+
+## RD-TSC-V2-D3-S2-CATALOG-METADATA-EXPORT-01 — export API (2026-11-05)
+
+Attivita: usare come nuova evidenza il catalogo FIGC5 gia caricato, tramite soli
+GET autenticati non generativi e proiezione locale dei campi ammessi. Script:
+nessun file operativo; endpoint `/v1/metrics`, `/v1/knowledge/stats` e due pagine
+di `/v1/knowledge/documents`. Manifest:
+`evaluation/gold_s2_catalog_metadata_export_v1.json`; report:
+`docs/tactical-state-contract-v2-s2-catalog-metadata-export-01.md`. Risultato:
+157 record unici, somma 6.410 chunk, provenienza operativa completa 157/157,
+25 match verificati con le 34 fonti precedenti e 132 identita catalogo nuove.
+Esclusi testi, chunk, embedding, percorsi privati e credenziali; Chroma/SQLite non
+aperti direttamente. Autore/organizzazione/edizione/lingua/digest/diritti 0/157;
+holdout 0. Decisione: export **ESEGUITO**, identita operative **VALIDATO** nel
+perimetro API; fattibilita 390/606, selezione, Gold S2 e S2 **BLOCCATO**. Nessun
+servizio, checkout, collection o database modificato.

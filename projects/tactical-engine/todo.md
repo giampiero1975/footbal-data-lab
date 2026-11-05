@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO e VALIDATO nel perimetro metadata API**
+  RD-TSC-V2-D3-S2-CATALOG-METADATA-EXPORT-01: endpoint read-only
+  `/v1/knowledge/documents`, due pagine, 157/157 `source` unici e somma 6.410
+  chunk; stats/catalog/worker invariati. Proiezione priva di testi, chunk,
+  embedding, credenziali e percorsi privati. Match verificati con inventario
+  precedente 25/34; 132 identita catalogo nuove rispetto alle 34 note. Autori,
+  versioni, lingua, digest e diritti 0/157; holdout 0. Fattibilita 390/606 ancora
+  **BLOCCATO**. Manifest `evaluation/gold_s2_catalog_metadata_export_v1.json`;
+  report `docs/tactical-state-contract-v2-s2-catalog-metadata-export-01.md`.
+
 - [x] **ESEGUITO** RD-TSC-V2-D3-S2-CORPUS-METADATA-ENRICHMENT-01:
   riconciliazione repository-only della linea corpus 141→152→157. Documentata la
   costruzione aggregata 141 + 11 Drive11 + 5 FIGC5; le 16 aggiunte sono gia nelle
