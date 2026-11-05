@@ -2445,3 +2445,21 @@ annotazione, test o modello prodotto. Decisione: design **VALIDATO**; il titolar
 decidere volume, fonti/diritti, ruoli e indipendenza autore. Schema/validator e
 inventario fonti **DA FARE**; raccolta, annotazione, adjudication, freeze, Gold S2,
 S2, Gate, integrazione e certificazione **BLOCCATO** fino ad autorizzazioni separate.
+
+## RD-TSC-V2-D3-S2-GOLD-SCHEMA-VALIDATOR-01 — implementazione offline (2026-11-05)
+
+Attivita: implementare esclusivamente schema, manifest e validatore Gold S2 V1.
+Script: `scripts/validate_tactical_semantic_support_gold_s2_v1.py`; commit tecnico
+`d0808df`; report:
+`docs/tactical-state-contract-v2-s2-gold-schema-validator-01.md`. Risultato: nuovi
+contratti separati da Gold E/V, template draft con zero casi, canonicalizzazione
+RFC 8785/NFC versionata, digest di fonte/evidenza/claim/caso/dataset, riferimenti,
+split contamination, review A/B/C, QA D, autorizzazione e manifest frozen verificati
+fail-closed. I digest senza contenuto restano `unverifiable` e non possono sostenere
+un frozen. Test differenziali esclusivamente sintetici 18/18 PASS; nessuna suite
+storica ripetuta. Decisione: schema/validator **IMPLEMENTATO**, test **ESEGUITO** e
+proprieta deterministiche coperte **VALIDATO offline**. Nessuna correttezza semantica
+delle label e attestata; nessun caso reale, annotazione o freeze prodotto. Inventario
+fonti **DA FARE**; Gold S2, raccolta, annotazione, adjudication, freeze reale, S2,
+Gate, integrazione e certificazione **BLOCCATO**. D3/S1, Gold E/V e readiness B
+invariati; nessun modello, benchmark, retrieval o runtime.
