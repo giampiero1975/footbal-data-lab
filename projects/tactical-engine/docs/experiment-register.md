@@ -2429,3 +2429,19 @@ ricognizione **VALIDATO** per completezza probatoria; recupero dei singoli origi
 **BLOCCATO** fino a un backup/copia nominata e autorizzata. Metriche aggregate e
 decisione readiness B invariati; Gold S2, S2, Gate, integrazione e certificazione
 **BLOCCATO**. Nessuna inferenza, NLI, reviewer, test, Chroma o modifica runtime.
+
+## RD-TSC-V2-D3-S2-INDEPENDENT-GOLD-DESIGN-01 — progettazione Gold S2 (2026-11-05)
+
+Attivita: progettare senza popolare un Gold S2 claim-evidence indipendente. Script:
+nessuno eseguito; sole letture statiche di TODO, registro, readiness/recovery S2,
+design e implementazione S1, contratti Gold E/V, provenance, ledger, freeze,
+worksheet e dataset/campagne claim-fidelity. Report:
+`docs/tactical-state-contract-v2-s2-independent-gold-design-01.md`. Risultato: Gold
+E/V e Gold S2 separati formalmente; definiti record a tre label, tassonomia con una
+categoria primaria e proprieta trasversali, split raccomandato 606 e ridotto 390,
+source/document disjointness, doppia review cieca A/B, adjudication C, QA D,
+manifest content-addressed, freeze e protocollo shadow futuro. Nessun caso, label,
+annotazione, test o modello prodotto. Decisione: design **VALIDATO**; il titolare deve
+decidere volume, fonti/diritti, ruoli e indipendenza autore. Schema/validator e
+inventario fonti **DA FARE**; raccolta, annotazione, adjudication, freeze, Gold S2,
+S2, Gate, integrazione e certificazione **BLOCCATO** fino ad autorizzazioni separate.
