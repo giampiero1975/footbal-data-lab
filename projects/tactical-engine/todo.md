@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-PANEL-RUNTIME-READINESS-AUDIT-01: audit statico e singola
+  ricognizione SSH read-only del pannello pubblico e del runtime VPS. HTTPS panel
+  e health 200, API/worker/Nginx/Ollama attivi, queue depth 0, catalogo FIGC5
+  caricato a 6.410 chunk/157 documenti, zero unita fallite e risorse disponibili.
+  Il checkout operativo e pero detached a `1a80fe0c`, sporco per artefatti non
+  tracciati e privo di TSC V1/V2, handoff V2 e S1; l'API pubblica non inoltra flag
+  TSC. Decisione: stabilizzare prima il pannello legacy con checkout riproducibile,
+  smoke singola e rollback; TSC solo in un successivo canale opt-in. Piano
+  operativo **DA FARE** previa autorizzazione; nessuna inferenza o modifica VPS.
+  Report `docs/panel-runtime-readiness-audit-01.md`.
+
 - [x] **ESEGUITO, non VALIDATO** V5-COVERCIANO-RAG-ONLY-100-01: il titolare ha
   ridotto la baseline a 10 casi e imposto l'arresto esatto al caso 10. Flusso
   Gemini Cloud domanda → pannello → RAG → Gemini Cloud voto sulla risposta RAG

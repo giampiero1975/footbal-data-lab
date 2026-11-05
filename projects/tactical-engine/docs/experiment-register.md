@@ -2481,3 +2481,18 @@ ricognizione **VALIDATO** nel perimetro effettivo; selezione e fattibilita 390/6
 raccolta, annotazione, adjudication, freeze, Gold S2, S2, Gate, integrazione e
 certificazione **BLOCCATO**. Nessun download, scraping, modello, benchmark,
 retrieval, Chroma o modifica ai contratti esistenti.
+
+## RD-PANEL-RUNTIME-READINESS-AUDIT-01 — audit read-only (2026-11-05)
+
+Attivita: riconciliare il pannello pubblico, il percorso applicativo e il runtime
+VPS senza inferenze o modifiche. Script: nessuno eseguito; letture statiche del
+repository e una sessione SSH read-only. Report:
+`docs/panel-runtime-readiness-audit-01.md`. Risultato: panel HTTPS e health HTTP
+200; API, worker, Nginx e Ollama attivi; queue depth 0; catalogo FIGC5 caricato a
+6.410 chunk e 157 documenti; zero unita fallite, disco al 33% e circa 14 GiB RAM
+disponibili. Il checkout operativo e detached a `1a80fe0c`, contiene artefatti non
+tracciati ed e privo dei moduli TSC V1/V2, handoff V2 e S1; l'API pubblica non
+passa flag TSC al runner. Decisione: audit **ESEGUITO**; raccomandato stabilizzare
+prima il percorso legacy con deploy riproducibile, smoke singola e rollback, poi
+valutare TSC in canale opt-in separato. Piano operativo **DA FARE** previa
+autorizzazione; nessuna nuova integrazione o certificazione attribuita.
