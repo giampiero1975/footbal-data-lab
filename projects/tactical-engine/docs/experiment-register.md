@@ -2446,6 +2446,22 @@ decidere volume, fonti/diritti, ruoli e indipendenza autore. Schema/validator e
 inventario fonti **DA FARE**; raccolta, annotazione, adjudication, freeze, Gold S2,
 S2, Gate, integrazione e certificazione **BLOCCATO** fino ad autorizzazioni separate.
 
+## RD-TSC-V2-D3-S2-SPATIAL-RELATION-REMEDIATION-01 — offline (2026-11-05)
+
+Attivita: implementare una versione NLI isolata per relazioni inverse dopo il
+falso positivo `q3_04`. Script:
+`scripts/shadow_nli_spatial_relations_v1_inference.py`; commit tecnico
+`2934d234868a1f4c6e05e9571a76d7a642eb3b86`; report:
+`docs/tactical-semantic-support-s2-spatial-relation-remediation-01.md`.
+Risultato: contratto `nli_spatial_relations_v1` richiede identita di soggetto,
+referente, condizioni e fase prima di classificare predicati direzionalmente
+incompatibili; assenza di supporto resta `insufficient`. Riusa schema/parser V2
+solo alla chiamata esplicita; nessun routing o default modificato. Test nuovi
+6/6 PASS, compilazione e diff check PASS; V2 invariato per blob e fingerprint
+dell'istruzione. Decisione: contratto **IMPLEMENTATO**, test **ESEGUITO**,
+isolamento e proprieta statiche **VALIDATO** offline. Efficacia semantica,
+integrazione, Gate e certificazione **BLOCCATO**. Nessuna inferenza o runtime.
+
 ## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
 
 Attivita: attribuire il falso positivo reale `q3_04` usando soltanto artefatto,

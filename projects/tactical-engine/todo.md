@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; efficacia BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-RELATION-REMEDIATION-01: aggiunto contratto opt-in
+  `nli_spatial_relations_v1` per confrontare soggetto, referente, direzione,
+  condizioni e fase, distinguendo predicati inversi da semplice assenza di
+  supporto. Schema/label e fail-closed V2 riutilizzati lazily; V2, bridge,
+  runner e routing invariati. Test differenziali nuovi 6/6 PASS, compilazione e
+  diff check PASS; nessuna inferenza. Contratto **IMPLEMENTATO**, proprieta
+  statiche **VALIDATO** offline; efficacia reale, integrazione, Gate e
+  certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-relation-remediation-01.md`.
+
 - [x] **ESEGUITO e VALIDATO offline; remediation DA FARE**
   RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01: artefatto runtime verificato e percorso
   fixture→runner→S2→bridge→judge→label ricostruito senza inferenze. Claim e fonte
