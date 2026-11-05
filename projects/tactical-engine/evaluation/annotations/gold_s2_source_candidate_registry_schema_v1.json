@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://football-data-lab.local/schemas/gold_s2_source_candidate_registry_v1.json",
+  "title": "FOOTBALL-DATA-LAB Gold S2 Source Candidate Registry V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "registry_version", "status", "policy", "evidence_records", "candidates"],
+  "properties": {
+    "schema_version": {"const": "gold_s2_source_candidate_registry_v1"},
+    "registry_version": {"type": "string", "minLength": 1},
+    "status": {"const": "draft"},
+    "policy": {"$ref": "#/$defs/policy"},
+    "evidence_records": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "candidates": {"type": "array", "items": {"$ref": "#/$defs/candidate"}}
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1},
+    "hash": {"type": "string", "pattern": "^sha256:[0-9a-f]{64}$"},
+    "nullableId": {"oneOf": [{"$ref": "#/$defs/id"}, {"type": "null"}]},
+    "decision": {"enum": ["eligible_development", "eligible_calibration", "eligible_holdout", "eligible_adversarial", "ineligible", "blocked_unknown"]},
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["approval_status", "known_corpus_exclusion", "known_web_exclusion", "author_disjoint_policy", "rights_custodian_id", "retention_policy_approved", "publication_policy_approved", "acquisition_authorized"],
+      "properties": {
+        "approval_status": {"enum": ["approved", "not_approved"]},
+        "known_corpus_exclusion": {"enum": ["approved", "not_approved", "unknown"]},
+        "known_web_exclusion": {"enum": ["approved", "not_approved", "unknown"]},
+        "author_disjoint_policy": {"enum": ["absolute", "stratified", "not_approved"]},
+        "rights_custodian_id": {"$ref": "#/$defs/nullableId"},
+        "retention_policy_approved": {"type": "boolean"},
+        "publication_policy_approved": {"type": "boolean"},
+        "acquisition_authorized": {"type": "boolean"}
+      }
+    },
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "evidence_type", "digest", "verified", "reviewer_id", "verified_at"],
+      "properties": {
+        "evidence_id": {"$ref": "#/$defs/id"},
+        "evidence_type": {"enum": ["identity", "provenance", "digest", "rights", "retention", "exposure", "independence", "decision"]},
+        "digest": {"$ref": "#/$defs/hash"},
+        "verified": {"type": "boolean"},
+        "reviewer_id": {"$ref": "#/$defs/nullableId"},
+        "verified_at": {"type": ["string", "null"]}
+      }
+    },
+    "author": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "authority_id"],
+      "properties": {"name": {"type": "string", "minLength": 1}, "authority_id": {"$ref": "#/$defs/nullableId"}}
+    },
+    "organization": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "authority_id"],
+      "properties": {"name": {"type": "string", "minLength": 1}, "authority_id": {"$ref": "#/$defs/nullableId"}}
+    },
+    "version": {
+      "type": "object", "additionalProperties": false,
+      "required": ["edition", "date", "language", "document_id", "version_id"],
+      "properties": {"edition": {"type": "string", "minLength": 1}, "date": {"type": "string", "minLength": 1}, "language": {"type": "string", "minLength": 1}, "document_id": {"$ref": "#/$defs/id"}, "version_id": {"$ref": "#/$defs/id"}}
+    },
+    "provenance": {
+      "type": "object", "additionalProperties": false,
+      "required": ["channel", "origin_ref", "chain_status", "evidence_refs"],
+      "properties": {"channel": {"type": "string", "minLength": 1}, "origin_ref": {"type": "string", "minLength": 1}, "chain_status": {"enum": ["verified", "unknown"]}, "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/id"}}}
+    },
+    "digest": {
+      "type": "object", "additionalProperties": false,
+      "required": ["algorithm", "value", "verification_status", "evidence_ref"],
+      "properties": {"algorithm": {"const": "sha256"}, "value": {"oneOf": [{"$ref": "#/$defs/hash"}, {"type": "null"}]}, "verification_status": {"enum": ["verified_bytes", "declared_only", "unknown"]}, "evidence_ref": {"$ref": "#/$defs/nullableId"}}
+    },
+    "right": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_id", "scope", "status", "expires_at", "revoked_at", "reviewer_id"],
+      "properties": {"evidence_id": {"$ref": "#/$defs/id"}, "scope": {"enum": ["retention", "annotation", "publication"]}, "status": {"enum": ["verified", "denied", "expired", "revoked", "unknown"]}, "expires_at": {"type": ["string", "null"]}, "revoked_at": {"type": ["string", "null"]}, "reviewer_id": {"$ref": "#/$defs/nullableId"}}
+    },
+    "retention": {
+      "type": "object", "additionalProperties": false,
+      "required": ["policy_id", "status", "evidence_refs"],
+      "properties": {"policy_id": {"$ref": "#/$defs/nullableId"}, "status": {"enum": ["verified", "denied", "unknown"]}, "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}}}
+    },
+    "exposure": {
+      "type": "object", "additionalProperties": false,
+      "required": ["system", "dataset", "status", "evidence_refs"],
+      "properties": {"system": {"type": "string", "minLength": 1}, "dataset": {"type": "string", "minLength": 1}, "status": {"enum": ["verified_exposed", "verified_absent", "unknown"]}, "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/id"}}}
+    },
+    "independence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["source_disjoint", "document_disjoint", "version_disjoint", "author_disjoint", "evidence_refs"],
+      "properties": {"source_disjoint": {"enum": ["pass", "fail", "unknown"]}, "document_disjoint": {"enum": ["pass", "fail", "unknown"]}, "version_disjoint": {"enum": ["pass", "fail", "unknown"]}, "author_disjoint": {"enum": ["pass", "fail", "unknown", "not_applicable"]}, "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}}}
+    },
+    "candidate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["candidate_id", "source_id", "title", "author", "organization", "version", "provenance", "digest", "rights_evidence", "retention_policy", "annotation_permission", "publication_permission", "historical_exposure", "independence", "duplicate_cluster", "author_cluster", "proposed_split", "eligibility_decision", "evidence_refs", "reviewer", "decision_date", "decision_rationale", "gold_s2_provenance_record_id"],
+      "properties": {
+        "candidate_id": {"$ref": "#/$defs/id"}, "source_id": {"$ref": "#/$defs/id"}, "title": {"type": "string", "minLength": 1},
+        "author": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/author"}}, "organization": {"$ref": "#/$defs/organization"}, "version": {"$ref": "#/$defs/version"}, "provenance": {"$ref": "#/$defs/provenance"}, "digest": {"$ref": "#/$defs/digest"},
+        "rights_evidence": {"type": "array", "items": {"$ref": "#/$defs/right"}}, "retention_policy": {"$ref": "#/$defs/retention"},
+        "annotation_permission": {"enum": ["verified", "denied", "unknown"]}, "publication_permission": {"enum": ["verified", "denied", "unknown"]},
+        "historical_exposure": {"type": "array", "items": {"$ref": "#/$defs/exposure"}}, "independence": {"$ref": "#/$defs/independence"},
+        "duplicate_cluster": {"$ref": "#/$defs/nullableId"}, "author_cluster": {"$ref": "#/$defs/nullableId"},
+        "proposed_split": {"type": ["string", "null"], "enum": ["development", "calibration", "holdout", "adversarial", null]},
+        "eligibility_decision": {"$ref": "#/$defs/decision"}, "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/id"}},
+        "reviewer": {"$ref": "#/$defs/nullableId"}, "decision_date": {"type": ["string", "null"]}, "decision_rationale": {"type": ["string", "null"]},
+        "gold_s2_provenance_record_id": {"$ref": "#/$defs/nullableId"}
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "schema_version": "gold_s2_source_candidate_registry_v1",
+  "registry_version": "1.0.0",
+  "status": "draft",
+  "policy": {
+    "approval_status": "not_approved",
+    "known_corpus_exclusion": "unknown",
+    "known_web_exclusion": "unknown",
+    "author_disjoint_policy": "not_approved",
+    "rights_custodian_id": null,
+    "retention_policy_approved": false,
+    "publication_policy_approved": false,
+    "acquisition_authorized": false
+  },
+  "evidence_records": [],
+  "candidates": []
+}
