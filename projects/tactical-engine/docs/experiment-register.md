@@ -2607,3 +2607,19 @@ compilazione e diff check PASS. Decisione: bridge **IMPLEMENTATO**, test
 **ESEGUITO**, contratto, isolamento e fail-closed **VALIDATO offline**.
 Accuratezza semantica reale, Gold S2, Gate, integrazione e certificazione
 **BLOCCATO**. Nessuna inferenza, retrieval, Chroma, API, pannello o runtime.
+
+## RD-S2-FRONTIERS-POLICY-SCREENING-01 — documentale (2026-11-05)
+
+Attivita: predisporre una policy minima non approvata e completare lo screening
+documentale della fonte Frontiers DOI `10.3389/fspor.2022.1019990` usando soltanto
+evidenze gia registrate e termini ufficiali pubblici. Script: nessuno; report:
+`docs/gold-s2-frontiers-policy-screening-01.md`. Risultato: identita, version of
+record, digest e dichiarazione CC BY restano verificati; CC BY consente in linea
+tecnica riproduzione e adattamento con attribuzione, indicazione delle modifiche
+e nessuna restrizione aggiuntiva, ma la decisione operativa umana non e stata
+assunta. Zero match esatti nei registri 34/157 non dimostrano disjointness;
+esposizione storica, version cluster e author cluster restano `unknown`.
+Candidate Registry invariato e validatore non rieseguito. Decisione: screening
+**ESEGUITO**; policy e nomina custode **DA FARE**; candidato `blocked_unknown`,
+annotazione, split, freeze, Gold S2 e accuratezza S2 **BLOCCATO**. Nessun download,
+scraping, annotazione, test, modello, benchmark, runtime o VPS.

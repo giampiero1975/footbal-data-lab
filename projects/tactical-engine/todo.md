@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO; policy DA FARE, candidato BLOCCATO**
+  RD-S2-FRONTIERS-POLICY-SCREENING-01: predisposta policy minima non approvata
+  per uso interno, accesso ristretto, retention da decidere, attribuzione,
+  modifiche e cancellazione/revoca; pubblicazione esterna vietata senza distinta
+  autorizzazione. Screening documentale Frontiers completato sulle sole evidenze
+  esistenti: identita/versione/digest e dichiarazione CC BY confermati; zero match
+  esatti nei registri 34/157, ma esposizione completa, cluster di versioni/estratti
+  e author-disjoint non dimostrabili. Candidate Registry invariato, nessun test
+  necessario, `blocked_unknown` e nessuno split. Nomina custode, durata retention,
+  policy, ambiti operativi e screening attribuibile **DA FARE**; annotazione,
+  Gold S2 e S2 reale **BLOCCATO**. Report
+  `docs/gold-s2-frontiers-policy-screening-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline nel perimetro mock**
   RD-TSC-V2-D3-S2-NLI-JUDGE-BRIDGE-01: aggiunto bridge isolato tra il judge
   iniettato S2 e il contratto storico NLI V2 `(claim, evidence)`. La proiezione
