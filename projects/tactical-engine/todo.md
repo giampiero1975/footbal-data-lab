@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-TSC-V2-D3-S2-CORPUS-METADATA-ENRICHMENT-01:
+  riconciliazione repository-only della linea corpus 141→152→157. Documentata la
+  costruzione aggregata 141 + 11 Drive11 + 5 FIGC5; le 16 aggiunte sono gia nelle
+  34 identita note, quindi nuove identita 0. L'elenco individuale dei 141 non e
+  conservato in Git: overlap aggregato 141, mapping individuale non dimostrabile.
+  Metadati 5 verified/29 partial, diritti 0, holdout 0; fattibilita 390/606 ancora
+  **BLOCCATO**. Manifest `evaluation/gold_s2_corpus_metadata_enrichment_v1.json`;
+  report `docs/tactical-state-contract-v2-s2-corpus-metadata-enrichment-01.md`.
+
 - [x] **ESEGUITO** RD-PANEL-RUNTIME-READINESS-AUDIT-01: audit statico e singola
   ricognizione SSH read-only del pannello pubblico e del runtime VPS. HTTPS panel
   e health 200, API/worker/Nginx/Ollama attivi, queue depth 0, catalogo FIGC5

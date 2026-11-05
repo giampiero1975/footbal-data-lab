@@ -2496,3 +2496,18 @@ passa flag TSC al runner. Decisione: audit **ESEGUITO**; raccomandato stabilizza
 prima il percorso legacy con deploy riproducibile, smoke singola e rollback, poi
 valutare TSC in canale opt-in separato. Piano operativo **DA FARE** previa
 autorizzazione; nessuna nuova integrazione o certificazione attribuita.
+
+## RD-TSC-V2-D3-S2-CORPUS-METADATA-ENRICHMENT-01 — metadata-only (2026-11-05)
+
+Attivita: riconciliare esclusivamente da manifest e report Git la linea corpus
+141→152→157 senza leggere documenti o interrogare runtime. Script: nessuno;
+manifest `evaluation/gold_s2_corpus_metadata_enrichment_v1.json`; report:
+`docs/tactical-state-contract-v2-s2-corpus-metadata-enrichment-01.md`. Risultato:
+costruzione aggregata documentata come 141 baseline + 11 Drive11 + 5 FIGC5; le
+16 aggiunte individuali erano gia incluse nelle 34 fonti precedenti. I file
+storici con l'elenco dei 141 non sono presenti in Git: zero nuove identita, zero
+mappature individuali aggiuntive, 5 metadata verified/29 partial, diritti 0 e
+holdout 0. Decisione: arricchimento **ESEGUITO**, ma fattibilita 390/606 non
+dimostrata; provenienza/diritti **DA FARE**, selezione, Gold S2, S2, Gate,
+integrazione e certificazione **BLOCCATO**. Nessun download, contenuto, Chroma,
+retrieval, modello, benchmark, caso, label o freeze.

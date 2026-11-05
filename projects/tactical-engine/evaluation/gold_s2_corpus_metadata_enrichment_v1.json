@@ -1,0 +1,170 @@
+{
+  "schema_version": "gold_s2_corpus_metadata_enrichment_v1",
+  "activity_id": "RD-TSC-V2-D3-S2-CORPUS-METADATA-ENRICHMENT-01",
+  "baseline": "6e5d6bfcc17399e837ffa082b0fd2a076c8b913d",
+  "scope": "Repository-only reconciliation of existing corpus metadata; no document text, Chroma, retrieval, download, inference, label or Gold case.",
+  "method": {
+    "identity_levels": [
+      "verified_match",
+      "probable_not_demonstrated",
+      "ambiguous",
+      "not_reconstructable"
+    ],
+    "usage_values": ["yes", "no_demonstrated", "unknown"],
+    "rules": [
+      "Aggregate arithmetic is not promoted to an individual identity mapping.",
+      "Absence from a report is not evidence of non-use.",
+      "Availability or indexing does not establish rights.",
+      "No content was read to infer author, edition, duplicate status or claim capacity."
+    ]
+  },
+  "evidence": [
+    {
+      "path": "evaluation/gold_s2_source_inventory_v1.json",
+      "sha256": "43dfad66ca0e8915f7d47adab758c8a729bc67d53b6d825ed9889ced85f6df43",
+      "commit": "4d9fa912e28fc902e694b7dfd1506b381b009238",
+      "role": "prior_34_source_inventory"
+    },
+    {
+      "path": "docs/v5-tactical-corpus-reconciliation-2026-10-24.md",
+      "sha256": "3ee1849329855b2ca332074e9221db75c19ed6ec9867cebab67ec4d155ae7427",
+      "commit": "6f08d5aae7da792b14b176ba27244f5bc77cba53",
+      "role": "baseline_141_and_drive_delta"
+    },
+    {
+      "path": "docs/v5-tactical-corpus-drive11-candidate-01.md",
+      "sha256": "83e1ca36796915fe7adfd6e71037d364b1b4b6bbfd6f3ad61b307bd202e918ab",
+      "commit": "d8b9d22d6090109538b5e56b844a000ecc053ed5",
+      "role": "drive11_152_lineage"
+    },
+    {
+      "path": "docs/figc5-candidate-integration-01.md",
+      "sha256": "6c043d8b781ab7c4bbef34ef6a78cfde8bd1f6af5f367d318e504b008f5e3a89",
+      "commit": "936b4c44ba0643506b65d763da434214f955073c",
+      "role": "figc5_157_lineage"
+    },
+    {
+      "path": "docs/knowledge-panel-api-v1.md",
+      "sha256": "462994cfa7de06594701c5a10ca85fd6a909347f7eaf5e80f6118fca8ad4e5d4",
+      "commit": "81d9491aef12608389768802012f2b14c6e83d76",
+      "role": "historical_152_catalog_count"
+    },
+    {
+      "path": "docs/knowledge-panel-application-integration-02.md",
+      "sha256": "e05576af672f9a9843cf9a77c688149b97fe371db7239774da5b8e4f046faffa",
+      "commit": "6abd012d4fa4c7183935853622e237ef0d33c2a5",
+      "role": "historical_157_catalog_count_and_categories"
+    }
+  ],
+  "corpus_lineage": [
+    {
+      "corpus_id": "historical_baseline_141",
+      "document_count": 141,
+      "chunk_count": 5319,
+      "identity_status": "not_reconstructable",
+      "individual_identity_count_available": 0,
+      "limits": [
+        "The referenced football_pdf_inventory.txt and lista_pdf_indicizzati.log are not present in Git history or the current checkout.",
+        "The report documents nominal reconciliation 140/141 plus one Ussia normalization, but does not preserve the 141 names."
+      ]
+    },
+    {
+      "corpus_id": "drive11_152",
+      "document_count": 152,
+      "chunk_count": 6196,
+      "parent": "historical_baseline_141",
+      "document_delta": 11,
+      "identity_status": "verified_match_for_delta_only",
+      "delta_source_refs": [
+        "drive11:vincenzo-italiano-tesi",
+        "drive11:contran-uefa-pro",
+        "drive11:maldera-uefa-pro",
+        "drive11:lorenzon-uefa-pro",
+        "drive11:vulcano-master",
+        "drive11:baldini-tesi",
+        "drive11:principi-sistema-gioco",
+        "drive11:prestigiacomo-19",
+        "drive11:costruzione-343",
+        "drive11:redazionale-01",
+        "drive11:preview1"
+      ],
+      "limits": ["The inherited 141 records remain aggregate-only."]
+    },
+    {
+      "corpus_id": "figc5_157",
+      "document_count": 157,
+      "chunk_count": 6410,
+      "parent": "drive11_152",
+      "document_delta": 5,
+      "identity_status": "verified_match_for_delta_only",
+      "delta_source_refs": [
+        "figc5:soncin-attacco-difesa",
+        "figc5:di-camillo-iraola",
+        "figc5:rausse-red-bull",
+        "figc5:gagliardi-bordin-nuova-era",
+        "figc5:mastroianni-leao"
+      ],
+      "limits": [
+        "The inherited 152 records are not individually exported in repository metadata.",
+        "Equality of documented counts does not establish byte identity or complete provenance."
+      ]
+    }
+  ],
+  "overlap_assessment": {
+    "baseline_141_to_figc5_157": {
+      "documented_aggregate_overlap": 141,
+      "documented_additions": 16,
+      "individual_overlap_verified": 0,
+      "classification": "aggregate_lineage_verified_individual_mapping_unavailable",
+      "reason": "The reports document additive construction 141 + 11 + 5, but the repository lacks the original 141-name inventory and a 157-record metadata export."
+    },
+    "prior_inventory_34": {
+      "identified_sources": 34,
+      "new_identities_from_this_activity": 0,
+      "delta_sources_already_present": 16,
+      "full_corpus_coverage": false
+    }
+  },
+  "metadata_summary": {
+    "identified_sources": 34,
+    "new_identified_sources": 0,
+    "metadata_verified": 5,
+    "metadata_partial": 29,
+    "rights_verified": 0,
+    "holdout_attested": 0,
+    "baseline_141_individual_records_reconstructed": 0,
+    "figc5_157_individual_records_reconstructed": 16,
+    "figc5_157_individual_records_missing": 141
+  },
+  "historical_exposure": {
+    "per_source_matrix": "evaluation/gold_s2_source_inventory_v1.json",
+    "changes_from_prior_inventory": 0,
+    "limits": [
+      "No new per-source evidence supports changing unknown to no_demonstrated.",
+      "The 11 historical NLI/alignment originals were not searched again.",
+      "All 16 corpus additions are already documented as indexed and exposed to retrieval/generation or remediation."
+    ]
+  },
+  "gold_feasibility": {
+    "gold_390": "not_demonstrable",
+    "gold_606": "not_demonstrable",
+    "claim_capacity_estimated": false,
+    "minimum_missing_information": [
+      "Authorized metadata-only export of all 157 stable document identities.",
+      "Per-document original and processed digests linked to corpus versions.",
+      "Author, organization, edition, language and version provenance.",
+      "Rights, retention, annotation and publication evidence per document.",
+      "Version and near-duplicate clusters based on authorized metadata or digests.",
+      "Complete historical exposure ledger per source.",
+      "A separate authorization to inspect content before estimating annotatable claims."
+    ]
+  },
+  "official_status": {
+    "metadata_enrichment": "ESEGUITO",
+    "source_selection": "BLOCCATO",
+    "rights_and_provenance": "DA FARE",
+    "gold_s2_390_606_feasibility": "BLOCCATO",
+    "gold_s2": "BLOCCATO",
+    "s2": "BLOCCATO"
+  }
+}
