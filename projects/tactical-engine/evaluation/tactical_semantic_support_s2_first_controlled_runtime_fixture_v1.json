@@ -1,0 +1,24 @@
+{
+  "schema": "tactical_semantic_support_s2_first_controlled_runtime_fixture_v1",
+  "activity_id": "RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01",
+  "source_dataset": "eval/claim_fidelity_gold_v1.json",
+  "source_dataset_sha256": "fdd6d9383493f58abd6d9a07fe0a029ecc7dc35bad106fe91ce747fb2463a605",
+  "label_provenance": "human-labeled claim_fidelity_gold_v1.json already versioned before this activity",
+  "cases": [
+    {
+      "case_id": "q3_05",
+      "expected_label": "supported",
+      "selection_reason": "conditional offside claim; observes preservation of a governing condition"
+    },
+    {
+      "case_id": "q3_04",
+      "expected_label": "contradicted",
+      "selection_reason": "claim reverses the documented space relation against a low block"
+    },
+    {
+      "case_id": "q5_08",
+      "expected_label": "insufficient",
+      "selection_reason": "universal quantifier exceeds the source's modal statement"
+    }
+  ]
+}
