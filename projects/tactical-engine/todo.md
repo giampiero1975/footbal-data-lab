@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO; percorso tecnico VALIDATO nel singolo tentativo, semantica BLOCCATO**
+  RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 Fase B: unico run reale autorizzato
+  completato in 52 s, exit 0, tre inferenze e zero errori/retry/repair. Tre
+  assessment tecnicamente completi, S1 invariato e `promotion_authorized=false`;
+  label 2/3: `q3_05 supported` e `q5_08 insufficient` corrispondono, `q3_04`
+  atteso `contradicted` e risultato `supported`. Artefatto 11.639 byte, SHA-256
+  `0768ca58...`. Funzionamento e isolamento **VALIDATO** per il solo tentativo;
+  affidabilita semantica, Gold S2, Gate, integrazione e certificazione
+  **BLOCCATO**. Nessun rerun autorizzato. Report
+  `docs/tactical-semantic-support-s2-first-controlled-runtime-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO nel perimetro digest cross-platform**
   RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 remediation: aggiunta regola
   `text eol=lf` limitata al dataset e allineata la fixture al digest del blob Git

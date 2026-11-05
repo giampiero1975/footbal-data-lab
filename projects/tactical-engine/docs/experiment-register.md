@@ -2446,6 +2446,20 @@ decidere volume, fonti/diritti, ruoli e indipendenza autore. Schema/validator e
 inventario fonti **DA FARE**; raccolta, annotazione, adjudication, freeze, Gold S2,
 S2, Gate, integrazione e certificazione **BLOCCATO** fino ad autorizzazioni separate.
 
+## RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 — Fase B (2026-11-05)
+
+Attivita: eseguire una sola osservazione reale D3→S2→NLI V2→Qwen 3.5 9B nella
+modalita shadow gia predisposta. Script e baseline invariati; artefatto:
+`evaluation/tactical_semantic_support_s2_first_controlled_runtime_01.json`;
+report: `docs/tactical-semantic-support-s2-first-controlled-runtime-01.md`.
+Risultato: preflight PASS; run unico 52 s, exit 0, 3/3 inferenze, zero errori,
+retry o repair. Valutazioni tecniche 3/3, S1 invariato e non-promozione 3/3;
+corrispondenza semantica 2/3: `q3_04` falso positivo `supported` rispetto a
+`contradicted`. Artefatto 11.639 byte, SHA-256 `0768ca58...`. Decisione: Fase B
+**ESEGUITO**; funzionamento e isolamento **VALIDATO** per il solo tentativo;
+affidabilita semantica, Gold S2, Gate, integrazione e certificazione **BLOCCATO**.
+Nessun rerun autorizzato; prossimo passo possibile solo analisi offline distinta.
+
 ## RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 — digest cross-platform (2026-11-05)
 
 Attivita: correggere il solo mismatch CRLF/LF mantenendo la verifica byte-for-byte.

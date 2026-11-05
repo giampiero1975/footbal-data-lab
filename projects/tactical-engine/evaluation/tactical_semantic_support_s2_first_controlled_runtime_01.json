@@ -1,0 +1,260 @@
+{
+  "schema": "tactical_semantic_support_s2_first_controlled_runtime_report_v1",
+  "activity_id": "RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01",
+  "mode": "shadow_only",
+  "promotion_authorized": false,
+  "plan_fingerprint": "sha256:0fd8031c04a71cb061a28451a928fd4b6654a951a84923ca40a9886457aa7f70",
+  "input_identities": {
+    "fixture_sha256": "sha256:93017c0161da4d28a4d59b6037297d01daf67e5e603812c3e36c2a9c82dcb998",
+    "source_dataset_sha256": "sha256:8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c"
+  },
+  "runtime_config": {
+    "judge": "shadow_nli_v2_inference.judge_pair",
+    "model": "qwen3.5:9b",
+    "ollama_url": "http://127.0.0.1:11434",
+    "timeout_seconds_per_call": 180,
+    "max_tokens": 1024,
+    "temperature": 0,
+    "num_ctx": 4096,
+    "retry": false
+  },
+  "maximum_inferences": 3,
+  "actual_inferences": 3,
+  "stopped_early": false,
+  "cases": [
+    {
+      "case_id": "q3_05",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "claim": "Senza sincronizzazione tra passatore e ricevente, la verticalizzazione può esporre al fuorigioco.",
+      "evidence": "contro difese disposte in linea, se non esistono tempi perfetti d'intesa tra chi dà e chi riceve palla è facile, verticalizzando, incappare nella trappola del fuorigioco.",
+      "selection_reason": "conditional offside claim; observes preservation of a governing condition",
+      "expected_label": "supported",
+      "label_provenance": "human-labeled claim_fidelity_gold_v1.json already versioned before this activity",
+      "s1_assessment": {
+        "schema": "tactical_documentary_support_assessment_v1",
+        "version": "1.0",
+        "attempt_id": "attempt:s2-first-controlled:q3_05",
+        "plan_fingerprint": "sha256:0fd8031c04a71cb061a28451a928fd4b6654a951a84923ca40a9886457aa7f70",
+        "claim_id": "claim:q3_05",
+        "statement_sha256": "sha256:b3183983ac73b75c48765eb2267e6cc1ada42302465ff94bdc503d7818688344",
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q3_05",
+            "evidence_sha256": "sha256:3f2769fec8cd4a0a5ad25405ef567f467d0c4392c1007bc39e528a2d5b9136ad",
+            "verdict": "not_evaluable",
+            "reason_codes": [
+              "statement_not_exact_anchor"
+            ]
+          }
+        ],
+        "aggregate_verdict": "not_evaluable",
+        "reason_codes": [
+          "statement_not_exact_anchor"
+        ],
+        "assessor": {
+          "kind": "deterministic",
+          "name": "s1_exact_atomic",
+          "version": "1.0",
+          "config_sha256": "sha256:fcb7f02505fff2ecd57dcb3630879ce4d9b71f79b750d19a12c5488a5966cdeb"
+        }
+      },
+      "s1_unchanged": true,
+      "s2_shadow_assessment": {
+        "schema": "tactical_documentary_semantic_support_shadow_v1",
+        "version": "1.0",
+        "mode": "shadow_only",
+        "promotion_authorized": false,
+        "attempt_id": "attempt:s2-first-controlled:q3_05",
+        "plan_fingerprint": "sha256:0fd8031c04a71cb061a28451a928fd4b6654a951a84923ca40a9886457aa7f70",
+        "claim_id": "claim:q3_05",
+        "statement_sha256": "sha256:b3183983ac73b75c48765eb2267e6cc1ada42302465ff94bdc503d7818688344",
+        "s1_assessment_sha256": "sha256:978b495f907992c5330d6c76153c64d00c4d9127fbb795c7c149070eb8dec510",
+        "judge": {
+          "kind": "injected",
+          "name": "shadow-nli-v2-s2-bridge",
+          "version": "1.0",
+          "config_sha256": "sha256:ec850a225dbc910ed8199a369108e3f0183010cc3af64c6e9600b14314ea6a48"
+        },
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q3_05",
+            "evidence_sha256": "sha256:3f2769fec8cd4a0a5ad25405ef567f467d0c4392c1007bc39e528a2d5b9136ad",
+            "judge_label": "supported",
+            "judge_rationale": "NLI V2 returned the recorded label for the exact projected claim/evidence pair; the historical contract provides no semantic rationale.",
+            "status": "evaluated",
+            "reason_codes": []
+          }
+        ],
+        "evaluation_status": "evaluated",
+        "aggregate_verdict": "supported",
+        "reason_codes": [
+          "shadow_judgement_complete"
+        ],
+        "record_sha256": "sha256:62dd98bc42f0aeb7631a2deb675d9b63b8a5b20937580e45fa4531dffe561a76"
+      },
+      "technical_pass": true,
+      "semantic_match": true
+    },
+    {
+      "case_id": "q3_04",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "claim": "La difesa bassa lascia molto spazio tra la linea difensiva e la porta.",
+      "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta.",
+      "selection_reason": "claim reverses the documented space relation against a low block",
+      "expected_label": "contradicted",
+      "label_provenance": "human-labeled claim_fidelity_gold_v1.json already versioned before this activity",
+      "s1_assessment": {
+        "schema": "tactical_documentary_support_assessment_v1",
+        "version": "1.0",
+        "attempt_id": "attempt:s2-first-controlled:q3_04",
+        "plan_fingerprint": "sha256:0fd8031c04a71cb061a28451a928fd4b6654a951a84923ca40a9886457aa7f70",
+        "claim_id": "claim:q3_04",
+        "statement_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q3_04",
+            "evidence_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+            "verdict": "not_evaluable",
+            "reason_codes": [
+              "statement_not_exact_anchor"
+            ]
+          }
+        ],
+        "aggregate_verdict": "not_evaluable",
+        "reason_codes": [
+          "statement_not_exact_anchor"
+        ],
+        "assessor": {
+          "kind": "deterministic",
+          "name": "s1_exact_atomic",
+          "version": "1.0",
+          "config_sha256": "sha256:fcb7f02505fff2ecd57dcb3630879ce4d9b71f79b750d19a12c5488a5966cdeb"
+        }
+      },
+      "s1_unchanged": true,
+      "s2_shadow_assessment": {
+        "schema": "tactical_documentary_semantic_support_shadow_v1",
+        "version": "1.0",
+        "mode": "shadow_only",
+        "promotion_authorized": false,
+        "attempt_id": "attempt:s2-first-controlled:q3_04",
+        "plan_fingerprint": "sha256:0fd8031c04a71cb061a28451a928fd4b6654a951a84923ca40a9886457aa7f70",
+        "claim_id": "claim:q3_04",
+        "statement_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "s1_assessment_sha256": "sha256:4c0a930234c348c195896b5da5b81f4e5858ee8884613cb2d9df5c4d28f7e9dd",
+        "judge": {
+          "kind": "injected",
+          "name": "shadow-nli-v2-s2-bridge",
+          "version": "1.0",
+          "config_sha256": "sha256:ec850a225dbc910ed8199a369108e3f0183010cc3af64c6e9600b14314ea6a48"
+        },
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q3_04",
+            "evidence_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+            "judge_label": "supported",
+            "judge_rationale": "NLI V2 returned the recorded label for the exact projected claim/evidence pair; the historical contract provides no semantic rationale.",
+            "status": "evaluated",
+            "reason_codes": []
+          }
+        ],
+        "evaluation_status": "evaluated",
+        "aggregate_verdict": "supported",
+        "reason_codes": [
+          "shadow_judgement_complete"
+        ],
+        "record_sha256": "sha256:e63df92b66342452c226896b6433e3d4e59f53f3a3755e8f60cf3f6a5d5a162b"
+      },
+      "technical_pass": true,
+      "semantic_match": false
+    },
+    {
+      "case_id": "q5_08",
+      "source": "Allegati_45201211489",
+      "page": 14,
+      "claim": "Il cambio di modulo durante la gara produce sempre disorganizzazione difensiva.",
+      "evidence": "Ci si potrebbe scoprire sulle ripartenze avversarie e sui cambi di gioco. C'è bisogno di un'ottima condizione fisica da parte dei centrocampisti centrali.",
+      "selection_reason": "universal quantifier exceeds the source's modal statement",
+      "expected_label": "insufficient",
+      "label_provenance": "human-labeled claim_fidelity_gold_v1.json already versioned before this activity",
+      "s1_assessment": {
+        "schema": "tactical_documentary_support_assessment_v1",
+        "version": "1.0",
+        "attempt_id": "attempt:s2-first-controlled:q5_08",
+        "plan_fingerprint": "sha256:0fd8031c04a71cb061a28451a928fd4b6654a951a84923ca40a9886457aa7f70",
+        "claim_id": "claim:q5_08",
+        "statement_sha256": "sha256:78400de6a427998958bff7120b062c008eda833048ac6f8ba32cb15321e17b6e",
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q5_08",
+            "evidence_sha256": "sha256:67d8f34b89beb8f0d9b5c7c1105ce83aa5219a3cee30775db8f61d3023592508",
+            "verdict": "not_evaluable",
+            "reason_codes": [
+              "statement_not_exact_anchor"
+            ]
+          }
+        ],
+        "aggregate_verdict": "not_evaluable",
+        "reason_codes": [
+          "statement_not_exact_anchor"
+        ],
+        "assessor": {
+          "kind": "deterministic",
+          "name": "s1_exact_atomic",
+          "version": "1.0",
+          "config_sha256": "sha256:fcb7f02505fff2ecd57dcb3630879ce4d9b71f79b750d19a12c5488a5966cdeb"
+        }
+      },
+      "s1_unchanged": true,
+      "s2_shadow_assessment": {
+        "schema": "tactical_documentary_semantic_support_shadow_v1",
+        "version": "1.0",
+        "mode": "shadow_only",
+        "promotion_authorized": false,
+        "attempt_id": "attempt:s2-first-controlled:q5_08",
+        "plan_fingerprint": "sha256:0fd8031c04a71cb061a28451a928fd4b6654a951a84923ca40a9886457aa7f70",
+        "claim_id": "claim:q5_08",
+        "statement_sha256": "sha256:78400de6a427998958bff7120b062c008eda833048ac6f8ba32cb15321e17b6e",
+        "s1_assessment_sha256": "sha256:602c20c8341e34e5de94fd3b57e13d870d2e6b655305f16b10c8aedc236210cd",
+        "judge": {
+          "kind": "injected",
+          "name": "shadow-nli-v2-s2-bridge",
+          "version": "1.0",
+          "config_sha256": "sha256:ec850a225dbc910ed8199a369108e3f0183010cc3af64c6e9600b14314ea6a48"
+        },
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q5_08",
+            "evidence_sha256": "sha256:67d8f34b89beb8f0d9b5c7c1105ce83aa5219a3cee30775db8f61d3023592508",
+            "judge_label": "insufficient",
+            "judge_rationale": "NLI V2 returned the recorded label for the exact projected claim/evidence pair; the historical contract provides no semantic rationale.",
+            "status": "evaluated",
+            "reason_codes": []
+          }
+        ],
+        "evaluation_status": "evaluated",
+        "aggregate_verdict": "insufficient",
+        "reason_codes": [
+          "shadow_judgement_complete"
+        ],
+        "record_sha256": "sha256:430f892cb11c8b3edda5ad3c05ccef29080a4e99d408e1dffab674f04e98d472"
+      },
+      "technical_pass": true,
+      "semantic_match": true
+    }
+  ],
+  "summary": {
+    "technical_passes": 3,
+    "semantic_matches": 2,
+    "completed_cases": 3,
+    "all_s1_unchanged": true,
+    "all_non_promotable": true
+  },
+  "limitations": [
+    "Three reused diagnostic cases are not an independent benchmark",
+    "Semantic accuracy is not estimable from this run",
+    "S2 results cannot modify S1, overall status or promoted answer"
+  ]
+}
