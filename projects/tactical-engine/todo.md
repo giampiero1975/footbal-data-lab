@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; runtime BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01 Fase A: predisposti runner
+  opt-in e fixture per `q3_04` regressione nota, `q5_06` relazione inversa
+  distinta e `q5_02` controllo `insufficient`. Massimo tre chiamate future al
+  solo contratto spatial, zero V2 implicito/retry/repair, arresto fail-closed e
+  `promotion_authorized=false`. Solo `q3_04` ha confronto V2 direttamente
+  attribuibile. Test nuovi 6/6 PASS, compilazione e diff check PASS; nessuna
+  inferenza. Runner/fixture **IMPLEMENTATO**, verifiche **ESEGUITO** e proprieta
+  coperte **VALIDATO** offline; runtime, efficacia, confronto generale V2,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-relation-differential-preparation-01.md`.
+
 - [x] **ESEGUITO e VALIDATO staticamente; runtime BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-RELATION-REVIEW-01: revisione integrale di modulo,
   test e confini V2/S2 conclusa senza nuovi test o inferenze. Contratto

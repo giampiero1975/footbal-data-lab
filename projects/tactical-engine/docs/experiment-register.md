@@ -2476,6 +2476,26 @@ generalizzazione indipendente. Decisione: **REVISIONE FAVOREVOLE**, revisione
 **ESEGUITO** e proprieta statiche coperte **VALIDATO**. Efficacia semantica,
 Gate, integrazione e certificazione **BLOCCATO**; nessun runtime autorizzato.
 
+## RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01 — Fase A (2026-11-05)
+
+Attivita: preparare senza inferenze un Gate diagnostico del contratto spatial.
+Script:
+`scripts/run_tactical_semantic_support_s2_spatial_relation_differential_v1.py`;
+fixture:
+`evaluation/tactical_semantic_support_s2_spatial_relation_differential_fixture_v1.json`;
+commit tecnico `9aac9ea761ba29099332d95fbff7d0f2ee8bf9e8`; report:
+`docs/tactical-semantic-support-s2-spatial-relation-differential-preparation-01.md`.
+Risultato: selezionati `q3_04` come regressione nota, `q5_06` come relazione
+inversa lessicalmente distinta e `q5_02` come guardia `insufficient`; label e
+contenuti umani invariati. Solo `q3_04` dispone di risultato V2 direttamente
+attribuibile. Runner opt-in, massimo tre chiamate al solo nuovo judge, zero
+retry/repair/V2 implicito, output esclusivo, stop al primo `not_evaluable`, S1
+invariato e `promotion_authorized=false`. Test differenziali nuovi 6/6 PASS,
+compilazione e diff check PASS; nessuna suite storica o inferenza. Decisione:
+runner/fixture **IMPLEMENTATO**, verifiche **ESEGUITO**, proprieta offline
+coperte **VALIDATO**. Esecuzione reale, efficacia, confronto generale V2,
+integrazione e certificazione **BLOCCATO** fino a nuova autorizzazione.
+
 ## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
 
 Attivita: attribuire il falso positivo reale `q3_04` usando soltanto artefatto,
