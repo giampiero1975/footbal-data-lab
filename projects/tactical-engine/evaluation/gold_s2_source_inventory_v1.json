@@ -1,0 +1,287 @@
+{
+  "schema_version": "gold_s2_source_inventory_v1",
+  "inventory_version": "1.0.0",
+  "activity_id": "RD-TSC-V2-D3-S2-SOURCE-INVENTORY-01",
+  "baseline": "93695fbdd27833dff8d9d5ff51cb6f14960ede76",
+  "scope": "Repository-only metadata for already known sources; no document text, runtime collection query, download or new source.",
+  "verification_levels": {
+    "verified": "Identity or usage is cross-confirmed by an accessible repository artifact that records direct source inspection or a verified original.",
+    "documented_partial": "Identity or usage is recorded, but original/version/digest/rights or complete history is not verifiable in scope.",
+    "not_verifiable": "The repository does not support a stable source identity."
+  },
+  "historical_usage_fields": [
+    "rag_index", "retrieval_development", "generator_development", "nli_benchmark",
+    "claim_fidelity", "atomic", "contrastive", "alignment", "gold_e_v",
+    "d3_s1", "remediation"
+  ],
+  "sources": [
+    {
+      "source_id": "repo:allegati-45201211489", "title": "Allegati_45201211489", "author_group": null, "organization": null, "document_type": "repository source label", "version": null, "language": "it", "year": null,
+      "documented_references": ["eval/claim_fidelity_gold_v1.json", "eval/claim_fidelity_adversarial_v1.json"], "provenance_record_id": null, "digest": null, "availability": "metadata_in_repository", "rag_presence": "unknown", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"unknown","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "development", "contamination_risk": "high", "limits": ["Original identity, version, digest and rights are not recorded in the inspected metadata."]
+    },
+    {
+      "source_id": "repo:gioco-a-zona-nel-calcio", "title": "Gioco a zona nel calcio", "author_group": null, "organization": null, "document_type": "repository source label", "version": null, "language": "it", "year": null,
+      "documented_references": ["eval/claim_fidelity_gold_v1.json", "eval/claim_fidelity_adversarial_v1.json"], "provenance_record_id": null, "digest": null, "availability": "metadata_in_repository", "rag_presence": "unknown", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"unknown","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "development", "contamination_risk": "high", "limits": ["Original identity, version, digest and rights are not recorded in the inspected metadata."]
+    },
+    {
+      "source_id": "repo:movimenti-offensivi-442", "title": "movimenti_offensivi_442", "author_group": null, "organization": null, "document_type": "repository source label", "version": null, "language": "it", "year": null,
+      "documented_references": ["eval/claim_fidelity_gold_v1.json"], "provenance_record_id": null, "digest": null, "availability": "metadata_in_repository", "rag_presence": "unknown", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"unknown","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "development", "contamination_risk": "high", "limits": ["Single repository dataset reference; original metadata is incomplete."]
+    },
+    {
+      "source_id": "repo:pane-variazione-sistema", "title": "Variazione del sistema di gioco partendo da una base fissa di 7 giocatori", "author_group": "Alessandro Pane", "organization": "FIGC/Coverciano", "document_type": "Master thesis", "version": "2005/06", "language": "it", "year": 2006,
+      "documented_references": ["eval/claim_fidelity_gold_v1.json", "eval/claim_fidelity_adversarial_v1.json", "docs/rag-v5-nli-source-adjudication-20261022.md"], "provenance_record_id": null, "digest": null, "availability": "original_reported_directly_reviewed", "rag_presence": "documented", "collection": "historical RAG corpus; exact current membership not re-queried",
+      "verification": "verified", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"yes","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "adversarial", "contamination_risk": "high", "limits": ["Heavily reused; rights and source digest are not recorded."]
+    },
+    {
+      "source_id": "repo:bonacini-verticalizzazione", "title": "La verticalizzazione nelle fasi di gioco", "author_group": "Roberto Bonacini", "organization": "Allenatore.net", "document_type": "technical article", "version": "April 2004", "language": "it", "year": 2004,
+      "documented_references": ["eval/claim_fidelity_gold_v1.json", "eval/claim_fidelity_adversarial_v1.json", "docs/rag-v5-nli-source-adjudication-20261022.md", "docs/tactical-state-contract-v2-semantic-support-s2-readiness-01.md"], "provenance_record_id": null, "digest": null, "availability": "original_reported_directly_reviewed", "rag_presence": "documented", "collection": "historical RAG corpus; exact current membership not re-queried",
+      "verification": "verified", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"yes","contrastive":"yes","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "adversarial", "contamination_risk": "high", "limits": ["Repeatedly used in development diagnostics; rights and digest are not recorded."]
+    },
+    {
+      "source_id": "web:fa-england-overloads", "title": "How to defend like England: overloads", "author_group": "The FA", "organization": "The Football Association", "document_type": "official coaching web article", "version": null, "language": "en", "year": null,
+      "documented_references": ["eval/claim_fidelity_fresh_sources_holdout_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "no_evidence", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"no_evidence","generator_development":"no_evidence","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Already used as a holdout/development benchmark; current web version and rights not verified."]
+    },
+    {
+      "source_id": "web:fa-england-wide-areas", "title": "How to defend like England: space in wide areas", "author_group": "The FA", "organization": "The Football Association", "document_type": "official coaching web article", "version": null, "language": "en", "year": null,
+      "documented_references": ["eval/claim_fidelity_fresh_sources_holdout_v1.json", "eval/tactical_nli_source_disjoint_30_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "no_evidence", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": "cluster:fa-england-wide-areas",
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"no_evidence","generator_development":"no_evidence","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Same document appears in two benchmark datasets; current version and rights not verified."]
+    },
+    {
+      "source_id": "web:fa-spotlight-pressing", "title": "Spotlight on pressing", "author_group": "The FA", "organization": "The Football Association", "document_type": "official coaching web article", "version": null, "language": "en", "year": null,
+      "documented_references": ["eval/claim_fidelity_fresh_sources_holdout_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "no_evidence", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"no_evidence","generator_development":"no_evidence","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Already used in claim-fidelity; current version and rights not verified."]
+    },
+    {
+      "source_id": "web:fa-underloading-principle", "title": "The underloading principle", "author_group": "The FA", "organization": "The Football Association", "document_type": "official coaching web article", "version": null, "language": "en", "year": null,
+      "documented_references": ["eval/claim_fidelity_fresh_sources_holdout_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "no_evidence", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"no_evidence","generator_development":"no_evidence","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Already used in claim-fidelity; current version and rights not verified."]
+    },
+    {
+      "source_id": "web:fa-coach-transition", "title": "How to coach transition", "author_group": "The FA", "organization": "The Football Association", "document_type": "official coaching web article", "version": null, "language": "en", "year": null,
+      "documented_references": ["eval/claim_fidelity_external_sources_holdout_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "no_evidence", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"no_evidence","generator_development":"no_evidence","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Already used in external holdout; current version and rights not verified."]
+    },
+    {
+      "source_id": "web:fa-uefa-b-day-three", "title": "UEFA B coaching day three", "author_group": "The FA", "organization": "The Football Association", "document_type": "official news/coaching article", "version": "2014", "language": "en", "year": 2014,
+      "documented_references": ["eval/claim_fidelity_external_sources_holdout_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "no_evidence", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"no_evidence","generator_development":"no_evidence","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Already used in external holdout; digest and rights not verified."]
+    },
+    {
+      "source_id": "web:uefa-europa-trends", "title": "Europa League analysis: Spotting the trends", "author_group": "UEFA", "organization": "UEFA", "document_type": "official analysis article", "version": null, "language": "en", "year": null,
+      "documented_references": ["eval/claim_fidelity_external_sources_holdout_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "no_evidence", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"no_evidence","generator_development":"no_evidence","nli_benchmark":"yes","claim_fidelity":"yes","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Already used in external holdout; current version and rights not verified."]
+    },
+    {
+      "source_id": "web:figc-gagliardi-pressing", "title": "Pressing e riaggressione", "author_group": "Antonio Gagliardi", "organization": "FIGC", "document_type": "official article/thesis notice", "version": null, "language": "it", "year": null,
+      "documented_references": ["eval/tactical_nli_source_disjoint_30_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "unknown", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"yes","claim_fidelity":"no","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Used in source-disjoint NLI; original benchmark artifact is not available."]
+    },
+    {
+      "source_id": "web:fa-england-roles", "title": "How to defend like England: roles and responsibilities", "author_group": "The FA", "organization": "The Football Association", "document_type": "official coaching web article", "version": null, "language": "en", "year": null,
+      "documented_references": ["eval/tactical_nli_source_disjoint_30_v1.json"], "provenance_record_id": null, "digest": null, "availability": "historically_documented_url", "rag_presence": "unknown", "collection": null,
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"unknown","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"yes","claim_fidelity":"no","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"unknown"},
+      "preliminary_candidate": "calibration", "contamination_risk": "high", "limits": ["Used in source-disjoint NLI; original benchmark artifact is not available."]
+    },
+    {
+      "source_id": "repo:tesser-superiorita", "title": "Superiorità in possesso palla", "author_group": "Tesser", "organization": null, "document_type": "training document", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/rag-v5-nli-source-adjudication-20261022.md"], "provenance_record_id": null, "digest": null, "availability": "original_reported_directly_reviewed", "rag_presence": "documented", "collection": "historical RAG corpus; exact current membership not re-queried",
+      "verification": "verified", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"unknown","generator_development":"unknown","nli_benchmark":"yes","claim_fidelity":"unknown","atomic":"yes","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "adversarial", "contamination_risk": "high", "limits": ["Used in NLI adjudication; version, digest and rights are not recorded."]
+    },
+    {
+      "source_id": "drive:glerean-principi-334", "title": "I principi del 3-3-4", "author_group": "Ezio Glerean", "organization": "FIGC/Coverciano", "document_type": "technical thesis/document", "version": null, "language": "it", "year": null,
+      "documented_references": ["evaluation/gold_glerean_principi_v1.json", "evaluation/gold_glerean_ampiezza_v1.json", "evaluation/h10_multisource_football_pilot.json"], "provenance_record_id": null, "digest": null, "availability": "original_reported_directly_reviewed", "rag_presence": "documented", "collection": "baseline corpus; exact current identity not re-queried",
+      "verification": "verified", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"unknown","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "development", "contamination_risk": "high", "limits": ["Used in gold-like and RAG pilots; no source digest or rights record in inspected artifacts."]
+    },
+    {
+      "source_id": "drive:foscarini-manovre-offensive", "title": "manovre_offensive_vari_sistemi_gioco_Foscarini", "author_group": "Claudio Foscarini", "organization": null, "document_type": "technical PDF", "version": null, "language": "it", "year": null,
+      "documented_references": ["evaluation/h10_multisource_football_pilot.json"], "provenance_record_id": null, "digest": null, "availability": "documented_drive_original", "rag_presence": "documented", "collection": "baseline corpus; exact current identity not re-queried",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"unknown","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "development", "contamination_risk": "high", "limits": ["Only pilot metadata inspected; version, digest and rights not verified."]
+    },
+    {
+      "source_id": "drive:ussia-transizioni", "title": "Transizioni", "author_group": "Pasquale Ussia", "organization": "FIGC/Coverciano", "document_type": "Master Allenatore PRO thesis", "version": "2011-12", "language": "it", "year": 2012,
+      "documented_references": ["evaluation/h10_multisource_football_pilot.json", "docs/rag-corpus-ussia-gate-a-readonly-01.md", "todo.md"], "provenance_record_id": null, "digest": "sha256:6aa542e55dc88527c4d47c0e7696bb8872c71ee262120509e7dbc0fd2e683772", "availability": "original_and_processed_metadata_verified_historically", "rag_presence": "documented", "collection": "baseline/Drive11/FIGC5 lineage; current identity not re-queried",
+      "verification": "verified", "rights_status": "unknown", "near_duplicate_cluster_id": "cluster:ussia-title-normalization",
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"unknown","atomic":"unknown","contrastive":"unknown","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "development", "contamination_risk": "high", "limits": ["Widely used; rights remain unknown despite recorded digest and historical identity checks."]
+    },
+    {
+      "source_id": "drive11:vincenzo-italiano-tesi", "title": "vincenzo-italiano_tesi", "author_group": "Vincenzo Italiano", "organization": null, "document_type": "technical thesis", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "evaluation/rag_v5_external_drive11_holdout_v1.json", "docs/v5-external-drive11-holdout-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Used by external Drive11 holdout and runtime; per-source digest and rights absent from repository."]
+    },
+    {
+      "source_id": "drive11:contran-uefa-pro", "title": "contran_uefa-pro", "author_group": "Contran", "organization": "FIGC/Coverciano", "document_type": "UEFA Pro thesis", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "evaluation/rag_v5_external_drive11_holdout_v1.json", "docs/v5-external-drive11-holdout-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Used by external Drive11 holdout; per-source digest and rights absent."]
+    },
+    {
+      "source_id": "drive11:maldera-uefa-pro", "title": "maldera_tesi-uefa-pro", "author_group": "Andrea Maldera", "organization": "FIGC/Coverciano", "document_type": "UEFA Pro thesis", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "evaluation/rag_v5_external_drive11_holdout_v1.json", "docs/v5-external-drive11-holdout-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Used by external Drive11 holdout; per-source digest and rights absent."]
+    },
+    {
+      "source_id": "drive11:lorenzon-uefa-pro", "title": "tesi-lorenzon-uefa-pro", "author_group": "Lorenzon", "organization": "FIGC/Coverciano", "document_type": "UEFA Pro thesis", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "evaluation/rag_v5_external_drive11_holdout_v1.json", "docs/v5-external-drive11-holdout-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Used by external Drive11 holdout; per-source digest and rights absent."]
+    },
+    {
+      "source_id": "drive11:vulcano-master", "title": "vulcano-luciano_tesi-master", "author_group": "Luciano Vulcano", "organization": "FIGC/Coverciano", "document_type": "Master thesis", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "evaluation/rag_v5_external_drive11_holdout_v1.json", "docs/v5-external-drive11-holdout-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Used by external Drive11 holdout; per-source digest and rights absent."]
+    },
+    {
+      "source_id": "drive11:baldini-tesi", "title": "baldini-francesco_tesi", "author_group": "Francesco Baldini", "organization": "FIGC/Coverciano", "document_type": "technical thesis", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "evaluation/rag_v5_external_drive11_holdout_v1.json", "docs/v5-external-drive11-holdout-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Used by external Drive11 holdout; per-source digest and rights absent."]
+    },
+    {
+      "source_id": "drive11:principi-sistema-gioco", "title": "06_i_TH_Principi_-_Sistema_di_gioco", "author_group": null, "organization": null, "document_type": "technical PDF", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "docs/v5-tactical-corpus-drive11-candidate-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Author, version, per-source digest, detailed benchmark exposure and rights are unavailable."]
+    },
+    {
+      "source_id": "drive11:prestigiacomo-19", "title": "19_prestigiacomo", "author_group": "Prestigiacomo", "organization": null, "document_type": "technical PDF", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "docs/v5-tactical-corpus-drive11-candidate-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Version, per-source digest, detailed benchmark exposure and rights are unavailable."]
+    },
+    {
+      "source_id": "drive11:costruzione-343", "title": "343_costruzione", "author_group": null, "organization": null, "document_type": "technical PDF", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "docs/v5-tactical-corpus-drive11-candidate-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Author, version, per-source digest, detailed benchmark exposure and rights are unavailable."]
+    },
+    {
+      "source_id": "drive11:redazionale-01", "title": "01_redazionale", "author_group": null, "organization": null, "document_type": "editorial PDF", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "docs/v5-tactical-corpus-drive11-candidate-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Author, version, per-source digest, detailed benchmark exposure and rights are unavailable."]
+    },
+    {
+      "source_id": "drive11:preview1", "title": "preview1", "author_group": null, "organization": null, "document_type": "technical PDF", "version": null, "language": "unknown", "year": null,
+      "documented_references": ["docs/v5-tactical-corpus-reconciliation-2026-10-24.md", "docs/v5-tactical-corpus-drive11-candidate-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_verified_in_drive11", "rag_presence": "yes", "collection": "Drive11 6196 and FIGC5 6410 lineage",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Title is non-descriptive; author, version, per-source digest, detailed exposure and rights are unavailable."]
+    },
+    {
+      "source_id": "figc5:soncin-attacco-difesa", "title": "Attacco alla difesa", "author_group": "Soncin", "organization": "FIGC", "document_type": "official tactical thesis/document", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/figc-candidate-editorial-review-01.md", "docs/figc5-candidate-integration-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_reviewed_and_integrated", "rag_presence": "yes", "collection": "FIGC5 6410",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"yes","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Used by FIGC5 gate; per-source digest/version and rights are not in inspected artifacts."]
+    },
+    {
+      "source_id": "figc5:di-camillo-iraola", "title": "Andoni Iraola", "author_group": "Di Camillo", "organization": "FIGC", "document_type": "official tactical thesis/document", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/figc-candidate-editorial-review-01.md", "docs/figc-match-analysis-editorial-review-01.md", "docs/figc5-candidate-integration-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_reviewed_and_integrated", "rag_presence": "yes", "collection": "FIGC5 6410",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"unknown","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Integrated and used in retrieval checks; complete exposure, digest/version and rights are not verified."]
+    },
+    {
+      "source_id": "figc5:rausse-red-bull", "title": "Universo Red Bull", "author_group": "Rausse", "organization": "FIGC", "document_type": "official tactical thesis/document", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/figc-candidate-editorial-review-01.md", "docs/figc-match-analysis-editorial-review-01.md", "docs/figc5-candidate-integration-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_reviewed_and_integrated", "rag_presence": "yes", "collection": "FIGC5 6410",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"unknown","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Integrated and used in retrieval checks; complete exposure, digest/version and rights are not verified."]
+    },
+    {
+      "source_id": "figc5:gagliardi-bordin-nuova-era", "title": "Una nuova era", "author_group": "Gagliardi/Bordin", "organization": "FIGC", "document_type": "official tactical thesis/document", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/figc-candidate-editorial-review-01.md", "docs/figc5-candidate-integration-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_reviewed_and_integrated", "rag_presence": "yes", "collection": "FIGC5 6410",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": "cluster:una-nuova-era-language-editions",
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"unknown","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["English edition was excluded as an editorial duplicate; per-source digest/version and rights are unavailable."]
+    },
+    {
+      "source_id": "figc5:mastroianni-leao", "title": "Rafael Leão", "author_group": "Mastroianni", "organization": "FIGC", "document_type": "official tactical thesis/document", "version": null, "language": "it", "year": null,
+      "documented_references": ["docs/figc-candidate-editorial-review-01.md", "docs/figc5-candidate-integration-01.md"], "provenance_record_id": null, "digest": null, "availability": "historically_reviewed_and_integrated", "rag_presence": "yes", "collection": "FIGC5 6410",
+      "verification": "documented_partial", "rights_status": "unknown", "near_duplicate_cluster_id": null,
+      "historical_usage": {"rag_index":"yes","retrieval_development":"yes","generator_development":"unknown","nli_benchmark":"unknown","claim_fidelity":"no","atomic":"no","contrastive":"no","alignment":"unknown","gold_e_v":"no","d3_s1":"unknown","remediation":"yes"},
+      "preliminary_candidate": "not_assignable", "contamination_risk": "high", "limits": ["Integrated in FIGC5; complete exposure, per-source digest/version and rights are unavailable."]
+    }
+  ],
+  "aggregate_evidence": [
+    {
+      "aggregate_id": "baseline-corpus-141", "documented_count": 141,
+      "reference": "docs/v5-tactical-corpus-reconciliation-2026-10-24.md",
+      "status": "aggregate_only", "limit": "Individual identities and complete metadata are not recoverable from the inspected repository artifacts; not counted as inventory sources."
+    },
+    {
+      "aggregate_id": "figc5-collection-157", "documented_count": 157,
+      "reference": "docs/figc5-candidate-integration-01.md",
+      "status": "aggregate_only", "limit": "Collection count is documented, but no metadata-only individual export was authorized or available; not counted as inventory sources."
+    }
+  ],
+  "summary": {
+    "identified_sources": 34,
+    "metadata_verified": 5,
+    "metadata_partial": 29,
+    "metadata_not_verifiable": 0,
+    "rights_verified": 0,
+    "preliminary_candidates": {"development": 6, "calibration": 9, "holdout": 0, "adversarial": 3, "not_assignable": 16},
+    "contamination_risk": {"high": 34, "medium": 0, "low": 0},
+    "gold_390_feasibility": "not_demonstrable",
+    "gold_606_feasibility": "not_demonstrable"
+  },
+  "global_limits": [
+    "No current provenance registry contains real source records for these documents.",
+    "Historical NLI/alignment originals remain unavailable; unknown usage is not absence of usage.",
+    "The 141/157 corpus source aggregates cannot be decomposed into verified individual records from repository metadata alone.",
+    "Availability does not establish rights, independence or number of annotatable claims.",
+    "No source is certified as an independent holdout."
+  ]
+}

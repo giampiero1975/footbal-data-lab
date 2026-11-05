@@ -2463,3 +2463,21 @@ delle label e attestata; nessun caso reale, annotazione o freeze prodotto. Inven
 fonti **DA FARE**; Gold S2, raccolta, annotazione, adjudication, freeze reale, S2,
 Gate, integrazione e certificazione **BLOCCATO**. D3/S1, Gold E/V e readiness B
 invariati; nessun modello, benchmark, retrieval o runtime.
+
+## RD-TSC-V2-D3-S2-SOURCE-INVENTORY-01 — ricognizione metadata-only (2026-11-05)
+
+Attivita: inventariare esclusivamente fonti gia note e identificabili da evidenze
+Git, senza leggere contenuti documentali o interrogare collection. Script: nessun
+test/runtime; sole letture e riconciliazioni di JSON, manifest, report e registri.
+Manifest: `evaluation/gold_s2_source_inventory_v1.json`; report:
+`docs/tactical-state-contract-v2-s2-source-inventory-01.md`. Risultato: 34 fonti
+individuali, tutte collegate a riferimenti esistenti; 5 metadata verified, 29
+documented partial, 0 diritti verificati e 0 holdout attestati. I conteggi corpus
+141/157 restano aggregati non scomponibili dal repository e non sono stati gonfiati
+in record. Tutte le fonti hanno rischio di contaminazione alto per uso noto o storia
+incompleta; `unknown` non e stato convertito in assenza di utilizzo. Decisione:
+ricognizione **VALIDATO** nel perimetro effettivo; selezione e fattibilita 390/606
+**BLOCCATO/non dimostrata**. Provenance/diritti reali **DA FARE** previa decisione;
+raccolta, annotazione, adjudication, freeze, Gold S2, S2, Gate, integrazione e
+certificazione **BLOCCATO**. Nessun download, scraping, modello, benchmark,
+retrieval, Chroma o modifica ai contratti esistenti.
