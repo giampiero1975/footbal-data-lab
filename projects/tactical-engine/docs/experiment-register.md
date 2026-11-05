@@ -2542,3 +2542,19 @@ piano **ESEGUITO**; scelta 390/606 rinviata a fonti e pilot misurato (A+B deriva
 acquisizione **DA FARE** con autorizzazioni distinte; selezione, annotazione,
 freeze, Gold S2 e S2 **BLOCCATO**. Nessun download, scraping, contenuto, modello,
 benchmark, Gate, VPS o modifica ai contratti.
+
+## RD-S2-CANDIDATE-REGISTRY-V1-01 — implementazione offline (2026-11-05)
+
+Attivita: implementare lo strato preliminare di registrazione e qualificazione
+delle fonti candidate Gold S2. Script:
+`scripts/validate_gold_s2_source_candidate_registry_v1.py`; commit tecnico
+`a49d0ee096a4d0592fb87d893aa1cdd2c5e6d1a9`; report:
+`docs/tactical-state-contract-v2-s2-candidate-registry-v1-01.md`. Risultato:
+schema Draft 2020-12, template draft vuoto, validatore fail-closed e 17 test
+sintetici nuovi, **17/17 PASS**. Verificati ID/riferimenti, digest dichiarato vs
+byte-verificato, diritti separati, retention, exposure ledger, indipendenza,
+cluster, policy e attribuzione della decisione. Il validatore Gold S2 esistente
+resta invariato e nessun candidato/caso/split reale e stato creato. Decisione:
+infrastruttura **IMPLEMENTATO**, test **ESEGUITO**, proprieta deterministiche
+**VALIDATO offline**; policy e acquisizione **DA FARE**; candidati reali, Gold S2,
+freeze e S2 **BLOCCATO**. Nessuna attivita runtime o VPS.

@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline**
+  RD-S2-CANDIDATE-REGISTRY-V1-01: aggiunti schema versionato, template draft
+  vuoto, validatore deterministico fail-closed e 17 test sintetici differenziali
+  (17/17 PASS). Nessun candidato reale, caso o split creato; il contratto Gold
+  S2 esistente e invariato. Le policy mancanti impediscono ogni `eligible_*`.
+  Policy, custode, retention, pubblicazione, budget e acquisizione **DA FARE**;
+  candidati reali, selezione, Gold S2 e S2 **BLOCCATO**. Report
+  `docs/tactical-state-contract-v2-s2-candidate-registry-v1-01.md`.
+
 - [x] **ESEGUITO** RD-TSC-V2-D3-S2-INDEPENDENT-SOURCE-ACQUISITION-PLAN-01:
   definita politica fail-closed per identita, versione, provenienza, digest,
   diritti, retention, annotazione/pubblicazione, esposizione e cluster; valutati
