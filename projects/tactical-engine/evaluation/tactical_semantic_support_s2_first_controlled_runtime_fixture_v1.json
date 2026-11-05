@@ -2,7 +2,7 @@
   "schema": "tactical_semantic_support_s2_first_controlled_runtime_fixture_v1",
   "activity_id": "RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01",
   "source_dataset": "eval/claim_fidelity_gold_v1.json",
-  "source_dataset_sha256": "fdd6d9383493f58abd6d9a07fe0a029ecc7dc35bad106fe91ce747fb2463a605",
+  "source_dataset_sha256": "8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c",
   "label_provenance": "human-labeled claim_fidelity_gold_v1.json already versioned before this activity",
   "cases": [
     {

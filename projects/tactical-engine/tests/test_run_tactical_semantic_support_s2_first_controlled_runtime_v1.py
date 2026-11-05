@@ -39,7 +39,7 @@ class FirstControlledS2RunnerTests(unittest.TestCase):
         self.assertTrue(identities["fixture_sha256"].startswith("sha256:"))
         self.assertEqual(
             identities["source_dataset_sha256"],
-            "sha256:fdd6d9383493f58abd6d9a07fe0a029ecc7dc35bad106fe91ce747fb2463a605")
+            "sha256:8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c")
         self.assertEqual(fixture["activity_id"],
                          "RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01")
 
