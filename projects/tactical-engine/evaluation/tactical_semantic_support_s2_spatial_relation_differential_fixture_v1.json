@@ -1,0 +1,44 @@
+{
+  "schema": "tactical_semantic_support_s2_spatial_relation_differential_fixture_v1",
+  "activity_id": "RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01",
+  "source_dataset": "eval/claim_fidelity_gold_v1.json",
+  "source_dataset_sha256": "8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c",
+  "label_provenance": "human-labeled claim_fidelity_gold_v1.json versioned before this activity",
+  "cases": [
+    {
+      "case_id": "q3_04",
+      "role": "known_regression",
+      "expected_label": "contradicted",
+      "selection_reason": "known inverse spatial relation; lexically exposed by the new instruction and not independent evidence of generalization",
+      "historical_v2": {
+        "status": "directly_attributable",
+        "observed_label": "supported",
+        "artifact": "evaluation/tactical_semantic_support_s2_first_controlled_runtime_01.json",
+        "model": "qwen3.5:9b",
+        "temperature": 0,
+        "num_ctx": 4096,
+        "max_tokens": 1024,
+        "think": false,
+        "stream": false
+      }
+    },
+    {
+      "case_id": "q5_06",
+      "role": "distinct_inverse",
+      "expected_label": "contradicted",
+      "selection_reason": "human-labeled inverse relation between faster and slower progression, distinct from the leave/remove-space wording",
+      "historical_v2": {
+        "status": "not_available_as_equivalent_artifact"
+      }
+    },
+    {
+      "case_id": "q5_02",
+      "role": "insufficient_guard",
+      "expected_label": "insufficient",
+      "selection_reason": "the source describes a role across systems but does not establish the claimed immediate causal improvement after a system change",
+      "historical_v2": {
+        "status": "not_available_as_equivalent_artifact"
+      }
+    }
+  ]
+}
