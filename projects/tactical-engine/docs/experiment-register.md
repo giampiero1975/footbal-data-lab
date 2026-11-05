@@ -2513,6 +2513,24 @@ report parziale, `not_evaluable`, `run_complete=false` ed exit 2. Test interessa
 proprieta coperte **VALIDATO** offline. Runtime, efficacia, integrazione e
 certificazione **BLOCCATO** fino a distinta autorizzazione.
 
+## RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01 — Fase B (2026-11-05)
+
+Attivita: unica esecuzione runtime autorizzata nello staging indipendente
+`s2-spatial-differential-0d40719`. Script e configurazione congelati; artefatto:
+`evaluation/tactical_semantic_support_s2_spatial_relation_differential_01.json`;
+report:
+`docs/tactical-semantic-support-s2-spatial-relation-differential-runtime-01.md`.
+Risultato: preflight PASS, 66,35 s, exit 0, `planned/attempted/completed=3/3/3`,
+`run_complete=true`, S1 invariato e non-promozione 3/3. Corrispondenza Gold 2/3:
+`q5_06 contradicted`, `q5_02 insufficient`, ma `q3_04 supported` resta il falso
+positivo storico. JSON 13.138 byte, SHA-256 `a06ba357...`; quattro artefatti
+verificati. Nessun retry, repair o judge V2. Anomalia: il bridge riutilizzato
+mantiene nome/rationale testuali V2 nei record annidati, mentre descriptor,
+runtime config e import attestano il callable spatial. Decisione: esecuzione
+**ESEGUITO**, completamento tecnico **VALIDATO** nel singolo run; corrispondenza
+complessiva, affidabilita, integrazione e certificazione **BLOCCATO**. Nessun
+rerun autorizzato; prossimo passo soltanto revisione offline indipendente.
+
 ## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
 
 Attivita: attribuire il falso positivo reale `q3_04` usando soltanto artefatto,

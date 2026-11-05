@@ -1,0 +1,298 @@
+{
+  "schema": "tactical_semantic_support_s2_spatial_relation_differential_report_v1",
+  "activity_id": "RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01",
+  "mode": "shadow_only",
+  "promotion_authorized": false,
+  "authoritative_outputs_modified": false,
+  "plan_fingerprint": "sha256:846044fb3bc0d4e9224b085cf8ac1c140421b11f60135681309d26c596cb6b84",
+  "input_identities": {
+    "fixture_sha256": "sha256:45c26718605d5edf1bbe9463bd516b85050b352b712653d112f39d1397f3d1d7",
+    "source_dataset_sha256": "sha256:8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c"
+  },
+  "contract": {
+    "contract_id": "nli_spatial_relations_v1",
+    "version": "1.0",
+    "base_contract": "shadow_nli_v2_inference",
+    "labels": [
+      "supported",
+      "contradicted",
+      "insufficient"
+    ],
+    "instruction_sha256": "sha256:861dbec3daac9ac34169356ad51a453f6267175afaa5d296f84c92586d2f3a00",
+    "selection": "explicit_import_only"
+  },
+  "runtime_config": {
+    "judge": "shadow_nli_spatial_relations_v1_inference.judge_pair",
+    "model": "qwen3.5:9b",
+    "ollama_url": "http://127.0.0.1:11434",
+    "timeout_seconds_per_call": 180,
+    "max_tokens": 1024,
+    "temperature": 0,
+    "num_ctx": 4096,
+    "think": false,
+    "retry": false,
+    "repair": false
+  },
+  "planned_evaluations": 3,
+  "attempted_evaluations": 3,
+  "completed_evaluations": 3,
+  "run_complete": true,
+  "stopped_early": false,
+  "cases": [
+    {
+      "case_id": "q3_04",
+      "role": "known_regression",
+      "source": "verticalizzazione_Bonacini",
+      "page": 2,
+      "claim": "La difesa bassa lascia molto spazio tra la linea difensiva e la porta.",
+      "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta.",
+      "selection_reason": "known inverse spatial relation; lexically exposed by the new instruction and not independent evidence of generalization",
+      "expected_label": "contradicted",
+      "label_provenance": "human-labeled claim_fidelity_gold_v1.json versioned before this activity",
+      "historical_v2": {
+        "status": "directly_attributable",
+        "observed_label": "supported",
+        "artifact": "evaluation/tactical_semantic_support_s2_first_controlled_runtime_01.json",
+        "model": "qwen3.5:9b",
+        "temperature": 0,
+        "num_ctx": 4096,
+        "max_tokens": 1024,
+        "think": false,
+        "stream": false
+      },
+      "s1_assessment": {
+        "schema": "tactical_documentary_support_assessment_v1",
+        "version": "1.0",
+        "attempt_id": "attempt:s2-spatial-differential:q3_04",
+        "plan_fingerprint": "sha256:846044fb3bc0d4e9224b085cf8ac1c140421b11f60135681309d26c596cb6b84",
+        "claim_id": "claim:q3_04",
+        "statement_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q3_04",
+            "evidence_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+            "verdict": "not_evaluable",
+            "reason_codes": [
+              "statement_not_exact_anchor"
+            ]
+          }
+        ],
+        "aggregate_verdict": "not_evaluable",
+        "reason_codes": [
+          "statement_not_exact_anchor"
+        ],
+        "assessor": {
+          "kind": "deterministic",
+          "name": "s1_exact_atomic",
+          "version": "1.0",
+          "config_sha256": "sha256:fcb7f02505fff2ecd57dcb3630879ce4d9b71f79b750d19a12c5488a5966cdeb"
+        }
+      },
+      "s1_unchanged": true,
+      "s2_shadow_assessment": {
+        "schema": "tactical_documentary_semantic_support_shadow_v1",
+        "version": "1.0",
+        "mode": "shadow_only",
+        "promotion_authorized": false,
+        "attempt_id": "attempt:s2-spatial-differential:q3_04",
+        "plan_fingerprint": "sha256:846044fb3bc0d4e9224b085cf8ac1c140421b11f60135681309d26c596cb6b84",
+        "claim_id": "claim:q3_04",
+        "statement_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "s1_assessment_sha256": "sha256:0519290b790c52aa6665a07d49850471ef6ee801def69f5838e275a3b967ad3e",
+        "judge": {
+          "kind": "injected",
+          "name": "shadow-nli-v2-s2-bridge",
+          "version": "1.0",
+          "config_sha256": "sha256:db93b1d9850573476ffaa94d74f58776e7c2c64c52605acb368e0db11c2202fd"
+        },
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q3_04",
+            "evidence_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+            "judge_label": "supported",
+            "judge_rationale": "NLI V2 returned the recorded label for the exact projected claim/evidence pair; the historical contract provides no semantic rationale.",
+            "status": "evaluated",
+            "reason_codes": []
+          }
+        ],
+        "evaluation_status": "evaluated",
+        "aggregate_verdict": "supported",
+        "reason_codes": [
+          "shadow_judgement_complete"
+        ],
+        "record_sha256": "sha256:8e94689b77b1cc8bd52090827579cc5e68d7bfb8e0679948bc05a8b62daa6ad0"
+      },
+      "technical_pass": true,
+      "semantic_match": false
+    },
+    {
+      "case_id": "q5_06",
+      "role": "distinct_inverse",
+      "source": "Gioco a zona nel calcio",
+      "page": 2,
+      "claim": "Il gioco a zona garantisce un avanzamento più rapido durante il possesso.",
+      "evidence": "il sistema di gioco a zona può presentare degli svantaggi: più lento avanzamento durante la fase di possesso palla; giocando sempre nelle stesse zone, si può perdere in fantasia ed imprevedibilità.",
+      "selection_reason": "human-labeled inverse relation between faster and slower progression, distinct from the leave/remove-space wording",
+      "expected_label": "contradicted",
+      "label_provenance": "human-labeled claim_fidelity_gold_v1.json versioned before this activity",
+      "historical_v2": {
+        "status": "not_available_as_equivalent_artifact"
+      },
+      "s1_assessment": {
+        "schema": "tactical_documentary_support_assessment_v1",
+        "version": "1.0",
+        "attempt_id": "attempt:s2-spatial-differential:q5_06",
+        "plan_fingerprint": "sha256:846044fb3bc0d4e9224b085cf8ac1c140421b11f60135681309d26c596cb6b84",
+        "claim_id": "claim:q5_06",
+        "statement_sha256": "sha256:f1c4cd60b75fb0bff7c1593b84a557f92e7273d21747b04551894b4ba0a0f590",
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q5_06",
+            "evidence_sha256": "sha256:6a2b8f9b73d904d2c50ed528bc06885ab7e233113dce4a4c01e4c2b2a278b9af",
+            "verdict": "not_evaluable",
+            "reason_codes": [
+              "statement_not_exact_anchor"
+            ]
+          }
+        ],
+        "aggregate_verdict": "not_evaluable",
+        "reason_codes": [
+          "statement_not_exact_anchor"
+        ],
+        "assessor": {
+          "kind": "deterministic",
+          "name": "s1_exact_atomic",
+          "version": "1.0",
+          "config_sha256": "sha256:fcb7f02505fff2ecd57dcb3630879ce4d9b71f79b750d19a12c5488a5966cdeb"
+        }
+      },
+      "s1_unchanged": true,
+      "s2_shadow_assessment": {
+        "schema": "tactical_documentary_semantic_support_shadow_v1",
+        "version": "1.0",
+        "mode": "shadow_only",
+        "promotion_authorized": false,
+        "attempt_id": "attempt:s2-spatial-differential:q5_06",
+        "plan_fingerprint": "sha256:846044fb3bc0d4e9224b085cf8ac1c140421b11f60135681309d26c596cb6b84",
+        "claim_id": "claim:q5_06",
+        "statement_sha256": "sha256:f1c4cd60b75fb0bff7c1593b84a557f92e7273d21747b04551894b4ba0a0f590",
+        "s1_assessment_sha256": "sha256:52918efed1c95271c3a018013552e78a8e4fa11e504c1f55bd2bfc77dee25f58",
+        "judge": {
+          "kind": "injected",
+          "name": "shadow-nli-v2-s2-bridge",
+          "version": "1.0",
+          "config_sha256": "sha256:db93b1d9850573476ffaa94d74f58776e7c2c64c52605acb368e0db11c2202fd"
+        },
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q5_06",
+            "evidence_sha256": "sha256:6a2b8f9b73d904d2c50ed528bc06885ab7e233113dce4a4c01e4c2b2a278b9af",
+            "judge_label": "contradicted",
+            "judge_rationale": "NLI V2 returned the recorded label for the exact projected claim/evidence pair; the historical contract provides no semantic rationale.",
+            "status": "evaluated",
+            "reason_codes": []
+          }
+        ],
+        "evaluation_status": "evaluated",
+        "aggregate_verdict": "contradicted",
+        "reason_codes": [
+          "shadow_judgement_complete"
+        ],
+        "record_sha256": "sha256:d43c7d7ca9f39eb1587cedc98fa3bcccaff1331934b11565a5855a530b5007a5"
+      },
+      "technical_pass": true,
+      "semantic_match": true
+    },
+    {
+      "case_id": "q5_02",
+      "role": "insufficient_guard",
+      "source": "variazione_sistema_gioco_Pane",
+      "page": 8,
+      "claim": "Cambiare sistema durante la partita migliora immediatamente la protezione difensiva.",
+      "evidence": "In tutti e tre i sistemi il vantaggio principale è dato dalla presenza del centromediano metodista, che è in grado sia di proteggere la difesa che di costruire il gioco.",
+      "selection_reason": "the source describes a role across systems but does not establish the claimed immediate causal improvement after a system change",
+      "expected_label": "insufficient",
+      "label_provenance": "human-labeled claim_fidelity_gold_v1.json versioned before this activity",
+      "historical_v2": {
+        "status": "not_available_as_equivalent_artifact"
+      },
+      "s1_assessment": {
+        "schema": "tactical_documentary_support_assessment_v1",
+        "version": "1.0",
+        "attempt_id": "attempt:s2-spatial-differential:q5_02",
+        "plan_fingerprint": "sha256:846044fb3bc0d4e9224b085cf8ac1c140421b11f60135681309d26c596cb6b84",
+        "claim_id": "claim:q5_02",
+        "statement_sha256": "sha256:a7c9a84fb84a8a3db3488bd58bdc8855ea97a71b5ef710181b5597256fc7738d",
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q5_02",
+            "evidence_sha256": "sha256:1d4ceccf760afe61358dd58d91080140206b81cfef068dfa376891528eda7203",
+            "verdict": "not_evaluable",
+            "reason_codes": [
+              "statement_not_exact_anchor"
+            ]
+          }
+        ],
+        "aggregate_verdict": "not_evaluable",
+        "reason_codes": [
+          "statement_not_exact_anchor"
+        ],
+        "assessor": {
+          "kind": "deterministic",
+          "name": "s1_exact_atomic",
+          "version": "1.0",
+          "config_sha256": "sha256:fcb7f02505fff2ecd57dcb3630879ce4d9b71f79b750d19a12c5488a5966cdeb"
+        }
+      },
+      "s1_unchanged": true,
+      "s2_shadow_assessment": {
+        "schema": "tactical_documentary_semantic_support_shadow_v1",
+        "version": "1.0",
+        "mode": "shadow_only",
+        "promotion_authorized": false,
+        "attempt_id": "attempt:s2-spatial-differential:q5_02",
+        "plan_fingerprint": "sha256:846044fb3bc0d4e9224b085cf8ac1c140421b11f60135681309d26c596cb6b84",
+        "claim_id": "claim:q5_02",
+        "statement_sha256": "sha256:a7c9a84fb84a8a3db3488bd58bdc8855ea97a71b5ef710181b5597256fc7738d",
+        "s1_assessment_sha256": "sha256:977f93458c617e9385ffc4b311f78fe66a1051d1dc97519cf9067827dacbf0ed",
+        "judge": {
+          "kind": "injected",
+          "name": "shadow-nli-v2-s2-bridge",
+          "version": "1.0",
+          "config_sha256": "sha256:db93b1d9850573476ffaa94d74f58776e7c2c64c52605acb368e0db11c2202fd"
+        },
+        "evidence": [
+          {
+            "evidence_ref": "evidence:q5_02",
+            "evidence_sha256": "sha256:1d4ceccf760afe61358dd58d91080140206b81cfef068dfa376891528eda7203",
+            "judge_label": "insufficient",
+            "judge_rationale": "NLI V2 returned the recorded label for the exact projected claim/evidence pair; the historical contract provides no semantic rationale.",
+            "status": "evaluated",
+            "reason_codes": []
+          }
+        ],
+        "evaluation_status": "evaluated",
+        "aggregate_verdict": "insufficient",
+        "reason_codes": [
+          "shadow_judgement_complete"
+        ],
+        "record_sha256": "sha256:bdafc47e49a94be76fe1f5a18711ed79bbfaf6ddbb18ce2863936a6f8ffa4bbe"
+      },
+      "technical_pass": true,
+      "semantic_match": true
+    }
+  ],
+  "summary": {
+    "technical_passes": 3,
+    "semantic_matches": 2,
+    "completed_cases": 3,
+    "all_s1_unchanged": true,
+    "all_non_promotable": true
+  },
+  "limitations": [
+    "q3_04 is a known lexically exposed regression, not independent evidence",
+    "Three diagnostic cases cannot establish general semantic accuracy",
+    "Only q3_04 has a directly attributable historical V2 runtime result",
+    "S2 results cannot modify S1, overall status or promoted answer"
+  ]
+}

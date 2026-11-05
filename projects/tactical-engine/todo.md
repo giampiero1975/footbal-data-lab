@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO; tecnico VALIDATO, semantica complessiva BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01 Fase B: singolo run
+  autorizzato completato in 66,35 s, exit 0, `run_complete=true`, valutazioni
+  3/3, zero retry/repair/V2. Gold corrisposto 2/3: `q5_06 contradicted` e
+  `q5_02 insufficient`; `q3_04` resta erroneamente `supported`, uguale al falso
+  positivo V2 storico. S1 invariato e `promotion_authorized=false`. JSON 13.138
+  byte, SHA-256 `a06ba357...`. Il bridge conserva nel record una denominazione e
+  rationale storiche V2 pur avendo ricevuto il callable spatial: anomalia di
+  provenienza testuale da revisionare offline. Tecnica del singolo run
+  **VALIDATO**; corrispondenza complessiva, affidabilita, integrazione e
+  certificazione **BLOCCATO**. Nessun rerun autorizzato. Report
+  `docs/tactical-semantic-support-s2-spatial-relation-differential-runtime-01.md`.
+
 - [x] **ESEGUITO, IMPLEMENTATO e VALIDATO offline; runtime BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-DIFFERENTIAL-FINAL-REVIEW-01: `q5_06` qualificato
   come controllo distinto ma correlato, non indipendente. Corretto il difetto di
