@@ -127,8 +127,10 @@ def execute_cases(fixture, cases, identities, judge, judge_descriptor,
         "input_identities": identities,
         "contract": contract_descriptor,
         "runtime_config": runtime_config,
-        "maximum_inferences": MAX_CASES,
-        "actual_inferences": 0,
+        "planned_evaluations": MAX_CASES,
+        "attempted_evaluations": 0,
+        "completed_evaluations": 0,
+        "run_complete": False,
         "stopped_early": False,
         "cases": [],
         "summary": {},
@@ -140,6 +142,7 @@ def execute_cases(fixture, cases, identities, judge, judge_descriptor,
         ],
     }
     for case in cases:
+        report["attempted_evaluations"] += 1
         claim = _claim(case)
         evidence_ref = claim["evidence_refs"][0]
         evidence = {evidence_ref: {
@@ -153,7 +156,6 @@ def execute_cases(fixture, cases, identities, judge, judge_descriptor,
         s2_record = s2.assess_claim(
             attempt_id, plan_fingerprint, claim, evidence, s1_assessment,
             {claim["relation_refs"][0]: {}}, judge, judge_descriptor)
-        report["actual_inferences"] += 1
         after = s1.canonical_json(s1_assessment)
         observed = s2_record.get("aggregate_verdict")
         report["cases"].append({
@@ -183,6 +185,13 @@ def execute_cases(fixture, cases, identities, judge, judge_descriptor,
         if s2_record.get("evaluation_status") != "evaluated":
             report["stopped_early"] = True
             break
+        report["completed_evaluations"] += 1
+    report["run_complete"] = (
+        not report["stopped_early"] and
+        report["attempted_evaluations"] == MAX_CASES and
+        report["completed_evaluations"] == MAX_CASES and
+        len(report["cases"]) == MAX_CASES
+    )
     report["summary"] = {
         "technical_passes": sum(bool(row["technical_pass"])
                                 for row in report["cases"]),
@@ -195,6 +204,10 @@ def execute_cases(fixture, cases, identities, judge, judge_descriptor,
             for row in report["cases"]),
     }
     return report
+
+
+def report_exit_code(report):
+    return 0 if isinstance(report, dict) and report.get("run_complete") is True else 2
 
 
 def main():
@@ -242,9 +255,7 @@ def main():
     with args.output.open("x", encoding="utf-8") as stream:
         json.dump(report, stream, ensure_ascii=False, indent=2)
         stream.write("\n")
-    if report["stopped_early"]:
-        raise SystemExit(2)
-    raise SystemExit(0)
+    raise SystemExit(report_exit_code(report))
 
 
 if __name__ == "__main__":

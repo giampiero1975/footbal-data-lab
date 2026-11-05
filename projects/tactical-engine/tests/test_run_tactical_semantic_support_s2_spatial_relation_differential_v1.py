@@ -74,6 +74,11 @@ class SpatialDifferentialRunnerTests(unittest.TestCase):
             {"model": "mock", "retry": False},
             {"contract_id": "nli_spatial_relations_v1", "version": "1.0"})
         self.assertEqual(len(calls), 3)
+        self.assertEqual(report["planned_evaluations"], 3)
+        self.assertEqual(report["attempted_evaluations"], 3)
+        self.assertEqual(report["completed_evaluations"], 3)
+        self.assertTrue(report["run_complete"])
+        self.assertEqual(runner.report_exit_code(report), 0)
         self.assertTrue(all("expected_label" not in claim for claim, _ in calls))
         self.assertTrue(all("q3_04" not in evidence for _, evidence in calls))
         self.assertTrue(report["summary"]["all_non_promotable"])
@@ -91,7 +96,10 @@ class SpatialDifferentialRunnerTests(unittest.TestCase):
             {"model": "mock", "retry": False},
             {"contract_id": "nli_spatial_relations_v1", "version": "1.0"})
         self.assertEqual(calls, [True])
-        self.assertEqual(report["actual_inferences"], 1)
+        self.assertEqual(report["attempted_evaluations"], 1)
+        self.assertEqual(report["completed_evaluations"], 0)
+        self.assertFalse(report["run_complete"])
+        self.assertEqual(runner.report_exit_code(report), 2)
         self.assertTrue(report["stopped_early"])
         self.assertFalse(report["cases"][0]["semantic_match"])
         self.assertEqual(report["cases"][0]["s2_shadow_assessment"]["evaluation_status"],
