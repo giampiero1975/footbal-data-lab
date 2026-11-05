@@ -2558,3 +2558,19 @@ resta invariato e nessun candidato/caso/split reale e stato creato. Decisione:
 infrastruttura **IMPLEMENTATO**, test **ESEGUITO**, proprieta deterministiche
 **VALIDATO offline**; policy e acquisizione **DA FARE**; candidati reali, Gold S2,
 freeze e S2 **BLOCCATO**. Nessuna attivita runtime o VPS.
+
+## RD-S2-FIRST-REAL-SOURCE-CANDIDATE-01 — registrazione (2026-11-05)
+
+Attivita: qualificare la sola fonte Frontiers autorizzata, DOI
+`10.3389/fspor.2022.1019990`, senza creare casi o split. Script: validatore
+Candidate Registry V1 esistente; record:
+`evaluation/gold_s2_source_candidate_registry_v1.json`; commit record
+`ac7dfe8b2f13dbd72412022d4f8e6f55ae3b1bcd`; report:
+`docs/gold-s2-first-real-source-candidate-01.md`. Risultato: pagina/PDF ufficiali
+confermano identita, autori, data, DOI e CC BY dichiarata; PDF temporaneo 654208
+byte e SHA-256 `8742bfaa21170df3a63ad53c7486ee62e6b39ceef168d6c3bdeab29fdb04bc31`,
+match esatto col dato utente. Zero match esatti per DOI/titolo/autori negli
+inventari 34/157; questo non prova indipendenza. Validazione mirata `STATUS VALID`,
+errori 0. Decisione: registrazione **ESEGUITO**, struttura/digest **VALIDATO**;
+candidato `blocked_unknown`, nessuno split; diritti operativi, exposure,
+indipendenza, selezione, Gold e S2 **BLOCCATO**. Nessuna attivita VPS/runtime.

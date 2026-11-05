@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO; record VALIDATO, eleggibilita BLOCCATO**
+  RD-S2-FIRST-REAL-SOURCE-CANDIDATE-01: registrato nel Candidate Registry V1
+  l'articolo Frontiers DOI `10.3389/fspor.2022.1019990`. Identita/version of
+  record e CC BY dichiarata verificate sulla fonte ufficiale; PDF ufficiale
+  654208 byte, SHA-256 `8742bfaa21170df3a63ad53c7486ee62e6b39ceef168d6c3bdeab29fdb04bc31`,
+  corrispondente al valore utente. Zero match esatti per DOI/titolo/autori nei
+  registri 34/157, ma esposizione, duplicati e indipendenza restano `unknown`.
+  Validatore mirato PASS (`STATUS VALID`, errori 0). Candidato
+  `blocked_unknown`, nessuno split; diritti operativi, policy e screening
+  **BLOCCATO**. Report `docs/gold-s2-first-real-source-candidate-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline**
   RD-S2-CANDIDATE-REGISTRY-V1-01: aggiunti schema versionato, template draft
   vuoto, validatore deterministico fail-closed e 17 test sintetici differenziali
