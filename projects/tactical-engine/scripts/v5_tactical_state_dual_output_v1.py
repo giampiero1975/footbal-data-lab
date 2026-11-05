@@ -8,6 +8,7 @@ import unicodedata
 
 import v5_tactical_state_generation_v2 as generation_v2
 import v5_tactical_semantic_support_s1 as semantic_support_s1
+import v5_tactical_semantic_support_s2 as semantic_support_s2
 
 
 TRANSPORT_SCHEMA = "tactical_state_documentary_explanation_v1"
@@ -186,7 +187,9 @@ def _failure(code, **details):
 
 def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=None,
                            tactical_audit=None, done_reason=None,
-                           transport_error=None, attempt_id="offline"):
+                           transport_error=None, attempt_id="offline",
+                           semantic_support_s2_judge=None,
+                           semantic_support_s2_judge_descriptor=None):
     """Validate D3 deterministically; unknown semantic support stays not_evaluable."""
     preflight = preflight or prepare_dual_output_request(question_plan)
     base = {"schema": DIAGNOSTIC_SCHEMA, "overall_status": preflight.get("status", "not_evaluable"),
@@ -207,6 +210,7 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
         return base
 
     failures, unassessed, checked = [], [], []
+    s2_shadow_assessments = []
     expected_top = {"schema", "authorized_plan_fingerprint", "documentary_explanation"}
     if set(parsed) != expected_top or parsed.get("schema") != TRANSPORT_SCHEMA:
         failures.append(_failure("invalid_documentary_envelope_shape"))
@@ -387,6 +391,30 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
                     unassessed.append(_failure(
                         "semantic_support_not_evaluable", claim_id=claim_id,
                         reason_codes=assessment["reason_codes"]))
+                if semantic_support_s2_judge is not None:
+                    authoritative_bindings = {
+                        relation_id: relation_bindings(relation)
+                        for relation_id, relation in relation_by_id.items()
+                    }
+                    shadow = semantic_support_s2.assess_claim(
+                        attempt_id, preflight["authorized_plan_fingerprint"], claim,
+                        evidence_by_id, assessment, authoritative_bindings,
+                        semantic_support_s2_judge,
+                        semantic_support_s2_judge_descriptor)
+                    verification_errors = semantic_support_s2.verify_assessment(
+                        shadow, attempt_id, preflight["authorized_plan_fingerprint"],
+                        claim, evidence_by_id, assessment, authoritative_bindings,
+                        semantic_support_s2_judge_descriptor)
+                    if verification_errors:
+                        shadow = dict(shadow)
+                        shadow["evaluation_status"] = "not_evaluable"
+                        shadow["aggregate_verdict"] = "not_evaluable"
+                        shadow["reason_codes"] = list(dict.fromkeys(
+                            shadow.get("reason_codes", []) + verification_errors))
+                        payload = dict(shadow)
+                        payload["record_sha256"] = None
+                        shadow["record_sha256"] = semantic_support_s2.digest_document(payload)
+                    s2_shadow_assessments.append(shadow)
             elif support_mode == "bounded_inference":
                 unassessed.append(_failure("bounded_inference_not_evaluable", claim_id=claim_id))
             else:
@@ -448,6 +476,8 @@ def documentary_diagnostic(question_plan, raw_content, evidence, *, preflight=No
         "tactical_documentary_audit": audit,
         "semantic_support_assessments": generated_assessments,
     }
+    if semantic_support_s2_judge is not None:
+        controls["semantic_support_s2_shadow"] = s2_shadow_assessments
     status = "blocked" if failures else "not_evaluable" if unassessed else "validated"
     reasons = [item["code"] for item in failures + unassessed]
     base.update(overall_status=status, promoted_answer=prose if status == "validated" else "",
