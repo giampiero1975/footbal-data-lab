@@ -8,10 +8,21 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO, IMPLEMENTATO e VALIDATO offline; runtime BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-DIFFERENTIAL-FINAL-REVIEW-01: `q5_06` qualificato
+  come controllo distinto ma correlato, non indipendente. Corretto il difetto di
+  tracciabilita del runner: `planned_evaluations`, `attempted_evaluations` e
+  `completed_evaluations` non pretendono di contare HTTP; `run_complete=true` ed
+  exit 0 richiedono 3/3 valutazioni valide, mentre il primo `not_evaluable`
+  produce report parziale, `run_complete=false` ed exit 2. Test differenziali
+  interessati 6/6 PASS; nessuna inferenza. **REVISIONE FAVOREVOLE**; runtime,
+  efficacia, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-differential-final-review-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; runtime BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01 Fase A: predisposti runner
-  opt-in e fixture per `q3_04` regressione nota, `q5_06` relazione inversa
-  distinta e `q5_02` controllo `insufficient`. Massimo tre chiamate future al
+  opt-in e fixture per `q3_04` regressione nota, `q5_06` controllo inverso
+  distinto ma correlato e `q5_02` controllo `insufficient`. Massimo tre valutazioni future al
   solo contratto spatial, zero V2 implicito/retry/repair, arresto fail-closed e
   `promotion_authorized=false`. Solo `q3_04` ha confronto V2 direttamente
   attribuibile. Test nuovi 6/6 PASS, compilazione e diff check PASS; nessuna

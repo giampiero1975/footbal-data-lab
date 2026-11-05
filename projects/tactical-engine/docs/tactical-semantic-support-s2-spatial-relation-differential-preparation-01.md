@@ -14,7 +14,7 @@ Commit tecnico: `9aac9ea761ba29099332d95fbff7d0f2ee8bf9e8`.
 | Ruolo | Caso | Gold umano | Fonte/pagina | Motivazione |
 |---|---|---|---|---|
 | regressione nota | `q3_04` | `contradicted` | `verticalizzazione_Bonacini`, 2 | relazione lascia/toglie spazio; il prompt nuovo e lessicalmente esposto, quindi nessuna prova indipendente |
-| relazione inversa distinta | `q5_06` | `contradicted` | `Gioco a zona nel calcio`, 2 | avanzamento rapido contro avanzamento piu lento; soggetto e proprieta coincidono, direzione differente e lessico distinto dall'esempio lascia/toglie spazio |
+| controllo distinto ma correlato | `q5_06` | `contradicted` | `Gioco a zona nel calcio`, 2 | avanzamento rapido contro avanzamento piu lento; lessico distinto da lascia/toglie spazio, ma stessa famiglia concettuale delle inversioni esemplificate |
 | protezione insufficient | `q5_02` | `insufficient` | `variazione_sistema_gioco_Pane`, 8 | la fonte descrive il ruolo del metodista, ma non dimostra ne smentisce l'effetto immediato del cambio di sistema |
 
 Claim, evidenze e label provengono senza modifiche da
@@ -47,12 +47,13 @@ dichiarare un miglioramento comparativo generale rispetto a V2.
 - Attivazione solo tramite `--execute`; modulo inerte all'import.
 - Import runtime esplicito del solo
   `shadow_nli_spatial_relations_v1_inference`; nessuna chiamata V2.
-- Massimo tre chiamate, nessun retry, repair o fallback positivo.
+- Massimo tre valutazioni pianificate, nessun retry, repair o fallback positivo;
+  il runner non pretende di osservare o contare direttamente richieste HTTP.
 - Temperatura 0, `num_ctx=4096`, `think=false`, 1024 token e timeout 180 s.
 - Digest fixture/dataset e descriptor/digest del contratto registrati.
 - Output creato in esclusiva; un output esistente o symlink e rifiutato.
-- Primo errore produce `not_evaluable`, arresto e nessuna corrispondenza
-  semantica.
+- Primo errore produce `not_evaluable`, arresto, `run_complete=false`, exit 2 e
+  nessuna corrispondenza semantica. Exit 0 richiede tre valutazioni completate.
 - S1 resta invariato e `promotion_authorized=false`; il runner non modifica
   `overall_status` o `promoted_answer`.
 
@@ -83,7 +84,8 @@ Nessuna suite storica e stata ripetuta.
   promozione.
 - Corrispondenza semantica: label valida uguale al Gold congelato.
 - `q3_04`: sola regressione nota, senza valore di generalizzazione.
-- `q5_06`: controllo distinto della relazione inversa.
+- `q5_06`: controllo distinto ma correlato della relazione inversa; non prova
+  indipendente di generalizzazione.
 - `q5_02`: controllo contro falsa contraddizione.
 - Fail-closed: qualsiasi errore resta `not_evaluable`, non semantic match.
 

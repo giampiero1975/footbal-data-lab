@@ -2485,16 +2485,33 @@ fixture:
 `evaluation/tactical_semantic_support_s2_spatial_relation_differential_fixture_v1.json`;
 commit tecnico `9aac9ea761ba29099332d95fbff7d0f2ee8bf9e8`; report:
 `docs/tactical-semantic-support-s2-spatial-relation-differential-preparation-01.md`.
-Risultato: selezionati `q3_04` come regressione nota, `q5_06` come relazione
-inversa lessicalmente distinta e `q5_02` come guardia `insufficient`; label e
+Risultato: selezionati `q3_04` come regressione nota, `q5_06` come controllo
+inverso distinto ma correlato e `q5_02` come guardia `insufficient`; label e
 contenuti umani invariati. Solo `q3_04` dispone di risultato V2 direttamente
-attribuibile. Runner opt-in, massimo tre chiamate al solo nuovo judge, zero
+attribuibile. Runner opt-in, massimo tre valutazioni al solo nuovo judge, zero
 retry/repair/V2 implicito, output esclusivo, stop al primo `not_evaluable`, S1
 invariato e `promotion_authorized=false`. Test differenziali nuovi 6/6 PASS,
 compilazione e diff check PASS; nessuna suite storica o inferenza. Decisione:
 runner/fixture **IMPLEMENTATO**, verifiche **ESEGUITO**, proprieta offline
 coperte **VALIDATO**. Esecuzione reale, efficacia, confronto generale V2,
 integrazione e certificazione **BLOCCATO** fino a nuova autorizzazione.
+
+## RD-TSC-V2-D3-S2-SPATIAL-DIFFERENTIAL-FINAL-REVIEW-01 — statica (2026-11-05)
+
+Attivita: chiudere valore probatorio di `q5_06` e tracciabilita runtime senza
+inferenze. Script rettificato:
+`scripts/run_tactical_semantic_support_s2_spatial_relation_differential_v1.py`;
+commit tecnico `3e630a5e6aba2e402adeea01f3f8dc4cf4f6e419`; report:
+`docs/tactical-semantic-support-s2-spatial-differential-final-review-01.md`.
+Risultato: `q5_06` e controllo distinto ma correlato alla famiglia di inversioni,
+non prova indipendente. Sostituito il contatore ambiguo con valutazioni pianificate,
+tentate e completate; nessuna pretesa di contare HTTP. `run_complete=true` ed
+exit 0 richiedono 3/3 valutazioni tecnicamente valide; errore intercettato produce
+report parziale, `not_evaluable`, `run_complete=false` ed exit 2. Test interessati
+6/6 PASS, compilazione e diff check PASS; nessuna inferenza. Decisione:
+**REVISIONE FAVOREVOLE**, rettifica **IMPLEMENTATO**, revisione **ESEGUITO** e
+proprieta coperte **VALIDATO** offline. Runtime, efficacia, integrazione e
+certificazione **BLOCCATO** fino a distinta autorizzazione.
 
 ## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
 
