@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-TSC-V2-D3-S2-INDEPENDENT-SOURCE-ACQUISITION-PLAN-01:
+  definita politica fail-closed per identita, versione, provenienza, digest,
+  diritti, retention, annotazione/pubblicazione, esposizione e cluster; valutati
+  sette canali, registro candidati vuoto, ruoli umani separati e roadmap a gate.
+  Nessuna fonte/candidato acquisito. Scelta 390/606 rinviata a un pilot umano:
+  A+B stimati dal design 130–195 h per 390 e 202–303 h per 606, esclusi
+  acquisizione/C/D/freeze. Policy, ruoli e registro **DA FARE**; acquisizione
+  **DA FARE** previa autorizzazione; selezione, Gold S2 e S2 **BLOCCATO**. Report
+  `docs/tactical-state-contract-v2-s2-independent-source-acquisition-plan-01.md`.
+
 - [x] **ESEGUITO e VALIDATO nel perimetro metadata API**
   RD-TSC-V2-D3-S2-CATALOG-METADATA-EXPORT-01: endpoint read-only
   `/v1/knowledge/documents`, due pagine, 157/157 `source` unici e somma 6.410

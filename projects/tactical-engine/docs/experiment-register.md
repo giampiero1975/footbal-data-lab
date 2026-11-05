@@ -2527,3 +2527,18 @@ aperti direttamente. Autore/organizzazione/edizione/lingua/digest/diritti 0/157;
 holdout 0. Decisione: export **ESEGUITO**, identita operative **VALIDATO** nel
 perimetro API; fattibilita 390/606, selezione, Gold S2 e S2 **BLOCCATO**. Nessun
 servizio, checkout, collection o database modificato.
+
+## RD-TSC-V2-D3-S2-INDEPENDENT-SOURCE-ACQUISITION-PLAN-01 — piano (2026-11-05)
+
+Attivita: definire senza acquisizioni un percorso verificabile per nuove fonti
+indipendenti Gold S2. Script: nessuno; report:
+`docs/tactical-state-contract-v2-s2-independent-source-acquisition-plan-01.md`.
+Risultato: politica obbligatoria per identita/versione/provenienza/digest/diritti,
+sette canali valutati, screening source-document-version-author disjoint, schema
+del registro candidati vuoto, ruoli A/B/C/D separati, roadmap a cancelli e modello
+di carico. Nessuna fonte reale, candidato, annotazione o split assegnato. Decisione:
+piano **ESEGUITO**; scelta 390/606 rinviata a fonti e pilot misurato (A+B derivati:
+130–195 h per 390, 202–303 h per 606, overhead esclusi). Policy/ruoli/registro e
+acquisizione **DA FARE** con autorizzazioni distinte; selezione, annotazione,
+freeze, Gold S2 e S2 **BLOCCATO**. Nessun download, scraping, contenuto, modello,
+benchmark, Gate, VPS o modifica ai contratti.
