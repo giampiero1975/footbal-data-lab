@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO e VALIDATO staticamente; runtime BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-RELATION-REVIEW-01: revisione integrale di modulo,
+  test e confini V2/S2 conclusa senza nuovi test o inferenze. Contratto
+  semanticamente coerente, trasporto e parsing fail-closed, selezione solo
+  esplicita; V2, bridge, runner, S1, RAG, Chroma, API e panel invariati. Nessun
+  rilievo bloccante o maggiore. L'esempio vicino a `q3_04` rende quel caso una
+  regressione nota, non una prova indipendente di generalizzazione. Giudizio
+  **REVISIONE FAVOREVOLE**; efficacia, Gate, integrazione e certificazione
+  **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-relation-review-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; efficacia BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-RELATION-REMEDIATION-01: aggiunto contratto opt-in
   `nli_spatial_relations_v1` per confrontare soggetto, referente, direzione,

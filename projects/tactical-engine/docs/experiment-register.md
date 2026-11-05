@@ -2462,6 +2462,20 @@ dell'istruzione. Decisione: contratto **IMPLEMENTATO**, test **ESEGUITO**,
 isolamento e proprieta statiche **VALIDATO** offline. Efficacia semantica,
 integrazione, Gate e certificazione **BLOCCATO**. Nessuna inferenza o runtime.
 
+## RD-TSC-V2-D3-S2-SPATIAL-RELATION-REVIEW-01 — revisione statica (2026-11-05)
+
+Attivita: revisione indipendente del contratto opt-in e dei sei test gia
+pubblicati, con confronto integrale contro V2, bridge S2, runner Fase B e report
+forense `q3_04`. Script: nessuno eseguito; report:
+`docs/tactical-semantic-support-s2-spatial-relation-review-01.md`. Risultato:
+nessun rilievo bloccante o maggiore; regole semantiche, trasporto strutturato,
+parsing, propagazione degli errori e confine S2 restano fail-closed. V2, bridge,
+runner, S1, RAG, Chroma, API e panel invariati. L'esempio letterale vicino a
+`q3_04` e un limite probatorio minore: il caso resta regressione nota e non prova
+generalizzazione indipendente. Decisione: **REVISIONE FAVOREVOLE**, revisione
+**ESEGUITO** e proprieta statiche coperte **VALIDATO**. Efficacia semantica,
+Gate, integrazione e certificazione **BLOCCATO**; nessun runtime autorizzato.
+
 ## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
 
 Attivita: attribuire il falso positivo reale `q3_04` usando soltanto artefatto,
