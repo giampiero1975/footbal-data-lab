@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline nel perimetro mock**
+  RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 Fase A: aggiunti runner opt-in e
+  fixture content-addressed per tre casi umani gia versionati (`supported`,
+  `contradicted`, `insufficient`), massimo tre chiamate, zero retry/repair,
+  arresto al primo `not_evaluable`, S1 invariato e
+  `promotion_authorized=false`. Test nuovi e regressioni direttamente interessate
+  20/20 PASS; guardia senza `--execute`, compilazione e diff check PASS. Nessuna
+  inferenza eseguita. Il Python locale corrente non dispone di `pydantic`:
+  ambiente, modello ed endpoint restano da attestare. Fase B **DA FARE** e
+  **BLOCCATO** fino ad autorizzazione separata; accuratezza, Gold S2, Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-first-controlled-runtime-preparation-01.md`.
+
 - [x] **ESEGUITO; policy DA FARE, candidato BLOCCATO**
   RD-S2-FRONTIERS-POLICY-SCREENING-01: predisposta policy minima non approvata
   per uso interno, accesso ristretto, retention da decidere, attribuzione,

@@ -2446,6 +2446,25 @@ decidere volume, fonti/diritti, ruoli e indipendenza autore. Schema/validator e
 inventario fonti **DA FARE**; raccolta, annotazione, adjudication, freeze, Gold S2,
 S2, Gate, integrazione e certificazione **BLOCCATO** fino ad autorizzazioni separate.
 
+## RD-TSC-V2-D3-S2-FIRST-CONTROLLED-RUNTIME-01 — preparazione offline (2026-11-05)
+
+Attivita: predisporre, senza inferenze, il primo esperimento reale controllato
+D3→S2 Shadow Adapter→NLI V2 Bridge. Script:
+`scripts/run_tactical_semantic_support_s2_first_controlled_runtime_v1.py`;
+fixture content-addressed:
+`evaluation/tactical_semantic_support_s2_first_controlled_runtime_fixture_v1.json`;
+commit tecnico `c985a916b35f88633cb37778a7a429fca218c807`; report:
+`docs/tactical-semantic-support-s2-first-controlled-runtime-preparation-01.md`.
+Risultato: selezionati tre casi umani gia versionati, uno per label canonica;
+massimo tre chiamate, zero retry/repair, arresto al primo `not_evaluable`, S1
+invariato e `promotion_authorized=false`. Test offline nuovi e regressioni
+direttamente interessate 20/20 PASS; guardia senza `--execute`, compilazione e
+diff check PASS. Nessuna inferenza o artefatto runtime prodotto. Decisione:
+runner/fixture **IMPLEMENTATO**, test **ESEGUITO**, isolamento e fail-closed
+**VALIDATO** offline. Fase B **DA FARE** e **BLOCCATO** fino ad autorizzazione
+separata e ambiente conforme; il Python locale corrente e privo di `pydantic`.
+Accuratezza semantica, Gold S2, Gate, integrazione e certificazione **BLOCCATO**.
+
 ## RD-TSC-V2-D3-S2-GOLD-SCHEMA-VALIDATOR-01 — implementazione offline (2026-11-05)
 
 Attivita: implementare esclusivamente schema, manifest e validatore Gold S2 V1.
