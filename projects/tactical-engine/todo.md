@@ -9,6 +9,19 @@
 **Sintesi autorevole per il revisore:**
 
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline nel perimetro mock**
+  RD-TSC-V2-D3-S2-NLI-JUDGE-BRIDGE-01: aggiunto bridge isolato tra il judge
+  iniettato S2 e il contratto storico NLI V2 `(claim, evidence)`. La proiezione
+  deterministica conserva statement, condizioni, polarita e binding; evidenza e
+  metadati restano distinti. Solo `supported`, `contradicted` e `insufficient`
+  sono ammessi; incompatibilita, output/rationale malformati ed eccezioni restano
+  fail-closed tramite il boundary S2. Configurazione e provenance sono incluse
+  nel descriptor content-addressed; il bridge e inerte fino alla chiamata
+  esplicita. Test nuovi 8/8 e regressioni S2/dual 25/25 PASS; compilazione e diff
+  check PASS. Nessuna inferenza reale. Accuratezza semantica, Gold S2, Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-state-contract-v2-d3-s2-nli-judge-bridge-01.md`.
+
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline nel perimetro mock**
   RD-TSC-V2-D3-SEMANTIC-SUPPORT-S2-SHADOW-ADAPTER-01: aggiunto adapter D3→S2
   content-addressed con judge esclusivamente iniettato, verifica di attempt/piano,
   claim, S1, evidenze e binding, aggregazione senza maggioranza e

@@ -2590,3 +2590,20 @@ Test nuovi 8/8, regressioni S1 12/12 e dual 17/17 PASS; compilazione e diff chec
 PASS. Decisione: adapter **IMPLEMENTATO**, test **ESEGUITO**, orchestrazione,
 isolamento e fail-closed **VALIDATO offline**. Affidabilita semantica, Gold S2,
 Gate, integrazione e certificazione **BLOCCATO**. Nessuna inferenza o runtime.
+
+## RD-TSC-V2-D3-S2-NLI-JUDGE-BRIDGE-01 — offline (2026-11-05)
+
+Attivita: collegare il contratto del judge iniettato S2 al callable storico NLI
+V2 senza eseguire modelli e senza modificare l'autorita D3/S1. Script: nuovo
+`scripts/v5_tactical_semantic_support_s2_nli_v2_bridge.py`; commit tecnico
+`a07b34ff36ccf9a7cc10b10f8d18638aaf7cadc5`; report:
+`docs/tactical-state-contract-v2-d3-s2-nli-judge-bridge-01.md`. Risultato:
+proiezione deterministica e fail-closed di statement, condizioni, polarita,
+binding ed evidenza verso `(claim, evidence)`; mapping limitato alle tre label
+canoniche, rationale storica esplicitamente non disponibile, rationale estesa
+preservata quando presente, configurazione/provenance content-addressed e nessuna
+chiamata implicita. Test mock nuovi 8/8, regressioni S2 8/8 e dual 17/17 PASS;
+compilazione e diff check PASS. Decisione: bridge **IMPLEMENTATO**, test
+**ESEGUITO**, contratto, isolamento e fail-closed **VALIDATO offline**.
+Accuratezza semantica reale, Gold S2, Gate, integrazione e certificazione
+**BLOCCATO**. Nessuna inferenza, retrieval, Chroma, API, pannello o runtime.
