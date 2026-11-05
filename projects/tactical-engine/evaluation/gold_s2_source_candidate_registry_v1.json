@@ -1,0 +1,176 @@
+{
+  "schema_version": "gold_s2_source_candidate_registry_v1",
+  "registry_version": "1.0.0",
+  "status": "draft",
+  "policy": {
+    "approval_status": "not_approved",
+    "known_corpus_exclusion": "unknown",
+    "known_web_exclusion": "unknown",
+    "author_disjoint_policy": "not_approved",
+    "rights_custodian_id": null,
+    "retention_policy_approved": false,
+    "publication_policy_approved": false,
+    "acquisition_authorized": false
+  },
+  "evidence_records": [
+    {
+      "evidence_id": "evidence:frontiers-1019990-identity",
+      "evidence_type": "identity",
+      "digest": "sha256:8742bfaa21170df3a63ad53c7486ee62e6b39ceef168d6c3bdeab29fdb04bc31",
+      "verified": true,
+      "reviewer_id": "reviewer:codex-documentary-2026-11-05",
+      "verified_at": "2026-11-05T00:00:00+01:00"
+    },
+    {
+      "evidence_id": "evidence:frontiers-1019990-provenance",
+      "evidence_type": "provenance",
+      "digest": "sha256:8742bfaa21170df3a63ad53c7486ee62e6b39ceef168d6c3bdeab29fdb04bc31",
+      "verified": true,
+      "reviewer_id": "reviewer:codex-documentary-2026-11-05",
+      "verified_at": "2026-11-05T00:00:00+01:00"
+    },
+    {
+      "evidence_id": "evidence:frontiers-1019990-pdf-digest",
+      "evidence_type": "digest",
+      "digest": "sha256:8742bfaa21170df3a63ad53c7486ee62e6b39ceef168d6c3bdeab29fdb04bc31",
+      "verified": true,
+      "reviewer_id": "reviewer:codex-byte-verification-2026-11-05",
+      "verified_at": "2026-11-05T00:00:00+01:00"
+    },
+    {
+      "evidence_id": "evidence:frontiers-1019990-cc-by-declaration",
+      "evidence_type": "rights",
+      "digest": "sha256:8742bfaa21170df3a63ad53c7486ee62e6b39ceef168d6c3bdeab29fdb04bc31",
+      "verified": true,
+      "reviewer_id": "reviewer:codex-documentary-2026-11-05",
+      "verified_at": "2026-11-05T00:00:00+01:00"
+    },
+    {
+      "evidence_id": "evidence:gold-s2-source-inventory-v1",
+      "evidence_type": "exposure",
+      "digest": "sha256:43dfad66ca0e8915f7d47adab758c8a729bc67d53b6d825ed9889ced85f6df43",
+      "verified": true,
+      "reviewer_id": "reviewer:codex-metadata-match-2026-11-05",
+      "verified_at": "2026-11-05T00:00:00+01:00"
+    },
+    {
+      "evidence_id": "evidence:gold-s2-catalog-metadata-export-v1",
+      "evidence_type": "exposure",
+      "digest": "sha256:6749bc8ea8245aa7a41e7b06008639114679073b399eeb734a58ad79a456c174",
+      "verified": true,
+      "reviewer_id": "reviewer:codex-metadata-match-2026-11-05",
+      "verified_at": "2026-11-05T00:00:00+01:00"
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "candidate:doi-10.3389-fspor.2022.1019990",
+      "source_id": "source:doi-10.3389-fspor.2022.1019990",
+      "title": "Shortcomings of applying data science to improve professional football performance: Takeaways from a pilot intervention study",
+      "author": [
+        {"name": "Mat Herold", "authority_id": null},
+        {"name": "Matthias Kempe", "authority_id": null},
+        {"name": "Ludwig Ruf", "authority_id": null},
+        {"name": "Luis Guevara", "authority_id": null},
+        {"name": "Tim Meyer", "authority_id": null}
+      ],
+      "organization": {
+        "name": "Frontiers in Sports and Active Living",
+        "authority_id": "organization:frontiers-in-sports-and-active-living"
+      },
+      "version": {
+        "edition": "version-of-record",
+        "date": "2022-10-12",
+        "language": "en",
+        "document_id": "doi:10.3389/fspor.2022.1019990",
+        "version_id": "doi:10.3389/fspor.2022.1019990:version-of-record"
+      },
+      "provenance": {
+        "channel": "verified-open-access",
+        "origin_ref": "https://www.frontiersin.org/journals/sports-and-active-living/articles/10.3389/fspor.2022.1019990/full",
+        "chain_status": "verified",
+        "evidence_refs": [
+          "evidence:frontiers-1019990-identity",
+          "evidence:frontiers-1019990-provenance"
+        ]
+      },
+      "digest": {
+        "algorithm": "sha256",
+        "value": "sha256:8742bfaa21170df3a63ad53c7486ee62e6b39ceef168d6c3bdeab29fdb04bc31",
+        "verification_status": "verified_bytes",
+        "evidence_ref": "evidence:frontiers-1019990-pdf-digest"
+      },
+      "rights_evidence": [
+        {
+          "evidence_id": "evidence:frontiers-1019990-cc-by-declaration",
+          "scope": "retention",
+          "status": "unknown",
+          "expires_at": null,
+          "revoked_at": null,
+          "reviewer_id": null
+        },
+        {
+          "evidence_id": "evidence:frontiers-1019990-cc-by-declaration",
+          "scope": "annotation",
+          "status": "unknown",
+          "expires_at": null,
+          "revoked_at": null,
+          "reviewer_id": null
+        },
+        {
+          "evidence_id": "evidence:frontiers-1019990-cc-by-declaration",
+          "scope": "publication",
+          "status": "unknown",
+          "expires_at": null,
+          "revoked_at": null,
+          "reviewer_id": null
+        }
+      ],
+      "retention_policy": {
+        "policy_id": null,
+        "status": "unknown",
+        "evidence_refs": ["evidence:frontiers-1019990-cc-by-declaration"]
+      },
+      "annotation_permission": "unknown",
+      "publication_permission": "unknown",
+      "historical_exposure": [
+        {
+          "system": "football-data-lab-known-source-inventory",
+          "dataset": "34-known-sources-including-9-historical-web-sources",
+          "status": "unknown",
+          "evidence_refs": ["evidence:gold-s2-source-inventory-v1"]
+        },
+        {
+          "system": "football-data-lab-operational-catalog",
+          "dataset": "157-metadata-only-identities",
+          "status": "unknown",
+          "evidence_refs": ["evidence:gold-s2-catalog-metadata-export-v1"]
+        }
+      ],
+      "independence": {
+        "source_disjoint": "unknown",
+        "document_disjoint": "unknown",
+        "version_disjoint": "unknown",
+        "author_disjoint": "unknown",
+        "evidence_refs": [
+          "evidence:gold-s2-source-inventory-v1",
+          "evidence:gold-s2-catalog-metadata-export-v1"
+        ]
+      },
+      "duplicate_cluster": "duplicate-cluster:doi-10.3389-fspor.2022.1019990",
+      "author_cluster": "author-cluster:herold-kempe-ruf-guevara-meyer",
+      "proposed_split": null,
+      "eligibility_decision": "blocked_unknown",
+      "evidence_refs": [
+        "evidence:frontiers-1019990-identity",
+        "evidence:frontiers-1019990-cc-by-declaration",
+        "evidence:gold-s2-source-inventory-v1",
+        "evidence:gold-s2-catalog-metadata-export-v1"
+      ],
+      "reviewer": "reviewer:codex-documentary-2026-11-05",
+      "decision_date": "2026-11-05",
+      "decision_rationale": "Identita, versione ufficiale e byte PDF verificati; licenza CC BY dichiarata nel PDF. Ambiti operativi dei diritti, policy, esposizione storica completa, duplicati e indipendenza non sono ancora approvati o dimostrati.",
+      "gold_s2_provenance_record_id": null
+    }
+  ]
+}
