@@ -8,7 +8,6 @@ called by S2.
 """
 from __future__ import annotations
 
-import copy
 import json
 from dataclasses import dataclass
 
@@ -57,19 +56,24 @@ TECHNICAL_NOTICE = (
 )
 
 
-def _canonical_copy(value, error_code):
+def _canonical_json(value, error_code):
     try:
-        return json.loads(json.dumps(
-            value, ensure_ascii=False, sort_keys=True, separators=(",", ":")))
+        return json.dumps(
+            value, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
     except (TypeError, ValueError) as exc:
         raise BridgeContractError(error_code) from exc
 
 
 def _validate_contract_descriptor(value):
-    if not isinstance(value, dict) or set(value) != CONTRACT_KEYS:
+    if type(value) is not dict or set(value) != CONTRACT_KEYS:
         raise BridgeContractError("invalid_spatial_contract_descriptor_shape")
-    descriptor = _canonical_copy(
-        value, "non_serializable_spatial_contract_descriptor")
+    if any(type(value.get(key)) is not str for key in (
+            "contract_id", "version", "base_contract",
+            "instruction_sha256", "selection")):
+        raise BridgeContractError("invalid_spatial_contract_descriptor_type")
+    if (type(value.get("labels")) is not list or
+            not all(type(label) is str for label in value["labels"])):
+        raise BridgeContractError("invalid_spatial_contract_labels_type")
     expected = {
         "contract_id": CONTRACT_ID,
         "version": CONTRACT_VERSION,
@@ -78,15 +82,17 @@ def _validate_contract_descriptor(value):
         "instruction_sha256": INSTRUCTION_SHA256,
         "selection": "explicit_import_only",
     }
-    if descriptor != expected:
+    if value != expected:
         raise BridgeContractError("inconsistent_spatial_contract_descriptor")
-    return descriptor
+    return {
+        **{key: value[key] for key in expected if key != "labels"},
+        "labels": list(value["labels"]),
+    }
 
 
 def _validate_nli_config(value):
-    if not isinstance(value, dict) or set(value) != CONFIG_KEYS:
+    if type(value) is not dict or set(value) != CONFIG_KEYS:
         raise BridgeContractError("invalid_spatial_nli_config_shape")
-    config = _canonical_copy(value, "non_serializable_spatial_nli_config")
     type_rules = {
         "judge": str,
         "model": str,
@@ -99,12 +105,12 @@ def _validate_nli_config(value):
         "retry": bool,
         "repair": bool,
     }
-    if any(type(config.get(key)) is not expected_type
+    if any(type(value.get(key)) is not expected_type
            for key, expected_type in type_rules.items()):
         raise BridgeContractError("invalid_spatial_nli_config_type")
-    if config != EXPECTED_CONFIG:
+    if value != EXPECTED_CONFIG:
         raise BridgeContractError("inconsistent_spatial_nli_config")
-    return config
+    return dict(value)
 
 
 def descriptor(nli_config, contract_descriptor):
@@ -142,11 +148,11 @@ class SpatialV1S2Bridge:
     """Callable adapter with immutable internal declared provenance."""
 
     nli_judge: object
-    _descriptor: dict
+    _descriptor_json: str
 
     @property
     def judge_descriptor(self):
-        return copy.deepcopy(self._descriptor)
+        return json.loads(self._descriptor_json)
 
     def __call__(self, payload):
         claim = project_claim(payload)
@@ -159,4 +165,6 @@ def build_bridge(nli_judge, nli_config, contract_descriptor):
     if not callable(nli_judge):
         raise BridgeContractError("invalid_spatial_v1_judge")
     judge_descriptor = descriptor(nli_config, contract_descriptor)
-    return SpatialV1S2Bridge(nli_judge, copy.deepcopy(judge_descriptor))
+    descriptor_json = _canonical_json(
+        judge_descriptor, "non_serializable_spatial_bridge_descriptor")
+    return SpatialV1S2Bridge(nli_judge, descriptor_json)

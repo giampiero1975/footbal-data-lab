@@ -2549,6 +2549,20 @@ integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
 semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
 Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
 
+## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-REMEDIATION-01 — offline (2026-11-07)
+
+Attivita: remediation minima M1-M3. Script: solo bridge Spatial; test: bridge e
+runner Spatial; report:
+`docs/tactical-semantic-support-s2-bridge-provenance-remediation-01.md`.
+Risultato: tipi originali del descriptor verificati prima della
+canonicalizzazione; provenance interna memorizzata come JSON immutabile; call
+graph closure/Spatial judge/Spatial bridge provato via AST; SHA di bridge V2,
+runner V2 e JSON storico verificati sui byte con `hashlib`. Test differenziali
+**14/14 PASS**. Runner Spatial, V2 e artefatti invariati. Decisione: rettifiche
+**IMPLEMENTATO**, test **ESEGUITO**, proprietà offline **VALIDATO**; closeout
+definitivo **DA FARE**, Gate, integrazione e certificazione **BLOCCATO**. Nessuna
+inferenza o runtime.
+
 ## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-REVIEW-01 — review (2026-11-06)
 
 Attivita: revisione statica indipendente dell'adattatore Spatial pubblicato.

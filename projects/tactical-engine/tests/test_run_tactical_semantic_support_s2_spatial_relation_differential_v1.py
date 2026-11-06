@@ -1,4 +1,5 @@
 import ast
+import hashlib
 import importlib.util
 import json
 import sys
@@ -137,6 +138,29 @@ class SpatialDifferentialRunnerTests(unittest.TestCase):
         self.assertNotIn("shadow_nli_v2_inference", names)
         self.assertIn("v5_tactical_semantic_support_s2_spatial_v1_bridge", names)
         self.assertNotIn("v5_tactical_semantic_support_s2_nli_v2_bridge", names)
+        main = next(node for node in tree.body
+                    if isinstance(node, ast.FunctionDef) and node.name == "main")
+        closure = next(node for node in main.body
+                       if isinstance(node, ast.FunctionDef) and node.name == "call")
+        returned = next(node.value for node in closure.body
+                        if isinstance(node, ast.Return))
+        self.assertIsInstance(returned, ast.Call)
+        self.assertIsInstance(returned.func, ast.Attribute)
+        self.assertEqual(returned.func.attr, "judge_pair")
+        self.assertIsInstance(returned.func.value, ast.Name)
+        self.assertEqual(returned.func.value.id, "spatial_nli")
+        bridge_assignment = next(
+            node for node in main.body
+            if isinstance(node, ast.Assign)
+            and any(isinstance(target, ast.Name) and target.id == "bridge"
+                    for target in node.targets))
+        self.assertIsInstance(bridge_assignment.value, ast.Call)
+        self.assertIsInstance(bridge_assignment.value.func, ast.Attribute)
+        self.assertEqual(bridge_assignment.value.func.attr, "build_bridge")
+        self.assertIsInstance(bridge_assignment.value.func.value, ast.Name)
+        self.assertEqual(bridge_assignment.value.func.value.id, "spatial_bridge")
+        self.assertIsInstance(bridge_assignment.value.args[0], ast.Name)
+        self.assertEqual(bridge_assignment.value.args[0].id, "call")
         self.assertIn("--execute", source)
         self.assertEqual(runner.MAX_CASES, 3)
 
@@ -149,6 +173,17 @@ class SpatialDifferentialRunnerTests(unittest.TestCase):
         self.assertTrue(all(case["historical_v2"].get("status") ==
                             "not_available_as_equivalent_artifact"
                             for case in cases[1:]))
+        frozen = {
+            SCRIPTS / "v5_tactical_semantic_support_s2_nli_v2_bridge.py":
+                "79a4cc87c0d59e087a69d295a199f7f646c4ecb42194cf45531fd96dba09f515",
+            SCRIPTS / "run_tactical_semantic_support_s2_first_controlled_runtime_v1.py":
+                "3c5818142b0a9ac1c689a1cb3c5523fae13883d95b10544963842b97134cbf91",
+            ROOT / "evaluation" / "tactical_semantic_support_s2_spatial_relation_differential_01.json":
+                "a06ba357471681f2ac047af9cff8293d23e75f1c8c8e364f1b14fc4990f8c42d",
+        }
+        for path, expected in frozen.items():
+            with self.subTest(path=path.name):
+                self.assertEqual(hashlib.sha256(path.read_bytes()).hexdigest(), expected)
 
 
 if __name__ == "__main__":

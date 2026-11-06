@@ -67,7 +67,14 @@ class SpatialV1BridgeTests(unittest.TestCase):
         contract["contract_id"] = "altered"
         exposed = adapter.judge_descriptor
         exposed["config"]["nli_config"]["model"] = "altered-again"
+        with self.assertRaises(TypeError):
+            adapter._descriptor_json[0] = "x"
+        self.assertTrue(all(not isinstance(value, (dict, list))
+                            for value in vars(adapter).values()))
         self.assertEqual(adapter.judge_descriptor, expected)
+        self.assertEqual(
+            s2._judge_identity(adapter.judge_descriptor),
+            s2._judge_identity(expected))
 
     def test_03_invalid_config_and_contract_fail_at_construction(self):
         mutations = []
@@ -90,6 +97,17 @@ class SpatialV1BridgeTests(unittest.TestCase):
         mutations.append((CONFIG, unexpected))
         bad_digest = copy.deepcopy(CONTRACT); bad_digest["instruction_sha256"] = "sha256:" + "0" * 64
         mutations.append((CONFIG, bad_digest))
+        tuple_labels = copy.deepcopy(CONTRACT); tuple_labels["labels"] = tuple(CONTRACT["labels"])
+        mutations.append((CONFIG, tuple_labels))
+        non_string_label = copy.deepcopy(CONTRACT); non_string_label["labels"][1] = ["contradicted"]
+        mutations.append((CONFIG, non_string_label))
+        class DescriptorSubclass(dict):
+            pass
+        mutations.append((CONFIG, DescriptorSubclass(CONTRACT)))
+        wrong_contract_type = copy.deepcopy(CONTRACT); wrong_contract_type["version"] = True
+        mutations.append((CONFIG, wrong_contract_type))
+        non_serializable = copy.deepcopy(CONTRACT); non_serializable["labels"][0] = object()
+        mutations.append((CONFIG, non_serializable))
         for config, contract in mutations:
             with self.subTest(config=config, contract=contract):
                 with self.assertRaises(bridge.BridgeContractError):

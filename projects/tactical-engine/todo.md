@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; closeout DA FARE**
+  RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-REMEDIATION-01: M1 valida tipi originali e
+  rifiuta tuple/subclass/nonserializzabili; M2 conserva il descriptor solo come
+  JSON canonico immutabile; M3 prova via AST closure/judge/bridge e verifica con
+  `hashlib` i tre SHA congelati. Test mirati 14/14 PASS, runner Spatial e percorsi
+  V2 invariati, nessuna inferenza. Rettifiche **VALIDATO** offline; closeout
+  definitivo **DA FARE**, Gate, integrazione e certificazione **BLOCCATO**.
+  Report `docs/tactical-semantic-support-s2-bridge-provenance-remediation-01.md`.
+
 - [x] **ESEGUITO; IMPLEMENTAZIONE APPROVATA CON RETTIFICHE, closeout BLOCCATO**
   RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-REVIEW-01: routing Spatial,
   boundary S2, proiezione, rationale e hash storici confermati staticamente.
