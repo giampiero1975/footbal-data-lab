@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO; DESIGN VALIDATO CON RETTIFICHE, implementazione DA FARE**
+  RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-REVIEW-01: alternativa B confermata
+  senza blocchi architetturali. Due rettifiche maggiori obbligatorie: distinguere
+  l'identità callable dichiarata dal binding verificabile nel runner, senza falsa
+  introspezione autenticante; definire schemi esatti e validazione fail-closed di
+  descriptor/config alla costruzione. Compatibilità S2/V2 e matrice digest
+  confermate; rationale tecnica e stabilità della proiezione sono criteri minori.
+  Verdetto **DESIGN APPROVATO CON RETTIFICHE**; implementazione **DA FARE**,
+  Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-bridge-provenance-design-review-01.md`.
+
 - [x] **ESEGUITO; implementazione DA FARE, runtime BLOCCATO**
   RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-01: mappati due chiamanti
   applicativi e provenance/digest. Raccomandata alternativa B: adattatore

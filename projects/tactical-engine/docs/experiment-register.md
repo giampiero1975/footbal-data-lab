@@ -2549,6 +2549,21 @@ integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
 semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
 Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
 
+## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-REVIEW-01 — revisione (2026-11-06)
+
+Attivita: revisione statica indipendente del design dell'adattatore Spatial.
+Script/test: nessuno eseguito; report:
+`docs/tactical-semantic-support-s2-bridge-provenance-design-review-01.md`.
+Risultato: alternativa B confermata; nessun blocco architetturale. Due rettifiche
+maggiori obbligatorie: il callable generico non può essere autenticato dal solo
+bridge, quindi identità dichiarata e binding staticamente verificabile vanno
+distinti; descriptor e config richiedono shape, tipi, valori e coerenza esatti,
+validati fail-closed alla costruzione. Compatibilità S2/V2 e matrice digest
+verificate; rationale tecnica e stabilità della proiezione classificate minori.
+Decisione: **DESIGN APPROVATO CON RETTIFICHE**; revisione **ESEGUITO**, design
+**VALIDATO** con rettifiche, implementazione **DA FARE**; Gate, integrazione e
+certificazione **BLOCCATO**. Nessun codice, test, inferenza o runtime.
+
 ## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-01 — design (2026-11-06)
 
 Attivita: progettare senza implementare la rettifica della provenance del bridge
