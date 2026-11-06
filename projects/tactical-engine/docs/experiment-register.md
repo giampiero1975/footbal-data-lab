@@ -2549,6 +2549,21 @@ integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
 semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
 Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
 
+## RD-TSC-V2-D3-S2-Q3-04-SEMANTIC-DESIGN-01 — design (2026-11-07)
+
+Attivita: progettazione statica di una remediation semantica generalizzabile per
+`q3_04`. Script/test: nessuno; report:
+`docs/tactical-semantic-support-s2-q3-04-semantic-design-01.md`. Risultato:
+Spatial V1 contiene già istruzioni relazionali ma restituisce soltanto la label;
+altro prompt, regola lessicale e repair non aggiungono verifica sufficiente.
+Raccomandato futuro contratto opt-in `nli_spatial_relations_v2` con relation
+witness ancorato e validatore deterministico della coerenza label/witness. La
+nuova proprietà è osservabilità/falsificabilità, non accuratezza già dimostrata;
+`q3_04` da solo non prova generalizzazione. Decisione: **PROCEDERE CON SPECIFICA
+OFFLINE VERSIONATA**; design **ESEGUITO**, specifica/implementazione **DA FARE**,
+efficacia, Gate, integrazione e certificazione **BLOCCATO**; closeout provenance
+V1 **VALIDATO**. Nessun test o inferenza.
+
 ## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-CLOSEOUT-01 — closeout (2026-11-07)
 
 Attivita: closeout documentale formale autorizzato dal titolare. Script/test:

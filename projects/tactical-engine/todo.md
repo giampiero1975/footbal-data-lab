@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **DESIGN ESEGUITO; SPECIFICA/IMPLEMENTAZIONE DA FARE, GATE BLOCCATO**
+  RD-TSC-V2-D3-S2-Q3-04-SEMANTIC-DESIGN-01: Spatial V1 richiede già confronto
+  di soggetto/referente/direzione ma espone solo la label. Scartati altro prompt,
+  regola lessicale e repair; raccomandato contratto opt-in versionato con
+  relation witness ancorato e validatore deterministico di coerenza. Differenza
+  tecnica reale: il confronto diventa osservabile/falsificabile; non è ancora
+  provata l'efficacia su `q3_04` o generale. Progettazione **ESEGUITO**;
+  specifica/implementazione **DA FARE**, efficacia, Gate, integrazione e
+  certificazione **BLOCCATO**; provenance V1 **VALIDATO**. Report
+  `docs/tactical-semantic-support-s2-q3-04-semantic-design-01.md`.
+
 - [x] **CLOSEOUT OFFLINE VALIDATO; SEMANTICA E RUNTIME BLOCCATO**
   RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-CLOSEOUT-01: il titolare approva il closeout
   formale dopo implementazione `33b5c7a`, review `40de750`, remediation
