@@ -2531,6 +2531,24 @@ runtime config e import attestano il callable spatial. Decisione: esecuzione
 complessiva, affidabilita, integrazione e certificazione **BLOCCATO**. Nessun
 rerun autorizzato; prossimo passo soltanto revisione offline indipendente.
 
+## RD-TSC-V2-D3-S2-SPATIAL-DIFFERENTIAL-FORENSIC-01 — offline (2026-11-06)
+
+Attivita: ricostruire senza modelli il falso positivo `q3_04` e verificare la
+provenance del bridge. Script: nessun test/runtime; sole letture e calcoli
+deterministici. Report:
+`docs/tactical-semantic-support-s2-spatial-differential-forensic-01.md`.
+Risultato: JSON 13.138 byte SHA-256 `a06ba357...`, fixture/Gold/fingerprint e tre
+record conformi. Prompt ricostruito 2.386 byte SHA-256 `597088f1...`; nessuna
+perdita, normalizzazione, inversione, troncamento o rimappatura dimostrata.
+Routing al callable spatial e nessuna chiamata V2 dimostrati; il falso
+`supported` e fortemente localizzato nel giudizio semantico, mentre il meccanismo
+interno resta non determinabile per assenza di raw request/response e rationale.
+Il bridge mantiene nome, `nli_contract` e rationale fissa V2: difetto dimostrato
+di provenance strutturata, non di routing. Decisione: revisione **ESEGUITO**,
+integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
+semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
+Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
+
 ## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
 
 Attivita: attribuire il falso positivo reale `q3_04` usando soltanto artefatto,

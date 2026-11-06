@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO e VALIDATO offline; provenance e semantica BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-DIFFERENTIAL-FORENSIC-01: JSON 13.138 byte e
+  SHA-256 `a06ba357...`, fixture/Gold/plan/tre record verificati. Prompt `q3_04`
+  ricostruito in 2.386 byte, SHA-256 `597088f1...`; claim/evidenza, ordine,
+  routing spatial, parsing e propagazione corretti. Il falso `supported` e
+  fortemente localizzato nel giudizio semantico, ma il meccanismo interno non e
+  osservabile. Il bridge non chiama V2, pero descriptor, `nli_contract` e
+  rationale sono hard-coded V2: difetto dimostrato di provenance strutturata,
+  non routing. Revisione **ESEGUITO**, integrita/routing **VALIDATO** offline;
+  provenance autonoma, semantica complessiva, integrazione e certificazione
+  **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-differential-forensic-01.md`.
+
 - [x] **ESEGUITO; tecnico VALIDATO, semantica complessiva BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-RELATION-DIFFERENTIAL-01 Fase B: singolo run
   autorizzato completato in 66,35 s, exit 0, `run_complete=true`, valutazioni
