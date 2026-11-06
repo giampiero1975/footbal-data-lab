@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; runtime BLOCCATO**
+  RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-01: adapter Spatial dedicato
+  con identità dichiarata distinta dal binding del runner, schemi esatti e
+  validazione fail-closed di descriptor/config, copie difensive, label invariate
+  e nota tecnica non semantica. Runner Spatial collegato al nuovo bridge; bridge
+  e runner V2 byte-invariati. Test differenziali 14/14 PASS; digest config/record
+  verificati, JSON storico `a06ba357...` invariato; nessuna inferenza. Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-bridge-provenance-implementation-01.md`.
+
 - [x] **ESEGUITO; DESIGN VALIDATO CON RETTIFICHE, implementazione DA FARE**
   RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-REVIEW-01: alternativa B confermata
   senza blocchi architetturali. Due rettifiche maggiori obbligatorie: distinguere

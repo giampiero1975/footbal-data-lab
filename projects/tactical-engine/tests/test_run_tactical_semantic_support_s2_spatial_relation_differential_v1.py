@@ -23,9 +23,18 @@ def load(name, filename):
 
 runner = load("s2_spatial_differential_runner",
               "run_tactical_semantic_support_s2_spatial_relation_differential_v1.py")
-bridge_v1 = load("s2_spatial_differential_bridge",
-                 "v5_tactical_semantic_support_s2_nli_v2_bridge.py")
+spatial_bridge = load("s2_spatial_differential_bridge",
+                      "v5_tactical_semantic_support_s2_spatial_v1_bridge.py")
 FIXTURE = ROOT / "evaluation" / "tactical_semantic_support_s2_spatial_relation_differential_fixture_v1.json"
+CONFIG = dict(spatial_bridge.EXPECTED_CONFIG)
+CONTRACT = {
+    "contract_id": "nli_spatial_relations_v1",
+    "version": "1.0",
+    "base_contract": "shadow_nli_v2_inference",
+    "labels": ["supported", "contradicted", "insufficient"],
+    "instruction_sha256": spatial_bridge.INSTRUCTION_SHA256,
+    "selection": "explicit_import_only",
+}
 
 
 class SpatialDifferentialRunnerTests(unittest.TestCase):
@@ -68,11 +77,10 @@ class SpatialDifferentialRunnerTests(unittest.TestCase):
         def nli(claim, evidence):
             calls.append((claim, evidence))
             return next(labels)
-        bridge = bridge_v1.build_bridge(nli, {"model": "mock", "retry": False})
+        bridge = spatial_bridge.build_bridge(nli, CONFIG, CONTRACT)
         report = runner.execute_cases(
             fixture, cases, identities, bridge, bridge.judge_descriptor,
-            {"model": "mock", "retry": False},
-            {"contract_id": "nli_spatial_relations_v1", "version": "1.0"})
+            CONFIG, CONTRACT)
         self.assertEqual(len(calls), 3)
         self.assertEqual(report["planned_evaluations"], 3)
         self.assertEqual(report["attempted_evaluations"], 3)
@@ -90,11 +98,10 @@ class SpatialDifferentialRunnerTests(unittest.TestCase):
         def broken(_claim, _evidence):
             calls.append(True)
             raise TimeoutError("offline mock timeout")
-        bridge = bridge_v1.build_bridge(broken, {"model": "mock", "retry": False})
+        bridge = spatial_bridge.build_bridge(broken, CONFIG, CONTRACT)
         report = runner.execute_cases(
             fixture, cases, identities, bridge, bridge.judge_descriptor,
-            {"model": "mock", "retry": False},
-            {"contract_id": "nli_spatial_relations_v1", "version": "1.0"})
+            CONFIG, CONTRACT)
         self.assertEqual(calls, [True])
         self.assertEqual(report["attempted_evaluations"], 1)
         self.assertEqual(report["completed_evaluations"], 0)
@@ -128,6 +135,8 @@ class SpatialDifferentialRunnerTests(unittest.TestCase):
         names = {alias.name for node in imported for alias in node.names}
         self.assertIn("shadow_nli_spatial_relations_v1_inference", names)
         self.assertNotIn("shadow_nli_v2_inference", names)
+        self.assertIn("v5_tactical_semantic_support_s2_spatial_v1_bridge", names)
+        self.assertNotIn("v5_tactical_semantic_support_s2_nli_v2_bridge", names)
         self.assertIn("--execute", source)
         self.assertEqual(runner.MAX_CASES, 3)
 

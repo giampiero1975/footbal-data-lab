@@ -14,7 +14,7 @@ from pathlib import Path
 
 import v5_tactical_semantic_support_s1 as s1
 import v5_tactical_semantic_support_s2 as s2
-import v5_tactical_semantic_support_s2_nli_v2_bridge as bridge_v1
+import v5_tactical_semantic_support_s2_spatial_v1_bridge as spatial_bridge
 
 
 FIXTURE_SCHEMA = "tactical_semantic_support_s2_spatial_relation_differential_fixture_v1"
@@ -248,7 +248,8 @@ def main():
         return spatial_nli.judge_pair(
             claim, evidence, model=args.model, ollama_url=args.ollama_url,
             timeout=args.timeout, max_tokens=args.max_tokens)
-    bridge = bridge_v1.build_bridge(call, runtime_config)
+    bridge = spatial_bridge.build_bridge(
+        call, runtime_config, contract_descriptor)
     report = execute_cases(
         fixture, cases, identities, bridge, bridge.judge_descriptor,
         runtime_config, contract_descriptor)

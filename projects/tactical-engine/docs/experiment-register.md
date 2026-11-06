@@ -2549,6 +2549,21 @@ integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
 semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
 Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
 
+## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-01 — offline (2026-11-06)
+
+Attivita: implementazione alternativa B con M1/M2. Script: nuovo
+`scripts/v5_tactical_semantic_support_s2_spatial_v1_bridge.py` e solo
+import/build del runner Spatial; test: nuovo bridge e runner Spatial. Report:
+`docs/tactical-semantic-support-s2-bridge-provenance-implementation-01.md`.
+Risultato: identità dichiarata distinta dal binding esplicito del runner;
+descriptor/config a shape, tipi e valori esatti, validati fail-closed alla
+costruzione; copie difensive, proiezione condivisa, label non rimappate e nota
+tecnica non semantica. Test mirati **14/14 PASS**. Bridge e runner V2
+byte-invariati; JSON storico SHA-256 `a06ba357...` invariato; digest config e
+record sintetici verificati. Decisione: adapter **IMPLEMENTATO**, test
+**ESEGUITO**, proprietà offline **VALIDATO**; Gate semantico, integrazione e
+certificazione **BLOCCATO**. Nessuna inferenza o runtime.
+
 ## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-REVIEW-01 — revisione (2026-11-06)
 
 Attivita: revisione statica indipendente del design dell'adattatore Spatial.
