@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO; IMPLEMENTAZIONE APPROVATA CON RETTIFICHE, closeout BLOCCATO**
+  RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-REVIEW-01: routing Spatial,
+  boundary S2, proiezione, rationale e hash storici confermati staticamente.
+  Tre rettifiche maggiori: validare i tipi originali del contract descriptor
+  prima della canonicalizzazione; rendere realmente immutabile la provenance
+  interna; provare nei test target della closure e SHA V2/JSON storico. Nessun
+  blocco architetturale, ma closeout offline **BLOCCATO** fino alla remediation.
+  Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-bridge-provenance-implementation-review-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; runtime BLOCCATO**
   RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-01: adapter Spatial dedicato
   con identità dichiarata distinta dal binding del runner, schemi esatti e

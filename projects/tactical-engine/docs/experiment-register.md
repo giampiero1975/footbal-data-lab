@@ -2549,6 +2549,20 @@ integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
 semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
 Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
 
+## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-REVIEW-01 — review (2026-11-06)
+
+Attivita: revisione statica indipendente dell'adattatore Spatial pubblicato.
+Script/test: nessuno eseguito; report:
+`docs/tactical-semantic-support-s2-bridge-provenance-implementation-review-01.md`.
+Risultato: routing Spatial, assenza fallback, boundary S2, proiezione, rationale,
+digest e hash storici confermati. Tre rettifiche maggiori: il tipo originale di
+`labels` può essere normalizzato prima della validazione; il dict privato del
+descriptor resta mutabile nonostante la dataclass frozen; i test non provano il
+target della closure né gli SHA storici. Decisione: **IMPLEMENTAZIONE APPROVATA
+CON RETTIFICHE**; review **ESEGUITO**, codice **IMPLEMENTATO**, closeout offline,
+Gate, integrazione e certificazione **BLOCCATO**. Nessun test, inferenza o
+modifica applicativa.
+
 ## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-IMPLEMENTATION-01 — offline (2026-11-06)
 
 Attivita: implementazione alternativa B con M1/M2. Script: nuovo
