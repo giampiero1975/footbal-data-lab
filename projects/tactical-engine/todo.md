@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **CLOSEOUT OFFLINE VALIDATO; SEMANTICA E RUNTIME BLOCCATO**
+  RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-CLOSEOUT-01: il titolare approva il closeout
+  formale dopo implementazione `33b5c7a`, review `40de750`, remediation
+  `f953496` e approvazione indipendente `93b88a3`. Provenance, fail-closed,
+  immutabilità, binding, SHA storici e non-promozione **VALIDATO** offline; test
+  14/14 già **ESEGUITO**, non ripetuti. Il falso positivo `q3_04` e il risultato
+  2/3 restano invariati; Gate semantico, integrazione e certificazione
+  **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-bridge-provenance-closeout-01.md`.
+
 - [x] **ESEGUITO e VALIDATO; CLOSEOUT OFFLINE AUTORIZZABILE**
   RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-REMEDIATION-REVIEW-01: M1, M2, M3-A e M3-B
   risolte con evidenza statica diretta. Tipi originali fail-closed, descriptor

@@ -2549,6 +2549,19 @@ integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
 semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
 Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
 
+## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-CLOSEOUT-01 — closeout (2026-11-07)
+
+Attivita: closeout documentale formale autorizzato dal titolare. Script/test:
+nessuno eseguito; report:
+`docs/tactical-semantic-support-s2-bridge-provenance-closeout-01.md`. Catena:
+implementazione `33b5c7a`, review `40de750`, remediation `f953496`, approvazione
+indipendente `93b88a3`. Risultato: provenance content-addressed, fail-closed,
+immutabilità, binding AST, SHA storici e non-promozione **VALIDATO** offline;
+test differenziali 14/14 già **ESEGUITO**, non ripetuti. Decisione:
+**CLOSEOUT OFFLINE DELLA PROVENANCE SPATIAL V1 APPROVATO** e **VALIDATO**. Il
+Gate storico resta 2/3 con `q3_04` errato; Gate semantico, integrazione e
+certificazione **BLOCCATO**. Nessuna inferenza o modifica applicativa.
+
 ## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-REMEDIATION-REVIEW-01 — review (2026-11-07)
 
 Attivita: review statica conclusiva M1-M3. Script/test: nessuno eseguito;
