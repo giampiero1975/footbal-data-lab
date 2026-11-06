@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO e VALIDATO; CLOSEOUT OFFLINE AUTORIZZABILE**
+  RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-REMEDIATION-REVIEW-01: M1, M2, M3-A e M3-B
+  risolte con evidenza statica diretta. Tipi originali fail-closed, descriptor
+  interno JSON immutabile, call graph AST completo e tre SHA byte-level
+  conformi. Test pubblicati pertinenti e sufficienti; nessuna criticità residua.
+  Verdetto **REMEDIATION APPROVATA — CLOSEOUT OFFLINE AUTORIZZABILE**; decisione
+  formale del titolare **DA FARE**, Gate, integrazione e certificazione
+  **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-bridge-provenance-remediation-review-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; closeout DA FARE**
   RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-REMEDIATION-01: M1 valida tipi originali e
   rifiuta tuple/subclass/nonserializzabili; M2 conserva il descriptor solo come
