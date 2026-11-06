@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO; implementazione DA FARE, runtime BLOCCATO**
+  RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-01: mappati due chiamanti
+  applicativi e provenance/digest. Raccomandata alternativa B: adattatore
+  Spatial dedicato che riusa la proiezione compatibile e lascia bridge/runner V2
+  invariati. Descriptor Spatial esplicito e rationale neutra adapter-generated
+  senza reasoning; nuovi record cambierebbero solo judge config/rationale e
+  record hash, mentre contratto, plan fingerprint e artefatti storici restano
+  invariati. **DESIGN APPROVABILE**, progettazione **ESEGUITO**;
+  implementazione **DA FARE**, semantica, Gate, integrazione e certificazione
+  **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-bridge-provenance-design-01.md`.
+
 - [x] **ESEGUITO e VALIDATO offline; provenance e semantica BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-DIFFERENTIAL-FORENSIC-01: JSON 13.138 byte e
   SHA-256 `a06ba357...`, fixture/Gold/plan/tre record verificati. Prompt `q3_04`

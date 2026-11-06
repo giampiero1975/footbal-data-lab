@@ -2549,6 +2549,23 @@ integrita/routing/ricostruzione **VALIDATO** offline; provenance autonoma,
 semantica complessiva, affidabilita, integrazione e certificazione **BLOCCATO**.
 Prossimo passo unico: rettifica offline minima della provenance, senza nuovo Gate.
 
+## RD-TSC-V2-D3-S2-BRIDGE-PROVENANCE-DESIGN-01 — design (2026-11-06)
+
+Attivita: progettare senza implementare la rettifica della provenance del bridge
+S2. Script: nessuno; report:
+`docs/tactical-semantic-support-s2-bridge-provenance-design-01.md`. Risultato:
+due chiamanti applicativi (`run_*first_controlled*` V2 e runner differenziale
+Spatial), S2 richiede rationale non vuota e content-addressa descriptor/rationale.
+Confrontate A parametrizzazione del bridge V2 e B adattatore Spatial dedicato;
+raccomandata B per lasciare byte-invariati bridge, descriptor, test e runner V2.
+Interfaccia proposta valida callable/config/contract descriptor; provenance
+Spatial esplicita e avviso rationale adapter-generated senza reasoning. Contratto,
+fixture, Gold, plan fingerprint e artefatti storici invariati; solo futuri judge
+config/rationale/record hash Spatial cambiano legittimamente. Decisione: **DESIGN
+APPROVABILE**, progettazione **ESEGUITO**, implementazione **DA FARE**; semantica,
+Gate, integrazione e certificazione **BLOCCATO**. Nessun test, runtime o modifica
+applicativa.
+
 ## RD-TSC-V2-D3-S2-Q3-04-FORENSIC-01 — analisi offline (2026-11-05)
 
 Attivita: attribuire il falso positivo reale `q3_04` usando soltanto artefatto,
