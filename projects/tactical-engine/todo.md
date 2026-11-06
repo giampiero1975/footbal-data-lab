@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **SPECIFICA OFFLINE ESEGUITO; IMPLEMENTAZIONE DA FARE, GATE BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-01: definito contratto opt-in
+  `nli_spatial_relations_v2` 2.0.0 con relation witness, vocabolario versionato,
+  ancore exact-span/offset, matrice di comparabilità, derivazione deterministica
+  della label ed errori fail-closed. Il validatore prova struttura, ancoraggio e
+  coerenza interna, non la correttezza dell'interpretazione del modello. Nessun
+  test o runtime eseguito. Specifica **ESEGUITO**; implementazione **DA FARE**;
+  efficacia, Gate, integrazione e certificazione **BLOCCATO**; provenance V1
+  **VALIDATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-spec-01.md`.
+
 - [x] **DESIGN ESEGUITO; SPECIFICA/IMPLEMENTAZIONE DA FARE, GATE BLOCCATO**
   RD-TSC-V2-D3-S2-Q3-04-SEMANTIC-DESIGN-01: Spatial V1 richiede già confronto
   di soggetto/referente/direzione ma espone solo la label. Scartati altro prompt,

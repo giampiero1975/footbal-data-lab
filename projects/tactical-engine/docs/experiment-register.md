@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Specifica tecnica offline Spatial V2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-01`. Sulla baseline `16c6daf` è
+stato specificato il contratto opt-in `nli_spatial_relations_v2` 2.0.0:
+relation witness strutturato, schema Draft 2020-12, vocabolario relazionale,
+ancore testuali exact-span con offset code point, comparabilità, derivazione
+deterministica delle tre label e codici fail-closed. Il validatore futuro potrà
+dimostrare forma, ancoraggio e coerenza interna, non la correttezza semantica
+delle categorie scelte dallo stesso modello. Una sola generazione, zero
+retry/repair/fallback, shadow e `promotion_authorized=false`; V1, NLI V2, S1,
+S2, retrieval, API e panel invariati. Nessuno script di test o runtime è stato
+eseguito. Report
+`docs/tactical-semantic-support-s2-spatial-v2-spec-01.md`. Decisione: sottoporre
+la specifica a revisione indipendente prima di qualsiasi implementazione.
+Stato: specifica **ESEGUITO**; implementazione **DA FARE**; efficacia, Gate,
+integrazione e certificazione **BLOCCATO**; provenance Spatial V1 **VALIDATO**.
+
 ### 2026-10-27 — Fix pannello: rimozione `--tactical-plan` dal profilo default
 
 Attività: diagnosticare e risolvere il blocco totale del pannello pubblico sulla VPS.
