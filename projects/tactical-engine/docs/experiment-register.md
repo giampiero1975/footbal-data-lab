@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Preflight diagnosi runtime Spatial V2 q3_04
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-DIAGNOSTIC-01`.
+Baseline `009f76e`. Dataset/claim/evidence canonici verificati tramite SHA-256.
+Il PC non espone Ollama; la VPS espone `qwen3.5:9b` e nello snapshot non mostra
+modelli caricati o Gate concorrenti, ma i quattro staging presenti appartengono
+a baseline storiche e nessuno contiene `009f76e`. Nessun trasferimento, clone o
+riuso del checkout operativo era autorizzato. Decisione: arresto pre-inferenza,
+zero chiamate/generazioni, nessun artefatto runtime. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-runtime-diagnostic-01.md`.
+Stato: preflight **ESEGUITO**; diagnosi q3_04, efficacia, Gate, integrazione e
+certificazione **BLOCCATO**. Prossimo passo eventuale: distinta autorizzazione
+per staging isolato alla baseline, senza inferenza automatica.
+
 ### 2026-11-07 — Closeout revisione indipendente Spatial V2 R1/R2
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-REVIEW-01`.

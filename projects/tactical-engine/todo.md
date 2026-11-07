@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **PREFLIGHT ESEGUITO; DIAGNOSI RUNTIME SPATIAL V2 BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-DIAGNOSTIC-01: baseline Git e caso
+  canonico `q3_04` riconciliati. PC privo di daemon Ollama; VPS con
+  `qwen3.5:9b`, endpoint sano e nessun modello/concorrenza osservata, ma nessuno
+  staging alla baseline `009f76e`. Vietato riusare staging storici o checkout
+  operativo: arresto prima dell'inferenza, zero generazioni e nessun artefatto
+  runtime. Preflight **ESEGUITO**; diagnosi, semantica, Gate, integrazione e
+  certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-runtime-diagnostic-01.md`.
+
 - [x] **REVIEW R1/R2 VALIDATO; CLOSEOUT DOCUMENTALE CONCLUSO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-REVIEW-01: revisione
   indipendente statica del commit `3c935b0` favorevole. R1 limita correttamente
