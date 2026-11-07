@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Revisione architetturale witness Spatial V2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-WITNESS-ARCHITECTURE-01`. Revisione
+statica dei due runtime conclusi, codice Spatial V2, D3/S1/S2, bridge e spalla.
+Nel runtime storico 16/16 frammenti e nel post-remediation 13/14 sono esatti e
+univoci nel lato imposto; l'ultimo appartiene soltanto al lato opposto. Tutti i
+30 offset sono invalidi. Nessun resolver produttivo equivalente è presente;
+D3 verifica già `exact_text`, mentre `validate_spatial_v2()` applica il
+contratto finale senza mutazioni. La spalla Groq è separata, disattivata e non
+calcola offset. Raccomandato un contratto opt-in distinto: Qwen seleziona
+frammenti senza offset/source, un locator puro accetta solo match letterali
+univoci e il validatore V2 invariato decide fail-closed; status/value e semantica
+non vengono corretti. Analisi **ESEGUITO**; evidenze e raccomandazione
+**VALIDATO** progettualmente; implementazione/test **DA FARE** previa
+autorizzazione; Gate, integrazione e certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-witness-architecture-01.md`.
+
 ### 2026-11-07 — Runtime post-remediation prompt Spatial V2 q3_04
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-RUNTIME-01`. Unica

@@ -8,6 +8,22 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ARCHITETTURA WITNESS SPATIAL V2 REVISIONATA; SEPARAZIONE ESTRAZIONE/LOCALIZZAZIONE RACCOMANDATA**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-WITNESS-ARCHITECTURE-01: ricostruito il percorso
+  shadow e classificati i 30 anchor dei due runtime conclusi. Nel primo 16/16
+  e nel secondo 13/14 frammenti sono esatti e univoci nel lato atteso; il
+  restante frammento è presente soltanto nell'evidence ma assegnato al claim.
+  Tutti gli offset sono invalidi. Non esiste un resolver applicativo già
+  implementato; D3 offre però il pattern `exact_text` e il validatore Spatial
+  V2 resta riutilizzabile invariato. La spalla Groq è separata, disattivata e
+  non localizza span. Raccomandato un contratto opt-in in cui Qwen seleziona
+  frammenti senza offset/source, un locator accetta solo match letterali univoci
+  e `validate_spatial_v2()` resta autorità finale. Analisi **ESEGUITO**;
+  evidenze e raccomandazione **VALIDATO** progettualmente; implementazione e
+  test differenziali **DA FARE** previa autorizzazione; Gate, integrazione e
+  certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-witness-architecture-01.md`.
+
 - [x] **RUNTIME POST-REMEDIATION q3_04 ESEGUITO; QUANTIFICATORI CORRETTI, WITNESS ANCORA NON VALUTABILE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-RUNTIME-01: unica richiesta
   autorizzata sullo staging detached `41d50fa`, timeout HTTP 360 s ed esterno
