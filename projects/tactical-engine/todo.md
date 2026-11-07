@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ROOT CAUSE WITNESS q3_04 ESEGUITO; HANDOFF NORMATIVO INCOMPLETO VALIDATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-WITNESS-ROOT-CAUSE-01: analizzati i 22
+  artefatti verificati, prompt/payload/schema, witness e codice a `69ec127`.
+  Tutti i 16 anchor hanno `exact_span` presente nel rispettivo testo, ma offset
+  numericamente errati e non riconducibili a Unicode, NFC, intervalli o testo
+  del prompt. Il quantificatore `explicit/absent/[]` viola la matrice normativa.
+  Specifica completa e validatore sono coerenti; prompt runtime e JSON Schema
+  trasmesso non espongono integralmente offset semiaperti e regole incrociate
+  status/value/anchor. Analisi **ESEGUITO**, cause **VALIDATO**; correzione
+  prioritaria del solo handoff normativo nel prompt **DA FARE** previa distinta
+  autorizzazione. Semantica, promozione, Gate, integrazione e certificazione
+  **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-witness-root-cause-01.md`.
+
 - [x] **RUNTIME 360 q3_04 ESEGUITO; COMPLETAMENTO TECNICO OSSERVATO, WITNESS NON VALUTABILE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-360-01: unico tentativo autorizzato
   sullo staging detached `69ec127`, timeout HTTP 360 s ed esterno 450 s.

@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Root cause witness Spatial V2 q3_04
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-WITNESS-ROOT-CAUSE-01`.
+Revisione statica dei 22 artefatti verificati e del codice eseguito a
+`69ec127`: 16/16 anchor hanno span testuale esistente, ma offset errati; nessun
+errore NFC, Unicode, punteggiatura, trasformazione input o validatore. Il
+quantificatore `status=explicit`, `value=absent`, `anchors=[]` è vietato: per
+assenza grammaticale la matrice prescrive `implicit/none/[]`, mentre
+`absent/absent/[]` è la sentinella distinta. Specifica completa e validatore
+sono allineati, ma prompt runtime e schema inviato al modello non rendono
+espliciti tutti i vincoli incrociati. Analisi **ESEGUITO**, cause **VALIDATO**;
+unica remediation raccomandata, non implementata, è completare il solo handoff
+normativo nel prompt con offset code-point semiaperti ed esempi status/value.
+Correzione **DA FARE**; semantica, promozione, Gate, integrazione e
+certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-witness-root-cause-01.md`.
+
 ### 2026-11-07 — Singolo runtime Spatial V2 q3_04 con timeout 360 s
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-360-01`. Staging Git
