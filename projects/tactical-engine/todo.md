@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REVIEW R1/R2 VALIDATO; CLOSEOUT DOCUMENTALE CONCLUSO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-REVIEW-01: revisione
+  indipendente statica del commit `3c935b0` favorevole. R1 limita correttamente
+  `incompatible`; R2 produce envelope fail-closed con una chiamata e zero
+  retry/repair/fallback. Il revisore ha esaminato codice/test/report ma non ha
+  rieseguito i 18 test. Revisione e proprietà R1/R2 **VALIDATO** nel solo
+  percorso esaminato; validazione complessiva, semantica, q3_04 runtime, Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-offline-remediation-review-01.md`.
+
 - [x] **REMEDIATION R1/R2 IMPLEMENTATO; TEST ESEGUITO, REVIEW DA FARE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-01: R1 limita
   `incompatible` alle sole coppie normative e preserva sentinelle/assi diversi;

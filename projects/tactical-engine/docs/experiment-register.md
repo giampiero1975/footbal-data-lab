@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Closeout revisione indipendente Spatial V2 R1/R2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-REVIEW-01`.
+Baseline `3c935b0`. La revisione indipendente statica ha confermato nel percorso
+esaminato la restrizione normativa di `incompatible`, la precedenza delle
+sentinelle e gli envelope fail-closed del judge con una chiamata e zero
+retry/repair/fallback. Esaminati codice, test e report su GitHub; i 18 test non
+sono stati rieseguiti dal revisore e non si registra una seconda esecuzione.
+Nessuno script tecnico creato o eseguito in questo closeout. Report
+`docs/tactical-semantic-support-s2-spatial-v2-offline-remediation-review-01.md`.
+Decisione: remediation R1/R2 e proprietà nel percorso esaminato **VALIDATO**;
+validazione complessiva, accuratezza, q3_04 runtime, Gate, integrazione e
+certificazione **BLOCCATO**. Closeout documentale concluso.
+
 ### 2026-11-07 — Remediation offline Spatial V2 R1/R2
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-01`. Baseline
