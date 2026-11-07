@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **RUNTIME POST-REMEDIATION q3_04 ESEGUITO; QUANTIFICATORI CORRETTI, WITNESS ANCORA NON VALUTABILE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-RUNTIME-01: unica richiesta
+  autorizzata sullo staging detached `41d50fa`, timeout HTTP 360 s ed esterno
+  450 s; zero retry/repair/fallback. Risposta completa in 247,24 s, 1.803 token
+  a circa 8,11 token/s. I quantificatori passano da 0/2 a 2/2 conformi, ma gli
+  anchor restano 0/14 validi e la polarità `explicit/affirmed` conserva
+  `E_STATUS_VALUE_INCONSISTENT`: risultato `not_evaluable`, label nulla e
+  `promotion_authorized=false`. Artefatti 24/24 verificati; checkout operativo,
+  staging e collection invariati. Tentativo **ESEGUITO**; completamento,
+  fail-closed e correzione dei quantificatori **VALIDATO** nel singolo caso;
+  validità complessiva, semantica, promozione, Gate, integrazione e
+  certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-prompt-runtime-01.md`.
+
 - [x] **PROMPT SPATIAL V2 REMEDIATO E VALIDATO OFFLINE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-REMEDIATION-01: completato il solo
   handoff normativo in `INSTRUCTION` con offset Unicode code-point zero-based,

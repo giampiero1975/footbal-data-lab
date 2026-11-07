@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Runtime post-remediation prompt Spatial V2 q3_04
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-RUNTIME-01`. Unica
+richiesta autorizzata sullo staging Git indipendente detached a `41d50fa`, con
+timeout HTTP 360 s ed esterno 450 s, modello `qwen3.5:9b`, 2.048 token massimi
+e zero retry/repair/fallback. Risposta completa in 247,24 s: 462 token prompt,
+1.803 token generati in 222,43 s, circa 8,11 token/s. La remediation è rispettata
+per i quantificatori (2/2 conformi contro 0/2), ma tutti i 14 anchor restano
+invalidi; la polarità `explicit/affirmed` mantiene inoltre
+`E_STATUS_VALUE_INCONSISTENT`. Il risultato resta `not_evaluable`, label
+derivata nulla e `promotion_authorized=false`. Artefatti 24/24 verificati;
+checkout operativo e staging invariati. Tentativo **ESEGUITO**; completamento,
+fail-closed e correzione dei quantificatori **VALIDATO** nel singolo caso;
+validità complessiva, semantica, promozione, Gate, integrazione e certificazione
+**BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-prompt-runtime-01.md`.
+
 ### 2026-11-07 — Remediation prompt Spatial V2 q3_04
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-REMEDIATION-01`.
