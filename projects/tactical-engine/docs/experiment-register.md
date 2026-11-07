@@ -4,14 +4,14 @@ Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**;
 
 ### 2026-11-07 — Fase 1 verifica chiave SSH e agent
 
-Attività: `RD-FOOTBALL-VPS-SSH-AGENT-PHASE-01`. In sola lettura risultano
-conformi esistenza, file type, owner, ACL, assenza di reparse point, alias e
-tipo pubblico Ed25519 della chiave dedicata. La verifica della cifratura avrebbe
-richiesto l'apertura della chiave privata tramite OpenSSH ed è stata rifiutata
-dal controllo di sicurezza; nessun workaround eseguito. `ssh-agent` è rimasto
-`Stopped/Disabled`, nessuna identità caricata, nessuna connessione differenziale
-e nessuna credenziale acquisita. Controlli metadata **ESEGUITO**, proprietà
-osservate **VALIDATO** nel solo perimetro; cifratura, compatibilità agent e
+Attività: `RD-FOOTBALL-VPS-SSH-AGENT-PHASE-01`. Metadati, ACL, reparse point,
+alias e tipo pubblico Ed25519 conformi. Nella ripresa autorizzata l'agent vuoto
+è stato temporaneamente abilitato e ha caricato la sola fingerprint attesa, ma
+il caricamento non ha dimostrato una passphrase protettiva. Arresto prima della
+SSH differenziale; rollback riuscito con rimozione della sola chiave e servizio
+nuovamente `Stopped/Disabled`. Nessuna modifica VPS o credenziale acquisita.
+Metadati/ACL/tipo **VALIDATO** nel solo perimetro, compatibilità tecnica agent
+**ESEGUITO** nel tentativo rollbackato; cifratura, attivazione persistente e
 autenticazione via agent **BLOCCATO**. Report
 `docs/football-vps-ssh-agent-phase-01.md`.
 

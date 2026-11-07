@@ -77,24 +77,56 @@ stato possibile:
 | Autenticazione differenziale `publickey` via agent | NON ESEGUITO |
 | Assenza di esposizione di credenziali | PASS nel presente lavoro |
 
+## Ripresa interattiva e rollback
+
+La ripresa è avvenuta in una PowerShell visibile, controllata direttamente dal
+titolare. La chiave è stata aperta una prima volta tramite OpenSSH con output
+pubblico scartato; il titolare ha confermato di aver interagito con il prompt.
+
+Successivamente:
+
+1. `ssh-agent` è stato portato da `Stopped/Disabled` a
+   `Running/Automatic` tramite normale conferma amministrativa Windows;
+2. l'agent iniziale era vuoto (`ssh-add -l` exit 1);
+3. `ssh-add` ha caricato la chiave dedicata con exit 0;
+4. l'agent conteneva una sola identità, corrispondente alla fingerprint
+   pubblica attesa;
+5. durante questa seconda operazione non è stata stabilita una richiesta
+   protetta di passphrase; il titolare ha chiesto quale passphrase inserire.
+
+Poiché una chiave caricata in un agent inizialmente vuoto senza una passphrase
+nota o dimostrata non soddisfa il requisito di protezione, l'attività si è
+arrestata prima della connessione SSH differenziale. Non viene dedotto il
+metodo di autenticazione dal solo caricamento.
+
+Rollback completato:
+
+- rimossa esclusivamente la chiave appena caricata (`ssh-add -d`, exit 0);
+- agent nuovamente vuoto (`ssh-add -l`, exit 1);
+- servizio ripristinato a `Stopped/Disabled`;
+- nessun'altra identità rimossa;
+- nessuna connessione SSH o modifica VPS eseguita.
+
 ## Decisione
 
-La chiave è Ed25519 e i metadati filesystem osservati risultano conformi, ma la
-cifratura e la compatibilità effettiva Codex/agent non sono dimostrate. Un
-controllo parziale non può essere promosso a `VALIDATO`.
+La chiave è Ed25519 e i metadati filesystem osservati risultano conformi. Il
+caricamento nell'agent ha provato la compatibilità tecnica client/servizio e la
+corrispondenza della fingerprint, ma non ha dimostrato la protezione mediante
+passphrase. Un controllo parziale non può essere promosso a `VALIDATO`.
 
-La Fase 1 è quindi **BLOCCATO**. Il prossimo passo non duplicativo richiede una
-decisione separata del titolare su un meccanismo interattivo protetto che
-consenta a OpenSSH di verificare/caricare la chiave senza consegnare la
-passphrase a Codex. In alternativa, resta necessaria una nuova identità cifrata
-in una fase distinta; non è autorizzata dal presente incarico.
+La Fase 1 è quindi **BLOCCATO**. Il prossimo passo non duplicativo è una nuova
+identità cifrata dedicata, con nome distinto, creata e verificata in una fase
+separata senza sovrascrivere o revocare la chiave corrente prima del secondo
+accesso riuscito. Tale attività non è autorizzata dal presente incarico.
 
 ## Stati
 
 - controlli metadata/ACL e tipo pubblico: **ESEGUITO**;
 - proprietà osservate di file, ACL e tipo: **VALIDATO** nel solo perimetro
   metadata/public key;
-- cifratura chiave e compatibilità agent: **BLOCCATO**;
-- attivazione OpenSSH Agent: **DA FARE** e **BLOCCATO**;
+- compatibilità tecnica agent/fingerprint: **ESEGUITO** nel tentativo poi
+  rollbackato;
+- cifratura/passphrase della chiave corrente: **BLOCCATO**;
+- attivazione persistente OpenSSH Agent: **DA FARE** e **BLOCCATO**;
 - autenticazione differenziale via agent: **DA FARE** e **BLOCCATO**;
 - fase sudo e accesso amministrativo persistente: **BLOCCATO**.
