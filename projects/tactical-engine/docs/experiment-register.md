@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Singola diagnosi runtime Spatial V2 q3_04
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-RUN-01`.
+Preflight conforme sullo staging detached `009f76e`; avviata esattamente una
+richiesta `qwen3.5:9b`, zero retry/repair/fallback. Dopo 180,124 s il judge ha
+restituito `not_evaluable` con `E_JUDGE_TIMEOUT`, nessuna promozione, witness o
+label. Prompt, payload, risultato e metadati sono preservati esternamente con
+inventario SHA-256; nessuna risposta HTTP grezza è stata ricevuta. Tentativo
+**ESEGUITO**, fail-closed **VALIDATO** nel singolo caso; diagnosi semantica,
+accuratezza, Gate, integrazione e certificazione **BLOCCATO**; revisione
+indipendente **DA FARE**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-runtime-run-01.md`.
+
 ### 2026-11-07 — Staging isolato Spatial V2 q3_04
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-STAGING-PREPARATION-01`.

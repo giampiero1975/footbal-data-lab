@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **SINGOLO RUN SPATIAL V2 ESEGUITO; TIMEOUT FAIL-CLOSED, SEMANTICA BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-RUN-01: preflight conforme e una
+  sola richiesta `qwen3.5:9b` avviata, senza retry/repair/fallback. Timeout
+  contrattuale dopo 180,124 s: `not_evaluable`, `E_JUDGE_TIMEOUT`, nessun raw,
+  witness o label e `promotion_authorized=false`. Artefatti esterni preservati
+  con inventario SHA-256. Tentativo **ESEGUITO**, fail-closed del singolo caso
+  **VALIDATO**; diagnosi semantica, accuratezza, Gate, integrazione e
+  certificazione **BLOCCATO**; review indipendente **DA FARE**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-runtime-run-01.md`.
+
 - [x] **STAGING SPATIAL V2 IMPLEMENTATO; ISOLAMENTO E INTEGRITÀ VALIDATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-STAGING-PREPARATION-01: creato clone Git autonomo
   VPS in `staging/spatial-v2-q3-04-009f76e`, detached HEAD esatto `009f76e`,
