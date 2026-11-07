@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **PIANO ACCESSO SSH/SUDO SICURO ESEGUITO; APPLICAZIONE BLOCCATO**
+  RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-PLAN-01: verificati OpenSSH Windows,
+  alias e chiave dedicata, accesso VPS e stato sudo senza leggere segreti.
+  `ssh-agent` è disabilitato; Credential Manager non integra direttamente
+  OpenSSH/sudo. Raccomandati chiave Ed25519 cifrata con agent e helper root-owned
+  limitato da sudoers. Progettazione **ESEGUITO**, accesso SSH osservato
+  **VALIDATO**; configurazione e privilegio **DA FARE** e **BLOCCATO** fino ad
+  approvazione distinta. Report
+  `docs/football-vps-ssh-sudo-secure-access-plan.md`.
+
 - [x] **EXPORT LOG AMMINISTRATIVO ESEGUITO; CAUSA OPERATIVA VALIDATO**
   RD-TSC-V2-D3-S2-Q3-04-ADMIN-LOG-EXPORT-01: dopo autorizzazione esplicita del
   titolare, export Ollama/kernel acquisiti nella sola finestra autorizzata e

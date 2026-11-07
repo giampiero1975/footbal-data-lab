@@ -2,6 +2,18 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Piano accesso SSH persistente e sudo sicuro
+
+Attività: `RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-PLAN-01`. Verificati in sola
+lettura OpenSSH, alias `football-vps`, identità dedicata, accesso VPS,
+`authorized_keys` e sudo senza acquisire segreti. Windows `ssh-agent` è
+fermo/disabilitato; Credential Manager non è un backend diretto per OpenSSH o
+sudo. Raccomandati chiave Ed25519 cifrata nell'agent e helper diagnostico
+root-owned, autorizzato da sudoers soltanto col comando esatto. Piano
+**ESEGUITO**, accesso SSH osservato **VALIDATO**; agent, helper e sudoers
+**DA FARE**, accesso amministrativo persistente **BLOCCATO** fino ad
+approvazione distinta. Report `docs/football-vps-ssh-sudo-secure-access-plan.md`.
+
 ### 2026-11-07 — Recupero amministrativo log Spatial V2
 
 Attività: `RD-TSC-V2-D3-S2-Q3-04-ADMIN-LOG-EXPORT-01`.
