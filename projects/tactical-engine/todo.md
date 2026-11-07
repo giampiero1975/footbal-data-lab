@@ -8,6 +8,22 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; SEMANTICA/RUNTIME BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-IMPLEMENTATION-01: aggiunti schema e
+  vocabolario `nli_spatial_relations_v2` 2.0.0, validatore puro e judge opt-in
+  inerte con singola chiamata, zero retry/repair/fallback e non-promozione.
+  Test nuovi finali 16/16 PASS; primo run 6/16 ha esposto e consentito di
+  correggere l'ordine del comparison conditions. Legacy direttamente coinvolto
+  invariato; nessuna inferenza. Implementazione **IMPLEMENTATO**, test
+  **ESEGUITO**, proprietà deterministiche coperte **VALIDATO** offline;
+  efficacia, Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-offline-implementation-01.md`.
+
+- [x] **REVISIONE DOCUMENTALE R1–R5 VALIDATO**
+  La revisione indipendente della remediation Spatial V2 ha accettato i cinque
+  rilievi esclusivamente nel perimetro documentale. Non valida implementazione,
+  accuratezza, generalizzazione, integrazione o certificazione.
+
 - [x] **REMEDIATION SPECIFICA ESEGUITO; REVIEW DA FARE, GATE BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-REMEDIATION-01: chiusi R1–R5 nella
   specifica `nli_spatial_relations_v2`: binding schema axis/value, precedenza

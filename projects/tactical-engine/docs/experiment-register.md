@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Implementazione offline isolata Spatial V2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-IMPLEMENTATION-01`. Baseline
+`4e8eabb`. Implementati in moduli nuovi schema/vocabolario
+`nli_spatial_relations_v2` 2.0.0, validatore deterministico puro e judge opt-in
+inerte, con una chiamata, zero retry/repair/fallback e
+`promotion_authorized=false`. Il primo run nuovo ha prodotto 6 PASS/10 FAIL per
+un errore nell'ordine del comparison conditions; corretto, il run finale è
+16/16 PASS. Nessuna inferenza, rete, Gate o suite storica. Legacy interessato
+invariato. La revisione indipendente R1–R5 è registrata **VALIDATO** solo nel
+perimetro documentale. Report
+`docs/tactical-semantic-support-s2-spatial-v2-offline-implementation-01.md`.
+Decisione: PASS tecnico offline; sottoporre codice/test/report a revisione
+indipendente. Stato: implementazione **IMPLEMENTATO**, test **ESEGUITO**,
+proprietà coperte **VALIDATO** offline; efficacia, Gate, integrazione e
+certificazione **BLOCCATO**.
+
 ### 2026-11-07 — Remediation specifica Spatial V2 R1–R5
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-REMEDIATION-01`. Baseline
