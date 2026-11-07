@@ -2,6 +2,17 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Remediation piano SSH/sudo
+
+Attività: `RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-REMEDIATION-01`. Recepiti C1–C5:
+sudoers vincolato all'helper senza argomenti, contratto root-owned fisso per i
+log storici, verifica separata di tipo/cifratura/ACL della chiave, distinzione
+agent/disco/publickey/password e controlli completi su ACL, symlink, antenate e
+dipendenze. Progettata matrice di 20 test, non eseguiti. Remediation documentale
+**ESEGUITO**; verifica chiave, agent, helper e sudoers **DA FARE**; accesso
+amministrativo persistente **BLOCCATO**. Nessuna configurazione Windows/VPS
+modificata. Report `docs/football-vps-ssh-sudo-secure-access-plan.md`.
+
 ### 2026-11-07 — Piano accesso SSH persistente e sudo sicuro
 
 Attività: `RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-PLAN-01`. Verificati in sola

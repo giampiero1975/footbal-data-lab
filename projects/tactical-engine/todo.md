@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REMEDIATION PIANO SSH/SUDO ESEGUITO; IMPLEMENTAZIONE BLOCCATO**
+  RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-REMEDIATION-01: corretta la regola
+  sudoers con vincolo senza argomenti, definito il contratto dell'helper storico,
+  separati verifica chiave/metodo/fallback e ampliati controlli ACL/symlink con
+  20 test progettati. Remediation documentale **ESEGUITO**; verifica chiave,
+  agent, helper e sudoers **DA FARE**; accesso amministrativo persistente
+  **BLOCCATO**. Nessun sistema modificato. Report
+  `docs/football-vps-ssh-sudo-secure-access-plan.md`.
+
 - [x] **PIANO ACCESSO SSH/SUDO SICURO ESEGUITO; APPLICAZIONE BLOCCATO**
   RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-PLAN-01: verificati OpenSSH Windows,
   alias e chiave dedicata, accesso VPS e stato sudo senza leggere segreti.
