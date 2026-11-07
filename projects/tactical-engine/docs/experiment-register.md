@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Fase 1 verifica chiave SSH e agent
+
+Attività: `RD-FOOTBALL-VPS-SSH-AGENT-PHASE-01`. In sola lettura risultano
+conformi esistenza, file type, owner, ACL, assenza di reparse point, alias e
+tipo pubblico Ed25519 della chiave dedicata. La verifica della cifratura avrebbe
+richiesto l'apertura della chiave privata tramite OpenSSH ed è stata rifiutata
+dal controllo di sicurezza; nessun workaround eseguito. `ssh-agent` è rimasto
+`Stopped/Disabled`, nessuna identità caricata, nessuna connessione differenziale
+e nessuna credenziale acquisita. Controlli metadata **ESEGUITO**, proprietà
+osservate **VALIDATO** nel solo perimetro; cifratura, compatibilità agent e
+autenticazione via agent **BLOCCATO**. Report
+`docs/football-vps-ssh-agent-phase-01.md`.
+
 ### 2026-11-07 — Remediation piano SSH/sudo
 
 Attività: `RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-REMEDIATION-01`. Recepiti C1–C5:

@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **FASE SSH AGENT ARRESTATA FAIL-CLOSED; CIFRATURA BLOCCATO**
+  RD-FOOTBALL-VPS-SSH-AGENT-PHASE-01: file, owner, ACL, reparse point, alias e
+  tipo pubblico Ed25519 verificati in sola lettura. L'apertura della chiave
+  privata necessaria a dimostrare la passphrase è stata rifiutata dal controllo
+  di sicurezza; nessuna alternativa tentata. Agent rimasto fermo/disabilitato,
+  nessuna chiave caricata e nessuna nuova SSH. Metadati **ESEGUITO** e proprietà
+  osservate **VALIDATO** nel solo perimetro; cifratura, agent e autenticazione
+  differenziale **BLOCCATO**. Report
+  `docs/football-vps-ssh-agent-phase-01.md`.
+
 - [x] **REMEDIATION PIANO SSH/SUDO ESEGUITO; IMPLEMENTAZIONE BLOCCATO**
   RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-REMEDIATION-01: corretta la regola
   sudoers con vincolo senza argomenti, definito il contratto dell'helper storico,
