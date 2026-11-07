@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Revisione statica extraction locator Spatial V2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-REVIEW-01`. Revisione
+statica di schema, trasformazione, match, semantica, fail-closed, provenienza e
+legacy sulla baseline `9bd8ee4`, senza ripetere i 12+21 test. Campi semantici
+conservati; locator letterale side-bound con conteggio overlap e unico match;
+validatore finale blob-invariato. Digest e ricalcolo offrono integrità rispetto
+agli input, non autenticità crittografica. Nessun difetto concreto. Limiti
+minori: overlap non coperto direttamente e nessun positivo dedicato a ogni
+slot esplicito/multi-frammento; codice relativo verificato staticamente.
+Revisione **ESEGUITO**, proprietà esaminate **VALIDATO**; singolo runtime
+diagnostico opt-in **DA FARE** previa autorizzazione; Gate, integrazione e
+certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-review-01.md`.
+
 ### 2026-11-07 — Extraction contract e locator Spatial V2 offline
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-01`. Implementati

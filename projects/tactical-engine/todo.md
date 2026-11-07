@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REVISIONE STATICA EXTRACTION LOCATOR CONCLUSA; NESSUN DIFETTO CONCRETO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-REVIEW-01: schema, locator,
+  semantica, fail-closed, provenienza e percorso legacy esaminati senza
+  rieseguire i 12+21 test. Tutti i campi semantici sono conservati; ricerca
+  letterale side-bound conta anche overlap e accetta solo un match; il
+  validatore finale resta invariato. Provenienza riproducibile ma non autenticata
+  crittograficamente. Nessun difetto concreto; limiti minori: overlap non
+  testato direttamente e fixture positiva non dedicata a ogni slot esplicito/
+  multi-frammento. Revisione **ESEGUITO**, proprietà esaminate **VALIDATO**;
+  singolo runtime diagnostico opt-in **DA FARE** previa autorizzazione; Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-review-01.md`.
+
 - [x] **CONTRATTO DI ESTRAZIONE E LOCATOR SPATIAL V2 IMPLEMENTATI E VALIDATI OFFLINE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-01: introdotti contratto
   `nli_spatial_relations_v2_extraction/1.0.0` senza source/offset e locator puro
