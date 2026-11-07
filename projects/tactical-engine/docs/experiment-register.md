@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Remediation offline Spatial V2 R1/R2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-01`. Baseline
+`128f014`. R1 restringe `incompatible` alle sole coppie di
+`INCOMPATIBLE_VALUES`, con sentinelle e assi diversi conservativi. R2 converte
+gli errori operativi previsti del judge in envelope `not_evaluable` con codici
+distinti, una sola chiamata e nessun retry/repair/fallback; errori di
+programmazione restano eccezioni. Primo run aggiornato 16/18 PASS: la correzione
+R1 sovrascriveva due sentinelle; dopo rettifica, finale 18/18 PASS, exit 0.
+Nessuna inferenza o rete. Report
+`docs/tactical-semantic-support-s2-spatial-v2-offline-remediation-01.md`.
+Decisione: remediation **IMPLEMENTATO**, test **ESEGUITO**, revisione
+indipendente **DA FARE**; validazione complessiva, efficacia, Gate, integrazione
+e certificazione **BLOCCATO**.
+
 ### 2026-11-07 — Implementazione offline isolata Spatial V2
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-IMPLEMENTATION-01`. Baseline

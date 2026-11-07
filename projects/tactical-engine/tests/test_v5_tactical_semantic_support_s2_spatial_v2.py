@@ -194,6 +194,25 @@ class SpatialV2ValidatorTests(unittest.TestCase):
         self.assertIn("E_COMPARISON_INCONSISTENT",
                       spatial.validate_spatial_v2(different_axis, CLAIM, EVIDENCE)["error_codes"])
 
+    def test_10b_value_incompatibility_comes_only_from_normative_matrix(self):
+        # The baseline incorrectly accepted incompatible for both neutral pairs.
+        for left, right in (("abundant", "neutral"), ("scarce", "neutral")):
+            value = witness("contradicted")
+            value["claim_relation"]["value"]["value"] = left
+            value["evidence_relation"]["value"]["value"] = right
+            value["comparison"]["value"] = "incompatible"
+            with self.subTest(left=left, right=right):
+                result = spatial.validate_spatial_v2(value, CLAIM, EVIDENCE)
+                self.assertEqual(result["technical_status"], "not_evaluable")
+                self.assertIn("E_COMPARISON_INCONSISTENT", result["error_codes"])
+
+        normative = witness("contradicted")
+        self.assertEqual(spatial.validate_spatial_v2(normative, CLAIM, EVIDENCE)["derived_label"], "contradicted")
+        same = witness("supported")
+        same["evidence_relation"]["value"]["value"] = "abundant"
+        same["comparison"]["value"] = "same"
+        self.assertEqual(spatial.validate_spatial_v2(same, CLAIM, EVIDENCE)["derived_label"], "supported")
+
     def test_11_label_mismatch_is_not_corrected(self):
         result = spatial.validate_spatial_v2(witness("supported"), CLAIM, EVIDENCE)
         self.assertEqual(result["technical_status"], "not_evaluable")
@@ -242,14 +261,32 @@ class SpatialV2JudgeTests(unittest.TestCase):
         self.assertIsNone(result["label"])
         self.assertFalse(result["promotion_authorized"])
 
-    def test_16_transport_and_json_errors_escape_without_fallback(self):
-        def failure(*_args):
-            raise TimeoutError("offline mock")
-        with self.assertRaises(TimeoutError):
-            judge.judge_pair(CLAIM, EVIDENCE, transport=failure)
-        with self.assertRaises(RuntimeError):
-            judge.judge_pair(CLAIM, EVIDENCE, transport=lambda *_: {
-                "done_reason": "stop", "message": {"content": "not-json"}})
+    def test_16_operational_errors_are_structured_without_retry(self):
+        cases = [
+            (lambda *_: (_ for _ in ()).throw(TimeoutError("offline mock")), "E_JUDGE_TIMEOUT"),
+            (lambda *_: (_ for _ in ()).throw(ConnectionError("offline mock")), "E_JUDGE_TRANSPORT"),
+            (lambda *_: {"done_reason": "length", "message": {"content": "{}"}}, "E_JUDGE_RESPONSE_INCOMPLETE"),
+            (lambda *_: {"done_reason": "stop", "message": {}}, "E_JUDGE_RESPONSE_MISSING"),
+            (lambda *_: {"done_reason": "stop", "message": {"content": "not-json"}}, "E_JUDGE_JSON_INVALID"),
+        ]
+        for operation, code in cases:
+            calls = []
+            def transport(*args, operation=operation):
+                calls.append(args)
+                return operation(*args)
+            with self.subTest(code=code):
+                result = judge.judge_pair(CLAIM, EVIDENCE, transport=transport)
+                self.assertEqual(len(calls), 1)
+                self.assertEqual(result["evaluation_status"], "not_evaluable")
+                self.assertIsNone(result["label"])
+                self.assertFalse(result["promotion_authorized"])
+                self.assertEqual(result["validation"]["error_codes"], [code])
+
+    def test_17_programming_errors_remain_exceptions(self):
+        def programming_error(*_args):
+            raise TypeError("bad injected transport implementation")
+        with self.assertRaises(TypeError):
+            judge.judge_pair(CLAIM, EVIDENCE, transport=programming_error)
 
 
 if __name__ == "__main__":

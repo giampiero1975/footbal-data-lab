@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REMEDIATION R1/R2 IMPLEMENTATO; TEST ESEGUITO, REVIEW DA FARE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-REMEDIATION-01: R1 limita
+  `incompatible` alle sole coppie normative e preserva sentinelle/assi diversi;
+  R2 converte timeout, trasporto, risposta incompleta/mancante e JSON invalido
+  in envelope `not_evaluable` con codici distinti, una chiamata e zero
+  retry/repair/fallback. Errori di programmazione restano eccezioni. Primo run
+  16/18, finale 18/18 PASS; nessuna inferenza. Remediation **IMPLEMENTATO**,
+  test **ESEGUITO**, review **DA FARE**; validazione complessiva, semantica,
+  Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-offline-remediation-01.md`.
+
 - [x] **IMPLEMENTATO, ESEGUITO e VALIDATO offline; SEMANTICA/RUNTIME BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-OFFLINE-IMPLEMENTATION-01: aggiunti schema e
   vocabolario `nli_spatial_relations_v2` 2.0.0, validatore puro e judge opt-in

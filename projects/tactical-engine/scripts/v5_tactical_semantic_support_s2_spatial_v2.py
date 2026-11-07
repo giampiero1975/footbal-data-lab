@@ -392,14 +392,19 @@ def _comparison_errors(witness):
     claim, evidence, errors = witness["claim_relation"], witness["evidence_relation"], []
     for dimension in COMPARISON_KEYS:
         allowed = _expected_comparison(dimension, claim[dimension], evidence[dimension])
-        if dimension == "value":
+        if dimension == "value" and not allowed.intersection({"unknown", "ambiguous"}):
             claim_axis = claim["semantic_axis"].get("value")
             evidence_axis = evidence["semantic_axis"].get("value")
             if claim_axis != evidence_axis:
                 allowed = {"different"}
             else:
                 pair = frozenset((claim["value"].get("value"), evidence["value"].get("value")))
-                allowed = {"incompatible"} if pair in INCOMPATIBLE_VALUES.get(claim_axis, set()) else allowed
+                if pair in INCOMPATIBLE_VALUES.get(claim_axis, set()):
+                    allowed = {"incompatible"}
+                elif claim["value"].get("value") == evidence["value"].get("value"):
+                    allowed = {"same"}
+                else:
+                    allowed = {"different"}
         if comparison[dimension] not in allowed:
             errors.append("E_COMPARISON_INCONSISTENT")
     return errors

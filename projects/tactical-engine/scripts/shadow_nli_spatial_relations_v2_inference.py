@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import urllib.error
 import urllib.request
 
 from v5_tactical_semantic_support_s2_spatial_v2 import (
@@ -42,6 +43,26 @@ def _default_transport(url, payload, timeout):
         return json.load(response)
 
 
+def _not_evaluable(code, *, witness=None, validation=None):
+    diagnostic = validation or {
+        "validator_id": "nli_spatial_relations_v2_judge_boundary",
+        "validator_version": "1.0.0",
+        "technical_status": "not_evaluable",
+        "derived_label": None,
+        "model_label": None,
+        "comparison_verified": False,
+        "semantic_compatibility_verified": False,
+        "error_codes": [code],
+    }
+    return {
+        "evaluation_status": "not_evaluable",
+        "label": None,
+        "witness": witness,
+        "validation": diagnostic,
+        "promotion_authorized": False,
+    }
+
+
 def judge_pair(claim, evidence, *, model="qwen3.5:9b",
                ollama_url="http://127.0.0.1:11434", timeout=180,
                max_tokens=2048, transport=None):
@@ -57,26 +78,26 @@ def judge_pair(claim, evidence, *, model="qwen3.5:9b",
         ],
     }
     call = transport or _default_transport
-    result = call(ollama_url, payload, timeout)
+    try:
+        result = call(ollama_url, payload, timeout)
+    except TimeoutError:
+        return _not_evaluable("E_JUDGE_TIMEOUT")
+    except (ConnectionError, urllib.error.URLError, OSError):
+        return _not_evaluable("E_JUDGE_TRANSPORT")
     if type(result) is not dict or result.get("done_reason") != "stop":
-        raise RuntimeError("spatial_v2_output_incomplete")
+        return _not_evaluable("E_JUDGE_RESPONSE_INCOMPLETE")
     message = result.get("message")
     content = message.get("content") if type(message) is dict else None
     if type(content) is not str or not content:
-        raise RuntimeError("spatial_v2_output_missing")
+        return _not_evaluable("E_JUDGE_RESPONSE_MISSING")
     try:
         witness = json.loads(content)
-    except json.JSONDecodeError as exc:
-        raise RuntimeError("spatial_v2_output_not_json") from exc
+    except json.JSONDecodeError:
+        return _not_evaluable("E_JUDGE_JSON_INVALID")
     validation = validate_spatial_v2(witness, claim, evidence)
     if validation["technical_status"] != "valid":
-        return {
-            "evaluation_status": "not_evaluable",
-            "label": None,
-            "witness": witness,
-            "validation": validation,
-            "promotion_authorized": False,
-        }
+        return _not_evaluable("E_WITNESS_INVALID", witness=witness,
+                              validation=validation)
     return {
         "evaluation_status": "evaluated",
         "label": witness["label"],
