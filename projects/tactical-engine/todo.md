@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **PROMPT SPATIAL V2 REMEDIATO E VALIDATO OFFLINE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-REMEDIATION-01: completato il solo
+  handoff normativo in `INSTRUCTION` con offset Unicode code-point zero-based,
+  intervalli `[start,end)`, uguaglianza exact-span, sorgenti ammesse e matrice
+  completa dei quantificatori, incluso il divieto `explicit/absent/[]`.
+  Schema, validatore, testi, modello, 2.048 token e timeout 180/360 invariati.
+  Un test mock differenziale PASS prova regole nel payload, singola chiamata,
+  zero retry/repair/fallback e rifiuto invariato del witness noto.
+  Correzione **IMPLEMENTATO**, test **ESEGUITO**, handoff interessato
+  **VALIDATO** offline; nuova generazione **DA FARE** previa autorizzazione,
+  efficacia Qwen, semantica, promozione, Gate, integrazione e certificazione
+  **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-prompt-remediation-01.md`.
+
 - [x] **ROOT CAUSE WITNESS q3_04 ESEGUITO; HANDOFF NORMATIVO INCOMPLETO VALIDATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-WITNESS-ROOT-CAUSE-01: analizzati i 22
   artefatti verificati, prompt/payload/schema, witness e codice a `69ec127`.

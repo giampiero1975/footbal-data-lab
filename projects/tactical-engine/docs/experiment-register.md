@@ -2,6 +2,22 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Remediation prompt Spatial V2 q3_04
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PROMPT-REMEDIATION-01`.
+Modificato esclusivamente `INSTRUCTION` del judge Spatial V2 per trasmettere
+offset Unicode code-point zero-based e semiaperti, uguaglianza exact-span,
+divieto di stime/normalizzazioni e combinazioni normative complete dei
+quantificatori. Un solo test mock nuovo PASS verifica prompt effettivo,
+claim/evidence, modello, schema, `num_predict=2048`, timeout 180, singola
+chiamata, zero retry/repair/fallback e fail-closed del witness con anchor e
+status/value invalidi. Schema, validatore, timeout 360 e semantica invariati;
+nessuna rete o inferenza. Correzione **IMPLEMENTATO**, test **ESEGUITO**,
+handoff interessato **VALIDATO** offline; nuova generazione **DA FARE**,
+efficacia Qwen, semantica, promozione, Gate, integrazione e certificazione
+**BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-prompt-remediation-01.md`.
+
 ### 2026-11-07 — Root cause witness Spatial V2 q3_04
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-WITNESS-ROOT-CAUSE-01`.

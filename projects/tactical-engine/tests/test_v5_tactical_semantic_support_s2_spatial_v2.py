@@ -324,6 +324,49 @@ class SpatialV2JudgeTests(unittest.TestCase):
         self.assertEqual(result["validation"]["error_codes"], ["E_JUDGE_TIMEOUT"])
         self.assertFalse(result["promotion_authorized"])
 
+    def test_20_runtime_prompt_handoff_and_known_invalid_witness_fail_closed(self):
+        invalid = witness()
+        invalid["claim_relation"]["subject"]["anchors"][0]["end"] += 1
+        invalid["claim_relation"]["quantifier"] = {
+            "status": "explicit", "value": "absent", "literal": "",
+            "anchors": [],
+        }
+        calls = []
+        def transport(url, payload, timeout):
+            calls.append((url, payload, timeout))
+            return {"done_reason": "stop", "message": {
+                "content": json.dumps(invalid)}}
+
+        result = judge.judge_pair(CLAIM, EVIDENCE, transport=transport)
+
+        self.assertEqual(len(calls), 1)
+        payload = calls[0][1]
+        prompt = payload["messages"][1]["content"]
+        for rule in (
+                "Unicode code-point zero-based",
+                "intervalli semiaperti [start,end)",
+                "source_text[start:end] == exact_span",
+                '"status":"implicit","value":"none","literal":null,"anchors":[]',
+                '"status":"absent","value":"absent","literal":null,"anchors":[]',
+                '"status":"explicit","value":"absent","literal":"","anchors":[]'):
+            self.assertIn(rule, prompt)
+        self.assertTrue(prompt.endswith(
+            "\n\nFONTE:\n" + EVIDENCE + "\n\nAFFERMAZIONE:\n" + CLAIM))
+        self.assertEqual(payload["model"], "qwen3.5:9b")
+        self.assertEqual(payload["format"], spatial.SPATIAL_V2_SCHEMA)
+        self.assertEqual(payload["options"], {
+            "temperature": 0, "num_predict": 2048, "num_ctx": 4096})
+        self.assertEqual(calls[0][2], 180)
+        self.assertEqual(judge.descriptor(), {
+            "contract_id": "nli_spatial_relations_v2", "version": "2.0.0",
+            "selection": "explicit_import_only", "single_generation": True,
+            "retry": False, "repair": False, "fallback": False})
+        self.assertEqual(result["evaluation_status"], "not_evaluable")
+        self.assertIn("E_ANCHOR_INVALID", result["validation"]["error_codes"])
+        self.assertIn("E_STATUS_VALUE_INCONSISTENT",
+                      result["validation"]["error_codes"])
+        self.assertFalse(result["promotion_authorized"])
+
 
 if __name__ == "__main__":
     unittest.main()
