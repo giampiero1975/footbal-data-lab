@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **HELPER SUDO DIAGNOSTICO IMPLEMENTATO E VALIDATO NEL PERIMETRO FISSO**
+  RD-FOOTBALL-VPS-SUDO-DIAGNOSTIC-IMPLEMENTATION-01: installati helper root-owned
+  senza argomenti e regola `NOPASSWD` esatta per i soli log Ollama/kernel del
+  7 novembre 12:19–12:25:30 CET. `visudo` PASS; helper 43.542 byte/367 righe in
+  test, stderr vuoto; argomenti, altro comando sudo e `NOPASSWD: ALL` rifiutati.
+  Hash/owner/mode conformi e configurazioni sudo preesistenti invariate. Helper
+  e regola **IMPLEMENTATO**, test **ESEGUITO**, minimo privilegio/fail-closed e
+  accesso senza password **VALIDATO** nel solo perimetro fisso. Nessun privilegio
+  amministrativo generale. Report
+  `docs/football-vps-sudo-diagnostic-implementation-01.md`.
+
 - [x] **ROTAZIONE SSH V2 ESEGUITO E VALIDATO; SUDO BLOCCATO**
   RD-FOOTBALL-VPS-SSH-KEY-ROTATION-PHASE-01: nuova chiave Ed25519 v2 già
   creata dal titolare verificata per file/ACL/fingerprint/passphrase, caricata

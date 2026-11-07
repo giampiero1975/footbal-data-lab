@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Helper sudo diagnostico controllato
+
+Attività: `RD-FOOTBALL-VPS-SUDO-DIAGNOSTIC-IMPLEMENTATION-01`. Installati
+atomicamente helper root-owned senza argomenti e regola sudoers `NOPASSWD`
+vincolata al solo comando esatto per la finestra storica Ollama/kernel. Hash,
+owner, mode, Bash e `visudo` conformi; manifest delle configurazioni sudo
+preesistenti invariato. Test positivo: exit 0, 43.542 byte, 367 righe, due
+sezioni e stderr vuoto anche con ambiente/pager manipolati. Argomenti extra e
+altro comando sudo exit 1; regola esatta presente, `NOPASSWD: ALL` assente.
+Rami timeout/troncamento/incompletezza verificati staticamente, non forzati sui
+log reali. Helper/regola **IMPLEMENTATO**, test **ESEGUITO**, minimo privilegio,
+integrità, fail-closed e accesso senza password **VALIDATO** nel solo perimetro
+fisso. Nessun accesso amministrativo generale o certificazione VPS. Report
+`docs/football-vps-sudo-diagnostic-implementation-01.md`.
+
 ### 2026-11-07 — Rotazione controllata chiave SSH v2
 
 Attività: `RD-FOOTBALL-VPS-SSH-KEY-ROTATION-PHASE-01`. La nuova identità
