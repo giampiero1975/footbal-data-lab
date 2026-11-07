@@ -2,16 +2,16 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
-### 2026-11-07 — Recupero amministrativo log Spatial V2 bloccato
+### 2026-11-07 — Recupero amministrativo log Spatial V2
 
 Attività: `RD-TSC-V2-D3-S2-Q3-04-ADMIN-LOG-EXPORT-01`.
-Configurazione risolta dell'unico alias autorizzato: utente non privilegiato
-`football`, identity file già approvato e `IdentitiesOnly=yes`; nessuna identità
-amministrativa configurata. Il fallimento di `sudo -n journalctl` era già
-provato e non è stato ripetuto. Nessuna credenziale cercata, escalation tentata,
-connessione admin o directory/export creati. Recupero log **BLOCCATO**;
-fail-closed **VALIDATO**; semantica, accuratezza, Gate, integrazione e
-certificazione **BLOCCATO**. Report
+Autorizzazione esplicita successiva del titolare: export read-only Ollama/kernel
+acquisiti nella finestra 12:19:00–12:25:30 CET e verificati SHA-256. Log: modello
+caricato in 8,80 s, prompt 184 token in 6,13 s, generazione regolare a ~8,13
+token/s fino a 1.325 token; al timeout client di 180 s POST 500 e cancellazione
+task a 1.529 token totali. Nessun OOM o stallo. Export **ESEGUITO**, integrità,
+causa operativa e fail-closed **VALIDATO**; semantica, accuratezza, Gate,
+integrazione e certificazione **BLOCCATO**. Report
 `docs/tactical-semantic-support-s2-spatial-v2-q3-04-admin-log-export-01.md`.
 
 ### 2026-11-07 — Tentativo review privilegiata log Spatial V2
