@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **FORENSIC TIMEOUT ESEGUITO; FAIL-CLOSED VALIDATO, CAUSA SERVER NON DETERMINABILE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-FORENSIC-01: inventario SHA-256
+  12/12 conforme e timeline filesystem ricostruita. Dimostrato timeout client a
+  180,124 s e corretto envelope `not_evaluable`; caricamento/generazione lenti e
+  schema sono soltanto compatibili. Log Ollama completi non visibili all'utente
+  SSH, nessuna telemetria durante il run: causa server non determinabile.
+  Revisione **ESEGUITO**, integrità e fail-closed **VALIDATO**; semantica,
+  accuratezza, Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-timeout-forensic-01.md`.
+
 - [x] **SINGOLO RUN SPATIAL V2 ESEGUITO; TIMEOUT FAIL-CLOSED, SEMANTICA BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-RUN-01: preflight conforme e una
   sola richiesta `qwen3.5:9b` avviata, senza retry/repair/fallback. Timeout

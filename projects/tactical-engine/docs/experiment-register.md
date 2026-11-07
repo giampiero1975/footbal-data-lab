@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Forensic timeout Spatial V2 q3_04
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-FORENSIC-01`.
+Verifica read-only: SHA-256 inventario conforme e 12/12 artefatti verificati;
+timeline 12:20:38–12:23:38 ricostruita. Timeout client a 180,124 s dimostrato,
+una chiamata, zero retry/repair/fallback e non-promozione corretta. Modello
+assente prima e caricato durante: caricamento e lentezza generativa compatibili,
+non dimostrati come causa. Log completi Ollama non visibili all'utente SSH;
+telemetria interna assente. Revisione **ESEGUITO**, integrità e fail-closed
+**VALIDATO**; semantica, accuratezza, Gate, integrazione e certificazione
+**BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-timeout-forensic-01.md`.
+
 ### 2026-11-07 — Singola diagnosi runtime Spatial V2 q3_04
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-RUN-01`.
