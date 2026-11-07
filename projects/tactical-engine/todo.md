@@ -19,14 +19,19 @@
   amministrativo generale. Report
   `docs/football-vps-sudo-diagnostic-implementation-01.md`.
 
-- [x] **ROTAZIONE SSH V2 ESEGUITO E VALIDATO; SUDO BLOCCATO**
+- [x] **ROTAZIONE SSH V2 ESEGUITO E VALIDATO; STATO SUDO STORICO SUPERATO**
   RD-FOOTBALL-VPS-SSH-KEY-ROTATION-PHASE-01: nuova chiave Ed25519 v2 già
   creata dal titolare verificata per file/ACL/fingerprint/passphrase, caricata
   come unica identità nell'agent `Running/Automatic`. Chiave pubblica aggiunta
   atomicamente alla VPS con backup; singola SSH differenziale `publickey` via
   agent PASS senza fallback password. Alias aggiornato alla v2; vecchia chiave
   locale e autorizzazione remota preservate. Fase SSH **VALIDATO**; revoca
-  vecchia identità **DA FARE** separatamente; helper/sudoers **BLOCCATO**.
+  vecchia identità **DA FARE** separatamente. Al momento di questo report
+  helper/sudoers erano **BLOCCATO**; lo stato è stato successivamente superato
+  da `RD-FOOTBALL-VPS-SUDO-DIAGNOSTIC-IMPLEMENTATION-01`: helper e regola
+  **IMPLEMENTATO**, verifiche **ESEGUITO**, accesso senza password al solo helper
+  **VALIDATO**. Diagnostica generale resta **BLOCCATO** e nessun privilegio
+  amministrativo generale è concesso.
   Report `docs/football-vps-ssh-key-rotation-phase-01.md`.
 
 - [x] **FASE SSH AGENT RIPRESA E ROLLBACKATA; CIFRATURA BLOCCATO**

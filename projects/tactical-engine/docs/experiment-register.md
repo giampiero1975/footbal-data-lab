@@ -28,7 +28,12 @@ Singola connessione differenziale: exit 0, fingerprint v2 offerta dall'agent,
 accettata dal server, autenticazione `publickey`, password/fallback disabilitati.
 Alias aggiornato alla v2 con backup locale; vecchio accesso preservato. Fase SSH
 **VALIDATO**; installazione/alias **ESEGUITO**; revoca vecchia identità **DA
-FARE** separatamente; helper e sudoers **BLOCCATO**. Report
+FARE** separatamente. Lo stato `helper e sudoers BLOCCATO` apparteneva a questo
+momento storico ed è stato successivamente superato da
+`RD-FOOTBALL-VPS-SUDO-DIAGNOSTIC-IMPLEMENTATION-01`: helper e regola
+**IMPLEMENTATO**, verifiche **ESEGUITO**, accesso senza password al solo helper
+**VALIDATO**. Diagnostica generale resta **BLOCCATO**; nessun privilegio
+amministrativo generale è concesso. Report
 `docs/football-vps-ssh-key-rotation-phase-01.md`.
 
 ### 2026-11-07 — Fase 1 verifica chiave SSH e agent

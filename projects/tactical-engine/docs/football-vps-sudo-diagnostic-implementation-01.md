@@ -112,6 +112,21 @@ Poiché entrambi i target erano assenti prima dell'installazione, non esistono
 file preesistenti da ripristinare. Lo script d'installazione disponeva di trap
 selettivo per rimuovere soltanto gli artefatti creati in caso di errore.
 
+## Closeout documentale e disponibilità del sorgente
+
+Nel repository sono disponibili contratto, hash, metadati, risultati runtime e
+controlli statici registrati al momento dell'installazione. Il testo sorgente
+esatto dell'helper installato non è invece versionato né presente tra gli
+artefatti locali verificabili di questo closeout.
+
+Il solo SHA-256 non prova il contenuto e non consente di ricostruirlo. In base al
+divieto di accesso VPS, non è stata eseguita una nuova lettura dell'helper e non
+è stata ripetuta la revisione statica. I controlli statici e runtime elencati
+sopra restano evidenze storiche già registrate, non una nuova verifica svolta in
+questa sessione. Una revisione statica indipendente del sorgente esatto è quindi
+**non verificabile** con gli artefatti Git attualmente disponibili; ciò non
+modifica gli esiti runtime già acquisiti né amplia il perimetro validato.
+
 ## Decisione e stati
 
 - helper diagnostico: **IMPLEMENTATO**;
