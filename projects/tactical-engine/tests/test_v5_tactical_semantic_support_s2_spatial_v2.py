@@ -288,6 +288,42 @@ class SpatialV2JudgeTests(unittest.TestCase):
         with self.assertRaises(TypeError):
             judge.judge_pair(CLAIM, EVIDENCE, transport=programming_error)
 
+    def test_18_q3_04_timeout_optin_propagates_360_without_payload_changes(self):
+        calls = []
+        def transport(url, payload, timeout):
+            calls.append((url, payload, timeout))
+            return {"done_reason": "stop", "message": {"content": json.dumps(witness())}}
+
+        default_result = judge.judge_pair(CLAIM, EVIDENCE, transport=transport)
+        optin_result = judge.judge_pair(
+            CLAIM, EVIDENCE, transport=transport, q3_04_timeout_360=True)
+
+        self.assertEqual([call[2] for call in calls], [180, 360])
+        self.assertEqual(calls[0][0:2], calls[1][0:2])
+        self.assertEqual(default_result, optin_result)
+        self.assertEqual(calls[1][1]["model"], "qwen3.5:9b")
+        self.assertEqual(calls[1][1]["options"]["num_predict"], 2048)
+        with self.assertRaises(TypeError):
+            judge.judge_pair(
+                CLAIM, EVIDENCE, transport=transport,
+                q3_04_timeout_360="yes")
+
+    def test_19_q3_04_timeout_optin_remains_fail_closed_without_retry(self):
+        calls = []
+        def timeout_transport(*args):
+            calls.append(args)
+            raise TimeoutError("offline mock timeout")
+
+        result = judge.judge_pair(
+            CLAIM, EVIDENCE, transport=timeout_transport,
+            q3_04_timeout_360=True)
+
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(calls[0][2], 360)
+        self.assertEqual(result["evaluation_status"], "not_evaluable")
+        self.assertEqual(result["validation"]["error_codes"], ["E_JUDGE_TIMEOUT"])
+        self.assertFalse(result["promotion_authorized"])
+
 
 if __name__ == "__main__":
     unittest.main()

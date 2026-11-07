@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **TIMEOUT DIAGNOSTICO 360 IMPLEMENTATO, ESEGUITO E VALIDATO OFFLINE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-OPTIN-360-01: aggiunto al solo
+  judge Spatial V2 l'opt-in keyword `q3_04_timeout_360=True`, che seleziona
+  360 s e propaga il valore al trasporto HTTP. Default 180 s, modello
+  `qwen3.5:9b`, schema, prompt e `num_predict=2048` invariati. Due test mock
+  differenziali PASS verificano 180/360, payload identico, singola chiamata e
+  `E_JUDGE_TIMEOUT` fail-closed senza promozione. Nessuna rete o inferenza.
+  Variante **IMPLEMENTATO**, test **ESEGUITO**, propagazione e invarianti
+  interessati **VALIDATO** offline; runtime 360 s **DA FARE** con distinta
+  autorizzazione, semantica, Gate, integrazione e certificazione **BLOCCATO**.
+  Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-timeout-optin-360-01.md`.
+
 - [x] **HELPER SUDO DIAGNOSTICO IMPLEMENTATO E VALIDATO NEL PERIMETRO FISSO**
   RD-FOOTBALL-VPS-SUDO-DIAGNOSTIC-IMPLEMENTATION-01: installati helper root-owned
   senza argomenti e regola `NOPASSWD` esatta per i soli log Ollama/kernel del

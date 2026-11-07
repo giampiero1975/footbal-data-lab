@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Timeout diagnostico opt-in 360 s Spatial V2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-OPTIN-360-01`.
+Nel judge Spatial V2 è stato introdotto il solo selettore keyword esplicito
+`q3_04_timeout_360=True`: il default resta 180 s e l'opt-in propaga 360 s al
+trasporto HTTP. Modello `qwen3.5:9b`, prompt, schema, `num_predict=2048`, una
+chiamata, zero retry/repair/fallback e fail-closed sono invariati. Test mock
+differenziali 2/2 PASS: confronto 180/360 con payload identico e timeout opt-in
+classificato `not_evaluable`/`E_JUDGE_TIMEOUT`, senza promozione. Nessuna rete o
+inferenza. Variante **IMPLEMENTATO**, test **ESEGUITO**, correttezza tecnica
+interessata **VALIDATO** offline; runtime 360 s **DA FARE** previa distinta
+autorizzazione, semantica, Gate, integrazione e certificazione **BLOCCATO**.
+Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-timeout-optin-360-01.md`.
+
 ### 2026-11-07 — Helper sudo diagnostico controllato
 
 Attività: `RD-FOOTBALL-VPS-SUDO-DIAGNOSTIC-IMPLEMENTATION-01`. Installati

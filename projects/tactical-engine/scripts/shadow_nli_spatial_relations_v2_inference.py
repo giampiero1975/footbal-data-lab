@@ -13,6 +13,9 @@ from v5_tactical_semantic_support_s2_spatial_v2 import (
 
 INSTRUCTION = """Classifica l'affermazione rispetto alla sola fonte e restituisci un relation witness conforme a nli_spatial_relations_v2 2.0.0. Ancora ogni componente esplicito al testo originale. Non inventare equivalenze: compatible per soggetto o referente e una dichiarazione shadow, non una verifica indipendente. La label deve essere coerente con il witness. Rispondi soltanto con JSON conforme allo schema."""
 
+DEFAULT_TIMEOUT_SECONDS = 180
+Q3_04_DIAGNOSTIC_TIMEOUT_SECONDS = 360
+
 
 def descriptor():
     return {
@@ -64,10 +67,15 @@ def _not_evaluable(code, *, witness=None, validation=None):
 
 
 def judge_pair(claim, evidence, *, model="qwen3.5:9b",
-               ollama_url="http://127.0.0.1:11434", timeout=180,
-               max_tokens=2048, transport=None):
+               ollama_url="http://127.0.0.1:11434",
+               timeout=DEFAULT_TIMEOUT_SECONDS, max_tokens=2048,
+               transport=None, q3_04_timeout_360=False):
     """Perform exactly one transport call, then validate the returned witness."""
     prompt = build_prompt(claim, evidence)
+    if type(q3_04_timeout_360) is not bool:
+        raise TypeError("q3_04_timeout_360 must be boolean")
+    effective_timeout = (Q3_04_DIAGNOSTIC_TIMEOUT_SECONDS
+                         if q3_04_timeout_360 else timeout)
     payload = {
         "model": model, "stream": False, "think": False,
         "format": SPATIAL_V2_SCHEMA,
@@ -79,7 +87,7 @@ def judge_pair(claim, evidence, *, model="qwen3.5:9b",
     }
     call = transport or _default_transport
     try:
-        result = call(ollama_url, payload, timeout)
+        result = call(ollama_url, payload, effective_timeout)
     except TimeoutError:
         return _not_evaluable("E_JUDGE_TIMEOUT")
     except (ConnectionError, urllib.error.URLError, OSError):
