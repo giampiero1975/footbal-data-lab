@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Extraction contract e locator Spatial V2 offline
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-01`. Implementati
+contratto versionato senza source/offset, localizzatore letterale side-bound e
+percorso judge strettamente opt-in. Solo un match unico viene materializzato;
+zero/multipli, lato opposto, input malformato e provenienza alterata sono
+fail-closed. Il locator non modifica status/value, comparison o label e delega
+al `validate_spatial_v2()` invariato; `promotion_authorized=false`. Default,
+prompt/schema legacy, modello, timeout, token e politica senza retry/repair/
+fallback restano invariati. Test nuovi 12/12 PASS; regressione Spatial V2
+direttamente interessata 21/21 PASS; zero rete/inferenze. Contratto e locator
+**IMPLEMENTATO**, test **ESEGUITO**, proprietà offline **VALIDATO**; efficacia
+Qwen, runtime, Gate, integrazione e certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-01.md`.
+
 ### 2026-11-07 — Revisione architetturale witness Spatial V2
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-WITNESS-ARCHITECTURE-01`. Revisione

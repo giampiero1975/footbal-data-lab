@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **CONTRATTO DI ESTRAZIONE E LOCATOR SPATIAL V2 IMPLEMENTATI E VALIDATI OFFLINE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-01: introdotti contratto
+  `nli_spatial_relations_v2_extraction/1.0.0` senza source/offset e locator puro
+  side-bound. Solo match letterali univoci producono anchor; assenza,
+  duplicazione, lato opposto, parsing/shape e provenienza alterata restano
+  `not_evaluable`. Status/value, comparison e label non sono corretti e il
+  witness passa al `validate_spatial_v2()` byte-invariato. Judge opt-in con
+  default legacy invariato, singola chiamata mock e zero retry/repair/fallback.
+  Nuovi test 12/12 PASS e regressioni interessate 21/21 PASS; nessuna rete o
+  inferenza. Contratto/locator **IMPLEMENTATO**, test **ESEGUITO**, proprietà
+  offline interessate **VALIDATO**; efficacia Qwen, runtime, Gate, integrazione
+  e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-01.md`.
+
 - [x] **ARCHITETTURA WITNESS SPATIAL V2 REVISIONATA; SEPARAZIONE ESTRAZIONE/LOCALIZZAZIONE RACCOMANDATA**
   RD-TSC-V2-D3-S2-SPATIAL-V2-WITNESS-ARCHITECTURE-01: ricostruito il percorso
   shadow e classificati i 30 anchor dei due runtime conclusi. Nel primo 16/16
