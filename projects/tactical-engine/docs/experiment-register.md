@@ -2,6 +2,18 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Tentativo review privilegiata log Spatial V2
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PRIVILEGED-LOG-REVIEW-01`.
+Fuso `Europe/Rome` e finestra tassativa 12:19:00–12:25:30 CET confermati. Query
+ordinarie senza entry visibili; `sudo -n journalctl` non disponibile (exit 1,
+password richiesta). Nessuna password o escalation alternativa usata. La unità
+Ollama invia stdout al journal e non dichiara file log dedicati. Nessuna nuova
+evidenza server/kernel acquisita e matrice causale invariata. Review log
+**BLOCCATO**; fail-closed **VALIDATO**; semantica, accuratezza, Gate,
+integrazione e certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-privileged-log-review-01.md`.
+
 ### 2026-11-07 — Forensic timeout Spatial V2 q3_04
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-FORENSIC-01`.

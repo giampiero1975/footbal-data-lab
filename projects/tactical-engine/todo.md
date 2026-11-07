@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REVIEW LOG PRIVILEGIATI BLOCCATO; SUDO NON INTERATTIVO NON DISPONIBILE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PRIVILEGED-LOG-REVIEW-01: fuso
+  `Europe/Rome` e finestra 12:19:00–12:25:30 CET verificati. I log ordinari non
+  espongono entry; `sudo -n journalctl` termina con exit 1 perché richiede
+  password. Nessuna escalation alternativa tentata. Unit Ollama scrive nel
+  journal e non dichiara una directory log alternativa. Review privilegiata
+  **BLOCCATO**; fail-closed resta **VALIDATO**, semantica, accuratezza, Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-privileged-log-review-01.md`.
+
 - [x] **FORENSIC TIMEOUT ESEGUITO; FAIL-CLOSED VALIDATO, CAUSA SERVER NON DETERMINABILE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-FORENSIC-01: inventario SHA-256
   12/12 conforme e timeline filesystem ricostruita. Dimostrato timeout client a
