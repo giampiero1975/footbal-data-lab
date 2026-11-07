@@ -1,7 +1,9 @@
 # FOOTBALL-DATA-LAB — Piano accesso SSH persistente e sudo sicuro
 
-Attività: `RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-PLAN-01`  
-Data: 2026-11-07  
+Attività: `RD-FOOTBALL-VPS-SSH-SUDO-SECURE-ACCESS-PLAN-01`
+
+Data: 2026-11-07
+
 Perimetro: analisi, verifiche read-only e progettazione documentale.
 
 ## Stato attuale verificato
