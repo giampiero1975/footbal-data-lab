@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **EXPORT LOG AMMINISTRATIVO BLOCCATO; IDENTITÀ ADMIN NON DISPONIBILE**
+  RD-TSC-V2-D3-S2-Q3-04-ADMIN-LOG-EXPORT-01: l'alias autorizzato risolve solo
+  all'utente `football` con identità già nota; nessuna identità amministrativa è
+  configurata. `sudo -n journalctl` era già documentato come indisponibile e non
+  è stato ripetuto. Nessuna ricerca credenziali, escalation, connessione admin o
+  export eseguiti. Recupero **BLOCCATO**; fail-closed resta **VALIDATO**;
+  semantica, accuratezza, Gate, integrazione e certificazione **BLOCCATO**.
+  Report `docs/tactical-semantic-support-s2-spatial-v2-q3-04-admin-log-export-01.md`.
+
 - [x] **REVIEW LOG PRIVILEGIATI BLOCCATO; SUDO NON INTERATTIVO NON DISPONIBILE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-PRIVILEGED-LOG-REVIEW-01: fuso
   `Europe/Rome` e finestra 12:19:00–12:25:30 CET verificati. I log ordinari non
