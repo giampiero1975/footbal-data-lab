@@ -107,10 +107,12 @@ la causa operativa sono **VALIDATO** nel singolo tentativo. La correttezza
 semantica resta non valutabile perché non è stato prodotto un witness completo.
 
 Unico prossimo passo raccomandato, non eseguito: progettare e sottoporre a
-revisione statica una singola variante diagnostica che riduca il massimo output
-generabile mantenendo invariati modello, schema, prompt e timeout, con stima
-preventiva del budget token compatibile con ~8,13 token/s. Qualunque nuova
-generazione richiede autorizzazione distinta.
+revisione statica una singola variante diagnostica che mantenga modello, schema,
+prompt e `num_predict=2048`, ma dimensioni il timeout sulle misure osservate
+(8,80 s caricamento, 6,13 s prompt e circa 252 s teorici per 2.048 token a
+8,13 token/s), includendo un margine dichiarato. Ridurre `num_predict` potrebbe
+soltanto troncare il witness e non è raccomandato. Qualunque modifica del timeout
+o nuova generazione richiede autorizzazione distinta.
 
 | Componente | Stato |
 |---|---|
