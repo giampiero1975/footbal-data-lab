@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **STAGING SPATIAL V2 IMPLEMENTATO; ISOLAMENTO E INTEGRITÀ VALIDATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-STAGING-PREPARATION-01: creato clone Git autonomo
+  VPS in `staging/spatial-v2-q3-04-009f76e`, detached HEAD esatto `009f76e`,
+  working tree pulito e `git fsck` PASS. Moduli, schema, test e dataset `q3_04`
+  presenti; import non generativo PASS con Python 3.12.3. Ollama espone
+  `qwen3.5:9b` col digest atteso; zero chiamate generative. Staging
+  **IMPLEMENTATO**, verifiche **ESEGUITO**, isolamento/integrità **VALIDATO**;
+  diagnosi runtime, semantica, Gate, integrazione e certificazione **BLOCCATO**.
+  Report `docs/tactical-semantic-support-s2-spatial-v2-staging-preparation-01.md`.
+
 - [x] **PREFLIGHT ESEGUITO; DIAGNOSI RUNTIME SPATIAL V2 BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-DIAGNOSTIC-01: baseline Git e caso
   canonico `q3_04` riconciliati. PC privo di daemon Ollama; VPS con

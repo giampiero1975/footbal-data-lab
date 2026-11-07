@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Staging isolato Spatial V2 q3_04
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-STAGING-PREPARATION-01`.
+Clone Git autonomo creato via GitHub HTTPS nel parent VPS autorizzato, detached
+HEAD esatto `009f76e`, working tree pulito e `git fsck` PASS. Moduli Spatial V2,
+schema, test e dataset canonico presenti; blob e materializzazione Linux del
+dataset coincidono. Import non generativo PASS con Python 3.12.3; Ollama espone
+`qwen3.5:9b`, nessun modello caricato o Gate concorrente nello snapshot. Zero
+inferenze. Staging **IMPLEMENTATO**, verifiche **ESEGUITO**, isolamento e
+integrità **VALIDATO**; diagnosi runtime, efficacia, Gate, integrazione e
+certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-staging-preparation-01.md`.
+
 ### 2026-11-07 — Preflight diagnosi runtime Spatial V2 q3_04
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-DIAGNOSTIC-01`.
