@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Remediation specifica Spatial V2 R1–R5
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-REMEDIATION-01`. Baseline
+`31007f2`. Corrette esclusivamente le ambiguità documentali: associazioni
+axis/value normative nello schema (incluso `area_extent/stable`), precedenza
+totale fra invalidità e insufficienza, scelta A per `compatible` come asserzione
+shadow non verificata, matrice completa status/value/anchor e semantica chiusa
+dei quantificatori. Verificata la rappresentabilità di `q3_04`, non la sua
+risoluzione. Nessun test, inferenza o runtime eseguito; architettura invariata.
+Report `docs/tactical-semantic-support-s2-spatial-v2-spec-remediation-01.md`.
+Decisione: sottoporre la specifica corretta a revisione indipendente prima di
+ogni implementazione. Stato: remediation **ESEGUITO**; review e implementazione
+**DA FARE**; efficacia, Gate, integrazione e certificazione **BLOCCATO**;
+provenance Spatial V1 **VALIDATO**.
+
 ### 2026-11-07 — Specifica tecnica offline Spatial V2
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-01`. Sulla baseline `16c6daf` è

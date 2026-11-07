@@ -13,6 +13,13 @@ Non è stato eseguito alcuno script di test, modello, Gate o runtime. Nessun
 codice, contratto eseguibile, fixture, dataset, Gold o artefatto storico è stato
 modificato.
 
+Remediation documentale R1–R5 del 2026-11-07: associazioni asse/valore rese
+normative nello schema; precedenza `not_evaluable`/`insufficient` chiusa;
+`compatible` mantenuto come asserzione shadow non verificata; matrici
+status/value/anchor e quantificatori completate. Versione contrattuale invariata
+`2.0.0`, perché non esiste ancora un'implementazione o un artefatto V2 da
+migrare.
+
 ## Scopo e confini
 
 La specifica definisce il contratto sperimentale opt-in
@@ -250,7 +257,33 @@ usare semanticamente questo schema senza ampliamenti permissivi.
         "phase": {"$ref": "#/$defs/phase"},
         "quantifier": {"$ref": "#/$defs/quantifier"},
         "polarity": {"$ref": "#/$defs/polarity"}
-      }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"semantic_axis": {"properties": {"value": {"const": "space_availability"}}}}},
+          "then": {"properties": {"value": {"properties": {"value": {"enum": ["abundant", "scarce", "neutral"]}}}}}
+        },
+        {
+          "if": {"properties": {"semantic_axis": {"properties": {"value": {"const": "distance_change"}}}}},
+          "then": {"properties": {"value": {"properties": {"value": {"enum": ["increasing", "decreasing", "stable"]}}}}}
+        },
+        {
+          "if": {"properties": {"semantic_axis": {"properties": {"value": {"const": "movement_direction"}}}}},
+          "then": {"properties": {"value": {"properties": {"value": {"enum": ["advancing", "retreating", "stationary"]}}}}}
+        },
+        {
+          "if": {"properties": {"semantic_axis": {"properties": {"value": {"const": "area_extent"}}}}},
+          "then": {"properties": {"value": {"properties": {"value": {"enum": ["expanding", "contracting", "stable"]}}}}}
+        },
+        {
+          "if": {"properties": {"semantic_axis": {"properties": {"value": {"const": "relative_position"}}}}},
+          "then": {"properties": {"value": {"properties": {"value": {"enum": ["ahead_of", "behind", "between", "inside", "outside", "adjacent"]}}}}}
+        },
+        {
+          "if": {"properties": {"semantic_axis": {"properties": {"value": {"enum": ["absent", "ambiguous", "unknown"]}}}}},
+          "then": {"properties": {"value": {"properties": {"value": {"enum": ["absent", "ambiguous", "unknown"]}}}}}
+        }
+      ]
     },
     "claimRelation": {
       "allOf": [
@@ -319,10 +352,10 @@ solo schema:
    ancore e rispettivamente valore `absent`/`unknown` dove previsto.
 2. `ambiguous` richiede valore `ambiguous`; può avere ancore solo se l'ambiguità
    è esplicitamente localizzabile.
-3. `implicit` è ammesso solo per subject/reference recuperabili per coreferenza,
+3. `implicit` è ammesso solo per subject/reference dichiarati coreferenti,
    phase `general`, quantifier `none` e polarity `affirmed`; non è prova
-   testuale autonoma e rende `supported`/`contradicted` impossibili se riguarda
-   subject o reference.
+   testuale autonoma. Per subject/reference richiede comparison `compatible` e
+   rimane un'asserzione semanticamente non verificata del modello.
 4. `semantic_axis` e `value` devono appartenere alla stessa famiglia del
    vocabolario sotto definito.
 5. ID uguali dichiarano identità locale; ID diversi non provano diversità
@@ -339,6 +372,53 @@ solo schema:
 10. Tutte le ancore, incluse quelle delle condizioni, devono avere `source`
     uguale alla relazione che le contiene: `claim` in `claim_relation` ed
     `evidence` in `evidence_relation`.
+
+### Matrice normativa status/value/anchor
+
+Le righe seguenti sostituiscono qualsiasi formulazione più permissiva. `N`
+indica il numero di ancore. Qualsiasi combinazione non elencata produce
+`E_STATUS_VALUE_INCONSISTENT` e `not_evaluable`.
+
+| Famiglia | Status | Valore normativo | N | Condizione aggiuntiva |
+|---|---|---|---:|---|
+| entity (`subject`, `reference`) | `explicit` | `entity_id` valido | 1–4 | ogni ancora proviene dalla relazione contenitrice |
+| entity | `implicit` | `entity_id` valido | 0 | coreferenza dichiarata ma non dimostrata; relazione non promuovibile senza `compatible` esplicito |
+| entity | `absent` | `entity:absent` | 0 | ammesso solo nell'evidence |
+| entity | `ambiguous` | `entity:ambiguous` | 1–4 | span localizza l'espressione ambigua |
+| entity | `unknown` | `entity:unknown` | 0 | nessuna ancora inventata |
+| semantic_axis | `explicit` | uno dei cinque assi | 1–4 | ancoraggio al predicato relazionale |
+| semantic_axis | `absent` | `absent` | 0 | ammesso solo nell'evidence |
+| semantic_axis | `ambiguous` | `ambiguous` | 1–4 | asse testualmente ambiguo |
+| semantic_axis | `unknown` | `unknown` | 0 | relazione non determinata; `implicit` vietato |
+| value | `explicit` | valore ammesso per l'asse | 1–4 | associazione asse/valore imposta dallo schema |
+| value | `absent` | `absent` | 0 | ammesso solo nell'evidence |
+| value | `ambiguous` | `ambiguous` | 1–4 | valore testualmente ambiguo |
+| value | `unknown` | `unknown` | 0 | `implicit` vietato |
+| conditions | `explicit` | `items` 1–8 | — | ogni item explicit/ambiguous ha 1–4 ancore |
+| conditions | `absent` | `items=[]` | — | assenza dichiarata, non omissione del campo |
+| conditions | `ambiguous` | `items` 1–8 | — | almeno un item `ambiguous` |
+| conditions | `unknown` | `items=[]` | — | `implicit` vietato |
+| phase | `explicit` | fase specifica o `general` | 1–4 | `general` con anchor solo se espresso |
+| phase | `implicit` | `general` | 0 | non sufficiente per comparabilità positiva |
+| phase | `absent` | `absent` | 0 | assenza esplicita nel witness |
+| phase | `ambiguous` | `ambiguous` | 1–4 | fase testualmente ambigua |
+| phase | `unknown` | `unknown` | 0 | nessuna fase dedotta |
+| quantifier | `explicit` | ogni valore salvo sentinelle e `none` | 1–2 | `numeric` richiede `literal`; altri `literal=null` |
+| quantifier | `implicit` | `none` | 0 | nessun quantificatore grammaticale osservato |
+| quantifier | `absent` | `absent` | 0 | `literal=null` |
+| quantifier | `ambiguous` | `ambiguous` | 1–2 | `literal=null` |
+| quantifier | `unknown` | `unknown` | 0 | `literal=null` |
+| polarity | `explicit` | `negated` | 1–2 | ancora la negazione |
+| polarity | `implicit` | `affirmed` | 0 | default grammaticale, non prova semantica autonoma |
+| polarity | `ambiguous` | `ambiguous` | 1–2 | negazione/scope ambiguo |
+| polarity | `unknown` | `unknown` | 0 | `absent` vietato per polarity |
+
+Per entity, i tre ID sentinella sono riservati e non possono essere usati con
+status diversi da quello omonimo. Per claim, `subject`, `reference`,
+`semantic_axis` e `value` devono essere `explicit` oppure, limitatamente alle
+entity, `implicit`; `absent`, `ambiguous` e `unknown` rendono il target della
+valutazione non definito e quindi `not_evaluable`. Nell'evidence le sentinelle
+sono ammesse e possono documentare `insufficient` secondo la precedenza sotto.
 
 ## Regole di ancoraggio
 
@@ -383,16 +463,38 @@ secondo la causa.
 Quantificatori:
 
 - `none`: nessun quantificatore esplicito;
-- `existential`, `some`, `many`, `most`, `all`: forza crescente ma senza
-  conversione numerica;
+- `existential`, `some`, `many`, `most`, `all`: quantificatori nominali;
 - `always` e `never`: quantificatori temporali assoluti;
 - `numeric`: valore letterale conservato, senza parsing semantico automatico.
 
-Compatibilità deterministica dei quantificatori è limitata all'identità. Valori
-diversi sono `different`; `all` rispetto a `some`, o `always` rispetto a una
-descrizione occasionale, non diventa contraddizione senza una proposizione
-esplicitamente incompatibile. `never` è trattato insieme alla polarità: la sola
-assenza di un evento non prova `never`.
+Semantica normativa del confronto, orientata da evidence verso claim:
+
+| Evidence | Claim attestabile | Comparison | Esito se il resto è compatibile |
+|---|---|---|---|
+| stesso valore | stesso valore | `same` | continua verso `supported` |
+| `all` | `most`, `many`, `some`, `existential` | `compatible` | continua verso `supported` |
+| `most` | `many`, `some`, `existential` | `compatible` | continua verso `supported` |
+| `many` | `some`, `existential` | `compatible` | continua verso `supported` |
+| `some` | `existential` | `compatible` | continua verso `supported` |
+| valore più debole | valore più forte | `different` | `insufficient` |
+| `none` | quantificatore esplicito | `different` | `insufficient` |
+| quantificatore esplicito | `none` | `different` | `insufficient` salvo identità della proposizione non quantificata, che V2 non prova |
+| `numeric` stesso literal | `numeric` stesso literal | `same` | continua verso `supported` |
+| `numeric` literal diverso | qualunque numeric | `different` | `insufficient`, mai ordine numerico implicito |
+| `always` | `always` | `same` | continua verso `supported` |
+| `never` | `never` | `same` | continua verso `supported` |
+| `always` | `never` o viceversa | `incompatible` | `contradicted` solo sulla stessa proposizione comparabile |
+| `always`/`never` | quantificatore non temporale | `different` | `insufficient` |
+| `unknown`/`ambiguous`/`absent` nell'evidence | qualunque claim definita | `unknown`/`ambiguous` | `insufficient` |
+| sentinella nella claim | qualunque evidence | — | `not_evaluable` |
+
+La relazione di forza è esclusivamente quella elencata: non si convertono
+quantificatori in percentuali o numeri e non si ordina `numeric`. Quantificatori
+diversi non sono contraddittori salvo `always`/`never` sulla stessa proposizione.
+`never` non è duplicato automaticamente come polarity `negated`: il witness deve
+ancorare il quantificatore; la polarity descrive invece la negazione grammaticale
+del predicato. Se quantificatore e polarity producono indicazioni incoerenti,
+`E_COMPARISON_INCONSISTENT` e `not_evaluable`.
 
 Polarità: identica è `same`; `affirmed`/`negated` è `incompatible` soltanto se
 soggetto, asse, referente, condizioni, fase e valore sono comparabili. In caso
@@ -444,27 +546,82 @@ Il validatore può verificare che la dichiarazione sia coerente con ID/status ed
 enum; non può dimostrare che due espressioni diverse rappresentino davvero lo
 stesso soggetto o referente. Tale interpretazione resta del modello.
 
+### Decisione normativa su `compatible`
+
+Sono state confrontate due alternative:
+
+| Alternativa | Verificabile | Non verificabile | Rischio | Copertura/fail-closed |
+|---|---|---|---|---|
+| A — `compatible` dichiarato dal modello | shape, ancore, status, ID, assenza di contraddizioni interne | coreferenza/parafrasi reale | falsa equivalenza semanticamente coerente | preserva parafrasi; incoerenza strutturale → `not_evaluable` |
+| B — `compatible` vietato | identità solo quando testo normalizzato e ID coincidono | ogni parafrasi/coreferenza | falsi negativi e contraddizioni non raggiungibili | maggiore rigidità; formulazioni diverse → `insufficient` |
+
+**Scelta: alternativa A**, limitata a subject/reference e soltanto nel percorso
+shadow. La scelta non trasforma `compatible` in una proprietà dimostrata: il
+validation result deve registrare
+`semantic_compatibility_verified=false` quando una delle due dimensioni usa
+`compatible`. Il validatore verifica solo che:
+
+- entrambi i componenti siano `explicit` o `implicit`, mai sentinelle;
+- ciascun componente `explicit` abbia ancore valide;
+- i rispettivi entity ID siano non-sentinella;
+- il comparison non dichiari contemporaneamente identità o incompatibilità;
+- tutte le altre dimensioni seguano le regole ordinarie.
+
+L'alternativa B renderebbe il caso storico `q3_04` non rappresentabile come
+contraddizione: «difesa bassa» e «squadre che difendono basse» non sono identiche
+per confronto deterministico di stringhe. A preserva l'obiettivo di rappresentare
+parafrasi senza introdurre resolver, seconda inferenza o regola lessicale. Il
+costo probatorio è esplicito: anche una label derivata usando `compatible` prova
+coerenza del witness, non correttezza della coreferenza, e non può autorizzare
+promozione.
+
 ## Derivazione deterministica della label
 
-Il validatore calcola `derived_label` senza modificare `label`:
+Il validatore calcola `derived_label` senza modificare `label`, con la seguente
+precedenza totale. La prima regola applicabile termina la classificazione:
 
-1. Se schema, tipo, enum, ancora, cross-rule o comparison sono invalidi:
-   `technical_status=not_evaluable`; nessuna label semantica derivata.
-2. Se subject/reference/axis sono `unknown`, `ambiguous`, `absent` oppure non
-   comparabili perché impliciti: `derived_label=insufficient` solo quando il
-   witness è strutturalmente valido e dichiara onestamente la mancanza nella
-   fonte; altrimenti `not_evaluable`.
-3. Se la fonte non contiene valore determinato per una relazione richiesta dal
-   claim: `insufficient`.
-4. Se relazione comparabile e value/polarity sono `same` o compatibili, e il
-   quantificatore della claim non è più forte di quello attestato:
-   `supported`.
-5. Se relazione comparabile e value oppure polarity sono `incompatible` secondo
-   il vocabolario: `contradicted`.
-6. Se dimensioni determinate sono `different` ma non incompatibili:
+1. **Invalidità strutturale.** JSON non parseabile, campo obbligatorio mancante,
+   tipo/enum/cardinalità/extra field errato o relazione asse/valore vietata:
+   `not_evaluable`, `derived_label=null`.
+2. **Invalidità delle ancore.** NFC, source, offset, exact span, ordine o
+   duplicati non conformi: `not_evaluable`, `derived_label=null`.
+3. **Incoerenza del witness.** Status/sentinella incoerenti, comparison
+   incompatibile con ID/status/vocabolario, relazione claim non definita,
+   relazione non rappresentabile dal vocabolario, coreferenza richiesta ma non
+   dichiarata, oppure impossibilità di derivare una sola label:
+   `not_evaluable`, `derived_label=null`.
+4. **Insufficienza semantica documentata.** Il witness è valido e il target
+   della claim è definito, ma nell'evidence almeno una dimensione necessaria è
+   `absent`, `unknown` o `ambiguous`, oppure dimensioni determinate sono
+   `different` e non incompatibili: `derived_label=insufficient`.
+5. **Relazione comparabile.** Solo se subject/reference sono `same` o
+   `compatible`, axis/conditions/phase sono comparabili e nessun campo
+   obbligatorio è indeterminato, si passa al valore/polarità/quantificatore.
+6. **Derivazione.** Value o polarity incompatibili: `contradicted`; value e
+   polarity compatibili e quantificatore della fonte sufficiente per quello
+   della claim: `supported`; ogni altro confronto valido ma non conclusivo:
    `insufficient`.
-7. Se `label != derived_label`: errore `E_LABEL_WITNESS_MISMATCH`, risultato
-   `not_evaluable`. La label non viene corretta.
+7. **Controllo della label.** Se `label != derived_label`:
+   `E_LABEL_WITNESS_MISMATCH`, risultato tecnico `not_evaluable`; la label non
+   viene corretta.
+
+Applicazioni normative:
+
+- campo JSON mancante: regola 1, `not_evaluable`;
+- `unknown`/`ambiguous` nella claim per subject/reference/axis/value: regola 3,
+  `not_evaluable`, perché il target non è definito;
+- `unknown`/`ambiguous` nell'evidence con claim definita: regola 4,
+  `insufficient`;
+- informazione `absent` nell'evidence: regola 4, `insufficient`;
+- informazione obbligatoria `absent` nella claim: regola 3,
+  `not_evaluable`;
+- relazione fuori dal vocabolario in claim o evidence: regola 3,
+  `not_evaluable`, perché è un limite del contratto, non una prova di assenza
+  documentale;
+- subject/reference `implicit`: richiede comparison `compatible` dichiarato;
+  senza tale dichiarazione regola 3, `not_evaluable`;
+- comparison incoerente: regola 3, `not_evaluable`;
+- più label possibili dopo tutte le regole: regola 3, `not_evaluable`.
 
 `not_evaluable` è uno stato tecnico del validatore/boundary, non una quarta
 label del judge. `insufficient` è una label semantica valida prodotta da un
@@ -477,9 +634,11 @@ witness ben formato che mostra insufficienza dell'evidenza.
 | subject same, reference same, axis same, value same, contesto same | `supported` | D4 | relazione attestata |
 | subject compatible dichiarato, resto same, value compatibile | `supported` | D4 | compatibilità osservabile ma semanticamente model-dependent |
 | subject different | `insufficient` | D6 | fonte parla di altro attore |
-| subject unknown/ambiguous | `insufficient` o `not_evaluable` | D2 | insufficient solo con mancanza valida nella fonte |
+| subject claim unknown/ambiguous | `not_evaluable` | P3 | target non definito |
+| subject evidence unknown/ambiguous | `insufficient` | P4 | insufficienza documentata |
 | reference different | `insufficient` | D6 | parole comuni non rendono uguale lo spazio |
-| reference unknown/ambiguous | `insufficient` o `not_evaluable` | D2 | nessuna falsa equivalenza |
+| reference claim unknown/ambiguous | `not_evaluable` | P3 | target non definito |
+| reference evidence unknown/ambiguous | `insufficient` | P4 | nessuna falsa equivalenza |
 | axis same, abundant/scarce, tutto il resto comparabile | `contradicted` | D5 | coppia incompatibile versionata |
 | axis diversi | `insufficient` | D6 | non confrontabili, non contraddittori |
 | advancing/retreating, resto comparabile | `contradicted` | D5 | direzioni inverse sullo stesso asse |
@@ -488,16 +647,17 @@ witness ben formato che mostra insufficienza dell'evidenza.
 | conditions set uguali | continua | comparabilità | condizioni confrontabili |
 | conditions set differenti | `insufficient` | D6 | contesti differenti |
 | evidenza senza valore | `insufficient` | D3 | fonte non determina la relazione |
-| value ambiguous | `insufficient` | D2 | witness valido ma semantica non conclusiva |
-| axis unknown/non rappresentabile | `insufficient` | D2 | nessuna categoria inventata |
+| value claim ambiguous | `not_evaluable` | P3 | target non definito |
+| value evidence ambiguous | `insufficient` | P4 | witness valido ma fonte non conclusiva |
+| axis evidence unknown | `insufficient` | P4 | asse previsto ma non determinato nella fonte |
+| relazione non rappresentabile | `not_evaluable` | P3 | limite del contratto, non evidenza insufficiente |
 | polarity affirmed/negated, resto comparabile | `contradicted` | D5 | negazione esplicita |
-| quantifier claim più forte, fonte più debole | `insufficient` | D4/D6 | non falsa automaticamente |
-| always/never sulla stessa proposizione | `contradicted` solo se esplicito | D5 | incompatibilità assoluta ancorata |
-| relation non rappresentabile dichiarata unknown | `insufficient` | D2 | contratto valido, evidenza non determinabile |
-| comparison contraddice ID/status/vocab | `not_evaluable` | D1 | `E_COMPARISON_INCONSISTENT` |
-| label non coincide con derivazione | `not_evaluable` | D7 | `E_LABEL_WITNESS_MISMATCH` |
-| ancora inesistente/fuori limite/source errata | `not_evaluable` | D1 | `E_ANCHOR_INVALID` |
-| campo extra/tipo/enum errato | `not_evaluable` | D1 | invalidità strutturale |
+| quantifier claim più forte, fonte più debole | `insufficient` | P6 | non falsa automaticamente |
+| always/never sulla stessa proposizione | `contradicted` solo se esplicito | P6 | incompatibilità assoluta ancorata |
+| comparison contraddice ID/status/vocab | `not_evaluable` | P3 | `E_COMPARISON_INCONSISTENT` |
+| label non coincide con derivazione | `not_evaluable` | P7 | `E_LABEL_WITNESS_MISMATCH` |
+| ancora inesistente/fuori limite/source errata | `not_evaluable` | P2 | `E_ANCHOR_INVALID` |
+| campo extra/tipo/enum errato | `not_evaluable` | P1 | invalidità strutturale |
 | output troncato/non JSON/eccezione | `not_evaluable` | boundary | zero retry/repair/fallback |
 
 Per `q3_04`, un witness che dichiari stesso soggetto, stesso referente,
@@ -522,12 +682,16 @@ Output esatto proposto:
   "derived_label": "contradicted",
   "model_label": "contradicted",
   "comparison_verified": true,
+  "semantic_compatibility_verified": false,
   "error_codes": []
 }
 ```
 
 `technical_status` è `valid` o `not_evaluable`; `derived_label` è una delle tre
-label oppure `null`. Ordine dei controlli, con arresto della derivazione ma
+label oppure `null`. `comparison_verified` riguarda la coerenza deterministica;
+`semantic_compatibility_verified` è sempre `false` se subject o reference usa
+`compatible`, altrimenti indica soltanto che non è stata necessaria tale
+asserzione non verificabile. Ordine dei controlli, con arresto della derivazione ma
 raccolta deterministica degli errori della stessa fase:
 
 1. tipo radice e JSON Schema;
@@ -677,6 +841,26 @@ separata. Il solo successo di `q3_04` o 3/3 non autorizza promozione.
 | Spatial V2 migliorerà accuratezza generale | C |
 | Causa cognitiva interna del falso positivo | non determinabile |
 
+## Verifica concettuale di rappresentabilità `q3_04`
+
+La verifica usa soltanto claim, evidence e Gold congelati; non è un test del
+modello. Il contratto può rappresentare:
+
+- claim subject `explicit`, evidence subject `explicit`, entity ID distinti e
+  comparison `compatible` dichiarato per «difesa bassa» / «squadre che difendono
+  basse»; `semantic_compatibility_verified=false`;
+- reference con lo stesso entity ID locale e ancore esatte a «tra la linea
+  difensiva e la porta», comparison `same`;
+- axis `space_availability` in entrambe le relazioni;
+- claim value `abundant`, evidence value `scarce`;
+- value comparison `incompatible`, coppia prevista dal vocabolario;
+- condizioni/fase confrontabili e nessuna sentinella bloccante.
+
+Con tale witness la sola label derivabile è `contradicted`; `supported`
+produrrebbe `E_LABEL_WITNESS_MISMATCH`. La rappresentabilità è quindi
+confermata. Non è dimostrato che il modello produrrà questo witness, che la
+coreferenza sia corretta o che `q3_04` sia risolto.
+
 ## Decisioni progettuali aperte
 
 Non bloccano la completezza della specifica del judge/validatore, ma richiedono
@@ -684,9 +868,7 @@ decisione prima dell'implementazione integrata:
 
 1. approvare un record/bridge S2 V2 separato per conservare witness e validation
    result senza alterare la shape S2 corrente;
-2. decidere se `compatible` per subject/reference debba essere conservato come
-   asserzione non verificata o vietato nella prima implementazione più stretta;
-3. approvare l'insieme di casi indipendenti e il relativo Gold prima di qualsiasi
+2. approvare l'insieme di casi indipendenti e il relativo Gold prima di qualsiasi
    affermazione di generalizzazione.
 
 Non viene inventato un resolver di coreferenza né un classificatore lessicale.
@@ -701,6 +883,8 @@ indipendente della specifica e decisione sulle interfacce S2 versionate.
 |---|---|
 | Progettazione semantica `q3_04` | **ESEGUITO** |
 | Specifica tecnica offline Spatial V2 | **ESEGUITO** dopo pubblicazione |
+| Remediation documentale R1–R5 | **ESEGUITO** dopo pubblicazione |
+| Validazione indipendente della specifica corretta | **DA FARE** |
 | Implementazione Spatial V2 | **DA FARE** |
 | Efficacia semantica | **BLOCCATO** |
 | Gate runtime | **BLOCCATO** |

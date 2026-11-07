@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REMEDIATION SPECIFICA ESEGUITO; REVIEW DA FARE, GATE BLOCCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-REMEDIATION-01: chiusi R1–R5 nella
+  specifica `nli_spatial_relations_v2`: binding schema axis/value, precedenza
+  univoca `not_evaluable`/`insufficient`, scelta shadow documentata di
+  `compatible`, matrice status/value/anchor e quantificatori deterministici.
+  `q3_04` resta rappresentabile ma non risolto. Nessun test/runtime.
+  Remediation **ESEGUITO**, review indipendente e implementazione **DA FARE**;
+  efficacia, Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-spec-remediation-01.md`.
+
 - [x] **SPECIFICA OFFLINE ESEGUITO; IMPLEMENTAZIONE DA FARE, GATE BLOCCATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-SPEC-01: definito contratto opt-in
   `nli_spatial_relations_v2` 2.0.0 con relation witness, vocabolario versionato,
