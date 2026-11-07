@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Singolo runtime Spatial V2 q3_04 con timeout 360 s
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-360-01`. Staging Git
+indipendente detached a `69ec127`; modello `qwen3.5:9b`, prompt/schema canonici,
+`num_predict=2048`, timeout HTTP 360 s ed esterno 450 s. Un'unica richiesta,
+zero retry/repair/fallback, completata in 236,00 s con `done_reason=stop`, 188
+token prompt e 1.771 token generati a circa 8,04 token/s. Il modello ha proposto
+`supported`, ma il validatore ha restituito `not_evaluable` con
+`E_ANCHOR_INVALID` e `E_STATUS_VALUE_INCONSISTENT`: label derivata nulla e
+`promotion_authorized=false`. Artefatti 22/22 conformi; checkout operativo e
+staging invariati. Tentativo **ESEGUITO**, completamento tecnico e fail-closed
+**VALIDATO** nel singolo caso; struttura, semantica, promozione, Gate,
+integrazione e certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-q3-04-runtime-360-01.md`.
+
 ### 2026-11-07 — Timeout diagnostico opt-in 360 s Spatial V2
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-OPTIN-360-01`.

@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **RUNTIME 360 q3_04 ESEGUITO; COMPLETAMENTO TECNICO OSSERVATO, WITNESS NON VALUTABILE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-RUNTIME-360-01: unico tentativo autorizzato
+  sullo staging detached `69ec127`, timeout HTTP 360 s ed esterno 450 s.
+  Una richiesta, zero retry/repair/fallback; risposta completa `done_reason=stop`
+  in 236,00 s, 1.771 token a circa 8,04 token/s. Il witness proposto
+  `supported` è stato rifiutato dal validatore con `E_ANCHOR_INVALID` e
+  `E_STATUS_VALUE_INCONSISTENT`: `not_evaluable`, label derivata nulla e
+  `promotion_authorized=false`. Artefatti 22/22 verificati; checkout operativo,
+  staging e collection non modificati. Tentativo **ESEGUITO**, completamento
+  tecnico e fail-closed **VALIDATO** nel singolo caso; validità strutturale,
+  semantica, promozione, Gate, integrazione e certificazione **BLOCCATO**.
+  Nessun altro runtime autorizzato. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-q3-04-runtime-360-01.md`.
+
 - [x] **TIMEOUT DIAGNOSTICO 360 IMPLEMENTATO, ESEGUITO E VALIDATO OFFLINE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-Q3-04-TIMEOUT-OPTIN-360-01: aggiunto al solo
   judge Spatial V2 l'opt-in keyword `q3_04_timeout_360=True`, che seleziona
