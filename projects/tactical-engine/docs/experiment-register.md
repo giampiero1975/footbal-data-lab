@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-07 — Rotazione controllata chiave SSH v2
+
+Attività: `RD-FOOTBALL-VPS-SSH-KEY-ROTATION-PHASE-01`. La nuova identità
+Ed25519 v2 creata dal titolare ha superato file type, ACL, reparse point,
+fingerprint e verifica interattiva della passphrase. Agent inizialmente vuoto,
+poi `Running/Automatic` con la sola fingerprint attesa. Chiave pubblica aggiunta
+atomicamente ad `authorized_keys` con backup protetto e vecchie entry preservate.
+Singola connessione differenziale: exit 0, fingerprint v2 offerta dall'agent,
+accettata dal server, autenticazione `publickey`, password/fallback disabilitati.
+Alias aggiornato alla v2 con backup locale; vecchio accesso preservato. Fase SSH
+**VALIDATO**; installazione/alias **ESEGUITO**; revoca vecchia identità **DA
+FARE** separatamente; helper e sudoers **BLOCCATO**. Report
+`docs/football-vps-ssh-key-rotation-phase-01.md`.
+
 ### 2026-11-07 — Fase 1 verifica chiave SSH e agent
 
 Attività: `RD-FOOTBALL-VPS-SSH-AGENT-PHASE-01`. Metadati, ACL, reparse point,

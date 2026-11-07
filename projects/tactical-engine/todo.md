@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ROTAZIONE SSH V2 ESEGUITO E VALIDATO; SUDO BLOCCATO**
+  RD-FOOTBALL-VPS-SSH-KEY-ROTATION-PHASE-01: nuova chiave Ed25519 v2 già
+  creata dal titolare verificata per file/ACL/fingerprint/passphrase, caricata
+  come unica identità nell'agent `Running/Automatic`. Chiave pubblica aggiunta
+  atomicamente alla VPS con backup; singola SSH differenziale `publickey` via
+  agent PASS senza fallback password. Alias aggiornato alla v2; vecchia chiave
+  locale e autorizzazione remota preservate. Fase SSH **VALIDATO**; revoca
+  vecchia identità **DA FARE** separatamente; helper/sudoers **BLOCCATO**.
+  Report `docs/football-vps-ssh-key-rotation-phase-01.md`.
+
 - [x] **FASE SSH AGENT RIPRESA E ROLLBACKATA; CIFRATURA BLOCCATO**
   RD-FOOTBALL-VPS-SSH-AGENT-PHASE-01: prompt visibile autorizzato, agent
   abilitato temporaneamente e chiave caricata come unica fingerprint attesa.
