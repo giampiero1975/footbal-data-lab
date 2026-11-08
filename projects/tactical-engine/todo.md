@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **RUNTIME EXTRACTION LOCATOR ARRESTATO FAIL-CLOSED NEL PREFLIGHT; ZERO GENERAZIONI**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-01: unica esecuzione
+  autorizzata del tentativo `spatial-v2-extraction-locator-q3-04-runtime-01`.
+  Il lock è un file regolare vuoto (`regular empty file`, modo 0600), ma il
+  controllo approvato richiede la stringa esatta `regular file`: arresto
+  `E_LOCK_FD_NOT_REGULAR`, exit wrapper 62, prima di staging/modello/inferenza.
+  Finalizzazione e SHA-256 verificati; `transport_calls=0`, generazione non
+  avviata e nessuna risposta/witness prodotti. Tentativo **ESEGUITO**;
+  fail-closed del singolo arresto **VALIDATO**; preflight completo, runtime,
+  Gate, integrazione e certificazione **BLOCCATO**. Nessun retry autorizzato.
+  Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-01.md`.
+
 - [x] **REVISIONE STATICA EXTRACTION LOCATOR CONCLUSA; NESSUN DIFETTO CONCRETO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-REVIEW-01: schema, locator,
   semantica, fail-closed, provenienza e percorso legacy esaminati senza

@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-08 — Runtime Extraction Locator Spatial V2 arrestato nel preflight
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-01`.
+Eseguito una sola volta il wrapper approvato per
+`spatial-v2-extraction-locator-q3-04-runtime-01`. Il preflight ha creato e
+acquisito il lock, verificato poi come file regolare vuoto, ma il confronto
+testuale `regular file` ha respinto la descrizione GNU `regular empty file`:
+`E_LOCK_FD_NOT_REGULAR`, exit wrapper 62. Arresto precedente a staging,
+modello e inferenza; `transport_calls=0`, nessuna generazione e nessun witness.
+Finalizzazione completa e inventari SHA-256 verificati. Tentativo **ESEGUITO**;
+fail-closed osservato **VALIDATO** nel singolo arresto; preflight completo,
+runtime, Gate, integrazione e certificazione **BLOCCATO**. Nessun retry o
+secondo tentativo eseguito. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-01.md`.
+
 ### 2026-11-07 — Revisione statica extraction locator Spatial V2
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-REVIEW-01`. Revisione
