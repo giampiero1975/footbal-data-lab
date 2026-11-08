@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-08 — Runtime-02 Extraction Locator bloccato per staging assente
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-02`.
+Wrapper integrale verificato con SHA-256 `5bcc1826...` ed eseguito una sola
+volta. Il controllo lock corretto ha superato il precedente punto di arresto;
+il preflight è terminato con `E_PATH_MISSING`, exit wrapper 68, perché lo
+staging richiesto `spatial-v2-extraction-locator-db3ad66` è assente. Il parent
+staging esiste; nessuna correzione o creazione è stata effettuata. Stato finale
+e inventari SHA-256 PASS, `transport_calls=0`, zero generazioni, nessun witness.
+Tentativo **ESEGUITO**; integrità wrapper, finalizzazione e fail-closed del
+singolo arresto **VALIDATO**; preflight completo, runtime, Gate, integrazione e
+certificazione **BLOCCATO**. Nessun retry o terzo tentativo. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-02.md`.
+
 ### 2026-11-08 — Runtime Extraction Locator Spatial V2 arrestato nel preflight
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-01`.

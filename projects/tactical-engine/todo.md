@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **RUNTIME-02 EXTRACTION LOCATOR ARRESTATO NEL PREFLIGHT; STAGING ASSENTE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-02: wrapper approvato
+  verificato (`5bcc1826...`) ed eseguito una sola volta. La correzione lock ha
+  superato il punto precedente, ma il preflight si è arrestato con
+  `E_PATH_MISSING`, exit 68: assente lo staging richiesto
+  `spatial-v2-extraction-locator-db3ad66`. Finalizzazione e SHA-256 PASS;
+  `transport_calls=0`, zero generazioni e nessun witness. Tentativo
+  **ESEGUITO**; integrità wrapper, finalizzazione e fail-closed del singolo
+  arresto **VALIDATO**; preflight completo, runtime, Gate, integrazione e
+  certificazione **BLOCCATO**. Nessun terzo tentativo autorizzato. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-02.md`.
+
 - [x] **RUNTIME EXTRACTION LOCATOR ARRESTATO FAIL-CLOSED NEL PREFLIGHT; ZERO GENERAZIONI**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-01: unica esecuzione
   autorizzata del tentativo `spatial-v2-extraction-locator-q3-04-runtime-01`.
