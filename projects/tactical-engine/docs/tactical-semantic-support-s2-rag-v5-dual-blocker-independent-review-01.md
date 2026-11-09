@@ -154,4 +154,3 @@ La patch offline è **VALIDATO** nel perimetro deterministico ed è ammissibile 
 una futura prova generativa controllata. La prova resta **DA FARE** e
 **BLOCCATO** fino ad autorizzazione esplicita, preflight e wrapper revisionato.
 Gate, integrazione e certificazione restano **BLOCCATO**.
-
