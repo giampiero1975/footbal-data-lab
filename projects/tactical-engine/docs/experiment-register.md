@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Runtime-03 arrestato prima dell'esecuzione
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`.
+Preflight remoto read-only PASS su staging `db3ad66`, blob, dataset, modello,
+lock, dipendenze, artefatti assenti e concorrenza osservabile. Il wrapper
+materializzato contiene i tre ID `runtime-03`, ma misura 45.965 byte e ha
+SHA-256 `ddd74491...c923930`, contro i 45.964 byte e
+`ba0160e0...fd44d57` autorizzati: confronto byte-level identifica un LF `0A`
+aggiuntivo in coda. Arresto obbligatorio senza correzione, trasferimento o
+esecuzione; 0 chiamate di trasporto e 0 generazioni. Preflight **ESEGUITO**,
+prerequisiti osservati **VALIDATO** nel solo snapshot; materializzazione,
+runtime, Gate, integrazione e certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03.md`.
+
 ### 2026-11-09 — Staging Extraction Locator Spatial V2
 
 Attività:

@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **RUNTIME-03 ARRESTATO PRIMA DELL'ESECUZIONE PER IDENTITÀ WRAPPER DIVERGENTE**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: preflight remoto
+  read-only PASS su staging, blob, dataset, modello, lock, dipendenze e
+  concorrenza osservabile. Materializzazione locale con tre ID sostituiti, ma
+  file di 45.965 byte/SHA-256 `ddd74491...c923930` contro 45.964 byte/
+  `ba0160e0...fd44d57`: un LF aggiuntivo in coda. Arresto fail-closed senza
+  correzione o esecuzione; 0 wrapper eseguiti, 0 trasporti, 0 generazioni.
+  Preflight **ESEGUITO**, prerequisiti osservati **VALIDATO** nel solo snapshot;
+  materializzazione, runtime, Gate, integrazione e certificazione **BLOCCATO**.
+  Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03.md`.
+
 - [x] **STAGING EXTRACTION LOCATOR IMPLEMENTATO E VALIDATO; RUNTIME NON AUTORIZZATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-STAGING-PREPARATION-01:
   bundle autosufficiente 2.345.406 byte, SHA-256 `d595c23a...a60f08`, storia
