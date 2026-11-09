@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Runtime-03 bloccato nel preflight Python
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`, esecuzione
+singola condizionata. Wrapper conforme trasferito in percorso isolato esterno a
+checkout/staging e verificato remotamente: file regolare `football:football`,
+modo 0600, 45.964 byte, SHA-256 `ba0160e0...44d57`. Staging presente a
+`db3ad66`, status pulito e directory artefatti runtime-03 assente. Il preflight
+immediato si è arrestato al primo controllo negativo: `/usr/bin/python3` non
+importa `pydantic` (`ModuleNotFoundError`). Nessun retry, installazione o
+adattamento: 0 invocazioni wrapper, 0 trasporti, 0 generazioni. Identità e
+trasferimento **VALIDATO**; preflight, runtime-03, Gate, integrazione e
+certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-execution-01.md`.
+
 ### 2026-11-09 — Materializzazione conforme wrapper runtime-03
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`, sola

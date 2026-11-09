@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **RUNTIME-03 BLOCCATO NEL PREFLIGHT IMMEDIATO; WRAPPER NON INVOCATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: wrapper conforme
+  trasferito fuori da checkout/staging e verificato remotamente (45.964 byte,
+  SHA-256 `ba0160e0...44d57`, file regolare `football:football`, modo 0600).
+  Il preflight immediato si è arrestato sul primo controllo negativo:
+  `/usr/bin/python3` non dispone di `pydantic` (`ModuleNotFoundError`). Nessun
+  retry o installazione: 0 invocazioni wrapper, 0 trasporti, 0 generazioni.
+  Trasferimento/identità **VALIDATO**, preflight e runtime-03 **BLOCCATO**;
+  Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-execution-01.md`.
+
 - [x] **WRAPPER RUNTIME-03 MATERIALIZZATO E VALIDATO BYTE-PER-BYTE; NON ESEGUITO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: dal wrapper
   `runtime-02` verificato (45.964 byte, SHA-256 `5bcc1826...fcfcaf`) sono state
