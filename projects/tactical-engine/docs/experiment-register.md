@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Revisione causale dual blocker RAG V5
+
+Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-CAUSAL-REVIEW-01`.
+Analizzati staticamente artefatti originali runtime-03, codice e forensi
+pregresse. Localizzazione: la raw response contiene già un frammento evidence
+in `claim_relation.reference`; nessun difetto del parser/locator, che blocca
+side-bound. Semantica: falso `supported` indipendente e storico; l'extraction
+usa `space_availability/between` e comparison `same` incoerenti con valori,
+entity/condition ID e quantificatori. L'handoff non trasmette integralmente
+definizioni dei campi, matrice asse→valori e derivazione; il precontrollo
+extraction non applica ancora le regole già presenti nel validatore finale.
+Cause dirette **VALIDATO**, causa cognitiva interna non determinabile.
+Raccomandata patch offline minima di handoff e precontrollo deterministico,
+senza auto-correzioni. Revisione **ESEGUITO**; implementazione/test **DA FARE**;
+runtime, Gate, integrazione, panel e certificazione **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-rag-v5-dual-blocker-causal-review-01.md`.
+
 ### 2026-11-09 — Runtime-03 Extraction Locator eseguito una volta
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`.

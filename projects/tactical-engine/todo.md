@@ -8,6 +8,21 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REVISIONE CAUSALE DUE BLOCCHI RAG V5 CONCLUSA; PATCH OFFLINE DA AUTORIZZARE**
+  RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-CAUSAL-REVIEW-01: artefatti originali
+  runtime-03 e storico `q3_04` riconciliati. Localizzazione: Qwen inserisce già
+  nella raw response una frase evidence in `claim_relation.reference`; parser
+  e locator side-bound operano correttamente fail-closed. Contraddizione:
+  problema indipendente e storico; output `supported` usa
+  `space_availability/between` e comparison `same` incompatibili con valori,
+  ID, condizioni e quantificatori prodotti. Causa diretta nei due output
+  **VALIDATO**; causa cognitiva interna non determinabile. Raccomandata una
+  patch offline minima su handoff/shape extraction e precontrollo deterministico,
+  senza auto-spostamento o correzione label. Revisione **ESEGUITO**; patch/test
+  **DA FARE** previa autorizzazione; runtime, Gate, integrazione, panel e
+  certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-rag-v5-dual-blocker-causal-review-01.md`.
+
 - [x] **RUNTIME-03 ESEGUITO UNA VOLTA; GENERAZIONE COMPLETA, LOCALIZZAZIONE FAIL-CLOSED**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: preflight corretto
   PASS e wrapper remoto conforme invocato esattamente una volta. Una chiamata
