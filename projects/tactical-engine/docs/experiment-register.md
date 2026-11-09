@@ -2,6 +2,24 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Runtime-03 Extraction Locator eseguito una volta
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`.
+Preflight corretto PASS; wrapper remoto conforme invocato esattamente una volta.
+Una chiamata di trasporto e una generazione completa in 142,34 s, senza retry,
+repair o fallback. Extraction JSON valida per parsing/shape; il locator ha
+localizzato 10/11 frammenti, mentre
+`claim_relation.reference.selected_fragments[0]` è assente dal lato claim.
+Risultato `not_evaluable`, reason code
+`E_EXTRACTION_LOCALIZATION_NOT_UNIQUE`, exit wrapper 80, nessun witness o
+validation e `promotion_authorized=false`. La label proposta `supported` non è
+stata promossa né confrontata autorevolmente col Gold `contradicted`.
+Inventari SHA-256/finalizzazione PASS e staging invariato. Tentativo
+**ESEGUITO**; completamento tecnico e fail-closed **VALIDATO** nel singolo caso;
+localizzazione, semantica, Gate, integrazione e certificazione **BLOCCATO**.
+Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-run-01.md`.
+
 ### 2026-11-09 — Diagnosi dipendenza Python runtime-03
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`, diagnosi

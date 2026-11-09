@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **RUNTIME-03 ESEGUITO UNA VOLTA; GENERAZIONE COMPLETA, LOCALIZZAZIONE FAIL-CLOSED**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: preflight corretto
+  PASS e wrapper remoto conforme invocato esattamente una volta. Una chiamata
+  di trasporto, una generazione completa in 142,34 s, zero retry/repair/fallback.
+  Extraction JSON presente; 10/11 frammenti localizzati, ma
+  `claim_relation.reference.selected_fragments[0]` è assente dal lato claim.
+  Arresto `E_EXTRACTION_LOCALIZATION_NOT_UNIQUE`, wrapper exit 80,
+  `not_evaluable`, nessun witness/validation, label osservata nulla e
+  `promotion_authorized=false`. Inventari SHA-256 e finalizzazione PASS;
+  staging invariato. Tentativo **ESEGUITO**, completamento tecnico e
+  fail-closed del singolo caso **VALIDATO**; localizzazione, semantica, Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-run-01.md`.
+
 - [x] **DIAGNOSI PYTHON RUNTIME-03 CONCLUSA; PYDANTIC NON È DIPENDENZA DEL PERCORSO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: `/usr/bin/python3`
   è Python 3.12.3 e non contiene `pydantic`; la virtualenv operativa contiene
