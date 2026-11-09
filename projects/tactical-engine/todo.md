@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **DIAGNOSI PYTHON RUNTIME-03 CONCLUSA; PYDANTIC NON È DIPENDENZA DEL PERCORSO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: `/usr/bin/python3`
+  è Python 3.12.3 e non contiene `pydantic`; la virtualenv operativa contiene
+  `pydantic 2.14.1`, ma il wrapper usa sempre il percorso assoluto di sistema.
+  I tre moduli Extraction Locator effettivi importano soltanto stdlib e moduli
+  locali e passano l'import read-only con `/usr/bin/python3`. Causa del blocco:
+  prerequisito esterno eccessivo, non dipendenza del runner. Diagnosi
+  **ESEGUITO/VALIDATO**; correzione minima della sola procedura preflight
+  **DA FARE** previa autorizzazione, senza installazioni. Runtime-03, Gate,
+  integrazione e certificazione restano **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-python-dependency-diagnosis-01.md`.
+
 - [x] **RUNTIME-03 BLOCCATO NEL PREFLIGHT IMMEDIATO; WRAPPER NON INVOCATO**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: wrapper conforme
   trasferito fuori da checkout/staging e verificato remotamente (45.964 byte,

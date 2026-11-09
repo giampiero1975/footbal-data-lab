@@ -2,6 +2,22 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Diagnosi dipendenza Python runtime-03
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`, diagnosi
+read-only. `/usr/bin/python3` è Python 3.12.3, non virtualenv, con `pydantic`
+assente e `requests 2.31.0`; la virtualenv operativa esistente contiene
+`pydantic 2.14.1` e `requests 2.34.2`. Il wrapper usa però il percorso assoluto
+di sistema in tutti i processi figli. Analisi statica e import read-only
+dimostrano che i tre moduli Extraction Locator effettivi dipendono soltanto da
+stdlib e moduli locali e sono importabili con `/usr/bin/python3`. Il blocco
+precedente deriva dal requisito esterno improprio di importare `pydantic`, non
+da una dipendenza del runner corrente. Diagnosi **ESEGUITO/VALIDATO**;
+correzione della sola procedura preflight **DA FARE** previa autorizzazione,
+senza installazioni o modifiche. Runtime-03, Gate, integrazione e certificazione
+restano **BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-python-dependency-diagnosis-01.md`.
+
 ### 2026-11-09 — Runtime-03 bloccato nel preflight Python
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`, esecuzione
