@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **WRAPPER RUNTIME-03 MATERIALIZZATO E VALIDATO BYTE-PER-BYTE; NON ESEGUITO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: dal wrapper
+  `runtime-02` verificato (45.964 byte, SHA-256 `5bcc1826...fcfcaf`) sono state
+  sostituite sui byte originali le sole tre occorrenze complete dell'ID.
+  L'artefatto distinto `runtime-03-approved.sh` misura 45.964 byte, ha SHA-256
+  `ba0160e0...44d57`, contiene 3 ID `runtime-03` e 0 ID `runtime-02` ed è
+  identico byte-per-byte alla trasformazione autorizzata. Il precedente file
+  divergente `ddd74491...c923930` è conservato invariato. Materializzazione
+  **ESEGUITO**, identità **VALIDATO**; 0 esecuzioni, 0 trasporti, 0 generazioni
+  e nessun trasferimento VPS. Runtime-03, Gate, integrazione e certificazione
+  restano **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-materialization-01.md`.
+
 - [x] **RUNTIME-03 ARRESTATO PRIMA DELL'ESECUZIONE PER IDENTITÀ WRAPPER DIVERGENTE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03: preflight remoto
   read-only PASS su staging, blob, dataset, modello, lock, dipendenze e

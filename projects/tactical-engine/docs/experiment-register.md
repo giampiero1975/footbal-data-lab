@@ -2,6 +2,22 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Materializzazione conforme wrapper runtime-03
+
+Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`, sola
+materializzazione controllata. Verificato il sorgente `runtime-02` di 45.964
+byte/SHA-256 `5bcc1826...fcfcaf`; sostituite direttamente sui byte originali le
+sole tre occorrenze complete dell'identificativo. Il nuovo artefatto distinto
+`runtime-03-approved.sh` misura 45.964 byte, ha SHA-256
+`ba0160e0...44d57`, contiene 3 ID `runtime-03` e 0 ID `runtime-02` ed è
+identico byte-per-byte alla trasformazione autorizzata, senza LF aggiuntivo.
+Il file divergente precedente, 45.965 byte/SHA-256
+`ddd74491...c923930`, resta conservato. Materializzazione **ESEGUITO** e
+identità **VALIDATO**; 0 wrapper eseguiti, 0 trasporti, 0 generazioni e nessun
+trasferimento VPS. Runtime-03, Gate, integrazione e certificazione restano
+**BLOCCATO**. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-runtime-03-materialization-01.md`.
+
 ### 2026-11-09 — Runtime-03 arrestato prima dell'esecuzione
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-03`.
