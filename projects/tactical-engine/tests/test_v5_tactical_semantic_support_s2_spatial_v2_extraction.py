@@ -191,7 +191,13 @@ class SpatialV2ExtractionLocatorTests(unittest.TestCase):
             CLAIM, EVIDENCE, transport=transport, extraction_locator=True)
         self.assertEqual(len(calls), 1)
         self.assertEqual(calls[0][1]["format"], extraction.EXTRACTION_SCHEMA)
-        self.assertNotIn(" start ", calls[0][1]["messages"][1]["content"])
+        prompt = calls[0][1]["messages"][1]["content"]
+        self.assertNotIn(" start ", prompt)
+        self.assertIn("reference e il referente spaziale", prompt)
+        self.assertIn("space_availability={abundant,scarce,neutral}", prompt)
+        self.assertIn("claim_relation descrive esclusivamente l'AFFERMAZIONE", prompt)
+        self.assertIn("evidence_relation descrive esclusivamente la FONTE", prompt)
+        self.assertIn("supported richiede", prompt)
         self.assertEqual(result["evaluation_status"], "evaluated")
         descriptor = judge.extraction_descriptor()
         self.assertTrue(descriptor["single_generation"])
@@ -213,6 +219,86 @@ class SpatialV2ExtractionLocatorTests(unittest.TestCase):
                 self.assertEqual(result["evaluation_status"], "not_evaluable")
                 self.assertIsNone(result["witness"])
                 self.assertFalse(result["promotion_authorized"])
+
+    def test_13_axis_value_mismatch_stops_before_locator(self):
+        value = valid_extraction()
+        value["claim_relation"]["value"]["value"] = "between"
+        value["claim_relation"]["reference"]["selected_fragments"] = [
+            "frammento del lato opposto"]
+        result = extraction.materialize_extraction(value, CLAIM, EVIDENCE)
+        self.assertEqual(result["evaluation_status"], "not_evaluable")
+        self.assertEqual(result["reason_codes"], [
+            "E_EXTRACTION_SEMANTIC_INCONSISTENT"])
+        self.assertIn("E_EXTRACTION_AXIS_VALUE_INCOMPATIBLE",
+                      {item["code"] for item in result["details"]})
+        self.assertEqual(result["localization"]["records"], [])
+        self.assertIsNone(result["witness"])
+        self.assertFalse(result["promotion_authorized"])
+
+    def test_14_same_comparison_rejects_incompatible_quantifiers(self):
+        value = valid_extraction()
+        value["claim_relation"]["quantifier"].update(
+            {"status": "explicit", "value": "many", "literal": None,
+             "selected_fragments": ["molto"]})
+        value["evidence_relation"]["quantifier"].update(
+            {"status": "explicit", "value": "some", "literal": None,
+             "selected_fragments": ["squadre"]})
+        value["comparison"]["quantifier"] = "same"
+        result = extraction.materialize_extraction(value, CLAIM, EVIDENCE)
+        self.assertEqual(result["evaluation_status"], "not_evaluable")
+        self.assertIn("E_EXTRACTION_COMPARISON_INCONSISTENT",
+                      {item["code"] for item in result["details"]})
+        self.assertEqual(result["localization"]["records"], [])
+        self.assertFalse(result["promotion_authorized"])
+
+    def test_15_runtime_03_extraction_replay_fails_semantic_precheck(self):
+        value = valid_extraction("supported")
+        for side in ("claim_relation", "evidence_relation"):
+            value[side]["value"]["value"] = "between"
+        value["claim_relation"]["reference"]["selected_fragments"] = [
+            "squadre che difendono basse"]
+        value["claim_relation"]["subject"]["entity_id"] = "entity:s1"
+        value["evidence_relation"]["subject"]["entity_id"] = "entity:s2"
+        value["claim_relation"]["reference"]["entity_id"] = "entity:r1"
+        value["evidence_relation"]["reference"]["entity_id"] = "entity:r2"
+        value["claim_relation"]["conditions"] = {
+            "status": "explicit", "items": [{
+                "condition_id": "condition:c1", "status": "explicit",
+                "selected_fragments": ["difesa bassa"],
+            }]}
+        value["evidence_relation"]["conditions"] = {
+            "status": "explicit", "items": [{
+                "condition_id": "condition:c2", "status": "explicit",
+                "selected_fragments": ["difendono basse"],
+            }]}
+        value["claim_relation"]["quantifier"].update(
+            {"status": "explicit", "value": "many", "literal": None,
+             "selected_fragments": ["molto"]})
+        value["evidence_relation"]["quantifier"].update(
+            {"status": "explicit", "value": "some", "literal": None,
+             "selected_fragments": ["squadre"]})
+        value["comparison"].update({
+            "subject": "same", "reference": "same", "value": "same",
+            "conditions": "same", "quantifier": "same"})
+        result = extraction.materialize_extraction(value, CLAIM, EVIDENCE)
+        codes = {item["code"] for item in result["details"]}
+        self.assertEqual(result["reason_codes"], [
+            "E_EXTRACTION_SEMANTIC_INCONSISTENT"])
+        self.assertIn("E_EXTRACTION_AXIS_VALUE_INCOMPATIBLE", codes)
+        self.assertIn("E_EXTRACTION_COMPARISON_INCONSISTENT", codes)
+        self.assertEqual(result["localization"]["records"], [])
+        self.assertIsNone(result["witness"])
+
+    def test_16_different_referents_are_insufficient_not_contradicted(self):
+        value = valid_extraction("insufficient")
+        value["evidence_relation"]["reference"]["entity_id"] = (
+            "entity:different-space")
+        value["comparison"]["reference"] = "different"
+        result = extraction.materialize_extraction(value, CLAIM, EVIDENCE)
+        self.assertEqual(result["evaluation_status"], "evaluated")
+        self.assertEqual(result["validation"]["derived_label"], "insufficient")
+        self.assertNotEqual(result["validation"]["derived_label"], "contradicted")
+        self.assertFalse(result["promotion_authorized"])
 
 
 if __name__ == "__main__":

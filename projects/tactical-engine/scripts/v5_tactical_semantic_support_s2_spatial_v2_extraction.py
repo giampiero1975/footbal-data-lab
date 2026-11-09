@@ -54,6 +54,12 @@ def _slot_schema(values, maximum=4):
     }
 
 
+def _described(schema, description):
+    value = dict(schema)
+    value["description"] = description
+    return value
+
+
 ENTITY_EXTRACTION_SCHEMA = {
     "type": "object", "additionalProperties": False,
     "required": ["status", "entity_id", "selected_fragments"],
@@ -96,17 +102,31 @@ RELATION_EXTRACTION_SCHEMA = {
     "type": "object", "additionalProperties": False,
     "required": sorted(spatial_v2.RELATION_KEYS),
     "properties": {
-        "subject": ENTITY_EXTRACTION_SCHEMA,
-        "semantic_axis": _slot_schema(
+        "subject": _described(
+            ENTITY_EXTRACTION_SCHEMA,
+            "Actor or entity whose spatial relation is asserted on this side."),
+        "semantic_axis": _described(_slot_schema(
             set(spatial_v2.AXIS_VALUES) | spatial_v2.VALUE_SENTINELS),
-        "reference": ENTITY_EXTRACTION_SCHEMA,
-        "value": _slot_schema(
+            "Versioned Spatial V2 semantic dimension; value must be compatible with it."),
+        "reference": _described(
+            ENTITY_EXTRACTION_SCHEMA,
+            "Referent of the spatial relation on this same side, never text from the opposite side."),
+        "value": _described(_slot_schema(
             set().union(*spatial_v2.AXIS_VALUES.values()) |
             spatial_v2.VALUE_SENTINELS),
-        "conditions": CONDITIONS_EXTRACTION_SCHEMA,
-        "phase": _slot_schema(spatial_v2.PHASES),
-        "quantifier": QUANTIFIER_EXTRACTION_SCHEMA,
-        "polarity": _slot_schema(spatial_v2.POLARITIES, 2),
+            "Value asserted for semantic_axis; only the versioned axis value set is allowed."),
+        "conditions": _described(
+            CONDITIONS_EXTRACTION_SCHEMA,
+            "Conditions that delimit the relation on this side."),
+        "phase": _described(
+            _slot_schema(spatial_v2.PHASES),
+            "Tactical phase explicitly or implicitly assigned on this side."),
+        "quantifier": _described(
+            QUANTIFIER_EXTRACTION_SCHEMA,
+            "Quantity or frequency scope of the relation on this side."),
+        "polarity": _described(
+            _slot_schema(spatial_v2.POLARITIES, 2),
+            "Affirmed or negated polarity of the relation on this side."),
     },
 }
 EXTRACTION_SCHEMA = {
@@ -118,8 +138,14 @@ EXTRACTION_SCHEMA = {
         "contract_id": {"const": CONTRACT_ID},
         "contract_version": {"const": CONTRACT_VERSION},
         "label": {"enum": sorted(spatial_v2.LABELS)},
-        "claim_relation": {"$ref": "#/$defs/relation"},
-        "evidence_relation": {"$ref": "#/$defs/relation"},
+        "claim_relation": {
+            "$ref": "#/$defs/relation",
+            "description": "Relation extracted only from the claim (AFFERMAZIONE).",
+        },
+        "evidence_relation": {
+            "$ref": "#/$defs/relation",
+            "description": "Relation extracted only from the evidence (FONTE).",
+        },
         "comparison": {"$ref": "#/$defs/comparison"},
     },
     "$defs": {
@@ -257,6 +283,32 @@ def extraction_shape_errors(extraction):
     return errors
 
 
+def extraction_semantic_errors(extraction):
+    """Apply versioned Spatial V2 semantic rules before literal localization."""
+    errors = []
+    for side in ("claim_relation", "evidence_relation"):
+        relation = extraction[side]
+        axis_slot, value_slot = relation["semantic_axis"], relation["value"]
+        axis, value = axis_slot["value"], value_slot["value"]
+        if (axis_slot["status"] == "explicit" and
+                value_slot["status"] == "explicit" and
+                axis in spatial_v2.AXIS_VALUES and
+                value not in spatial_v2.AXIS_VALUES[axis]):
+            errors.append({
+                "code": "E_EXTRACTION_AXIS_VALUE_INCOMPATIBLE",
+                "path": side + ".value", "semantic_axis": axis,
+                "value": value,
+            })
+    # Reuse the versioned final-validator comparison rules verbatim.  This is
+    # an early fail-closed boundary only; validate_spatial_v2 remains final.
+    if "E_COMPARISON_INCONSISTENT" in spatial_v2._comparison_errors(extraction):
+        errors.append({
+            "code": "E_EXTRACTION_COMPARISON_INCONSISTENT",
+            "path": "comparison",
+        })
+    return errors
+
+
 def _occurrences(text, fragment):
     positions, offset = [], 0
     while True:
@@ -381,6 +433,12 @@ def materialize_extraction(extraction, claim_text, evidence_text):
             "E_EXTRACTION_SCHEMA_INVALID", extraction=extraction,
             claim_text=claim_text, evidence_text=evidence_text,
             details=shape_errors)
+    semantic_errors = extraction_semantic_errors(extraction)
+    if semantic_errors:
+        return boundary_failure(
+            "E_EXTRACTION_SEMANTIC_INCONSISTENT", extraction=extraction,
+            claim_text=claim_text, evidence_text=evidence_text,
+            details=semantic_errors)
     records = []
     claim_relation, claim_failed = _materialize_relation(
         extraction["claim_relation"], "claim", claim_text, records)
