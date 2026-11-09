@@ -2,6 +2,22 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Staging Extraction Locator Spatial V2
+
+Attività:
+`RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-STAGING-PREPARATION-01`.
+Creato bundle Git autosufficiente 2.345.406 byte, SHA-256
+`d595c23a...a60f08`, con storia completa e nessun prerequisito esterno,
+verificato localmente e sulla VPS. Clone indipendente
+`staging/spatial-v2-extraction-locator-db3ad66`, detached a `db3ad66`, status
+pulito, common dir interno, alternates assenti e `git fsck --full` PASS. Blob
+inference/extraction/validator/dataset e SHA-256 Linux dataset conformi.
+Checkout operativo e staging precedenti invariati. Bundle e isolamento
+**VALIDATO**, clone **IMPLEMENTATO**, verifiche **ESEGUITO**; runtime Extraction
+Locator, Gate, integrazione e certificazione **BLOCCATO**. Nessun test
+applicativo, Ollama, Qwen o inferenza. Report
+`docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-staging-preparation-01.md`.
+
 ### 2026-11-08 — Runtime-02 Extraction Locator bloccato per staging assente
 
 Attività: `RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-02`.

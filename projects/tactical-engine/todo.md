@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **STAGING EXTRACTION LOCATOR IMPLEMENTATO E VALIDATO; RUNTIME NON AUTORIZZATO**
+  RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-STAGING-PREPARATION-01:
+  bundle autosufficiente 2.345.406 byte, SHA-256 `d595c23a...a60f08`, storia
+  completa verificata localmente e sulla VPS. Clone Git indipendente
+  `staging/spatial-v2-extraction-locator-db3ad66`, detached HEAD esatto
+  `db3ad66`, status pulito, common dir interno, nessun alternate, `git fsck`
+  PASS. Quattro blob e SHA-256 Linux dataset conformi; checkout operativo e
+  staging precedenti invariati. Bundle e isolamento **VALIDATO**, clone
+  **IMPLEMENTATO**, verifiche **ESEGUITO**; runtime Extraction Locator, Gate,
+  integrazione e certificazione **BLOCCATO**. Zero test applicativi, Ollama,
+  Qwen o inferenze. Report
+  `docs/tactical-semantic-support-s2-spatial-v2-extraction-locator-staging-preparation-01.md`.
+
 - [x] **RUNTIME-02 EXTRACTION LOCATOR ARRESTATO NEL PREFLIGHT; STAGING ASSENTE**
   RD-TSC-V2-D3-S2-SPATIAL-V2-EXTRACTION-LOCATOR-RUNTIME-02: wrapper approvato
   verificato (`5bcc1826...`) ed eseguito una sola volta. La correzione lock ha
