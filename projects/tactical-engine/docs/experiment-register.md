@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Remediation offline dual blocker RAG V5
+
+Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-OFFLINE-REMEDIATION-01`.
+Rafforzati esclusivamente handoff e schema extraction con separazione
+claim/evidence, definizioni degli slot, matrice asse-valori e regole normative
+già versionate. Il nuovo precontrollo fail-closed verifica asse/valore e riusa
+le regole comparison del validatore Spatial V2 prima del locator; locator e
+validatore finale sono invariati. Test differenziali e regressioni direttamente
+interessate 37/37 PASS (16 extraction/locator, 21 Spatial V2). Commit tecnico
+`56a7b72135595e99a98ff2fb5b1bcc3d6a0c9ebf`. Patch **IMPLEMENTATO**,
+verifiche **ESEGUITO**, proprietà deterministiche **VALIDATO** offline.
+Efficacia generativa, runtime, Gate, integrazione e certificazione **BLOCCATO**.
+Report `docs/tactical-semantic-support-s2-rag-v5-dual-blocker-offline-remediation-01.md`.
+
 ### 2026-11-09 — Revisione causale dual blocker RAG V5
 
 Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-CAUSAL-REVIEW-01`.
@@ -15,7 +29,8 @@ definizioni dei campi, matrice asse→valori e derivazione; il precontrollo
 extraction non applica ancora le regole già presenti nel validatore finale.
 Cause dirette **VALIDATO**, causa cognitiva interna non determinabile.
 Raccomandata patch offline minima di handoff e precontrollo deterministico,
-senza auto-correzioni. Revisione **ESEGUITO**; implementazione/test **DA FARE**;
+senza auto-correzioni. Revisione **ESEGUITO**; implementazione/test sono ora
+tracciati nella voce precedente;
 runtime, Gate, integrazione, panel e certificazione **BLOCCATO**. Report
 `docs/tactical-semantic-support-s2-rag-v5-dual-blocker-causal-review-01.md`.
 

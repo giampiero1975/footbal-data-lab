@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **PATCH OFFLINE DUAL BLOCKER RAG V5 VALIDATA; PROVA GENERATIVA BLOCCATA**
+  RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-OFFLINE-REMEDIATION-01: handoff
+  extraction reso side-specific con definizioni degli slot, matrice asse-valori
+  e regole versionate; aggiunto precontrollo asse/valore e comparison prima del
+  locator riusando il validatore Spatial V2. Nessuna auto-correzione e
+  `promotion_authorized=false`. Test mirati 37/37 PASS (16 extraction/locator,
+  21 regressioni Spatial V2). Patch **IMPLEMENTATO**, verifiche **ESEGUITO**,
+  proprietà deterministiche **VALIDATO** offline. Efficacia generativa, runtime,
+  Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/tactical-semantic-support-s2-rag-v5-dual-blocker-offline-remediation-01.md`.
+
 - [x] **REVISIONE CAUSALE DUE BLOCCHI RAG V5 CONCLUSA; PATCH OFFLINE DA AUTORIZZARE**
   RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-CAUSAL-REVIEW-01: artefatti originali
   runtime-03 e storico `q3_04` riconciliati. Localizzazione: Qwen inserisce già
@@ -19,7 +30,7 @@
   **VALIDATO**; causa cognitiva interna non determinabile. Raccomandata una
   patch offline minima su handoff/shape extraction e precontrollo deterministico,
   senza auto-spostamento o correzione label. Revisione **ESEGUITO**; patch/test
-  **DA FARE** previa autorizzazione; runtime, Gate, integrazione, panel e
+  ora tracciati nella voce precedente; runtime, Gate, integrazione, panel e
   certificazione **BLOCCATO**. Report
   `docs/tactical-semantic-support-s2-rag-v5-dual-blocker-causal-review-01.md`.
 
