@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **REVISIONE INDIPENDENTE PATCH DUAL BLOCKER CONCLUSA; RUNTIME GENERATIVO DA AUTORIZZARE**
+  RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-INDEPENDENT-REVIEW-01: delta,
+  contratto, prompt, schema, locator, validatore e 37 risultati già registrati
+  esaminati staticamente senza riesecuzione. Side-bound e precontrollo
+  semantico **VALIDATO** offline; nessun difetto bloccante o promozione indebita.
+  Limiti non bloccanti: diagnostica comparison aggregata e replay runtime-03
+  ricostruito, non fixture byte-identica. Accuratezza generativa **BLOCCATO**;
+  futura prova controllata **DA FARE** previa autorizzazione, una generazione per
+  invocazione, zero retry/repair/fallback. Revisione **ESEGUITO**. Report
+  `docs/tactical-semantic-support-s2-rag-v5-dual-blocker-independent-review-01.md`.
+
 - [x] **PATCH OFFLINE DUAL BLOCKER RAG V5 VALIDATA; PROVA GENERATIVA BLOCCATA**
   RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-OFFLINE-REMEDIATION-01: handoff
   extraction reso side-specific con definizioni degli slot, matrice asse-valori

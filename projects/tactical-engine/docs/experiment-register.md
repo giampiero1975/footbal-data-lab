@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-09 — Revisione indipendente patch dual blocker RAG V5
+
+Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-INDEPENDENT-REVIEW-01`.
+Esaminati staticamente commit tecnico, handoff, schema extraction, ordine del
+precontrollo, regole Spatial V2, locator invariato e 37 risultati già registrati;
+nessuna suite rieseguita. Vincolo side-bound e blocco deterministico delle
+incoerenze **VALIDATO** offline, senza difetti bloccanti. Restano non bloccanti
+la diagnostica comparison aggregata e l'assenza nel repository del raw
+runtime-03 come fixture byte-identica. Accuratezza generativa **BLOCCATO**;
+futura prova controllata **DA FARE** previa autorizzazione, una generazione per
+invocazione e zero retry/repair/fallback. Revisione **ESEGUITO**. Report
+`docs/tactical-semantic-support-s2-rag-v5-dual-blocker-independent-review-01.md`.
+
 ### 2026-11-09 — Remediation offline dual blocker RAG V5
 
 Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-OFFLINE-REMEDIATION-01`.
