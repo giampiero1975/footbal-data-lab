@@ -1,7 +1,7 @@
 # RAG V5 dual blocker — remediation offline
 
-Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-OFFLINE-REMEDIATION-01`  
-Baseline: `4a5ff711620970e02abbaf26c479d05cfd69260d`  
+Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-OFFLINE-REMEDIATION-01`
+Baseline: `4a5ff711620970e02abbaf26c479d05cfd69260d`
 Commit tecnico: `56a7b72135595e99a98ff2fb5b1bcc3d6a0c9ebf`
 
 ## Attività
@@ -88,4 +88,3 @@ restano **BLOCCATO** e richiedono decisione separata.
 - Efficacia generativa: **BLOCCATO**.
 - Runtime e Gate: **BLOCCATO**.
 - Integrazione e certificazione: **BLOCCATO**.
-
