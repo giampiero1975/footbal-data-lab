@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME03-READONLY-READINESS-01
+  (2026-11-10): wrapper remoto runtime-03 identico (45.964 byte, SHA atteso),
+  23+1+1 entry dei tre inventari storici verificate in sola lettura. Confermati
+  2.048 token, HTTP 360 s, supervisore 450 s/kill-after 15 s e singola chiamata.
+  Staging storico pulito a `db3ad66`; target staging `13814c2` e artefatti
+  runtime-04 assenti nei percorsi proposti. Rilievo statico: il verificatore
+  storico richiede il vecchio reason code di localizzazione anche per il nuovo
+  boundary semantico; occorre un ramo dedicato prima del riuso post-patch.
+  Preparazione locale wrapper adattato e staging **DA FARE** con autorizzazioni
+  separate; nessun test, inferenza o scrittura VPS. Backup chiave separato e
+  non bloccante; accuratezza generativa, runtime, Gate, integrazione e
+  certificazione **BLOCCATO**. Report
+  `docs/rag-v5-dual-blocker-runtime03-readonly-readiness-01.md`.
+
 - [x] **VALIDATO** RD-FOOTBALL-VPS-SSH-V3-NEW-PC-ACCESS-01 (2026-11-10):
   nuova pubblica Ed25519 v3 installata dal titolare via password, una sola
   occorrenza e byte delle vecchie entry preservati. Alias `football-vps`

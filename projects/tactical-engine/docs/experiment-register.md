@@ -2,6 +2,32 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Verifica read-only wrapper e artefatti runtime-03
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME03-READONLY-READINESS-01`. Script:
+tre connessioni SSH batch, stdlib Python inline e Git `--no-optional-locks`,
+senza import applicativi, esecuzione wrapper o scritture VPS. Commit:
+documentale che aggiunge il report e aggiorna insieme TODO/registro, ricercabile
+nella storia di `docs/rag-v5-dual-blocker-runtime03-readonly-readiness-01.md`.
+Baseline documentale iniziale locale/GitHub `b180f97`, tree locale pulito;
+baseline applicativa futura `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`.
+Risultato: wrapper storico 45.964 byte e SHA-256
+`ba0160e0381bbe5242196a555ab5e85ae0109c0b383bc9a79825c14b4fd44d57`
+conformi; inventari verificati 23+1+1, fail-closed storico e finalizzazione
+riconfermati. Parametri reali: 2.048 token, ctx 4.096, think false, HTTP 360 s,
+supervisore 450 s/kill-after 15 s. Staging storico pulito a `db3ad66`, nuovi
+target proposti assenti; operativo a `1a80fe0`, senza delta tracked ma con 17
+percorsi untracked preservati. Rilievo statico nuovo: il verificatore storico
+non distingue `E_EXTRACTION_SEMANTIC_INCONSISTENT` dalla localizzazione fallita
+e respingerebbe il nuovo boundary come errore di verifica contenuto; occorre
+adattare la copia futura, senza modificare locator o validatore finale.
+Decisione: nessuna suite 37/37 o forense ripetuta; proposta preparazione locale
+wrapper con ramo diagnostico dedicato, da autorizzare separatamente; nessun
+trasferimento, staging o runtime. Stato: ricognizione **ESEGUITO**, identità e
+integrità storiche **VALIDATO**; wrapper post-patch e staging **DA FARE**;
+backup cifrato **DA FARE** separato e non bloccante; accuratezza generativa,
+contraddizioni, runtime, Gate, integrazione e certificazione **BLOCCATO**.
+
 ### 2026-11-10 — Accesso SSH v3 dal nuovo PC
 
 Attività: `RD-FOOTBALL-VPS-SSH-V3-NEW-PC-ACCESS-01`. Script: OpenSSH locale,
