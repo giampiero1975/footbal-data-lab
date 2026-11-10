@@ -2,6 +2,33 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Forense offline unknown/same runtime-04
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-UNKNOWN-SAME-FORENSIC-01`. Script:
+sola lettura Git/stdlib locale, hash, JSON e AST di costanti; nessun import o
+funzione applicativa, test, modello o accesso VPS. Commit: documentale che
+pubblica report, fatti derivati, TODO e registro insieme. Report:
+`docs/rag-v5-dual-blocker-runtime04-unknown-same-forensic-01.md`; fatti
+`docs/runtime04-unknown-same-forensic-facts-01.json`. Baseline documentale
+locale/GitHub `86bfcfc`, working tree pulito; applicativa `13814c2` invariata.
+Risultato: 27 originali conformi ai blob pubblicati; raw parsato coincide con
+extraction. Messaggio effettivo conforme al prompt baseline, file prompt con
+solo LF finale introdotto dalla persistenza. Sedici slot unknown, due item
+condizioni ambiguous e otto comparison same; lettura statica di
+`_expected_comparison` prescrive unknown in tutte le dimensioni. Origine già
+nel raw; schema senza default, ma status/value/fragments indipendenti e
+prompt privo di precedenza esplicita. Lacuna handoff accertata, contributo
+causale al comportamento del modello non isolato. Entrambi i valori abundant
+non rappresentano l'opposizione spaziale; nessuna causa cognitiva inventata.
+Precontrollo corretto, locator e validatore finale non raggiunti. Decisione:
+due sole alternative non implementate; raccomandata A (handoff normativo e
+schema correlato), B distinta (nuovo trasporto relations-only con derivazione
+sistemica limitata). Nessuna forzatura di comparison o Gold, nessun runtime
+o analisi runtime-03 ripetuta. Stato: revisione **ESEGUITO**, catena e diagnosi
+documentale **VALIDATO** nel perimetro probatorio; alternative **DA FARE**
+previa decisione, accuratezza generativa, nuovi runtime, Gate, integrazione
+e certificazione **BLOCCATO**. STOP dopo pubblicazione.
+
 ### 2026-11-10 — Singola esecuzione runtime-04
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-EXECUTION-01`. Script: launcher

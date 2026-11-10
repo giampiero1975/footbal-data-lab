@@ -1,0 +1,123 @@
+{
+  "activity": "RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-UNKNOWN-SAME-FORENSIC-01",
+  "date": "2026-11-10",
+  "initial_documentary_head": "86bfcfc8b193b43e9863f3a4e16c051a2aa3cdcc",
+  "application_baseline": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+  "scope": "offline stdlib parsing, byte integrity, AST reading; no application import or function invocation",
+  "original_artifacts_verified": 27,
+  "raw_parsed_equals_extraction": true,
+  "payload_user_matches_baseline": true,
+  "prompt_file_equals_payload_user_plus_single_lf": true,
+  "top_level_unknown_slots": 16,
+  "condition_items_ambiguous": 2,
+  "comparison_same_dimensions": 8,
+  "slot_matrix": [
+    {
+      "dimension": "subject",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": "difesa_bassa",
+      "evidence_value_or_entity_id": "squadre_che_difendono_basse",
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    },
+    {
+      "dimension": "reference",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": "spazio_tra_linea_porta",
+      "evidence_value_or_entity_id": "spazio_tra_linea_porta",
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    },
+    {
+      "dimension": "semantic_axis",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": "space_availability",
+      "evidence_value_or_entity_id": "space_availability",
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    },
+    {
+      "dimension": "value",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": "abundant",
+      "evidence_value_or_entity_id": "abundant",
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    },
+    {
+      "dimension": "conditions",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": null,
+      "evidence_value_or_entity_id": null,
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    },
+    {
+      "dimension": "phase",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": "unknown",
+      "evidence_value_or_entity_id": "unknown",
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    },
+    {
+      "dimension": "quantifier",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": "unknown",
+      "evidence_value_or_entity_id": "unknown",
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    },
+    {
+      "dimension": "polarity",
+      "claim_status": "unknown",
+      "evidence_status": "unknown",
+      "claim_value_or_entity_id": "affirmed",
+      "evidence_value_or_entity_id": "affirmed",
+      "model_comparison": "same",
+      "prescribed_comparison_by_static_code_reading": [
+        "unknown"
+      ],
+      "basis": "_expected_comparison: unknown status precedes ID/value equality; conditions has its own preceding unknown branch"
+    }
+  ],
+  "observed_runtime_boundary": "E_EXTRACTION_SEMANTIC_INCONSISTENT",
+  "observed_runtime_detail": "E_EXTRACTION_COMPARISON_INCONSISTENT",
+  "model_label": "supported",
+  "authoritative_label": null,
+  "gold": "contradicted",
+  "locator_reached": false,
+  "final_validator_reached": false,
+  "application_tests_executed": 0,
+  "model_calls": 0,
+  "vps_accesses": 0,
+  "source_code_changes": 0
+}

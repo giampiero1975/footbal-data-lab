@@ -8,6 +8,21 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-UNKNOWN-SAME-FORENSIC-01
+  (2026-11-10), esclusivamente come analisi documentale: 27 originali conformi;
+  raw parsato identico all'extraction, payload conforme alla baseline, solo LF
+  finale aggiuntivo nel file prompt. Sedici slot unknown, due item ambiguous,
+  otto comparison same; regole versionate prescrivono unknown prima di ID/valori.
+  Errore già generato, nessuna mutazione del parser; handoff omette precedenza e
+  correlazioni status/sentinelle/frammenti. Fonte rappresentata abundant;
+  causa cognitiva non determinabile. Locator e validatore finale non raggiunti.
+  Proposte due alternative non implementate; raccomandata A, handoff normativo
+  e schema correlato, prima di una più ampia derivazione sistemica B. Zero
+  VPS/modelli/test applicativi o modifiche codice; nessuna analisi runtime-03
+  ripetuta. Alternative **DA FARE** previa decisione; accuratezza generativa,
+  nuovi runtime, Gate, integrazione e certificazione **BLOCCATO**. Report
+  `docs/rag-v5-dual-blocker-runtime04-unknown-same-forensic-01.md`.
+
 - [x] **ESEGUITO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-EXECUTION-01
   (2026-11-10): preflight immediato superato e launcher approvato invocato una
   sola volta, una chiamata e una generazione completa in 132,537836 s, zero
