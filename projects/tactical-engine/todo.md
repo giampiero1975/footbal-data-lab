@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-LOCAL-PREPARATION-01
+  (2026-11-10): copia locale runtime-04 distinta dall'originale verificato,
+  baseline applicativa `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`, nuovo ramo
+  `fail_closed_extraction_semantic` senza promozione. Artefatto 47.755 byte,
+  SHA-256 `abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17`;
+  commit tecnico `56fba214c6a2d438bf1e1c4383dc920654cfc5c7`. Originale e diff
+  completi versionati, parametri/lock/finalizzazione preservati. Tredici controlli
+  nuovi coperti: 12 PASS iniziali e solo il confronto statico corretto rieseguito
+  1/1 PASS; nessuna suite 37/37 ripetuta. Preparazione **VALIDATO** localmente;
+  nessun wrapper eseguito o upload VPS. Staging/preflight **DA FARE** previa
+  autorizzazione; runtime, accuratezza generativa, Gate, integrazione e
+  certificazione **BLOCCATO**. Report
+  `docs/rag-v5-dual-blocker-runtime04-local-preparation-01.md`.
+
 - [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME03-READONLY-READINESS-01
   (2026-11-10): wrapper remoto runtime-03 identico (45.964 byte, SHA atteso),
   23+1+1 entry dei tre inventari storici verificate in sola lettura. Confermati

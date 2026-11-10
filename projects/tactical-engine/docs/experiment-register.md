@@ -2,6 +2,34 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Preparazione locale wrapper runtime-04
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-LOCAL-PREPARATION-01`. Script:
+`operations/runtime-wrappers/prepare_runtime04_wrapper.py`, nuova copia
+`spatial-v2-extraction-locator-q3-04-runtime-04.sh` e controlli
+`test_runtime04_wrapper_delta.py`; originale e diff completo versionati.
+Commit tecnico: `56fba214c6a2d438bf1e1c4383dc920654cfc5c7`. Report:
+`docs/rag-v5-dual-blocker-runtime04-local-preparation-01.md`, pubblicato
+insieme agli aggiornamenti TODO/registro nella stessa sessione. Baseline
+documentale iniziale `cf6b63d`, locale/GitHub allineati e tree pulito;
+baseline applicativa obbligatoria `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`.
+Risultato: originale recuperato read-only, 45.964 byte e SHA storico invariati;
+nuovo wrapper 47.755 byte, SHA-256
+`abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17`.
+Delta limitato a identità/percorsi/blob e ramo semantico dedicato con details
+versionati, provenance senza localizzazione, assenza witness/validation e
+non promozione; nessuna auto-correzione. Nuovi controlli specifici del wrapper:
+13 distinti, 12 PASS iniziali e un confronto statico corretto per l'attempt ID
+autorizzato, rieseguito da solo 1/1 PASS. Bash -n launcher/corpo, cinque blocchi
+Python compilati, verificatore estratto provato offline e alterazioni respinte;
+originale preservato, diff e blob Git verificati. Nessuna suite 37/37 ripetuta.
+Decisione: STOP dopo pubblicazione; nessuna esecuzione wrapper, inferenza,
+upload o staging remoto; codice applicativo/locator/validatore invariati.
+Stato: wrapper **IMPLEMENTATO**, controlli **ESEGUITO**, preparazione locale
+**VALIDATO**; staging/preflight **DA FARE** previa autorizzazione; runtime,
+accuratezza delle contraddizioni, Gate, integrazione e certificazione
+**BLOCCATO**. Backup chiave resta separato.
+
 ### 2026-11-10 — Verifica read-only wrapper e artefatti runtime-03
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME03-READONLY-READINESS-01`. Script:
