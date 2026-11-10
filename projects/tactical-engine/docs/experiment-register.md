@@ -2,6 +2,32 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Nuovo PC e preparazione runtime Dual Blocker
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-NEW-PC-PREPARATION-01`. Script: soli comandi
+locali Git, inventario nomi file SSH e confronto statico AST/hash con stdlib;
+nessuno script applicativo o wrapper eseguito. Commit: documentale che aggiunge
+il report e aggiorna contestualmente TODO e questo registro, rintracciabile
+con `git log -1 -- docs/rag-v5-dual-blocker-new-pc-runtime-preparation-01.md`
+dalla directory Tactical Engine. Report:
+`docs/rag-v5-dual-blocker-new-pc-runtime-preparation-01.md`.
+Risultato: repository `C:\laragon\www\footbal-data-lab`, branch corretto,
+HEAD locale/remoto `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d` dopo fetch,
+0/0, working tree iniziale pulito e un solo worktree. Patch `56a7b72`, test
+storici 37/37 e revisione indipendente riconciliati; locator e validatore
+invariati, precontrollo attivo prima del locator. Preparato piano per singolo
+`q3_04` con nuova baseline, riuso controllato del wrapper runtime-03 e
+inventari; wrapper originale non versionato, adattamento non materializzato.
+SSH installato e directory `.ssh` presente, ma mancano config/alias e chiave
+v2 documentata; nessuna chiave alternativa provata, zero connessioni VPS.
+Decisione: nessun test equivalente, inferenza, trasferimento, modifica VPS,
+panel o codice; prima accesso autorizzato e verifica wrapper, poi autorizzazioni
+separate per staging/trasferimenti e singolo runtime. Stato: preparazione
+documentale **ESEGUITO**; accesso VPS **BLOCCATO**, staging e wrapper adattato
+**DA FARE**; accuratezza generativa, contraddizioni, runtime, Gate, integrazione
+e certificazione **BLOCCATO**. La baseline applicativa resta distinta dal
+commit di pubblicazione documentale.
+
 ### 2026-11-09 — Revisione indipendente patch dual blocker RAG V5
 
 Attività: `RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-INDEPENDENT-REVIEW-01`.

@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-DUAL-BLOCKER-NEW-PC-PREPARATION-01 (2026-11-10):
+  repository nuovo PC `C:\laragon\www\footbal-data-lab` verificato; fetch con
+  HEAD locale/remoto `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`, divergenza
+  0/0 e working tree iniziale pulito, un solo worktree. Patch `56a7b72`,
+  37/37 PASS storici e revisione indipendente riconciliati senza riesecuzione.
+  Piano `q3_04` post-patch predisposto alla stessa baseline; nessun wrapper
+  creato/eseguito o trasferimento. SSH installato, ma alias/config utente e
+  chiave v2 documentata non disponibili; altre chiavi non provate. Accesso VPS
+  **BLOCCATO**, stato remoto non verificato. Recupero/verifica wrapper storico,
+  adattamento e staging indipendente **DA FARE** con autorizzazioni separate;
+  accuratezza generativa, runtime, Gate, integrazione e certificazione
+  **BLOCCATO**. Report `docs/rag-v5-dual-blocker-new-pc-runtime-preparation-01.md`.
+
 - [x] **REVISIONE INDIPENDENTE PATCH DUAL BLOCKER CONCLUSA; RUNTIME GENERATIVO DA AUTORIZZARE**
   RD-TSC-V2-D3-S2-RAG-V5-DUAL-BLOCKER-INDEPENDENT-REVIEW-01: delta,
   contratto, prompt, schema, locator, validatore e 37 risultati già registrati
