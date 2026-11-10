@@ -1,0 +1,14 @@
+{
+  "contract_id": "nli_spatial_relations_v2_extraction",
+  "contract_version": "1.0.0",
+  "extraction_sha256": "sha256:6f136d4bd5b807be7afadbb4f38936646b5c3422e8ee6bd1506b97ba6c528570",
+  "locator_id": "nli_spatial_relations_v2_literal_locator",
+  "locator_version": "1.0.0",
+  "record_sha256": "sha256:8ca57799a0fbe0b85a24d1b883efe4093dccdc9de790907bcf215226dedc38a4",
+  "records": [],
+  "source_text_sha256": {
+    "claim": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+    "evidence": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1"
+  },
+  "status": "not_evaluable"
+}

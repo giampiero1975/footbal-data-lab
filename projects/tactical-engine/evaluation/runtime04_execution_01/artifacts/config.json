@@ -1,0 +1,17 @@
+{
+  "contract_id": "nli_spatial_relations_v2_extraction",
+  "contract_version": "1.0.0",
+  "external_kill_after_seconds": 15,
+  "external_timeout_seconds": 450,
+  "extraction_locator": true,
+  "fallback": false,
+  "http_timeout_seconds": 360,
+  "model": "qwen3.5:9b",
+  "num_ctx": 4096,
+  "num_predict": 2048,
+  "promotion_authorized": false,
+  "repair": false,
+  "retry": false,
+  "single_generation": true,
+  "temperature": 0
+}

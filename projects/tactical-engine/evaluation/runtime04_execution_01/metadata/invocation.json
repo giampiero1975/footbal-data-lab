@@ -1,0 +1,11 @@
+{
+  "launcher_invocations": 1,
+  "command": [
+    "C:\\Program Files\\Git\\bin\\bash.exe",
+    "projects/tactical-engine/operations/runtime-wrappers/spatial-v2-extraction-locator-q3-04-runtime-04.sh"
+  ],
+  "started_at_utc": "2026-11-10T13:45:24.511533+00:00",
+  "retry": false,
+  "repair": false,
+  "fallback": false
+}

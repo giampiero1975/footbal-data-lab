@@ -2,6 +2,35 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Singola esecuzione runtime-04
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-EXECUTION-01`. Script: launcher
+runtime-04 approvato, SHA `abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17`,
+invocato una sola volta senza modifiche. Baseline applicativa
+`13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`; iniziale documentale locale/GitHub
+`c699639`, tree pulito. Commit: documentale con report, originali, metadati,
+TODO e registro pubblicati insieme. Report:
+`docs/rag-v5-dual-blocker-runtime04-execution-01.md`; evidenze originali e
+inventari `evaluation/runtime04_execution_01/`.
+Risultato: preflight immediato positivo, nessun tentativo preesistente, lock
+sondato/rilasciato e acquisito poi dal wrapper. Una chiamata, una generazione
+completa, 132,537836 s, done stop, processo generativo exit 0, launcher/wrapper
+exit 80. Stato completed_fail_closed, boundary
+`E_EXTRACTION_SEMANTIC_INCONSISTENT`, dettaglio
+`E_EXTRACTION_COMPARISON_INCONSISTENT` su comparison. Output propone supported
+con status unknown/comparison same; label autorevole e semantic match nulli,
+Gold contradicted. Precontrollo arresta prima del locator: records vuoti,
+witness/validation assenti, nessuna promozione. Finalizzazione completa,
+inventari 23+1+1 conformi, 27 file originali preservati e pubblicati; staging
+pulito e hash wrapper 03/04 invariati. Decisione: tentativo consumato, zero
+retry/repair/fallback; nessun altro caso o runtime. Proposta sola revisione
+offline mirata della nuova incoerenza prima di ulteriori modifiche/prove,
+non eseguita. Stato: tentativo **ESEGUITO**, completamento tecnico,
+finalizzazione e fail-closed del caso **VALIDATO**; accuratezza generativa,
+contraddizioni, ulteriore runtime, Gate, integrazione e certificazione
+**BLOCCATO**. Nessuna modifica applicativa, servizi, Chroma, panel, merge o
+deploy; nessuna promozione o certificazione generale.
+
 ### 2026-11-10 — Trasferimento wrapper runtime-04 e preflight non generativo
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-TRANSFER-NONGENERATIVE-PREFLIGHT-01`.

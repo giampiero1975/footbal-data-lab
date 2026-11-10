@@ -1,0 +1,30 @@
+{
+  "attempt_id": "spatial-v2-extraction-locator-q3-04-runtime-04",
+  "contract": {
+    "contract_id": "nli_spatial_relations_v2_extraction",
+    "fallback": false,
+    "fuzzy_matching": false,
+    "locator_id": "nli_spatial_relations_v2_literal_locator",
+    "locator_version": "1.0.0",
+    "matching": "literal_unique_on_structurally_assigned_side",
+    "normalization": false,
+    "promotion_authorized": false,
+    "repair": false,
+    "retry": false,
+    "selection": "explicit_opt_in_only",
+    "single_generation": true,
+    "version": "1.0.0"
+  },
+  "elapsed_seconds": 132.5378359660972,
+  "evaluation_status": "not_evaluable",
+  "finished_at_utc": "2026-11-10T13:47:38.577587+00:00",
+  "generation_completed": true,
+  "promotion_authorized": false,
+  "reason_codes": [
+    "E_EXTRACTION_SEMANTIC_INCONSISTENT"
+  ],
+  "response_received": true,
+  "started_at_utc": "2026-11-10T13:45:26.039099+00:00",
+  "transport_attempted": true,
+  "transport_calls": 1
+}

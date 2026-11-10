@@ -8,6 +8,21 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-EXECUTION-01
+  (2026-11-10): preflight immediato superato e launcher approvato invocato una
+  sola volta, una chiamata e una generazione completa in 132,537836 s, zero
+  retry/repair/fallback. Processo generativo exit 0, wrapper exit 80,
+  `completed_fail_closed`, `E_EXTRACTION_SEMANTIC_INCONSISTENT`, dettaglio
+  `E_EXTRACTION_COMPARISON_INCONSISTENT` su comparison. Extraction propone
+  supported ma status unknown con comparison same; label autorevole e semantic
+  match nulli, nessun locator/witness/validation raggiunto, Gold contradicted.
+  Finalizzazione e fail-closed **VALIDATO** nel caso; 27 originali pubblicati,
+  inventari 23+1+1 verificati, staging e wrapper invariati. Obiettivo generativo
+  non dimostrato: accuratezza delle contraddizioni, ulteriore runtime, Gate,
+  integrazione e certificazione **BLOCCATO**. Autorizzazione singola consumata;
+  proposta revisione offline mirata, non eseguita. Report
+  `docs/rag-v5-dual-blocker-runtime04-execution-01.md`.
+
 - [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-TRANSFER-NONGENERATIVE-PREFLIGHT-01
   (2026-11-10): wrapper runtime-04 trasferito nel percorso remoto distinto,
   47.755 byte e SHA `abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17`,

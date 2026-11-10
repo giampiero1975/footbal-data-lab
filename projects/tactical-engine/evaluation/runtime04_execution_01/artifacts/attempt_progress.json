@@ -1,0 +1,14 @@
+{
+  "record_type": "non_final_progress",
+  "finalization_complete": false,
+  "phase": "generation",
+  "attempt_status": "generation_in_progress",
+  "reason_code": "NONE",
+  "generation_started": true,
+  "generation_completed": false,
+  "transport_attempted": false,
+  "transport_calls": 0,
+  "response_received": false,
+  "supervised_exit_code": null,
+  "promotion_authorized": false
+}

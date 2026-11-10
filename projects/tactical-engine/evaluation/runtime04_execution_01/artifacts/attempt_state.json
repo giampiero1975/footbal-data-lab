@@ -1,0 +1,17 @@
+{
+  "record_type": "final_attempt_state",
+  "finalization_complete": true,
+  "attempt_id": "spatial-v2-extraction-locator-q3-04-runtime-04",
+  "phase": "complete",
+  "attempt_status": "completed_fail_closed",
+  "reason_code": "E_EXTRACTION_SEMANTIC_INCONSISTENT",
+  "generation_started": true,
+  "generation_completed": true,
+  "transport_attempted": true,
+  "transport_calls": 1,
+  "response_received": true,
+  "supervised_exit_code": 0,
+  "wrapper_exit_code": 80,
+  "payload_inventory_sha256": "fa494a948b1da963bf3bc270b3806b1559948c0b3acc0d219c17daa9546083a7",
+  "promotion_authorized": false
+}

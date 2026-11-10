@@ -1,0 +1,17 @@
+{
+  "checked_at_utc": "2026-11-10T13:44:51.528298+00:00",
+  "preflight": "passed",
+  "wrapper_bytes": 47755,
+  "wrapper_sha256": "abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17",
+  "head": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+  "staging_clean": true,
+  "detached": true,
+  "runtime04_artifacts_absent": true,
+  "concurrent_observed": [],
+  "unreadable_processes": 0,
+  "model": "qwen3.5:9b",
+  "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+  "loaded_models": [],
+  "lock_probe_acquired_and_released": true,
+  "lock_data_modified": false
+}

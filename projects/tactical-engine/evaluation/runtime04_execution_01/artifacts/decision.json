@@ -1,0 +1,23 @@
+{
+  "classification": "fail_closed_extraction_semantic",
+  "evaluation_status": "not_evaluable",
+  "extraction_present": true,
+  "generation_completed": true,
+  "gold_label": "contradicted",
+  "json_valid": true,
+  "localization_status": "not_evaluable",
+  "observed_label": null,
+  "promotion_authorized": false,
+  "provenance_present": true,
+  "raw_response_type": "dict",
+  "reason_codes": [
+    "E_EXTRACTION_SEMANTIC_INCONSISTENT"
+  ],
+  "response_received": true,
+  "semantic_match": null,
+  "transport_attempted": true,
+  "transport_calls": 1,
+  "validation_present": false,
+  "witness_present": false,
+  "wrapper_exit_code": 80
+}

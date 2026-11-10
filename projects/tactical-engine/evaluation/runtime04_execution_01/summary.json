@@ -1,0 +1,47 @@
+{
+  "activity": "RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-EXECUTION-01",
+  "initial_documentary_head": "c699639e78b992c09858963d4e76137d66be0b5e",
+  "application_baseline": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+  "launcher_invocations": 1,
+  "transport_calls": 1,
+  "completed_generations": 1,
+  "elapsed_seconds": 132.5378359660972,
+  "supervised_exit_code": 0,
+  "wrapper_exit_code": 80,
+  "boundary": "E_EXTRACTION_SEMANTIC_INCONSISTENT",
+  "details": [
+    {
+      "code": "E_EXTRACTION_COMPARISON_INCONSISTENT",
+      "path": "comparison"
+    }
+  ],
+  "model_proposed_label": "supported",
+  "observed_label": null,
+  "gold_label": "contradicted",
+  "semantic_match": null,
+  "witness_present": false,
+  "validation_present": false,
+  "finalization_complete": true,
+  "manifest_verification": {
+    "hashes.sha256": {
+      "verified_entries": 23,
+      "errors": []
+    },
+    "attempt_state.sha256": {
+      "verified_entries": 1,
+      "errors": []
+    },
+    "hashes.sha256.digest": {
+      "verified_entries": 1,
+      "errors": []
+    }
+  },
+  "original_artifact_count": 27,
+  "done_reason": "stop",
+  "prompt_eval_count": 592,
+  "eval_count": 846,
+  "retry": false,
+  "repair": false,
+  "fallback": false,
+  "promotion_authorized": false
+}

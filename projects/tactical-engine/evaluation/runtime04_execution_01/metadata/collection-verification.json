@@ -1,0 +1,143 @@
+{
+  "artifact_directory": "/home/football/.local/share/football-data-lab/runtime-artifacts/spatial-v2-extraction-locator-q3-04-runtime-04",
+  "files": {
+    "attempt_progress.json": {
+      "bytes": 386,
+      "sha256": "896bfae2631b5790b2ec7adecc2dc9231bf5fb9555ee179994524647f3f6682d"
+    },
+    "attempt_state.json": {
+      "bytes": 598,
+      "sha256": "79ec318be27abd5df685d2a294aac4325136c58191b3b6d7587ce4af1bdb78b8"
+    },
+    "attempt_state.sha256": {
+      "bytes": 85,
+      "sha256": "49034faf3a70ea6972d19181404bb6f712bfe483d29243181e4b0dcd60167659"
+    },
+    "config.json": {
+      "bytes": 430,
+      "sha256": "49c84c060a310061af62f54c20d1b058eabcfbd8d3038db1a9025cb8f64380fd"
+    },
+    "decision.json": {
+      "bytes": 638,
+      "sha256": "325122451bd51e2d40cf5b1ba6097678faff9bc4dd61d3181d071879c11cf6de"
+    },
+    "extraction.json": {
+      "bytes": 2687,
+      "sha256": "aaca6e99d5a3b165827954f5a67b135ed80ff8832bf3209f6cd65bd27dcc721c"
+    },
+    "generation_record.json": {
+      "bytes": 965,
+      "sha256": "983aaa173ba1e554983883212a35d522876c98fb059c8abb2c5a2b6e71789bde"
+    },
+    "git_head_after.txt": {
+      "bytes": 41,
+      "sha256": "b871ef345f9f992b7fcf84bde0056ea7f0c69ff8853768ecae317f42b84dcdb5"
+    },
+    "git_head_before.txt": {
+      "bytes": 41,
+      "sha256": "b871ef345f9f992b7fcf84bde0056ea7f0c69ff8853768ecae317f42b84dcdb5"
+    },
+    "git_status_after.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "git_status_before.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "hashes.sha256": {
+      "bytes": 1944,
+      "sha256": "fa494a948b1da963bf3bc270b3806b1559948c0b3acc0d219c17daa9546083a7"
+    },
+    "hashes.sha256.digest": {
+      "bytes": 80,
+      "sha256": "12ee4055a2caad18608e98efa726eacea0b0be4ee77306fc7040e97105763484"
+    },
+    "input.json": {
+      "bytes": 783,
+      "sha256": "70520cd3dd77fb96406bb3fa4ba120b5767228592a3c38373bb7a4a20abe4bed"
+    },
+    "ollama_ps_after.json": {
+      "bytes": 396,
+      "sha256": "063ec63842afb28fb2f1f0b913564b42ab988100871d8a5470428cb78b764605"
+    },
+    "ollama_ps_before.json": {
+      "bytes": 13,
+      "sha256": "a6fe9ec6e26a38d99fca418b69826e0238b7a2bb319ff05eb153a6fcfd1fa28d"
+    },
+    "ollama_tags_before.json": {
+      "bytes": 1490,
+      "sha256": "4602ecdbd1d2e59b3c521e14756bf0fa13154bd0e4af9e2b1ce90377e6983814"
+    },
+    "process_snapshot_before.txt": {
+      "bytes": 11911,
+      "sha256": "86d3c074483501cb9bc0f5ded08e0b05fab42558165e9c7fbd30ffdbd6fa8ee5"
+    },
+    "prompt.txt": {
+      "bytes": 2664,
+      "sha256": "e005b09968ce8fc93cb9493041f80b1b51088bb5e260855600834dbf7fc727f5"
+    },
+    "provenance.json": {
+      "bytes": 627,
+      "sha256": "d1d657b7d63af0caa28d931163e4814c8b2ff91faa3f1f44c8e034bba5154284"
+    },
+    "raw_response.json": {
+      "bytes": 3471,
+      "sha256": "15aae8e9a6d71619f1a5d26e42e922c75adc5eb66a9027d6d3dd7fa5fa46a9eb"
+    },
+    "request_payload.json": {
+      "bytes": 17876,
+      "sha256": "addc8f60fc5aec7aa21f41868ca3def1e0f3a0dc95ad19e3ebadd1c8b7a4d001"
+    },
+    "result.json": {
+      "bytes": 968,
+      "sha256": "6e3e5c717aa22bb20ae765651a9d6221fd3caf408fd4d3f7b15da88829649654"
+    },
+    "stdout.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "supervised_exit_code.txt": {
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "time_stderr.log": {
+      "bytes": 1000,
+      "sha256": "b44410fd0896b631af5c67b99e23a2784116285001aa1afdc5ca120838920c94"
+    },
+    "transport_state.json": {
+      "bytes": 109,
+      "sha256": "085f332d7a1a54c45e56ef68b19b949f29e34e2b8343d4729ffe2dd009ff0bb0"
+    }
+  },
+  "manifests": {
+    "hashes.sha256": {
+      "verified_entries": 23,
+      "errors": []
+    },
+    "attempt_state.sha256": {
+      "verified_entries": 1,
+      "errors": []
+    },
+    "hashes.sha256.digest": {
+      "verified_entries": 1,
+      "errors": []
+    }
+  },
+  "verification_errors": [],
+  "staging_head_after": {
+    "exit": 0,
+    "stdout": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d\n",
+    "stderr": ""
+  },
+  "staging_status_after": {
+    "exit": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "wrapper_hashes_after": {
+    "spatial-v2-extraction-locator-q3-04-runtime-04.sh": "abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17",
+    "spatial-v2-extraction-locator-q3-04-runtime-03-approved.sh": "ba0160e0381bbe5242196a555ab5e85ae0109c0b383bc9a79825c14b4fd44d57"
+  },
+  "finalization_errors_log_present": false
+}

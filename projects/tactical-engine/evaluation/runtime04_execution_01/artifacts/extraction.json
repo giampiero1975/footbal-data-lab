@@ -1,0 +1,119 @@
+{
+  "claim_relation": {
+    "conditions": {
+      "items": [
+        {
+          "condition_id": "linea_difensiva_bassa",
+          "selected_fragments": [],
+          "status": "ambiguous"
+        }
+      ],
+      "status": "unknown"
+    },
+    "phase": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "unknown"
+    },
+    "polarity": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "affirmed"
+    },
+    "quantifier": {
+      "literal": null,
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "unknown"
+    },
+    "reference": {
+      "entity_id": "spazio_tra_linea_porta",
+      "selected_fragments": [
+        "spazio tra la linea difensiva e la porta"
+      ],
+      "status": "unknown"
+    },
+    "semantic_axis": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "space_availability"
+    },
+    "subject": {
+      "entity_id": "difesa_bassa",
+      "selected_fragments": [
+        "La difesa bassa"
+      ],
+      "status": "unknown"
+    },
+    "value": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "abundant"
+    }
+  },
+  "comparison": {
+    "conditions": "same",
+    "phase": "same",
+    "polarity": "same",
+    "quantifier": "same",
+    "reference": "same",
+    "semantic_axis": "same",
+    "subject": "same",
+    "value": "same"
+  },
+  "contract_id": "nli_spatial_relations_v2_extraction",
+  "contract_version": "1.0.0",
+  "evidence_relation": {
+    "conditions": {
+      "items": [
+        {
+          "condition_id": "linea_difensiva_bassa",
+          "selected_fragments": [],
+          "status": "ambiguous"
+        }
+      ],
+      "status": "unknown"
+    },
+    "phase": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "unknown"
+    },
+    "polarity": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "affirmed"
+    },
+    "quantifier": {
+      "literal": null,
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "unknown"
+    },
+    "reference": {
+      "entity_id": "spazio_tra_linea_porta",
+      "selected_fragments": [
+        "spazio tra la linea difensiva e la porta"
+      ],
+      "status": "unknown"
+    },
+    "semantic_axis": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "space_availability"
+    },
+    "subject": {
+      "entity_id": "squadre_che_difendono_basse",
+      "selected_fragments": [
+        "squadre che difendono basse"
+      ],
+      "status": "unknown"
+    },
+    "value": {
+      "selected_fragments": [],
+      "status": "unknown",
+      "value": "abundant"
+    }
+  },
+  "label": "supported"
+}
