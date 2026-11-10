@@ -1,0 +1,168 @@
+{
+  "activity": "RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-TRANSFER-NONGENERATIVE-PREFLIGHT-01",
+  "date": "2026-11-10",
+  "initial_documentary_head": "59e89172780c1312223e1271b6023d2c1d7a3f1e",
+  "application_baseline": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+  "local_wrapper": {
+    "path": "projects\\tactical-engine\\operations\\runtime-wrappers\\spatial-v2-extraction-locator-q3-04-runtime-04.sh",
+    "bytes": 47755,
+    "sha256": "abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17"
+  },
+  "transfer": {
+    "target": "/home/football/.local/share/football-data-lab/runtime-wrappers/spatial-v2-extraction-locator-q3-04-runtime-04.sh",
+    "bytes": 47755,
+    "sha256": "abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17",
+    "owner": "football",
+    "group": "football",
+    "mode": "0o600",
+    "regular_non_symlink": true,
+    "runtime03_unchanged": true,
+    "exclusive_upload_absent": true,
+    "byte_for_byte_equal": true
+  },
+  "preflight": {
+    "checked_at_utc": "2026-11-10T13:34:09.670347+00:00",
+    "scope": "non_generative_observation",
+    "wrapper_executions": 0,
+    "generation_requests_sent": 0,
+    "lock_acquired": false,
+    "artifacts_directory_created": false,
+    "checks": {
+      "staging": {
+        "head": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+        "detached": true,
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "common_dir": "/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2/.git",
+        "prior_blob_and_fsck_evidence_reused": true,
+        "prior_evidence_commit": "59e89172780c1312223e1271b6023d2c1d7a3f1e"
+      },
+      "runtime-artifacts": {
+        "mode": "0o700",
+        "owner_uid": 1000,
+        "writable_searchable": true
+      },
+      "runtime-locks": {
+        "mode": "0o700",
+        "owner_uid": 1000,
+        "writable_searchable": true
+      },
+      "runtime-wrappers": {
+        "mode": "0o700",
+        "owner_uid": 1000,
+        "writable_searchable": true
+      },
+      "runtime04_artifacts_absent": true,
+      "lock": {
+        "path": "/home/football/.local/share/football-data-lab/runtime-locks/spatial-v2-extraction-locator.lock",
+        "mode": "0o600",
+        "bytes": 0,
+        "device": 64769,
+        "inode": 842518,
+        "matching_proc_locks": [],
+        "acquisition_attempted": false,
+        "visibility": "current procfs/PID namespace only"
+      },
+      "commands": {
+        "git": "/usr/bin/git",
+        "bash": "/usr/bin/bash",
+        "curl": "/usr/bin/curl",
+        "timeout": "/usr/bin/timeout",
+        "flock": "/usr/bin/flock",
+        "ps": "/usr/bin/ps",
+        "stat": "/usr/bin/stat",
+        "sha256sum": "/usr/bin/sha256sum",
+        "awk": "/usr/bin/awk",
+        "find": "/usr/bin/find",
+        "sort": "/usr/bin/sort",
+        "xargs": "/usr/bin/xargs",
+        "sed": "/usr/bin/sed",
+        "date": "/usr/bin/date",
+        "id": "/usr/bin/id",
+        "chmod": "/usr/bin/chmod",
+        "mkdir": "/usr/bin/mkdir",
+        "mv": "/usr/bin/mv",
+        "rm": "/usr/bin/rm",
+        "cat": "/usr/bin/cat"
+      },
+      "python": {
+        "executable": "/usr/bin/python3",
+        "version": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+        "dont_write_bytecode": true,
+        "isolated": 1,
+        "external_time_executable": true
+      },
+      "dependencies": {
+        "local_module_paths_present": [
+          "shadow_nli_spatial_relations_v2_inference",
+          "v5_tactical_semantic_support_s2_spatial_v2_extraction",
+          "v5_tactical_semantic_support_s2_spatial_v2"
+        ],
+        "stdlib_imports_verified": [
+          "hashlib",
+          "json",
+          "unicodedata",
+          "urllib.error",
+          "urllib.request"
+        ],
+        "application_modules_imported": false,
+        "application_functions_called": false,
+        "installations": 0,
+        "pydantic_required": false,
+        "requests_required": false
+      },
+      "space": {
+        "free_bytes": 41404141568,
+        "observation_only": true
+      },
+      "process_observation": {
+        "visible_processes": 186,
+        "unreadable_or_disappeared": 0,
+        "matching_runtimes": [],
+        "scope": "observable cmdlines only"
+      },
+      "ollama": {
+        "methods": [
+          "GET /api/tags",
+          "GET /api/ps",
+          "GET /api/version"
+        ],
+        "version": {
+          "version": "0.40.5"
+        },
+        "model": {
+          "name": "qwen3.5:9b",
+          "model": "qwen3.5:9b",
+          "modified_at": "2026-10-17T12:50:24.646594239+02:00",
+          "size": 6550825550,
+          "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+          "details": {
+            "parent_model": "model.gguf",
+            "format": "gguf",
+            "family": "qwen35",
+            "families": [
+              "qwen35"
+            ],
+            "parameter_size": "9.0B",
+            "quantization_level": "Q4_K_M",
+            "context_length": 262144,
+            "embedding_length": 4096,
+            "runner": "llamacpp"
+          },
+          "capabilities": [
+            "completion",
+            "vision",
+            "tools",
+            "thinking"
+          ]
+        },
+        "ps": {
+          "models": []
+        },
+        "generative_endpoints_called": false
+      },
+      "final_staging_status_unchanged": true
+    },
+    "preflight_status": "VALIDATO"
+  },
+  "promotion_authorized": false
+}

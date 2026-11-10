@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-TRANSFER-NONGENERATIVE-PREFLIGHT-01
+  (2026-11-10): wrapper runtime-04 trasferito nel percorso remoto distinto,
+  47.755 byte e SHA `abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17`,
+  confronto integrale identico, `football:football`/`0600`, runtime-03 invariato.
+  Preflight **VALIDATO** solo nel perimetro osservato: staging pulito/detached
+  a `13814c2`, evidenze blob/fsck riusate, artefatti assenti, nessuna entry del
+  lock in procfs e nessun runtime concorrente osservato. Lock non acquisito;
+  sole GET Ollama, digest Qwen atteso e zero modelli caricati. Dipendenze stdlib
+  verificate, nessun import applicativo, installazione, wrapper o generazione.
+  Nessuna suite 37/13 o validazione staging ripetuta. Runtime-04, accuratezza
+  delle contraddizioni, Gate, integrazione e certificazione **BLOCCATO**;
+  esecuzione solo con distinta autorizzazione. Report
+  `docs/rag-v5-dual-blocker-runtime04-transfer-nongenerative-preflight-01.md`.
+
 - [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-STAGING-PREPARATION-01
   (2026-11-10): clone Git indipendente creato esclusivamente in
   `/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2`,

@@ -2,6 +2,34 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Trasferimento wrapper runtime-04 e preflight non generativo
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-TRANSFER-NONGENERATIVE-PREFLIGHT-01`.
+Script: due connessioni SSH con stdlib Python inline, trasferimento binario
+esclusivo/rilettura e diagnostica separata `/usr/bin/python3 -B -I`; nessun
+launcher, corpo remoto o blocco applicativo del wrapper eseguito. Commit:
+documentale che pubblica report, JSON di evidenza, TODO e registro insieme.
+Report: `docs/rag-v5-dual-blocker-runtime04-transfer-nongenerative-preflight-01.md`;
+evidenza `evaluation/runtime04_transfer_nongenerative_preflight_evidence_01.json`.
+Baseline documentale iniziale locale/GitHub `59e8917`, tree pulito;
+applicativa `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d` invariata.
+Risultato: wrapper remoto 47.755 byte, SHA locale/remoto
+`abf6db3060b68cbc1e5d9e1c28ea13e2cb3dbce09f2ae2b5c00f8ec1e7f55f17`,
+confronto integrale byte-per-byte positivo, file regolare `football:football`
+modo `0600`; originale runtime-03 invariato, nessuna sovrascrittura. Snapshot
+non generativo: staging detached esatto e pulito, common dir interna, evidenze
+blob/fsck precedenti riusate; artefatti assenti, lock regolare `0600` senza
+entry procfs corrispondenti e mai acquisito, nessun runtime visibile rilevato.
+Python 3.12.3 e strumenti presenti, dipendenze stdlib verificate senza import
+applicativi o installazioni. Sole GET tags/ps/version: Ollama 0.40.5, digest
+qwen3.5:9b atteso, `models=[]`. Zero richieste generative/esecuzioni wrapper;
+nessuna suite 37/13 o validazione completa staging ripetuta. Decisione: STOP
+dopo report, nessuna modifica a codice/servizi/indici/panel e nessuna promozione.
+Stato: trasferimento **ESEGUITO**, identità e preflight non generativo
+**VALIDATO** nel solo snapshot osservato; lock/concorrenza non garantiti per
+il futuro. Runtime-04, accuratezza delle contraddizioni, Gate, integrazione e
+certificazione **BLOCCATO** fino alle autorizzazioni e prove pertinenti.
+
 ### 2026-11-10 — Staging indipendente runtime-04
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-STAGING-PREPARATION-01`. Script:
