@@ -2,6 +2,33 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Remediation offline A dopo runtime-04
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-OFFLINE-01`. Script:
+`shadow_nli_spatial_relations_v2_inference.py`,
+`v5_tactical_semantic_support_s2_spatial_v2_extraction.py`; nuova suite
+`tests/test_v5_spatial_extraction_status_contract_v1.py`. Commit tecnico:
+`0ea62c0ef1f0adfcd928c2893f069de060275381`. Report:
+`docs/rag-v5-dual-blocker-remediation-a-offline-01.md`; risultati
+`docs/runtime04-remediation-a-offline-results-01.json`. Baseline documentale
+iniziale locale/GitHub `8fca97f`, tree pulito; applicativa precedente `13814c2`.
+Risultato: handoff normativo completo per stati, sentinelle, confronto e
+grounding separato; matrici lette dalle costanti finali. Schema correlato con
+anyOf completi e shape check deterministico delle regole residue; nessun
+repair o forzatura label/comparison. Run iniziale nuovo 13/13; dopo correzione
+di duplicazioni locali e completamento della copertura, 15/15 PASS; nuovo
+controllo aggiuntivo di parità finale 1/1 su 1.050 combinazioni. Sedici controlli
+distinti coperti, nessuna suite storica 37/37 o wrapper 13 ripetuta. Raw
+runtime-04 immutato, rejection anticipata senza promozione; legacy identico
+al frozen, locator/validatore/dataset/panel/ops invariati. Limiti: checker del
+solo subset, nessun compilatore grammar/backend remoto o tokenizer reale;
+vincoli non esprimibili mantenuti fail-closed nel deterministico. Decisione:
+revisione indipendente raccomandata prima di ogni prova generativa; nessun
+runtime, wrapper/staging nuovo, modello o accesso VPS, merge/deploy. Stato:
+patch **IMPLEMENTATO**, verifiche **ESEGUITO**, proprietà coperte **VALIDATO**
+offline; accuratezza delle contraddizioni, Gate, integrazione e certificazione
+**BLOCCATO**. Report/TODO/registro pubblicati contestualmente, STOP.
+
 ### 2026-11-10 — Forense offline unknown/same runtime-04
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-UNKNOWN-SAME-FORENSIC-01`. Script:

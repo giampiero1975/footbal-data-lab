@@ -8,6 +8,21 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** offline RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-OFFLINE-01
+  (2026-11-10): alternativa A **IMPLEMENTATO**, commit tecnico
+  `0ea62c0ef1f0adfcd928c2893f069de060275381`; soli due file autorizzati e nuova
+  suite differenziale. Handoff normativo da costanti versionate, schema con
+  alternative complete per stato e controlli residui deterministici, senza
+  normalizzazioni. Sedici controlli nuovi coperti: run post-revisione 15/15 e
+  parità aggiuntiva 1/1 su 1.050 combinazioni. Nessuna suite storica 37/13
+  ripetuta. Raw runtime-04 immutato e respinto prima, senza maggiore accuratezza
+  dichiarata; legacy, locator, validatore finale, Gold/dataset e wrapper invariati.
+  Subset/backend e budget prompt non provati sulla VPS; revisione indipendente
+  raccomandata prima di nuova prova generativa. Zero VPS/modelli/runtime-05,
+  staging o wrapper nuovi. Accuratezza delle contraddizioni, Gate, integrazione
+  e certificazione **BLOCCATO**. Report
+  `docs/rag-v5-dual-blocker-remediation-a-offline-01.md`.
+
 - [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-UNKNOWN-SAME-FORENSIC-01
   (2026-11-10), esclusivamente come analisi documentale: 27 originali conformi;
   raw parsato identico all'extraction, payload conforme alla baseline, solo LF

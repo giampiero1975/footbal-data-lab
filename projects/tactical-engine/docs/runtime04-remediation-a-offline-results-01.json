@@ -1,0 +1,71 @@
+{
+  "activity": "RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-OFFLINE-01",
+  "date": "2026-11-10",
+  "initial_documentary_head": "8fca97fdf596d00f14987c5527694056d382e802",
+  "previous_application_baseline": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+  "technical_commit": "0ea62c0ef1f0adfcd928c2893f069de060275381",
+  "representation_revision": "status-correlated-01",
+  "distinct_new_tests": 16,
+  "test_names": [
+    "test_unknown_legitimate_preserved_without_inventing_concrete_values",
+    "test_legitimate_unknown_phase_can_remain_insufficient",
+    "test_unknown_concrete_id_value_or_fragments_rejected",
+    "test_unknown_precedes_identical_ids_and_values_comparison",
+    "test_conditions_container_and_item_status_are_distinct",
+    "test_conditions_residual_constraints_are_deterministic",
+    "test_state_family_branches_match_final_rules_without_locator_changes",
+    "test_quantifier_literal_and_implicit_sentinel_are_correlated",
+    "test_mock_payload_contains_normative_rules_without_gold_or_cross_side_rewrite",
+    "test_frozen_legacy_payload_result_and_functions_are_identical",
+    "test_runtime04_replay_originals_immutable_and_earlier_fail_closed",
+    "test_schema_subset_is_finite_serializable_and_reference_safe",
+    "test_normative_matrix_is_versioned_and_explicit_about_axis_identity",
+    "test_no_duplicate_definitions_or_correlation_passes",
+    "test_new_representation_checks_match_final_slot_predicates",
+    "test_critical_code_and_evidence_invariants_are_unchanged"
+  ],
+  "final_full_new_suite": {
+    "tests": 15,
+    "passed": 15,
+    "elapsed_seconds": 0.602
+  },
+  "additional_independent_parity_test": {
+    "tests": 1,
+    "passed": 1,
+    "elapsed_seconds": 0.142,
+    "status_content_combinations": 1050
+  },
+  "earlier_development_run": {
+    "tests": 13,
+    "passed": 13,
+    "superseded_by_post_review_suite": true
+  },
+  "historical_37_suite_executed": false,
+  "historical_13_wrapper_suite_executed": false,
+  "vps_accesses": 0,
+  "model_calls": 0,
+  "legacy_payload_and_result_frozen_parity": true,
+  "locator_final_validator_and_original_artifacts_unchanged": true,
+  "backend_runtime_compatibility_verified": false,
+  "schema_check_scope": "JSON serialization, local refs, finite complete anyOf branches, restricted subset interpreter; not a full Draft validator or deployed grammar compiler",
+  "schema_json_utf8_bytes": 16869,
+  "handoff_utf8_bytes": 6594,
+  "files": {
+    "scripts/shadow_nli_spatial_relations_v2_inference.py": {
+      "git_blob_sha256": "c8051325bda35e71fd4a6000f3062cd62eedb3bb344492e93e14195eed301bea",
+      "bytes": 7938
+    },
+    "scripts/v5_tactical_semantic_support_s2_spatial_v2_extraction.py": {
+      "git_blob_sha256": "db162446afdac5ddce1d0674485c002aa5db6f49604dcc09acca0319b91aba32",
+      "bytes": 32152
+    },
+    "tests/test_v5_spatial_extraction_status_contract_v1.py": {
+      "git_blob_sha256": "611ecbb7a636d4cf830eab92d2494a131dc5f71d4b0c3c2e939aae66a7ca4719",
+      "bytes": 22733
+    }
+  },
+  "patch_status": "IMPLEMENTATO",
+  "offline_status": "VALIDATO",
+  "generative_accuracy_status": "BLOCCATO",
+  "independent_review_recommended_before_any_runtime": true
+}
