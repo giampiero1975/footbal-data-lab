@@ -2,6 +2,37 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Ricognizione backend remediation A
+
+Attività: `RD-RAG-V5-REMEDIATION-A-BACKEND-RECONNAISSANCE-01`. Script:
+cinque sessioni SSH read-only, Python stdlib -B -I via stdin, systemctl show e
+readelf; nessun compilatore/modulo applicativo eseguito. Commit: documentale
+con report, cinque evidenze diagnostiche, TODO e registro contestuali. Report:
+`docs/rag-v5-remediation-a-backend-reconnaissance-01.md`; evidenze elencate
+nel report (summary, installed, model-metadata, tokenizer-header, final).
+HEAD iniziale locale/GitHub ca6bf67, tree pulito; precedenti report e preflight
+riconciliati, nessuna ricognizione equivalente. Risultato: GET version/tags/ps
+e ps finale, totale quattro; Ollama 0.40.5, qwen3.5:9b digest 56671c2a...,
+GGUF Q4_K_M, runner llamacpp, context dichiarato 262144 distinto da 4096
+richiesto. Hash/ELF library identificano commit installato 620d2225c e simboli
+json_schema_to_grammar. Tokenizer GGUF gpt2/pre=qwen35, 248.320 token,
+247.587 merges; template GGUF 7.756 byte distinto da layer {{ .Prompt }} e
+renderer qwen3.5. Header limitato, tensori non letti; ps models=[] nei due
+snapshot. JSON metadata e procfs parzialmente negati, nessun sudo. Sorgenti/header
+compatibili e ingresso di compilazione non generativo non verificati nei
+percorsi esaminati; g++ presente non basta. Nessuna prova keyword o token count;
+handoff 6.967/user 7.311/schema 16.869 restano dimensioni documentali.
+Auto-review ha respinto prima dell'esecuzione un comando di lettura blob senza
+limiti; alternativa con allowlist e limiti di dimensione approvata e conclusa.
+Decisione unica **B**: risolvere il prerequisito dell'ingresso/harness e
+instradamento format della build, senza presumere ABI o caricare modelli.
+Stato: ricognizione **ESEGUITO**, **VALIDATO** nel proprio perimetro; backend
+**BLOCCATO** dal prerequisito, soluzione **DA FARE**. Nessuna compatibilità
+backend o accuratezza generativa dichiarata. Zero POST, compiler, inferenze,
+suite 37/13/16/5, lock, trasferimenti artefatti, staging, wrapper/runtime-05,
+merge/deploy o modifiche remote. Accuratezza generativa, Gate, integrazione
+e certificazione **BLOCCATO**. STOP dopo pubblicazione.
+
 ### 2026-11-10 — Rivalutazione indipendente incrementale dopo R1
 
 Attività: `RD-RAG-V5-REMEDIATION-A-POST-R1-INDEPENDENT-REASSESSMENT-01`.

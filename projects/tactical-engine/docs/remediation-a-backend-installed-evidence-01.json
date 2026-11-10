@@ -1,0 +1,314 @@
+{
+  "observed_at_utc": "2026-11-10T16:25:05.797151+00:00",
+  "method": "local files and static binary metadata only",
+  "models": {
+    "/usr/share/ollama/.ollama/models/manifests/registry.ollama.ai/library/qwen3.5/9b": {
+      "bytes": 1407,
+      "sha256": "85879493124988ce76ff36a6ac583504cc8d893727db6a0c4f9992a079e6ca49",
+      "json": {
+        "schemaVersion": 2,
+        "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+        "config": {
+          "mediaType": "application/vnd.docker.container.image.v1+json",
+          "digest": "sha256:08f9698c1116d2ba3d2c1751f6e98919823e13bb28ff5eb7451c7bc9b40907c5",
+          "size": 177
+        },
+        "layers": [
+          {
+            "mediaType": "application/vnd.ollama.image.projector",
+            "digest": "sha256:f836f08f921193f4d6b6a6952dba0a6fb116759d26a757bcb395d570d73976ca",
+            "size": 921704832,
+            "from": "mmproj.gguf"
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.model",
+            "digest": "sha256:02d45dc1cf451ba2475ac33b301c2dd8f985abe4c182ce04a1f2f5bf0260278d",
+            "size": 5629109120,
+            "from": "model.gguf"
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.template",
+            "digest": "sha256:b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+            "size": 13
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.license",
+            "digest": "sha256:50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32",
+            "size": 11343
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.params",
+            "digest": "sha256:9371364b27a52acac9d87f88bd93c9db1174d8d6ec57f6888925cdc1788871ff",
+            "size": 65
+          },
+          {
+            "mediaType": "application/vnd.ollama.manifest.list.v2+json",
+            "digest": "sha256:fdf5fd4cd409881fac86077d7be23e1cb1a4d1c0083108ff81ad557b3dfd7b01",
+            "size": 470
+          },
+          {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "digest": "sha256:56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+            "size": 1088
+          }
+        ],
+        "runner": "llamacpp",
+        "format": "gguf"
+      }
+    },
+    "/usr/share/ollama/.ollama/models/manifests-v2/ollama.com/library/qwen3.5/9b": {
+      "bytes": 470,
+      "sha256": "fdf5fd4cd409881fac86077d7be23e1cb1a4d1c0083108ff81ad557b3dfd7b01",
+      "json": {
+        "schemaVersion": 2,
+        "mediaType": "application/vnd.ollama.manifest.list.v2+json",
+        "manifests": [
+          {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "digest": "sha256:56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+            "runner": "llamacpp",
+            "format": "gguf"
+          },
+          {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "digest": "sha256:d63f830f28d515fefea546f213fca7a75e9dd5176ef51a6deabc952d1c99a911",
+            "runner": "mlx",
+            "format": "safetensors"
+          }
+        ]
+      }
+    }
+  },
+  "libraries": {
+    "/usr/local/bin/ollama": {
+      "bytes": 29946960,
+      "sha256": "505c0068464497f69932d1ae5d8b6c9ad6fdcf07342c683d78dfb1ced60558e6",
+      "resolved": "/usr/local/bin/ollama",
+      "build_id_lines": [
+        "Build ID: 6c2d010467cd67ac842e024864576fc4d2e46e85"
+      ],
+      "selected_dynamic_symbols": [
+        "122: 0000000000e626c0    76 FUNC    GLOBAL DEFAULT   14 commitHookTrampoline"
+      ],
+      "matching_symbol_count": 1,
+      "selected_go_build_strings": [
+        "path\tgithub.com/ollama/ollama",
+        "mod\tgithub.com/ollama/ollama\t(devel)\t",
+        "github.com/ollama/ollama/auth.GetPublicKey",
+        "github.com/ollama/ollama/auth.NewNonce",
+        "github.com/ollama/ollama/auth.Sign",
+        "github.com/ollama/ollama/envconfig.init",
+        "github.com/ollama/ollama/envconfig.BoolWithDefault",
+        "github.com/ollama/ollama/envconfig.Bool",
+        "github.com/ollama/ollama/envconfig.String",
+        "github.com/ollama/ollama/envconfig.Uint",
+        "github.com/ollama/ollama/envconfig.Uint64",
+        "github.com/ollama/ollama/envconfig.init.Uint64.func26",
+        "github.com/ollama/ollama/envconfig.init.Uint.func25",
+        "github.com/ollama/ollama/envconfig.init.Uint.func24",
+        "github.com/ollama/ollama/envconfig.init.Uint.func23",
+        "github.com/ollama/ollama/envconfig.init.Uint.func22",
+        "github.com/ollama/ollama/envconfig.init.String.func21",
+        "github.com/ollama/ollama/envconfig.init.String.func20",
+        "github.com/ollama/ollama/envconfig.init.String.func19",
+        "github.com/ollama/ollama/envconfig.init.String.func18",
+        "github.com/ollama/ollama/envconfig.init.String.func17",
+        "github.com/ollama/ollama/envconfig.init.String.func16",
+        "github.com/ollama/ollama/envconfig.init.String.func15",
+        "github.com/ollama/ollama/envconfig.init.String.func14",
+        "github.com/ollama/ollama/envconfig.init.Bool.func13",
+        "github.com/ollama/ollama/envconfig.init.Bool.BoolWithDefault.func33",
+        "github.com/ollama/ollama/envconfig.init.Bool.func12",
+        "github.com/ollama/ollama/envconfig.init.Bool.BoolWithDefault.func32",
+        "github.com/ollama/ollama/envconfig.init.BoolWithDefault.func11",
+        "github.com/ollama/ollama/envconfig.init.BoolWithDefault.func10",
+        "github.com/ollama/ollama/envconfig.init.Bool.func9",
+        "github.com/ollama/ollama/envconfig.init.Bool.BoolWithDefault.func31",
+        "github.com/ollama/ollama/envconfig.init.Uint.func8",
+        "github.com/ollama/ollama/envconfig.init.Bool.func7",
+        "github.com/ollama/ollama/envconfig.init.Bool.BoolWithDefault.func30",
+        "github.com/ollama/ollama/envconfig.init.Bool.func6",
+        "github.com/ollama/ollama/envconfig.init.Bool.BoolWithDefault.func29",
+        "github.com/ollama/ollama/envconfig.init.Bool.func5",
+        "github.com/ollama/ollama/envconfig.init.Bool.BoolWithDefault.func28",
+        "github.com/ollama/ollama/envconfig.init.String.func4",
+        "github.com/ollama/ollama/envconfig.init.Bool.func3",
+        "github.com/ollama/ollama/envconfig.init.Bool.BoolWithDefault.func27",
+        "github.com/ollama/ollama/envconfig.init.BoolWithDefault.func2",
+        "github.com/ollama/ollama/envconfig.init.BoolWithDefault.func1",
+        "github.com/ollama/ollama/envconfig.Host"
+      ]
+    },
+    "/usr/local/lib/ollama/libllama-common.so.0.7.0": {
+      "bytes": 4642576,
+      "sha256": "ef57d101f75dbfcad9f309bbc7b08e62d38120657ca146e97ffad2680a2a953d",
+      "resolved": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "build_id_lines": [
+        "Build ID: a7bb44fb1d8cae659f9e62b00c3b43690ef27614"
+      ],
+      "selected_dynamic_symbols": [
+        "18: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND llama_detokenize",
+        "43: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND llama_sampler_init_grammar",
+        "288: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND llama_sampler_init_grammar_lazy_patterns",
+        "442: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND llama_chat_apply_template",
+        "543: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND llama_tokenize",
+        "604: 00000000001f79b0   153 FUNC    GLOBAL DEFAULT   11 _ZN26common_chat_msg_delimiters8tokenizeEPK11llama_vocab",
+        "689: 0000000000218160    53 FUNC    GLOBAL DEFAULT   11 _Z17common_detokenizeB5cxx11PK13llama_contextRKSt6vectorIiSaIiEEb",
+        "815: 00000000002b81a0  2534 FUNC    GLOBAL DEFAULT   11 _ZNK16common_peg_arena13build_grammarERK22common_grammar_builderb",
+        "834: 00000000001ff110   750 FUNC    GLOBAL DEFAULT   11 _Z26common_chat_input_tokenizePK11llama_vocabRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE",
+        "867: 000000000021b6e0   583 FUNC    GLOBAL DEFAULT   11 _Z15common_tokenizePK11llama_vocabRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEbb",
+        "892: 000000000020c260   117 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI22common_grammar_triggerSaIS0_EED1Ev",
+        "1255: 000000000021b930    72 FUNC    GLOBAL DEFAULT   11 _Z15common_tokenizePK13llama_contextRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEbb",
+        "1262: 000000000046ce40     4 OBJECT  GLOBAL DEFAULT   24 LLAMA_BUILD_NUMBER",
+        "1485: 00000000002d46d0  1480 FUNC    GLOBAL DEFAULT   11 _Z36common_sampling_add_grammar_triggersR22common_params_samplingPK11llama_vocabSt6vectorI22common_grammar_triggerSaIS5_EE",
+        "1594: 0000000000266500  1741 FUNC    GLOBAL DEFAULT   11 _Z22json_schema_to_grammarB5cxx11RK27common_chat_schema_document",
+        "1624: 0000000000161d30  1256 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI22common_grammar_triggerSaIS0_EE17_M_realloc_insertIJS0_EEEvN9__gnu_cxx17__normal_iteratorIPS0_S2_EEDpOT_",
+        "1648: 000000000046ce58     8 OBJECT  GLOBAL DEFAULT   24 LLAMA_COMMIT",
+        "1673: 0000000000218050   269 FUNC    GLOBAL DEFAULT   11 _Z17common_detokenizeB5cxx11PK11llama_vocabRKSt6vectorIiSaIiEEb",
+        "1959: 0000000000266bd0   180 FUNC    GLOBAL DEFAULT   11 _Z22json_schema_to_grammarB5cxx11RK11common_jsonb",
+        "1964: 00000000002f90d0 10819 FUNC    GLOBAL DEFAULT   11 _ZN5jinja5lexer8tokenizeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE",
+        "2023: 00000000001a8d00   274 FUNC    WEAK   DEFAULT   11 _ZSt16__do_uninit_copyIN9__gnu_cxx17__normal_iteratorIPK22common_grammar_triggerSt6vectorIS2_SaIS2_EEEEPS2_ET0_T_SB_SA_",
+        "2122: 00000000003480c0    11 FUNC    GLOBAL DEFAULT   11 _Z12llama_commitv",
+        "2213: 0000000000101fc0   274 FUNC    WEAK   DEFAULT   11 _ZSt16__do_uninit_copyIPK22common_grammar_triggerPS0_ET0_T_S5_S4_",
+        "3007: 00000000002640f0  1882 FUNC    GLOBAL DEFAULT   11 _Z13build_grammarB5cxx11RKSt8functionIFvRK22common_grammar_builderEERK22common_grammar_options",
+        "3099: 000000000020c260   117 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI22common_grammar_triggerSaIS0_EED2Ev",
+        "4361: 00000000003480b0    10 FUNC    GLOBAL DEFAULT   11 _Z18llama_build_numberv"
+      ],
+      "matching_symbol_count": 26
+    },
+    "/usr/local/lib/ollama/libllama-server-impl.so": {
+      "bytes": 2984688,
+      "sha256": "2d8d42a9328139d4847452d67aeb894a315bebe242a6c67507334ec96396d86d",
+      "resolved": "/usr/local/lib/ollama/libllama-server-impl.so",
+      "build_id_lines": [
+        "Build ID: a98c14580652fb3aae27e5d59540d5f88227e237"
+      ],
+      "selected_dynamic_symbols": [
+        "183: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Z36common_sampling_add_grammar_triggersR22common_params_samplingPK11llama_vocabSt6vectorI22common_grammar_triggerSaIS5_EE",
+        "469: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Z15common_tokenizePK11llama_vocabRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEbb",
+        "490: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND mtmd_tokenize",
+        "601: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Z15common_tokenizePK13llama_contextRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEbb",
+        "607: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Z17common_detokenizeB5cxx11PK13llama_contextRKSt6vectorIiSaIiEEb",
+        "630: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Z22json_schema_to_grammarB5cxx11RK11common_jsonb",
+        "701: 00000000001162b0   933 FUNC    GLOBAL DEFAULT   11 _Z26tokenize_oai_content_arrayPK11llama_vocabP12mtmd_contextRK18server_chat_params11common_jsonbbRK20mtmd_helper_init_opt",
+        "915: 00000000001056a0   117 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI22common_grammar_triggerSaIS0_EED1Ev",
+        "1410: 00000000001bb980  1256 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI22common_grammar_triggerSaIS0_EE17_M_realloc_insertIJS0_EEEvN9__gnu_cxx17__normal_iteratorIPS0_S2_EEDpOT_",
+        "1949: 0000000000113b80   618 FUNC    GLOBAL DEFAULT   11 _Z14tokenize_mixedPK11llama_vocabRK11common_jsonbb",
+        "2478: 00000000001056a0   117 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI22common_grammar_triggerSaIS0_EED2Ev",
+        "2552: 00000000001186a0  1251 FUNC    GLOBAL DEFAULT   11 _Z22tokenize_input_promptsPK11llama_vocabP12mtmd_contextRK11common_jsonbbRK20mtmd_helper_init_opt",
+        "3061: 0000000000141a00  1345 FUNC    WEAK   DEFAULT   11 _ZN19server_context_impl18tokenize_cli_inputER11server_task",
+        "3076: 0000000000113df0   205 FUNC    GLOBAL DEFAULT   11 _ZNK13server_tokens10detokenizeB5cxx11EPK13llama_contextb",
+        "3321: 0000000000117d80  1099 FUNC    GLOBAL DEFAULT   11 _Z24tokenize_input_subpromptPK11llama_vocabP12mtmd_contextRK11common_jsonbbRK20mtmd_helper_init_opt"
+      ],
+      "matching_symbol_count": 15
+    },
+    "/usr/local/lib/ollama/libllama.so.0.7.0": {
+      "bytes": 4436560,
+      "sha256": "67cc15d00fd21704dca3e5f77dcf9d3aa98c57ebf84eb440f97ef1903c1b9d8d",
+      "resolved": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "build_id_lines": [
+        "Build ID: cc8d6610ec6d7177e997a5fe41b11eb2493124ad"
+      ],
+      "selected_dynamic_symbols": [
+        "575: 000000000023b0c0   485 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI21llama_grammar_elementSaIS0_EE17_M_default_appendEm",
+        "581: 000000000010a760  1751 FUNC    GLOBAL DEFAULT   11 _ZN28llama_model_wavtokenizer_dec5graphC1ERK11llama_modelRK16llm_graph_params",
+        "594: 000000000023a730    33 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI23llama_grammar_candidateSaIS0_EED2Ev",
+        "616: 0000000000339910    79 FUNC    WEAK   DEFAULT   11 _ZN18llm_tokenizer_rwkvD1Ev",
+        "619: 00000000002370b0  1337 FUNC    GLOBAL DEFAULT   11 _Z25llama_grammar_accept_implR13llama_grammari",
+        "691: 00000000004343e0    16 OBJECT  WEAK   DEFAULT   19 _ZTI25llm_tokenizer_bpe_session",
+        "695: 000000000010c2c0    37 FUNC    WEAK   DEFAULT   11 _ZN28llama_model_wavtokenizer_decD0Ev",
+        "713: 00000000003adf40    35 OBJECT  WEAK   DEFAULT   13 _ZTS32llm_tokenizer_whitespace_session",
+        "770: 0000000000386f30    31 OBJECT  WEAK   DEFAULT   13 _ZTS28llama_model_wavtokenizer_dec",
+        "788: 00000000003adea0    20 OBJECT  WEAK   DEFAULT   13 _ZTS17llm_tokenizer_ugm",
+        "809: 0000000000339640   349 FUNC    WEAK   DEFAULT   11 _ZN20llm_tokenizer_plamo2D2Ev",
+        "822: 0000000000434438    24 OBJECT  WEAK   DEFAULT   19 _ZTI20llm_tokenizer_plamo2",
+        "865: 0000000000347ae0  6173 FUNC    WEAK   DEFAULT   11 _ZN20llm_tokenizer_plamo25buildERK11llama_vocab",
+        "898: 00000000003ade40    20 OBJECT  WEAK   DEFAULT   13 _ZTS17llm_tokenizer_bpe",
+        "900: 0000000000233ee0   583 FUNC    GLOBAL DEFAULT   11 _Z20llama_grammar_acceptP13llama_grammarj",
+        "984: 00000000002300f0   682 FUNC    GLOBAL DEFAULT   11 _ZNK20llama_grammar_parser7c_rulesEv",
+        "1045: 0000000000339b20   141 FUNC    WEAK   DEFAULT   11 _ZN25llm_tokenizer_spm_sessionD2Ev",
+        "1121: 000000000010c890    60 FUNC    WEAK   DEFAULT   11 _ZN28llama_model_wavtokenizer_dec5graphD2Ev",
+        "1175: 0000000000339220   133 FUNC    WEAK   DEFAULT   11 _ZN17llm_tokenizer_bpeD1Ev",
+        "1183: 0000000000333450  1994 FUNC    GLOBAL DEFAULT   11 _ZN11llama_vocab4impl14init_tokenizerE16llama_vocab_type",
+        "1216: 000000000033d820  1381 FUNC    WEAK   DEFAULT   11 _ZN25llm_tokenizer_spm_session14try_add_bigramEii",
+        "1224: 0000000000230670   505 FUNC    GLOBAL DEFAULT   11 _Z23llama_grammar_free_implP13llama_grammar",
+        "1235: 000000000023a3e0   109 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorIS_I21llama_grammar_elementSaIS0_EESaIS2_EED1Ev",
+        "1239: 00000000004344a0    32 OBJECT  WEAK   DEFAULT   19 _ZTV17llm_tokenizer_spm",
+        "1354: 00000000003adec0    21 OBJECT  WEAK   DEFAULT   13 _ZTS18llm_tokenizer_rwkv",
+        "1410: 0000000000339010   175 FUNC    WEAK   DEFAULT   11 _ZN25llm_tokenizer_bpe_sessionD0Ev",
+        "1476: 000000000032d670  1708 FUNC    GLOBAL DEFAULT   11 _ZNK11llama_vocab4impl22tokenizer_st_partitionERSt12forward_listI23fragment_buffer_variantSaIS2_EEb",
+        "1501: 0000000000338c30    10 FUNC    WEAK   DEFAULT   11 _ZN17llm_tokenizer_spmD0Ev",
+        "1570: 0000000000341ae0  3217 FUNC    WEAK   DEFAULT   11 _ZN31llm_tokenizer_hybriddna_session8tokenizeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt6vectorIiSaIiEE",
+        "1609: 0000000000434508    32 OBJECT  WEAK   DEFAULT   19 _ZTV17llm_tokenizer_wpm",
+        "1697: 000000000023c930   388 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI23llama_grammar_candidateSaIS0_EE17_M_realloc_insertIJS0_EEEvN9__gnu_cxx17__normal_iteratorIPS0_S2_EEDpOT_",
+        "1700: 00000000004343b0    24 OBJECT  WEAK   DEFAULT   19 _ZTI17llm_tokenizer_spm",
+        "1816: 000000000020d4d0 37045 FUNC    GLOBAL DEFAULT   11 _Z23llm_chat_apply_template17llm_chat_templateRKSt6vectorIPK18llama_chat_messageSaIS3_EERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEb",
+        "1847: 00000000003ade10    16 OBJECT  WEAK   DEFAULT   13 _ZTS13llm_tokenizer",
+        "1876: 0000000000344f70  2638 FUNC    WEAK   DEFAULT   11 _ZNK20llm_tokenizer_plamo26encodeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE",
+        "1921: 0000000000338c00     1 FUNC    WEAK   DEFAULT   11 _ZN13llm_tokenizerD2Ev",
+        "1928: 000000000042bc98    32 OBJECT  WEAK   DEFAULT   19 _ZTVN28llama_model_wavtokenizer_dec5graphE",
+        "1932: 0000000000346e20  3259 FUNC    WEAK   DEFAULT   11 _ZSt16__introsort_loopIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIS7_SaIS7_EEEElNS0_5__ops15_Iter_comp_iterIZN20llm_tokenizer_plamo25buildERK11llama_vocabEUlRKS7_SK_E_EEEvT_SN_T0_T1_",
+        "1956: 000000000033f4e0  2163 FUNC    WEAK   DEFAULT   11 _ZN25llm_tokenizer_bpe_session14add_new_bigramEii",
+        "1966: 0000000000233040   498 FUNC    GLOBAL DEFAULT   11 _ZN20llama_grammar_parser10parse_ruleEPKc",
+        "1967: 0000000000338eb0   173 FUNC    WEAK   DEFAULT   11 _ZN31llm_tokenizer_hybriddna_sessionD1Ev",
+        "1988: 000000000022fca0  1097 FUNC    GLOBAL DEFAULT   11 _ZN20llama_grammar_parser5printEP8_IO_FILE",
+        "2030: 000000000033a7c0  2082 FUNC    WEAK   DEFAULT   11 _ZN25llm_tokenizer_ugm_session8tokenizeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt6vectorIiSaIiEE",
+        "2068: 000000000042b9e8    24 OBJECT  WEAK   DEFAULT   19 _ZTI28llama_model_wavtokenizer_dec",
+        "2097: 000000000023a6c0   109 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorIS_IPK21llama_grammar_elementSaIS2_EESaIS4_EED2Ev",
+        "2120: 00000000004343f0    24 OBJECT  WEAK   DEFAULT   19 _ZTI17llm_tokenizer_wpm",
+        "2141: 0000000000338c20     1 FUNC    WEAK   DEFAULT   11 _ZN17llm_tokenizer_wpmD2Ev",
+        "2158: 0000000000333160   705 FUNC    GLOBAL DEFAULT   11 _ZNK11llama_vocab8tokenizeEPKciPiibb",
+        "2224: 0000000000339910    79 FUNC    WEAK   DEFAULT   11 _ZN18llm_tokenizer_rwkvD2Ev",
+        "2226: 000000000023d0d0   354 FUNC    WEAK   DEFAULT   11 _ZSt16__do_uninit_copyIN9__gnu_cxx17__normal_iteratorIPK29llama_grammar_trigger_patternSt6vectorIS2_SaIS2_EEEEPS2_ET0_T_SB_SA_",
+        "2306: 000000000010c2a0    19 FUNC    WEAK   DEFAULT   11 _ZN28llama_model_wavtokenizer_decD1Ev",
+        "2354: 000000000023b6e0   373 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorIPK21llama_grammar_elementSaIS2_EE17_M_realloc_insertIJRKS2_EEEvN9__gnu_cxx17__normal_iteratorIPS2_S4_EEDpOT_",
+        "2428: 0000000000339a70   175 FUNC    WEAK   DEFAULT   11 _ZN17llm_tokenizer_ugmD0Ev",
+        "2462: 000000000043cc60     8 OBJECT  <OS specific>: 10 DEFAULT   24 _ZGVZN31llm_tokenizer_hybriddna_session8tokenizeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt6vectorIiSaIiEEE9close_tagB5cxx11",
+        "2466: 000000000032f550  1004 FUNC    GLOBAL DEFAULT   11 _ZNK11llama_vocab4impl10detokenizeEPKiiPcibb",
+        "2488: 0000000000234130   187 FUNC    GLOBAL DEFAULT   11 _Z24llama_grammar_accept_strR13llama_grammarRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE",
+        "2491: 0000000000339170   175 FUNC    WEAK   DEFAULT   11 _ZN32llm_tokenizer_whitespace_sessionD0Ev",
+        "2527: 0000000000342a40  1442 FUNC    WEAK   DEFAULT   11 _ZSt25__unguarded_linear_insertIN9__gnu_cxx17__normal_iteratorIPNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt6vectorIS7_SaIS7_EEEENS0_5__ops14_Val_comp_iterIZN20llm_tokenizer_plamo25buildERK11llama_vocabEUlRKS7_SK_E_EEEvT_T0_",
+        "2633: 000000000010ae40    72 FUNC    GLOBAL DEFAULT   11 _ZNK28llama_model_wavtokenizer_dec16build_arch_graphERK16llm_graph_params",
+        "2647: 0000000000230e90   629 FUNC    GLOBAL DEFAULT   11 _ZN20llama_grammar_parser13get_symbol_idEPKcm",
+        "2678: 000000000023b860   388 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI23llama_grammar_candidateSaIS0_EE17_M_realloc_insertIJRKS0_EEEvN9__gnu_cxx17__normal_iteratorIPS0_S2_EEDpOT_",
+        "2805: 0000000000339220   133 FUNC    WEAK   DEFAULT   11 _ZN17llm_tokenizer_bpeD2Ev",
+        "2864: 000000000023a3e0   109 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorIS_I21llama_grammar_elementSaIS0_EESaIS2_EED2Ev",
+        "2896: 0000000000325b20    26 FUNC    GLOBAL DEFAULT   11 llama_sampler_init_grammar",
+        "3042: 0000000000338e00   173 FUNC    WEAK   DEFAULT   11 _ZN25llm_tokenizer_bpe_sessionD1Ev",
+        "3046: 00000000003ade60    28 OBJECT  WEAK   DEFAULT   13 _ZTS25llm_tokenizer_bpe_session",
+        "3047: 000000000043cd00    32 OBJECT  <OS specific>: 10 DEFAULT   24 _ZZN25llm_tokenizer_bpe_session8tokenizeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEERSt6vectorIiSaIiEEE5spaceB5cxx11",
+        "3049: 0000000000333140    24 FUNC    GLOBAL DEFAULT   11 _ZNK11llama_vocab8tokenizeERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEbb",
+        "3121: 000000000023bb70  1096 FUNC    WEAK   DEFAULT   11 _ZNSt6vectorI29llama_grammar_trigger_patternSaIS0_EE17_M_realloc_insertIJEEEvN9__gnu_cxx17__normal_iteratorIPS0_S2_EEDpOT_",
+        "3126: 0000000000338c10     1 FUNC    WEAK   DEFAULT   11 _ZN17llm_tokenizer_spmD1Ev"
+      ],
+      "matching_symbol_count": 171
+    },
+    "/usr/local/lib/ollama/llama-server": {
+      "bytes": 15096,
+      "sha256": "234b05b2138264f8fb263c3205e85f4c290e8afe5067e280a4f6f90cdac5696b",
+      "resolved": "/usr/local/lib/ollama/llama-server",
+      "build_id_lines": [
+        "Build ID: f8d44c042216b0a5042f13bf9426f7e263ac5471"
+      ],
+      "selected_dynamic_symbols": [],
+      "matching_symbol_count": 0
+    }
+  },
+  "configuration": {
+    "exit": 0,
+    "selected_service_environment": {},
+    "DropInPaths": ""
+  },
+  "manifests_children": [
+    "manifests/registry.ollama.ai"
+  ],
+  "manifests-v2_children": [
+    "manifests-v2/ollama.com"
+  ],
+  "metadata_children": [
+    "metadata/sha256-02d45dc1cf451ba2475ac33b301c2dd8f985abe4c182ce04a1f2f5bf0260278d.json",
+    "metadata/sha256-06507c7b42688469c4e7298b0a1e16deff06caf291cf0a5b278c308249c3e439.json",
+    "metadata/sha256-970aa74c0a90ef7482477cf803618e776e173c007bf957f635f1015bfcfef0e6.json",
+    "metadata/sha256-f836f08f921193f4d6b6a6952dba0a6fb116759d26a757bcb395d570d73976ca.json"
+  ]
+}

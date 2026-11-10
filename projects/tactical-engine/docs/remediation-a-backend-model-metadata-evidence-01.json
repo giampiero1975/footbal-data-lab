@@ -1,0 +1,240 @@
+{
+  "observed_at_utc": "2026-11-10T16:27:32.069528+00:00",
+  "method": "size-bounded metadata only; no model weights opened",
+  "small_blobs": {
+    "sha256:08f9698c1116d2ba3d2c1751f6e98919823e13bb28ff5eb7451c7bc9b40907c5": {
+      "path": "/usr/share/ollama/.ollama/models/blobs/sha256-08f9698c1116d2ba3d2c1751f6e98919823e13bb28ff5eb7451c7bc9b40907c5",
+      "media_type": "application/vnd.docker.container.image.v1+json",
+      "bytes": 177,
+      "sha256": "08f9698c1116d2ba3d2c1751f6e98919823e13bb28ff5eb7451c7bc9b40907c5",
+      "json": {
+        "model_format": "gguf",
+        "model_family": "qwen35",
+        "model_families": [
+          "qwen35"
+        ],
+        "model_type": "9.0B",
+        "file_type": "Q4_K_M",
+        "renderer": "qwen3.5",
+        "parser": "qwen3.5",
+        "requires": "0.30.0"
+      }
+    },
+    "sha256:b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315": {
+      "path": "/usr/share/ollama/.ollama/models/blobs/sha256-b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "media_type": "application/vnd.ollama.image.template",
+      "bytes": 13,
+      "sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+      "text": "{{ .Prompt }}"
+    },
+    "sha256:9371364b27a52acac9d87f88bd93c9db1174d8d6ec57f6888925cdc1788871ff": {
+      "path": "/usr/share/ollama/.ollama/models/blobs/sha256-9371364b27a52acac9d87f88bd93c9db1174d8d6ec57f6888925cdc1788871ff",
+      "media_type": "application/vnd.ollama.image.params",
+      "bytes": 65,
+      "sha256": "9371364b27a52acac9d87f88bd93c9db1174d8d6ec57f6888925cdc1788871ff",
+      "json": {
+        "presence_penalty": 1.5,
+        "temperature": 1,
+        "top_k": 20,
+        "top_p": 0.95
+      }
+    },
+    "sha256:fdf5fd4cd409881fac86077d7be23e1cb1a4d1c0083108ff81ad557b3dfd7b01": {
+      "path": "/usr/share/ollama/.ollama/models/blobs/sha256-fdf5fd4cd409881fac86077d7be23e1cb1a4d1c0083108ff81ad557b3dfd7b01",
+      "media_type": "application/vnd.ollama.manifest.list.v2+json",
+      "bytes": 470,
+      "sha256": "fdf5fd4cd409881fac86077d7be23e1cb1a4d1c0083108ff81ad557b3dfd7b01",
+      "json": {
+        "schemaVersion": 2,
+        "mediaType": "application/vnd.ollama.manifest.list.v2+json",
+        "manifests": [
+          {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "digest": "sha256:56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+            "runner": "llamacpp",
+            "format": "gguf"
+          },
+          {
+            "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+            "digest": "sha256:d63f830f28d515fefea546f213fca7a75e9dd5176ef51a6deabc952d1c99a911",
+            "runner": "mlx",
+            "format": "safetensors"
+          }
+        ]
+      }
+    },
+    "sha256:56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90": {
+      "path": "/usr/share/ollama/.ollama/models/blobs/sha256-56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "media_type": "application/vnd.docker.distribution.manifest.v2+json",
+      "bytes": 1088,
+      "sha256": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "json": {
+        "schemaVersion": 2,
+        "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+        "config": {
+          "mediaType": "application/vnd.docker.container.image.v1+json",
+          "digest": "sha256:08f9698c1116d2ba3d2c1751f6e98919823e13bb28ff5eb7451c7bc9b40907c5",
+          "size": 177
+        },
+        "layers": [
+          {
+            "mediaType": "application/vnd.ollama.image.projector",
+            "digest": "sha256:f836f08f921193f4d6b6a6952dba0a6fb116759d26a757bcb395d570d73976ca",
+            "size": 921704832,
+            "from": "mmproj.gguf"
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.model",
+            "digest": "sha256:02d45dc1cf451ba2475ac33b301c2dd8f985abe4c182ce04a1f2f5bf0260278d",
+            "size": 5629109120,
+            "from": "model.gguf"
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.template",
+            "digest": "sha256:b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+            "size": 13
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.license",
+            "digest": "sha256:50cbab8a892c5f2993b8c7351a99182507472def3b1374558308605d99b86b32",
+            "size": 11343
+          },
+          {
+            "mediaType": "application/vnd.ollama.image.params",
+            "digest": "sha256:9371364b27a52acac9d87f88bd93c9db1174d8d6ec57f6888925cdc1788871ff",
+            "size": 65
+          }
+        ],
+        "runner": "llamacpp",
+        "format": "gguf"
+      }
+    }
+  },
+  "metadata": {
+    "path": "/usr/share/ollama/.ollama/models/metadata/sha256-02d45dc1cf451ba2475ac33b301c2dd8f985abe4c182ce04a1f2f5bf0260278d.json",
+    "error": "PermissionError: [Errno 13] Permission denied: '/usr/share/ollama/.ollama/models/metadata/sha256-02d45dc1cf451ba2475ac33b301c2dd8f985abe4c182ce04a1f2f5bf0260278d.json'"
+  },
+  "static_backend": {
+    "/usr/local/lib/ollama/libllama-common.so.0.7.0": [
+      "442: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND llama_chat_apply_template",
+      "543: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND llama_tokenize",
+      "1262: 000000000046ce40     4 OBJECT  GLOBAL DEFAULT   24 LLAMA_BUILD_NUMBER",
+      "1594: 0000000000266500  1741 FUNC    GLOBAL DEFAULT   11 _Z22json_schema_to_grammarB5cxx11RK27common_chat_schema_document",
+      "1634: 00000000003480e0    11 FUNC    GLOBAL DEFAULT   11 _Z18llama_build_targetv",
+      "1648: 000000000046ce58     8 OBJECT  GLOBAL DEFAULT   24 LLAMA_COMMIT",
+      "1959: 0000000000266bd0   180 FUNC    GLOBAL DEFAULT   11 _Z22json_schema_to_grammarB5cxx11RK11common_jsonb",
+      "2122: 00000000003480c0    11 FUNC    GLOBAL DEFAULT   11 _Z12llama_commitv",
+      "2748: 000000000046ce48     8 OBJECT  GLOBAL DEFAULT   24 LLAMA_BUILD_TARGET",
+      "3879: 00000000003480f0  1916 FUNC    GLOBAL DEFAULT   11 _Z16llama_build_infov",
+      "4361: 00000000003480b0    10 FUNC    GLOBAL DEFAULT   11 _Z18llama_build_numberv"
+    ],
+    "/usr/local/lib/ollama/libllama-server-impl.so": [
+      "352: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Z16llama_build_infov",
+      "630: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND _Z22json_schema_to_grammarB5cxx11RK11common_jsonb"
+    ],
+    "/usr/local/lib/ollama/libllama.so.0.7.0": [
+      "3428: 0000000000333430    18 FUNC    GLOBAL DEFAULT   11 llama_tokenize",
+      "3459: 00000000001f6c90   696 FUNC    GLOBAL DEFAULT   11 llama_chat_apply_template"
+    ]
+  },
+  "go_build_metadata": [
+    "build\t-buildmode=pie",
+    "build\t-compiler=gc",
+    "build\t-trimpath=true",
+    "build\tCGO_ENABLED=1",
+    "build\tGOARCH=amd64",
+    "build\tGOOS=linux",
+    "build\tGOAMD64=v1",
+    "build\t-buildmode=pie",
+    "build\t-compiler=gc",
+    "build\t-trimpath=true",
+    "build\tCGO_ENABLED=1",
+    "build\tGOARCH=amd64",
+    "build\tGOOS=linux",
+    "build\tGOAMD64=v1"
+  ],
+  "selected_package_functions": [
+    "github.com/ollama/ollama/api.Duration.Truncate",
+    "github.com/ollama/ollama/api.(*Duration).Truncate",
+    "github.com/ollama/ollama/anthropic.TraceTruncateString",
+    "github.com/ollama/ollama/fs/gguf.(*Metadata).ChatTemplate",
+    "github.com/ollama/ollama/llm.thinkingGrammar",
+    "github.com/ollama/ollama/llm.renameGrammarRule",
+    "github.com/ollama/ollama/llm.renameGrammarRule.func1",
+    "github.com/ollama/ollama/llm.scanGrammar",
+    "github.com/ollama/ollama/llm.scanGrammar.func1",
+    "github.com/ollama/ollama/llm.(*llamaServerRunner).schemaGrammar",
+    "github.com/ollama/ollama/llm.(*llamaServerRunner).schemaGrammar.deferwrap2",
+    "github.com/ollama/ollama/llm.(*llamaServerRunner).schemaGrammar.deferwrap1",
+    "github.com/ollama/ollama/llm.(*llamaServerRunner).ApplyChatTemplate",
+    "github.com/ollama/ollama/llm.(*llamaServerRunner).ApplyChatTemplate.deferwrap1",
+    "github.com/ollama/ollama/llm.llamaServerChatTemplateKwargs",
+    "github.com/ollama/ollama/llm.(*llamaServerRunner).Tokenize",
+    "type:.eq.github.com/ollama/ollama/llm.schemaGrammar",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).VocabSize",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).BOS",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).AddBOS",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).EOS",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).EOSTokens",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).PAD",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).IsEOS",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).GetSpecialToken",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).encodeBPEMerge",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).encodeBPEMerge.func1",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).appendByteFallback",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).Decode",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).normalize",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).forEachPartChunk",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).appendEncodedChunk",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).Encode",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).Encode.gowrap1",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).Encode.func3",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).Encode.func3.deferwrap1",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).Encode.func2",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).Encode.func1",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.(*Tokenizer).encodeChunkInto",
+    "github.com/ollama/ollama/mlxrunner/tokenizer.loadFromTokenizerJSON",
+    "github.com/ollama/ollama/mlxrunner/model/qwen3_5.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/clef.Model.Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/clef.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/cohere2_moe.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/gemma4.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/gemma4embedding.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/glimmer.validateTokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/glimmer.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/glm4_moe_lite.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/kev.Model.Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/kev.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/laguna.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/laya.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/llama.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/nemotron_h.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/qwen3.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/qwen4_exp.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/strands.Model.Tokenizer",
+    "github.com/ollama/ollama/mlxrunner/model/strands.(*Model).Tokenizer",
+    "github.com/ollama/ollama/mlxrunner.requestGrammar",
+    "github.com/ollama/ollama/mlxrunner.(*Client).ApplyChatTemplate",
+    "github.com/ollama/ollama/mlxrunner.(*Client).Tokenize",
+    "github.com/ollama/ollama/mlxrunner.(*Client).Tokenize.deferwrap1",
+    "github.com/ollama/ollama/mlxrunner.newGrammarEngine",
+    "github.com/ollama/ollama/mlxrunner.newGrammarEngine.func1"
+  ],
+  "build_tools_presence_only": {
+    "g++": "/usr/bin/g++",
+    "c++": "/usr/bin/c++",
+    "clang++": null,
+    "cmake": null,
+    "pkg-config": null,
+    "go": null
+  },
+  "installed_source_candidate_paths": {
+    "/usr/local/include/llama.h": false,
+    "/usr/include/llama.h": false,
+    "/usr/local/include/json-schema-to-grammar.h": false,
+    "/usr/local/lib/ollama/include": false,
+    "/usr/local/src/ollama": false,
+    "/usr/src/ollama": false,
+    "/opt/ollama": false
+  }
+}

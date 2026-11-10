@@ -1,0 +1,45 @@
+{
+  "observed_at_utc": "2026-11-10T16:30:01.553026+00:00",
+  "purpose": "end-of-reconnaissance volatile no-loaded-model observation and bounded installed-file discovery",
+  "get_api_ps": {
+    "status": 200,
+    "body": {
+      "models": []
+    }
+  },
+  "installed_header_source_or_grammar_tool_candidates": [
+    "/usr/local/lib/ollama/XGRAMMAR_LICENSE",
+    "/usr/local/lib/ollama/XGRAMMAR_NOTICE"
+  ],
+  "candidate_search_scope": "/usr/local/lib/ollama; no claim about uninspected directories",
+  "dependency_lines": {
+    "/usr/local/lib/ollama/llama-server": [
+      "0x0000000000000001 (NEEDED)             Shared library: [libllama-server-impl.so]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libllama-common.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libmtmd.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libllama.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libggml.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libggml-base.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libpthread.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+      "0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN]"
+    ],
+    "/usr/local/lib/ollama/libllama-server-impl.so": [
+      "0x0000000000000001 (NEEDED)             Shared library: [libpthread.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libllama-common.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libmtmd.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libllama.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libggml.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libggml-base.so.0]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+      "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+      "0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]",
+      "0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN]"
+    ]
+  }
+}

@@ -8,6 +8,21 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** nel solo perimetro di ricognizione
+  RD-RAG-V5-REMEDIATION-A-BACKEND-RECONNAISSANCE-01 (2026-11-10).
+  Decisione **B**: prima serve un ingresso/harness non generativo verificabile
+  per la build/ABI installata e il percorso format. Ollama 0.40.5, digest qwen
+  atteso, GGUF Q4_K_M runner llamacpp; libreria installata commit 620d2225c con
+  simboli json_schema_to_grammar. Header GGUF: gpt2/pre=qwen35, 248.320 token,
+  merges/template identificati senza tensori o caricamento. Tre livelli template
+  osservati, rendering effettivo non provato; nessun conteggio token/schema
+  compilato. Quattro sole GET note, ps vuoto iniziale/finale. Verifica backend
+  **BLOCCATO** dal prerequisito, soluzione **DA FARE**; backend non validato.
+  Report `docs/rag-v5-remediation-a-backend-reconnaissance-01.md`, cinque
+  evidenze locali pubblicate con TODO/registro. Zero POST, inferenze, compiler,
+  runtime/staging/wrapper/lock o modifiche VPS. Accuratezza generativa, Gate,
+  integrazione e certificazione **BLOCCATO**. STOP.
+
 - [x] **VALIDATO** come rivalutazione documentale incrementale
   RD-RAG-V5-REMEDIATION-A-POST-R1-INDEPENDENT-REASSESSMENT-01 (2026-11-10).
   Decisione **A**: contratto idoneo alla successiva verifica separata del
