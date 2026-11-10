@@ -2,6 +2,32 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Rivalutazione indipendente incrementale dopo R1
+
+Attività: `RD-RAG-V5-REMEDIATION-A-POST-R1-INDEPENDENT-REASSESSMENT-01`.
+Script: comandi locali read-only Git/AST/JSON e lettura manuale dei rami;
+nessun import applicativo, helper di dominio o test eseguito. Commit:
+documentale che pubblica contestualmente report, fatti, TODO e registro.
+Report: `docs/rag-v5-remediation-a-post-r1-independent-reassessment-01.md`;
+evidenze: `docs/remediation-a-post-r1-independent-reassessment-facts-01.json`.
+HEAD iniziale locale/GitHub 5794e2c, tree pulito; tecnico R1 5bfa489. Nessuna
+rivalutazione già registrata. Risultato: sola frase normativa cambiata rispetto
+a c00af6d; caller numeric return same prima dei literal, limite versionato
+esplicito. Validator/schema invariati, nessuna normalizzazione. Ricerca
+incrementale su stati, entità/assi, raffinamento spaziale nel caller, quantifier
+non numeric, conditions, polarity e derivazione label: nessuna nuova
+contraddizione normativa bloccante. Preservati limite numeric e formulazione
+label meno precisa già non bloccante. Conferma statica handoff 6.967 byte,
+user storico 7.311 (+373), schema 16.869 da evidenza precedente invariata.
+Nessuna stima token, compilazione grammar o accesso backend. Decisione unica
+**A**: idoneo alla verifica separata del backend, non una generazione né una
+compatibilità reale dichiarata. Stato: rivalutazione **ESEGUITO**, **VALIDATO**
+come analisi documentale incrementale; patch **IMPLEMENTATO**, backend
+**DA FARE**. Sedici e cinque PASS storici conservati, zero test ripetuti o
+codice/test modificati. Accuratezza generativa, Gate, integrazione e
+certificazione **BLOCCATO**. Zero VPS, modelli, runtime-05, staging, wrapper,
+merge/deploy; precedenti report invariati. STOP dopo pubblicazione.
+
 ### 2026-11-10 — Correzione R1 numeric/literal
 
 Attività: `RD-RAG-V5-REMEDIATION-A-R1-NUMERIC-LITERAL-01`. Script applicativo:

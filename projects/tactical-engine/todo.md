@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** come rivalutazione documentale incrementale
+  RD-RAG-V5-REMEDIATION-A-POST-R1-INDEPENDENT-REASSESSMENT-01 (2026-11-10).
+  Decisione **A**: contratto idoneo alla successiva verifica separata del
+  backend. R1 chiuso indipendentemente sul delta esatto; nessuna nuova
+  contraddizione normativa bloccante nei percorsi effettivi tra relazioni.
+  Limite numeric e sintesi label non esaustiva preservati e documentati.
+  Confermati handoff 6.967 byte, user storico 7.311, schema invariato 16.869;
+  tokenizer, troncamento e grammar reali non verificati. Verifica backend
+  **DA FARE**, non eseguita; nessuna generazione autorizzata. Zero codice/test
+  modificati, suite ripetute, VPS/modelli/runtime/staging/wrapper. Report
+  `docs/rag-v5-remediation-a-post-r1-independent-reassessment-01.md` e fatti
+  statici pubblicati con TODO/registro. Accuratezza generativa, Gate,
+  integrazione e certificazione **BLOCCATO**. STOP.
+
 - [x] **VALIDATO** offline RD-RAG-V5-REMEDIATION-A-R1-NUMERIC-LITERAL-01
   (2026-11-10): correzione **IMPLEMENTATO**, tecnico `5bfa4897e93d5d8edef0bc79371aa36b1b1409ae`.
   Sola frase normativa: stati prima dei value; numeric uguali restituiscono

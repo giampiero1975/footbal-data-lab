@@ -1,0 +1,136 @@
+{
+  "activity": "RD-RAG-V5-REMEDIATION-A-POST-R1-INDEPENDENT-REASSESSMENT-01",
+  "date": "2026-11-10",
+  "reviewed_head": "5794e2c26938aaacaac206685a886993b66cb6f1",
+  "previous_independent_review": "c00af6da364f3849f23d5d300e3c0e75b9d6a574",
+  "technical_R1": "5bfa4897e93d5d8edef0bc79371aa36b1b1409ae",
+  "method": "Read-only Git/AST/JSON and manual branch walks; no project imports, helper calls, test execution or schema recompilation.",
+  "R1_only_normative_change": true,
+  "R1_changed_source_line": 358,
+  "R1_old_paragraph": "Quantifier confrontabile: valori uguali richiedono same, salvo numeric con literal diversi che richiede different. La scala existential < some < many < most < all ammette compatible solo quando la forza evidence e almeno quella claim, altrimenti different. always/never richiede incompatible; gli altri valori diversi different. Non usare compatible come sostituto generico di unknown.",
+  "R1_new_paragraph": "Quantifier confrontabile: dopo la precedenza degli stati, _expected_comparison confronta i value prima del dispatch specifico del quantifier. Value uguali richiedono same: due value=numeric richiedono attualmente same anche con literal diversi. Il confronto dei literal nel helper non prevale sul return anticipato del caller. Questa e la semantica attuale del contratto versionato, non una regola di correttezza numerica generale. Solo con value diversi si applicano le regole seguenti. La scala existential < some < many < most < all ammette compatible solo quando la forza evidence e almeno quella claim, altrimenti different. always/never richiede incompatible; gli altri valori diversi different. Non usare compatible come sostituto generico di unknown.",
+  "final_validator_blob_unchanged": true,
+  "judge_blob_unchanged": true,
+  "changed_paths_since_independent_review": [
+    "projects/tactical-engine/docs/experiment-register.md",
+    "projects/tactical-engine/docs/rag-v5-remediation-a-r1-numeric-literal-closeout-01.md",
+    "projects/tactical-engine/docs/remediation-a-r1-numeric-literal-results-01.json",
+    "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2_extraction.py",
+    "projects/tactical-engine/tests/test_v5_spatial_extraction_numeric_literal_r1.py",
+    "projects/tactical-engine/todo.md"
+  ],
+  "source_blob_sha256": {
+    "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2_extraction.py": "377f50e542df55a88d7c72fa54e004f0a46a44ff271ef7bd105121452edb8f34",
+    "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2.py": "06e071b50c69683c8ed69257a238c6fe53b00cc60ad589ec61ab1100b59a3b46"
+  },
+  "effective_path_locations": {
+    "_expected_comparison": {
+      "start": 344,
+      "end": 372
+    },
+    "_quantifier_comparison": {
+      "start": 375,
+      "end": 385
+    },
+    "_comparison_errors": {
+      "start": 388,
+      "end": 410
+    },
+    "_claim_target_invalid": {
+      "start": 413,
+      "end": 415
+    },
+    "_derive_label": {
+      "start": 418,
+      "end": 434
+    },
+    "validate_spatial_v2": {
+      "start": 437,
+      "end": 464
+    }
+  },
+  "extraction_path_locations": {
+    "extraction_handoff_instructions": {
+      "start": 338,
+      "end": 360
+    },
+    "extraction_semantic_errors": {
+      "start": 402,
+      "end": 425
+    },
+    "boundary_failure": {
+      "start": 527,
+      "end": 539
+    },
+    "materialize_extraction": {
+      "start": 542,
+      "end": 591
+    }
+  },
+  "handoff_utf8_bytes_static_reconstruction": 6967,
+  "user_utf8_bytes_same_published_case_static_reconstruction": 7311,
+  "R1_handoff_delta_utf8_bytes": 373,
+  "schema_unchanged_by_exact_source_delta": true,
+  "schema_utf8_bytes_previous_evidence_not_recomputed": 16869,
+  "historical_tests_read_not_rerun": {
+    "original": 16,
+    "R1": 5,
+    "R1_passed": 5
+  },
+  "static_branch_walks_not_executed": [
+    {
+      "topic": "numeric",
+      "path": "Equal numeric values return same before quantifier dispatch, regardless of different literals.",
+      "normative_conflict_found": false
+    },
+    {
+      "topic": "status",
+      "path": "Ambiguous before absent/unknown, then entity IDs or scalar values.",
+      "normative_conflict_found": false
+    },
+    {
+      "topic": "entities_axes",
+      "path": "Equal IDs same, differing IDs compatible/different; equal axes same, differing axes different.",
+      "normative_conflict_found": false
+    },
+    {
+      "topic": "spatial_values",
+      "path": "comparison_errors refines helper: different axes -> different even if stable==stable; same axis -> incompatible pairs, then equality, then different.",
+      "normative_conflict_found": false
+    },
+    {
+      "topic": "nonnumeric_quantifier",
+      "path": "Equal values same; otherwise evidence/claim strength helper, always/never incompatible, remaining different.",
+      "normative_conflict_found": false
+    },
+    {
+      "topic": "conditions",
+      "path": "Container ambiguous then unknown, then ordered IDs; absent empty lists may be same.",
+      "normative_conflict_found": false
+    },
+    {
+      "topic": "polarity",
+      "path": "Status gates, equality, affirmed/negated incompatible.",
+      "normative_conflict_found": false
+    },
+    {
+      "topic": "label",
+      "path": "Claim not comparable; evidence insufficient; alignment insufficient; value/polarity contradiction; quantifier insufficiency; supported; residual insufficient.",
+      "normative_conflict_found": false
+    }
+  ],
+  "new_blocking_findings": [],
+  "remaining_limits": [
+    "Numeric literal semantic limitation preserved",
+    "Previously documented label summary non dimostra supporto less precise than final code; not an instruction to emit contradicted",
+    "Actual decoder grammar and tokenizer/context/truncation unverified"
+  ],
+  "decision": "A",
+  "review_status": "VALIDATO",
+  "generative_accuracy_status": "BLOCCATO",
+  "tests_executed": 0,
+  "project_imports": 0,
+  "vps_accesses": 0,
+  "model_calls": 0,
+  "backend_checks": 0
+}
