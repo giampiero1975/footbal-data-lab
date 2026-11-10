@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** RD-FOOTBALL-VPS-SSH-V3-NEW-PC-ACCESS-01 (2026-11-10):
+  nuova pubblica Ed25519 v3 installata dal titolare via password, una sola
+  occorrenza e byte delle vecchie entry preservati. Alias `football-vps`
+  creato senza sovrascritture; host key verificata rigorosamente. Unico test
+  Codex read-only exit 0, autenticazione publickey con sola v3 e utente
+  `football`; hash finale authorized_keys coincidente con l'installazione.
+  Privata senza passphrase per scelta esplicita successiva del titolare;
+  ACL protette. Accesso SSH **VALIDATO**, backup cifrato **DA FARE**;
+  nessuna revoca, modifica servizi, staging o inferenza. Problema generativo
+  RAG V5 e contraddizioni **BLOCCATO**. Report
+  `docs/football-vps-ssh-v3-new-pc-access-01.md`.
+
 - [x] **ESEGUITO** RD-RAG-V5-DUAL-BLOCKER-NEW-PC-PREPARATION-01 (2026-11-10):
   repository nuovo PC `C:\laragon\www\footbal-data-lab` verificato; fetch con
   HEAD locale/remoto `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`, divergenza

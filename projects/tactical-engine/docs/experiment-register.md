@@ -2,6 +2,30 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Accesso SSH v3 dal nuovo PC
+
+Attività: `RD-FOOTBALL-VPS-SSH-V3-NEW-PC-ACCESS-01`. Script: OpenSSH locale,
+blocco Python stdlib di append eseguito dal titolare nella sessione VPS con
+password, unico test SSH Codex read-only. Commit: documentale che aggiunge
+`docs/football-vps-ssh-v3-new-pc-access-01.md` e aggiorna contestualmente TODO e
+questo registro, rintracciabile dalla storia del report. Baseline iniziale
+locale/GitHub `103fd8fb1de3d7712462ccb2e00e1cc63b1b4ae1`, working tree pulito.
+Risultato: fingerprint pubblica v3
+`SHA256:fpb/vDKCpmsoJD04J7KU3hCvlQqNL389hBp61Umj8iM`; host Ed25519
+verificato contro known_hosts. Uso della privata senza passphrase accettato
+esplicitamente dal titolare dopo i controlli di cifratura; nessun segreto
+registrato. Policy script non firmati preservata; installazione manuale
+password con append senza duplicati e vecchi byte invariati. Alias nuovo
+`football-vps` con sola v3 e controllo host rigoroso. Singolo test Codex exit 0,
+autenticazione publickey, utente football, conteggio v3 1 e hash remoto
+`07c6bb9c1259c24dce3ed6b7db25d3e9eace1e14fbe2fd1912cefbfaa509a78a`
+coincidente con l'esito manuale. Decisione: STOP connessioni e attività VPS;
+nessuna revoca, modifica servizi/codice, staging o inferenza. Stato:
+installazione/alias **ESEGUITO**, accesso SSH **VALIDATO**; backup cifrato
+indipendente **DA FARE**; problema generativo RAG V5, contraddizioni, Gate,
+integrazione e certificazione **BLOCCATO**. Il precedente blocco di accesso
+nuovo PC è superato esclusivamente per la nuova identità v3.
+
 ### 2026-11-10 — Nuovo PC e preparazione runtime Dual Blocker
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-NEW-PC-PREPARATION-01`. Script: soli comandi
