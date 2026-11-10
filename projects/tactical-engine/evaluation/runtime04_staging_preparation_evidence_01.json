@@ -1,0 +1,235 @@
+{
+  "activity": "RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-STAGING-PREPARATION-01",
+  "date": "2026-11-10",
+  "application_baseline": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+  "initial_documentary_head": "83abcde029a8c28432bc4a7b8b12c2a318b5dbcf",
+  "preflight": {
+    "user": "football",
+    "parent": "/home/football/.local/share/football-data-lab/staging",
+    "parent_mode": "0o700",
+    "target_absent": true,
+    "bundle_absent": true,
+    "upload_absent": true,
+    "snapshot": [
+      {
+        "path": "/opt/football-data-lab",
+        "head": "1a80fe0c6261b10f748a36c2b4fd96e8e2253971",
+        "branch": "HEAD",
+        "status_sha256": "3877d2b2bb6f9d39300327e58e412c5178089811b9f2db77c716482f35795d06",
+        "status_lines": 17,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/s2-first-controlled-b1946f8",
+        "head": "f2a77deb73b62acac5ec4c478129345196299179",
+        "branch": "HEAD",
+        "status_sha256": "c0dc4c5e4e70dcdfd65cedfb97b4c3b3c4fc33de9400d837bf52acd602b9e0f8",
+        "status_lines": 1,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/s2-spatial-differential-0d40719",
+        "head": "0d40719555d4ad13eb43ab2897cf26dea73ea47f",
+        "branch": "HEAD",
+        "status_sha256": "3c58951ce4f7925ebe94d5f079dd89a04ef0e081d9760d074ab00352ea5cf225",
+        "status_lines": 1,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-extraction-locator-db3ad66",
+        "head": "db3ad66f6254f43bcc625b605b68f2f181c1af69",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-q3-04-009f76e",
+        "head": "009f76e71c0351da9d2b797ad3c9ff1928671a4e",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-q3-04-360-69ec127",
+        "head": "69ec127cddbba114d8c37f3eefde5dba9200520c",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-q3-04-prompt-runtime-41d50fa",
+        "head": "41d50fa042b88aaa357a19e2c2d5de52a4910728",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/tsc-v1-3fa3a18",
+        "head": "3fa3a189b213884df6f08544c827fd306c5fd007",
+        "branch": "HEAD",
+        "status_sha256": "dc8be9804101288dcf13ce53c8b9d7ab535ebdb5ef65dd1b75e4ed2f36c74a4d",
+        "status_lines": 1,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/tsc-v2-965d6b6",
+        "head": "965d6b60b84d56c86fdc64c9c82583bfd2b1da2f",
+        "branch": "HEAD",
+        "status_sha256": "67592d545ea5ba4d6db601e3eed04bb3bbee2ba3c74159720d148019e9801480",
+        "status_lines": 1,
+        "common_dir": ".git"
+      }
+    ],
+    "runtime04_artifacts_absent": true
+  },
+  "bundle": {
+    "baseline": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+    "ref": "refs/heads/codex/staging-runtime04-13814c2",
+    "bundle": "C:\\Users\\giamp\\.codex\\visualizations\\2026\\11\\10\\01a1c50c-905a-7f30-a5ad-89b57aa7b71d\\runtime04-staging\\spatial-v2-dual-blocker-13814c2-clone.bundle",
+    "bytes": 2728883,
+    "sha256": "05c4f8726c1a1f701ec46af63a32f066caac416d6b69f3578dc69ddf9bd0ae29",
+    "heads": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d refs/heads/codex/staging-runtime04-13814c2",
+    "verify_empty_stdout": "The bundle contains this ref:\n13814c20d80bca4d9cb4cb08a288b6e7b31dac0d refs/heads/codex/staging-runtime04-13814c2\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\n",
+    "verify_empty_stderr": "C:/Users/giamp/.codex/visualizations/2026/11/10/01a1c50c-905a-7f30-a5ad-89b57aa7b71d/runtime04-staging/spatial-v2-dual-blocker-13814c2-clone.bundle is okay\n",
+    "local_clone_exit": 0,
+    "local_clone_baseline_present": true
+  },
+  "transfer": {
+    "bundle": "/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2.bundle",
+    "bytes": 2728883,
+    "sha256": "05c4f8726c1a1f701ec46af63a32f066caac416d6b69f3578dc69ddf9bd0ae29",
+    "mode": "0o600",
+    "upload_absent": true,
+    "target_absent": true
+  },
+  "verification": {
+    "target": "/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2",
+    "head": "13814c20d80bca4d9cb4cb08a288b6e7b31dac0d",
+    "detached": true,
+    "mode": "0o700",
+    "common_dir": "/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2/.git",
+    "origin": "/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2.bundle",
+    "alternates_absent": true,
+    "git_hardlinks_absent": true,
+    "worktree_status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "fsck_exit": 0,
+    "fsck_stdout": "",
+    "bundle_verify_exit": 0,
+    "bundle_verify_stdout": "The bundle contains this ref:\n13814c20d80bca4d9cb4cb08a288b6e7b31dac0d refs/heads/codex/staging-runtime04-13814c2\nThe bundle records a complete history.\nThe bundle uses this hash algorithm: sha1\n",
+    "blobs": [
+      {
+        "path": "projects/tactical-engine/scripts/shadow_nli_spatial_relations_v2_inference.py",
+        "blob": "8ac93d07341e1079ee3ca6ff98327a8391b7ab5f",
+        "sha256": "b6f30e76a2ccf98a4c027beff7fd2e36128da42797d2fcbbe144dc3e6089a9c6",
+        "bytes": 10196,
+        "mode": "0o600"
+      },
+      {
+        "path": "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2_extraction.py",
+        "blob": "1a64827b26fb30758773049eedeb342a2bb826b2",
+        "sha256": "a1592fa491fe20590e2e85e35b5c4397365c8bdc9dbc898bc9d9e0c2d8b73aef",
+        "bytes": 20671,
+        "mode": "0o600"
+      },
+      {
+        "path": "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2.py",
+        "blob": "0a8b92acbda67afeaee4bc057f89729e11e20ab5",
+        "sha256": "06e071b50c69683c8ed69257a238c6fe53b00cc60ad589ec61ab1100b59a3b46",
+        "bytes": 22647,
+        "mode": "0o600"
+      },
+      {
+        "path": "projects/tactical-engine/eval/claim_fidelity_gold_v1.json",
+        "blob": "4523eb746d666fdfb161c5d38d8db31f12e99b92",
+        "sha256": "8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c",
+        "bytes": 7612,
+        "mode": "0o600"
+      }
+    ],
+    "previous_snapshots_unchanged": [
+      {
+        "path": "/opt/football-data-lab",
+        "head": "1a80fe0c6261b10f748a36c2b4fd96e8e2253971",
+        "branch": "HEAD",
+        "status_sha256": "3877d2b2bb6f9d39300327e58e412c5178089811b9f2db77c716482f35795d06",
+        "status_lines": 17,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/s2-first-controlled-b1946f8",
+        "head": "f2a77deb73b62acac5ec4c478129345196299179",
+        "branch": "HEAD",
+        "status_sha256": "c0dc4c5e4e70dcdfd65cedfb97b4c3b3c4fc33de9400d837bf52acd602b9e0f8",
+        "status_lines": 1,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/s2-spatial-differential-0d40719",
+        "head": "0d40719555d4ad13eb43ab2897cf26dea73ea47f",
+        "branch": "HEAD",
+        "status_sha256": "3c58951ce4f7925ebe94d5f079dd89a04ef0e081d9760d074ab00352ea5cf225",
+        "status_lines": 1,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-extraction-locator-db3ad66",
+        "head": "db3ad66f6254f43bcc625b605b68f2f181c1af69",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-q3-04-009f76e",
+        "head": "009f76e71c0351da9d2b797ad3c9ff1928671a4e",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-q3-04-360-69ec127",
+        "head": "69ec127cddbba114d8c37f3eefde5dba9200520c",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-q3-04-prompt-runtime-41d50fa",
+        "head": "41d50fa042b88aaa357a19e2c2d5de52a4910728",
+        "branch": "HEAD",
+        "status_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "status_lines": 0,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/tsc-v1-3fa3a18",
+        "head": "3fa3a189b213884df6f08544c827fd306c5fd007",
+        "branch": "HEAD",
+        "status_sha256": "dc8be9804101288dcf13ce53c8b9d7ab535ebdb5ef65dd1b75e4ed2f36c74a4d",
+        "status_lines": 1,
+        "common_dir": ".git"
+      },
+      {
+        "path": "/home/football/.local/share/football-data-lab/staging/tsc-v2-965d6b6",
+        "head": "965d6b60b84d56c86fdc64c9c82583bfd2b1da2f",
+        "branch": "HEAD",
+        "status_sha256": "67592d545ea5ba4d6db601e3eed04bb3bbee2ba3c74159720d148019e9801480",
+        "status_lines": 1,
+        "common_dir": ".git"
+      }
+    ],
+    "runtime04_artifacts_absent": true,
+    "wrapper04_not_transferred": true
+  },
+  "local_transport_adjustment": "Local clone check exposed that a bundle advertised only under refs/codex-staging is not selected by the default clone refspec. No VPS upload occurred. Create a separate complete bundle with a temporary refs/heads ref, keeping the same frozen baseline. Reverify this technically distinct transport artifact before uploading. Earlier local artifacts retained.\n",
+  "runtime_executed": false,
+  "qwen_generations": 0,
+  "wrapper04_transferred": false,
+  "promotion_authorized": false
+}

@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-STAGING-PREPARATION-01
+  (2026-11-10): clone Git indipendente creato esclusivamente in
+  `/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2`,
+  detached a `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`, tree pulito,
+  `.git` interna, nessun alternate/symlink critico/hardlink Git. Bundle
+  autosufficiente 2.728.883 byte, SHA-256
+  `05c4f8726c1a1f701ec46af63a32f066caac416d6b69f3578dc69ddf9bd0ae29`;
+  trasporto, fsck strict e quattro blob richiesti dal wrapper conformi.
+  Snapshot Git operativo e otto staging storici invariati. Nessun wrapper
+  trasferito/eseguito, Qwen o suite 37/13 ripetuta. Staging **VALIDATO**;
+  trasferimento wrapper/preflight **DA FARE** previa autorizzazione; runtime,
+  accuratezza generativa, Gate, integrazione e certificazione **BLOCCATO**.
+  Report `docs/rag-v5-dual-blocker-runtime04-staging-preparation-01.md`.
+
 - [x] **VALIDATO** RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-LOCAL-PREPARATION-01
   (2026-11-10): copia locale runtime-04 distinta dall'originale verificato,
   baseline applicativa `13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`, nuovo ramo

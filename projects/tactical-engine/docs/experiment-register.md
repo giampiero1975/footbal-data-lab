@@ -2,6 +2,33 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Staging indipendente runtime-04
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-STAGING-PREPARATION-01`. Script:
+comandi Git e stdlib Python inline, tre sessioni SSH per preflight, upload del
+solo bundle e clone/verifica; nessun modulo applicativo eseguito. Commit:
+documentale con report `docs/rag-v5-dual-blocker-runtime04-staging-preparation-01.md`,
+evidenza `evaluation/runtime04_staging_preparation_evidence_01.json`, TODO e
+questo registro. Baseline documentale iniziale locale/GitHub `83abcde`,
+working tree pulito; applicativa congelata
+`13814c20d80bca4d9cb4cb08a288b6e7b31dac0d`.
+Risultato: destinazioni libere e parent reale; bundle completo con unico ref
+di branch alla baseline, 2.728.883 byte, SHA-256 locale/remoto
+`05c4f8726c1a1f701ec46af63a32f066caac416d6b69f3578dc69ddf9bd0ae29`.
+Anomalia di ref nonbranch del primo bundle rilevata e risolta solo localmente
+prima dell'upload con artefatto distinto, senza cambiare baseline. Clone
+indipendente `staging/spatial-v2-dual-blocker-13814c2`, detached esatto, status
+vuoto, common dir interna, nessun alternate/symlink critico/hardlink Git;
+fsck full strict e verifica bundle exit 0, quattro blob applicativi e hash
+checkout conformi al wrapper locale. Nove snapshot Git prima/dopo coincidenti
+(operativo + otto staging storici), artefatti runtime-04 ancora assenti.
+Decisione: STOP dopo staging; nessun upload o esecuzione wrapper, inferenza,
+download corpus/dipendenze, suite 37/13, Chroma, servizio, panel, merge o deploy.
+Stato: bundle/trasporto **VALIDATO**, staging **IMPLEMENTATO**, controlli
+**ESEGUITO**, staging isolato **VALIDATO**; trasferimento wrapper/preflight
+**DA FARE** con autorizzazione successiva; accuratezza delle contraddizioni,
+runtime, Gate, integrazione e certificazione **BLOCCATO**.
+
 ### 2026-11-10 — Preparazione locale wrapper runtime-04
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-RUNTIME04-LOCAL-PREPARATION-01`. Script:
