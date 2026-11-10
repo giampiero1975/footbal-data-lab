@@ -2,6 +2,32 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Correzione R1 numeric/literal
+
+Attività: `RD-RAG-V5-REMEDIATION-A-R1-NUMERIC-LITERAL-01`. Script applicativo:
+sola frase in `v5_tactical_semantic_support_s2_spatial_v2_extraction.py:358`;
+nuovi controlli `tests/test_v5_spatial_extraction_numeric_literal_r1.py`.
+Commit tecnico `5bfa4897e93d5d8edef0bc79371aa36b1b1409ae`; documentale successivo
+pubblica insieme report, risultati, TODO e registro. Report:
+`docs/rag-v5-remediation-a-r1-numeric-literal-closeout-01.md`; evidenze:
+`docs/remediation-a-r1-numeric-literal-results-01.json`. HEAD iniziale
+locale/GitHub c00af6d, tree pulito; R1 riconfermato prima della modifica.
+Differenza motivata nella docstring prima dei controlli: ramo caller fra
+numeric/literal non coperto dai sedici precedenti. Risultato: 5/5 PASS in
+0,017 s, una sola esecuzione della nuova suite; numeric 2/3 e 2/2 same senza
+dispatch, numeric/many in entrambe le direzioni different con helper reale,
+sei sottocasi unknown/ambiguous prioritari, testo normativo coerente.
+Nessuna suite storica 37/13/16 ripetuta o PASS invalidato retroattivamente.
+Intero sorgente identico fuori dalla sostituzione; validatore, schema/shape,
+locator/precontrollo, legacy, Gold/dataset, provenance/promozione, parametri e
+wrapper invariati. Handoff 6.967 byte (+373), user storico 7.311 byte;
+nessuna stima token o prova decoder. Decisione: idonea a nuova revisione del
+contratto, non eseguita; R1 superato offline, limite numeric preservato.
+Stato: correzione **IMPLEMENTATO**, verifiche **ESEGUITO** e **VALIDATO**
+offline; accuratezza generativa, Gate, integrazione e certificazione **BLOCCATO**.
+Zero VPS, modelli, inferenze, backend, runtime-05, staging/wrapper nuovi,
+merge/deploy o modifiche servizi/panel. STOP dopo pubblicazione.
+
 ### 2026-11-10 — Revisione indipendente remediation A
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-INDEPENDENT-REVIEW-01`.

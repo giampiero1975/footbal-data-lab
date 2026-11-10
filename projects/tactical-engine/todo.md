@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** offline RD-RAG-V5-REMEDIATION-A-R1-NUMERIC-LITERAL-01
+  (2026-11-10): correzione **IMPLEMENTATO**, tecnico `5bfa4897e93d5d8edef0bc79371aa36b1b1409ae`.
+  Sola frase normativa: stati prima dei value; numeric uguali restituiscono
+  same anche con literal diversi nel caller attuale. Nessuna nuova correttezza
+  numerica dichiarata. Cinque nuovi controlli mirati 5/5 PASS, nessuna suite
+  37/13/16 ripetuta; sedici PASS storici conservati. Schema, validatore finale,
+  locator, legacy, dataset, wrapper e parametri invariati. Handoff +373 byte;
+  decoder e budget token non verificati. R1 superato nel perimetro offline;
+  idonea a nuova revisione del contratto, senza eseguirla o autorizzare backend
+  e generazioni. Accuratezza generativa, Gate, integrazione e certificazione
+  **BLOCCATO**. Report `docs/rag-v5-remediation-a-r1-numeric-literal-closeout-01.md`.
+  Zero VPS/modelli/runtime/staging/wrapper/backend. STOP.
+
 - [x] **VALIDATO** come analisi statica indipendente
   RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-INDEPENDENT-REVIEW-01 (2026-11-10).
   Decisione **B**, patch da correggere prima di ulteriori verifiche: R1

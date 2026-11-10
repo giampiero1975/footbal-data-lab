@@ -1,0 +1,86 @@
+{
+  "activity": "RD-RAG-V5-REMEDIATION-A-R1-NUMERIC-LITERAL-01",
+  "date": "2026-11-10",
+  "initial_documentary_head": "c00af6da364f3849f23d5d300e3c0e75b9d6a574",
+  "technical_commit": "5bfa4897e93d5d8edef0bc79371aa36b1b1409ae",
+  "command_executed_once": "python -B projects/tactical-engine/tests/test_v5_spatial_extraction_numeric_literal_r1.py",
+  "justification_before_execution": "New test module docstring: R1 caller dispatch with numeric literals absent from historical 16 checks.",
+  "tests": 5,
+  "passed": 5,
+  "failed": 0,
+  "elapsed_seconds": 0.017,
+  "results": [
+    {
+      "test": "test_different_numeric_literals_return_same_before_dispatch",
+      "claim": "numeric/2",
+      "evidence": "numeric/3",
+      "allowed": [
+        "same"
+      ],
+      "helper_calls": 0,
+      "result": "PASS"
+    },
+    {
+      "test": "test_identical_numeric_literals_return_same_before_dispatch",
+      "claim": "numeric/2",
+      "evidence": "numeric/2",
+      "allowed": [
+        "same"
+      ],
+      "helper_calls": 0,
+      "result": "PASS"
+    },
+    {
+      "test": "test_numeric_with_different_value_dispatches_real_helper",
+      "directions": [
+        "numeric/2 -> many",
+        "many -> numeric/3"
+      ],
+      "allowed": [
+        "different"
+      ],
+      "helper_calls_each": 1,
+      "result": "PASS"
+    },
+    {
+      "test": "test_unknown_ambiguous_precede_values_and_dispatch",
+      "subcases": 6,
+      "allowed_in_order": [
+        "unknown",
+        "unknown",
+        "ambiguous",
+        "ambiguous",
+        "ambiguous",
+        "ambiguous"
+      ],
+      "helper_calls_each": 0,
+      "result": "PASS"
+    },
+    {
+      "test": "test_corrected_handoff_describes_observed_caller_precedence",
+      "checks": "states then values then dispatch; numeric early return; versioned-semantics caveat; old assertion absent",
+      "result": "PASS"
+    }
+  ],
+  "old_paragraph": "Quantifier confrontabile: valori uguali richiedono same, salvo numeric con literal diversi che richiede different. La scala existential < some < many < most < all ammette compatible solo quando la forza evidence e almeno quella claim, altrimenti different. always/never richiede incompatible; gli altri valori diversi different. Non usare compatible come sostituto generico di unknown.",
+  "new_paragraph": "Quantifier confrontabile: dopo la precedenza degli stati, _expected_comparison confronta i value prima del dispatch specifico del quantifier. Value uguali richiedono same: due value=numeric richiedono attualmente same anche con literal diversi. Il confronto dei literal nel helper non prevale sul return anticipato del caller. Questa e la semantica attuale del contratto versionato, non una regola di correttezza numerica generale. Solo con value diversi si applicano le regole seguenti. La scala existential < some < many < most < all ammette compatible solo quando la forza evidence e almeno quella claim, altrimenti different. always/never richiede incompatible; gli altri valori diversi different. Non usare compatible come sostituto generico di unknown.",
+  "application_blob_changes_only_one_paragraph": true,
+  "protected_paths_changed": [],
+  "schema_shape_locator_precheck_and_other_code": "Byte-identical after replacing only the one instruction paragraph in the full source.",
+  "old_handoff_utf8_bytes_from_review": 6594,
+  "new_handoff_utf8_bytes": 6967,
+  "handoff_utf8_byte_delta": 373,
+  "old_user_same_historical_case_utf8_bytes_from_review": 6938,
+  "new_user_same_historical_case_utf8_bytes": 7311,
+  "schema_utf8_bytes_historical_unchanged": 16869,
+  "actual_token_count": null,
+  "source_git_blob_sha256_before": "db162446afdac5ddce1d0674485c002aa5db6f49604dcc09acca0319b91aba32",
+  "source_git_blob_sha256_after": "377f50e542df55a88d7c72fa54e004f0a46a44ff271ef7bd105121452edb8f34",
+  "historical_suites_37_13_16_rerun": false,
+  "vps_accesses": 0,
+  "model_calls": 0,
+  "backend_checks": 0,
+  "patch_status": "IMPLEMENTATO",
+  "targeted_checks_status": "VALIDATO",
+  "generative_accuracy_status": "BLOCCATO"
+}
