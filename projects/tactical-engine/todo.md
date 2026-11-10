@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** come analisi statica indipendente
+  RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-INDEPENDENT-REVIEW-01 (2026-11-10).
+  Decisione **B**, patch da correggere prima di ulteriori verifiche: R1
+  bloccante, nuovo handoff numeric/literal richiede different ma il caller
+  effettivo del validatore restituisce same prima di leggere i literal.
+  Nessun bypass fail-closed; sedici PASS precedenti non coprono questo ramo.
+  Patch resta **IMPLEMENTATO**, risultati offline storici conservati;
+  idoneità al passo backend **BLOCCATO**, correzione **DA FARE** previa
+  autorizzazione. Decoder reale e budget token non verificabili offline.
+  Zero test applicativi, VPS/modelli o modifiche applicative. Report
+  `docs/rag-v5-dual-blocker-remediation-a-independent-review-01.md`, script e
+  fatti statici pubblicati insieme a TODO/registro. Accuratezza generativa,
+  Gate, integrazione e certificazione **BLOCCATO**. STOP.
+
 - [x] **VALIDATO** offline RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-OFFLINE-01
   (2026-11-10): alternativa A **IMPLEMENTATO**, commit tecnico
   `0ea62c0ef1f0adfcd928c2893f069de060275381`; soli due file autorizzati e nuova

@@ -2,6 +2,31 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-10 — Revisione indipendente remediation A
+
+Attività: `RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-INDEPENDENT-REVIEW-01`.
+Script: `docs/remediation-a-independent-static-audit-01.py`, sola lettura
+Git/AST/literal/JSON, senza import applicativi o funzioni di dominio. Commit:
+documentale che pubblica report, script/fatti, TODO e registro insieme.
+Report: `docs/rag-v5-dual-blocker-remediation-a-independent-review-01.md`;
+fatti: `docs/remediation-a-independent-review-facts-01.json`. HEAD iniziale
+locale/GitHub c864040, tree pulito; tecnico 0ea62c0, baseline finale 13814c2.
+Risultato: R1 bloccante accertato staticamente: istruzione numeric con literal
+diversi impone different, ma `_expected_comparison` restituisce same per
+value numeric uguali prima del dispatch al helper. Sedici PASS letti, non
+rieseguiti; parità slot non copre quel confronto fra lati. Fail-closed,
+locator, validatore finale, provenance e legacy preservati. Unknown legittimo
+resta rappresentabile; schema più permissivo dei gate su vincoli residui.
+Nuovo user per il caso storico 6.938 byte contro 2.663, istruzioni 6.594
+contro 2.319; schema 16.869 byte dalla misura precedente. Nessuna stima token:
+budget e compatibilità decoder reale non verificabili offline. Decisione unica
+**B**, correggere prima di ulteriori verifiche, senza implementazione o nuova
+generazione. Stato: revisione **ESEGUITO**, analisi documentale **VALIDATO**;
+patch **IMPLEMENTATO**, idoneità al passo backend **BLOCCATO**, correzione
+**DA FARE** previa autorizzazione. Accuratezza generativa, Gate, integrazione
+e certificazione **BLOCCATO**. Zero test applicativi/suite, VPS, modelli,
+wrapper, staging, runtime-05, merge/deploy/promozioni. STOP alla pubblicazione.
+
 ### 2026-11-10 — Remediation offline A dopo runtime-04
 
 Attività: `RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-OFFLINE-01`. Script:

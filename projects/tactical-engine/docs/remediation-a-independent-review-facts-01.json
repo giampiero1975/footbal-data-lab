@@ -1,0 +1,61 @@
+{
+  "activity": "RD-RAG-V5-DUAL-BLOCKER-REMEDIATION-A-INDEPENDENT-REVIEW-01",
+  "technical_commit": "0ea62c0ef1f0adfcd928c2893f069de060275381",
+  "reviewed_documentary_head": "c864040a8e07885db700b01f4388d2ca47d9153a",
+  "method": "AST and literal/JSON/Git reads only; no application imports, domain calls or tests",
+  "technical_changed_paths": [
+    "projects/tactical-engine/scripts/shadow_nli_spatial_relations_v2_inference.py",
+    "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2_extraction.py",
+    "projects/tactical-engine/tests/test_v5_spatial_extraction_status_contract_v1.py"
+  ],
+  "reviewed_source_sha256": {
+    "projects/tactical-engine/scripts/shadow_nli_spatial_relations_v2_inference.py": "c8051325bda35e71fd4a6000f3062cd62eedb3bb344492e93e14195eed301bea",
+    "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2_extraction.py": "db162446afdac5ddce1d0674485c002aa5db6f49604dcc09acca0319b91aba32",
+    "projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2.py": "06e071b50c69683c8ed69257a238c6fe53b00cc60ad589ec61ab1100b59a3b46"
+  },
+  "critical_function_ast_unchanged": {
+    "extraction_semantic_errors": true,
+    "_occurrences": true,
+    "_localize_fragments": true,
+    "_materialize_relation": true,
+    "_provenance": true,
+    "boundary_failure": true,
+    "materialize_extraction": true,
+    "verify_materialization": true
+  },
+  "final_validator_diff_since_baseline": [],
+  "instruction_old_utf8_bytes": 2319,
+  "instruction_new_utf8_bytes_static_reconstruction": 6594,
+  "instruction_new_characters": 6594,
+  "system_message": {
+    "content": "Rispondi soltanto con JSON conforme allo schema.",
+    "role": "system"
+  },
+  "prior_user_utf8_bytes": 2663,
+  "new_user_utf8_bytes_same_published_case_static_reconstruction": 6938,
+  "new_user_characters_same_published_case": 6935,
+  "prior_format_compact_utf8_bytes": 6008,
+  "new_format_compact_utf8_bytes_prior_published_result_not_reexecuted": 16869,
+  "prior_runtime_prompt_eval_count": 592,
+  "prior_runtime_eval_count": 846,
+  "prior_options": {
+    "num_ctx": 4096,
+    "num_predict": 2048,
+    "temperature": 0
+  },
+  "prior_think": false,
+  "actual_new_token_count": null,
+  "deployed_decoder_compatibility": null,
+  "blocking_static_branch_trace": {
+    "new_handoff": "numeric with differing literal requires different",
+    "effective_expected_comparison": "comparable quantifier slots with equal value numeric return same before quantifier helper",
+    "helper_differing_literal_branch_reached": false,
+    "effect": "new handoff-compliant different rejected by unchanged semantic precheck",
+    "proof_kind": "static control-flow reading; not an executed fixture"
+  },
+  "decision": "B",
+  "tests_executed": 0,
+  "application_imports": 0,
+  "vps_accesses": 0,
+  "model_calls": 0
+}
