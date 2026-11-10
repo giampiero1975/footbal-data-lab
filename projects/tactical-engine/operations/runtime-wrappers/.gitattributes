@@ -1,0 +1,2 @@
+*.sh -text
+*.diff -text whitespace=-blank-at-eol

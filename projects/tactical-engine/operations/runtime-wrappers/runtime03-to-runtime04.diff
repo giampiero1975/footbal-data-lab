@@ -1,0 +1,98 @@
+--- spatial-v2-extraction-locator-q3-04-runtime-03.original.sh
++++ spatial-v2-extraction-locator-q3-04-runtime-04.sh
+@@ -2,13 +2,13 @@
+ set -Eeuo pipefail
+ umask 077
+ 
+-readonly EXPECTED_HEAD='db3ad66f6254f43bcc625b605b68f2f181c1af69'
++readonly EXPECTED_HEAD='13814c20d80bca4d9cb4cb08a288b6e7b31dac0d'
+ readonly STAGING_PARENT='/home/football/.local/share/football-data-lab/staging'
+-readonly STAGING="${STAGING_PARENT}/spatial-v2-extraction-locator-db3ad66"
++readonly STAGING="${STAGING_PARENT}/spatial-v2-dual-blocker-13814c2"
+ readonly PROJECT="${STAGING}/projects/tactical-engine"
+ 
+ readonly ARTIFACT_PARENT='/home/football/.local/share/football-data-lab/runtime-artifacts'
+-readonly ARTIFACT="${ARTIFACT_PARENT}/spatial-v2-extraction-locator-q3-04-runtime-03"
++readonly ARTIFACT="${ARTIFACT_PARENT}/spatial-v2-extraction-locator-q3-04-runtime-04"
+ readonly LOCK_PARENT='/home/football/.local/share/football-data-lab/runtime-locks'
+ readonly LOCK_FILE="${LOCK_PARENT}/spatial-v2-extraction-locator.lock"
+ 
+@@ -22,8 +22,8 @@
+ readonly VALIDATOR_PATH='projects/tactical-engine/scripts/v5_tactical_semantic_support_s2_spatial_v2.py'
+ readonly DATASET_PATH='projects/tactical-engine/eval/claim_fidelity_gold_v1.json'
+ 
+-readonly INFERENCE_BLOB='df9a7fb494956902e8af91860cab176c768992a2'
+-readonly EXTRACTION_BLOB='97a666672c3a38897ff9570b03a4a749d32d0ead'
++readonly INFERENCE_BLOB='8ac93d07341e1079ee3ca6ff98327a8391b7ab5f'
++readonly EXTRACTION_BLOB='1a64827b26fb30758773049eedeb342a2bb826b2'
+ readonly VALIDATOR_BLOB='0a8b92acbda67afeaee4bc057f89729e11e20ab5'
+ readonly DATASET_BLOB='4523eb746d666fdfb161c5d38d8db31f12e99b92'
+ readonly DATASET_LINUX_SHA256='8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c'
+@@ -143,7 +143,7 @@
+         '{' \
+         '  "record_type": "final_attempt_state",' \
+         '  "finalization_complete": true,' \
+-        '  "attempt_id": "spatial-v2-extraction-locator-q3-04-runtime-03",' \
++        '  "attempt_id": "spatial-v2-extraction-locator-q3-04-runtime-04",' \
+         "  \"phase\": \"${PHASE}\"," \
+         "  \"attempt_status\": \"${ATTEMPT_STATUS}\"," \
+         "  \"reason_code\": \"${REASON_CODE}\"," \
+@@ -543,7 +543,7 @@
+ import shadow_nli_spatial_relations_v2_inference as judge
+ import v5_tactical_semantic_support_s2_spatial_v2_extraction as extraction_contract
+ 
+-ATTEMPT_ID = "spatial-v2-extraction-locator-q3-04-runtime-03"
++ATTEMPT_ID = "spatial-v2-extraction-locator-q3-04-runtime-04"
+ CASE_ID = "q3_04"
+ MODEL = "qwen3.5:9b"
+ 
+@@ -1189,7 +1189,48 @@
+         classification = "fail_closed_extraction_schema"
+ 
+     # --------------------------------------------------------------
+-    # E2. Extraction strutturalmente valida
++    # E1b. Shape valido, precontrollo semantico fallito prima del locator
++    # --------------------------------------------------------------
++
++    elif (semantic_errors := extraction_contract.extraction_semantic_errors(
++        extraction
++    )):
++        require(
++            evaluation_status == "not_evaluable",
++            "semantic-invalid extraction was promoted",
++        )
++        require(
++            reason_codes == ["E_EXTRACTION_SEMANTIC_INCONSISTENT"],
++            "semantic-invalid extraction reason code invalid",
++        )
++        require(
++            result.get("details") == semantic_errors,
++            "semantic diagnostics differ from precheck errors",
++        )
++        require(result.get("witness") is None, "semantic failure has witness")
++        require(result.get("validation") is None, "semantic failure has validation")
++        require(not witness_present, "semantic failure has witness artifact")
++        require(not validation_present, "semantic failure has validation artifact")
++        provenance = require_diagnostic_provenance(result, claim, evidence)
++        require(
++            provenance.get("records") == [],
++            "semantic failure unexpectedly has localization records",
++        )
++        require(
++            not extraction_contract.verify_materialization(
++                result, extraction, claim, evidence
++            ),
++            "semantic failure materialization/provenance mismatch",
++        )
++        require(
++            observed_label is None and semantic_match is None,
++            "semantic failure has observed label or semantic match",
++        )
++        localization_status = provenance.get("status")
++        classification = "fail_closed_extraction_semantic"
++
++    # --------------------------------------------------------------
++    # E2. Shape e precontrollo semantico validi
+     # --------------------------------------------------------------
+ 
+     else:
