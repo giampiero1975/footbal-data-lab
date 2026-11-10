@@ -35,23 +35,50 @@ def digest_text(value):
     return "sha256:" + hashlib.sha256(value.encode("utf-8")).hexdigest()
 
 
-def _fragments_schema(maximum=4):
+REPRESENTATION_REVISION = "status-correlated-01"
+
+
+def _fragments_schema(maximum=4, minimum=0):
     return {
-        "type": "array", "maxItems": maximum, "uniqueItems": True,
+        "type": "array", "minItems": minimum, "maxItems": maximum, "uniqueItems": True,
         "items": {"type": "string", "minLength": 1},
     }
 
 
-def _slot_schema(values, maximum=4):
+def _object_schema(properties):
     return {
         "type": "object", "additionalProperties": False,
-        "required": ["status", "value", "selected_fragments"],
-        "properties": {
-            "status": {"enum": sorted(spatial_v2.STATUSES)},
-            "value": {"enum": sorted(values)},
-            "selected_fragments": _fragments_schema(maximum),
-        },
+        "required": list(properties), "properties": properties,
     }
+
+
+def _slot_schema(values, maximum=4, *, implicit=None, absent=True,
+                 numeric_literal=False):
+    """Complete alternatives, never properties mixed with anyOf or if/then."""
+    concrete = set(values) - {"absent", "ambiguous", "unknown", "none"}
+    branches = []
+
+    def branch(status, allowed, minimum, limit, literal=None):
+        properties = {"status": {"enum": [status]},
+                      "value": {"enum": sorted(allowed)}}
+        if numeric_literal:
+            properties["literal"] = literal or {"type": "null"}
+        properties["selected_fragments"] = _fragments_schema(limit, minimum)
+        return _object_schema(properties)
+
+    if numeric_literal:
+        branches.append(branch("explicit", concrete - {"numeric"}, 1, maximum))
+        branches.append(branch("explicit", {"numeric"}, 1, maximum,
+                               {"type": "string", "minLength": 1, "maxLength": 64}))
+    elif concrete:
+        branches.append(branch("explicit", concrete, 1, maximum))
+    if implicit is not None:
+        branches.append(branch("implicit", {implicit}, 0, 0))
+    if absent:
+        branches.append(branch("absent", {"absent"}, 0, 0))
+    branches.extend([branch("ambiguous", {"ambiguous"}, 1, maximum),
+                     branch("unknown", {"unknown"}, 0, 0)])
+    return {"anyOf": branches}
 
 
 def _described(schema, description):
@@ -60,44 +87,37 @@ def _described(schema, description):
     return value
 
 
-ENTITY_EXTRACTION_SCHEMA = {
-    "type": "object", "additionalProperties": False,
-    "required": ["status", "entity_id", "selected_fragments"],
-    "properties": {
-        "status": {"enum": sorted(spatial_v2.STATUSES)},
-        "entity_id": {"type": "string"},
-        "selected_fragments": _fragments_schema(),
-    },
-}
-CONDITIONS_EXTRACTION_SCHEMA = {
-    "type": "object", "additionalProperties": False,
-    "required": ["status", "items"],
-    "properties": {
-        "status": {"enum": sorted(spatial_v2.STATUSES)},
-        "items": {
-            "type": "array", "maxItems": 8,
-            "items": {
-                "type": "object", "additionalProperties": False,
-                "required": ["condition_id", "status", "selected_fragments"],
-                "properties": {
-                    "condition_id": {"type": "string"},
-                    "status": {"enum": ["explicit", "ambiguous"]},
-                    "selected_fragments": _fragments_schema(),
-                },
-            },
-        },
-    },
-}
-QUANTIFIER_EXTRACTION_SCHEMA = {
-    "type": "object", "additionalProperties": False,
-    "required": ["status", "value", "literal", "selected_fragments"],
-    "properties": {
-        "status": {"enum": sorted(spatial_v2.STATUSES)},
-        "value": {"enum": sorted(spatial_v2.QUANTIFIERS)},
-        "literal": {"type": ["string", "null"], "maxLength": 64},
-        "selected_fragments": _fragments_schema(2),
-    },
-}
+def _entity_schema():
+    branches = []
+    for status, minimum, maximum in (("explicit", 1, 4), ("implicit", 0, 0),
+                                      ("absent", 0, 0), ("ambiguous", 1, 4),
+                                      ("unknown", 0, 0)):
+        identity = ({"type": "string", "minLength": 8, "maxLength": 71,
+                     "pattern": "^entity:.+$"}
+                    if status in {"explicit", "implicit"}
+                    else {"enum": ["entity:" + status]})
+        branches.append(_object_schema({
+            "status": {"enum": [status]}, "entity_id": identity,
+            "selected_fragments": _fragments_schema(maximum, minimum)}))
+    return {"anyOf": branches}
+
+
+def _conditions_schema():
+    item = _object_schema({"condition_id": {"type": "string", "minLength": 10},
+                           "status": {"enum": ["explicit", "ambiguous"]},
+                           "selected_fragments": _fragments_schema(4, 1)})
+    return {"anyOf": [_object_schema({
+        "status": {"enum": [status]},
+        "items": {"type": "array", "minItems": minimum, "maxItems": maximum,
+                  "items": item}})
+        for status, minimum, maximum in (("explicit", 1, 8), ("absent", 0, 0),
+                                         ("ambiguous", 1, 8), ("unknown", 0, 0))]}
+
+
+ENTITY_EXTRACTION_SCHEMA = _entity_schema()
+CONDITIONS_EXTRACTION_SCHEMA = _conditions_schema()
+QUANTIFIER_EXTRACTION_SCHEMA = _slot_schema(
+    spatial_v2.QUANTIFIERS, 2, implicit="none", numeric_literal=True)
 RELATION_EXTRACTION_SCHEMA = {
     "type": "object", "additionalProperties": False,
     "required": sorted(spatial_v2.RELATION_KEYS),
@@ -119,13 +139,14 @@ RELATION_EXTRACTION_SCHEMA = {
             CONDITIONS_EXTRACTION_SCHEMA,
             "Conditions that delimit the relation on this side."),
         "phase": _described(
-            _slot_schema(spatial_v2.PHASES),
+            _slot_schema(spatial_v2.PHASES, implicit="general"),
             "Tactical phase explicitly or implicitly assigned on this side."),
         "quantifier": _described(
             QUANTIFIER_EXTRACTION_SCHEMA,
             "Quantity or frequency scope of the relation on this side."),
         "polarity": _described(
-            _slot_schema(spatial_v2.POLARITIES, 2),
+            _slot_schema({"negated", "ambiguous", "unknown"}, 2,
+                         implicit="affirmed", absent=False),
             "Affirmed or negated polarity of the relation on this side."),
     },
 }
@@ -170,6 +191,7 @@ def descriptor():
         "matching": "literal_unique_on_structurally_assigned_side",
         "normalization": False, "fuzzy_matching": False, "repair": False,
         "promotion_authorized": False,
+        "representation_revision": REPRESENTATION_REVISION,
     }
 
 
@@ -247,6 +269,97 @@ def _quantifier_shape_errors(slot, path):
     return errors
 
 
+def _representation_errors(relation, side):
+    """Check status/content correlations without locating or inventing anchors.
+
+    These predicates preserve the final Spatial V2 rules. Cross-slot semantics
+    and literal localization remain separate, unchanged gates.
+    """
+    errors = []
+    is_claim = side == "claim_relation"
+
+    def reject(field):
+        errors.append({"code": "E_EXTRACTION_STATUS_CONTENT_INCONSISTENT",
+                       "path": side + "." + field})
+
+    for field in ("subject", "reference"):
+        slot = relation[field]
+        status, identity, count = slot["status"], slot["entity_id"], len(slot["selected_fragments"])
+        concrete = identity not in {"entity:absent", "entity:ambiguous", "entity:unknown"}
+        allowed = ((status == "explicit" and concrete and 1 <= count <= 4) or
+                   (status == "implicit" and concrete and count == 0) or
+                   (status == "absent" and not is_claim and identity == "entity:absent" and count == 0) or
+                   (status == "ambiguous" and identity == "entity:ambiguous" and 1 <= count <= 4) or
+                   (status == "unknown" and identity == "entity:unknown" and count == 0))
+        if not spatial_v2._valid_entity_id(identity) or not allowed:
+            reject(field)
+
+    semantic_values = {
+        "semantic_axis": set(spatial_v2.AXIS_VALUES),
+        "value": set().union(*spatial_v2.AXIS_VALUES.values()),
+        "phase": spatial_v2.PHASES - {"absent", "ambiguous", "unknown"},
+        "quantifier": spatial_v2.QUANTIFIERS - {"none", "absent", "ambiguous", "unknown"},
+        "polarity": {"negated"},
+    }
+    implicit_values = {"phase": "general", "quantifier": "none", "polarity": "affirmed"}
+    for field, values in semantic_values.items():
+        slot = relation[field]
+        status, value, count = slot["status"], slot["value"], len(slot["selected_fragments"])
+        maximum = 2 if field in {"quantifier", "polarity"} else 4
+        absent_allowed = field != "polarity" and (field not in {"semantic_axis", "value"} or not is_claim)
+        allowed = ((status == "explicit" and value in values and 1 <= count <= maximum) or
+                   (status == "implicit" and field in implicit_values and value == implicit_values[field] and count == 0) or
+                   (status == "absent" and absent_allowed and value == "absent" and count == 0) or
+                   (status == "ambiguous" and value == "ambiguous" and 1 <= count <= maximum) or
+                   (status == "unknown" and value == "unknown" and count == 0))
+        if field == "quantifier":
+            literal = slot["literal"]
+            allowed = allowed and ((value == "numeric" and type(literal) is str and bool(literal)) or
+                                   (value != "numeric" and literal is None))
+        if not allowed:
+            reject(field)
+
+    conditions = relation["conditions"]
+    status, items = conditions["status"], conditions["items"]
+    if (status == "implicit" or bool(items) != (status in {"explicit", "ambiguous"}) or
+            (status == "ambiguous" and not any(item["status"] == "ambiguous" for item in items))):
+        reject("conditions")
+    identities = []
+    for index, item in enumerate(items):
+        identities.append(item["condition_id"])
+        if (not item["condition_id"].startswith("condition:") or
+                not 1 <= len(item["selected_fragments"]) <= 4):
+            reject("conditions.items." + str(index))
+    if len(identities) != len(set(identities)):
+        reject("conditions.items")
+    return errors
+
+
+def extraction_handoff_instructions():
+    """Normative opt-in instructions; no case text, Gold or model invocation."""
+    matrix = {axis: sorted(values) for axis, values in sorted(spatial_v2.AXIS_VALUES.items())}
+    incompatible = {axis: sorted(sorted(pair) for pair in pairs)
+                    for axis, pairs in sorted(spatial_v2.INCOMPATIBLE_VALUES.items())}
+    return """Classifica l'affermazione rispetto alla sola fonte. Restituisci esclusivamente nli_spatial_relations_v2_extraction 1.0.0.
+Grounding separato: claim_relation usa soltanto l'AFFERMAZIONE; evidence_relation soltanto la FONTE. subject e l'attore, reference il referente spaziale nello stesso lato. Ogni selected_fragment e letterale, non vuoto e non parafrasato; non spostarlo fra lati. Non produrre offset, start/end o source: il locator side-bound resta letterale e non ripara frammenti mancanti o ripetuti.
+STATI E CONTENUTO, prima di qualsiasi confronto:
+explicit: informazione affermata nel testo di quel lato, con frammenti che la ancorano. implicit: informazione consentita dal contratto senza frammenti, non una licenza per inventare. absent: assenza rappresentata dalla sentinella, distinta da unknown. ambiguous: informazione presente ma ambigua, con frammenti. unknown: informazione non determinabile, senza contenuto concreto o frammenti; non trasformare l'incertezza in certezza per soddisfare lo schema.
+Entita subject/reference: explicit usa entity_id concreto valido entity:<identificatore> e 1-4 frammenti; implicit usa ID concreto e zero frammenti; ambiguous usa entity:ambiguous e 1-4 frammenti; unknown usa entity:unknown e zero frammenti; absent usa entity:absent e zero frammenti solo nel lato evidence. Gli identificatori concreti non sono le sentinelle, hanno al massimo 71 caratteri; il suffisso inizia con lettera minuscola o cifra e contiene solo lettere minuscole, cifre, punti, trattini o underscore.
+Asse e valore: explicit usa valore del vocabolario e 1-4 frammenti; ambiguous usa value=ambiguous e 1-4 frammenti; unknown usa value=unknown e zero frammenti; absent usa value=absent e zero frammenti solo nel lato evidence. implicit non e ammesso per asse o valore.
+Phase: explicit usa fase concreta e 1-4 frammenti; implicit usa general e zero frammenti; absent/unknown usano la rispettiva sentinella e zero frammenti; ambiguous usa ambiguous e 1-4 frammenti.
+Quantifier: explicit usa quantificatore concreto diverso da none e 1-2 frammenti; numeric richiede literal non vuoto (massimo 64 caratteri), negli altri casi literal=null. implicit usa none e zero frammenti; absent/unknown usano la propria sentinella e zero frammenti; ambiguous usa ambiguous e 1-2 frammenti.
+Polarity: explicit usa negated e 1-2 frammenti; implicit usa affirmed e zero frammenti; ambiguous usa ambiguous e 1-2 frammenti; unknown usa unknown e zero frammenti. absent non e ammesso. Una riduzione quantitativa non e automaticamente una negazione grammaticale.
+Conditions: absent/unknown hanno items=[]; explicit/ambiguous hanno 1-8 item distinti. Ogni item usa condition_id con prefisso condition:, status explicit o ambiguous e 1-4 frammenti. Un contenitore ambiguous richiede almeno un item ambiguous; un item ambiguous non cambia automaticamente il contenitore explicit in ambiguous. implicit non e ammesso.
+DIMENSIONI: space_availability misura quanta disponibilita offre la regione identificata: abundant e ampia, scarce e limitata/ridotta, neutral richiede una disponibilita neutra affermata, non assenza di informazione. relative_position descrive la posizione di una entita rispetto al referente, non la quantita disponibile. movement_direction riguarda il moto dell'attore; l'avanzamento consentito in una regione non dimostra disponibilita in un'altra. Seleziona grounding del valore da ciascun lato senza trasferire significati fra regioni.
+MATRICE ASSE-VALORI: """ + json.dumps(matrix, sort_keys=True) + """
+COPPIE DI VALORI INCOMPATIBILI VERSIONATE: """ + json.dumps(incompatible, sort_keys=True) + """
+COMPARISON: precedenza degli stati su ID e valori. Per conditions, se un contenitore e ambiguous il confronto e ambiguous; altrimenti se uno e unknown e unknown; solo dopo confronta gli elenchi ordinati condition_id (uguali=same, diversi=different). Per ogni altra dimensione, ambiguous prevale; altrimenti uno stato absent o unknown richiede comparison=unknown, anche quando ID o valori sono stringhe uguali. Non correggere a posteriori il contenuto per ottenere un confronto favorevole.
+Solo con stati confrontabili: semantic_axis con valore uguale richiede same, con valore diverso different. subject/reference con ID identici richiedono same, con ID diversi ammettono compatible o different; compatible resta una dichiarazione shadow, non una prova indipendente di coreferenza. Per value, assi differenti richiedono different; sullo stesso asse coppie nella tabella richiedono incompatible, valori uguali same e altri valori different. Polarity affirmed/negated richiede incompatible; valori uguali same. Phase confrontabile uguale richiede same, diversa different.
+Quantifier confrontabile: valori uguali richiedono same, salvo numeric con literal diversi che richiede different. La scala existential < some < many < most < all ammette compatible solo quando la forza evidence e almeno quella claim, altrimenti different. always/never richiede incompatible; gli altri valori diversi different. Non usare compatible come sostituto generico di unknown.
+LABEL proposta: il contratto non puo valutare un target claim subject/reference/asse/value unknown o ambiguous; preserva l'incertezza senza inventare valori. Un target evidence non determinabile o subject/reference/asse/conditions/phase different, unknown o ambiguous non dimostra supporto. Su relazioni confrontabili value o polarity incompatible deriva contradicted; altrimenti quantifier non confrontabile rende insufficient; supported richiede value same/compatible, polarity same e quantifier same/compatible. La label deve rispettare tutte le precedenze, non solo l'uguaglianza dei valori.
+Non normalizzare o riscrivere label, comparison, status o frammenti. Nessun repair o fallback. Il precontrollo e il validatore finale restano fail-closed; JSON conforme non prova correttezza semantica. Rispondi soltanto con JSON conforme allo schema di estrazione."""
+
+
 def extraction_shape_errors(extraction):
     if not _exact_dict(extraction, spatial_v2.ROOT_KEYS):
         return [{"code": "E_EXTRACTION_SCHEMA_INVALID", "path": "$"}]
@@ -267,6 +380,7 @@ def extraction_shape_errors(extraction):
         if not _exact_dict(relation, spatial_v2.RELATION_KEYS):
             errors.append({"code": "E_EXTRACTION_SCHEMA_INVALID", "path": side})
             continue
+        previous_errors = len(errors)
         errors += _entity_shape_errors(relation["subject"], side + ".subject")
         errors += _slot_shape_errors(relation["semantic_axis"], side + ".semantic_axis",
                                      set(spatial_v2.AXIS_VALUES) |
@@ -280,6 +394,8 @@ def extraction_shape_errors(extraction):
         errors += _quantifier_shape_errors(relation["quantifier"], side + ".quantifier")
         errors += _slot_shape_errors(relation["polarity"], side + ".polarity",
                                      spatial_v2.POLARITIES, 2)
+        if len(errors) == previous_errors:
+            errors += _representation_errors(relation, side)
     return errors
 
 
