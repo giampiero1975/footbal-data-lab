@@ -1,0 +1,392 @@
+{
+  "activity": "RD-RAG-V5-LOCAL-COACH-QUALITY-FIRST-SELECTION-01",
+  "date": "2026-11-11",
+  "baseline": "d52feaeacf9563da73e22e6baf8f551ac3e7fde9",
+  "difference": "Quality-first target 28/30, weighted qualitative evidence before hardware. New alternatives, primary benchmark evidence, no execution. Prior RAM-based selection is not a quality verdict.",
+  "models": [
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "revision": "c202236235762e1c871ad0ccb60c8ee5ba337b9a",
+      "sources": [
+        {
+          "url": "https://huggingface.co/api/models/Qwen/Qwen3.5-9B",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/Qwen__Qwen3.5-9B-metadata.json",
+          "sha256": "465e22614ca2cb6be3e314304a8922f7a8081efe64f95e478b5bfb4afe7d08dd",
+          "bytes": 21301
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.5-9B/raw/c202236235762e1c871ad0ccb60c8ee5ba337b9a/README.md",
+          "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0",
+          "bytes": 77643,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    },
+    {
+      "model": "google/gemma-4-12B-it",
+      "revision": "43c9d014b231474fa7212dbb48a762566c2b255d",
+      "sources": [
+        {
+          "url": "https://huggingface.co/google/gemma-4-12B-it/raw/43c9d014b231474fa7212dbb48a762566c2b255d/README.md",
+          "sha256": "04a06469e3d83b941eaa776a3647b8690b5a7cc5c833af2381e5345bb1bb45c0",
+          "bytes": 28484,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    },
+    {
+      "model": "Qwen/Qwen3-30B-A3B",
+      "revision": "ad44e777bcd18fa416d9da3bd8f70d33ebb85d39",
+      "sources": [
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B/raw/ad44e777bcd18fa416d9da3bd8f70d33ebb85d39/README.md",
+          "sha256": "1897b7cdf7b5f45ae847b87f9b416d4635fe73228e0daac669a4e1f3e5948858",
+          "bytes": 16798,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    },
+    {
+      "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "revision": "0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe",
+      "sources": [
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507/raw/0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe/README.md",
+          "sha256": "5d25d4b43cdfaf83e3d71df8f3436703ab26d92c07305053be667f577a49bb9e",
+          "bytes": 15418,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    },
+    {
+      "model": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "revision": "144afc2f379b542fdd4e85a1fcd5e1f79112d95d",
+      "sources": [
+        {
+          "url": "https://huggingface.co/api/models/Qwen/Qwen3-30B-A3B-Thinking-2507",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/Qwen__Qwen3-30B-A3B-Thinking-2507-metadata.json",
+          "sha256": "52b04eb54c0ba6ed921fac3f77b6b67c18a9988a0fd2c45d0d199e962f895351",
+          "bytes": 7553
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3-30B-A3B-Thinking-2507/raw/144afc2f379b542fdd4e85a1fcd5e1f79112d95d/README.md",
+          "sha256": "24d123759d1079f0132ba8fba1465eb8abe5883a0ca44ac70aaa58ddd8a52c84",
+          "bytes": 17287,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    },
+    {
+      "model": "google/gemma-4-26B-A4B-it",
+      "revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52",
+      "sources": [
+        {
+          "url": "https://huggingface.co/google/gemma-4-26B-A4B-it/raw/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/README.md",
+          "sha256": "4f463225c4fe49ec120115b0f9bb6713ff1556293a909903ffdae3df7bf974da",
+          "bytes": 27979,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        },
+        {
+          "url": "https://huggingface.co/google/gemma-4-26B-A4B-it/raw/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/config.json",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/google__gemma-4-26B-A4B-it-config.json",
+          "sha256": "ed0c1eb3633de771906e9ba004a44cc5635bcc06ee2062077c3d2e88a50707d3",
+          "bytes": 3815
+        }
+      ]
+    },
+    {
+      "model": "Qwen/Qwen3.8-27B",
+      "revision": "37561816e66b5b9153b1b64c10968c18c1e6f4a0",
+      "sources": [
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/37561816e66b5b9153b1b64c10968c18c1e6f4a0/README.md",
+          "sha256": "7c24f46af1e0024e6ce9b799df6f4865f9200acf3b6f92b6530c37248cc9e821",
+          "bytes": 65056,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/37561816e66b5b9153b1b64c10968c18c1e6f4a0/config.json",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/Qwen__Qwen3.8-27B-config.json",
+          "sha256": "191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab",
+          "bytes": 4312
+        }
+      ]
+    },
+    {
+      "model": "mistralai/Ministral-3-14B-Reasoning-2512",
+      "revision": "51f9210f3cd20f3452a80d5819d15dc61cc50630",
+      "sources": [
+        {
+          "url": "https://huggingface.co/api/models/mistralai/Ministral-3-14B-Reasoning-2512",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/mistralai__Ministral-3-14B-Reasoning-2512-metadata.json",
+          "sha256": "1acf716c8ad49deca34c94a5f0bbb01d3384a9f40c15af225447efb2bda362d7",
+          "bytes": 14688
+        },
+        {
+          "url": "https://huggingface.co/mistralai/Ministral-3-14B-Reasoning-2512/raw/51f9210f3cd20f3452a80d5819d15dc61cc50630/README.md",
+          "sha256": "0abaf444981d9f3ee4a13d63e88a9d53b56a1cb38bd93c80cc6b763267ded673",
+          "bytes": 23082,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        },
+        {
+          "url": "https://huggingface.co/mistralai/Ministral-3-14B-Reasoning-2512/raw/51f9210f3cd20f3452a80d5819d15dc61cc50630/config.json",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/mistralai__Ministral-3-14B-Reasoning-2512-config.json",
+          "sha256": "b1897778395bb1795489a048ebde2e6d216eee21014ce9c18193d15f097454a6",
+          "bytes": 1550
+        }
+      ]
+    },
+    {
+      "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "revision": "bf77c3174f68ad409e1c2aa60daeb46e32d1c606",
+      "sources": [
+        {
+          "url": "https://huggingface.co/api/models/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/nvidia__NVIDIA-Nemotron-3-Nano-30B-A3B-BF16-metadata.json",
+          "sha256": "d97f03588591bc400b3ac9b29e5a77173370f57887eac81939743f0937375de7",
+          "bytes": 27475
+        },
+        {
+          "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16/raw/bf77c3174f68ad409e1c2aa60daeb46e32d1c606/README.md",
+          "sha256": "faec6eef185d9993d92a0f03c6ad872381bf252b21699bf5b3ecb52fdeac112b",
+          "bytes": 73449,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    },
+    {
+      "model": "zai-org/GLM-4.7-Flash",
+      "revision": "7dd20894a642a0aa287e9827cb1a1f7f91386b67",
+      "sources": [
+        {
+          "url": "https://huggingface.co/api/models/zai-org/GLM-4.7-Flash",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/zai-org__GLM-4.7-Flash-metadata.json",
+          "sha256": "f6e5fed606984db6117b66c3a98842dccf74a0fb9bb987e036495cee57d00c0f",
+          "bytes": 9867
+        },
+        {
+          "url": "https://huggingface.co/zai-org/GLM-4.7-Flash/raw/7dd20894a642a0aa287e9827cb1a1f7f91386b67/README.md",
+          "sha256": "7bfcbced42741ceb3fff8809f8d6c84ada9696850e257c4e53e6c2fe9ef4f9bf",
+          "bytes": 8174,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    },
+    {
+      "model": "Qwen/Qwen3.6-35B-A3B",
+      "revision": "345d467b117d1fd5eda9b879a5988de9ae5f47a7",
+      "sources": [
+        {
+          "url": "https://huggingface.co/api/models/Qwen/Qwen3.6-35B-A3B",
+          "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/Qwen__Qwen3.6-35B-A3B-metadata.json",
+          "sha256": "f66a6328e59a1756e4f7bf01954dc5d027c9d0795e3ecc4c892325ae2981475f",
+          "bytes": 14445
+        },
+        {
+          "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B/raw/345d467b117d1fd5eda9b879a5988de9ae5f47a7/README.md",
+          "sha256": "c4ddaa065649ff6352648f64747a16eda31726f3e34add94ce04abb461c77b75",
+          "bytes": 64550,
+          "snapshot_stored": false,
+          "sha256_scope": "public response read for analysis; reproducible at exact revision, not copied into repository"
+        }
+      ]
+    }
+  ],
+  "no_weights_downloaded": true,
+  "no_model_execution": true,
+  "additional_sources": [
+    {
+      "url": "https://huggingface.co/api/models/mistralai/Ministral-3-14B-Reasoning-2512-GGUF?blobs=true",
+      "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/mistralai__Ministral-3-14B-Reasoning-2512-GGUF-metadata.json",
+      "sha256": "2c1097fe75e5bf327e083638ee6bfa0aeee8cbb2bb2a3db48103a7abd2882f8b",
+      "bytes": 9087,
+      "revision": "fe3b038f30334729263d860d5dadbaa34e0f2a18"
+    },
+    {
+      "url": "https://arxiv.org/html/2604.07035v3",
+      "sha256": "75e75e50cb38d666892443ec7263adfbd377458c2f87a23eb5f3235b6b2bbe00",
+      "bytes": 642243,
+      "snapshot_stored": false,
+      "sha256_scope": "public HTML response read for analysis; no scripts executed, not copied into repository"
+    },
+    {
+      "url": "https://artificialanalysis.ai/models/releases/comparisons/qwen3-8-27b-vs-gemma-4-26b-a4b",
+      "sha256": "3c58dfff43e8d77d87fcf9c4dc5f2489c5d09f0d64e293c4e158924628c58231",
+      "bytes": 819012,
+      "snapshot_stored": false,
+      "sha256_scope": "public HTML response read for analysis; no scripts executed, not copied into repository"
+    }
+  ],
+  "classification": {
+    "DOCUMENTATO": "Publisher/independent public results, precise modes where disclosed; not independently remeasured.",
+    "STIMATO": "Conditional feasibility/economic inference, no VPS measurement.",
+    "MISURATO": "No new candidate RAM/latency/tactical measurements; local hashes only."
+  },
+  "weights": {
+    "tactical_reasoning": 35,
+    "logical_spatial_temporal_coherence": 25,
+    "grounding": 20,
+    "complex_instructions": 15,
+    "technical_Italian": 5
+  },
+  "target": {
+    "new_mean_out_of_30": 28,
+    "final_goal": "30/30 e lode, qualitative expert distinction, no numeric conversion",
+    "historical_thresholds_preserved": [
+      "9/10",
+      "26/30"
+    ],
+    "observed_result": false
+  },
+  "selection": {
+    "quality_potential_priority": "Qwen/Qwen3.8-27B",
+    "feasibility_quality_hypothesis": "google/gemma-4-26B-A4B-it",
+    "global_quality_winner_demonstrated": false,
+    "28_out_of_30_predictable": false,
+    "gemma_12B_quality_winner": false,
+    "actual_CPX52_feasibility_proven": false,
+    "no_extra_hosting_or_hardware_authorized": true
+  },
+  "status": "ESEGUITO",
+  "public_results_not_our_measurements": [
+    {
+      "model": "Qwen/Qwen3.5-9B",
+      "GPQA_Diamond": 81.7,
+      "IFBench": 64.5,
+      "MultiChallenge": 54.5,
+      "mode_precision_per_run": "not fully attested; not assigned to local think=false Q4"
+    },
+    {
+      "model": "google/gemma-4-12B-it",
+      "GPQA_Diamond": 78.8,
+      "AIME_2026": 77.5,
+      "BBEH": 53.0,
+      "MRCR_v2_8needle_128k": 43.4,
+      "MMMLU": 83.4
+    },
+    {
+      "model": "google/gemma-4-26B-A4B-it",
+      "GPQA_Diamond": 82.3,
+      "AIME_2026": 88.3,
+      "BBEH": 64.8,
+      "MRCR_v2_8needle_128k": 44.1,
+      "MMMLU": 86.3,
+      "Tau2": 68.2
+    },
+    {
+      "model": "Qwen/Qwen3-30B-A3B",
+      "mode": "hybrid thinking/nonthinking; do not inherit 2507 scores"
+    },
+    {
+      "model": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+      "GPQA": 70.4,
+      "ZebraLogic": 90.0,
+      "IFEval": 84.7,
+      "mode": "nonthinking"
+    },
+    {
+      "model": "Qwen/Qwen3-30B-A3B-Thinking-2507",
+      "GPQA": 73.4,
+      "AIME_2025": 85.0,
+      "IFEval": 88.9,
+      "mode": "thinking only"
+    },
+    {
+      "model": "Qwen/Qwen3.8-27B",
+      "GPQA_Diamond": 89.2,
+      "HLE": 30.8,
+      "IFBench": 79.5,
+      "mode": "thinking default; exact effort for every reported metric not fully attested"
+    },
+    {
+      "model": "mistralai/Ministral-3-14B-Reasoning-2512",
+      "GPQA_Diamond": 71.2,
+      "AIME_2025": 85.0,
+      "mode": "Reasoning; not Instruct/Base tables"
+    },
+    {
+      "model": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B-BF16",
+      "GPQA_no_tools": 73.0,
+      "AIME_2025_no_tools": 89.1,
+      "IFBench": 71.5,
+      "mode": "reasoning evaluations; do not infer Q4 CPU scores"
+    },
+    {
+      "model": "zai-org/GLM-4.7-Flash",
+      "GPQA": 75.2,
+      "HLE": 14.4,
+      "Tau2": 79.5,
+      "protocol_warning": "Most tasks temp1 top_p0.95 max_new_tokens131072; task-specific agentic settings differ"
+    },
+    {
+      "model": "Qwen/Qwen3.6-35B-A3B",
+      "GPQA": 86.0,
+      "DeepPlanning": 25.9
+    }
+  ],
+  "independent_sources_limits": [
+    {
+      "url": "https://arxiv.org/html/2604.07035v3",
+      "scope": "7 configurations, H100 batch1 BF16, not CPU Q4; revisions incompletely pinned; does not include Gemma12 or Qwen3.8; abstract/HTML aggregate discrepancy, no aggregate used"
+    },
+    {
+      "url": "https://artificialanalysis.ai/models/releases/comparisons/qwen3-8-27b-vs-gemma-4-26b-a4b",
+      "scope": "Multiple Qwen effort levels, missing Gemma26 comparable index; provider prices/speed not local economics"
+    }
+  ],
+  "benchmark_design_sources": [
+    "https://github.com/google-deepmind/bbeh",
+    "https://github.com/allenai/IFBench",
+    "https://github.com/SalesforceAIResearch/FaithEval",
+    "https://arxiv.org/abs/2502.02289"
+  ],
+  "future_activity": {
+    "id": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+    "status": "DA FARE",
+    "authorized": false,
+    "candidates": [
+      "google/gemma-4-26B-A4B-it",
+      "Qwen/Qwen3.8-27B"
+    ],
+    "cases": [
+      "V10 case_02",
+      "V10 case_03",
+      "V10.2 case_10"
+    ],
+    "max_new_answers": 6,
+    "can_certify_28_out_of_30": false,
+    "difference": "New paired model comparison and thinking operating point with target28. Not a rerun of q3_04 or a historical suite. No historical score altered.",
+    "immutable_case_sources": [
+      {
+        "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10/case_02.json",
+        "sha256": "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135"
+      },
+      {
+        "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10/case_03.json",
+        "sha256": "f422d7e6e4a27044f45d96fc545c4f8ff48b9e20b533aad16547ee90ce693fa8"
+      },
+      {
+        "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10-2/case_10.json",
+        "sha256": "afb2a6c27d3ff46001d7a1b360501287858a3f583b57c947fd8250d34e6d59f9"
+      }
+    ]
+  },
+  "public_results_classification": "DOCUMENTATO; producer unless independent source explicitly identified. No weighted model scores calculated.",
+  "documentary_checks": {
+    "new_snapshot_hashes_sizes_verified": 10,
+    "JSON_valid": true,
+    "historical_TODO_register_bytes_preserved": true,
+    "tracked_application_evaluation_changes": false,
+    "application_tests_executed": false
+  }
+}

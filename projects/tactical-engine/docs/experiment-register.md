@@ -2,6 +2,37 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Selezione quality-first dell'allenatore locale
+
+Attività: `RD-RAG-V5-LOCAL-COACH-QUALITY-FIRST-SELECTION-01`. Script/metodo:
+analisi statica Git/JSON/caller/rubriche e GET di documenti pubblici e piccoli
+metadati/config, nessuna esecuzione applicativa. Commit documentale con report
+`docs/rag-v5-quality-first-local-coach-selection-01.md`, inventario
+`docs/local-coach-quality-first-evidence-01.json`, snapshot dei soli metadati/
+config e TODO/registro contestuali. HEAD iniziale locale/GitHub d52feaeacf9563da73e22e6baf8f551ac3e7fde9,
+branch corretto e tree pulito; quattro documenti autorevoli confrontati con
+raw GitHub allo SHA. Riutilizzati benchmark/diagnosi/rubriche storici, letti
+caller chat e RD-THINK senza eseguirli. Differenza sostanziale: obiettivo
+28/30 e zero gravi, pesi di selezione 35/25/20/15/5, qualità prima della RAM;
+nuove alternative e prove pubbliche/indipendenti, nessun test ripetuto.
+Risultato: matrice capacità e fattibilità, graduatoria parziale, nessun numero
+fittizio pesato o conversione benchmark/Coverciano. Potenziale prioritario
+Qwen3.8 27B; primo compromesso da falsificare Gemma26 MoE, non sostenibilità
+misurata né superiorità tattica; Gemma12 perde la priorità automatica. Nessun
+modello con prove sufficienti a prevedere 28/30. Costo per risposta utile
+formalizzato, non quantificato senza fattura/volumi/voti/tempi. Soglie e
+risultati storici intatti, lode qualitativa e rubriche distinte.
+Decisione: una sola eventuale attività proposta, RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01
+**DA FARE**, non autorizzata: Gemma26/Qwen27, tre casi storici congelati,
+sei risposte nuove massime, niente repair/retry, modalità e budget da congelare,
+revisore in cieco e risorse osservate; non certifica il target su tre casi.
+Nessuna vecchia proposta viene eseguita o attivata implicitamente.
+Stato analisi **ESEGUITO**; accuratezza 28/30, Gate, integrazione e
+certificazione generale **BLOCCATO**. Nessuna SSH, pesi, installazione,
+inferenza, benchmark, modifica applicativa/prompt/RAG/corpus/API/panel/
+VPS/runtime, acquisto, rinnovo, merge o deploy. STOP dopo pubblicazione,
+verifica GitHub e working tree.
+
 ### 2026-11-11 — Confronto incrementale Gemma 12B / Qwen3 30B-A3B
 
 Attività: `RD-RAG-V5-GEMMA-QWEN3-INDEPENDENT-COMPARISON-01`. Metodo/script:

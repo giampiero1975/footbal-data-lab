@@ -8,6 +8,25 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-LOCAL-COACH-QUALITY-FIRST-SELECTION-01
+  (2026-11-11). Mandato corretto: qualità prima delle risorse, nuovo target
+  strategico media 28/30 e zero errori gravi; 30/30 e lode qualitativa, senza
+  conversioni. Soglie storiche 9/10 e 26/30 preservate. Matrice 35/25/20/15/5
+  documentale, nessun punteggio modello artificiale o previsione 28/30.
+  Priorità di potenziale generale Qwen3.8 27B; ipotesi di miglior compromesso
+  CPX52 Gemma 4 26B-A4B, subordinata a RAM/tempi. Gemma12 non vincitore
+  qualitativo. Graduatoria parziale, nessuna dominanza tattica dimostrata.
+  Nuovi candidati Ministral Reasoning14, Nemotron Nano30, GLM Flash e Qwen35;
+  versioni Qwen30 distinte, fonti ufficiali/indipendenti e limiti espliciti.
+  Report `docs/rag-v5-quality-first-local-coach-selection-01.md`, inventario
+  e snapshot di soli metadati/config con hash. Proposta unica **DA FARE**,
+  non autorizzata: RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, Gemma26/Qwen27 su
+  tre casi congelati, sei raw al massimo, giudizio umano cieco; non certifica
+  28/30. Le vecchie proposte restano storiche, nessuna attivazione automatica.
+  Nessuna SSH, pesi, inferenza, installazione, test o modifica applicativa/VPS.
+  Extra canone/hardware non autorizzati. Accuratezza, Gate, integrazione e
+  certificazione generale **BLOCCATO**. Pubblicazione contestuale e STOP.
+
 - [x] **ESEGUITO** RD-RAG-V5-GEMMA-QWEN3-INDEPENDENT-COMPARISON-01
   (2026-11-11). Differenza nuova: Qwen3 30B-A3B non era nella shortlist;
   varianti originale/Instruct-2507/Thinking distinte. Decisione unica **A**,
