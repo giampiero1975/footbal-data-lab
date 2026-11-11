@@ -2,6 +2,42 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Valore reale dell'allenatore AI
+
+Attività: `RD-RAG-V5-AI-COACH-VALUE-ASSESSMENT-01`. Script/metodo: letture
+Git/Markdown/JSON e inventario documentale inline delle risposte già esistenti,
+nessun test o import applicativo. Commit documentale con report, inventario,
+TODO e registro contestuali. Report: `docs/rag-v5-ai-coach-value-assessment-01.md`;
+evidenza: `docs/ai-coach-value-evidence-inventory-01.json`. HEAD iniziale locale/
+GitHub 4f8c9f6630e7032547324882c1cde87afddf5e68, branch corretto e tree pulito;
+fonte ufficiale consultata e confrontata coi blob. Differenza rispetto alle
+attività concluse: valutazione di valore del coach e decisione prima del rinnovo,
+riutilizzando voti, raw, audit autonomia e rubriche, non nuovo benchmark o
+replay dei controlli. Risultato: 55 file di caso Coverciano su tracce development
+ripetute, ultime dieci risposte logiche individuate, 22 fonti/artefatti con hash.
+Risposte naturali distinte da extraction JSON, incomplete/bloccate, deterministico
+e valutazioni esterne. Media Gemini Cloud della baseline RAG-only riportata
+19,90/30 (199/300), solo 1/10 almeno 26/30; mancano nuovi voti indipendenti sulle
+ultime versioni. Nessun nuovo voto o conversione fra rubriche, pesi RD-THINK
+35/25/20/15/5 e criteri storici preservati. Voti dopo riscritture della spalla
+non attribuiti a Qwen; locked 9/10 poi 10/10 e Drive11 6/6 circoscritti, nessuna
+estensione automatica al coach generale. Capacità parziali di esposizione e
+sintesi osservate, ma errori concettuali di ruolo/fase, contraddizioni a contesto
+congelato e grounding compromettono affidabilità. Modello e architettura
+coinvolti come livelli osservati, contributi causali non quantificati. Nessuna
+coppia ChatGPT omogenea individuata nelle fonti consultate. Decisione unica **C**:
+sospendere sviluppo operativo e preservare, senza impegnare altro rinnovo sulla
+base di qualità non dimostrata. Nessuna disattivazione VPS/rinnovo; prima di
+una dismissione servirebbe preservazione autorizzata dei dati non versionati.
+Minima verifica futura eventuale: valutatore umano indipendente in cieco sui
+dieci testi già salvati, differenza rispetto ai gate automatici e voti baseline;
+nessuna nuova inferenza/VPS, non holdout né certificazione. Proposta soltanto,
+non eseguita. Stato: analisi **ESEGUITO**, valore generale del coach non
+VALIDATO; accuratezza, Gate e certificazione generale **BLOCCATO**. Certificazione
+locked invariata. Nessuna SSH, inferenza, campagna, test duplicato, modifica
+modello/prompt/schema/validatori/Gold/pipeline/panel/VPS, compilazione, merge o
+deploy. STOP dopo pubblicazione e verifica GitHub/working tree.
+
 ### 2026-11-11 — Diagnosi mirata grounding q3_04
 
 Attività: `RD-RAG-V5-REMEDIATION-A-Q3-04-GROUNDING-DIAGNOSIS-01`.

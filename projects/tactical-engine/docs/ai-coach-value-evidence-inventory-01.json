@@ -1,0 +1,1055 @@
+{
+  "activity": "RD-RAG-V5-AI-COACH-VALUE-ASSESSMENT-01",
+  "baseline": "4f8c9f6630e7032547324882c1cde87afddf5e68",
+  "method": "Documentary reconciliation of already generated natural language answers, published grades and technical results. No application imports or tests; no new model answers or ratings.",
+  "natural_language_case_files": 55,
+  "warning": "Case files across development iterations are not independent questions or an inference count; some outputs include selected repair or post-processing. Null independent score means no independent grade available in that selected case record, not global absence.",
+  "natural_language_inventory": [
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_01.json",
+      "sha256": "54ae436976b88ff3bba0d7024fae3015b9a9db15168d7c8610c4b3c3e487bd23",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_01",
+      "question": "Il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). In particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). Quali sono i fattori situazionali e strutturali che determinano questa scelta?",
+      "answer_present": true,
+      "answer_characters": 2365,
+      "answer_sha256": "717673c48d9434f960137b437955be6ec19f28b6c98b46a355279ab178847630",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_02.json",
+      "sha256": "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_02",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "answer_present": true,
+      "answer_characters": 2522,
+      "answer_sha256": "60620e993d962a8f6057ef6b6274d4f83d49c83a201e462a18ed99ed30b7998d",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_03.json",
+      "sha256": "f422d7e6e4a27044f45d96fc545c4f8ff48b9e20b533aad16547ee90ce693fa8",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_03",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "answer_present": true,
+      "answer_characters": 2404,
+      "answer_sha256": "9bf8cbda8d52445739e7f75878e136969ad7f9d1f0352a4cfacb5e83f0ccf2dd",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_04.json",
+      "sha256": "01cfeb763647dd163504dfbbffa5b90e012275d54354e3747640a09d13a5174a",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_04",
+      "question": "Il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). Ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. Si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere.",
+      "answer_present": true,
+      "answer_characters": 2844,
+      "answer_sha256": "edcfff09d7a8f8a977d27be86cd1b327e7326a38389b771f5a3d83aad57b2e45",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "incoerenze semantiche: unsupported_rigid_player_numbers",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_05.json",
+      "sha256": "785e4f5feae401b5067dafdf3068bcee3b851616e83e8ec220da7c683aa2080b",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_05",
+      "question": "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+      "answer_present": true,
+      "answer_characters": 2129,
+      "answer_sha256": "dace1b41917c2c4d519fe95e73e5989c5b30d991b05a76da5a7f0f9621a2469c",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "incoerenze semantiche: lateral_shift_mapped_to_vertical_drop",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_06.json",
+      "sha256": "bd7e390dfe0a39842d27fc01ea91c7db009b9b0274159604fc47f87b59b1de48",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer_present": true,
+      "answer_characters": 1963,
+      "answer_sha256": "bd06d6eb27342cd616a8cb60b374fb36deccff8bc3f444aa44376a85b6391722",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: density_or_proximity, field_zone",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_07.json",
+      "sha256": "d1f89744fd4944ee6fae51cf8d3051301db372654f23db5b07cfb844e4c48277",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_07",
+      "question": "Il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. Ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+      "answer_present": true,
+      "answer_characters": 2167,
+      "answer_sha256": "ea1d4f97c66efe3cdd99b45993d5d57722daad80e68402773f5590b53b8cb469",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: between_lines_receiving",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_08.json",
+      "sha256": "e4bc8ce6142903b93d1520d7e5be35131e26e1645a657c0938048e3e538dfc52",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer_present": true,
+      "answer_characters": 2093,
+      "answer_sha256": "a2fc042b7053eb6d904ff3dba9430c2bf49b75bca7213e792d36e5b77926968d",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_09.json",
+      "sha256": "73b1c81b4586b5942540c4b866feed83ce1640921cdf7c78547e7d43ab3e5573",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_09",
+      "question": "Il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"Trappola del Fuorigioco\" (offside trap) come scelta tattica attiva. Ci illustri la differenza tra un fuorigioco attuato su situazione di \"Palla Libera/Scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"Palla Inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). Quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo?",
+      "answer_present": true,
+      "answer_characters": 2222,
+      "answer_sha256": "061cc943261bc2eb1310ce31af742825fafde907d27717485f08598d6e3ff5de",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason",
+        "incoerenze semantiche: unsupported_rigid_player_numbers",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10/case_10.json",
+      "sha256": "0bc649ab8c57c281447bafef408ad08aa8311c00d885ee702347dca8e4ba89fe",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer_present": true,
+      "answer_characters": 2282,
+      "answer_sha256": "d49daac1f62f814eed292d6b59d3c7b36815ed802e6a96948f7315a7a8467b17",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10-1/case_05.json",
+      "sha256": "7acb60d8fb170651850c76567c051aecc7be0b15a50e1df9bd21f3cee94bb893",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_1_05",
+      "question": "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+      "answer_present": true,
+      "answer_characters": 2105,
+      "answer_sha256": "e3e4520060493b7627f9180aed6c5a1bf6fb5798ec7d810a96f377ca6d02cf42",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10-1/case_06.json",
+      "sha256": "889cae0c54a6cb3ffd639fb2c16e982f6939da6108e41d60dc662e2e781a4405",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_1_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer_present": true,
+      "answer_characters": 1950,
+      "answer_sha256": "db51ebdbc0297e2550a016c34c805a6677b98b0145991e7ed92d295dcd90f07b",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: density_or_proximity, field_zone",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10-1/case_08.json",
+      "sha256": "8404229d58c72b62b7c4d4ede880dc573fed14246a76fc8cf73d05d0958e6e06",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_1_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer_present": true,
+      "answer_characters": 2093,
+      "answer_sha256": "a2fc042b7053eb6d904ff3dba9430c2bf49b75bca7213e792d36e5b77926968d",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10-1/case_10.json",
+      "sha256": "7ca5754073eac0b0ef0faefd655f98fcbbdccb3e93837f791eab5bc5c9420ea3",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_1_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer_present": true,
+      "answer_characters": 2866,
+      "answer_sha256": "3f19bd766779cebf923f272c277e2653fdde465ac4bdc55e028aed8e4101438b",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: substitutions",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v10-2/case_10.json",
+      "sha256": "afb2a6c27d3ff46001d7a1b360501287858a3f583b57c947fd8250d34e6d59f9",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv10_2_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer_present": true,
+      "answer_characters": 2611,
+      "answer_sha256": "e1c985f45c882bf99e52e41a171968b202571c4394a026f8e82c3075fa46e0b2",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: live_communication",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_01.json",
+      "sha256": "e95621c183b3eab2cdb0bbbaf61e4b984c9a011952aafa78274d8e66def0b13b",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_01",
+      "question": "Il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). In particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). Quali sono i fattori situazionali e strutturali che determinano questa scelta?",
+      "answer_present": true,
+      "answer_characters": 1715,
+      "answer_sha256": "f9274c03e7fd4c560cba31a3fc318aff5069dcbdd04e24ba308cd0a822501238",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_02.json",
+      "sha256": "4de8db0d6a8902fd4b01aeb3d48ad3837c0072d542e31ce5acd10d3cbd9a06c8",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_02",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "answer_present": true,
+      "answer_characters": 2018,
+      "answer_sha256": "cc87232d588ded4083480d7fde1da5b1232d7fd7039c6df69ab26cbe3b33318a",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_03.json",
+      "sha256": "3b9825d191fc082df15087fffe15b4e5c27b62dd8da115b269b4fe6d663d5d78",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_03",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "answer_present": true,
+      "answer_characters": 2072,
+      "answer_sha256": "277ceb4be428fb169c64501240fb944511966fba33c379296c6f0888a13b9ae4",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_04.json",
+      "sha256": "79e71c2b2525caa98ae0ac9510a4c47d4ce38c4acf9ec470c5e66d7e96638d4a",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_04",
+      "question": "Il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). Ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. Si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere.",
+      "answer_present": true,
+      "answer_characters": 2300,
+      "answer_sha256": "06f02936a74f0000d544c156e717426fffe10e312b6b6ac3964c2f507ccf6b3a",
+      "done_reason": "length",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_05.json",
+      "sha256": "386bf9713b63385a169815afaf9a0290ef07f131f0fcdedcd76f94570bea0f13",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_05",
+      "question": "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+      "answer_present": true,
+      "answer_characters": 2139,
+      "answer_sha256": "ba333708fd6ed723e42a7a19f55187534d2abb92adbf2552572a37c5bed3c278",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_06.json",
+      "sha256": "46c7992e1c83bf3ba5606aac72f318cfc6659c9acd4755439028d3ea56c4deb5",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer_present": true,
+      "answer_characters": 1686,
+      "answer_sha256": "332f187fe2217452c44183d50d99bbe5ed568c9fb93a3d8c75717135fcfdcce1",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_07.json",
+      "sha256": "0333f887b9b776b29340c61446f2dcf0b452df5034065722e9a50100db43165f",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_07",
+      "question": "Il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. Ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+      "answer_present": true,
+      "answer_characters": 2066,
+      "answer_sha256": "62ee22377dd35bd2789865bf3e500ef745866fb507aa5598eb794cb039cf329c",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_08.json",
+      "sha256": "f657e337a2ce3eed93d5d41e4e3ff638e611a5e63d8e8d6b23310851989361b2",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer_present": true,
+      "answer_characters": 1638,
+      "answer_sha256": "2fe41c4b78bb42a5c900ad8340ce3df26690c1a40cff019db7f63608c238d46f",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_09.json",
+      "sha256": "0c9d13776a9d8140f414360e11ad0e7754a2b7622530b09498624b6c208aa2c9",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_09",
+      "question": "Il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"Trappola del Fuorigioco\" (offside trap) come scelta tattica attiva. Ci illustri la differenza tra un fuorigioco attuato su situazione di \"Palla Libera/Scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"Palla Inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). Quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo?",
+      "answer_present": true,
+      "answer_characters": 2000,
+      "answer_sha256": "ec09c3ec7edf64a2c2bc0eb24ce7c624f7f9388a0fe6005c394a6afce7332a79",
+      "done_reason": "length",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v6/case_10.json",
+      "sha256": "9ddf0de646071f44170239c0d0c9defe37404c76e6d6b98963456f040e9064fe",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv6_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer_present": true,
+      "answer_characters": 2100,
+      "answer_sha256": "3810bb87f2e66f3d89dca2fdc53a5e23eb68c221f6b1ef2b924610030afce6fc",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_01.json",
+      "sha256": "b1c21bb5538bcc40d787b5462d0ac6e5e01704b286f56fb0982f18ed2bd28534",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_01",
+      "question": "Il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). In particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). Quali sono i fattori situazionali e strutturali che determinano questa scelta?",
+      "answer_present": true,
+      "answer_characters": 2285,
+      "answer_sha256": "204234759261dbc4fa01faac6185850e9ef351e2a9a596379ac17b06cd4c232e",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_02.json",
+      "sha256": "2e83ba1899e24aad1ca11381e757e4a087070133169e666326bb71798227ab95",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_02",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "answer_present": true,
+      "answer_characters": 2276,
+      "answer_sha256": "6d08009273c140559f04974bebe32c4de70fc2ac0ae1052418894f977b87053a",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: possession"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_03.json",
+      "sha256": "4369e24ef8a14af3567a6fb99fb784089769fa9b2f2e07fe64c8c2ee9a9a94a9",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_03",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "answer_present": true,
+      "answer_characters": 1809,
+      "answer_sha256": "80dabf3f93c0c9e4711549cb674eed10a475dce68a9a8b10e817f06629175a8e",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason, box_roles"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_04.json",
+      "sha256": "bfc094b1776cd463c79fb1fafea6a1fc83ebbfb65a658070feeb2811661b58b2",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_04",
+      "question": "Il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). Ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. Si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere.",
+      "answer_present": true,
+      "answer_characters": 1783,
+      "answer_sha256": "f13ca4fca762b421cd34e731b4c02faee66ca6552699d21d82684e75cf29df94",
+      "done_reason": "length",
+      "repair_reasons": [
+        "copertura incompleta: reason, between_lines_receiving, next_action"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_05.json",
+      "sha256": "d4ae2f0e149306b13581c25e5325ab64288b2b3030186bc8812b24d41c1fc6b0",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_05",
+      "question": "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+      "answer_present": true,
+      "answer_characters": 1967,
+      "answer_sha256": "f420aaa7d4ee66b83f19b93125f8c047a2ea384690a8d154b6b6b91f2f3835e1",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_06.json",
+      "sha256": "24744c717386c7144de95f014f77641bb2ae635f2cfcb4a17d1415552f147796",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer_present": true,
+      "answer_characters": 2160,
+      "answer_sha256": "906df87830df042e89fa5fbe363e564893bfa1ca3b7f1063784651719b35110e",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: covered_or_uncovered_ball"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_07.json",
+      "sha256": "6f1a23b257b97243b4f915216837fe2fbac0fefd340f2fe5bd76987682ce75a5",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_07",
+      "question": "Il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. Ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+      "answer_present": true,
+      "answer_characters": 2412,
+      "answer_sha256": "32de4874331c30da74bafcf566abe6ab468c5bf0a417ba0b043dfbde5c2f9581",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: between_lines_receiving, next_action"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_08.json",
+      "sha256": "3b7bcac082225bb77a1dadee49539b1dae8beeef92b3004e8a626d37773a747d",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer_present": true,
+      "answer_characters": 2055,
+      "answer_sha256": "145ddb717031f332b37bba9d59ba7cd773b3d10678ce3a917522e0c2a3adfc52",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_09.json",
+      "sha256": "f57bd6aabc395c2ed66071bc5d096d9ffca9b857462aa3da1b4a8ec3a317688f",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_09",
+      "question": "Il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"Trappola del Fuorigioco\" (offside trap) come scelta tattica attiva. Ci illustri la differenza tra un fuorigioco attuato su situazione di \"Palla Libera/Scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"Palla Inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). Quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo?",
+      "answer_present": true,
+      "answer_characters": 2275,
+      "answer_sha256": "f24b3815bd001c0df1c1afc61e4e5c45b8b402ba9d4ef7c8ce1b3778319dbd81",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v7/case_10.json",
+      "sha256": "5b13d4154d1014782a7df908c3fd11199a44c047062dd4af424759007cd55eb9",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv7_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer_present": true,
+      "answer_characters": 865,
+      "answer_sha256": "0fc5f332e8a4b7496e19b09be344546cea64d4f5043b62246fdc1977ee9e5881",
+      "done_reason": "length",
+      "repair_reasons": [
+        "copertura incompleta: live_communication, transition_balance"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_01.json",
+      "sha256": "a9b37fd227bb7ce7302927071ed6c6b4b17516e5dcebe7ebabb654b725556fe0",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_01",
+      "question": "Il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). In particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). Quali sono i fattori situazionali e strutturali che determinano questa scelta?",
+      "answer_present": true,
+      "answer_characters": 2303,
+      "answer_sha256": "8f5066fa0447c31f8297d994197e381e8af67aa2bf8fe27965a4b6871bb8d03c",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_02.json",
+      "sha256": "ab2356415d53f6f3c751fabf021fd27fe3fe03f7d9eff98c69ed605af798a02d",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_02",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "answer_present": true,
+      "answer_characters": 2223,
+      "answer_sha256": "bccf57c02a69726716c6d7c1ac37d17db247c6e994bda901c49c81c1ebd18573",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_03.json",
+      "sha256": "69f8c9a9f3a0b2ac722707c24e9fa3f2aaf41b0eece3ebf9d2409f8ddd959ee8",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_03",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "answer_present": true,
+      "answer_characters": 2553,
+      "answer_sha256": "460d1fd44e9b46d27ce7e0fd6c4fc1475f80a6bf5426c4090dfcab7711c01686",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason, box_roles",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_04.json",
+      "sha256": "4916d4fbcd46c42f644cb92ae5dc8b53aafc69ea61d47a3c71cace227c489942",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_04",
+      "question": "Il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). Ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. Si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere.",
+      "answer_present": true,
+      "answer_characters": 2598,
+      "answer_sha256": "ce7e43036ef56ad2cafa06e1464926c2b2e8fcedfdc870ce50391fc1f26c255d",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason, ball_flight_trigger, next_action",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_05.json",
+      "sha256": "46c515facbc185b92c7bf99df70dacd65268441d8569b179d41ed6f414c4e270",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_05",
+      "question": "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+      "answer_present": true,
+      "answer_characters": 1739,
+      "answer_sha256": "ccb11114d3a538f77d97091efcf4a55fd13395eb72459d8aa15e4b41951309ab",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_06.json",
+      "sha256": "84e5d967f7003ed292d821d87c2e8a75bc3c1c5a5a61e938673c3495dcbaebe0",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer_present": true,
+      "answer_characters": 1861,
+      "answer_sha256": "9563c396003e07a8913ca0cf934037d8b90f7972d89da0a8d02ca8232d9cb738",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: covered_or_uncovered_ball, field_zone",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_07.json",
+      "sha256": "447f8c946d383d8acf2e7ddd4e8c1cc56dc261bf8a8ef7046a1126c75abc962b",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_07",
+      "question": "Il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. Ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+      "answer_present": true,
+      "answer_characters": 2373,
+      "answer_sha256": "c0bccf2b39a5114ff5fa2539eea3857c2e20a87e133fb273a3cf3feb4308ac32",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: between_lines_receiving, next_action",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_08.json",
+      "sha256": "5ba1f975e01e7bceab4dbd1e64316421d7e979d096ba8ed8d33b01facf2b532b",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer_present": true,
+      "answer_characters": 1857,
+      "answer_sha256": "88d99b7a87817fe3caf5091c547ff045df617147e7192c93b45903bc9aa4657c",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: ball_flight_trigger",
+        "incoerenze semantiche: cross_attack_contaminated_by_defensive_phase",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_09.json",
+      "sha256": "74b3be36ec33ef47ed333ded88eb28bb581800fc0e509bcb27c453881d44115a",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_09",
+      "question": "Il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"Trappola del Fuorigioco\" (offside trap) come scelta tattica attiva. Ci illustri la differenza tra un fuorigioco attuato su situazione di \"Palla Libera/Scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"Palla Inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). Quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo?",
+      "answer_present": true,
+      "answer_characters": 1662,
+      "answer_sha256": "b7a394fb58ce7ed9eb3d92e5f9f06e45ec957afa634ae157b2bd385cddf06de8",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason, covered_ball_step",
+        "incoerenze semantiche: unsupported_rigid_player_numbers",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v8/case_10.json",
+      "sha256": "576b2afb4df56f8b611ea26a8fa7438d98de09955f276ff215525c3ecf28bb7f",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv8_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer_present": true,
+      "answer_characters": 2479,
+      "answer_sha256": "65ed853d79515b64deec6dab469f16821805feaed40ba1ab69f2a56dcc59ab0f",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: live_communication",
+        "generazione selezionata: first"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_01.json",
+      "sha256": "4e3c0a315084b60f2c756cf30bf287a17ed5da5f13c32b5e1eeb1f9545bc45aa",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_01",
+      "question": "Il candidato analizzi la gestione della fase di transizione negativa (transizione difensiva). In particolare, ci illustri i criteri tattici con cui decide se ordinare alla squadra un riaggressione immediata (contro-pressing) nella zona di perdita del pallone, oppure un ripiegamento collettivo sotto la linea della palla (scappata). Quali sono i fattori situazionali e strutturali che determinano questa scelta?",
+      "answer_present": true,
+      "answer_characters": 2365,
+      "answer_sha256": "717673c48d9434f960137b437955be6ec19f28b6c98b46a355279ab178847630",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_02.json",
+      "sha256": "75373d37eef04748dfb6e7f9afc619eaef31872e282f87a52e11dd80a32bf1ea",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_02",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "answer_present": true,
+      "answer_characters": 2287,
+      "answer_sha256": "7310b33566802db8152ccaf9842e48d6120a3296c208fb29724064ee71504ba7",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_03.json",
+      "sha256": "202a4a20da1964ac321448d6baa3c3401935dc75d6c413a84476b3dd1a647720",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_03",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "answer_present": true,
+      "answer_characters": 2404,
+      "answer_sha256": "9bf8cbda8d52445739e7f75878e136969ad7f9d1f0352a4cfacb5e83f0ccf2dd",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_04.json",
+      "sha256": "9981742db28437597f9f0322bb8feaae3f09f228835774371aaeb6ee010f4840",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_04",
+      "question": "Il candidato analizzi la struttura e lo sviluppo della fase di scaglionamento offensivo contro un blocco difensivo medio-basso e compatto (difesa posizionale avversaria). Ci illustri la dislocazione geometrica dei giocatori sul terreno di gioco per garantire ampiezza e rifinitura (es. occupazione dei cinque corridoi verticali), le funzioni dei giocatori disposti sotto la linea del pallone per assicurare le marcature preventive, e le modalità per creare e sfruttare la superiorità posizionale e socio-affettiva tra i reparti. Si focalizzi sulle linee di passaggio interne ed esterne e sulla struttura geometrica che la squadra deve assumere.",
+      "answer_present": true,
+      "answer_characters": 2839,
+      "answer_sha256": "773b204b5ecbf0eee72c78bc17dc3a23cfe208dbf124892f3cd868781fe3e6f7",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_05.json",
+      "sha256": "eb68c69f01e3d8262b015c2a85cf47b809a244ffeb140759c80d5d6f128251f1",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_05",
+      "question": "Il candidato analizzi il principio del sotto-blocco e dello scivolamento di reparto in una fase di non possesso con blocco medio-basso (difesa posizionale), a fronte di un cambio gioco avversario da una fascia laterale all'altra. Ci illustri la dinamica del tempo di volo della palla come innesco per l'accorciamento, i compiti del quinto/quarto difensore lato debole che diventa lato forte, il comportamento del mediano metodista nel presidiare lo spazio di imbucata (lo schermo davanti alla difesa) e i criteri per mantenere la squadra corta e stretta evitando l'apertura di corridoi interni.",
+      "answer_present": true,
+      "answer_characters": 2400,
+      "answer_sha256": "f6dccae005218d346460f9b4499e014ca9d693269ef31c82b20caa1c111ead91",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_06.json",
+      "sha256": "cd7c924ac2196b0f19e20960678c53ba95f1cda3a777370f3af6347da2600834",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_06",
+      "question": "Il candidato analizzi lo sviluppo del contro-pressing (o riaggressione immediata) secondo il principio dell'attacco dello spazio del portatore di palla avversario e la contestuale chiusura delle linee di passaggio più vicine. Ci illustri la differenza tra un contro-pressing orientato sull'uomo (marcatura asfissiante degli appoggi corti) e un contro-pressing orientato sulle linee di passaggio/spazio (intercettamento). Specifichi inoltre i comportamenti richiesti ai difensori rimasti in copertura e il tempo massimo di esecuzione oltre il quale la squadra deve interrompere l'azione per scappare.",
+      "answer_present": true,
+      "answer_characters": 1963,
+      "answer_sha256": "bd06d6eb27342cd616a8cb60b374fb36deccff8bc3f444aa44376a85b6391722",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: density_or_proximity, field_zone",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_07.json",
+      "sha256": "4494efe42bb99d0320752b46241111e75ee0d908d8dbb964c866e12459d3bdd2",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_07",
+      "question": "Il candidato analizzi i principi tattici legati all'utilizzo della rifinitura (zona di campo compresa tra la linea difensiva e la linea di centrocampo avversaria) in fase di sviluppo offensivo. Ci illustri come si coordina lo smarcamento dei trequartisti o degli esterni che vengono dentro il campo per ricevere in questa zona, le modalità di trasmissione palla (es. passaggi a rompere la linea o diagonali) e i successivi comportamenti di sviluppo (es. attacco diretto della linea difensiva, scarico e inserimento) volti a scardinare una difesa posizionale.",
+      "answer_present": true,
+      "answer_characters": 2167,
+      "answer_sha256": "ea1d4f97c66efe3cdd99b45993d5d57722daad80e68402773f5590b53b8cb469",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: between_lines_receiving",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_08.json",
+      "sha256": "c2b72ee36509b670989a95245ba920bc8f6372201a98614d759aa76f92c3f9da",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_08",
+      "question": "Il candidato analizzi la fase di \"Costruzione Alta\" e sviluppo della manovra contro un avversario che si difende con un blocco basso e compatto (difesa posizionale bassa arroccata nella propria trequarti, es. 5-4-1 o 4-5-1). Ci illustri l'utilizzo strategico del cambio gioco e della \"palla viaggia\" per muovere la struttura avversaria, le modalità per scatenare il duello di 1vs1 sulle corsie esterne e i codici di attacco all'area di rigore (riempimento dell'area) in previsione di un cross o di un traversone (es. attacco del primo palo, secondo palo, dischetto del rigore e zona di \"fuori area\").",
+      "answer_present": true,
+      "answer_characters": 1982,
+      "answer_sha256": "f10854bdb9f27cc3444b6323b7055fe3d73d245f3bb9b0421678383cc0d57f43",
+      "done_reason": "stop",
+      "repair_reasons": [],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_09.json",
+      "sha256": "b563418d3059496e9b60c4e2c5faf1c00586edf9ed60adb920e00d35c170b365",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_09",
+      "question": "Il candidato analizzi la gestione strategica e l'organizzazione della linea difensiva nell'applicazione della \"Trappola del Fuorigioco\" (offside trap) come scelta tattica attiva. Ci illustri la differenza tra un fuorigioco attuato su situazione di \"Palla Libera/Scoperta\" a centrocampo rispetto a un fuorigioco applicato in modo sistematico sulle situazioni di \"Palla Inattiva\" a sfavore (es. punizioni laterali o centrali a tre quarti campo). Quali sono i comandi verbali o visivi del leader della linea, i rischi transizionali correlati e le posture richieste per evitare di essere presi in controtempo?",
+      "answer_present": true,
+      "answer_characters": 2222,
+      "answer_sha256": "061cc943261bc2eb1310ce31af742825fafde907d27717485f08598d6e3ff5de",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: reason",
+        "incoerenze semantiche: unsupported_rigid_player_numbers",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": false,
+      "independent_score_in_this_case_record": null
+    },
+    {
+      "path": "evaluation/coverciano-remediation-v9/case_10.json",
+      "sha256": "f328c1108b2aee4572e5a48cd47eb3445079d6fc4de56e4029483b158ca65f00",
+      "model_declared": "qwen3.5:9b",
+      "question_id": "remediationv9_10",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "answer_present": true,
+      "answer_characters": 2629,
+      "answer_sha256": "e8665c21ed2db1d0ca72438df19d204b78d947303897443ec5abd8f5a030a7c4",
+      "done_reason": "stop",
+      "repair_reasons": [
+        "copertura incompleta: live_communication, live_message",
+        "generazione selezionata: repair"
+      ],
+      "local_gate_complete": true,
+      "independent_score_in_this_case_record": null
+    }
+  ],
+  "latest_logical_ten": [
+    {
+      "case": 1,
+      "path": "evaluation/coverciano-remediation-v10/case_01.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 2,
+      "path": "evaluation/coverciano-remediation-v10/case_02.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 3,
+      "path": "evaluation/coverciano-remediation-v10/case_03.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 4,
+      "path": "evaluation/coverciano-remediation-v10/case_04.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 5,
+      "path": "evaluation/coverciano-remediation-v10-1/case_05.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 6,
+      "path": "evaluation/coverciano-remediation-v10-1/case_06.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 7,
+      "path": "evaluation/coverciano-remediation-v10/case_07.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 8,
+      "path": "evaluation/coverciano-remediation-v10-1/case_08.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 9,
+      "path": "evaluation/coverciano-remediation-v10/case_09.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    },
+    {
+      "case": 10,
+      "path": "evaluation/coverciano-remediation-v10-2/case_10.json",
+      "selection_basis": "Latest logical set in historical V10 closeout; not an independent holdout or new evaluation."
+    }
+  ],
+  "historical_independent_AI_grades": {
+    "source": "docs/coverciano-rag-only-100-report-01.md",
+    "reviewer": "Gemini Cloud, as documented; not official FIGC or certified human panel",
+    "scores_out_of_30": [
+      26,
+      18,
+      25,
+      23,
+      20,
+      22,
+      24,
+      21,
+      0,
+      20
+    ],
+    "reported_total": 199,
+    "reported_mean": 19.9,
+    "cases_at_least_26": 1,
+    "raw_baseline_answers_not_found_in_versioned_artifacts_consulted": true,
+    "not_latest_candidate_grades": true
+  },
+  "existing_rubric": {
+    "tactical_correctness": 35,
+    "coverage": 25,
+    "role_side_phase_coherence": 20,
+    "documentary_support": 15,
+    "constraint_compliance": 5
+  },
+  "new_official_scores_assigned": false,
+  "chatgpt_homogeneous_comparison_found_in_consulted_material": false,
+  "sources": [
+    {
+      "path": "docs/coverciano-rag-only-100-protocol-01.md",
+      "bytes": 2743,
+      "sha256": "77031c7263fb71df89f3cdbd53272244bafb6810f7b1a985225aac1a2f939f7e"
+    },
+    {
+      "path": "docs/coverciano-rag-only-100-report-01.md",
+      "bytes": 5393,
+      "sha256": "6d9897d390b5ff6d51ca1fc69a5341ecfdc8b88607a14285b8e1b1a3cc734250"
+    },
+    {
+      "path": "docs/coverciano-100-live-benchmark-01.md",
+      "bytes": 3936,
+      "sha256": "b803913c60616c28287810748acd62bf7fd43f6d955d4bf645f7ce8fcf6d87e5"
+    },
+    {
+      "path": "docs/coverciano-100-gemini-benchmark-01.md",
+      "bytes": 7623,
+      "sha256": "f60918b18264bb53a0b4ab52894c33b3783d8b8d601af133d5d15ad087232005"
+    },
+    {
+      "path": "docs/v5-coverciano-rag-autonomy-audit-01.md",
+      "bytes": 12268,
+      "sha256": "7802c8842780de9757ca9aa8a83140d966a3d39955c16ac87aa5f8dd534cf2fa"
+    },
+    {
+      "path": "docs/revisione_domande.md",
+      "bytes": 21883,
+      "sha256": "920b0f4184b432549fa91272f1f3ccdc2d35622d103947aacbed6dacca430c05"
+    },
+    {
+      "path": "docs/rag-coverciano-remediation-v9-runtime-01.md",
+      "bytes": 1874,
+      "sha256": "8c70d73cbeb1f34b1e38b844e4644108ba747dae29f0b6a901e702c5ec18448c"
+    },
+    {
+      "path": "docs/rag-coverciano-remediation-v10-runtime-01.md",
+      "bytes": 2213,
+      "sha256": "fc161063075f505c425f1d319f9dce4a50d659676205335fd8a2e419aea72f2b"
+    },
+    {
+      "path": "docs/rd-think-01-runtime-01.md",
+      "bytes": 5208,
+      "sha256": "2b6a789e624d65a4f62528a603781ab7e72e1fe012da73462c0992b81e3afb16"
+    },
+    {
+      "path": "evaluation/rd-think-01-result.json",
+      "bytes": 53230,
+      "sha256": "d2981232c486d7fb474c0bc664799dd0e94c28d9041c73777476a793e67ca0ed"
+    },
+    {
+      "path": "docs/v5-integrated-candidate-final-assessment-01.md",
+      "bytes": 1736,
+      "sha256": "9af2ecc0ce7b164bc909ea401ed3735030d42e52e5a74efa1cad9cb8669a2cfb"
+    },
+    {
+      "path": "docs/v5-certification-closeout-01.md",
+      "bytes": 2392,
+      "sha256": "bcd36fa01668bc6577adb8df10c2ae2c1ab9e93affb1a764aaa89c9ca368a3d3"
+    },
+    {
+      "path": "docs/v5-external-drive11-holdout-01.md",
+      "bytes": 2215,
+      "sha256": "1de9ec9709e3853c4c7dd4fd990903a148b35d6d32022fb49252ac024b25933e"
+    },
+    {
+      "path": "evaluation/runtime-archive/rag_v5_external_drive11_holdout_v1.json",
+      "bytes": 84456,
+      "sha256": "e7cbcfcaaf1e069c45551c8a9e7fcfd3deb08fa31e310acc263af3c035b6f04a"
+    },
+    {
+      "path": "docs/rag-v5-quality-9of10-validation-protocol-v1.md",
+      "bytes": 3649,
+      "sha256": "02c14beca9549bf9f58eaabe260ec71112b8c5b41e577eaeebe4a8d8d7acb3bc"
+    },
+    {
+      "path": "docs/rag-v5-quality-holdout-adjudication-rubric-20261022.md",
+      "bytes": 4123,
+      "sha256": "a68729e668daa1e8fa43a7eeeb704e263e4b6a972eb735d414c8387d2ea81214"
+    },
+    {
+      "path": "docs/rag-v5-test-campaign-closure-20261022.md",
+      "bytes": 3243,
+      "sha256": "093ed458c591ac225484f29bc19a4fbb8dafe06ea0e1deaa3f4a765a2ca20c91"
+    },
+    {
+      "path": "docs/rag-v5-remediation-a-q3-04-grounding-diagnosis-01.md",
+      "bytes": 13435,
+      "sha256": "650fe0fe78e20f28ae89fbab8e42a1fc0344f96200a2f5da158ed1d54372bb7b"
+    },
+    {
+      "path": "evaluation/remediation_a_official_api_single_case_01/raw_response.json",
+      "bytes": 3957,
+      "sha256": "dab16c58e6df124355630743b898926ce49d83e5336796ca3081f88155b24147"
+    },
+    {
+      "path": "evaluation/remediation_a_official_api_single_case_01/summary.json",
+      "bytes": 675,
+      "sha256": "5b4a3ec8ff2a5e156b1229256618517a889c6df9e2cfb00e19f8b649c571269c"
+    },
+    {
+      "path": "docs/gemini-independent-review-v1.md",
+      "bytes": 4223,
+      "sha256": "348d1f1b7207cf5cfe8de0157b207e5eb18da6367d372204ab67b4f573f757af"
+    },
+    {
+      "path": "evaluation/protocollo_confronto_modelli_locali_v1.md",
+      "bytes": 15400,
+      "sha256": "ccd4510658f75981bb8db3e9de099593be89578c224cbf0424d60d8f96436ea6"
+    }
+  ],
+  "recommendation": "C",
+  "status": "ESEGUITO",
+  "limit": "Documentary assessment cannot measure new model competence, causal attribution to model vs retrieval, generalization or ROI."
+}

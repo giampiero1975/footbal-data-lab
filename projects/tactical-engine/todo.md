@@ -8,6 +8,27 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-AI-COACH-VALUE-ASSESSMENT-01 (2026-11-11).
+  Valutazione documentale del valore tattico reale: raccomandazione unica **C**,
+  sospendere sviluppo operativo e preservare gli asset prima di altri costi
+  VPS non giustificati. Nessun servizio/rinnovo disattivato; dati soltanto VPS
+  da preservare prima di eventuale dismissione, con mandato separato.
+  Capacità tattiche parziali dimostrate, allenatore autonomo affidabile non
+  dimostrato. Benchmark RAG-only storico: 19,90/30, 1/10 casi almeno 26/30;
+  non è voto dell'ultima versione. V9/V10 e locked restano nei propri perimetri,
+  non sostituiscono una media Coverciano indipendente. Errori di ruoli/fasi,
+  trasformazioni contraddittorie e grounding; contributi modello/architettura
+  non isolati causalmente. Nessun confronto ChatGPT omogeneo individuato.
+  Inventario di 55 file di caso (rerun development, non 55 domande indipendenti)
+  e 22 fonti; nessun voto ufficiale nuovo. Rubriche esistenti preservate.
+  Minima verifica eventuale proposta, non eseguita: revisione tattica umana
+  indipendente in cieco dei dieci testi finali già salvati, senza inferenze/VPS;
+  non certificazione holdout. Report `docs/rag-v5-ai-coach-value-assessment-01.md`
+  e `docs/ai-coach-value-evidence-inventory-01.json`, pubblicati con TODO/registro.
+  Nessun codice/prompt/schema/dataset/VPS modificato, SSH, modello, benchmark,
+  compilazione, merge o deploy. Accuratezza generale, Gate e certificazione
+  del coach **BLOCCATO**; certificazione storica locked preservata. STOP.
+
 - [x] **VALIDATO** nel solo perimetro documentale
   RD-RAG-V5-REMEDIATION-A-Q3-04-GROUNDING-DIAGNOSIS-01 (2026-11-11).
   Analisi **ESEGUITO** del raw già pubblicato: sette campi evidence, cinque
