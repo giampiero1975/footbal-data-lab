@@ -1,0 +1,78 @@
+{
+  "method": "Local comparison of recorded version requirement names to candidate definition names; not linker/loading or ABI/layout test.",
+  "root": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+  "results": [
+    {
+      "needed": "libgcc_s.so.1",
+      "candidate": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "required_names": [
+        "GCC_3.0"
+      ],
+      "names_not_found_in_candidate_definitions": []
+    },
+    {
+      "needed": "ld-linux-x86-64.so.2",
+      "candidate": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2",
+      "required_names": [
+        "GLIBC_2.3"
+      ],
+      "names_not_found_in_candidate_definitions": []
+    },
+    {
+      "needed": "libm.so.6",
+      "candidate": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "required_names": [
+        "GLIBC_2.27",
+        "GLIBC_2.2.5"
+      ],
+      "names_not_found_in_candidate_definitions": []
+    },
+    {
+      "needed": "libc.so.6",
+      "candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "required_names": [
+        "GLIBC_2.14",
+        "GLIBC_2.10",
+        "GLIBC_2.3",
+        "GLIBC_2.2.5"
+      ],
+      "names_not_found_in_candidate_definitions": []
+    },
+    {
+      "needed": "libpthread.so.0",
+      "candidate": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+      "required_names": [
+        "GLIBC_2.3.4",
+        "GLIBC_2.3.2",
+        "GLIBC_2.2.5"
+      ],
+      "names_not_found_in_candidate_definitions": []
+    },
+    {
+      "needed": "libstdc++.so.6",
+      "candidate": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "required_names": [
+        "CXXABI_1.3.7",
+        "GLIBCXX_3.4.20",
+        "GLIBCXX_3.4.17",
+        "CXXABI_1.3.3",
+        "CXXABI_1.3.9",
+        "CXXABI_1.3.11",
+        "CXXABI_1.3.2",
+        "GLIBCXX_3.4.18",
+        "GLIBCXX_3.4.9",
+        "CXXABI_1.3",
+        "GLIBCXX_3.4.11",
+        "GLIBCXX_3.4.14",
+        "CXXABI_1.3.5",
+        "GLIBCXX_3.4.22",
+        "GLIBCXX_3.4.15",
+        "GLIBCXX_3.4.19",
+        "GLIBCXX_3.4.21",
+        "GLIBCXX_3.4"
+      ],
+      "names_not_found_in_candidate_definitions": []
+    }
+  ],
+  "no_runtime_loader_invocation": true
+}

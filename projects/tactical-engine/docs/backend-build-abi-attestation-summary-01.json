@@ -1,0 +1,138 @@
+{
+  "activity": "RD-RAG-V5-BACKEND-BUILD-ABI-ATTESTATION-01",
+  "date_client": "2026-11-11",
+  "initial_head": "b1ac190b94d4947333c118d68004750ff38f971d",
+  "scope": "Read-only attestation investigation; H1 future satisfiability assessed, gates not executed.",
+  "remote_observation_timestamps": [
+    "2026-11-11T13:43:05.997156+00:00",
+    "2026-11-11T13:46:13.667149+00:00"
+  ],
+  "evidence_inventory": {
+    "backend-build-abi-elf-evidence-01.json": {
+      "bytes": 132715,
+      "sha256": "6c3e4774d522087593249aaf776e4c7eb3e4bd9f87e3f2b79312938db966ceb2"
+    },
+    "backend-build-abi-dependency-evidence-01.json": {
+      "bytes": 58695,
+      "sha256": "47ed0a1d3748852fec44da0da840cb95329d1e2d0f608a646bed58f48cb6baa0"
+    },
+    "backend-build-abi-version-analysis-01.json": {
+      "bytes": 2132,
+      "sha256": "95d7dd3e7c142f472d21bd18643dfcf901be638f8b28a7cc52294f5cbe55837f"
+    }
+  },
+  "historical_target_sha256": "ef57d101f75dbfcad9f309bbc7b08e62d38120657ca146e97ffad2680a2a953d",
+  "target_identity_matches_history": true,
+  "compiler_trace_not_complete_build_attestation": "GCC: (GNU) 13.3.1 20240611 (Red Hat 13.3.1-2)",
+  "dependency_candidates": 10,
+  "root_version_name_mismatches": [],
+  "debug_type_information_present": false,
+  "external_debug_file_found": false,
+  "LLAMA_USE_LLGUIDANCE_assessment": {
+    "observed_static_path": "Normal installed bool-overload path calls common_chat_schema_from_json followed by document overload; no initial bool-selection branch in recorded disassembly.",
+    "named_llguidance_symbols": [],
+    "global_build_macro_attested": false,
+    "source_binary_equivalence_attested": false
+  },
+  "public_references_reused_not_reaudited": [
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json.h",
+      "bytes": 13476,
+      "sha256": "a352f31307f1be2bdb34c027b876f42a1c5d1ea775cc8e4f11d703b16c40d22f"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json-schema.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json-schema.h",
+      "bytes": 6095,
+      "sha256": "57933a181ec0e84cbba1abea7fd898dc03e452d7de1a35795b787cee679d02af"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json-schema-to-grammar.cpp",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json-schema-to-grammar.cpp",
+      "bytes": 43518,
+      "sha256": "d5a82fff5d611abd1198ff27c328b20376ffe9f110b4771d579c8bd20c70541f"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "llama/server/CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llama/server/CMakeLists.txt",
+      "bytes": 29227,
+      "sha256": "59734d4dd425f9c36ca3fdf081a3233a1edc33fa285350b2f601890ff289560f"
+    }
+  ],
+  "gates": [
+    {
+      "gate": "H1-G1",
+      "outcome": "Evidenza parziale",
+      "evidence": "ELF64 x86-64 and .comment GCC Red Hat 13.3.1-2; runtime packages recorded.",
+      "missing": "Actual full compiler/assembler/linker/sysroot build dossier; installed binutils is not proof of the builder."
+    },
+    {
+      "gate": "H1-G2",
+      "outcome": "Evidenza mancante",
+      "evidence": "Public references reused; eight targeted build dossier candidates absent; dpkg has no owner for target.",
+      "missing": "Trusted source/patch/object/header to exact installed binary association."
+    },
+    {
+      "gate": "H1-G3",
+      "outcome": "Evidenza parziale",
+      "evidence": "cxx11-tagged interfaces, unwind/exception/RTTI data and converter overload disassembly.",
+      "missing": "Complete ABI/compiler macros/options and type layouts; actual global LLAMA_USE_LLGUIDANCE setting."
+    },
+    {
+      "gate": "H1-G4",
+      "outcome": "Evidenza parziale",
+      "evidence": "Target RUNPATH=$ORIGIN, read-only cache/config snapshot and diagnostic LD environment.",
+      "missing": "Original build include/library/plugin/response-file environment; actual service/future worker environment and descriptor policy."
+    },
+    {
+      "gate": "H1-G5",
+      "outcome": "Evidenza parziale",
+      "evidence": "Directed DT_NEEDED candidate graph, 10 unique dependency files and all root version names present.",
+      "missing": "Actual loader resolution, dynamic modules/hwcaps/preload and future worker closure; no loader invoked."
+    },
+    {
+      "gate": "H1-G6",
+      "outcome": "Evidenza parziale",
+      "evidence": "Target/dependency owner, mode, device/inode and hash snapshots.",
+      "missing": "Attested immutable snapshot, complete ancestor custody and TOCTOU prevention between future verification and use."
+    }
+  ],
+  "decision": "B",
+  "investigation_status": "ESEGUITO",
+  "ABI_attestation_status": "BLOCCATO",
+  "missing_prerequisites_status": "DA FARE",
+  "complete_ABI_or_layout_proven": false,
+  "backend_compatibility_status": "BLOCCATO",
+  "diagnostic_ssh_sessions": 3,
+  "completed_collections": 2,
+  "collection_errors": [
+    {
+      "cause": "Non-UTF8 readelf output decoded as UTF-8 before first collection could persist JSON",
+      "classification": "Diagnostic collector error, not backend error",
+      "resolution": "Retain raw stdout hashes and base64 where needed, escaped non-UTF8 text; limited collection repeated due insufficient durable evidence."
+    }
+  ],
+  "boundaries": {
+    "sudo_calls": 0,
+    "remote_permission_changes": 0,
+    "remote_file_writes_by_commands": 0,
+    "compiler_invocations": 0,
+    "linker_invocations": 0,
+    "ldd_or_loader_invocations": 0,
+    "target_library_load_calls": 0,
+    "converter_or_tokenizer_calls": 0,
+    "model_loads_or_generations": 0,
+    "POST_requests": 0,
+    "lock_acquisitions": 0,
+    "historical_suites_or_25_source_audit_repeated": false
+  }
+}

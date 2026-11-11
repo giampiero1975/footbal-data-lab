@@ -8,6 +8,21 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-BACKEND-BUILD-ABI-ATTESTATION-01 (2026-11-11).
+  Decisione **B**, attestazione incompleta: hash libllama-common storico
+  confermato per nuove sezioni ELF; traccia GCC Red Hat 13.3.1-2, EH/RTTI,
+  versioni libstdc++ e dieci dipendenze candidate documentate. Nessun layout
+  C++ o flag globale attestato; dossier sorgenti/patch/build mancanti nei
+  candidati mirati, nessun debug tipi disponibile. H1-G2: Evidenza mancante;
+  H1-G1/G3/G4/G5/G6: Evidenza parziale, valutazione senza eseguire i gate.
+  Nomi di versione disponibili non provano ABI o loading effettivo.
+  Indagine read-only, zero sudo/POST/compiler/link/loader/modelli/lock;
+  nessun audit o suite storica ripetuti. Report
+  `docs/rag-v5-backend-build-abi-attestation-01.md`, quattro evidenze e matrici
+  pubblicati con TODO/registro. Attestazione ABI **BLOCCATO**, prerequisiti
+  **DA FARE**; implementazione, compatibilità backend, accuratezza generativa,
+  Gate, integrazione e certificazione **BLOCCATO**. STOP.
+
 - [x] **VALIDATO** per proprietà documentali coperte
   RD-RAG-V5-BACKEND-HARNESS-H1-H3-DOCUMENTARY-CLOSEOUT-01 (2026-11-11).
   Precisazioni **IMPLEMENTATO** nel README e tre nuove specifiche H1/H2/H3:

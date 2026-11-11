@@ -1,0 +1,1131 @@
+{
+  "observed_at_utc": "2026-11-11T13:46:13.667149+00:00",
+  "method": "directed ELF dependency graph via RUNPATH and cache candidates; no ldd/loader execution",
+  "selection_limit": "max 24 ELF files, max 64 MiB per file, no unrelated filesystem scan",
+  "nodes": {
+    "/usr/local/lib/ollama/libllama.so.0.7.0": {
+      "bytes": 4436560,
+      "sha256": "67cc15d00fd21704dca3e5f77dcf9d3aa98c57ebf84eb440f97ef1903c1b9d8d",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "inode": 555776,
+      "device": 64769,
+      "needed": [
+        "libggml.so.0",
+        "libggml-base.so.0",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "search_paths": [
+        "$ORIGIN"
+      ],
+      "dynamic_stdout_sha256": "50cffe75981d6a89adf20be4d68f9e9a188b5c5ac0b59c6039affa844ed8861e",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libggml.so.0]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libggml-base.so.0]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]",
+        "0x000000000000000e (SONAME)             Library soname: [libllama.so.0]",
+        "0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN]"
+      ],
+      "version_info_stdout_sha256": "b95f42a246a8e4712647c600c8b74865832a9d54af02456c9d21f8e5728feac5",
+      "version_selected": [
+        "000000: Version: 1  File: ld-linux-x86-64.so.2  Cnt: 1",
+        "0x0010:   Name: GLIBC_2.3  Flags: none  Version: 25",
+        "0x0020: Version: 1  File: libgcc_s.so.1  Cnt: 2",
+        "0x0030:   Name: GCC_3.0  Flags: none  Version: 26",
+        "0x0040:   Name: GCC_3.4  Flags: none  Version: 20",
+        "0x0050: Version: 1  File: libm.so.6  Cnt: 2",
+        "0x0060:   Name: GLIBC_2.27  Flags: none  Version: 21",
+        "0x0070:   Name: GLIBC_2.2.5  Flags: none  Version: 11",
+        "0x0080: Version: 1  File: libc.so.6  Cnt: 2",
+        "0x0090:   Name: GLIBC_2.14  Flags: none  Version: 16",
+        "0x00a0:   Name: GLIBC_2.2.5  Flags: none  Version: 3",
+        "0x00b0: Version: 1  File: libstdc++.so.6  Cnt: 18",
+        "0x00c0:   Name: GLIBCXX_3.4.25  Flags: none  Version: 24",
+        "0x00d0:   Name: GLIBCXX_3.4.20  Flags: none  Version: 23",
+        "0x00e0:   Name: GLIBCXX_3.4.17  Flags: none  Version: 22",
+        "0x00f0:   Name: CXXABI_1.3.3  Flags: none  Version: 19",
+        "0x0100:   Name: CXXABI_1.3.9  Flags: none  Version: 18",
+        "0x0110:   Name: CXXABI_1.3.11  Flags: none  Version: 17",
+        "0x0120:   Name: CXXABI_1.3.2  Flags: none  Version: 15",
+        "0x0130:   Name: GLIBCXX_3.4.18  Flags: none  Version: 14",
+        "0x0140:   Name: GLIBCXX_3.4.9  Flags: none  Version: 13",
+        "0x0150:   Name: CXXABI_1.3  Flags: none  Version: 12",
+        "0x0160:   Name: GLIBCXX_3.4.11  Flags: none  Version: 10",
+        "0x0170:   Name: GLIBCXX_3.4.14  Flags: none  Version: 9",
+        "0x0180:   Name: CXXABI_1.3.5  Flags: none  Version: 8",
+        "0x0190:   Name: GLIBCXX_3.4.15  Flags: none  Version: 7",
+        "0x01a0:   Name: GLIBCXX_3.4.22  Flags: none  Version: 6",
+        "0x01b0:   Name: GLIBCXX_3.4.21  Flags: none  Version: 5",
+        "0x01c0:   Name: GLIBCXX_3.4.19  Flags: none  Version: 4",
+        "0x01d0:   Name: GLIBCXX_3.4  Flags: none  Version: 2"
+      ],
+      "notes_stdout_sha256": "f19c25e6e301d2cdaaa9925f997717aa2eb0d184df302f2a94f47ce9a7e5651c",
+      "build_ids": [
+        "cc8d6610ec6d7177e997a5fe41b11eb2493124ad"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/local/lib/ollama/libggml.so.0.27.0": {
+      "bytes": 220784,
+      "sha256": "fb936d4ee59b3f45ad1d37939266d22c1f06ea9d3fb0485ba97fc4855bbde101",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "inode": 555757,
+      "device": 64769,
+      "needed": [
+        "libggml-base.so.0",
+        "libdl.so.2",
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libc.so.6"
+      ],
+      "search_paths": [
+        "$ORIGIN"
+      ],
+      "dynamic_stdout_sha256": "fef9ad9c50f3e64adf4b0be4859fba57d7a37617c912c0bd6b9a77ca41b9efff",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libggml-base.so.0]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libdl.so.2]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x000000000000000e (SONAME)             Library soname: [libggml.so.0]",
+        "0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN]"
+      ],
+      "version_info_stdout_sha256": "7e3db0061bc4907bd791fcc070153def4863b1ff4b6352b5309869bcdf0f6fef",
+      "version_selected": [
+        "000000: Version: 1  File: libgcc_s.so.1  Cnt: 1",
+        "0x0010:   Name: GCC_3.0  Flags: none  Version: 15",
+        "0x0020: Version: 1  File: libdl.so.2  Cnt: 1",
+        "0x0030:   Name: GLIBC_2.2.5  Flags: none  Version: 10",
+        "0x0040: Version: 1  File: libstdc++.so.6  Cnt: 7",
+        "0x0050:   Name: GLIBCXX_3.4.20  Flags: none  Version: 14",
+        "0x0060:   Name: CXXABI_1.3.9  Flags: none  Version: 13",
+        "0x0070:   Name: CXXABI_1.3  Flags: none  Version: 9",
+        "0x0080:   Name: GLIBCXX_3.4.21  Flags: none  Version: 7",
+        "0x0090:   Name: GLIBCXX_3.4.11  Flags: none  Version: 6",
+        "0x00a0:   Name: CXXABI_1.3.5  Flags: none  Version: 4",
+        "0x00b0:   Name: GLIBCXX_3.4  Flags: none  Version: 3",
+        "0x00c0: Version: 1  File: libc.so.6  Cnt: 6",
+        "0x00d0:   Name: GLIBC_2.17  Flags: none  Version: 16",
+        "0x00e0:   Name: GLIBC_2.14  Flags: none  Version: 12",
+        "0x00f0:   Name: GLIBC_2.6  Flags: none  Version: 11",
+        "0x0100:   Name: GLIBC_2.3  Flags: none  Version: 8",
+        "0x0110:   Name: GLIBC_2.4  Flags: none  Version: 5",
+        "0x0120:   Name: GLIBC_2.2.5  Flags: none  Version: 2"
+      ],
+      "notes_stdout_sha256": "07080855d91854e0672ff33b6405b09f949417c3f9b37b8c485733e1dabb77c4",
+      "build_ids": [
+        "4b38463f3cbaa46ded4b4676b1802705ab22ad79"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/local/lib/ollama/libggml-base.so.0.27.0": {
+      "bytes": 812880,
+      "sha256": "7d825f40ff2c7d8b52e640734a5608a59de55e15934c420afbe074d025ea9207",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "inode": 555738,
+      "device": 64769,
+      "needed": [
+        "libstdc++.so.6",
+        "libm.so.6",
+        "libgcc_s.so.1",
+        "libpthread.so.0",
+        "libc.so.6"
+      ],
+      "search_paths": [
+        "$ORIGIN"
+      ],
+      "dynamic_stdout_sha256": "76daf3010020ca5cce3cfb957f4bc6e493fe824e0df8b7d37ba44b733501468b",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libpthread.so.0]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x000000000000000e (SONAME)             Library soname: [libggml-base.so.0]",
+        "0x000000000000001d (RUNPATH)            Library runpath: [$ORIGIN]"
+      ],
+      "version_info_stdout_sha256": "023f3c6c10e9965ac6f159db821cfed891b05b439118cedeb1e3ff4cdd2ebba2",
+      "version_selected": [
+        "000000: Version: 1  File: libgcc_s.so.1  Cnt: 1",
+        "0x0010:   Name: GCC_3.0  Flags: none  Version: 17",
+        "0x0020: Version: 1  File: libm.so.6  Cnt: 2",
+        "0x0030:   Name: GLIBC_2.27  Flags: none  Version: 14",
+        "0x0040:   Name: GLIBC_2.2.5  Flags: none  Version: 9",
+        "0x0050: Version: 1  File: libstdc++.so.6  Cnt: 9",
+        "0x0060:   Name: GLIBCXX_3.4.20  Flags: none  Version: 16",
+        "0x0070:   Name: GLIBCXX_3.4.18  Flags: none  Version: 15",
+        "0x0080:   Name: CXXABI_1.3.9  Flags: none  Version: 13",
+        "0x0090:   Name: GLIBCXX_3.4.11  Flags: none  Version: 10",
+        "0x00a0:   Name: CXXABI_1.3.8  Flags: none  Version: 8",
+        "0x00b0:   Name: CXXABI_1.3  Flags: none  Version: 7",
+        "0x00c0:   Name: GLIBCXX_3.4.21  Flags: none  Version: 6",
+        "0x00d0:   Name: CXXABI_1.3.5  Flags: none  Version: 5",
+        "0x00e0:   Name: GLIBCXX_3.4  Flags: none  Version: 4",
+        "0x00f0: Version: 1  File: libc.so.6  Cnt: 3",
+        "0x0100:   Name: GLIBC_2.17  Flags: none  Version: 12",
+        "0x0110:   Name: GLIBC_2.14  Flags: none  Version: 11",
+        "0x0120:   Name: GLIBC_2.2.5  Flags: none  Version: 3",
+        "0x0130: Version: 1  File: libpthread.so.0  Cnt: 1",
+        "0x0140:   Name: GLIBC_2.2.5  Flags: none  Version: 2"
+      ],
+      "notes_stdout_sha256": "9ad90a8c2c1497273d184c58b75e4205508598250406e6654a5a24fe7491673e",
+      "build_ids": [
+        "3e22d99cd20b30b58e9e1131802b2050b51ac48e"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libpthread.so.0": {
+      "bytes": 14408,
+      "sha256": "90491a21ce44efcf3bd4b65ec82501c091d7ebe7f8d9b341dd01d721001d9ecd",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "inode": 3019,
+      "device": 64769,
+      "needed": [
+        "libc.so.6"
+      ],
+      "search_paths": [],
+      "dynamic_stdout_sha256": "1ef2c51751a36e58f4bcd077645e6a3087dd2f215b95cd6cd7c0ebe1a29729e2",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x000000000000000e (SONAME)             Library soname: [libpthread.so.0]"
+      ],
+      "version_info_stdout_sha256": "d3724e5ffbfb51a7c7e8c3e79bb6e3dcc7e5bea43ca86f8f4905535cb6ce90f2",
+      "version_selected": [
+        "000000: Rev: 1  Flags: BASE  Index: 1  Cnt: 1  Name: libpthread.so.0",
+        "0x001c: Rev: 1  Flags: none  Index: 2  Cnt: 1  Name: GLIBC_2.2.5",
+        "0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 2  Name: GLIBC_2.2.6",
+        "0x005c: Rev: 1  Flags: none  Index: 4  Cnt: 2  Name: GLIBC_2.3.2",
+        "0x0080: Rev: 1  Flags: none  Index: 5  Cnt: 2  Name: GLIBC_2.3.3",
+        "0x00a4: Rev: 1  Flags: none  Index: 6  Cnt: 2  Name: GLIBC_2.3.4",
+        "0x00c8: Rev: 1  Flags: none  Index: 7  Cnt: 2  Name: GLIBC_2.4",
+        "0x00ec: Rev: 1  Flags: none  Index: 8  Cnt: 2  Name: GLIBC_2.11",
+        "0x0110: Rev: 1  Flags: none  Index: 9  Cnt: 2  Name: GLIBC_2.12",
+        "0x0134: Rev: 1  Flags: none  Index: 10  Cnt: 2  Name: GLIBC_2.18",
+        "0x0158: Rev: 1  Flags: none  Index: 11  Cnt: 2  Name: GLIBC_2.28",
+        "0x017c: Rev: 1  Flags: none  Index: 12  Cnt: 2  Name: GLIBC_2.30",
+        "0x01a0: Rev: 1  Flags: none  Index: 13  Cnt: 2  Name: GLIBC_2.31",
+        "000000: Version: 1  File: libc.so.6  Cnt: 3",
+        "0x0010:   Name: GLIBC_2.36  Flags: none  Version: 16",
+        "0x0020:   Name: GLIBC_ABI_DT_RELR  Flags: none  Version: 15",
+        "0x0030:   Name: GLIBC_2.2.5  Flags: none  Version: 14"
+      ],
+      "notes_stdout_sha256": "df208268f8f52dac0bd5f56ca27de7b83b453f7232e21db37ad2c8291b0a3be0",
+      "build_ids": [
+        "bfb64d71f59022ae638ad01b47fd80c4416ba5e9"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33": {
+      "bytes": 2592224,
+      "sha256": "1fd75fe70354a416d75aef22bcae68c47bd25d20e2d0568c30b1a9838cf62f11",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "inode": 5172,
+      "device": 64769,
+      "needed": [
+        "libm.so.6",
+        "libc.so.6",
+        "ld-linux-x86-64.so.2",
+        "libgcc_s.so.1"
+      ],
+      "search_paths": [],
+      "dynamic_stdout_sha256": "aca2dfd99702ef915ea596df9807774f4166d989ec7ca1760cd10d60029a9960",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]",
+        "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+        "0x000000000000000e (SONAME)             Library soname: [libstdc++.so.6]"
+      ],
+      "version_info_stdout_sha256": "e5979b6e4a3dc505b950d82a83a26ab8959ee316f365af38ffb04d0f79de1dee",
+      "version_selected": [
+        "000000: Rev: 1  Flags: BASE  Index: 1  Cnt: 1  Name: libstdc++.so.6",
+        "0x001c: Rev: 1  Flags: none  Index: 2  Cnt: 1  Name: GLIBCXX_3.4",
+        "0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 2  Name: GLIBCXX_3.4.1",
+        "0x005c: Rev: 1  Flags: none  Index: 4  Cnt: 2  Name: GLIBCXX_3.4.2",
+        "0x0080: Rev: 1  Flags: none  Index: 5  Cnt: 2  Name: GLIBCXX_3.4.3",
+        "0x00a4: Rev: 1  Flags: none  Index: 6  Cnt: 2  Name: GLIBCXX_3.4.4",
+        "0x00c8: Rev: 1  Flags: none  Index: 7  Cnt: 2  Name: GLIBCXX_3.4.5",
+        "0x00ec: Rev: 1  Flags: none  Index: 8  Cnt: 2  Name: GLIBCXX_3.4.6",
+        "0x0110: Rev: 1  Flags: none  Index: 9  Cnt: 2  Name: GLIBCXX_3.4.7",
+        "0x0134: Rev: 1  Flags: none  Index: 10  Cnt: 2  Name: GLIBCXX_3.4.8",
+        "0x0158: Rev: 1  Flags: none  Index: 11  Cnt: 2  Name: GLIBCXX_3.4.9",
+        "0x017c: Rev: 1  Flags: none  Index: 12  Cnt: 2  Name: GLIBCXX_3.4.10",
+        "0x01a0: Rev: 1  Flags: none  Index: 13  Cnt: 2  Name: GLIBCXX_3.4.11",
+        "0x01c4: Rev: 1  Flags: none  Index: 14  Cnt: 2  Name: GLIBCXX_3.4.12",
+        "0x01e8: Rev: 1  Flags: none  Index: 15  Cnt: 2  Name: GLIBCXX_3.4.13",
+        "0x020c: Rev: 1  Flags: none  Index: 16  Cnt: 2  Name: GLIBCXX_3.4.14",
+        "0x0230: Rev: 1  Flags: none  Index: 17  Cnt: 2  Name: GLIBCXX_3.4.15",
+        "0x0254: Rev: 1  Flags: none  Index: 18  Cnt: 2  Name: GLIBCXX_3.4.16",
+        "0x0278: Rev: 1  Flags: none  Index: 19  Cnt: 2  Name: GLIBCXX_3.4.17",
+        "0x029c: Rev: 1  Flags: none  Index: 20  Cnt: 2  Name: GLIBCXX_3.4.18",
+        "0x02c0: Rev: 1  Flags: none  Index: 21  Cnt: 2  Name: GLIBCXX_3.4.19",
+        "0x02e4: Rev: 1  Flags: none  Index: 22  Cnt: 2  Name: GLIBCXX_3.4.20",
+        "0x0308: Rev: 1  Flags: none  Index: 23  Cnt: 2  Name: GLIBCXX_3.4.21",
+        "0x032c: Rev: 1  Flags: none  Index: 24  Cnt: 2  Name: GLIBCXX_3.4.22",
+        "0x0350: Rev: 1  Flags: none  Index: 25  Cnt: 2  Name: GLIBCXX_3.4.23",
+        "0x0374: Rev: 1  Flags: none  Index: 26  Cnt: 2  Name: GLIBCXX_3.4.24",
+        "0x0398: Rev: 1  Flags: none  Index: 27  Cnt: 2  Name: GLIBCXX_3.4.25",
+        "0x03bc: Rev: 1  Flags: none  Index: 28  Cnt: 2  Name: GLIBCXX_3.4.26",
+        "0x03e0: Rev: 1  Flags: none  Index: 29  Cnt: 2  Name: GLIBCXX_3.4.27",
+        "0x0404: Rev: 1  Flags: none  Index: 30  Cnt: 2  Name: GLIBCXX_3.4.28",
+        "0x0428: Rev: 1  Flags: none  Index: 31  Cnt: 2  Name: GLIBCXX_3.4.29",
+        "0x044c: Rev: 1  Flags: none  Index: 32  Cnt: 2  Name: GLIBCXX_3.4.30",
+        "0x0470: Rev: 1  Flags: none  Index: 33  Cnt: 2  Name: GLIBCXX_3.4.31",
+        "0x0494: Rev: 1  Flags: none  Index: 34  Cnt: 2  Name: GLIBCXX_3.4.32",
+        "0x04b8: Rev: 1  Flags: none  Index: 35  Cnt: 2  Name: GLIBCXX_3.4.33",
+        "0x04dc: Rev: 1  Flags: none  Index: 36  Cnt: 1  Name: CXXABI_1.3",
+        "0x04f8: Rev: 1  Flags: none  Index: 37  Cnt: 2  Name: CXXABI_1.3.1",
+        "0x051c: Rev: 1  Flags: none  Index: 38  Cnt: 2  Name: CXXABI_1.3.2",
+        "0x0540: Rev: 1  Flags: none  Index: 39  Cnt: 2  Name: CXXABI_1.3.3",
+        "0x0564: Rev: 1  Flags: none  Index: 40  Cnt: 2  Name: CXXABI_1.3.4",
+        "0x0588: Rev: 1  Flags: none  Index: 41  Cnt: 2  Name: CXXABI_1.3.5",
+        "0x05ac: Rev: 1  Flags: none  Index: 42  Cnt: 2  Name: CXXABI_1.3.6",
+        "0x05d0: Rev: 1  Flags: none  Index: 43  Cnt: 2  Name: CXXABI_1.3.7",
+        "0x05f4: Rev: 1  Flags: none  Index: 44  Cnt: 2  Name: CXXABI_1.3.8",
+        "0x0618: Rev: 1  Flags: none  Index: 45  Cnt: 2  Name: CXXABI_1.3.9",
+        "0x063c: Rev: 1  Flags: none  Index: 46  Cnt: 2  Name: CXXABI_1.3.10",
+        "0x0660: Rev: 1  Flags: none  Index: 47  Cnt: 2  Name: CXXABI_1.3.11",
+        "0x0684: Rev: 1  Flags: none  Index: 48  Cnt: 2  Name: CXXABI_1.3.12",
+        "0x06a8: Rev: 1  Flags: none  Index: 49  Cnt: 2  Name: CXXABI_1.3.13",
+        "0x06cc: Rev: 1  Flags: none  Index: 50  Cnt: 2  Name: CXXABI_1.3.14",
+        "0x06f0: Rev: 1  Flags: none  Index: 51  Cnt: 2  Name: CXXABI_1.3.15",
+        "0x0714: Rev: 1  Flags: none  Index: 52  Cnt: 1  Name: CXXABI_TM_1",
+        "0x0730: Rev: 1  Flags: none  Index: 53  Cnt: 1  Name: CXXABI_FLOAT128",
+        "000000: Version: 1  File: libm.so.6  Cnt: 1",
+        "0x0010:   Name: GLIBC_2.2.5  Flags: none  Version: 71",
+        "0x0020: Version: 1  File: ld-linux-x86-64.so.2  Cnt: 1",
+        "0x0030:   Name: GLIBC_2.3  Flags: none  Version: 70",
+        "0x0040: Version: 1  File: libgcc_s.so.1  Cnt: 4",
+        "0x0050:   Name: GCC_4.2.0  Flags: none  Version: 74",
+        "0x0060:   Name: GCC_3.3  Flags: none  Version: 67",
+        "0x0070:   Name: GCC_4.3.0  Flags: none  Version: 60",
+        "0x0080:   Name: GCC_3.0  Flags: none  Version: 58",
+        "0x0090: Version: 1  File: libc.so.6  Cnt: 17",
+        "0x00a0:   Name: GLIBC_2.14  Flags: none  Version: 76",
+        "0x00b0:   Name: GLIBC_2.38  Flags: none  Version: 75",
+        "0x00c0:   Name: GLIBC_2.6  Flags: none  Version: 73",
+        "0x00d0:   Name: GLIBC_2.26  Flags: none  Version: 72",
+        "0x00e0:   Name: GLIBC_2.25  Flags: none  Version: 69",
+        "0x00f0:   Name: GLIBC_2.18  Flags: none  Version: 68",
+        "0x0100:   Name: GLIBC_2.32  Flags: none  Version: 66",
+        "0x0110:   Name: GLIBC_2.4  Flags: none  Version: 65",
+        "0x0120:   Name: GLIBC_2.7  Flags: none  Version: 64",
+        "0x0130:   Name: GLIBC_2.33  Flags: none  Version: 63",
+        "0x0140:   Name: GLIBC_2.3.4  Flags: none  Version: 62",
+        "0x0150:   Name: GLIBC_2.17  Flags: none  Version: 61",
+        "0x0160:   Name: GLIBC_2.3  Flags: none  Version: 59",
+        "0x0170:   Name: GLIBC_2.36  Flags: none  Version: 57",
+        "0x0180:   Name: GLIBC_2.3.2  Flags: none  Version: 56",
+        "0x0190:   Name: GLIBC_2.34  Flags: none  Version: 55",
+        "0x01a0:   Name: GLIBC_2.2.5  Flags: none  Version: 54"
+      ],
+      "notes_stdout_sha256": "4ee98ffa5ba036b545f784d1288f9e78667239372484db87f627b639d7bfbaac",
+      "build_ids": [
+        "753c6c8608b61d4e67be8f0c890e03e0aa046b8b"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libm.so.6": {
+      "bytes": 952616,
+      "sha256": "fce00b6f25f459cf4ae0b7fae4257909a1a8a86f9149e7c029a5d617baf1ccd0",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "inode": 3010,
+      "device": 64769,
+      "needed": [
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "search_paths": [],
+      "dynamic_stdout_sha256": "0f887b4baea795ddce42efcec0ee2763627580bc9342bc01327b322bae61c47b",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]",
+        "0x000000000000000e (SONAME)             Library soname: [libm.so.6]"
+      ],
+      "version_info_stdout_sha256": "67c6ec793228845902f704041a052e1b2c8ded810c78c35e29e151b3dabfe064",
+      "version_selected": [
+        "000000: Rev: 1  Flags: BASE  Index: 1  Cnt: 1  Name: libm.so.6",
+        "0x001c: Rev: 1  Flags: none  Index: 2  Cnt: 1  Name: GLIBC_2.2.5",
+        "0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 2  Name: GLIBC_2.4",
+        "0x005c: Rev: 1  Flags: none  Index: 4  Cnt: 2  Name: GLIBC_2.15",
+        "0x0080: Rev: 1  Flags: none  Index: 5  Cnt: 2  Name: GLIBC_2.18",
+        "0x00a4: Rev: 1  Flags: none  Index: 6  Cnt: 2  Name: GLIBC_2.23",
+        "0x00c8: Rev: 1  Flags: none  Index: 7  Cnt: 2  Name: GLIBC_2.24",
+        "0x00ec: Rev: 1  Flags: none  Index: 8  Cnt: 2  Name: GLIBC_2.25",
+        "0x0110: Rev: 1  Flags: none  Index: 9  Cnt: 2  Name: GLIBC_2.26",
+        "0x0134: Rev: 1  Flags: none  Index: 10  Cnt: 2  Name: GLIBC_2.27",
+        "0x0158: Rev: 1  Flags: none  Index: 11  Cnt: 2  Name: GLIBC_2.28",
+        "0x017c: Rev: 1  Flags: none  Index: 12  Cnt: 2  Name: GLIBC_2.29",
+        "0x01a0: Rev: 1  Flags: none  Index: 13  Cnt: 2  Name: GLIBC_2.31",
+        "0x01c4: Rev: 1  Flags: none  Index: 14  Cnt: 2  Name: GLIBC_2.32",
+        "0x01e8: Rev: 1  Flags: none  Index: 15  Cnt: 2  Name: GLIBC_2.35",
+        "0x020c: Rev: 1  Flags: none  Index: 16  Cnt: 2  Name: GLIBC_2.38",
+        "0x0230: Rev: 1  Flags: none  Index: 17  Cnt: 2  Name: GLIBC_2.39",
+        "000000: Version: 1  File: ld-linux-x86-64.so.2  Cnt: 1",
+        "0x0010:   Name: GLIBC_PRIVATE  Flags: none  Version: 21",
+        "0x0020: Version: 1  File: libc.so.6  Cnt: 5",
+        "0x0030:   Name: GLIBC_2.36  Flags: none  Version: 23",
+        "0x0040:   Name: GLIBC_ABI_DT_RELR  Flags: none  Version: 22",
+        "0x0050:   Name: GLIBC_2.4  Flags: none  Version: 20",
+        "0x0060:   Name: GLIBC_2.2.5  Flags: none  Version: 19",
+        "0x0070:   Name: GLIBC_PRIVATE  Flags: none  Version: 18"
+      ],
+      "notes_stdout_sha256": "c2445477deba480e82b76e5e52e502e172fa5cbc04a6f28f766dcaa71292fa4c",
+      "build_ids": [
+        "d53fcbff9f855463606b25cfbe2a2e10856ea3a7"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1": {
+      "bytes": 183024,
+      "sha256": "d93224d2b0dab4247598be683adca02f5cf00586f99c187579cd7e92058fb7cb",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "inode": 6517,
+      "device": 64769,
+      "needed": [
+        "libc.so.6",
+        "ld-linux-x86-64.so.2"
+      ],
+      "search_paths": [],
+      "dynamic_stdout_sha256": "e0af6efd1ea9a0ff9526364f01d393d2bf436d31a1c54e07d77e1d01bd21ccb0",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]",
+        "0x000000000000000e (SONAME)             Library soname: [libgcc_s.so.1]"
+      ],
+      "version_info_stdout_sha256": "117c9840205515f98a18b791bcfb03994430d1e35477e6a0e1dd5b630444f83e",
+      "version_selected": [
+        "000000: Rev: 1  Flags: BASE  Index: 1  Cnt: 1  Name: libgcc_s.so.1",
+        "0x001c: Rev: 1  Flags: none  Index: 2  Cnt: 1  Name: GCC_3.0",
+        "0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 2  Name: GCC_3.3",
+        "0x005c: Rev: 1  Flags: none  Index: 4  Cnt: 2  Name: GCC_3.3.1",
+        "0x0080: Rev: 1  Flags: none  Index: 5  Cnt: 2  Name: GCC_3.4",
+        "0x00a4: Rev: 1  Flags: none  Index: 6  Cnt: 2  Name: GCC_3.4.2",
+        "0x00c8: Rev: 1  Flags: none  Index: 7  Cnt: 2  Name: GCC_3.4.4",
+        "0x00ec: Rev: 1  Flags: none  Index: 8  Cnt: 2  Name: GCC_4.0.0",
+        "0x0110: Rev: 1  Flags: none  Index: 9  Cnt: 2  Name: GCC_4.2.0",
+        "0x0134: Rev: 1  Flags: none  Index: 10  Cnt: 2  Name: GCC_4.3.0",
+        "0x0158: Rev: 1  Flags: none  Index: 11  Cnt: 2  Name: GCC_4.7.0",
+        "0x017c: Rev: 1  Flags: none  Index: 12  Cnt: 2  Name: GCC_4.8.0",
+        "0x01a0: Rev: 1  Flags: none  Index: 13  Cnt: 2  Name: GCC_7.0.0",
+        "0x01c4: Rev: 1  Flags: none  Index: 14  Cnt: 2  Name: GCC_12.0.0",
+        "0x01e8: Rev: 1  Flags: none  Index: 15  Cnt: 2  Name: GCC_13.0.0",
+        "0x020c: Rev: 1  Flags: none  Index: 16  Cnt: 2  Name: GCC_14.0.0",
+        "000000: Version: 1  File: ld-linux-x86-64.so.2  Cnt: 1",
+        "0x0010:   Name: GLIBC_2.3  Flags: none  Version: 20",
+        "0x0020: Version: 1  File: libc.so.6  Cnt: 6",
+        "0x0030:   Name: GLIBC_2.3.4  Flags: none  Version: 23",
+        "0x0040:   Name: GLIBC_2.35  Flags: none  Version: 22",
+        "0x0050:   Name: GLIBC_2.14  Flags: none  Version: 21",
+        "0x0060:   Name: GLIBC_2.34  Flags: none  Version: 19",
+        "0x0070:   Name: GLIBC_2.3.2  Flags: none  Version: 18",
+        "0x0080:   Name: GLIBC_2.2.5  Flags: none  Version: 17"
+      ],
+      "notes_stdout_sha256": "ce969053670d17386358a37af3cdcd5d094c5793e80d846123772c8a13e3daa3",
+      "build_ids": [
+        "58736497cba1173fec6ad05c75e996dacefd1def"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libc.so.6": {
+      "bytes": 2129424,
+      "sha256": "3a15d66867d83762c7f2f1e37359cb8f6c5743edb369c65285cb0b1c4f7498bf",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "inode": 3007,
+      "device": 64769,
+      "needed": [
+        "ld-linux-x86-64.so.2"
+      ],
+      "search_paths": [],
+      "dynamic_stdout_sha256": "448438a94088b209aa85c92684e986b026f95c833190107a2eea654f9364971c",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [ld-linux-x86-64.so.2]",
+        "0x000000000000000e (SONAME)             Library soname: [libc.so.6]"
+      ],
+      "version_info_stdout_sha256": "1e3752dc147da275844f284016320d4b4ab0f7a6048596fb7c3b3ede2ced7ea5",
+      "version_selected": [
+        "000000: Rev: 1  Flags: BASE  Index: 1  Cnt: 1  Name: libc.so.6",
+        "0x001c: Rev: 1  Flags: none  Index: 2  Cnt: 1  Name: GLIBC_2.2.5",
+        "0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 2  Name: GLIBC_2.2.6",
+        "0x005c: Rev: 1  Flags: none  Index: 4  Cnt: 2  Name: GLIBC_2.3",
+        "0x0080: Rev: 1  Flags: none  Index: 5  Cnt: 2  Name: GLIBC_2.3.2",
+        "0x00a4: Rev: 1  Flags: none  Index: 6  Cnt: 2  Name: GLIBC_2.3.3",
+        "0x00c8: Rev: 1  Flags: none  Index: 7  Cnt: 2  Name: GLIBC_2.3.4",
+        "0x00ec: Rev: 1  Flags: none  Index: 8  Cnt: 2  Name: GLIBC_2.4",
+        "0x0110: Rev: 1  Flags: none  Index: 9  Cnt: 2  Name: GLIBC_2.5",
+        "0x0134: Rev: 1  Flags: none  Index: 10  Cnt: 2  Name: GLIBC_2.6",
+        "0x0158: Rev: 1  Flags: none  Index: 11  Cnt: 2  Name: GLIBC_2.7",
+        "0x017c: Rev: 1  Flags: none  Index: 12  Cnt: 2  Name: GLIBC_2.8",
+        "0x01a0: Rev: 1  Flags: none  Index: 13  Cnt: 2  Name: GLIBC_2.9",
+        "0x01c4: Rev: 1  Flags: none  Index: 14  Cnt: 2  Name: GLIBC_2.10",
+        "0x01e8: Rev: 1  Flags: none  Index: 15  Cnt: 2  Name: GLIBC_2.11",
+        "0x020c: Rev: 1  Flags: none  Index: 16  Cnt: 2  Name: GLIBC_2.12",
+        "0x0230: Rev: 1  Flags: none  Index: 17  Cnt: 2  Name: GLIBC_2.13",
+        "0x0254: Rev: 1  Flags: none  Index: 18  Cnt: 2  Name: GLIBC_2.14",
+        "0x0278: Rev: 1  Flags: none  Index: 19  Cnt: 2  Name: GLIBC_2.15",
+        "0x029c: Rev: 1  Flags: none  Index: 20  Cnt: 2  Name: GLIBC_2.16",
+        "0x02c0: Rev: 1  Flags: none  Index: 21  Cnt: 2  Name: GLIBC_2.17",
+        "0x02e4: Rev: 1  Flags: none  Index: 22  Cnt: 2  Name: GLIBC_2.18",
+        "0x0308: Rev: 1  Flags: none  Index: 23  Cnt: 2  Name: GLIBC_2.22",
+        "0x032c: Rev: 1  Flags: none  Index: 24  Cnt: 2  Name: GLIBC_2.23",
+        "0x0350: Rev: 1  Flags: none  Index: 25  Cnt: 2  Name: GLIBC_2.24",
+        "0x0374: Rev: 1  Flags: none  Index: 26  Cnt: 2  Name: GLIBC_2.25",
+        "0x0398: Rev: 1  Flags: none  Index: 27  Cnt: 2  Name: GLIBC_2.26",
+        "0x03bc: Rev: 1  Flags: none  Index: 28  Cnt: 2  Name: GLIBC_2.27",
+        "0x03e0: Rev: 1  Flags: none  Index: 29  Cnt: 2  Name: GLIBC_2.28",
+        "0x0404: Rev: 1  Flags: none  Index: 30  Cnt: 2  Name: GLIBC_2.29",
+        "0x0428: Rev: 1  Flags: none  Index: 31  Cnt: 2  Name: GLIBC_2.30",
+        "0x044c: Rev: 1  Flags: none  Index: 32  Cnt: 2  Name: GLIBC_2.31",
+        "0x0470: Rev: 1  Flags: none  Index: 33  Cnt: 2  Name: GLIBC_2.32",
+        "0x0494: Rev: 1  Flags: none  Index: 34  Cnt: 2  Name: GLIBC_2.33",
+        "0x04b8: Rev: 1  Flags: none  Index: 35  Cnt: 2  Name: GLIBC_2.34",
+        "0x04dc: Rev: 1  Flags: none  Index: 36  Cnt: 2  Name: GLIBC_2.35",
+        "0x0500: Rev: 1  Flags: none  Index: 37  Cnt: 2  Name: GLIBC_2.36",
+        "0x0524: Rev: 1  Flags: none  Index: 38  Cnt: 2  Name: GLIBC_2.38",
+        "0x0548: Rev: 1  Flags: none  Index: 39  Cnt: 2  Name: GLIBC_2.39",
+        "0x056c: Rev: 1  Flags: none  Index: 40  Cnt: 2  Name: GLIBC_ABI_DT_RELR",
+        "0x0590: Rev: 1  Flags: none  Index: 41  Cnt: 1  Name: GLIBC_PRIVATE",
+        "000000: Version: 1  File: ld-linux-x86-64.so.2  Cnt: 3",
+        "0x0010:   Name: GLIBC_2.2.5  Flags: none  Version: 44",
+        "0x0020:   Name: GLIBC_2.3  Flags: none  Version: 43",
+        "0x0030:   Name: GLIBC_PRIVATE  Flags: none  Version: 42"
+      ],
+      "notes_stdout_sha256": "76babfb13d345bf1768a0fb43c159e187fd760bf4656210c0d1380faec4b54e6",
+      "build_ids": [
+        "a4a7992a8e66555c8141ab2a08a8465ff6e0ea65"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2": {
+      "bytes": 236616,
+      "sha256": "c20a2dc8917c755f02b94049356320fe1f62ac7d9f8994731f807d9df39302da",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "inode": 3004,
+      "device": 64769,
+      "needed": [],
+      "search_paths": [],
+      "dynamic_stdout_sha256": "ae9e2ea009cdfdb43b46bb1606b67642bf176d725529705e6e04d6f6a34175a9",
+      "dynamic_selected": [
+        "0x000000000000000e (SONAME)             Library soname: [ld-linux-x86-64.so.2]"
+      ],
+      "version_info_stdout_sha256": "eb1d8667d6e4fa36d43fcadf0a229ff48b74697770ab2f6cd4060f1fe1352dea",
+      "version_selected": [
+        "000000: Rev: 1  Flags: BASE  Index: 1  Cnt: 1  Name: ld-linux-x86-64.so.2",
+        "0x001c: Rev: 1  Flags: none  Index: 2  Cnt: 1  Name: GLIBC_2.2.5",
+        "0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 2  Name: GLIBC_2.3",
+        "0x005c: Rev: 1  Flags: none  Index: 4  Cnt: 2  Name: GLIBC_2.4",
+        "0x0080: Rev: 1  Flags: none  Index: 5  Cnt: 2  Name: GLIBC_2.34",
+        "0x00a4: Rev: 1  Flags: none  Index: 6  Cnt: 2  Name: GLIBC_2.35",
+        "0x00c8: Rev: 1  Flags: none  Index: 7  Cnt: 2  Name: GLIBC_PRIVATE"
+      ],
+      "notes_stdout_sha256": "d9ba9a0b18939de0947c7804e8e69cff7c320350cf15b51cf0e4b06f2fd63aab",
+      "build_ids": [
+        "0d77dbd4379bf0b5af3e05be7fb6af1e4cea7c96"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    },
+    "/usr/lib/x86_64-linux-gnu/libdl.so.2": {
+      "bytes": 14408,
+      "sha256": "c2994527172cc23b7fb0f7d611b71e00a37da27af12c2e5e9e0dc1a742886c96",
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o644",
+      "inode": 3009,
+      "device": 64769,
+      "needed": [
+        "libc.so.6"
+      ],
+      "search_paths": [],
+      "dynamic_stdout_sha256": "a99c633cf4ba5af280f82c18ba9e01b4441782de348739455dcd6478dff5098d",
+      "dynamic_selected": [
+        "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]",
+        "0x000000000000000e (SONAME)             Library soname: [libdl.so.2]"
+      ],
+      "version_info_stdout_sha256": "3b50bc12739fc34838df4fe547059bb3c105c91e74a3020216bd1ecbb89e2fd6",
+      "version_selected": [
+        "000000: Rev: 1  Flags: BASE  Index: 1  Cnt: 1  Name: libdl.so.2",
+        "0x001c: Rev: 1  Flags: none  Index: 2  Cnt: 1  Name: GLIBC_2.2.5",
+        "0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 2  Name: GLIBC_2.3.3",
+        "0x005c: Rev: 1  Flags: none  Index: 4  Cnt: 2  Name: GLIBC_2.3.4",
+        "000000: Version: 1  File: libc.so.6  Cnt: 3",
+        "0x0010:   Name: GLIBC_2.36  Flags: none  Version: 7",
+        "0x0020:   Name: GLIBC_ABI_DT_RELR  Flags: none  Version: 6",
+        "0x0030:   Name: GLIBC_2.2.5  Flags: none  Version: 5"
+      ],
+      "notes_stdout_sha256": "85abc4a6c6eb8826c29a74b6a9e11ebaad381a9d0448789aa96c3c0d755385ad",
+      "build_ids": [
+        "33dc200682ecde2bb9db3e93bfd95a91a6fd80a4"
+      ],
+      "reader_exit_codes": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "edges": [
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libllama.so.0",
+      "candidate_paths": [
+        "/usr/local/lib/ollama/libllama.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/local/lib/ollama/libllama.so.0.7.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libggml.so.0",
+      "candidate_paths": [
+        "/usr/local/lib/ollama/libggml.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/local/lib/ollama/libggml.so.0.27.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libggml-base.so.0",
+      "candidate_paths": [
+        "/usr/local/lib/ollama/libggml-base.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/local/lib/ollama/libggml-base.so.0.27.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libpthread.so.0",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libpthread.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libstdc++.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libstdc++.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libm.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libm.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libgcc_s.so.1",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libgcc_s.so.1"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama-common.so.0.7.0",
+      "needed": "ld-linux-x86-64.so.2",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "needed": "libggml.so.0",
+      "candidate_paths": [
+        "/usr/local/lib/ollama/libggml.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/local/lib/ollama/libggml.so.0.27.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "needed": "libggml-base.so.0",
+      "candidate_paths": [
+        "/usr/local/lib/ollama/libggml-base.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/local/lib/ollama/libggml-base.so.0.27.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "needed": "libstdc++.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libstdc++.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "needed": "libm.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libm.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "needed": "libgcc_s.so.1",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libgcc_s.so.1"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libllama.so.0.7.0",
+      "needed": "ld-linux-x86-64.so.2",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml.so.0.27.0",
+      "needed": "libggml-base.so.0",
+      "candidate_paths": [
+        "/usr/local/lib/ollama/libggml-base.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/local/lib/ollama/libggml-base.so.0.27.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml.so.0.27.0",
+      "needed": "libdl.so.2",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libdl.so.2"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libdl.so.2"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml.so.0.27.0",
+      "needed": "libstdc++.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libstdc++.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml.so.0.27.0",
+      "needed": "libm.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libm.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml.so.0.27.0",
+      "needed": "libgcc_s.so.1",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libgcc_s.so.1"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml.so.0.27.0",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml-base.so.0.27.0",
+      "needed": "libstdc++.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libstdc++.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml-base.so.0.27.0",
+      "needed": "libm.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libm.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml-base.so.0.27.0",
+      "needed": "libgcc_s.so.1",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libgcc_s.so.1"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml-base.so.0.27.0",
+      "needed": "libpthread.so.0",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libpthread.so.0"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libpthread.so.0"
+    },
+    {
+      "parent": "/usr/local/lib/ollama/libggml-base.so.0.27.0",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libpthread.so.0",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "needed": "libm.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libm.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libm.so.6"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "needed": "ld-linux-x86-64.so.2",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33",
+      "needed": "libgcc_s.so.1",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libgcc_s.so.1"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libm.so.6",
+      "needed": "ld-linux-x86-64.so.2",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libgcc_s.so.1",
+      "needed": "ld-linux-x86-64.so.2",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libc.so.6",
+      "needed": "ld-linux-x86-64.so.2",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    },
+    {
+      "parent": "/usr/lib/x86_64-linux-gnu/libdl.so.2",
+      "needed": "libc.so.6",
+      "candidate_paths": [
+        "/lib/x86_64-linux-gnu/libc.so.6"
+      ],
+      "selection_basis": "RUNPATH-origin plus x86-64 cache; candidate only, actual loader and hwcaps/preload not invoked",
+      "selected_candidate": "/usr/lib/x86_64-linux-gnu/libc.so.6"
+    }
+  ],
+  "configs": {
+    "/etc/ld.so.cache": {
+      "bytes": 23647,
+      "sha256": "b3d9a28f86230a342c3e491159155dc105a5b0be5969509d8d9b78c83fae54ac",
+      "uid": 0,
+      "mode": "0o644"
+    },
+    "/etc/ld.so.preload": {
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: '/etc/ld.so.preload'"
+    },
+    "/etc/ld.so.conf": {
+      "bytes": 34,
+      "sha256": "d4b198c463418b493208485def26a6f4c57279467b9dfa491b70433cedb602e8",
+      "uid": 0,
+      "mode": "0o644",
+      "text": "include /etc/ld.so.conf.d/*.conf\n\n"
+    },
+    "/etc/ld.so.conf.d/fakeroot-x86_64-linux-gnu.conf": {
+      "bytes": 38,
+      "sha256": "af7edc777dd224bade078ba540538444db69856533c02e18a7f9fbbdd23bd181",
+      "text": "/usr/lib/x86_64-linux-gnu/libfakeroot\n"
+    },
+    "/etc/ld.so.conf.d/libc.conf": {
+      "bytes": 44,
+      "sha256": "90d4c7e43e7661cd116010eb9f50ad5817e43162df344bd1ad10898851b15d41",
+      "text": "# libc default configuration\n/usr/local/lib\n"
+    },
+    "/etc/ld.so.conf.d/x86_64-linux-gnu.conf": {
+      "bytes": 100,
+      "sha256": "f03e4740e6922b4f4a1181cd696b52f62f9f10d003740a8940f7121795c59c98",
+      "text": "# Multiarch support\n/usr/local/lib/x86_64-linux-gnu\n/lib/x86_64-linux-gnu\n/usr/lib/x86_64-linux-gnu\n"
+    }
+  },
+  "limits": [],
+  "cache_query": {
+    "argv": [
+      "/usr/sbin/ldconfig",
+      "-p"
+    ],
+    "exit": 0,
+    "stdout_sha256": "8cc29427e2aeb94a4416e954e8797f1059028e3a9f79237621b985521369ab60",
+    "purpose": "read-only cache listing, retain only dependency-directed candidates"
+  },
+  "diagnostic_process_LD_environment_not_service_environment": {},
+  "cache_candidates_consulted": {
+    "libllama.so.0": [],
+    "libggml.so.0": [],
+    "libggml-base.so.0": [],
+    "libpthread.so.0": [
+      "/lib/x86_64-linux-gnu/libpthread.so.0"
+    ],
+    "libstdc++.so.6": [
+      "/lib/x86_64-linux-gnu/libstdc++.so.6"
+    ],
+    "libm.so.6": [
+      "/lib/x86_64-linux-gnu/libm.so.6"
+    ],
+    "libgcc_s.so.1": [
+      "/lib/x86_64-linux-gnu/libgcc_s.so.1"
+    ],
+    "libc.so.6": [
+      "/lib/x86_64-linux-gnu/libc.so.6"
+    ],
+    "ld-linux-x86-64.so.2": [
+      "/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2"
+    ],
+    "libdl.so.2": [
+      "/lib/x86_64-linux-gnu/libdl.so.2"
+    ]
+  },
+  "target_build_notes": {
+    "stdout": "\nDisplaying notes found in: .note.gnu.build-id\n  Owner                Data size \tDescription\n  GNU                  0x00000014\tNT_GNU_BUILD_ID (unique build ID bitstring)\t    Build ID: a7bb44fb1d8cae659f9e62b00c3b43690ef27614\n\nDisplaying notes found in: .gnu.build.attributes\n  Owner                Data size \tDescription\n  GA$<version>3a1              0x00000010\tOPEN\t    Applies to region from 0xad000 to 0x3ab645\n",
+    "stdout_sha256": "d1903232ab4f0904a96d47e8d38b2c016b6fa51ebf40ca9b83fc76b850e09702",
+    "exit": 0
+  },
+  "target_abi_types": {
+    "complete_stdout_sha256": "b41494de7ff37b5482ec8089e10613dd685c249d1e585e5226c3b82740700ed9",
+    "specific_RTTI_and_vtable_symbols": [
+      "608: 00000000004635d8    24 OBJECT  WEAK   DEFAULT   20 _ZTIN28common_chat_schema_converter15invalid_patternE",
+      "713: 00000000003c8810    28 OBJECT  WEAK   DEFAULT   13 _ZTS25common_chat_schema_all_of",
+      "753: 00000000003ac100    28 OBJECT  WEAK   DEFAULT   13 _ZTS25common_chat_schema_object",
+      "754: 0000000000463080    40 OBJECT  WEAK   DEFAULT   20 _ZTV17common_json_error",
+      "804: 00000000003c8260   126 OBJECT  WEAK   DEFAULT   13 _ZTSZN28common_chat_schema_converter12_not_stringsERKSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS6_EEEUlmE_",
+      "948: 0000000000463660    16 OBJECT  WEAK   DEFAULT   20 _ZTIZN28common_chat_schema_converter13_visit_all_ofERK25common_chat_schema_all_ofRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_EUlRK18common_chat_schemabE_",
+      "965: 0000000000463988    40 OBJECT  WEAK   DEFAULT   20 _ZTV25common_chat_schema_string",
+      "1203: 00000000003c8850    26 OBJECT  WEAK   DEFAULT   13 _ZTS23common_chat_schema_enum",
+      "1430: 00000000003c8830    27 OBJECT  WEAK   DEFAULT   13 _ZTS24common_chat_schema_const",
+      "1552: 0000000000463780    24 OBJECT  WEAK   DEFAULT   20 _ZTI25common_chat_schema_number",
+      "1621: 00000000003c8910    27 OBJECT  WEAK   DEFAULT   13 _ZTS24common_chat_schema_array",
+      "1631: 00000000003c83e0   163 OBJECT  WEAK   DEFAULT   13 _ZTSZN28common_chat_schema_converter13_visit_all_ofERK25common_chat_schema_all_ofRKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESA_EUlRK18common_chat_schemabE_",
+      "1653: 00000000003c8870    26 OBJECT  WEAK   DEFAULT   13 _ZTS23common_chat_schema_null",
+      "1706: 00000000003c8930    27 OBJECT  WEAK   DEFAULT   13 _ZTS24common_chat_schema_tuple",
+      "1719: 00000000003c88f0    28 OBJECT  WEAK   DEFAULT   13 _ZTS25common_chat_schema_string",
+      "1727: 0000000000463820    40 OBJECT  WEAK   DEFAULT   20 _ZTV22common_chat_schema_ref",
+      "1841: 0000000000463698    40 OBJECT  WEAK   DEFAULT   20 _ZTVN28common_chat_schema_converter15invalid_patternE",
+      "1979: 0000000000462158    24 OBJECT  WEAK   DEFAULT   20 _ZTISt23_Sp_counted_ptr_inplaceIK27common_chat_schema_documentSaIvELN9__gnu_cxx12_Lock_policyE2EE",
+      "2051: 00000000004636d8    24 OBJECT  WEAK   DEFAULT   20 _ZTI22common_chat_schema_ref",
+      "2076: 0000000000462f68    24 OBJECT  WEAK   DEFAULT   20 _ZTI17common_json_error",
+      "2101: 00000000003c88d0    29 OBJECT  WEAK   DEFAULT   13 _ZTS26common_chat_schema_integer",
+      "2131: 00000000003c81a0    50 OBJECT  WEAK   DEFAULT   13 _ZTSN28common_chat_schema_converter15invalid_patternE",
+      "2165: 0000000000462170    56 OBJECT  WEAK   DEFAULT   20 _ZTVSt23_Sp_counted_ptr_inplaceIK27common_chat_schema_documentSaIvELN9__gnu_cxx12_Lock_policyE2EE",
+      "2204: 0000000000463898    40 OBJECT  WEAK   DEFAULT   20 _ZTV24common_chat_schema_const",
+      "2268: 00000000003c2e40    20 OBJECT  WEAK   DEFAULT   13 _ZTS17common_json_error",
+      "2291: 00000000004637f8    40 OBJECT  WEAK   DEFAULT   20 _ZTV22common_chat_schema_any",
+      "2310: 0000000000462140    24 OBJECT  WEAK   DEFAULT   20 _ZTI25common_chat_schema_object",
+      "2345: 00000000003c8890    29 OBJECT  WEAK   DEFAULT   13 _ZTS26common_chat_schema_boolean",
+      "2377: 00000000004639b0    40 OBJECT  WEAK   DEFAULT   20 _ZTV24common_chat_schema_array",
+      "2380: 00000000003c82e0   243 OBJECT  WEAK   DEFAULT   13 _ZTSZN28common_chat_schema_converter18_build_object_ruleERKSt6vectorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPK18common_chat_schemaESaISB_EERKSt13unordered_setIS7_St4hashIS7_ESt8equal_toIS7_ESaIS7_EERKS7_SA_EUlRKS0_IS7_SL_EbE_",
+      "2468: 00000000004639d8    40 OBJECT  WEAK   DEFAULT   20 _ZTV24common_chat_schema_tuple",
+      "2478: 0000000000463640    16 OBJECT  WEAK   DEFAULT   20 _ZTIZN28common_chat_schema_converter12_not_stringsERKSt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS6_EEEUlmE_",
+      "2532: 0000000000463ac8    24 OBJECT  WEAK   DEFAULT   20 _ZTISt23_Sp_counted_ptr_inplaceI11common_jsonSaIvELN9__gnu_cxx12_Lock_policyE2EE",
+      "2574: 0000000000463960    40 OBJECT  WEAK   DEFAULT   20 _ZTV26common_chat_schema_integer",
+      "2588: 00000000004636c0    24 OBJECT  WEAK   DEFAULT   20 _ZTI22common_chat_schema_any",
+      "2759: 0000000000463670    40 OBJECT  WEAK   DEFAULT   20 _ZTVN28common_chat_schema_converter19unsupported_patternE",
+      "2837: 0000000000463910    40 OBJECT  WEAK   DEFAULT   20 _ZTV26common_chat_schema_boolean",
+      "2854: 0000000000463650    16 OBJECT  WEAK   DEFAULT   20 _ZTIZN28common_chat_schema_converter18_build_object_ruleERKSt6vectorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEPK18common_chat_schemaESaISB_EERKSt13unordered_setIS7_St4hashIS7_ESt8equal_toIS7_ESaIS7_EERKS7_SA_EUlRKS0_IS7_SL_EbE_",
+      "2938: 0000000000463630    16 OBJECT  WEAK   DEFAULT   20 _ZTIZN28common_chat_schema_converter16_pattern_to_ruleERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_EUlvE_",
+      "3096: 00000000004638c0    40 OBJECT  WEAK   DEFAULT   20 _ZTV23common_chat_schema_enum",
+      "3241: 00000000003c87d0    25 OBJECT  WEAK   DEFAULT   13 _ZTS22common_chat_schema_ref",
+      "3275: 00000000004637b0    24 OBJECT  WEAK   DEFAULT   20 _ZTI25common_chat_schema_string",
+      "3381: 0000000000463938    40 OBJECT  WEAK   DEFAULT   20 _ZTV25common_chat_schema_number",
+      "3543: 0000000000463848    40 OBJECT  WEAK   DEFAULT   20 _ZTV25common_chat_schema_any_of",
+      "3548: 00000000004638e8    40 OBJECT  WEAK   DEFAULT   20 _ZTV23common_chat_schema_null",
+      "3573: 0000000000463720    24 OBJECT  WEAK   DEFAULT   20 _ZTI24common_chat_schema_const",
+      "3611: 0000000000463798    24 OBJECT  WEAK   DEFAULT   20 _ZTI26common_chat_schema_integer",
+      "3655: 00000000004636f0    24 OBJECT  WEAK   DEFAULT   20 _ZTI25common_chat_schema_any_of",
+      "3747: 00000000004637c8    24 OBJECT  WEAK   DEFAULT   20 _ZTI24common_chat_schema_array",
+      "3777: 00000000003c87b0    25 OBJECT  WEAK   DEFAULT   13 _ZTS22common_chat_schema_any",
+      "3814: 00000000004637e0    24 OBJECT  WEAK   DEFAULT   20 _ZTI24common_chat_schema_tuple",
+      "3829: 0000000000463768    24 OBJECT  WEAK   DEFAULT   20 _ZTI26common_chat_schema_boolean",
+      "3880: 00000000003c81e0   115 OBJECT  WEAK   DEFAULT   13 _ZTSZN28common_chat_schema_converter16_pattern_to_ruleERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_EUlvE_",
+      "3976: 00000000004635c0    24 OBJECT  WEAK   DEFAULT   20 _ZTIN28common_chat_schema_converter19unsupported_patternE",
+      "4065: 0000000000463870    40 OBJECT  WEAK   DEFAULT   20 _ZTV25common_chat_schema_all_of",
+      "4086: 00000000003c88b0    28 OBJECT  WEAK   DEFAULT   13 _ZTS25common_chat_schema_number",
+      "4098: 0000000000463738    24 OBJECT  WEAK   DEFAULT   20 _ZTI23common_chat_schema_enum",
+      "4113: 0000000000463a00    40 OBJECT  WEAK   DEFAULT   20 _ZTV25common_chat_schema_object",
+      "4189: 0000000000463708    24 OBJECT  WEAK   DEFAULT   20 _ZTI25common_chat_schema_all_of",
+      "4264: 00000000003c87f0    28 OBJECT  WEAK   DEFAULT   13 _ZTS25common_chat_schema_any_of",
+      "4346: 0000000000462130    16 OBJECT  WEAK   DEFAULT   20 _ZTI18common_chat_schema",
+      "4461: 0000000000463bf0    56 OBJECT  WEAK   DEFAULT   20 _ZTVSt23_Sp_counted_ptr_inplaceI11common_jsonSaIvELN9__gnu_cxx12_Lock_policyE2EE",
+      "4467: 00000000003c8160    54 OBJECT  WEAK   DEFAULT   13 _ZTSN28common_chat_schema_converter19unsupported_patternE",
+      "4510: 00000000003ac120    94 OBJECT  WEAK   DEFAULT   13 _ZTSSt23_Sp_counted_ptr_inplaceIK27common_chat_schema_documentSaIvELN9__gnu_cxx12_Lock_policyE2EE",
+      "4523: 00000000003cb3a0    77 OBJECT  WEAK   DEFAULT   13 _ZTSSt23_Sp_counted_ptr_inplaceI11common_jsonSaIvELN9__gnu_cxx12_Lock_policyE2EE",
+      "4539: 0000000000463750    24 OBJECT  WEAK   DEFAULT   20 _ZTI23common_chat_schema_null",
+      "4584: 00000000003ac0e0    21 OBJECT  WEAK   DEFAULT   13 _ZTS18common_chat_schema"
+    ],
+    "llguidance_named_symbols": []
+  },
+  "target_external_debug_candidate": {
+    "path": "/usr/lib/debug/.build-id/a7/bb44fb1d8cae659f9e62b00c3b43690ef27614.debug",
+    "error": "FileNotFoundError: [Errno 2] No such file or directory: '/usr/lib/debug/.build-id/a7/bb44fb1d8cae659f9e62b00c3b43690ef27614.debug'"
+  },
+  "runtime_packages_not_build_toolchain": {
+    "stdout": "binutils\t2.42-4ubuntu2.10\tamd64\nlibc6\t2.39-0ubuntu8.9\tamd64\nlibstdc++6\t14.2.0-4ubuntu2~24.04.1\tamd64\n",
+    "stderr": "",
+    "exit": 0
+  }
+}

@@ -2,6 +2,36 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Indagine read-only attestazione build e ABI backend
+
+Attività: `RD-RAG-V5-BACKEND-BUILD-ABI-ATTESTATION-01`. Script: diagnostica SSH
+read-only con Python stdlib, readelf/objdump, dpkg-query e ldconfig -p (cache,
+non loader). Commit documentale con report, matrici, quattro evidenze, TODO e
+registro contestuali. Report: `docs/rag-v5-backend-build-abi-attestation-01.md`;
+E1–E4 elencate nel report. HEAD iniziale locale/GitHub b1ac190, tree pulito;
+ricognizione/progetto/revisione/H1–H3 riconciliati, nessuna attestazione equivalente
+conclusa. Nuova identità del solo target riancorata per associare nuove sezioni
+ABI agli stessi byte, non ricognizione modelli. Risultato: SHA storico
+libllama-common conforme; .comment GCC Red Hat 13.3.1-2, ELF x86-64, EH/RTTI e
+version requirements presenti; niente debug tipi o dossier negli otto candidati
+mirati, ownership dpkg non trovata. Disassembly overload compatibile col
+percorso builder/document GBNF ma macro globale LLAMA_USE_LLGUIDANCE non
+attestata. Closure candidata diretta di dieci dipendenze con hash e versioni;
+nomi richiesti presenti nei provider candidati, non prova di tutti i binding o
+dei layout. Runtime libstdc++ 6.0.33/pacchetto Ubuntu 14.2 distinto dalla traccia
+compiler. H1-G1/G3/G4/G5/G6: Evidenza parziale; G2: Evidenza mancante, solo
+valutazione futura senza eseguire i gate. Tre connessioni diagnostiche: prima
+raccolta interrotta da output non UTF-8 prima di persistire JSON; ripresa con
+hash byte/base64 e seconda raccolta closure completate. Nessun errore attribuito
+al backend. Decisione unica **B**, attestazione incompleta con prerequisiti
+sorgenti/patch/toolchain/header/layout/custodia specifici **DA FARE**. Stato:
+indagine **ESEGUITO**, ABI **BLOCCATO**, non VALIDATO. Implementazione harness,
+compatibilità backend, accuratezza generativa, Gate, integrazione e
+certificazione **BLOCCATO**. Zero sudo, cambi permessi, remote writes,
+compiler/link/ldd/loader/dlopen, converter/tokenizer, POST, modelli/inferenze,
+lock, suite/audit 25/25, runtime-05, staging/wrapper, merge/deploy. Progetto,
+manifest e codice invariati. STOP dopo pubblicazione e verifica GitHub.
+
 ### 2026-11-11 — Precisazioni architetturali documentali H1–H3
 
 Attività: `RD-RAG-V5-BACKEND-HARNESS-H1-H3-DOCUMENTARY-CLOSEOUT-01`.
