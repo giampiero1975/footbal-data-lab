@@ -1,0 +1,21 @@
+{
+  "argv": [
+    "ssh",
+    "-F",
+    "C:\\Users\\giamp\\.ssh\\config",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "HostKeyAlgorithms=ssh-ed25519",
+    "-o",
+    "KexAlgorithms=curve25519-sha256",
+    "football-vps",
+    "/usr/bin/python3 -B -I -"
+  ],
+  "scope": "CPU/disk/cgroup and existing binary help only; no model loading or server start"
+}

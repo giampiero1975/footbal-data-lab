@@ -1,0 +1,21 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "authorization": "User confirmed selected VPS 163.5.26.155 and authorized downloads plus at most six generations subject to existing safety gates",
+  "generations_authorized_max": 6,
+  "generations_in_this_script": 0,
+  "models": [
+    {
+      "tag": "gemma4:26b",
+      "digest": "001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c",
+      "maximum_new_bytes": 18731025629
+    },
+    {
+      "tag": "qwen3.8:27b",
+      "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+      "maximum_new_bytes": 17741872154
+    }
+  ],
+  "minimum_free_disk_bytes": 4000000000,
+  "minimum_available_memory_bytes": 4000000000,
+  "models_total_bytes": 36472897783
+}
