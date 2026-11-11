@@ -2,6 +2,38 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Ricerca documentale provenienza build H1-G2
+
+Attività: `RD-RAG-V5-BACKEND-H1-G2-PROVENANCE-RESEARCH-01`. Script/metodo:
+letture Git/JSON e GET pubbliche HTTPS Python stdlib limitate a testo/JSON,
+analisi statica di workflow/ricetta e hash dei nuovi snapshot. Commit
+documentale con report, matrice, inventario, snapshot, TODO e registro
+contestuali. Report: `docs/rag-v5-backend-h1-g2-provenance-research-01.md`;
+evidenze: `evaluation/backend_h1_g2_provenance_01/`. HEAD iniziale locale e
+GitHub 809be0bba0a447fa6dbb12df4ad982d43dedcf1a, branch atteso e tree pulito;
+TODO, registro, attestazione E1–E4, progetto e H1 riconciliati. Nessuna ricerca
+equivalente conclusa. Differenza tecnica: fonti pubbliche di build/release,
+non nuova attestazione ELF o closure VPS. Risultato: 25 richieste inventariate,
+19 snapshot HTTP 200 (746.675 byte) con hash locali conformi. Workflow pubblico
+pinned, ricetta GCC toolset 13/preset CPU e patch identificati come configurazione
+prevista; run finale 38782957421 al commit d919272 distinto da RC2. Asset
+644827088, archivio Linux amd64 1.438.684.604 byte, digest dichiarato dc5eabc…;
+solo sha256sum.txt acquisito/verificato, non l'archivio. Manca manifest
+attendibile archivio→membro→hash VPS ef57d101…; header/layout Build ID esatto
+non attestati. Provenance/sbom false nei passi Linux esaminati; candidato
+BuildKit temporalmente pertinente non associato con certezza al job (401),
+log job CPU/archive 403, API attestazioni 404: nessuna prova di assenza globale.
+Decisione unica **B**: richiesta precisa di manifest membro, provenance input/
+configurazione effettivi e SDK/debug/header attestati, supporto CI consultabile;
+nessun messaggio inviato a terzi. Catena pubblica delimitata, arresto senza
+confronti indiretti ulteriori o rebuild equivalente. Stato: ricerca **ESEGUITO**;
+H1-G2/attestazione ABI **BLOCCATO**, prove **DA FARE**. Implementazione harness,
+compatibilità backend, accuratezza generativa, Gate, integrazione e certificazione
+**BLOCCATO**. Zero VPS, grandi download binari, compilazione/link/loading,
+converter/tokenizer/modelli, suite/audit storici, runtime-05, staging/wrapper,
+merge/deploy; nessuna modifica a codice, progetto, manifest o risultati storici.
+STOP dopo pubblicazione e verifica GitHub.
+
 ### 2026-11-11 — Indagine read-only attestazione build e ABI backend
 
 Attività: `RD-RAG-V5-BACKEND-BUILD-ABI-ATTESTATION-01`. Script: diagnostica SSH

@@ -1,0 +1,192 @@
+{
+  "activity": "RD-RAG-V5-BACKEND-H1-G2-PROVENANCE-RESEARCH-01",
+  "initial_git_head": "809be0bba0a447fa6dbb12df4ad982d43dedcf1a",
+  "frozen_target": {
+    "name": "libllama-common.so.0.7.0",
+    "sha256": "ef57d101f75dbfcad9f309bbc7b08e62d38120657ca146e97ffad2680a2a953d",
+    "bytes": 4642576,
+    "build_id": "a7bb44fb1d8cae659f9e62b00c3b43690ef27614",
+    "source": "Historical E1 (identity/size) and E2 (Build ID) of build/ABI attestation; not remeasured"
+  },
+  "release": {
+    "id": 413093320,
+    "tag_name": "v0.40.5",
+    "target_commitish": "main",
+    "immutable": false,
+    "published_at": "2026-10-14T19:45:22Z",
+    "html_url": "https://github.com/ollama/ollama/releases/tag/v0.40.5"
+  },
+  "assets": [
+    {
+      "url": "https://api.github.com/repos/ollama/ollama/releases/assets/644827088",
+      "id": 644827088,
+      "node_id": "RA_kwDOJ0Z1Ps4mb0fQ",
+      "name": "ollama-linux-amd64.tar.zst",
+      "label": "",
+      "uploader": {
+        "login": "github-actions[bot]",
+        "id": 41898282,
+        "node_id": "MDM6Qm90NDE4OTgyODI=",
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+        "html_url": "https://github.com/apps/github-actions",
+        "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "content_type": "application/zstd",
+      "state": "uploaded",
+      "size": 1438684604,
+      "digest": "sha256:dc5eabc292f9949546c90a97c820f924b035e05243b0de13c7f366182562169c",
+      "download_count": 57468,
+      "created_at": "2026-10-15T18:49:18Z",
+      "updated_at": "2026-10-15T18:50:33Z",
+      "browser_download_url": "https://github.com/ollama/ollama/releases/download/v0.40.5/ollama-linux-amd64.tar.zst"
+    },
+    {
+      "url": "https://api.github.com/repos/ollama/ollama/releases/assets/644830363",
+      "id": 644830363,
+      "node_id": "RA_kwDOJ0Z1Ps4mb1Sb",
+      "name": "sha256sum.txt",
+      "label": "",
+      "uploader": {
+        "login": "github-actions[bot]",
+        "id": 41898282,
+        "node_id": "MDM6Qm90NDE4OTgyODI=",
+        "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+        "gravatar_id": "",
+        "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+        "html_url": "https://github.com/apps/github-actions",
+        "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+        "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+        "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+        "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+        "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+        "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+        "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+        "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+        "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+        "type": "Bot",
+        "user_view_type": "public",
+        "site_admin": false
+      },
+      "content_type": "text/plain; charset=utf-8",
+      "state": "uploaded",
+      "size": 1472,
+      "digest": "sha256:d617f91f1dee86904a2a7776c7b896321a10009a52bba95b09278b3614ef9425",
+      "download_count": 3747,
+      "created_at": "2026-10-15T18:50:36Z",
+      "updated_at": "2026-10-15T18:50:36Z",
+      "browser_download_url": "https://github.com/ollama/ollama/releases/download/v0.40.5/sha256sum.txt"
+    }
+  ],
+  "runs": [
+    {
+      "id": 38792847862,
+      "name": "latest",
+      "head_branch": "v0.40.5",
+      "head_sha": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-15T19:18:43Z",
+      "updated_at": "2026-10-15T19:19:06Z",
+      "html_url": "https://github.com/ollama/ollama/actions/runs/38792847862",
+      "path": ".github/workflows/latest.yaml"
+    },
+    {
+      "id": 38782957421,
+      "name": "release",
+      "head_branch": "v0.40.5",
+      "head_sha": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-15T18:07:07Z",
+      "updated_at": "2026-10-15T18:50:40Z",
+      "html_url": "https://github.com/ollama/ollama/actions/runs/38782957421",
+      "path": ".github/workflows/release.yaml"
+    },
+    {
+      "id": 38766961352,
+      "name": "release",
+      "head_branch": "v0.40.5-rc2",
+      "head_sha": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "run_attempt": 1,
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-15T16:12:03Z",
+      "updated_at": "2026-10-15T17:03:22Z",
+      "html_url": "https://github.com/ollama/ollama/actions/runs/38766961352",
+      "path": ".github/workflows/release.yaml"
+    }
+  ],
+  "relevant_final_release_jobs": [
+    {
+      "id": 116587680764,
+      "name": "linux-depends (amd64, llama-server-cpu)",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-15T18:09:01Z",
+      "completed_at": "2026-10-15T18:09:21Z",
+      "html_url": "https://github.com/ollama/ollama/actions/runs/38782957421/job/116587680764"
+    },
+    {
+      "id": 116600156173,
+      "name": "docker-build-push (linux, amd64, archive, CGO_CFLAGS\nCGO_CXXFLAGS\nGOFLAGS\nAPT_MIRROR=http://azure...",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-15T18:33:40Z",
+      "completed_at": "2026-10-15T18:44:13Z",
+      "html_url": "https://github.com/ollama/ollama/actions/runs/38782957421/job/116600156173"
+    },
+    {
+      "id": 116605208443,
+      "name": "release",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-10-15T18:44:17Z",
+      "completed_at": "2026-10-15T18:50:39Z",
+      "html_url": "https://github.com/ollama/ollama/actions/runs/38782957421/job/116605208443"
+    }
+  ],
+  "build_record_temporal_candidate": [
+    {
+      "id": 11995174889,
+      "node_id": "MDg6QXJ0aWZhY3QxMTk5NTE3NDg4OQ==",
+      "name": "ollama~ollama~N2Q1CH.dockerbuild",
+      "size_in_bytes": 43846,
+      "url": "https://api.github.com/repos/ollama/ollama/actions/artifacts/11995174889",
+      "archive_download_url": "https://api.github.com/repos/ollama/ollama/actions/artifacts/11995174889/zip",
+      "expired": false,
+      "digest": "sha256:5c672dcc7ab0adbd34d1060a4d03a887f1e845f502d8d0d83f813feaf969a130",
+      "created_at": "2026-10-15T18:09:18Z",
+      "updated_at": "2026-10-15T18:09:18Z",
+      "expires_at": "2027-01-13T18:07:07Z",
+      "workflow_run": {
+        "id": 38782957421,
+        "repository_id": 658928958,
+        "head_repository_id": 658928958,
+        "head_branch": "v0.40.5",
+        "head_sha": "d919272e53593d1d55d40e1180eaa06dfbede3ac"
+      }
+    }
+  ],
+  "candidate_warning": "Time overlap only; no demonstrated job-to-record association. ZIP not obtained (HTTP 401).",
+  "archive_payload_downloaded": false,
+  "vps_accessed": false,
+  "attestation_obtained": false,
+  "decision": "B",
+  "h1_g2_status": "BLOCCATO",
+  "chain_gap": "No obtained publisher-authenticated mapping from archive digest to inner library digest, exact build inputs/headers or C++ layouts."
+}

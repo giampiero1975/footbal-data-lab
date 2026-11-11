@@ -8,6 +8,23 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-BACKEND-H1-G2-PROVENANCE-RESEARCH-01 (2026-11-11).
+  Decisione **B**, provenienza incompleta con richiesta puntuale di documenti.
+  Ricetta pubblica fissata al commit d919272; run finale 38782957421 distinto
+  da RC2; asset Linux amd64 644827088 con digest archivio dichiarato dc5eabc,
+  checksum testuale verificato. Nessun legame ottenuto archivio→membro con hash
+  VPS ef57d101, né header/layout attestati per il Build ID esatto. Workflow
+  Linux con provenance/sbom false; record/log CI pubblici non acquisibili
+  (401/403), attestazioni non ottenute, senza dedurne assenza globale.
+  Report `docs/rag-v5-backend-h1-g2-provenance-research-01.md`; matrice e
+  inventario di 25 richieste/19 snapshot con hash in
+  `evaluation/backend_h1_g2_provenance_01/`, pubblicati con TODO/registro.
+  H1-G2 e attestazione ABI **BLOCCATO**, prove mancanti **DA FARE**.
+  Implementazione harness, compatibilità backend, accuratezza generativa,
+  Gate, integrazione e certificazione **BLOCCATO**. Nessuna VPS, grande
+  acquisizione binaria, compilazione/link/loading o suite storica ripetuta;
+  nessuna modifica applicativa o al progetto harness. STOP.
+
 - [x] **ESEGUITO** RD-RAG-V5-BACKEND-BUILD-ABI-ATTESTATION-01 (2026-11-11).
   Decisione **B**, attestazione incompleta: hash libllama-common storico
   confermato per nuove sezioni ELF; traccia GCC Red Hat 13.3.1-2, EH/RTTI,

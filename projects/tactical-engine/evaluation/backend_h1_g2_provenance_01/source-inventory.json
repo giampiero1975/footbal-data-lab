@@ -1,0 +1,271 @@
+{
+  "activity": "RD-RAG-V5-BACKEND-H1-G2-PROVENANCE-RESEARCH-01",
+  "observed_date": "2026-11-11",
+  "method": "Public HTTPS GET; bounded text/JSON only. Original response bytes preserved for every HTTP 200. HTTP failures are recorded observations, not proof of global absence. No archive payload downloaded.",
+  "entries": [
+    {
+      "name": "release",
+      "url": "https://api.github.com/repos/ollama/ollama/releases/tags/v0.40.5",
+      "http_status": 200,
+      "bytes": 31460,
+      "sha256": "f2eff356acbbcc7b0ab81b80654322f2fe6be6db1da2d70fab1b0adddf5d2d02",
+      "snapshot": "sources/release.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "tree",
+      "url": "https://api.github.com/repos/ollama/ollama/git/trees/d919272e53593d1d55d40e1180eaa06dfbede3ac?recursive=1",
+      "http_status": 200,
+      "bytes": 380059,
+      "sha256": "ae54005fbea17d87fab9c9aec656d7b9931cb4d9dcac18d8ba3f5a15947c8692",
+      "snapshot": "sources/tree.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "runs",
+      "url": "https://api.github.com/repos/ollama/ollama/actions/runs?head_sha=d919272e53593d1d55d40e1180eaa06dfbede3ac&per_page=30",
+      "http_status": 200,
+      "bytes": 34766,
+      "sha256": "33db92b8c9d3c98bfbfecf7fb2a133569731cf842feeed2732d77606d7005645",
+      "snapshot": "sources/runs.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "library_attestations",
+      "url": "https://api.github.com/repos/ollama/ollama/attestations/sha256:ef57d101f75dbfcad9f309bbc7b08e62d38120657ca146e97ffad2680a2a953d",
+      "http_status": 404,
+      "error": "HTTP Error 404: Not Found",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": ".github/workflows/release.yaml",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/.github/workflows/release.yaml",
+      "http_status": 200,
+      "bytes": 36515,
+      "sha256": "9e11c9528d38b6de29eae57f7c27585c15d62fd22dd52d7fcfb724127b9101e3",
+      "kind": "source",
+      "snapshot": "sources/.github__workflows__release.yaml.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": ".github/workflows/latest.yaml",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/.github/workflows/latest.yaml",
+      "http_status": 200,
+      "bytes": 533,
+      "sha256": "1ad4037c04120e7acb96223164b0443709ec817c53595dc495ca3923766f32ba",
+      "kind": "source",
+      "snapshot": "sources/.github__workflows__latest.yaml.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "scripts/build_linux.sh",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/scripts/build_linux.sh",
+      "http_status": 200,
+      "bytes": 3861,
+      "sha256": "ce379cda6c68e40593536a3f0a13924d158d1ef2ae63950ccf8324fe1d9632d7",
+      "kind": "source",
+      "snapshot": "sources/scripts__build_linux.sh.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "scripts/build_docker.sh",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/scripts/build_docker.sh",
+      "http_status": 200,
+      "bytes": 813,
+      "sha256": "8c5f513a34f6285f20a9dda935f953b32a97e531a473bb9c17697714ca2fcc13",
+      "kind": "source",
+      "snapshot": "sources/scripts__build_docker.sh.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "scripts/install.sh",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/scripts/install.sh",
+      "http_status": 200,
+      "bytes": 15902,
+      "sha256": "25f64b810b947145095956533e1bdf56eacea2673c55a7e586be4515fc882c9f",
+      "kind": "source",
+      "snapshot": "sources/scripts__install.sh.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "Dockerfile",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/Dockerfile",
+      "http_status": 200,
+      "bytes": 14697,
+      "sha256": "82134eb8b5f50a6df2c0a31a0ee7b95f840041a60ae765381bbed78b9b7bdfe7",
+      "kind": "source",
+      "snapshot": "sources/Dockerfile.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "docker-bake.hcl",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/docker-bake.hcl",
+      "http_status": 404,
+      "error": "HTTP Error 404: Not Found",
+      "error_body": "404: Not Found",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "release_jobs_38782957421",
+      "url": "https://api.github.com/repos/ollama/ollama/actions/runs/38782957421/jobs?per_page=100",
+      "http_status": 200,
+      "bytes": 91306,
+      "sha256": "b4c5354767088e472692ac11f7264ddb3273d566aeeb93f61ba25770b6387c64",
+      "kind": "API_metadata",
+      "snapshot": "sources/release_jobs_38782957421.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "release_jobs_38766961352",
+      "url": "https://api.github.com/repos/ollama/ollama/actions/runs/38766961352/jobs?per_page=100",
+      "http_status": 200,
+      "bytes": 91434,
+      "sha256": "59460cda9769f02036da923c87fc0aa5a3e39a6080cc049460dc222bd33d2495",
+      "kind": "API_metadata",
+      "snapshot": "sources/release_jobs_38766961352.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "release_artifacts_38782957421",
+      "url": "https://api.github.com/repos/ollama/ollama/actions/runs/38782957421/artifacts?per_page=100",
+      "http_status": 200,
+      "bytes": 22621,
+      "sha256": "3267b9b7b5f7c025690fd0293a78c9fff6c21b0c95aec74aacfa048fb043a50c",
+      "kind": "API_metadata",
+      "snapshot": "sources/release_artifacts_38782957421.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "archive_attestations",
+      "url": "https://api.github.com/repos/ollama/ollama/attestations/sha256:dc5eabc292f9949546c90a97c820f924b035e05243b0de13c7f366182562169c",
+      "http_status": 404,
+      "error": "HTTP Error 404: Not Found",
+      "error_body": "{\"message\":\"Not Found\",\"documentation_url\":\"https://docs.github.com/rest/repos/attestations#list-attestations\",\"status\":\"404\"}",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "checksums_asset_metadata",
+      "url": "https://api.github.com/repos/ollama/ollama/releases/assets/644830363",
+      "http_status": 200,
+      "bytes": 1622,
+      "sha256": "042a00be57d091dc671f662379b9f856f6bc9edb10ca3c95579dbc33eb019794",
+      "kind": "API_metadata",
+      "snapshot": "sources/checksums_asset_metadata.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "linux_asset_metadata",
+      "url": "https://api.github.com/repos/ollama/ollama/releases/assets/644827088",
+      "http_status": 200,
+      "bytes": 1646,
+      "sha256": "9582ee40a7ab5b3ac55a92eab49315f89e95dae7f9362eec0885ea80f586145f",
+      "kind": "API_metadata",
+      "snapshot": "sources/linux_asset_metadata.json",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "checksum_text",
+      "url": "https://github.com/ollama/ollama/releases/download/v0.40.5/sha256sum.txt",
+      "asset_id": 644830363,
+      "declared_size": 1472,
+      "http_status": 200,
+      "bytes": 1472,
+      "sha256": "d617f91f1dee86904a2a7776c7b896321a10009a52bba95b09278b3614ef9425",
+      "matches_asset_digest": true,
+      "snapshot": "sources/sha256sum.txt",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "CMakePresets.json",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/CMakePresets.json",
+      "kind": "source",
+      "http_status": 200,
+      "bytes": 704,
+      "sha256": "59742ae8c02307b368246eba6d1e282d592d8c7d6d80b57bd20717bbf23b36e6",
+      "snapshot": "sources/CMakePresets.json.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "llama/server/CMakePresets.json",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llama/server/CMakePresets.json",
+      "kind": "source",
+      "http_status": 200,
+      "bytes": 9816,
+      "sha256": "b6922c7bb0ddb71e6146a391378982ac23ac7d1dfc1881365e711fb0ebd52416",
+      "snapshot": "sources/llama__server__CMakePresets.json.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "cmake/apply-git-patches.cmake",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/cmake/apply-git-patches.cmake",
+      "kind": "source",
+      "http_status": 200,
+      "bytes": 2545,
+      "sha256": "7cf77cddd4a8b634628ffbbd2a0d201a67fa0c36434bfdde22ee14267d0a941a",
+      "snapshot": "sources/cmake__apply-git-patches.cmake.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "llama/compat/001-llama-cpp-hooks.patch",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llama/compat/001-llama-cpp-hooks.patch",
+      "kind": "source",
+      "http_status": 200,
+      "bytes": 4903,
+      "sha256": "de62fe6dd48c1b19082ae234e0b21fbc3da326dc18d6c971b93953886bf3ebf7",
+      "snapshot": "sources/llama__compat__001-llama-cpp-hooks.patch.txt",
+      "evidence_scope": "expected_source_recipe",
+      "url_stability": "commit_pinned"
+    },
+    {
+      "name": "cpu_build_record_11995174889",
+      "url": "https://api.github.com/repos/ollama/ollama/actions/artifacts/11995174889/zip",
+      "kind": "bounded_build_metadata_access",
+      "http_status": 401,
+      "error": "HTTP Error 401: Unauthorized",
+      "error_body": "{\r\n  \"message\": \"Requires authentication\",\r\n  \"documentation_url\": \"https://docs.github.com/rest\",\r\n  \"status\": \"401\"\r\n}",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "cpu_job_log_116587680764",
+      "url": "https://api.github.com/repos/ollama/ollama/actions/jobs/116587680764/logs",
+      "kind": "bounded_build_metadata_access",
+      "http_status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "error_body": "{\"message\":\"Must have admin rights to Repository.\",\"documentation_url\":\"https://docs.github.com/rest/actions/workflow-jobs#download-job-logs-for-a-workflow-run\",\"status\":\"403\"}",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    },
+    {
+      "name": "archive_job_log_116600156173",
+      "url": "https://api.github.com/repos/ollama/ollama/actions/jobs/116600156173/logs",
+      "kind": "bounded_build_metadata_access",
+      "http_status": 403,
+      "error": "HTTP Error 403: Forbidden",
+      "error_body": "{\"message\":\"Must have admin rights to Repository.\",\"documentation_url\":\"https://docs.github.com/rest/actions/workflow-jobs#download-job-logs-for-a-workflow-run\",\"status\":\"403\"}",
+      "evidence_scope": "observed_public_metadata_or_access_result",
+      "url_stability": "API_or_release_snapshot_not_immutable_content_address"
+    }
+  ]
+}
