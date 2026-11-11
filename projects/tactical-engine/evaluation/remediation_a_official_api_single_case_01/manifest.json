@@ -1,0 +1,96 @@
+{
+  "activity": "RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01",
+  "utc": "2026-11-11T16:16:53.549244+00:00",
+  "files": [
+    {
+      "path": "extraction.json",
+      "bytes": 3194,
+      "sha256": "8760b02c64881af01d434984a58eed809d12cc479ccf3a37e4ff596e69de2368"
+    },
+    {
+      "path": "http-headers.json",
+      "bytes": 312,
+      "sha256": "d2b6a668d2ab44eac2bd033b47b714ade8996f87ef7603a50577938cc795d7a4"
+    },
+    {
+      "path": "identity.json",
+      "bytes": 53576,
+      "sha256": "51e752e622b95427fc5a75aef343c267e8e749fa96698a49a85dc54049440e4c"
+    },
+    {
+      "path": "input.json",
+      "bytes": 783,
+      "sha256": "70520cd3dd77fb96406bb3fa4ba120b5767228592a3c38373bb7a4a20abe4bed"
+    },
+    {
+      "path": "invocation.json",
+      "bytes": 6560,
+      "sha256": "ea1f5acfea800405db7379cbe8c212e774a778ce0736d0243b7bfad491b0ddd0"
+    },
+    {
+      "path": "ledger-commit-to-send.json",
+      "bytes": 1621,
+      "sha256": "f64d9f3d4d360e1f1e8866f15445e800edf0fb93506b9b9b078d9c6ec283e67a"
+    },
+    {
+      "path": "ledger-created.json",
+      "bytes": 178,
+      "sha256": "abaf906ab94623ca3f87aaa697d3fe7ebaecc6ae180e7f1881bbe4966f92f351"
+    },
+    {
+      "path": "ledger-post-started.json",
+      "bytes": 99,
+      "sha256": "f8b5995751a26fa1f1b9258ff49cc38ab5769a4efb708964384adb1296ea1cf4"
+    },
+    {
+      "path": "raw_response.json",
+      "bytes": 3957,
+      "sha256": "dab16c58e6df124355630743b898926ce49d83e5336796ca3081f88155b24147"
+    },
+    {
+      "path": "remote-events.json",
+      "bytes": 13261,
+      "sha256": "43d9e2d5665da1ca1613fb193507a6d2be04bf886c3d3ef2187a2b10dab03b5a"
+    },
+    {
+      "path": "remote-program.txt",
+      "bytes": 4548,
+      "sha256": "e7086cfd3d48c503b3931ba7c59bf1b74fdccf20008f76153a8fce4b05087eb8"
+    },
+    {
+      "path": "request_payload.json",
+      "bytes": 24574,
+      "sha256": "0852b5ad08557195c76a784b632d5b30e44657802b40b712b4de507629d8d16d"
+    },
+    {
+      "path": "response-body.bin",
+      "bytes": 3957,
+      "sha256": "dab16c58e6df124355630743b898926ce49d83e5336796ca3081f88155b24147"
+    },
+    {
+      "path": "result.json",
+      "bytes": 6901,
+      "sha256": "ed12aa738968a0ac2be8bcf4a9de2f331f522c2feb62a76012ac2844abd72f10"
+    },
+    {
+      "path": "schema.json",
+      "bytes": 41356,
+      "sha256": "c536d8fc247d338f39a3ddd9e42b4745fc9dba08d37d81dc1fbcea374bf60f83"
+    },
+    {
+      "path": "ssh-stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "ssh-stdout.jsonl",
+      "bytes": 12558,
+      "sha256": "7bc699b5e68265ee53afd77ba7dfdb420fe1c24e939e62199fc101a19e380df0"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 675,
+      "sha256": "5b4a3ec8ff2a5e156b1229256618517a889c6df9e2cfb00e19f8b649c571269c"
+    }
+  ]
+}

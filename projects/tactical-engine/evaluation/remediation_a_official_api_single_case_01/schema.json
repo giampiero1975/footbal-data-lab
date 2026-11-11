@@ -1,0 +1,1482 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:football-data-lab:nli-spatial-relations-v2-extraction:1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claim_relation",
+    "comparison",
+    "contract_id",
+    "contract_version",
+    "evidence_relation",
+    "label"
+  ],
+  "properties": {
+    "contract_id": {
+      "const": "nli_spatial_relations_v2_extraction"
+    },
+    "contract_version": {
+      "const": "1.0.0"
+    },
+    "label": {
+      "enum": [
+        "contradicted",
+        "insufficient",
+        "supported"
+      ]
+    },
+    "claim_relation": {
+      "$ref": "#/$defs/relation",
+      "description": "Relation extracted only from the claim (AFFERMAZIONE)."
+    },
+    "evidence_relation": {
+      "$ref": "#/$defs/relation",
+      "description": "Relation extracted only from the evidence (FONTE)."
+    },
+    "comparison": {
+      "$ref": "#/$defs/comparison"
+    }
+  },
+  "$defs": {
+    "relation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conditions",
+        "phase",
+        "polarity",
+        "quantifier",
+        "reference",
+        "semantic_axis",
+        "subject",
+        "value"
+      ],
+      "properties": {
+        "subject": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 8,
+                  "maxLength": 71,
+                  "pattern": "^entity:.+$"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "implicit"
+                  ]
+                },
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 8,
+                  "maxLength": 71,
+                  "pattern": "^entity:.+$"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "entity_id": {
+                  "enum": [
+                    "entity:absent"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "entity_id": {
+                  "enum": [
+                    "entity:ambiguous"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "entity_id": {
+                  "enum": [
+                    "entity:unknown"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Actor or entity whose spatial relation is asserted on this side."
+        },
+        "semantic_axis": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "area_extent",
+                    "distance_change",
+                    "movement_direction",
+                    "relative_position",
+                    "space_availability"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Versioned Spatial V2 semantic dimension; value must be compatible with it."
+        },
+        "reference": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 8,
+                  "maxLength": 71,
+                  "pattern": "^entity:.+$"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "implicit"
+                  ]
+                },
+                "entity_id": {
+                  "type": "string",
+                  "minLength": 8,
+                  "maxLength": 71,
+                  "pattern": "^entity:.+$"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "entity_id": {
+                  "enum": [
+                    "entity:absent"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "entity_id": {
+                  "enum": [
+                    "entity:ambiguous"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "entity_id",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "entity_id": {
+                  "enum": [
+                    "entity:unknown"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Referent of the spatial relation on this same side, never text from the opposite side."
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "abundant",
+                    "adjacent",
+                    "advancing",
+                    "ahead_of",
+                    "behind",
+                    "between",
+                    "contracting",
+                    "decreasing",
+                    "expanding",
+                    "increasing",
+                    "inside",
+                    "neutral",
+                    "outside",
+                    "retreating",
+                    "scarce",
+                    "stable",
+                    "stationary"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Value asserted for semantic_axis; only the versioned axis value set is allowed."
+        },
+        "conditions": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "items"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "items": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 8,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "condition_id",
+                      "status",
+                      "selected_fragments"
+                    ],
+                    "properties": {
+                      "condition_id": {
+                        "type": "string",
+                        "minLength": 10
+                      },
+                      "status": {
+                        "enum": [
+                          "explicit",
+                          "ambiguous"
+                        ]
+                      },
+                      "selected_fragments": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 4,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "items"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "items": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "condition_id",
+                      "status",
+                      "selected_fragments"
+                    ],
+                    "properties": {
+                      "condition_id": {
+                        "type": "string",
+                        "minLength": 10
+                      },
+                      "status": {
+                        "enum": [
+                          "explicit",
+                          "ambiguous"
+                        ]
+                      },
+                      "selected_fragments": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 4,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "items"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "items": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 8,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "condition_id",
+                      "status",
+                      "selected_fragments"
+                    ],
+                    "properties": {
+                      "condition_id": {
+                        "type": "string",
+                        "minLength": 10
+                      },
+                      "status": {
+                        "enum": [
+                          "explicit",
+                          "ambiguous"
+                        ]
+                      },
+                      "selected_fragments": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 4,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "items"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "items": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "items": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "condition_id",
+                      "status",
+                      "selected_fragments"
+                    ],
+                    "properties": {
+                      "condition_id": {
+                        "type": "string",
+                        "minLength": 10
+                      },
+                      "status": {
+                        "enum": [
+                          "explicit",
+                          "ambiguous"
+                        ]
+                      },
+                      "selected_fragments": {
+                        "type": "array",
+                        "minItems": 1,
+                        "maxItems": 4,
+                        "uniqueItems": true,
+                        "items": {
+                          "type": "string",
+                          "minLength": 1
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Conditions that delimit the relation on this side."
+        },
+        "phase": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "attack",
+                    "defense",
+                    "defensive_transition",
+                    "general",
+                    "offensive_transition",
+                    "set_piece"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "implicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "general"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 4,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Tactical phase explicitly or implicitly assigned on this side."
+        },
+        "quantifier": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "literal",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "all",
+                    "always",
+                    "existential",
+                    "many",
+                    "most",
+                    "never",
+                    "some"
+                  ]
+                },
+                "literal": {
+                  "type": "null"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "literal",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "numeric"
+                  ]
+                },
+                "literal": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 64
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "literal",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "implicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "none"
+                  ]
+                },
+                "literal": {
+                  "type": "null"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "literal",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "absent"
+                  ]
+                },
+                "literal": {
+                  "type": "null"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "literal",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "literal": {
+                  "type": "null"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "literal",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "literal": {
+                  "type": "null"
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Quantity or frequency scope of the relation on this side."
+        },
+        "polarity": {
+          "anyOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "explicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "negated"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "implicit"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "affirmed"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "ambiguous"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "status",
+                "value",
+                "selected_fragments"
+              ],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "value": {
+                  "enum": [
+                    "unknown"
+                  ]
+                },
+                "selected_fragments": {
+                  "type": "array",
+                  "minItems": 0,
+                  "maxItems": 0,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              }
+            }
+          ],
+          "description": "Affirmed or negated polarity of the relation on this side."
+        }
+      }
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "conditions",
+        "phase",
+        "polarity",
+        "quantifier",
+        "reference",
+        "semantic_axis",
+        "subject",
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        },
+        "quantifier": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        },
+        "subject": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        },
+        "phase": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        },
+        "reference": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        },
+        "semantic_axis": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        },
+        "polarity": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        },
+        "conditions": {
+          "enum": [
+            "ambiguous",
+            "compatible",
+            "different",
+            "incompatible",
+            "same",
+            "unknown"
+          ]
+        }
+      }
+    }
+  }
+}

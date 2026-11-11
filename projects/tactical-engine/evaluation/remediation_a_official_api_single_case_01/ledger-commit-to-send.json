@@ -1,0 +1,62 @@
+{
+  "utc": "2026-11-11T16:13:44.760485+00:00",
+  "activity": "RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01",
+  "send_authorized_once": true,
+  "post_count_if_interrupted": "unknown_0_or_1",
+  "payload_sha256": "0852b5ad08557195c76a784b632d5b30e44657802b40b712b4de507629d8d16d",
+  "remote_ready": {
+    "event": "ready",
+    "utc": "2026-11-11T16:13:45.182186+00:00",
+    "version": {
+      "version": "0.40.5"
+    },
+    "model": {
+      "name": "qwen3.5:9b",
+      "model": "qwen3.5:9b",
+      "modified_at": "2026-10-17T12:50:24.646594239+02:00",
+      "size": 6550825550,
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "details": {
+        "parent_model": "model.gguf",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096,
+        "runner": "llamacpp"
+      },
+      "capabilities": [
+        "completion",
+        "vision",
+        "tools",
+        "thinking"
+      ]
+    },
+    "ps": {
+      "models": []
+    },
+    "concurrent": [],
+    "lock": {
+      "dev": 64769,
+      "ino": 842518,
+      "uid": 1000,
+      "mode": 384,
+      "size": 0,
+      "mtime_ns": 1794129043128804407
+    },
+    "supervisor_argv": [
+      "timeout",
+      "--signal=TERM",
+      "--kill-after=15s",
+      "450s"
+    ],
+    "supervisor_pid": 179384,
+    "remote_pid": 179385,
+    "pgid": 179384,
+    "payload_sha256": "0852b5ad08557195c76a784b632d5b30e44657802b40b712b4de507629d8d16d"
+  }
+}

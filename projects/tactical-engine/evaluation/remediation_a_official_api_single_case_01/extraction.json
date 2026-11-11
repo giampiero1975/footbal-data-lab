@@ -1,0 +1,143 @@
+{
+  "contract_id": "nli_spatial_relations_v2_extraction",
+  "contract_version": "1.0.0",
+  "label": "supported",
+  "claim_relation": {
+    "subject": {
+      "status": "explicit",
+      "entity_id": "entity:la_difesa_bassa",
+      "selected_fragments": [
+        "La difesa bassa"
+      ]
+    },
+    "semantic_axis": {
+      "status": "explicit",
+      "value": "space_availability",
+      "selected_fragments": [
+        "lascia molto spazio"
+      ]
+    },
+    "reference": {
+      "status": "explicit",
+      "entity_id": "entity:la_linea_difensiva_e_la_porta",
+      "selected_fragments": [
+        "tra la linea difensiva e la porta"
+      ]
+    },
+    "value": {
+      "status": "explicit",
+      "value": "abundant",
+      "selected_fragments": [
+        "molto spazio"
+      ]
+    },
+    "conditions": {
+      "status": "explicit",
+      "items": [
+        {
+          "condition_id": "condition:spazio_tra_linea_porta",
+          "status": "explicit",
+          "selected_fragments": [
+            "molto spazio tra la linea difensiva e la porta"
+          ]
+        }
+      ]
+    },
+    "phase": {
+      "status": "explicit",
+      "value": "general",
+      "selected_fragments": [
+        "lascia molto spazio"
+      ]
+    },
+    "quantifier": {
+      "status": "explicit",
+      "value": "many",
+      "literal": null,
+      "selected_fragments": [
+        "molto"
+      ]
+    },
+    "polarity": {
+      "status": "explicit",
+      "value": "negated",
+      "selected_fragments": [
+        "lascia molto spazio"
+      ]
+    }
+  },
+  "evidence_relation": {
+    "subject": {
+      "status": "explicit",
+      "entity_id": "entity:la_difesa_bassa",
+      "selected_fragments": [
+        "La difesa bassa"
+      ]
+    },
+    "semantic_axis": {
+      "status": "explicit",
+      "value": "space_availability",
+      "selected_fragments": [
+        "lascia molto spazio"
+      ]
+    },
+    "reference": {
+      "status": "explicit",
+      "entity_id": "entity:la_linea_difensiva_e_la_porta",
+      "selected_fragments": [
+        "tra la linea difensiva e la porta"
+      ]
+    },
+    "value": {
+      "status": "explicit",
+      "value": "abundant",
+      "selected_fragments": [
+        "molto spazio"
+      ]
+    },
+    "conditions": {
+      "status": "explicit",
+      "items": [
+        {
+          "condition_id": "condition:spazio_tra_linea_porta",
+          "status": "explicit",
+          "selected_fragments": [
+            "molto spazio tra la linea difensiva e la porta"
+          ]
+        }
+      ]
+    },
+    "phase": {
+      "status": "explicit",
+      "value": "general",
+      "selected_fragments": [
+        "lascia molto spazio"
+      ]
+    },
+    "quantifier": {
+      "status": "explicit",
+      "value": "many",
+      "literal": null,
+      "selected_fragments": [
+        "molto"
+      ]
+    },
+    "polarity": {
+      "status": "explicit",
+      "value": "negated",
+      "selected_fragments": [
+        "lascia molto spazio"
+      ]
+    }
+  },
+  "comparison": {
+    "value": "same",
+    "quantifier": "same",
+    "subject": "same",
+    "phase": "same",
+    "reference": "same",
+    "semantic_axis": "same",
+    "polarity": "same",
+    "conditions": "same"
+  }
+}

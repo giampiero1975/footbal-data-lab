@@ -8,6 +8,27 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01
+  (2026-11-11). Tentativo consumato: **1 POST, 1 generazione completata**,
+  nessun retry/repair/fallback. Driver tecnico 9fcc212; caller e applicazione
+  invariati alla baseline cec94e5. HTTP 200, stop, exit SSH 0, 188,649 s;
+  prompt_eval_count 1657, eval_count 1001 (token). Elaborazione API del singolo
+  payload e custodia evidenze **VALIDATO** nel solo perimetro osservato.
+  Extraction strutturalmente valida; boundary E_EXTRACTION_LOCALIZATION_NOT_UNIQUE:
+  sette frammenti evidence assenti, witness/validation null. Proposta supported,
+  label osservata null, Gold contradicted, semantic_match null. Fail-closed
+  corretto, nessun successo semantico o promozione; promotion_authorized=false.
+  Report `docs/rag-v5-remediation-a-official-api-single-case-01.md`; 18 hash
+  originali verificati e inventario aggiuntivo in
+  `evaluation/remediation_a_official_api_single_case_01/`, pubblicati con TODO/
+  registro. Lock esistente aperto read-only, metadata preservati; supervisore
+  remoto 450 s / kill-after 15 s verificato. Prossimo passo proposto: analisi
+  offline del nuovo grounding claim/evidence, senza eseguirla automaticamente.
+  Nessuna seconda POST autorizzata; ABI/H1-G2, compatibilità completa, accuratezza
+  generativa, Gate, integrazione e certificazione **BLOCCATO**. Nessuna suite
+  ripetuta, modifica applicativa/remota/configurazione, runtime-05, staging,
+  wrapper, compilazione C++, merge o deploy. STOP dopo pubblicazione.
+
 - [x] **ESEGUITO** RD-RAG-V5-OPERATIONAL-UNBLOCKING-DECISION-01 (2026-11-11).
   Scelto il percorso **B**, API ufficiale Ollama del caller esistente.
   ABI/H1-G2 non sono risolti: interrompere ricerche equivalenti finché non

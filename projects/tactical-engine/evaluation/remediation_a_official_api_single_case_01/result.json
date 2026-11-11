@@ -1,0 +1,185 @@
+{
+  "evaluation_status": "not_evaluable",
+  "witness": null,
+  "validation": null,
+  "localization": {
+    "contract_id": "nli_spatial_relations_v2_extraction",
+    "contract_version": "1.0.0",
+    "locator_id": "nli_spatial_relations_v2_literal_locator",
+    "locator_version": "1.0.0",
+    "extraction_sha256": "sha256:e86bac48033438d365fe4198589eb0df5e7a32f6f3185ce043bd04e7001156c9",
+    "source_text_sha256": {
+      "claim": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+      "evidence": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1"
+    },
+    "status": "not_evaluable",
+    "records": [
+      {
+        "field_id": "claim_relation.subject.selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "La difesa bassa",
+        "occurrence_count": 1,
+        "start": 0,
+        "end": 15,
+        "result": "localized"
+      },
+      {
+        "field_id": "claim_relation.reference.selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "tra la linea difensiva e la porta",
+        "occurrence_count": 1,
+        "start": 36,
+        "end": 69,
+        "result": "localized"
+      },
+      {
+        "field_id": "claim_relation.semantic_axis.selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "lascia molto spazio",
+        "occurrence_count": 1,
+        "start": 16,
+        "end": 35,
+        "result": "localized"
+      },
+      {
+        "field_id": "claim_relation.value.selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "molto spazio",
+        "occurrence_count": 1,
+        "start": 23,
+        "end": 35,
+        "result": "localized"
+      },
+      {
+        "field_id": "claim_relation.phase.selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "lascia molto spazio",
+        "occurrence_count": 1,
+        "start": 16,
+        "end": 35,
+        "result": "localized"
+      },
+      {
+        "field_id": "claim_relation.polarity.selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "lascia molto spazio",
+        "occurrence_count": 1,
+        "start": 16,
+        "end": 35,
+        "result": "localized"
+      },
+      {
+        "field_id": "claim_relation.quantifier.selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "molto",
+        "occurrence_count": 1,
+        "start": 23,
+        "end": 28,
+        "result": "localized"
+      },
+      {
+        "field_id": "claim_relation.conditions.items[0].selected_fragments[0]",
+        "side": "claim",
+        "source_text_sha256": "sha256:ea9d4276219edd1e37781c328541cdda4dd54c13eabc3185618ba4e0c96039bd",
+        "selected_fragment": "molto spazio tra la linea difensiva e la porta",
+        "occurrence_count": 1,
+        "start": 23,
+        "end": 69,
+        "result": "localized"
+      },
+      {
+        "field_id": "evidence_relation.subject.selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "La difesa bassa",
+        "occurrence_count": 0,
+        "start": null,
+        "end": null,
+        "result": "missing"
+      },
+      {
+        "field_id": "evidence_relation.reference.selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "tra la linea difensiva e la porta",
+        "occurrence_count": 1,
+        "start": 212,
+        "end": 245,
+        "result": "localized"
+      },
+      {
+        "field_id": "evidence_relation.semantic_axis.selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "lascia molto spazio",
+        "occurrence_count": 0,
+        "start": null,
+        "end": null,
+        "result": "missing"
+      },
+      {
+        "field_id": "evidence_relation.value.selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "molto spazio",
+        "occurrence_count": 0,
+        "start": null,
+        "end": null,
+        "result": "missing"
+      },
+      {
+        "field_id": "evidence_relation.phase.selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "lascia molto spazio",
+        "occurrence_count": 0,
+        "start": null,
+        "end": null,
+        "result": "missing"
+      },
+      {
+        "field_id": "evidence_relation.polarity.selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "lascia molto spazio",
+        "occurrence_count": 0,
+        "start": null,
+        "end": null,
+        "result": "missing"
+      },
+      {
+        "field_id": "evidence_relation.quantifier.selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "molto",
+        "occurrence_count": 0,
+        "start": null,
+        "end": null,
+        "result": "missing"
+      },
+      {
+        "field_id": "evidence_relation.conditions.items[0].selected_fragments[0]",
+        "side": "evidence",
+        "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+        "selected_fragment": "molto spazio tra la linea difensiva e la porta",
+        "occurrence_count": 0,
+        "start": null,
+        "end": null,
+        "result": "missing"
+      }
+    ],
+    "record_sha256": "sha256:e2bc00a8b752a62a35e09ed714ccf8c31d7682ac4727fa7ee01693e95689474e"
+  },
+  "reason_codes": [
+    "E_EXTRACTION_LOCALIZATION_NOT_UNIQUE"
+  ],
+  "details": [],
+  "promotion_authorized": false
+}

@@ -1,0 +1,11 @@
+{
+  "attempt_id": "spatial-v2-extraction-locator-q3-04-runtime-04",
+  "case_id": "q3_04",
+  "claim": "La difesa bassa lascia molto spazio tra la linea difensiva e la porta.",
+  "dataset_path": "/home/football/.local/share/football-data-lab/staging/spatial-v2-dual-blocker-13814c2/projects/tactical-engine/eval/claim_fidelity_gold_v1.json",
+  "dataset_sha256": "8e3933f5539a6c1d77dae84b7dbdb445c7193992ebd0be44e8c818abbdfecf4c",
+  "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta.",
+  "gold_label": "contradicted",
+  "page": 2,
+  "source": "verticalizzazione_Bonacini"
+}

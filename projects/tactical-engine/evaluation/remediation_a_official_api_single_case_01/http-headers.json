@@ -1,0 +1,19 @@
+{
+  "event": "http_headers",
+  "utc": "2026-11-11T16:16:53.872619+00:00",
+  "http_status": 200,
+  "headers": [
+    [
+      "Content-Type",
+      "application/json; charset=utf-8"
+    ],
+    [
+      "Date",
+      "Wed, 11 Nov 2026 16:16:53 GMT"
+    ],
+    [
+      "Transfer-Encoding",
+      "chunked"
+    ]
+  ]
+}

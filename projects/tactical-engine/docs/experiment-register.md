@@ -2,6 +2,45 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Singolo caso Qwen ufficiale remediation A/R1
+
+Attività: `RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01`. Script:
+`operations/official_api_single_case_01.py`, verifica statica JSON omonima.
+Commit tecnico congelato prima dell'esecuzione:
+`9fcc212fc92c77ef6601a5b61ca40b1831cab0d9`. Report:
+`docs/rag-v5-remediation-a-official-api-single-case-01.md`; artefatti e inventari:
+`evaluation/remediation_a_official_api_single_case_01/`. Commit documentale
+finale con report, raccolta, TODO e registro contestuali. HEAD iniziale locale/
+GitHub 2b235a6db692bab0ed097482e9fac8cc04a0ca15, branch atteso e tree pulito;
+fonte ufficiale consultata, nessun tentativo preesistente. Differenza tecnica
+registrata prima dei controlli: schema status-correlated-01 e handoff dopo R1
+mai esercitati nel precedente runtime-04 baseline 13814c2. Nessuna suite
+37/13/16/5, gate storico o indagine ABI/H1-G2 ripetuti. Driver letto via AST
+locale/remoto, applicazione byte-identica alla baseline cec94e5; handshake
+ready + ledger fsync prima di GO. SSH host key rigorosa verificata; solo GET
+version/tags/ps e processi per concorrenza, Ollama 0.40.5/digest atteso,
+models=[] iniziale. Lock esistente read-only, flock esclusivo non bloccante,
+metadata invariati a fine richiesta; parent e PGID del supervisore remoto
+450s TERM/15s KILL verificati. Risultato: **1 POST inviata, 1 generazione
+completata**, HTTP 200, stop, SSH exit 0, 188,649 s, prompt_eval_count=1657,
+eval_count=1001 (token, non generazioni). Shape errors vuoti; precontrollo
+semantico superato, locator arresta per E_EXTRACTION_LOCALIZATION_NOT_UNIQUE:
+7/8 frammenti evidence mancanti (zero occorrenze), 16 record totali. Witness
+null, validation null; modello propone supported, label osservata null,
+Gold contradicted, semantic_match null. Nessuna riscrittura del raw o
+promozione. Finalizzazione completa; 18 hash/dimensioni originali verificati,
+chunk/raw/extraction/payload/ledger coerenti; inventario di pubblicazione
+separato, stderr vuoto. Decisione: eventuale prossima analisi solo offline del
+nuovo grounding claim/evidence, non eseguita; nessun secondo invio, neppure
+per ripetere il risultato. Stato: attività **ESEGUITO**; singolo percorso API
+osservato e custodia **VALIDATO** nel proprio perimetro; risultato semantico
+not_evaluable e accuratezza **BLOCCATO**. Compatibilità completa, ABI/H1-G2,
+Gate, integrazione e certificazione **BLOCCATO**; nessuna generalizzazione dal
+PASS tecnico o dai contatori al budget pre-troncamento. Solo caricamento Qwen
+e inferenza autorizzati; nessuna installazione, modifica codice/servizi/config,
+lock file/directory remote, staging/wrapper, runtime-05, C++, merge o deploy.
+STOP dopo pubblicazione e verifica GitHub/working tree.
+
 ### 2026-11-11 — Decisione di sblocco operativo RAG V5
 
 Attività: `RD-RAG-V5-OPERATIONAL-UNBLOCKING-DECISION-01`. Script/metodo:

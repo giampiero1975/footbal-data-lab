@@ -1,0 +1,26 @@
+{
+  "activity": "RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01",
+  "utc": "2026-11-11T16:16:53.526177+00:00",
+  "transport_calls": 1,
+  "post_started_events": 1,
+  "commit_to_send": true,
+  "http_status": 200,
+  "ssh_exit": 0,
+  "blocked": null,
+  "completed_generations": 1,
+  "done_reason": "stop",
+  "prompt_eval_count": 1657,
+  "eval_count": 1001,
+  "shape_errors": [],
+  "reason_codes": [
+    "E_EXTRACTION_LOCALIZATION_NOT_UNIQUE"
+  ],
+  "details": [],
+  "witness_present": false,
+  "validation_present": false,
+  "proposed_label": "supported",
+  "observed_label": null,
+  "gold_label": "contradicted",
+  "semantic_match": null,
+  "promotion_authorized": false
+}

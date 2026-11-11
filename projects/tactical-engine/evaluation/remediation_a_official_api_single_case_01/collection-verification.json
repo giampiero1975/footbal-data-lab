@@ -1,0 +1,94 @@
+{
+  "activity": "RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01",
+  "method": "Offline verification of this newly collected response and inventory only; no replay of judge/materializer or historical tests.",
+  "manifest_entries_verified": 18,
+  "manifest_sha256": "2bd654ed8aa079eb5785b311f0e4eb27c9bc7ca768fd3e1716860196c053ee52",
+  "raw_bytes": 3957,
+  "raw_sha256": "dab16c58e6df124355630743b898926ce49d83e5336796ca3081f88155b24147",
+  "payload_bytes": 24574,
+  "payload_sha256": "0852b5ad08557195c76a784b632d5b30e44657802b40b712b4de507629d8d16d",
+  "stdout_events_complete": true,
+  "raw_chunks_match_response": true,
+  "extraction_matches_raw": true,
+  "schema_matches_payload": true,
+  "gold_not_in_messages": true,
+  "post_started_events": 1,
+  "completed_generations": 1,
+  "remote_exit": 0,
+  "lock_metadata_preserved": true,
+  "localization_record_count": 16,
+  "missing_records": [
+    {
+      "field_id": "evidence_relation.subject.selected_fragments[0]",
+      "side": "evidence",
+      "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+      "selected_fragment": "La difesa bassa",
+      "occurrence_count": 0,
+      "start": null,
+      "end": null,
+      "result": "missing"
+    },
+    {
+      "field_id": "evidence_relation.semantic_axis.selected_fragments[0]",
+      "side": "evidence",
+      "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+      "selected_fragment": "lascia molto spazio",
+      "occurrence_count": 0,
+      "start": null,
+      "end": null,
+      "result": "missing"
+    },
+    {
+      "field_id": "evidence_relation.value.selected_fragments[0]",
+      "side": "evidence",
+      "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+      "selected_fragment": "molto spazio",
+      "occurrence_count": 0,
+      "start": null,
+      "end": null,
+      "result": "missing"
+    },
+    {
+      "field_id": "evidence_relation.phase.selected_fragments[0]",
+      "side": "evidence",
+      "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+      "selected_fragment": "lascia molto spazio",
+      "occurrence_count": 0,
+      "start": null,
+      "end": null,
+      "result": "missing"
+    },
+    {
+      "field_id": "evidence_relation.polarity.selected_fragments[0]",
+      "side": "evidence",
+      "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+      "selected_fragment": "lascia molto spazio",
+      "occurrence_count": 0,
+      "start": null,
+      "end": null,
+      "result": "missing"
+    },
+    {
+      "field_id": "evidence_relation.quantifier.selected_fragments[0]",
+      "side": "evidence",
+      "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+      "selected_fragment": "molto",
+      "occurrence_count": 0,
+      "start": null,
+      "end": null,
+      "result": "missing"
+    },
+    {
+      "field_id": "evidence_relation.conditions.items[0].selected_fragments[0]",
+      "side": "evidence",
+      "source_text_sha256": "sha256:302019bbce33aea87ab218afedbb823a7400defd56a134d1f867f2c35dd6fce1",
+      "selected_fragment": "molto spazio tra la linea difensiva e la porta",
+      "occurrence_count": 0,
+      "start": null,
+      "end": null,
+      "result": "missing"
+    }
+  ],
+  "claim_and_evidence_relations_equal_in_raw": true,
+  "finalization_complete": true
+}
