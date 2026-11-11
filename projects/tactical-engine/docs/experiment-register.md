@@ -2,6 +2,41 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Decisione di sblocco operativo RAG V5
+
+Attività: `RD-RAG-V5-OPERATIONAL-UNBLOCKING-DECISION-01`. Script/metodo:
+letture Git/JSON/caller e report, consultazione mirata documentazione ufficiale
+API chat/structured outputs (nuova domanda tecnica: confine di servizio in
+alternativa all'interoperabilità C++); nessun codice operativo aggiunto.
+Commit documentale con report, TODO e registro contestuali. Report:
+`docs/rag-v5-operational-unblocking-decision-01.md`. HEAD iniziale locale e
+GitHub cec94e57ce11903460bc9314de2c699aa83b0193, branch atteso, tree pulito;
+TODO/registro ufficiali confrontati coi blob GitHub, report ABI/H1-G2, codice,
+remediation A/R1, rivalutazione e runtime-04 riconciliati. Nessuna decisione
+operativa equivalente già conclusa. Risultato: scelto solo **B**, API Ollama
+POST /api/chat già usata dal caller. A privo di nuove prove concrete accessibili,
+C richiede build separata senza trasferibilità automatica al servizio installato,
+D riusato come evidenza senza rieseguire test. Non esiste evidenza di ingresso
+API compiler-only verificato; niente num_predict=0 o richieste vuote come
+scorciatoie non generative. Prossima unica attività **DA FARE**:
+`RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01`, una generazione futura
+q3_04 sul nuovo schema/handoff A/R1, non equivalente al runtime-04 baseline
+13814c2. Driver locale da preparare, caller invariato, trasporto SSH verso
+loopback, evidenze locali; nessuno staging o wrapper/runtime-05. Necessario
+mandato distinto per driver, SSH/diagnostica volatile minima, lock condiviso
+esistente, conversione schema nel servizio, caricamento Qwen e singola
+inferenza. Nessuna di queste azioni è autorizzata o eseguita ora. Criteri PASS/
+FAIL tecnici e semantici separati, prerequisiti BLOCCATO e arresti definiti nel
+report; zero retry/repair/fallback/promozione. Budget pre-troncamento e supporto
+universale keyword non dimostrabili da un solo risultato. Decisione **ESEGUITO**
+come analisi documentale; attività futura **DA FARE**. Harness C++ e ABI restano
+**BLOCCATO**, non prerequisiti del percorso di servizio scelto. Compatibilità
+backend completa, accuratezza generativa, Gate, integrazione e certificazione
+**BLOCCATO**. Nessuna ricerca ABI/H1-G2 o ricognizione ripetuta, suite 37/13/16/5,
+gate runtime, codice applicativo, VPS, POST, compilazione/link/loading,
+modello, runtime-05, staging/wrapper, merge o deploy. STOP dopo pubblicazione
+report/TODO/registro e verifica GitHub/working tree.
+
 ### 2026-11-11 — Ricerca documentale provenienza build H1-G2
 
 Attività: `RD-RAG-V5-BACKEND-H1-G2-PROVENANCE-RESEARCH-01`. Script/metodo:

@@ -8,6 +8,26 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-OPERATIONAL-UNBLOCKING-DECISION-01 (2026-11-11).
+  Scelto il percorso **B**, API ufficiale Ollama del caller esistente.
+  ABI/H1-G2 non sono risolti: interrompere ricerche equivalenti finché non
+  arrivano prove nuove concrete; il progetto C++ resta **BLOCCATO** e non è
+  prerequisito per una prova attraverso il confine di servizio JSON.
+  Una sola attività successiva **DA FARE**:
+  RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01, q3_04 con contratto
+  remediation A/R1, una chiamata POST /api/chat tramite caller locale e SSH.
+  È generativa e richiede distinta autorizzazione a preparazione driver,
+  diagnostica volatile minima, lock esistente, conversione interna schema,
+  caricamento Qwen e una sola generazione; nessuna esecuzione autorizzata ora.
+  PASS tecnico API distinto da witness/label validi e Gold contradicted;
+  nessuna prova universale di enforcement o conteggio pre-troncamento.
+  Metodo, prerequisiti, evidenze, criteri e STOP nel report
+  `docs/rag-v5-operational-unblocking-decision-01.md`, pubblicato con TODO e
+  registro. Nessun codice/test/VPS/POST/compiler/link/loading, suite o gate
+  storico ripetuto; nessun runtime-05, staging, wrapper, merge o deploy.
+  ABI, compatibilità backend completa, accuratezza generativa, Gate,
+  integrazione e certificazione **BLOCCATO**. STOP documentale.
+
 - [x] **ESEGUITO** RD-RAG-V5-BACKEND-H1-G2-PROVENANCE-RESEARCH-01 (2026-11-11).
   Decisione **B**, provenienza incompleta con richiesta puntuale di documenti.
   Ricetta pubblica fissata al commit d919272; run finale 38782957421 distinto
