@@ -8,6 +8,25 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** revisione documentale del pilot esistente
+  RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11). Pilot **DA FARE**, non
+  autorizzato; nessun nuovo ID o shortlist. Giudizio: adeguato con correzioni
+  per triage/preferenza preliminare, insufficiente per scelta definitiva 28/30.
+  Stessi tre casi/sei risposte massime; fonti parziali e fuori scope mappate,
+  Gold/answer storico esclusi dai payload. Il contatore 4146 del caso10 è del
+  repair selezionato, non del futuro single-shot: gate tokenizer/template su
+  prompt+output, nessuna deduzione da byte o vecchi conteggi. Profili thinking
+  nativi e compatibilità installata ancora non verificati; 8192/4096/350 parole/
+  900s restano proposte condizionate, troncamenti non provano inferiorità.
+  Valutazione umana cieca prima delle risorse; qualità prevale sulla velocità,
+  nessun bonus Gemma, parità/limiti/fonti insufficienti possono dare nessun
+  vincitore. Un errore grave impedisce la priorità; zero promozione automatica.
+  Report `docs/rag-v5-quality-first-paired-pilot-protocol-review-01.md` e
+  `docs/quality-first-paired-pilot-review-evidence-01.json`, con TODO/registro.
+  Driver/SSH/download/caricamenti/lock/misure e sei POST richiedono consenso
+  separato e gate superati; nessuna attività esecutiva avviata. Accuratezza,
+  Gate, integrazione e certificazione generale **BLOCCATO**. STOP documentale.
+
 - [x] **ESEGUITO** RD-RAG-V5-LOCAL-COACH-QUALITY-FIRST-SELECTION-01
   (2026-11-11). Mandato corretto: qualità prima delle risorse, nuovo target
   strategico media 28/30 e zero errori gravi; 30/30 e lode qualitativa, senza

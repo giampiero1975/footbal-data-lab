@@ -2,6 +2,37 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Revisione finale del pilot già registrato
+
+Attività invariata: `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Fase: revisione
+documentale, nessun nuovo esperimento. Script/metodo: analisi statica di tre
+JSON, caller e rubriche, letture ufficiali mirate ai controlli thinking/API,
+confronto Git e hash; nessun driver implementato o codice applicativo eseguito.
+Commit documentale con differenziale motivato
+`docs/rag-v5-quality-first-paired-pilot-protocol-review-01.md`, fatti in
+`docs/quality-first-paired-pilot-review-evidence-01.json`, TODO/registro.
+Riconciliati HEAD locale/GitHub 8d5b0466ab7ca52ef51496b0526e9df703a31cdb,
+branch corretto, tree pulito e tre documenti ufficiali byte-per-byte; attività
+proposta non eseguita nei documenti pertinenti. Nessuna verifica VPS presunta.
+Differenza: valutazione della capacità discriminante dei tre input congelati,
+correzioni del protocollo e regole decisionali prima di qualsiasi test,
+non nuova selezione modelli o ripetizione di benchmark/diagnosi precedenti.
+Risultato: adeguato con correzioni per triage, insufficiente per candidato
+vincitore definitivo/28 su30. Fonti caso02/03/10 con scope parziale; case10
+riparato, contatore4146 del repair non trasferibile al single-shot nuovo.
+Gate prompt+output con tokenizer/template equivalenti, profili nativi e
+campionamento congelati, nessuna falsa equivalenza thinking; truncation e
+limiti tecnici separati da qualità. Valutazione cieca e cause generatore/
+evidenze/interazione distinte. Decisione qualità prima di efficienza,
+sostenibilità vincolante; nessun bonus al candidato precedente, nessun
+vincitore con confronto ambiguo o gravi errori. Tre casi non certificano28/30.
+Budget e autorizzazioni esecutive espliciti nel differenziale, nessun costo
+aggiuntivo o runtime update presunto. Stato revisione **ESEGUITO**, pilot
+**DA FARE**, non autorizzato; accuratezza, Gate, integrazione e certificazione
+generale **BLOCCATO**. Nessuna SSH, installazione, modello, inferenza,
+benchmark, modifica RAG/applicativa/VPS/panel, merge o deploy. STOP dopo
+pubblicazione e verifica GitHub/working tree. Report e risultati storici intatti.
+
 ### 2026-11-11 — Selezione quality-first dell'allenatore locale
 
 Attività: `RD-RAG-V5-LOCAL-COACH-QUALITY-FIRST-SELECTION-01`. Script/metodo:

@@ -1,0 +1,321 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "phase": "documentary protocol review; no new experiment identifier",
+  "baseline": "8d5b0466ab7ca52ef51496b0526e9df703a31cdb",
+  "date": "2026-11-11",
+  "review_result": "Adeguato con correzioni per triage; insufficiente per scelta definitiva o target28",
+  "pilot_status": "DA FARE",
+  "execution_authorized": false,
+  "POSTs_sent": 0,
+  "scope": "static case selection and budget/protocol review; no scores assigned",
+  "cases": [
+    {
+      "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10/case_02.json",
+      "sha256": "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135",
+      "question_pointer": "/questions/0/question",
+      "answer_pointer": "/questions/0/answer",
+      "question": "Il candidato analizzi la costruzione dal basso contro un avversario che attua un pressing alto, forte e orientato sull'uomo (pressione uomo su uomo a tutto campo). Ci illustri le strategie tattiche collettive e i codici di movimento (es. rotazioni, svuotamento di spazi, utilizzo del terzo uomo) idonei a superare la prima linea di pressione, specificando la gestione del rischio e il ruolo strategico del portiere in questo specifico scenario.",
+      "question_utf8_sha256": "5b25c718841ead3c4cd44c58dd537990d45a58e515951659032328a5f9bff1e5",
+      "evidence": [
+        {
+          "label": "F1",
+          "text_pointer": "/questions/0/evidence/0/text",
+          "text_sha256": "446c484c35f750b626e2d0e11c3986f95a12c9073d6da1907c6699693116d5f5",
+          "source": "FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2",
+          "pages": "[14]"
+        },
+        {
+          "label": "F2",
+          "text_pointer": "/questions/0/evidence/1/text",
+          "text_sha256": "c59c8c1a9f3fe8aa9e773b16637ed4846f25d054a9948b77057a02f9124fd7ca",
+          "source": "334_principi_Glerean",
+          "pages": "[14]"
+        },
+        {
+          "label": "F3",
+          "text_pointer": "/questions/0/evidence/2/text",
+          "text_sha256": "736a74b985e7b6ee3140d30a5bf536ca722396fe34e48240499c907f401a56b8",
+          "source": "Allegati_255201293236",
+          "pages": "[23, 24, 25]"
+        },
+        {
+          "label": "F4",
+          "text_pointer": "/questions/0/evidence/3/text",
+          "text_sha256": "e93e341b84c694bbc988f09d1d7aefef2e2374c0bdc0111db2d460b2de8217fc",
+          "source": "maldera_tesi-uefa-pro",
+          "pages": "[14]"
+        },
+        {
+          "label": "F5",
+          "text_pointer": "/questions/0/evidence/4/text",
+          "text_sha256": "198356afb7bc97d7fcbd59e04b6a3aa9b37ed00aaeba5283d3b20da51eaa6ecb",
+          "source": "FOOTBALL_DATA_LAB_Il_Terzo_Uomo_Manuale",
+          "pages": "[8]"
+        },
+        {
+          "label": "F6",
+          "text_pointer": "/questions/0/evidence/5/text",
+          "text_sha256": "6b143744951f6d1b948698f76555a2ef94ec015ecb970f2cfcd8163427106eb8",
+          "source": "FOOTBALL_DATA_LAB_Costruzione_Dal_Basso_Manuale",
+          "pages": "[4]"
+        }
+      ],
+      "historical_generation": {
+        "prompt_eval_count": 2263,
+        "eval_count": 616,
+        "done_reason": "stop",
+        "repair_reasons": [],
+        "quality_gate_passed": true
+      },
+      "observations": {
+        "topic": "build-out against high man-oriented press",
+        "relevant_evidence": [
+          "F4: caption on goalkeeper build-out/third man",
+          "F6: two-player press and prepared second ball"
+        ],
+        "scope_limits": [
+          "F1 and F5 address low block, not high man-to-man press",
+          "F3 mixes third-man drill and crossing drill",
+          "F2 is a goalkeeper passage, not a complete strategy for the requested opponent"
+        ],
+        "observable_answer_issues": [
+          {
+            "pointer": "/questions/0/answer",
+            "quote": "trasformare un 2v1 apparente in 2v2",
+            "basis": "F1 warns the apparent 2v1 can become 2v2 under a low block; answer treats it as an intended build-out benefit"
+          },
+          {
+            "pointer": "/questions/0/answer",
+            "quote": "forte e radente verso la testa dei compagni in zona 14 o mezzo",
+            "basis": "Combines F2 goalkeeper wording with F5 low-block zone14 drill; source scope does not establish that sequence for high press"
+          }
+        ]
+      }
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10/case_03.json",
+      "sha256": "f422d7e6e4a27044f45d96fc545c4f8ff48b9e20b533aad16547ee90ce693fa8",
+      "question_pointer": "/questions/0/question",
+      "answer_pointer": "/questions/0/answer",
+      "question": "Il candidato analizzi il principio della 'difesa a protezione della porta' in area di rigore su cross proveniente dalla fascia laterale. Ci illustri la coordinazione posturale dei difensori centrali, la gestione del duello individuale (marcatura a uomo nella zona vs marcatura a uomo pura), la lettura della traiettoria della palla (punto di caduta) e la ripartizione dei compiti con il portiere nella copertura dello specchio e nelle uscite. Curare i dettagli sulla postura del corpo, l'orientamento dello sguardo e la gestione dello spazio tra difensore e attaccante.",
+      "question_utf8_sha256": "35f01286bd71e70989b46a1431583893e24078e3e4211c9d147554526791db99",
+      "evidence": [
+        {
+          "label": "F1",
+          "text_pointer": "/questions/0/evidence/0/text",
+          "text_sha256": "5b6d7cfdebf0812fb507764efb55dde954f1ad1e5802ff9b894ec6c203b34678",
+          "source": "La tattica nel calcio",
+          "pages": "[1, 2]"
+        },
+        {
+          "label": "F2",
+          "text_pointer": "/questions/0/evidence/1/text",
+          "text_sha256": "21d41680b88138187a8e9116807191bf12d3ea89623f9ad2703b49b2dc8169a4",
+          "source": "contran_uefa-pro",
+          "pages": "[104]"
+        },
+        {
+          "label": "F3",
+          "text_pointer": "/questions/0/evidence/2/text",
+          "text_sha256": "61b6d703d76a814c8b769102263bf341c1b9db829d4d5b6c4062288658d214f5",
+          "source": "Allegati_14112014151551",
+          "pages": "[3]"
+        },
+        {
+          "label": "F4",
+          "text_pointer": "/questions/0/evidence/3/text",
+          "text_sha256": "60ec48ff13192e7ae21c6a62f489061a9ec3c5637ac47b7dc913e29cd105cbc5",
+          "source": "Allegati_17122013122448",
+          "pages": "[91, 92, 93, 94]"
+        },
+        {
+          "label": "F5",
+          "text_pointer": "/questions/0/evidence/4/text",
+          "text_sha256": "bc48971f91bac1a7e5219853ca02aacff13f7812e3ffe444be3d7bd6557983dc",
+          "source": "La gestione tattica della gara.",
+          "pages": "[3]"
+        },
+        {
+          "label": "F6",
+          "text_pointer": "/questions/0/evidence/5/text",
+          "text_sha256": "c0665c1aa6ab487bd51032b236fd0bf55339d27e4cc5460b8374e01c280724ec",
+          "source": "FOOTBALL_DATA_LAB_Difesa_Area_di_Rigore_Manuale",
+          "pages": "[1]"
+        }
+      ],
+      "historical_generation": {
+        "prompt_eval_count": 2790,
+        "eval_count": 580,
+        "done_reason": "stop",
+        "repair_reasons": [],
+        "quality_gate_passed": true
+      },
+      "observations": {
+        "topic": "cross defence and goalkeeper coordination",
+        "relevant_evidence": [
+          "F4: direct passage on protecting goalkeeper or goal on crosses",
+          "F5: collective defensive movement and goalkeeper space coverage"
+        ],
+        "scope_limits": [
+          "F1 mixes possession reception and non-possession principles",
+          "F3 expressly addresses offensive receiving posture",
+          "F6 contains title/subtitle only; F2 is mostly a biography/discussion"
+        ],
+        "observable_answer_issues": [
+          {
+            "pointer": "/questions/0/answer",
+            "quote": "il difensore centrale assume una postura semiaperta",
+            "basis": "Cites F3, which describes offensive receiving, not the requested cross-defence posture"
+          },
+          {
+            "pointer": "/questions/0/answer",
+            "quote": "viceversa, se il portiere rimane in porta",
+            "basis": "F4 gives goal-cover as an alternative while goalkeeper goes out, not only the opposite goalkeeper condition"
+          }
+        ]
+      }
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10-2/case_10.json",
+      "sha256": "afb2a6c27d3ff46001d7a1b360501287858a3f583b57c947fd8250d34e6d59f9",
+      "question_pointer": "/questions/0/question",
+      "answer_pointer": "/questions/0/answer",
+      "question": "Il candidato analizzi la gestione strategica della gara attraverso le Sostituzioni e i Cambi di Sistema di Gioco (Tattica in itinere). Ci illustri i criteri metodologici con cui un allenatore decide di modificare la struttura della squadra a gara in corso (es. passaggio dal 4-3-3 al 3-5-2 o al 4-2-3-1) per preservare un risultato di vantaggio negli ultimi 15 minuti di gioco. Specifichi l'impatto emotivo/strategico sui calciatori e le modalità di comunicazione di tali variazioni alla squadra senza perdere l'equilibrio transizionale.",
+      "question_utf8_sha256": "3bbd4c617b26731750c133a49153c40ad0c5acc142d81b31e68297a9ec193936",
+      "evidence": [
+        {
+          "label": "F1",
+          "text_pointer": "/questions/0/evidence/0/text",
+          "text_sha256": "f18244895ac4f71b042f05f73ca76dd641a9b5167b713376b2533e1e0cc8df6e",
+          "source": "La gestione tattica della gara.",
+          "pages": "[1]"
+        },
+        {
+          "label": "F2",
+          "text_pointer": "/questions/0/evidence/1/text",
+          "text_sha256": "e4b46ce848d4587eabe31fc6db268fbd6d236371035c7eade21adaa0e8cfd366",
+          "source": "Dolcetti",
+          "pages": "[20]"
+        },
+        {
+          "label": "F3",
+          "text_pointer": "/questions/0/evidence/2/text",
+          "text_sha256": "ff35efe3eba184493399b3e963461ea1060b86fc0958e25962efd2f332b6a6ba",
+          "source": "FOOTBALL-DATA-LAB_Manuale_Catene_di_Gioco_ESTESO_v2",
+          "pages": "[7]"
+        },
+        {
+          "label": "F4",
+          "text_pointer": "/questions/0/evidence/3/text",
+          "text_sha256": "a91b0a08effa9bd313b35ff15f15552d285fc5451a68aa16be0cb2fada74a5e9",
+          "source": "Allegati_179201015532",
+          "pages": "[4, 5]"
+        },
+        {
+          "label": "F5",
+          "text_pointer": "/questions/0/evidence/4/text",
+          "text_sha256": "872e744e1e2a826a7eca588c4e3519fbb696fa0c915b5235bf28bf3b984eb085",
+          "source": "spalla_tesi-uefa-pro",
+          "pages": "[75]"
+        },
+        {
+          "label": "F6",
+          "text_pointer": "/questions/0/evidence/5/text",
+          "text_sha256": "88192f636d51ff2071c3e9553bd9150a6834ea428106405ddf16765090d21891",
+          "source": "spalla_tesi-uefa-pro",
+          "pages": "[94]"
+        }
+      ],
+      "historical_generation": {
+        "prompt_eval_count": 4146,
+        "eval_count": 644,
+        "done_reason": "stop",
+        "repair_reasons": [
+          "copertura incompleta: live_communication",
+          "generazione selezionata: repair"
+        ],
+        "quality_gate_passed": false
+      },
+      "observations": {
+        "topic": "in-game formation change and protecting a lead",
+        "relevant_evidence": [
+          "F1: coaching decisions during play",
+          "F2: psychological game phases and communication",
+          "F5/F6: substitutions, adaptability, multiple functions"
+        ],
+        "scope_limits": [
+          "No frozen passage supplies a complete player-by-player 4-3-3 to 3-5-2 mapping",
+          "F3 concerns receiving/possession chain; F4 describes principles and a 4-4-2 example"
+        ],
+        "observable_answer_issues": [
+          {
+            "pointer": "/questions/0/answer",
+            "quote": "i tre centrocampisti restano nel reparto",
+            "basis": "Later example says a central midfielder drops into the vacated space; phase/role explanation is unresolved, not a proven new numerical-count error"
+          },
+          {
+            "pointer": "/questions/0/answer",
+            "quote": "per creare sovrapposizione",
+            "basis": "Attributed to the winger moving next to the centre-forward with F3 receiving-posture reference; justification not supplied by that passage"
+          }
+        ]
+      }
+    }
+  ],
+  "context_warning": {
+    "historical_case10_prompt_tokens": 4146,
+    "proposed_generation_cap": 4096,
+    "sum": 8242,
+    "proposed_context": 8192,
+    "not_token_count_for_new_models": true,
+    "historical_counter_scope": "Selected repair response, not initial single-shot prompt; caller selects obj then returns its token counters",
+    "proves_new_prompt_overflow": false
+  },
+  "decision_principle": "quality before speed; resource sustainability constraint, not a weighted quality score",
+  "native_support_sources": [
+    "https://huggingface.co/google/gemma-4-26B-A4B-it/blob/4d7ae4984b7db7de8f8457170b3f1a419ee76d52/README.md",
+    "https://huggingface.co/Qwen/Qwen3.8-27B/blob/37561816e66b5b9153b1b64c10968c18c1e6f4a0/README.md",
+    "https://docs.ollama.com/capabilities/thinking",
+    "https://docs.ollama.com/api/chat"
+  ],
+  "installed_runtime_support_verified": false,
+  "tokenizer_equivalence_verified": false,
+  "native_budget_equivalence_claimed": false,
+  "originals_modified": false,
+  "caller_static_references": {
+    "path": "projects/tactical-engine/scripts/smoke_test_rag_v5_e2e.py",
+    "selection_lines": [
+      457
+    ],
+    "counter_return_lines": [
+      464,
+      470
+    ],
+    "application_executed": false
+  },
+  "review_status": "ESEGUITO",
+  "static_source_hashes": [
+    {
+      "path": "projects/tactical-engine/scripts/smoke_test_rag_v5_e2e.py",
+      "sha256": "575cb2454d2e2f7d7ce52518f5b6efce116e9bc67e12c869f1b27003ba344cec"
+    },
+    {
+      "path": "projects/tactical-engine/scripts/compare_frozen_thinking_rd01.py",
+      "sha256": "951eac9aaee52fe8b5bd2698260a18b74b9362e2b2e5ec7740eb9535ab8f6fb3"
+    },
+    {
+      "path": "projects/tactical-engine/docs/rag-v5-quality-holdout-adjudication-rubric-20261022.md",
+      "sha256": "a68729e668daa1e8fa43a7eeeb704e263e4b6a972eb735d414c8387d2ea81214"
+    },
+    {
+      "path": "projects/tactical-engine/docs/rag-v5-quality-first-local-coach-selection-01.md",
+      "sha256": "fa89a0f5e83e3adae8eb8e859c3ea74201818dbeb71e7fe17ef5645ac7a4c17a"
+    }
+  ],
+  "documentary_integrity": {
+    "case_hashes_and_field_hashes_verified": true,
+    "historical_TODO_register_bytes_preserved": true,
+    "application_or_model_executions": 0,
+    "pilot_status": "DA FARE"
+  }
+}
