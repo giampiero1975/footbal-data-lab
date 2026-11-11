@@ -8,6 +8,24 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO** preparazione tecnica locale del pilot esistente
+  RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11). Commit tecnico
+  `3449db8f1d1c68d07fb76b5ff753b6676270bfef`: controller/worker separati dal RAG, sei slot e tre input
+  congelati, payload whitelist uguali a coppie, nessun Gold/answer/repair,
+  dossier remoto e autorizzazione pending false. Ledger esclusivo canonico,
+  fsync prima di GO, nessun resume/retry, raw/inventario/export cieco predisposti.
+  **ESEGUITO**, **VALIDATO** solo localmente: 32 controlli statici/manifest,
+  AST/compile in memoria e identità/hash. Eseguiti solo prepare/check/lettore
+  statico, mai execute/worker/anonymize. Nessun ledger di tentativo creato.
+  Metodo token pre-POST, mapping think=true→Qwen xhigh, digest completi/build,
+  risorse e supervisione reali non verificati: invio **BLOCCATO** ai gate,
+  pilot sempre **DA FARE**. Nessuna SSH, POST generativa, inferenza, pesi,
+  installazione, modifica RAG/API/panel/runtime o costo. Addendum nel report
+  del protocollo; fatti `docs/quality-first-pilot-local-preparation-static-01.json`.
+  Prossimo consenso limitato al preflight remoto read-only/non generativo,
+  senza download, caricamenti, lock esecutivo o chat. Target28/30 non dimostrato;
+  risultati RAG precedenti preservati. STOP dopo pubblicazione/verifica.
+
 - [x] **ESEGUITO** riconciliazione RAG nell'attività esistente
   RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11). Nessuna nuova selezione,
   protocollo o esperimento. V5 locked **CERTIFICATO** nel perimetro congelato;

@@ -2,6 +2,37 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Preparazione tecnica locale del pilot esistente
+
+Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Script/controller:
+`operations/quality-first-pilot/paired_pilot_01.py`; worker futuro stdin-only:
+`paired_pilot_remote_01.py`; lettore AST/manifest `static_review_01.py`.
+Commit tecnico `3449db8f1d1c68d07fb76b5ff753b6676270bfef`. Report: addendum in
+`docs/rag-v5-quality-first-paired-pilot-protocol-review-01.md`, evidenze
+`docs/quality-first-pilot-local-preparation-static-01.json`, README e package
+prepared; TODO/registro contestuali. Baseline iniziale locale/GitHub227a862,
+branch corretto, tree pulito, documenti ufficiali confrontati byte-per-byte;
+nessun driver equivalente/tentativo locale, assenza remota non verificata.
+Differenza autorizzata: preparazione dei sei slot, whitelist dei tre input,
+ledger/trasporto singolo/anonimizzazione e verifica statica di codice nuovo,
+non benchmark o ripetizione delle suite RAG. Risultato: **IMPLEMENTATO**,
+32 verifiche statiche e di manifest **ESEGUITO**/**VALIDATO** nel solo perimetro
+locale; nessuna validazione funzionale del trasporto/worker/VPS. Prepare/check
+non raggiungono rete o SSH. File pending verified/authorized false, binding
+richiesto con identità/versioni/profili/metodo token ed evidenze revisionate.
+Gate contesto legato a payload/template/tokenizer, nessuna stima da byte;
+nell'interprete locale manca metadata per transformers/tokenizers/ollama/gguf.
+Nessun tokenizer o peso caricato. Non verificati mapping think=true→xhigh,
+digest completi e parser/build, memoria/swap/servizi/supervisione reali.
+Decisione: predisposizione completata, invio impedito dai gate non attestati;
+pilot **DA FARE**, esecuzione non autorizzata. Preflight successivo necessita
+consenso SSH/GET diagnostiche/eventuale show non generativa e letture metadata/
+risorse/lock, nessuna chat, warm-up, installazione, download o acquisizione lock.
+Generazioni0, POST generative0, SSH0, ledger di tentativo assente. Nessuna modifica
+RAG/applicativa/API/panel/runtime, costo, merge o deploy. Target28/30, Gate,
+integrazione e certificazione generale **BLOCCATO**, perimetri RAG precedenti
+preservati. STOP dopo pubblicazione e verifica GitHub/working tree.
+
 ### 2026-11-11 — Riconciliazione RAG e avanzamento del pilot esistente
 
 Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, fase documentale.

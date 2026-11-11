@@ -471,3 +471,128 @@ Target28/30, Gate generativi non superati e certificazione generale restano
 **BLOCCATO**, senza revocare il **CERTIFICATO** locked storico. Pubblicazione
 contestuale di questo addendum, inventario, TODO e registro; verifica GitHub e
 working tree, poi STOP. Nessuna attività esecutiva, costo, merge o deploy.
+
+
+## Addendum — preparazione tecnica locale del pilot
+
+Data: 2026-11-11. Attività invariata
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, pilot **DA FARE**.
+Mandato limitato a driver/manifest e controlli locali, nessuna autorizzazione
+SSH o generativa. Baseline iniziale locale/GitHub `227a862dedf5f36c947ec63dface69c723af1e99`,
+branch corretto, tree pulito; TODO/registro/report ufficiali confrontati con
+GitHub. Nessun driver equivalente o tentativo locale del pilot individuato;
+l'assenza remota non è stata verificata. Riconciliazione RAG conclusa, nessuna
+nuova selezione o modifica del protocollo qualitativo.
+
+### Attività → Script → Commit → Report → Risultato → Decisione → Stato
+
+Script separati dall'applicazione in `operations/quality-first-pilot/`:
+`paired_pilot_01.py`, worker futuro `paired_pilot_remote_01.py` e lettore
+`static_review_01.py`; istruzioni nel README della stessa directory.
+Commit tecnico congelato: **3449db8f1d1c68d07fb76b5ff753b6676270bfef**.
+Evidenza dei controlli:
+[`quality-first-pilot-local-preparation-static-01.json`](quality-first-pilot-local-preparation-static-01.json).
+Report: presente addendum, TODO/registro pubblicati contestualmente.
+
+Il controller ha modalità prepare/check, execute con dossier e autorizzazione
+separati, export cieco dopo completamento. Eseguite **soltanto prepare e check**
+e il lettore statico. Worker e modalità execute/anonymize **mai eseguiti**.
+Preparati i tre input con whitelist domanda+evidenze, sei payload identici nel
+contenuto per ogni coppia, ordine Gemma/Qwen–Qwen/Gemma–Gemma/Qwen, hash di casi,
+richieste e codice. Nessun answer storico, Gold, tactical_plan, repair o voto
+entra nei messaggi. Template di valutazione vuoto; nessun output fittizio.
+
+Predisposti, non validati in runtime: ledger canonico esclusivo senza resume,
+prenotazione xb+flush/fsync prima di GO, un solo call site POST fuori da cicli
+nel worker, massimo sei slot nel controller; raw NDJSON e stdout/stderr,
+inventario finale e verifica prima dell'export anonimo. Riutilizzato il pattern
+fsync/GO e lock storico del single-case `9fcc212`, senza importare quel driver
+o alcun modulo RAG. Gli ID di revisione sono opachi e la mappa custode resta
+fuori da blind. La riservatezza richiede consegnare al revisore soltanto blind,
+non log o mappa; eventuale autoidentificazione nel content non viene cancellata.
+
+### Verifiche effettive, senza generazioni
+
+**32 controlli statici/di manifest superati**, zero errori nel risultato finale:
+AST e compile in memoria dei due programmi (nessun import del worker), assenza
+di import applicativi/modelli/ctypes, reachability locale prepare/check senza
+trasporto, tre hash di origine e testi preservati, sei slot unici/ordine,
+uguaglianza messaggi, whitelist, limiti e hash payload, freeze codice/blob,
+file pending con autorizzazione false, ledger assente, unico call site POST,
+assenza di loop attorno alla POST, ordine prenotazione→GO→POST, lock read-only,
+presenza guardie memoria/swap/deadline, contratto del conteggio e export cieco.
+Il lettore statico iniziale ha avuto un errore nel matcher testuale GO, corretto
+usando AST; non è stato eseguito alcun trasporto o test applicativo per correggerlo.
+
+`prepare/check` verificano identità/struttura locale, non il comportamento del
+trasporto. Il package congelato ha SHA-256 canonico **9c790029ac269c77c6d5946669ed9560df2f73ff1c47dfca38eb402df7eb919d**. Gli hash e
+Git blob dei due sorgenti sono nell'evidenza. Nessun controllo storico è stato
+ripetuto. Il confronto Git conferma nessuna modifica a scripts/API/RAG.
+
+Lettura della sola metadata delle distribuzioni nell'interprete Python 3.9.5:
+transformers/tokenizers/ollama/gguf non risultano installati. Nessuna installazione,
+tokenizer o peso caricato. I config e le fonti normative versionate documentano
+capacità nominali, non il rendering/token budget del servizio. Non è stata
+prodotta alcuna stima token da byte, né invocato il vecchio percorso ABI.
+
+### Profili predisposti e blocchi concreti all'invio
+
+Package con contesto 8192/output 4096, finale 350 parole, temperatura 1/top_p0.95,
+top_k 64 Gemma  / 20 Qwen, seed 42 senza ricerca del seed, stream=true/keep_alive=0.
+Qwen esplicita i restanti parametri pubblicati; i default effettivi Gemma vanno
+attestati. Il supporto seed/opzioni deve essere provato, non dedotto dal payload.
+Le due richieste usano think=true: **non è verificata** la risoluzione del
+booleano al profilo Gemma e a Qwen xhigh. Nessun downgrade automatico a medium.
+
+`remote_binding.pending.json` e `execution_authorization.pending.json` non
+abilitano invii. Il primo richiede evidenze reali revisionate, hash, identità
+modelli/template/tokenizer e sei conteggi legati ai payload; il secondo deve
+riferirsi agli hash esatti di piano e dossier. Un flag verified non è una prova:
+la revisione del dossier è necessaria prima di autorizzarlo.
+
+**Blocco concreto:** non è disponibile in questa fase un metodo attestato di
+rendering/conteggio pre-POST equivalente alla build installata. Il controller
+richiede prompt_tokens<=4096 per riservare output 4096 in contesto 8192 e rifiuta
+prove mancanti; il contatore restituito dopo una generazione non può colmare
+questa lacuna preventiva. `/api/show` da solo non conta il prompt. Se non esiste
+un'interfaccia attendibile già disponibile senza generazione/caricamento pesi,
+STOP: niente ABI, tokenizer alternativo o aumento automatico del budget.
+
+Restano non verificati digest completi Q4_K_M e disponibilità dei due modelli,
+versione/capacità reali, mapping thinking/template, parser stream/contatori,
+supervisione e concorrenza, risorse/servizi. Il worker contiene guardie sul lock
+esistente, processi/modelli osservabili, MemAvailable>=4 GB decimali e swap;
+sono controlli predisposti, non misure VPS né prova di isolamento completo.
+
+Il controller ha tetti 900s/slot e 5400s totali; GNU timeout remoto 900s con cleanup
+kill-after15s. Il cleanup può durare ulteriori 15s; non si dichiara la
+cancellazione del modello entro 900s. Socket chiuso o SSH terminato non
+certificano arresto Ollama: conservazione dello stato ambiguo e STOP senza
+invii successivi. Cadenza nominale 1s/massimo campionato e reazione ai limiti
+vanno verificati nel perimetro remoto prima della prova, non presentati come
+picco continuo o comportamento dinamico già validato.
+
+### Operazioni esatte da autorizzare per il solo preflight remoto
+
+1. Connessione `football-vps` con host key autorizzata e StrictHostKeyChecking=yes,
+   nessuna accettazione automatica o modifica della configurazione SSH.
+2. GET diagnostiche `/api/version`, `/api/tags`, `/api/ps` sul loopback e, se
+   necessario, POST **non generativa** `/api/show` dei due modelli già presenti;
+   rilevazione digest/formato/quantizzazione/capacità e template effettivi.
+3. Sole letture di metadata/config/template e dell'eventuale interfaccia di
+   rendering/tokenizzazione già installata, senza caricamento pesi o richiesta
+   chat; attestare il metodo e i sei conteggi o registrare il blocco.
+4. Letture di memoria/swap/processi, stato servizi, spazio disponibile, metadata/
+   symlink/proprietario/permessi del lock storico e tracce di tentativi preesistenti;
+   nessuna creazione, acquisizione/modifica del lock o modifica dei servizi.
+5. Raccogliere localmente il dossier diagnostico e confrontarlo con manifest e
+   hash congelati. Nessuna installazione, trasferimento di modelli o esecuzione
+   del worker generativo implicita nel preflight.
+
+Se modelli o supporto mancano, STOP; download/caricamenti/lock esecutivo e sei
+POST richiedono le successive autorizzazioni appropriate. Nessun altro audit
+RAG, selezione o benchmark diventa prerequisito. Driver preparato **IMPLEMENTATO**;
+controlli **ESEGUITO** e **VALIDATO** soltanto nel perimetro statico/manifest;
+esecuzione non autorizzata e prerequisiti non attestati **BLOCCATO**, pilot
+**DA FARE**. RAG, API/panel, corpus, indici e risultati storici preservati.
+**Generazioni effettuate 0; POST generative 0; SSH 0.** STOP dopo pubblicazione.
