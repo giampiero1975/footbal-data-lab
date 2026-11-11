@@ -2,6 +2,46 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Revisione strategica dei soli modelli locali
+
+Attività: `RD-RAG-V5-LOCAL-MODELS-FINAL-STRATEGIC-REVIEW-01`. Script/metodo:
+analisi Git/JSON/codice, letture pubbliche ufficiali model card/catalogo/licenza
+e metadati, senza import applicativi o test. Commit documentale con report,
+evidenza/metadati, TODO e registro contestuali. Report:
+`docs/rag-v5-local-models-final-strategic-review-01.md`; fatti:
+`docs/local-models-final-strategic-review-evidence-01.json`; snapshot testuali:
+`docs/local-models-public-metadata-01/`. HEAD iniziale locale/GitHub
+9c5178891eac8adc00299009a86a88a9aca2ceb0, branch corretto, tree pulito;
+TODO/registro ufficiali, precedente valutazione, inventario, dieci testi finali,
+codice e report riconciliati. Mandato corretto in corsa: autonomia open-weight
+vincolante. Ricerca preliminare di API proprietarie esclusa e bozza non
+committata rimossa, nessun suo candidato/prezzo/budget usato nella decisione.
+Differenza documentale: disponibilità/licenza/fattibilità di modelli locali
+sulla CPX52 dichiarata, non ripetizione della diagnosi q3_04 o test tattici.
+Risultato: tre candidati pubblici Apache-2.0, Gemma 4 12B preferito per unica
+prova eventuale; Gemma 4 26B A4B e Qwen3.8-27B non selezionati. Revisioni
+upstream e metadati con hash conservati; tag llamacpp distinguibili da cloud/
+MLX e componenti projector/draft inclusi nella pianificazione. Nessuna RAM
+misurata o dedotta dai GB di download; nessuna promessa di velocità sulle
+12 vCPU senza GPU. Errori osservati sia in output Qwen sia in architettura/
+retrieval/valutazione; causa dominante non isolata. Corpus, embedding locale
+separato, retrieval, API/panel e controlli riutilizzabili con perimetri distinti.
+Decisione unica **VERIFICA DECISIVA**, non autorizzazione: attività proposta
+`RD-RAG-V5-LOCAL-COACH-DECISIVE-COMPARISON-01` **DA FARE**, un candidato,
+Qwen storico non rigenerato, dieci domande/fonti identiche, giudizio umano
+cieco, soglie 9/10/26 su 30/zero gravi e limiti RAM/tempo fissati nel report.
+Nessun rinnovo o acquisto raccomandato solo per la prova; extra hosting/hardware
+proposto zero, tariffa VPS P e revisore H/lavoro L non noti. Se prerequisiti,
+periodo pagato o risorse mancano, STOP senza modello alternativo di ripiego.
+Confronto è pilot development, non certificazione o isolazione causale perfetta:
+payload storici non incorporati e alcuni Qwen riparati/sanitizzati. Probabilità
+di raggiungere lo standard non stimabile. Stato: analisi **ESEGUITO**, prova
+**DA FARE** non autorizzata; accuratezza, Gate e certificazione generale
+**BLOCCATO**, locked storico preservato. Nessuna SSH, inferenza, modello
+scaricato, implementazione, nuovo test, modifica di runtime/prompt/schema/Gold/
+validatori/pipeline/panel/VPS, compilazione, merge o deploy. STOP dopo report,
+aggiornamenti contestuali e verifica GitHub/working tree.
+
 ### 2026-11-11 — Valore reale dell'allenatore AI
 
 Attività: `RD-RAG-V5-AI-COACH-VALUE-ASSESSMENT-01`. Script/metodo: letture

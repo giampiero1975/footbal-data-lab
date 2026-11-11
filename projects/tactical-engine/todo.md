@@ -8,6 +8,28 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-LOCAL-MODELS-FINAL-STRATEGIC-REVIEW-01
+  (2026-11-11). Correzione vincolante: solo open-weight scaricabili/autonomi,
+  nessuna inferenza esterna. Ricerca API precedente esclusa, bozza non pubblicata
+  rimossa. Decisione unica **VERIFICA DECISIVA**, proposta non autorizzata:
+  Gemma 4 12B locale, non equivalenza tattica presunta. Alternative documentali
+  Gemma 4 26B A4B e Qwen3.8-27B, tutte con licenza dichiarata Apache-2.0.
+  CPX52 dichiarata 12 vCPU/24 GB/480 GB/no GPU; peso del file distinto da RAM
+  complessiva, KV/buffer/runtime/RAG/OS/draft. Compatibilità 0.40.5, picco RAM e
+  velocità CPU non verificati. Non raccomandato un rinnovo soltanto per provare.
+  Una sola eventuale attività **DA FARE**:
+  RD-RAG-V5-LOCAL-COACH-DECISIVE-COMPARISON-01, dieci risposte naturali contro
+  Qwen storico immutato, stesse domande/fonti, revisione umana cieca, soglie
+  9/10 e media 26/30, zero errori gravi; budget risorse e STOP nel report.
+  Nessun nuovo framework o prerequisito ABI/extraction per giudicare il coach.
+  Costi ricorrenti P da fattura; nessun token remoto/royalty, ma costi propri
+  non nulli. Revisore H e lavoro L da concordare; tetto proposto extra hosting/
+  hardware zero nel periodo già pagato. Probabilità di successo non stimabile.
+  Report `docs/rag-v5-local-models-final-strategic-review-01.md`, evidenza e
+  metadati ufficiali pubblicati con TODO/registro. Nessuna SSH, inferenza,
+  download pesi, test, modifica applicativa/VPS, merge o deploy. Accuratezza
+  generale, Gate e certificazione del coach **BLOCCATO**. STOP documentale.
+
 - [x] **ESEGUITO** RD-RAG-V5-AI-COACH-VALUE-ASSESSMENT-01 (2026-11-11).
   Valutazione documentale del valore tattico reale: raccomandazione unica **C**,
   sospendere sviluppo operativo e preservare gli asset prima di altri costi

@@ -1,0 +1,252 @@
+{
+  "activity": "RD-RAG-V5-LOCAL-MODELS-FINAL-STRATEGIC-REVIEW-01",
+  "baseline": "9c5178891eac8adc00299009a86a88a9aca2ceb0",
+  "date": "2026-11-11",
+  "scope_correction": "Only local, downloadable open-weight models. Prior proprietary-API research excluded; its uncommitted evidence draft removed before any publication. No API candidate or pricing used in this decision.",
+  "hardware_user_declared": {
+    "provider_plan": "Hetzner CPX52",
+    "vCPU": 12,
+    "RAM_GB": 24,
+    "NVMe_GB": 480,
+    "dedicated_GPU": false,
+    "Ollama_documented": "0.40.5",
+    "current_model": "qwen3.5:9b"
+  },
+  "method": "Repository and public official documentation only; no model files downloaded, SSH, inference, benchmark, application imports or runtime changes. New analysis concerns local model feasibility, licensing, conditional comparative plan and resource/cost gates.",
+  "models": [
+    {
+      "upstream": "google/gemma-4-12B-it",
+      "upstream_revision": "43c9d014b231474fa7212dbb48a762566c2b255d",
+      "declared_license": "apache-2.0",
+      "metadata_GET_url": "https://huggingface.co/api/models/google/gemma-4-12B-it",
+      "metadata_response_sha256": "9ca7e29940b5e18ec3ee34928da4abab61a247d0a01c5e335d61b672ec2bc700",
+      "public_local_Ollama_tag": "gemma4:12b",
+      "approx_llamacpp_artifact_GB_from_catalog": 8.0,
+      "artifact_size_is_not_RAM": true,
+      "preferred_for_single_future_trial": true,
+      "installed_runtime_support_verified": false,
+      "peak_RAM_measured": false,
+      "CPU_latency_measured": false,
+      "tactical_scores_verified": false,
+      "metadata_snapshot": "docs/local-models-public-metadata-01/google__gemma-4-12B-it.json"
+    },
+    {
+      "upstream": "google/gemma-4-26B-A4B-it",
+      "upstream_revision": "4d7ae4984b7db7de8f8457170b3f1a419ee76d52",
+      "declared_license": "apache-2.0",
+      "metadata_GET_url": "https://huggingface.co/api/models/google/gemma-4-26B-A4B-it",
+      "metadata_response_sha256": "fdfe70c174725519953ca0363bd780b88f37ca321b80b416d3a4bd1f6812443b",
+      "public_local_Ollama_tag": "gemma4:26b",
+      "approx_llamacpp_artifact_GB_from_catalog": 19.0,
+      "artifact_size_is_not_RAM": true,
+      "preferred_for_single_future_trial": false,
+      "installed_runtime_support_verified": false,
+      "peak_RAM_measured": false,
+      "CPU_latency_measured": false,
+      "tactical_scores_verified": false,
+      "metadata_snapshot": "docs/local-models-public-metadata-01/google__gemma-4-26B-A4B-it.json"
+    },
+    {
+      "upstream": "Qwen/Qwen3.8-27B",
+      "upstream_revision": "37561816e66b5b9153b1b64c10968c18c1e6f4a0",
+      "declared_license": "apache-2.0",
+      "metadata_GET_url": "https://huggingface.co/api/models/Qwen/Qwen3.8-27B",
+      "metadata_response_sha256": "57c85082faa77fd958edbce1677776a19edd5df799f502319cedf8d5411096e3",
+      "public_local_Ollama_tag": "qwen3.8:27b",
+      "approx_llamacpp_artifact_GB_from_catalog": 18.0,
+      "artifact_size_is_not_RAM": true,
+      "preferred_for_single_future_trial": false,
+      "installed_runtime_support_verified": false,
+      "peak_RAM_measured": false,
+      "CPU_latency_measured": false,
+      "tactical_scores_verified": false,
+      "metadata_snapshot": "docs/local-models-public-metadata-01/Qwen__Qwen3.8-27B.json"
+    }
+  ],
+  "official_sources": [
+    {
+      "url": "https://huggingface.co/google/gemma-4-12B-it",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://ollama.com/library/gemma4:12b",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://ollama.com/library/gemma4:26b",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://ollama.com/library/qwen3.8:27b",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://ai.google.dev/gemma/docs/core",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://ai.google.dev/gemma/docs/integrations/ollama",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://docs.ollama.com/faq",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    },
+    {
+      "url": "https://www.apache.org/licenses/LICENSE-2.0",
+      "observed_date": "2026-11-11",
+      "scope": "Public availability/license/runtime documentation, not installed compatibility or tactical validation."
+    }
+  ],
+  "historical_ten": [
+    {
+      "case": 1,
+      "path": "evaluation/coverciano-remediation-v10/case_01.json",
+      "sha256": "54ae436976b88ff3bba0d7024fae3015b9a9db15168d7c8610c4b3c3e487bd23",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": []
+    },
+    {
+      "case": 2,
+      "path": "evaluation/coverciano-remediation-v10/case_02.json",
+      "sha256": "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": []
+    },
+    {
+      "case": 3,
+      "path": "evaluation/coverciano-remediation-v10/case_03.json",
+      "sha256": "f422d7e6e4a27044f45d96fc545c4f8ff48b9e20b533aad16547ee90ce693fa8",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": []
+    },
+    {
+      "case": 4,
+      "path": "evaluation/coverciano-remediation-v10/case_04.json",
+      "sha256": "01cfeb763647dd163504dfbbffa5b90e012275d54354e3747640a09d13a5174a",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": [
+        "incoerenze semantiche: unsupported_rigid_player_numbers",
+        "generazione selezionata: repair"
+      ]
+    },
+    {
+      "case": 5,
+      "path": "evaluation/coverciano-remediation-v10-1/case_05.json",
+      "sha256": "7acb60d8fb170651850c76567c051aecc7be0b15a50e1df9bd21f3cee94bb893",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": []
+    },
+    {
+      "case": 6,
+      "path": "evaluation/coverciano-remediation-v10-1/case_06.json",
+      "sha256": "889cae0c54a6cb3ffd639fb2c16e982f6939da6108e41d60dc662e2e781a4405",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": [
+        "copertura incompleta: density_or_proximity, field_zone",
+        "generazione selezionata: repair"
+      ]
+    },
+    {
+      "case": 7,
+      "path": "evaluation/coverciano-remediation-v10/case_07.json",
+      "sha256": "d1f89744fd4944ee6fae51cf8d3051301db372654f23db5b07cfb844e4c48277",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": [
+        "copertura incompleta: between_lines_receiving",
+        "generazione selezionata: repair"
+      ]
+    },
+    {
+      "case": 8,
+      "path": "evaluation/coverciano-remediation-v10-1/case_08.json",
+      "sha256": "8404229d58c72b62b7c4d4ede880dc573fed14246a76fc8cf73d05d0958e6e06",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": []
+    },
+    {
+      "case": 9,
+      "path": "evaluation/coverciano-remediation-v10/case_09.json",
+      "sha256": "73b1c81b4586b5942540c4b866feed83ce1640921cdf7c78547e7d43ab3e5573",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": [
+        "copertura incompleta: reason",
+        "incoerenze semantiche: unsupported_rigid_player_numbers",
+        "generazione selezionata: repair"
+      ]
+    },
+    {
+      "case": 10,
+      "path": "evaluation/coverciano-remediation-v10-2/case_10.json",
+      "sha256": "afb2a6c27d3ff46001d7a1b360501287858a3f583b57c947fd8250d34e6d59f9",
+      "evidence_count": 6,
+      "raw_messages_embedded": false,
+      "repair_reasons": [
+        "copertura incompleta: live_communication",
+        "generazione selezionata: repair"
+      ]
+    }
+  ],
+  "reuse_source_paths": [
+    "scripts/smoke_test_rag_v5_e2e.py",
+    "scripts/v5_tactical_query_plan_v1.py",
+    "scripts/v5_heading_routing_v1.py",
+    "scripts/compare_frozen_thinking_rd01.py"
+  ],
+  "license_notes": {
+    "Qwen_license_snapshot_sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+    "Qwen_license_pinned_URL": "https://huggingface.co/Qwen/Qwen3.8-27B/resolve/37561816e66b5b9153b1b64c10968c18c1e6f4a0/LICENSE",
+    "Gemma_LICENSE_at_root": "HTTP 404 at pinned LICENSE path; no inference that the model is unlicensed. Official card/API metadata and Ollama license declare Apache-2.0.",
+    "compatible_in_principle_for_self_hosted_commercial_use": "Subject to Apache obligations and separate rights to the corpus; no blanket clearance for third-party data.",
+    "Qwen_license_snapshot": "docs/local-models-public-metadata-01/Qwen__Qwen3.8-27B.LICENSE"
+  },
+  "resource_plan_not_measured": {
+    "context_tokens": 8192,
+    "max_generated_tokens": 900,
+    "parallel_requests": 1,
+    "seconds_per_request_limit": 900,
+    "max_new_candidate_requests": 10,
+    "max_generation_wallclock_seconds": 9000,
+    "proposed_minimum_MemAvailable_GB": 4,
+    "new_VPS_renewal_authorized_or_recommended_for_trial": false
+  },
+  "costs": {
+    "external_inference_fees": 0,
+    "license_royalties_for_selected_models": 0,
+    "current_VPS_monthly_fee": "unknown: use invoice P",
+    "incremental_hosting_within_already_paid_period": "0 only if no provider usage/traffic surcharge or additional resources",
+    "human_reviewer_fee": "unknown: quote H required",
+    "internal_engineering_effort_proposal": "maximum one working day, not a measured implementation estimate",
+    "probability_of_meeting_tactical_standard": null
+  },
+  "decision": "VERIFICA DECISIVA",
+  "preferred_candidate": "Gemma 4 12B, local GGUF/Ollama llamacpp Q4_K_M variant; pin exact manifest/layers before future use",
+  "comparison_authorized": false,
+  "status": "ESEGUITO"
+}
