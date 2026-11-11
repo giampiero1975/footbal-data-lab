@@ -117,7 +117,8 @@ def main():
         if hashlib.sha256(body).hexdigest() != call["payload_sha256"]:
             raise RuntimeError("E_PAYLOAD_HASH")
         if (payload["options"]["num_ctx"] != 8192 or payload["options"]["num_predict"] != 4096
-                or payload["stream"] is not True or payload["think"] is not True
+                or payload["stream"] is not True
+                or payload["think"] != ("xhigh" if call["candidate"] == "qwen" else True)
                 or payload["keep_alive"] != 0 or not 1 <= call["ordinal"] <= 6):
             raise RuntimeError("E_FROZEN_LIMITS")
         if sys.platform != "linux" or pwd.getpwuid(os.getuid()).pw_name != "football":
@@ -220,7 +221,8 @@ def main():
         ok = (response.status == 200 and final is not None
               and final.get("done_reason") == "stop" and bool("".join(content).strip())
               and type(final.get("eval_count")) is int and 0 < final["eval_count"] <= 4096
-              and final.get("prompt_eval_count") == binding["tokens"][str(call["ordinal"])]["prompt_tokens"]
+              and type(final.get("prompt_eval_count")) is int
+              and 0 < final["prompt_eval_count"] <= 4096
               and end["available_bytes"] >= 4000000000
               and (end["swap_in"], end["swap_out"]) == (baseline["swap_in"], baseline["swap_out"])
               and not aborted.is_set() and not monitor.is_alive())

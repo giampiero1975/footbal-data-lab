@@ -126,3 +126,13 @@ Preparazione **IMPLEMENTATO**; controlli locali **ESEGUITO** e **VALIDATO**
 solo nel perimetro dichiarato. Pilot **DA FARE**, esecuzione non autorizzata;
 prerequisiti non attestati impediscono invio. Accuratezza 28/30, Gate,
 integrazione e certificazione generale restano **BLOCCATO**. RAG preservato.
+
+
+## Revisione operativa02 (2026-11-11)
+
+Le sezioni precedenti descrivono la preparazione storica. Il titolare ha
+autorizzato esecuzione e revisione mirata: Qwen think="xhigh" esplicito,
+conteggi API osservati dopo la risposta invece di prova preventiva non disponibile.
+Binding execution_binding_02.json: non attesta tokenizer, no-truncation o
+applicazione interna dei profili. Limiti e STOP invariati, massimo sei invii.
+Dettagli e limiti nel report protocollo, addendum Revisione operativa02.

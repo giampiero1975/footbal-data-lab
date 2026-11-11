@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO** revisione operativa02 del medesimo pilot (2026-11-11),
+  accettata dal titolare: Qwen think=xhigh esplicito; sostituzione del conteggio
+  esatto preventivo con osservazione dei contatori API dopo risposta e STOP
+  su prompt>4096, output>4096 o esito incompleto. Nessuna prova di assenza di
+  troncamento o applicazione interna dei profili dichiarata. 8 nuovi controlli
+  del delta **VALIDATO** staticamente. Preservati lock/memoria/timeout/no-retry,
+  sei slot massimi, domande/fonti e RAG. Binding truthful senza finti PASS.
+  Baseline89b9d1d, ledger assente; invocazione autorizzata dopo commit tecnico.
+  Pilot **DA FARE** prima dell'invio; risultati aggiornati nella stessa sessione.
+
 - [x] **ESEGUITO / VALIDATO** download autorizzati Gemma4 26B e Qwen3.8 27B
   nell'attività esistente RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11).
   Consenso acquisito per download e massimo sei generazioni ai gate; VPS

@@ -1,0 +1,38 @@
+{
+  "technical_difference_recorded_before_checks": "Replace unsupported mandatory pre-POST token attestation by explicitly limited post-response observation; explicit Qwen xhigh. This is protocol revision, not proof of original gates.",
+  "checks": [
+    {
+      "check": "syntax_controller_worker",
+      "result": "PASS"
+    },
+    {
+      "check": "explicit_native_profiles",
+      "result": "PASS"
+    },
+    {
+      "check": "six_unique_slots_original_case_hashes",
+      "result": "PASS"
+    },
+    {
+      "check": "pair_inputs_unchanged",
+      "result": "PASS"
+    },
+    {
+      "check": "truthful_revised_binding",
+      "result": "PASS"
+    },
+    {
+      "check": "resource_timeout_duplicate_controls_preserved",
+      "result": "PASS"
+    },
+    {
+      "check": "one_generative_call_site",
+      "result": "PASS"
+    },
+    {
+      "check": "post_budget_observation_not_preproof",
+      "result": "PASS"
+    }
+  ],
+  "generations_during_checks": 0
+}

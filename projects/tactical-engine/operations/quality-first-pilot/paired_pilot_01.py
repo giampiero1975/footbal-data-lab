@@ -120,7 +120,7 @@ def make_plan():
             if name == "qwen":
                 options.update(min_p=0.0, presence_penalty=0.0, repeat_penalty=1.0)
             payload = {"model": MODELS[name]["tag"], "messages": messages,
-                       "think": True, "stream": True, "keep_alive": 0, "options": options}
+                       "think": ("xhigh" if name == "qwen" else True), "stream": True, "keep_alive": 0, "options": options}
             calls.append({"ordinal": len(calls) + 1, "case": item["case"],
                           "candidate": name, "payload": payload,
                           "payload_sha256": sha(encoded(payload))})
@@ -175,14 +175,12 @@ def check():
 
 
 def bind(plan, path, authorization_path):
-    """Verify a separately reviewed remote dossier; does not manufacture evidence."""
+    """Bind observed identities and explicit revised policy, not inferred compatibility."""
     binding, authorization = read(path), read(authorization_path)
-    if (binding.get("activity") != ACTIVITY or binding.get("verified") is not True
+    if (binding.get("activity") != ACTIVITY
+            or binding.get("policy_revision") != "observed-token-budget-02"
             or binding.get("plan_sha256") != sha(encoded(plan))):
-        raise ValueError("E_REMOTE_DOSSIER_PENDING")
-    required = read(PACKAGE / "remote_binding.pending.json")["checks"]
-    if any(binding.get("checks", {}).get(key) is not True for key in required):
-        raise ValueError("E_REMOTE_PREREQUISITE")
+        raise ValueError("E_POLICY_BINDING")
     if (authorization.get("authorized") is not True or authorization.get("activity") != ACTIVITY
             or authorization.get("operation") != "EXECUTE_EXISTING_PILOT_ONCE"
             or authorization.get("max_generations") != 6
@@ -202,21 +200,12 @@ def bind(plan, path, authorization_path):
                 or not model["digest"].startswith(MODELS[name]["catalog_llamacpp_digest_prefix"])
                 or model.get("quantization") != "Q4_K_M"
                 or model["native_profile"] != MODELS[name]["native_profile"]
-                or not re.fullmatch(r"[0-9a-f]{64}", model["template_sha256"])
-                or not re.fullmatch(r"[0-9a-f]{64}", model["tokenizer_sha256"])):
+                or not re.fullmatch(r"[0-9a-f]{64}", model["template_sha256"])):
             raise ValueError("E_MODEL_BINDING")
-    for call in plan["calls"]:
-        proof = binding["tokens"][str(call["ordinal"])]
-        model = binding["models"][call["candidate"]]
-        if (proof["payload_sha256"] != call["payload_sha256"]
-                or proof["model_digest"] != model["digest"]
-                or proof["template_sha256"] != model["template_sha256"]
-                or proof["tokenizer_sha256"] != model["tokenizer_sha256"]
-                or not proof.get("method") or not proof.get("evidence_sha256")
-                or proof["evidence_sha256"] not in [x["sha256"] for x in binding["evidence"]]
-                or type(proof["prompt_tokens"]) is not int
-                or not 0 < proof["prompt_tokens"] <= 4096):
-            raise ValueError("E_CONTEXT_PROOF")
+    if (binding.get("exact_prepost_tokens_verified") is not False
+            or binding.get("runtime_profile_application_verified") is not False
+            or binding.get("context_policy") != "observe_service_counts_stop_over_4096_prompt"):
+        raise ValueError("E_UNSUPPORTED_COMPATIBILITY_CLAIM")
     return binding
 
 
@@ -224,7 +213,8 @@ def one_remote(call, binding, directory, overall_deadline):
     worker = (HERE / "paired_pilot_remote_01.py").read_bytes()
     program = "import base64;exec(base64.b64decode('%s'))" % base64.b64encode(worker).decode()
     command = "timeout --signal=TERM --kill-after=15s 900s /usr/bin/python3 -B -I -c " + shlex.quote(program)
-    argv = ["ssh", "-T", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10",
+    argv = ["ssh", "-F", r"C:\Users\giamp\.ssh\config", "-T",
+            "-o", "HostKeyAlgorithms=ssh-ed25519", "-o", "KexAlgorithms=curve25519-sha256", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10",
             "-o", "StrictHostKeyChecking=yes", "-o", "UpdateHostKeys=no", "football-vps", command]
     request = {"call": call, "binding": binding}
     save(directory / "invocation.json", {"argv": argv, "request_sha256": sha(encoded(request))})
@@ -275,9 +265,11 @@ def one_remote(call, binding, directory, overall_deadline):
                 write_new(directory / ("wire-%06d.raw" % event["index"]),
                           base64.b64decode(event["bytes_base64"], validate=True))
             elif event["event"] == "finished":
-                if completed or not sent or event.get("ok") is not True:
+                if completed or not sent:
                     raise RuntimeError("E_FINALIZATION")
                 save(directory / "result.json", event)
+                if event.get("ok") is not True:
+                    raise RuntimeError("E_FINALIZATION")
                 completed = True
             elif event["event"] in ("blocked", "abort", "error"):
                 raise RuntimeError("E_REMOTE_STOP: " + str(event))

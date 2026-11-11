@@ -775,3 +775,51 @@ configurazioni, staging o wrapper. Unico cambiamento remoto autorizzato:
 i due modelli aggiunti tramite pull. Nessuna compilazione, inferenza, merge,
 deploy o infrastruttura aggiuntiva. Target 28/30 e proprietà generative non
 sono dimostrati; risultati RAG storici preservati. STOP dopo pubblicazione.
+
+
+## Revisione operativa 02 — token osservati e profili nativi espliciti
+
+2026-11-11, stessa attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01.
+Baseline GitHub/local 89b9d1d5292d644bcfc2bda44fe707ae3be0fb3a, branch corretto,
+tree pulito prima del delta, ledger canonico assente. Il titolare ha accettato
+la proposta mirata successiva ai blocchi con «oooohhhh e daiiii» e chiesto di
+terminare il controllo. Restano autorizzati massimo sei invii, nessun retry,
+nessuna variazione RAG o infrastrutturale. Non è una nuova campagna.
+
+Differenza tecnica registrata prima della prova: Qwen usa think="xhigh"
+esplicito (ammesso dai metadata installati), Gemma mantiene think=true.
+Il precedente gate di conteggio esatto preventivo è sostituito da una prova
+operativa limitata: API ufficiale con num_ctx8192/num_predict4096 invariati,
+conservazione di tutti i messaggi/fonti, contatori del servizio osservati dopo
+la risposta. Prompt_eval_count deve essere positivo e <=4096; eval_count
+positivo <=4096, done_reason stop e finale non vuoto. In caso contrario STOP
+senza nuovo invio. Questo controllo NON prova l'assenza di troncamento silenzioso
+né l'equivalenza del tokenizer: il pilot non può certificare queste proprietà,
+né una graduatoria definitiva. Non vengono inventati token preventivi.
+
+Il binding revised registra falsi exact_prepost_tokens_verified e
+runtime_profile_application_verified; non si compilano i vecchi booleani come
+se fossero PASS. Identità/tag/digest/quantizzazione/template sono osservati;
+applicazione effettiva di tutti i parametri, no-context-shift e profili non
+sono attestati indipendentemente. Le verifiche dei controlli esecutivi sono
+operazioni runtime, non prerequisiti già dichiarati superati. Restano invariati
+input, parametri restanti, seed42, ordine sei slot, lock non bloccante,
+memoria libera>=4GB, nessun nuovo paging, timeout900s/5400s, cattura append-only,
+ledger fsync-before-GO e STOP su qualsiasi errore/ambiguità. Nessun warmup o
+seconda POST per rimediare al primo fallimento. Rilevare un'insufficienza di
+RAM non autorizza un upgrade, quantizzazione diversa o downgrade del profilo.
+Chiudere il socket non dimostra cancellazione nel servizio: STOP totale.
+
+Script: operations/quality-first-pilot/paired_pilot_01.py e worker omonimo
+remote. Manifest aggiornato esplicitamente prima degli output, originale
+conservato nella storia Git. Piano revised SHA256
+56c89eefef60bd8f42f915015832e6dc3a3e75968f8d1ee61f4a8928b4dfaf72.
+Binding/consenso e otto controlli nuovi del solo delta in
+quality-first-pilot-authorized-readiness-01/*_02.json e
+revision_02_delta_checks.json; 8 PASS statici, nessuna suite storica ripetuta.
+Il driver ora usa esplicitamente la configurazione SSH autorizzata e preserva
+anche un evento finished non valido prima dello STOP. Nessun codice applicativo
+modificato. Commit tecnico: quello che introduce questa revisione, congelato
+prima dell'invocazione e registrato nel ledger. Stato preparazione IMPLEMENTATO,
+controlli ESEGUITO/VALIDATO solo staticamente. Pilot DA FARE fino all'invio.
+Il risultato effettivo segue in un addendum nella medesima sessione.

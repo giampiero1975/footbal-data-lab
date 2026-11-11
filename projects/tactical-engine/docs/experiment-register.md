@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Revisione operativa02 autorizzata prima del tentativo
+
+Stessa attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, baseline89b9d1d.
+Delta: profilo Qwen xhigh esplicito e sostituzione autorizzata del gate token
+pre-POST con conteggi osservati post-risposta, limiti invariati8192/4096 e
+STOP prompt>4096/output>4096. Nessuna attestazione di no-truncation o reale
+applicazione opzioni, nessun booleano pending trasformato in falso PASS.
+Script controller/worker paired_pilot_01; manifest revised congelato prima
+output, schema binding truthful e consenso in docs/readiness. Report: addendum
+Revisione operativa02 nel report protocollo; otto controlli nuovi PASS statici,
+non riesecuzione32 né benchmark. Controlli ESEGUITO/VALIDATO staticamente,
+preparazione IMPLEMENTATO, pilot DA FARE prima invio. Consenso esplicito del
+titolare alla proposta mirata nella chat; max6 senza retry già autorizzato.
+Memoria/lock/supervisione/servizi preservati; SSH config corretta, nessuna
+modifica RAG. Commit tecnico prima dell'esecuzione, esito e closeout seguiranno
+in questa sessione; nessuna certificazione implicita di backend o qualità.
+
 ### 2026-11-11 — Download autorizzati sul bersaglio confermato, STOP ai gate
 
 Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`.
