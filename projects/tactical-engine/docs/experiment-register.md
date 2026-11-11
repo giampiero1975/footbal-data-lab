@@ -2,6 +2,35 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Revisione indipendente progetto harness non generativo
+
+Attività: `RD-RAG-V5-BACKEND-HARNESS-DESIGN-INDEPENDENT-REVIEW-01`. Script:
+sola lettura Git/JSON/sorgenti, HTTPS indipendente e hash; nessun modulo
+applicativo, compiler, linker, loader o harness eseguito. Commit documentale
+con report/matrice, evidenza statica, TODO e registro contestuali. Report:
+`docs/rag-v5-backend-harness-design-independent-review-01.md`; evidenza:
+`docs/backend-harness-design-independent-review-evidence-01.json`.
+HEAD iniziale locale/GitHub 5d82c54, tree pulito; report/progetto/remediation A/
+post-R1 riconciliati, nessuna revisione equivalente completata. Risultato:
+audit autonomo 25/25 URL/revisioni/byte/hash coerenti, risoluzioni Ollama
+v0.40.5 e llama b11669/620d2225c riconfermate; target hash coerente con snapshot
+storico, senza attestare ABI del binario. Gate pre-loading documentale corretto
+ma non sufficiente: H1 richiede pre-toolchain/linking e closure effettiva;
+H2 durata wall-clock, segnali/OOM e finalizzazione esterna; H3 categorie di
+coverage e combinazioni keyword. Nel converter GBNF pubblico, pattern ritorna
+prima di min/maxLength: entity: seguito da 65 a soddisfa il pattern ma viola
+maxLength 71; controesempio solo statico, non testato né attribuito alla VPS.
+UniqueItems, perdite di enforcement, errori e semantica Python esterna vanno
+distinti; converter/parse non equivalgono a format/ThinkingClose o enforcement.
+Metodo token resta candidato con prove zero-pesi/renderer/special token mancanti;
+nessun token stimato. Decisione unica **A**: base adeguata a indagine ABI
+separata, precisazioni prima dei futuri passi implementativi. Stato: revisione
+**ESEGUITO**, **VALIDATO** documentale; progetto **IMPLEMENTATO** documentale;
+attestazione/precisazioni **DA FARE**. Implementazione, compatibilità backend,
+accuratezza generativa, Gate, integrazione e certificazione **BLOCCATO**.
+Nessun progetto/codice/test/report precedente modificato, suite ripetuta,
+VPS, modello, runtime/staging/wrapper, merge/deploy. STOP dopo pubblicazione.
+
 ### 2026-11-11 — Progettazione locale harness backend non generativo
 
 Attività: `RD-RAG-V5-BACKEND-NONGENERATIVE-HARNESS-DESIGN-01`. Script:

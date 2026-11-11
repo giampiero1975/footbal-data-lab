@@ -8,6 +8,23 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** come revisione indipendente documentale
+  RD-RAG-V5-BACKEND-HARNESS-DESIGN-INDEPENDENT-REVIEW-01 (2026-11-11).
+  Decisione **A**: progetto adeguato per affrontare il prerequisito ABI in
+  attività separata, senza autorizzare implementazione/link/loading. Audit
+  autonomo 25/25 riferimenti, byte/hash e revisioni pubbliche coerenti; non
+  prova sorgente/binario VPS. H1: gate anche pre-toolchain/linking e closure;
+  H2: wall-clock e finalizzazione crash/OOM; H3: ledger di congiunzioni e
+  categorie distinte. Nel ramo GBNF pubblico pattern precede min/maxLength:
+  potenziale perdita del limite entity_id=71; effetto VPS non verificato.
+  Rilievi non bloccanti per l'indagine ABI, da risolvere prima dei rispettivi
+  passi implementativi. Nessun progetto/codice/test modificato, compiler,
+  loading, VPS o modelli. Report
+  `docs/rag-v5-backend-harness-design-independent-review-01.md` e audit
+  statico pubblicati con TODO/registro. Implementazione, compatibilità
+  backend, accuratezza generativa, Gate, integrazione e certificazione
+  **BLOCCATO**. STOP.
+
 - [x] **IMPLEMENTATO** come progetto documentale
   RD-RAG-V5-BACKEND-NONGENERATIVE-HARNESS-DESIGN-01 (2026-11-11).
   Sorgenti/header pubblici pinned: llama 620d2225cc436ab0b001e3200e590e3b286ef9ab;
