@@ -1,0 +1,280 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "phase": "local technical preparation",
+  "method": "Static AST/compile, file hashes and JSON manifest inspection only",
+  "new_delta": "Six frozen unique slots, whitelist, durable GO, paired manifest, blocked remote binding; no historical suite repeated",
+  "checks": [
+    {
+      "check": "syntax_paired_pilot_01.py",
+      "passed": true,
+      "evidence": "AST and in-memory compile only"
+    },
+    {
+      "check": "no_application_or_model_import_paired_pilot_01.py",
+      "passed": true,
+      "evidence": [
+        "pathlib",
+        "argparse",
+        "base64",
+        "hashlib",
+        "json",
+        "os",
+        "queue",
+        "re",
+        "secrets",
+        "shlex",
+        "subprocess",
+        "threading",
+        "time"
+      ]
+    },
+    {
+      "check": "syntax_paired_pilot_remote_01.py",
+      "passed": true,
+      "evidence": "AST and in-memory compile only"
+    },
+    {
+      "check": "no_application_or_model_import_paired_pilot_remote_01.py",
+      "passed": true,
+      "evidence": [
+        "base64",
+        "fcntl",
+        "hashlib",
+        "http.client",
+        "json",
+        "os",
+        "pwd",
+        "re",
+        "socket",
+        "stat",
+        "subprocess",
+        "sys",
+        "threading",
+        "time"
+      ]
+    },
+    {
+      "check": "prepare_check_no_transport_reachability",
+      "passed": true,
+      "evidence": [
+        "check",
+        "encoded",
+        "load_inputs",
+        "make_plan",
+        "prepare",
+        "read",
+        "save",
+        "sha",
+        "write_new"
+      ]
+    },
+    {
+      "check": "local_modes_no_network_modules",
+      "passed": true,
+      "evidence": "Networking exists only in dormant remote worker"
+    },
+    {
+      "check": "schedule_six_unique_slots",
+      "passed": true,
+      "evidence": [
+        [
+          "V10-02",
+          "gemma"
+        ],
+        [
+          "V10-02",
+          "qwen"
+        ],
+        [
+          "V10-03",
+          "qwen"
+        ],
+        [
+          "V10-03",
+          "gemma"
+        ],
+        [
+          "V10.2-10",
+          "gemma"
+        ],
+        [
+          "V10.2-10",
+          "qwen"
+        ]
+      ]
+    },
+    {
+      "check": "approved_execution_order",
+      "passed": true,
+      "evidence": "Predefined alternating order; no balancing claim"
+    },
+    {
+      "check": "immutable_input_V10-02",
+      "passed": true,
+      "evidence": "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135"
+    },
+    {
+      "check": "equal_messages_V10-02",
+      "passed": true,
+      "evidence": "c2949525602a06947904beb2548a6717ce2a976699b1085ba2a3d94a64cdd01d"
+    },
+    {
+      "check": "no_historical_answer_V10-02",
+      "passed": true,
+      "evidence": "Plus construction whitelist; does not claim automated semantic proof of every possible leak"
+    },
+    {
+      "check": "immutable_input_V10-03",
+      "passed": true,
+      "evidence": "f422d7e6e4a27044f45d96fc545c4f8ff48b9e20b533aad16547ee90ce693fa8"
+    },
+    {
+      "check": "equal_messages_V10-03",
+      "passed": true,
+      "evidence": "c61cce32515305304230aadcc5cdc4be17736b30785501d612ab226901bfe092"
+    },
+    {
+      "check": "no_historical_answer_V10-03",
+      "passed": true,
+      "evidence": "Plus construction whitelist; does not claim automated semantic proof of every possible leak"
+    },
+    {
+      "check": "immutable_input_V10.2-10",
+      "passed": true,
+      "evidence": "afb2a6c27d3ff46001d7a1b360501287858a3f583b57c947fd8250d34e6d59f9"
+    },
+    {
+      "check": "equal_messages_V10.2-10",
+      "passed": true,
+      "evidence": "c88dd7570efc66166bc21a62b8ed09e88f91579597b74c4c37238cc4fc3ffe94"
+    },
+    {
+      "check": "no_historical_answer_V10.2-10",
+      "passed": true,
+      "evidence": "Plus construction whitelist; does not claim automated semantic proof of every possible leak"
+    },
+    {
+      "check": "case_whitelist",
+      "passed": true,
+      "evidence": "No tactical_plan, answer, Gold or evaluation copied"
+    },
+    {
+      "check": "payload_limits_and_hashes",
+      "passed": true,
+      "evidence": "No JSON format, tools, continuations or model-supplied assistant turns"
+    },
+    {
+      "check": "driver_worker_freeze",
+      "passed": true,
+      "evidence": {
+        "paired_pilot_01.py": {
+          "sha256": "1e6d951ce24364a921fa431d292ee3905da00d27bea897d1a1af14d953bcbdd4",
+          "bytes": 18594,
+          "git_blob": "0457ee2948e949caa674f03666d84a1f101786ac"
+        },
+        "paired_pilot_remote_01.py": {
+          "sha256": "9219565dd6c572e506d5c957c1920b0f6adc3d5c770a93895cb1ae0fd48beef5",
+          "bytes": 10850,
+          "git_blob": "27bedb801f3b3fe2a55fe797c4fe9d8fa5c0a200"
+        }
+      }
+    },
+    {
+      "check": "execution_disabled_in_prepared_files",
+      "passed": true,
+      "evidence": "No valid remote dossier or authorization manufactured"
+    },
+    {
+      "check": "no_pilot_attempt_created",
+      "passed": true,
+      "evidence": "Canonical activity ledger absent"
+    },
+    {
+      "check": "one_generative_call_site",
+      "passed": true,
+      "evidence": [
+        196
+      ]
+    },
+    {
+      "check": "post_outside_retry_loops",
+      "passed": true,
+      "evidence": "Worker main one-shot path; six-call schedule is in local controller"
+    },
+    {
+      "check": "remote_go_precedes_post",
+      "passed": true,
+      "evidence": "AST: durable-GO guard precedes sole POST"
+    },
+    {
+      "check": "durable_reservation_precedes_go",
+      "passed": true,
+      "evidence": "AST plus exclusive xb -> flush/fsync in save"
+    },
+    {
+      "check": "exclusive_ledger_no_resume",
+      "passed": true,
+      "evidence": "Fixed activity-wide location; no reset/resume or alternate ledger option"
+    },
+    {
+      "check": "read_only_existing_lock",
+      "passed": true,
+      "evidence": "No lock-file create/chmod"
+    },
+    {
+      "check": "memory_swap_deadline_guards",
+      "passed": true,
+      "evidence": "Static guard presence, actual sampling/abort behavior not executed"
+    },
+    {
+      "check": "context_proof_bound_to_payload",
+      "passed": true,
+      "evidence": "Reviewed external proof required; no byte-to-token estimator"
+    },
+    {
+      "check": "blind_export_final_only",
+      "passed": true,
+      "evidence": "Random opaque IDs; private map outside blind folder; no inferred scores"
+    },
+    {
+      "check": "raw_inventory_before_blind_export",
+      "passed": true,
+      "evidence": "Hashes checked before export; metadata/resources withheld"
+    }
+  ],
+  "passed": 32,
+  "failed": 0,
+  "sources": {
+    "paired_pilot_01.py": {
+      "sha256": "1e6d951ce24364a921fa431d292ee3905da00d27bea897d1a1af14d953bcbdd4",
+      "bytes": 18594,
+      "git_blob": "0457ee2948e949caa674f03666d84a1f101786ac"
+    },
+    "paired_pilot_remote_01.py": {
+      "sha256": "9219565dd6c572e506d5c957c1920b0f6adc3d5c770a93895cb1ae0fd48beef5",
+      "bytes": 10850,
+      "git_blob": "27bedb801f3b3fe2a55fe797c4fe9d8fa5c0a200"
+    }
+  },
+  "plan_sha256": "9c790029ac269c77c6d5946669ed9560df2f73ff1c47dfca38eb402df7eb919d",
+  "pilot_status": "DA FARE",
+  "remote_worker_executed": false,
+  "SSH_executed": false,
+  "generations": 0,
+  "remote_runtime_compatibility_verified": false,
+  "not_proven": [
+    "remote ABI/profile/template compatibility",
+    "token counts",
+    "resource/supervision behavior",
+    "stream parsing on installed build",
+    "end-to-end driver runtime behavior",
+    "tactical accuracy"
+  ],
+  "local_package_metadata_only": {
+    "transformers": null,
+    "tokenizers": null,
+    "ollama": null,
+    "gguf": null
+  },
+  "local_token_count_performed": false
+}
