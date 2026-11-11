@@ -2,6 +2,30 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Confronto incrementale Gemma 12B / Qwen3 30B-A3B
+
+Attività: `RD-RAG-V5-GEMMA-QWEN3-INDEPENDENT-COMPARISON-01`. Metodo/script:
+analisi statica Git/JSON, letture ufficiali di card/cataloghi e soli piccoli
+metadati/config; nessuno script di inferenza o test. Commit documentale
+contestuale a report `docs/rag-v5-gemma-qwen3-critical-comparison-01.md`,
+`docs/gemma-qwen3-comparison-evidence-01.json`, quattro snapshot con hash,
+TODO e registro. Riconciliati branch/HEAD locale e GitHub 405f8d09a98201609e36928f4c10eac9e60ab07b,
+working tree iniziale pulito e report precedente. Differenza nuova: candidato
+Qwen3 30B-A3B non esaminato nella shortlist, ambiguità originale/Instruct/
+Thinking, calcolo condizionale KV da config ufficiale e critica ai confronti
+fra benchmark non omogenei. Non ripetuti audit o test completati.
+Risultato: identità Instruct-2507 esplicitata per B, 30,5B/3,3B, Q4_K_M
+circa 19 GB; cache teorica F16 0,75 GiB a 8192 non equivale al picco RAM.
+Nessuna misura locale di RAM, token/s o tattica. DOCUMENTATO/STIMATO sono
+classi di evidenza, non stati. Decisione **A**, Gemma 4 12B confermato per
+capacità generali pubblicate e minore pressione risorse a qualità locale
+ignota, non perché dimostrato più intelligente o più veloce. Obiezione MoE
+CPU esplicita; prove capaci di ribaltare la scelta definite, non eseguite.
+Stato analisi **ESEGUITO**, prova precedente **DA FARE** non autorizzata;
+accuratezza, Gate e certificazione generale **BLOCCATO**. Nessuna SSH,
+installazione, pesi, inferenza, test/benchmark, modifica a codice/prompt/
+schema/dataset/runtime/VPS, merge o deploy. STOP documentale.
+
 ### 2026-11-11 — Revisione strategica dei soli modelli locali
 
 Attività: `RD-RAG-V5-LOCAL-MODELS-FINAL-STRATEGIC-REVIEW-01`. Script/metodo:

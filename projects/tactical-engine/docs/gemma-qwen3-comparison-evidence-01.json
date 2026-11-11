@@ -1,0 +1,79 @@
+{
+  "activity": "RD-RAG-V5-GEMMA-QWEN3-INDEPENDENT-COMPARISON-01",
+  "date": "2026-11-11",
+  "baseline": "405f8d09a98201609e36928f4c10eac9e60ab07b",
+  "new_technical_difference": "Qwen3 30B-A3B was not in previous shortlist. Resolve original/July Instruct/Thinking version ambiguity; conditional GQA cache estimate from exact public config and critical comparison of non-homogeneous vendor benchmarks. No repeated runtime or prior audit.",
+  "position_provenance": "ChatGPT position is supplied by user attachment, not a new model call or independent measurement. Codex critically reviews its prior recommendation.",
+  "evidence_classes": {
+    "MISURATO": "No CPX52 model RAM, throughput or quality measurement is available for either candidate.",
+    "DOCUMENTATO": "Official published properties/declared vendor scores, or historical project evidence; not remeasured.",
+    "STIMATO": "Explicit conditional memory arithmetic and feasibility judgments, not measured process memory."
+  },
+  "qwen_candidate_exact": "Qwen/Qwen3-30B-A3B-Instruct-2507",
+  "qwen_upstream_revision": "0d7cf23991f47feeb3a57ecb4c9cee8ea4a17bfe",
+  "qwen_local_tag": "qwen3:30b-a3b-instruct-2507-q4_K_M",
+  "qwen_catalog_short_digest": "19e422b02313",
+  "qwen_total_parameters_documented_billions": 30.5,
+  "qwen_active_parameters_documented_billions": 3.3,
+  "qwen_quantization_documented": "Q4_K_M",
+  "qwen_catalog_size_approx_decimal_GB_documented": 19,
+  "gemma_reused_source": "docs/local-models-final-strategic-review-evidence-01.json",
+  "kv_conditional_estimate": {
+    "classification": "STIMATO",
+    "formula": "2 (K,V) * layers * kv_heads * head_dim * context * bytes_per_element * sequences",
+    "layers": 48,
+    "kv_heads": 4,
+    "head_dim": 128,
+    "context": 8192,
+    "bytes_per_element": 2,
+    "sequences": 1,
+    "bytes": 805306368,
+    "GiB": 0.75,
+    "not_total_model_RAM": true,
+    "assumptions": "Fully allocated F16 K/V, all layers; excludes allocator padding, buffers, weights, runtime, services, OS. Installed cache format/config not observed."
+  },
+  "vendor_benchmarks": {
+    "Gemma_12B_MMLU_Pro": 77.2,
+    "Qwen_Instruct_2507_MMLU_Pro": 78.4,
+    "classification": "DOCUMENTATO",
+    "comparable_controlled_head_to_head": false,
+    "warning": "Different publishers, modes and execution protocols; do not infer ranking from same benchmark name or compare AIME 2025 to 2026."
+  },
+  "new_public_source_snapshots": [
+    {
+      "path": "docs/gemma-qwen3-comparison-public-sources-01/Qwen3-30B-A3B-config.json",
+      "bytes": 963,
+      "sha256": "2850ddb3bf7aecad20b611e2d44f3077fc8193f4827c93beddd4c02ad63c2297"
+    },
+    {
+      "path": "docs/gemma-qwen3-comparison-public-sources-01/Qwen3-30B-A3B-Instruct-2507-config.json",
+      "bytes": 963,
+      "sha256": "a1ee086a68d0cbfc87316da00ba4b8507bd1292978108e2496201a30a450f438"
+    },
+    {
+      "path": "docs/gemma-qwen3-comparison-public-sources-01/Qwen3-30B-A3B-Instruct-2507-metadata.json",
+      "bytes": 7852,
+      "sha256": "2d51d12cf5a0cc25962ba3c2f7acb5556fc2c2972bc2a648d500a477345fe09d"
+    },
+    {
+      "path": "docs/gemma-qwen3-comparison-public-sources-01/Qwen3-30B-A3B-metadata.json",
+      "bytes": 9910,
+      "sha256": "2e6164481a47ba3c17bdbb0e3e5f4702a8608634645e2cc0e0c27d14bce2df95"
+    }
+  ],
+  "sources": [
+    "https://huggingface.co/Qwen/Qwen3-30B-A3B",
+    "https://huggingface.co/Qwen/Qwen3-30B-A3B-Instruct-2507",
+    "https://ollama.com/library/qwen3:30b-a3b-q4_K_M",
+    "https://ollama.com/library/qwen3:30b-a3b-instruct-2507-q4_K_M",
+    "https://github.com/QwenLM/Qwen3",
+    "https://qwenlm.github.io/blog/qwen3/",
+    "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemma-4-12B/",
+    "https://huggingface.co/google/gemma-4-12B-it"
+  ],
+  "decision": "A",
+  "preferred_candidate": "Gemma 4 12B",
+  "reasoning_superiority_demonstrated": false,
+  "runtime_authorized": false,
+  "status": "ESEGUITO"
+}

@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** RD-RAG-V5-GEMMA-QWEN3-INDEPENDENT-COMPARISON-01
+  (2026-11-11). Differenza nuova: Qwen3 30B-A3B non era nella shortlist;
+  varianti originale/Instruct-2507/Thinking distinte. Decisione unica **A**,
+  Gemma 4 12B confermato per sostenibilità prudente sulla CPX52, non superiorità
+  di ragionamento dimostrata. Qwen30 Instruct: 30,5B/3,3B attivi, Q4_K_M circa
+  19 GB; cache F16 condizionale 0,75 GiB a 8192, non RAM totale. Nessuna misura
+  di picco/velocità/qualità locale, benchmark produttori non omogenei.
+  Evidenze DOCUMENTATO/STIMATO distinte da stati; nessun nuovo MISURATO VPS.
+  Report `docs/rag-v5-gemma-qwen3-critical-comparison-01.md`, inventario JSON
+  e quattro snapshot di soli metadati/config con SHA-256. Nessun audit/test
+  storico ripetuto, SSH, pesi, installazione, inferenza o modifica operativa.
+  Prova precedente **DA FARE**, non autorizzata; Gate e certificazione del
+  coach **BLOCCATO**. TODO/registro pubblicati insieme al report. STOP.
+
 - [x] **ESEGUITO** RD-RAG-V5-LOCAL-MODELS-FINAL-STRATEGIC-REVIEW-01
   (2026-11-11). Correzione vincolante: solo open-weight scaricabili/autonomi,
   nessuna inferenza esterna. Ricerca API precedente esclusa, bozza non pubblicata
