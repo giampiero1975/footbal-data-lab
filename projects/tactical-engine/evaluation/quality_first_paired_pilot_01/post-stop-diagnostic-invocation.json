@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "ssh",
+    "-F",
+    "C:\\Users\\giamp\\.ssh\\config",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "HostKeyAlgorithms=ssh-ed25519",
+    "-o",
+    "KexAlgorithms=curve25519-sha256",
+    "football-vps",
+    "/usr/bin/python3 -B -I -c 'import base64;exec(base64.b64decode('\"'\"'aW1wb3J0IGpzb24sdXJsbGliLnJlcXVlc3Qsc3VicHJvY2Vzcyx0aW1lLG9zCnI9eyJ0aW1lX25zIjp0aW1lLnRpbWVfbnMoKX0KZm9yIG5hbWUscGF0aCBpbiAoKCJ2ZXJzaW9uIiwiL2FwaS92ZXJzaW9uIiksKCJsb2FkZWQiLCIvYXBpL3BzIikpOgogdHJ5OgogIHdpdGggdXJsbGliLnJlcXVlc3QudXJsb3BlbigiaHR0cDovLzEyNy4wLjAuMToxMTQzNCIrcGF0aCx0aW1lb3V0PTEwKSBhcyBmOnJbbmFtZV09anNvbi5sb2FkcyhmLnJlYWQoKSkKIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTpyW25hbWVdPXsiZXJyb3IiOnJlcHIoZSl9CmZvciBzY29wZSx1bml0IGluICgoInVzZXIiLCJmb290YmFsbC1yYWctYXBpLnNlcnZpY2UiKSwoInN5c3RlbSIsIm9sbGFtYS5zZXJ2aWNlIikpOgogcT1zdWJwcm9jZXNzLnJ1bihbInN5c3RlbWN0bCJdKyhbIi0tdXNlciJdIGlmIHNjb3BlPT0idXNlciIgZWxzZSBbXSkrWyJpcy1hY3RpdmUiLHVuaXRdLGNhcHR1cmVfb3V0cHV0PVRydWUsdGV4dD1UcnVlLHRpbWVvdXQ9NSk7clt1bml0XT17ImV4aXQiOnEucmV0dXJuY29kZSwic3Rkb3V0IjpxLnN0ZG91dCwic3RkZXJyIjpxLnN0ZGVycn0KclsicHJvY2Vzc2VzIl09c3VicHJvY2Vzcy5jaGVja19vdXRwdXQoWyJwcyIsIi1lbyIsInBpZD0scHBpZD0sY29tbT0scnNzPSxldGltZXM9Il0sdGV4dD1UcnVlKQpyWyJwcm9jZXNzZXMiXT1beCBmb3IgeCBpbiByWyJwcm9jZXNzZXMiXS5zcGxpdGxpbmVzKCkgaWYgYW55KG4gaW4geCBmb3IgbiBpbiAoIm9sbGFtYSIsImxsYW1hIiwidGltZW91dCIpKV0KclsibWVtaW5mbyJdPW9wZW4oIi9wcm9jL21lbWluZm8iKS5yZWFkKCk7clsic3dhcF9jb3VudGVycyJdPVt4IGZvciB4IGluIG9wZW4oIi9wcm9jL3Ztc3RhdCIpIGlmIHguc3RhcnRzd2l0aCgoInBzd3BpbiAiLCJwc3dwb3V0ICIpKV0KclsibG9ja19zdGF0Il09bGlzdChvcy5zdGF0KCIvaG9tZS9mb290YmFsbC8ubG9jYWwvc2hhcmUvZm9vdGJhbGwtZGF0YS1sYWIvcnVudGltZS1sb2Nrcy9zcGF0aWFsLXYyLWV4dHJhY3Rpb24tbG9jYXRvci5sb2NrIikpCnByaW50KGpzb24uZHVtcHMocikpCg=='\"'\"'))'"
+  ],
+  "exit": 0,
+  "non_generative": true
+}

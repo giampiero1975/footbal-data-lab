@@ -2,6 +2,29 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Pilot revisione02: un invio, STOP su due pagine swap-in
+
+Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, invariata. Script controller/
+worker paired_pilot_01, commit tecnico 078b8f16b8c41e02af3efe1dce6b5ef6a00f11dc pubblicato prima
+invio. Differenza già documentata: Qwen xhigh esplicito e conteggi API osservati
+post risposta invece del gate pre-POST non disponibile. Unica execute, ledger
+esclusivo e fsync-before-GO. Primo slot Gemma26/V10-02: lock/versione/digest/
+concorrenza/servizi/supervisore verificati, una POST avviata. Dopo1,034s
+pswpin27127→27129, pswpout164839 invariato; STOP monitor zero-paging. RAM
+libera campionata15744802816 byte, non soglia4GB né timeout; non prova di
+thrashing, insufficienza RAM o causalità esclusiva del modello. Socket chiuso,
+nessuna risposta HTTP, raw o finale del servizio, RemoteDisconnected.
+Cinque slot non inviati; zero retry. Invii1, completamenti osservati0,
+conteggio reale generazioni non attestato. Pilot ESEGUITO come tentativo,
+confronto/completamento BLOCCATO; nessuna graduatoria o voto. Evidenze originali
+in evaluation/quality_first_paired_pilot_01, inventario/summary e addendum esito
+nel report protocollo. Diagnostica post-stop unica read-only: /api/ps vuoto,
+nessun runner, servizi active; non prova temporale esatta della cancellazione.
+Decisione: STOP, nessun nuovo invio; eventuale nuovo tentativo richiede prima
+una decisione esplicita sul criterio paging minimo/persistente, non modifica
+silenziosa della soglia o reset ledger. RAG/servizi/app invariati, nessun
+merge/deploy/promozione. Report/TODO/registro pubblicati insieme e verificati.
+
 ### 2026-11-11 — Revisione operativa02 autorizzata prima del tentativo
 
 Stessa attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, baseline89b9d1d.

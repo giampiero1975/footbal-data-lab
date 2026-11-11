@@ -36,6 +36,16 @@
       "sha256": "ae3ebee79f7b5313aedc2284cd27882b98cee8f27d0f534fd10ee59f0cc0c995"
     },
     {
+      "path": "execution_authorization_02.json",
+      "bytes": 456,
+      "sha256": "dca0d9632d90e86ec431e72074e891434e8a0db6dd0ab771813cd1907b273a67"
+    },
+    {
+      "path": "execution_binding_02.json",
+      "bytes": 1436,
+      "sha256": "32b3e1f4380cf9cdd087f46f43aef97eed1e1f6d3a960080ee3cc3d6d4a6e1e7"
+    },
+    {
       "path": "exit-code.json",
       "bytes": 16,
       "sha256": "e8cfe601a7e2762e17f7bf533044f84e714ac09a5af0186ccd93a58eb88f5ba8"
@@ -54,6 +64,11 @@
       "path": "qwen3.8-registry-manifest.json",
       "bytes": 986,
       "sha256": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813"
+    },
+    {
+      "path": "revision_02_delta_checks.json",
+      "bytes": 1003,
+      "sha256": "52d3e5ac84f54630d7b6915a6448d4d2cb6cad8d8833ec338b7bac5e3c49d1fb"
     },
     {
       "path": "stderr.txt",

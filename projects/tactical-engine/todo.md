@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** un tentativo del pilot (2026-11-11), completamento **BLOCCATO**.
+  Revisione02 commit 078b8f16b8c41e02af3efe1dce6b5ef6a00f11dc. Primo slot Gemma26/V10-02:
+  una POST avviata, nessuna risposta; dopo1,034s STOP al monitor perché pswpin
+  globale aumenta di2 pagine. RAM disponibile15,74GB, soglia4GB non superata;
+  non prova di thrashing o insufficienza RAM. Cinque slot non inviati, zero retry.
+  Nessuna risposta valutabile, nessun vincitore. Ledger canonico esclusivo in
+  `evaluation/quality_first_paired_pilot_01/` con raw, STOP e inventario.
+  Diagnostica successiva: ps vuoto, nessun runner, entrambi servizi active;
+  completamento reale della generazione non attestato. RAG invariato.
+  Prima di qualsiasi nuovo tentativo occorre decidere esplicitamente il criterio
+  paging minimo/persistente; nessun nuovo invio o modifica automatica. STOP.
+
 - [x] **IMPLEMENTATO** revisione operativa02 del medesimo pilot (2026-11-11),
   accettata dal titolare: Qwen think=xhigh esplicito; sostituzione del conteggio
   esatto preventivo con osservazione dei contatori API dopo risposta e STOP

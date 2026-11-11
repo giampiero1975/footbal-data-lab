@@ -823,3 +823,70 @@ modificato. Commit tecnico: quello che introduce questa revisione, congelato
 prima dell'invocazione e registrato nel ledger. Stato preparazione IMPLEMENTATO,
 controlli ESEGUITO/VALIDATO solo staticamente. Pilot DA FARE fino all'invio.
 Il risultato effettivo segue in un addendum nella medesima sessione.
+
+
+## Esito esecutivo revisione02 — un invio, arresto al monitor swap
+
+2026-11-11. Attività invariata RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01.
+Commit tecnico congelato e pubblicato prima dell'invocazione: 078b8f16b8c41e02af3efe1dce6b5ef6a00f11dc.
+Metodo: execute del driver versionato con execution_binding_02.json e
+execution_authorization_02.json. Riconciliazione89b9d1d/GitHub, ledger assente
+prima dell'avvio; creazione esclusiva del ledger canonico, nessun reset o
+seconda esecuzione. Otto controlli del solo delta pubblicati nel commit tecnico,
+non nuova esecuzione di suite storiche. Gli avvisi diff whitespace erano CRLF
+nel JSON raw, non spazi nuovi nei sorgenti; controllo cr-at-eol nel closeout.
+
+### Risultato osservato
+
+Primo slot: Gemma4 26B, caso V10-02. Il worker ha verificato utente, supervisor
+GNU timeout e process group, lock esistente e acquisizione non bloccante,
+Ollama0.40.5, digest/Q4_K_M, nessun modello caricato, servizi active, memoria
+iniziale15859093504 byte. Ledger fsync salvato prima del GO; un solo evento
+post_started e invocazione POST /api/chat, nessuna seconda chiamata.
+
+Dopo circa1,034 secondi il monitor rileva pswpin da27127 a27129; pswpout rimane
+164839. È scattato E_RESOURCE_OR_DEADLINE per la regola già congelata di zero
+nuovo paging. MemAvailable al campione15744802816 byte, ben sopra4GB; nessun
+timeout900s e nessuna soglia di memoria superata osservata. È un incremento
+di due pagine del contatore globale: non prova thrashing, memoria insufficiente
+del modello né attribuzione causale certa al caricamento. Il processo
+llama-server compare nel campione con RSS133599232 byte; nessuna inferenza
+sulla futura occupazione dei pesi viene ricavata da questo dato.
+
+Il monitor chiude il socket; segue RemoteDisconnected senza risposta HTTP,
+stream o testo finale. Il controller conserva raw stdout/stderr, prenotazione
+e STOP.json, interrompe l'intero pilot e non invia gli altri cinque slot.
+**POST avviate1; risposte ricevute0; generazioni completate osservate0.**
+Ricezione/completamento effettivi nel servizio non attestati: non si dichiara
+che la generazione reale sia certamente zero. Nessun tentativo alternativo.
+
+Una sola diagnostica successiva read-only GET version/ps e letture processi,
+memoria, servizi e metadata lock: /api/ps vuoto, nessun llama-server/runner
+osservato, solo daemon Ollama; football-rag-api e Ollama entrambi active.
+Contatore swap-in27129, swap-out164839. Questo documenta lo stato quieto
+successivo; non dimostra l'istante esatto di cancellazione. Nessun processo
+ucciso manualmente, riavvio, unload POST o modifica di servizi/configurazioni.
+
+### Evidenze, decisione e stato
+
+Raw originali e manifest inventariati in
+`evaluation/quality_first_paired_pilot_01/`: activity-created, request/invocation,
+reserved-before-GO, stdout.raw/stderr.raw, STOP, diagnostica post-stop,
+summary e inventory SHA256/dimensioni. Non sovrascrivere o riaprire questo
+ledger. Non esiste complete.json, export cieco o scheda valutata perché
+mancano sei risposte. Binding e controlli in docs/readiness preservati.
+
+Pilot **ESEGUITO** come tentativo interrotto; completamento/confronto **BLOCCATO**.
+Nessun vincitore, voto, fallimento tattico o insufficienza hardware dimostrati.
+Non è un test di qualità del modello: il monitor ha fermato il tentativo
+prima di una risposta. Il prossimo passo raccomandato, NON eseguito, è una
+sola decisione sul criterio di paging: distinguere attività globale minima
+osservata da pressione persistente, prima di autorizzare un nuovo tentativo
+con delta dichiarato. Non abbassare la soglia RAM né riprovare questo ledger;
+nessun nuovo acquisto, selezione, ABI o campagna suggeriti come conseguenza.
+
+RAG, corpus, embedding, retrieval, panel, API, configurazioni, staging e modelli
+installati preservati; nessuna modifica applicativa. Target28/30 non valutabile,
+nessuna promozione, merge o deploy. Commit di pubblicazione closeout è quello
+che introduce queste evidenze e l'aggiornamento contestuale TODO/registro,
+restituito nella consegna. STOP dopo verifica GitHub/working tree.

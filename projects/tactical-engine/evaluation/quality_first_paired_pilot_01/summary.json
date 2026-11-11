@@ -1,0 +1,83 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "technical_commit": "078b8f16b8c41e02af3efe1dce6b5ef6a00f11dc",
+  "pilot_status": "ESEGUITO",
+  "completion_status": "BLOCCATO",
+  "slots_started": 1,
+  "post_attempts": 1,
+  "http_status_observed": null,
+  "responses_received": 0,
+  "generations_completed_observed": 0,
+  "actual_model_generation_count": "not established",
+  "remaining_slots_sent": 0,
+  "stop": "E_RESOURCE_OR_DEADLINE caused by swap_in counter increase",
+  "baseline": {
+    "available_bytes": 15859093504,
+    "swap_used_bytes": 257449984,
+    "swap_in": 27127,
+    "swap_out": 164839,
+    "processes": [
+      {
+        "pid": 812,
+        "comm": "ollama",
+        "rss_bytes": 25206784,
+        "hwm_bytes": 39346176
+      }
+    ]
+  },
+  "last_sample": {
+    "event": "sample",
+    "monotonic": 1505186.834702639,
+    "available_bytes": 15744802816,
+    "swap_used_bytes": 257449984,
+    "swap_in": 27129,
+    "swap_out": 164839,
+    "processes": [
+      {
+        "pid": 812,
+        "comm": "ollama",
+        "rss_bytes": 28950528,
+        "hwm_bytes": 39346176
+      },
+      {
+        "pid": 180634,
+        "comm": "llama-server",
+        "rss_bytes": 133599232,
+        "hwm_bytes": 133599232
+      }
+    ]
+  },
+  "swap_in_delta_pages": 2,
+  "swap_out_delta_pages": 0,
+  "elapsed_until_abort_seconds": 1.0335191378835589,
+  "min_available_sampled_bytes": 15744802816,
+  "no_retry": true,
+  "promotion_authorized": false,
+  "quality_result": "not evaluable; no answer; no winner",
+  "post_stop": {
+    "loaded": {
+      "models": []
+    },
+    "processes": [
+      "    812       1 ollama          28340 1505221"
+    ],
+    "services": {
+      "ollama.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      },
+      "football-rag-api.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      }
+    }
+  },
+  "causal_limits": [
+    "System swap-in is global; attribution to model loading versus other host activity not established.",
+    "Two pages of swap-in do not demonstrate thrashing or insufficient model RAM.",
+    "No HTTP response/completion; model execution/POST receipt not conclusively attested.",
+    "Later empty ps and no runner show observed quiescence, not proof of exact cancellation timing."
+  ]
+}
