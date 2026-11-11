@@ -8,6 +8,22 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO** come progetto documentale
+  RD-RAG-V5-BACKEND-NONGENERATIVE-HARNESS-DESIGN-01 (2026-11-11).
+  Sorgenti/header pubblici pinned: llama 620d2225cc436ab0b001e3200e590e3b286ef9ab;
+  Ollama v0.40.5 -> d919272e53593d1d55d40e1180eaa06dfbede3ac, pin b11669
+  risolve allo stesso llama. Firma pubblica verificata, non attestazione del
+  binario VPS: implementazione eseguibile **BLOCCATO**. Progetto separato in
+  `operations/backend-harness/status-correlated-01-design/`, 25 fonti/hash,
+  gate ABI/default-deny, dialetto llguidance/GBNF, parser e ledger vincoli
+  residui; metodo token separato senza pesi. Nessun codice eseguibile,
+  compilazione, test storico, SSH/VPS o trasferimento. Idoneo a revisione
+  indipendente del progetto; prerequisito build/header/ABI resta da risolvere.
+  Analisi **ESEGUITO**, evidenze statiche **VALIDATO** nel proprio perimetro.
+  Report `docs/rag-v5-backend-nongenerative-harness-design-01.md`.
+  Accuratezza generativa, compatibilità backend, Gate, integrazione e
+  certificazione **BLOCCATO**. STOP.
+
 - [x] **VALIDATO** nel solo perimetro di ricognizione
   RD-RAG-V5-REMEDIATION-A-BACKEND-RECONNAISSANCE-01 (2026-11-10).
   Decisione **B**: prima serve un ingresso/harness non generativo verificabile

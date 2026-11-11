@@ -2,6 +2,38 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Progettazione locale harness backend non generativo
+
+Attività: `RD-RAG-V5-BACKEND-NONGENERATIVE-HARNESS-DESIGN-01`. Script:
+letture Git/JSON, HTTPS sorgenti pubblici a commit esatto, hash locali; nessun
+modulo applicativo o compilatore eseguito. Commit: documentale con progetto,
+report, provenance manifest, TODO e registro contestuali. Report:
+`docs/rag-v5-backend-nongenerative-harness-design-01.md`; progetto separato
+`operations/backend-harness/status-correlated-01-design/` (README,
+TOKEN_BUDGET, sources-lock, target-contract). HEAD iniziale locale/GitHub
+9367aac, tree pulito; report/cinque evidenze e commit 0ea62c0/5bfa489/ca6bf67/
+9367aac riconciliati, nessun harness equivalente completato. Risultato:
+header pubblico converter e tipi individuati al full SHA llama
+620d2225cc436ab0b001e3200e590e3b286ef9ab; tag Ollama v0.40.5 risolto a
+d919272e53593d1d55d40e1180eaa06dfbede3ac, pin b11669 coincidente col llama.
+Venticinque fonti/hash locali registrati. Firma pubblica coerente coi nomi
+simbolo storici, ma layout common_json/schema, patch/flag, ABI e dipendenze
+non attestati per l'hash VPS: fallback solo documentale. Rilevati nei sorgenti
+pubblici dialetto condizionale llguidance, uniqueItems non rappresentato,
+parser interno e schemaGrammar con POST /completion su runner, escluso.
+Progettati gate prima del loading dinamico, worker converter senza modello,
+parser/dialetto e ledger diagnostico; schema export/hash approvato ancora
+mancante, nessuna alterazione al contratto. Metodo token separato con renderer
+qwen3.5/think=false e vocabulary-only ufficiale candidato, previa prova zero
+pesi e policy contesto; nessun conteggio o tokenizer alternativo implementato.
+Decisione: idoneo a revisione indipendente del progetto, non a esecuzione.
+Stato: progetto **IMPLEMENTATO** documentale, analisi **ESEGUITO**, proprietà
+statiche verificabili **VALIDATO**; implementazione eseguibile, compatibilità
+backend, accuratezza generativa, Gate, integrazione e certificazione
+**BLOCCATO**. Nessun codice applicativo/test modificato, suite 37/13/16/5,
+SSH/VPS, transfer, compile/link, inferenza, staging/wrapper/runtime-05,
+merge/deploy. STOP dopo pubblicazione.
+
 ### 2026-11-10 — Ricognizione backend remediation A
 
 Attività: `RD-RAG-V5-REMEDIATION-A-BACKEND-RECONNAISSANCE-01`. Script:

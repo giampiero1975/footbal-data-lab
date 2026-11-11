@@ -1,0 +1,276 @@
+{
+  "activity": "RD-RAG-V5-BACKEND-NONGENERATIVE-HARNESS-DESIGN-01",
+  "review_date": "2026-11-11",
+  "public_source_only_not_installed_binary_attestation": true,
+  "resolution_chain": {
+    "llama_embedded_short_commit": "620d2225c",
+    "llama_public_full_commit": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+    "ollama_public_tag": "v0.40.5",
+    "ollama_public_tag_commit": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+    "ollama_LLAMA_CPP_VERSION": "b11669",
+    "llama_b11669_tag_commit": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+    "resolution_endpoints": [
+      "https://api.github.com/repos/ggml-org/llama.cpp/commits/620d2225c",
+      "https://api.github.com/repos/ollama/ollama/git/ref/tags/v0.40.5",
+      "https://api.github.com/repos/ggml-org/llama.cpp/git/ref/tags/b11669"
+    ]
+  },
+  "sources": [
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json-schema-to-grammar.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json-schema-to-grammar.h",
+      "bytes": 743,
+      "sha256": "7dc12dd8b3513b97293f22c2f87f0918e476fac3ba8895e8cb9671110401ea07"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json.h",
+      "bytes": 13476,
+      "sha256": "a352f31307f1be2bdb34c027b876f42a1c5d1ea775cc8e4f11d703b16c40d22f"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json-schema.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json-schema.h",
+      "bytes": 6095,
+      "sha256": "57933a181ec0e84cbba1abea7fd898dc03e452d7de1a35795b787cee679d02af"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json-schema.cpp",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json-schema.cpp",
+      "bytes": 20930,
+      "sha256": "68ba2adbb6e0578c0d89e99cc9a9a7aa9c0b554b555bcd3908da71789045509d"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json-schema-to-grammar.cpp",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json-schema-to-grammar.cpp",
+      "bytes": 43518,
+      "sha256": "d5a82fff5d611abd1198ff27c328b20376ffe9f110b4771d579c8bd20c70541f"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/CMakeLists.txt",
+      "bytes": 5020,
+      "sha256": "67cedba04a44face1177e3aa9fc192712873dda0b30bde1ab356007dcde0d9f1"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/CMakeLists.txt",
+      "bytes": 10918,
+      "sha256": "90e76c2730386449ccf924b87d974f1862bbda31125249ff34ee1f8947d53818"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "src/llama-grammar.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/src/llama-grammar.h",
+      "bytes": 6961,
+      "sha256": "db730e5aff77f96274aba4a43670f036400d89c7ed44b6e98d3ced41c7b9d193"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "src/llama-grammar.cpp",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/src/llama-grammar.cpp",
+      "bytes": 56537,
+      "sha256": "97d76071a2ed1b0c4ce827f002f554b12a25593776adb525dde33ac4cb1eb1e9"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "grammars/README.md",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/grammars/README.md",
+      "bytes": 18051,
+      "sha256": "e1874c0f08abbcfe45eff0b7b0290faa58f630981bf94274e2d99751ef3b0208"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/json.cpp",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/json.cpp",
+      "bytes": 14613,
+      "sha256": "d8c556445cef8e7c93b0857f6ca7ae7ebd8295f169403ac66641b72f6b0598f2"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "common/chat.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/chat.h",
+      "bytes": 19667,
+      "sha256": "72efd31e0bc82d653bc28e18bb14299d255623c3be052dafe8f40bb6fa6a9ca5"
+    },
+    {
+      "repository": "ggml-org/llama.cpp",
+      "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+      "path": "include/llama.h",
+      "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/include/llama.h",
+      "bytes": 90731,
+      "sha256": "961430f89e2553dbcd99e3e6c59826af9ec143f05911520c74f804d986ff3cd2"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "llm/llama_server.go",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llm/llama_server.go",
+      "bytes": 91649,
+      "sha256": "be96301d662bf18527fe0d481c15a4631ff47055c6db7ce1400feb264315c6bf"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "llm/server.go",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llm/server.go",
+      "bytes": 8561,
+      "sha256": "5d6f9c808fa16900e5302f4de7084dc11a556f2480ef397de81efe3a94c9576d"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "llm/gbnf.go",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llm/gbnf.go",
+      "bytes": 4617,
+      "sha256": "d7db8fd3812c6443a83d6e7d6454e3d27a302bc1c8df232ca0248db76e321b60"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "server/prompt.go",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/server/prompt.go",
+      "bytes": 4362,
+      "sha256": "79411c4e15ff27fb8bac4dcd96076407e035ec407c0ab1a1840035f9668b4654"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "server/renderer_resolution.go",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/server/renderer_resolution.go",
+      "bytes": 2242,
+      "sha256": "d86864240d854d3955f7b575fbb0a7b34f27abafa5c2daa98083538cf9f6c789"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "server/routes.go",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/server/routes.go",
+      "bytes": 107175,
+      "sha256": "47c0bce03da44ba50c65e436f61538c67457282b9504a1ecc11d090461120855"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "model/renderers/qwen35.go",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/model/renderers/qwen35.go",
+      "bytes": 11201,
+      "sha256": "69bca99b53a3db8d599bb9ec8eadf65ce9a72868566a89bfac44d31fe3b565e0"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/CMakeLists.txt",
+      "bytes": 2995,
+      "sha256": "9d3dd4da6a6dc1de6ae3d423c3b00045d30634e31a8ff339b53d14b7dede34d3"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "llama/compat/compat.cmake",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llama/compat/compat.cmake",
+      "bytes": 2504,
+      "sha256": "ee23efb755b0aafceda8070cb90ab1124797418ffc017303187a8ac56e382e74"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "llama/server/CMakeLists.txt",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llama/server/CMakeLists.txt",
+      "bytes": 29227,
+      "sha256": "59734d4dd425f9c36ca3fdf081a3233a1edc33fa285350b2f601890ff289560f"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "LLAMA_CPP_VERSION",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/LLAMA_CPP_VERSION",
+      "bytes": 7,
+      "sha256": "0bbf7c261e41e777ad8d70f2c83f8d7dd2ae4d7e41a9b6f26926fbc902209c70"
+    },
+    {
+      "repository": "ollama/ollama",
+      "revision": "d919272e53593d1d55d40e1180eaa06dfbede3ac",
+      "path": "llama/compat/001-llama-cpp-hooks.patch",
+      "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llama/compat/001-llama-cpp-hooks.patch",
+      "bytes": 4903,
+      "sha256": "de62fe6dd48c1b19082ae234e0b21fbc3da326dc18d6c971b93953886bf3ebf7"
+    }
+  ],
+  "static_findings": [
+    {
+      "id": "PUBLIC_SIGNATURE",
+      "paths": [
+        "common/json-schema-to-grammar.h"
+      ],
+      "finding": "Two documented overloads; common_json/bool matches recorded symbol name only, not an attested ABI."
+    },
+    {
+      "id": "INLINE_JSON_ABI",
+      "paths": [
+        "common/json.h"
+      ],
+      "finding": "common_json uses alignas(8) inline storage[32] publicly; installed layout is not proved."
+    },
+    {
+      "id": "DIALECT_FLAG",
+      "paths": [
+        "common/json-schema-to-grammar.cpp",
+        "common/CMakeLists.txt"
+      ],
+      "finding": "force_gbnf=false may emit %llguidance when LLAMA_USE_LLGUIDANCE is compiled; installed flag unknown."
+    },
+    {
+      "id": "SILENT_CONSTRAINTS",
+      "paths": [
+        "common/json-schema.cpp",
+        "grammars/README.md"
+      ],
+      "finding": "uniqueItems not represented in inspected array builder; empty stderr is not complete constraint coverage."
+    },
+    {
+      "id": "RUNNER_SHORTCUT_REJECTED",
+      "paths": [
+        "llm/llama_server.go"
+      ],
+      "finding": "Public schemaGrammar uses POST /completion on a runner; excluded from no-runner design."
+    },
+    {
+      "id": "BINARY_SOURCE_GAP",
+      "paths": [
+        "llama/server/CMakeLists.txt",
+        "llama/compat/compat.cmake"
+      ],
+      "finding": "Public build supports compat patches and source overrides; tag/embedded commit do not prove installed build provenance."
+    }
+  ],
+  "checks_this_session": {
+    "local_source_hashes": 25,
+    "application_tests": 0,
+    "ssh_connections": 0,
+    "grammar_converter_calls": 0,
+    "harness_runs": 0,
+    "link_steps": 0,
+    "compiler_runs": 0
+  }
+}

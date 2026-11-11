@@ -1,0 +1,81 @@
+{
+  "document_type": "design_only_default_deny_target_contract",
+  "activity": "RD-RAG-V5-BACKEND-NONGENERATIVE-HARNESS-DESIGN-01",
+  "design_status": "IMPLEMENTATO",
+  "implementation_status": "BLOCCATO",
+  "backend_compatibility_status": "BLOCCATO",
+  "execution_authorized": false,
+  "executable_artifact": null,
+  "expected_installed_target": {
+    "ollama_version": "0.40.5",
+    "llama_embedded_commit": "620d2225c",
+    "library_basename": "libllama-common.so.0.7.0",
+    "library_sha256": "ef57d101f75dbfcad9f309bbc7b08e62d38120657ca146e97ffad2680a2a953d",
+    "library_build_id": "a7bb44fb1d8cae659f9e62b00c3b43690ef27614",
+    "libllama_sha256": "67cc15d00fd21704dca3e5f77dcf9d3aa98c57ebf84eb440f97ef1903c1b9d8d",
+    "model_name": "qwen3.5:9b",
+    "model_manifest_digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90"
+  },
+  "candidate_public_headers": {
+    "repository": "ggml-org/llama.cpp",
+    "revision": "620d2225cc436ab0b001e3200e590e3b286ef9ab",
+    "source_binary_attestation": null
+  },
+  "required_unresolved_attestations": [
+    "source_and_patch_set_to_installed_binary",
+    "full_transitive_header_closure",
+    "compiler_and_libstdcxx_abi_flags",
+    "LLAMA_USE_LLGUIDANCE_mode",
+    "parser_symbols_and_layout",
+    "effective_Ollama_format_rendering_path",
+    "complete_schema_file_and_sha256",
+    "all_dynamic_dependency_hashes",
+    "reviewed_resource_limits_and_isolation"
+  ],
+  "schema_input": {
+    "representation_revision": "status-correlated-01",
+    "domain_version": "1.0.0",
+    "expected_compact_bytes_historical": 16869,
+    "approved_file": null,
+    "sha256": null,
+    "external_ref_fetch_allowed": false,
+    "schema_rewriting_allowed": false
+  },
+  "gate_policy": {
+    "missing_or_mismatched_attestation": "BLOCCATO",
+    "compiler_flag_unknown": "BLOCCATO",
+    "dependency_hash_unknown": "BLOCCATO",
+    "schema_hash_missing": "BLOCCATO",
+    "automatic_upstream_rebuild_fallback": false,
+    "force_gbnf_override_allowed": false
+  },
+  "future_diagnostics_required": [
+    "stage",
+    "reason_codes",
+    "schema_sha256",
+    "schema_raw_bytes",
+    "header_source_lock_sha256",
+    "actual_library_hashes",
+    "toolchain_abi_attestation",
+    "converter_returned",
+    "grammar_dialect",
+    "grammar_sha256",
+    "grammar_parser_result",
+    "stderr_sha256",
+    "unsupported_keywords_by_json_pointer",
+    "unverified_constraints",
+    "artifacts_inventory",
+    "promotion_authorized"
+  ],
+  "invariants": {
+    "model_or_GGUF_for_grammar_worker": false,
+    "sampling": false,
+    "network": false,
+    "Ollama_service": false,
+    "ctypes_or_ABI_casts": false,
+    "promotion_authorized": false
+  },
+  "token_budget_method": "TOKEN_BUDGET.md",
+  "actual_token_count": null,
+  "model_identity_role": "historical_context_only_not_grammar_worker_input"
+}
