@@ -8,6 +8,27 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** riconciliazione RAG nell'attività esistente
+  RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11). Nessuna nuova selezione,
+  protocollo o esperimento. V5 locked **CERTIFICATO** nel perimetro congelato;
+  Drive11 **VALIDATO 6/6**, FIGC5 **VALIDATO e INTEGRATO**, V10.1/V10.2
+  **VALIDATO** tecnicamente 10/10: stati e risultati preservati. Correzioni
+  retrieval/ruoli/fasi/contratti riconciliate con commit, test e report, senza
+  rieseguirli. Caso10 noto affrontato da 0f9f87f/77824c9; raw gate=false prima
+  del re-audit non è fallimento attuale. Rilievi fini dei tre vecchi input e
+  loro persistenza sulla baseline recente: NON VERIFICATO, qualifica delle
+  prove e non nuovo stato. Ultima modifica applicativa 5bfa489; live VPS non
+  osservata. q3_04 A/R1 è caso distinto, fail-closed non successo semantico.
+  Decisione: conservare RAG e fonti del pilot; nessuna nuova patch motivata.
+  Generatore configurabile, template/thinking e risorse ancora da verificare:
+  non plug-and-play dimostrato. Unico prossimo passo da autorizzare: driver
+  congelato e preflight minimo del medesimo pilot; nessun nuovo gate RAG/ABI.
+  Addendum in `docs/rag-v5-quality-first-paired-pilot-protocol-review-01.md`,
+  fatti `docs/quality-first-pilot-rag-state-reconciliation-01.json`.
+  Pilot **DA FARE**, non autorizzato. Nessuna SSH, modello, inferenza, benchmark,
+  modifica applicativa/RAG/panel/VPS, costo, merge o deploy. Target28/30 e
+  Gate generativi non superati **BLOCCATO**, certificazione locked preservata.
+
 - [x] **ESEGUITO** revisione documentale del pilot esistente
   RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11). Pilot **DA FARE**, non
   autorizzato; nessun nuovo ID o shortlist. Giudizio: adeguato con correzioni

@@ -1,0 +1,237 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "phase": "RAG state reconciliation and historical-input qualification; no new experiment",
+  "date": "2026-11-11",
+  "initial_HEAD": "93fcbd173b2d41a1e5210c2d4658dec78cde2616",
+  "latest_application_commit": "5bfa4897e93d5d8edef0bc79371aa36b1b1409ae",
+  "pilot_status": "DA FARE",
+  "pilot_authorized": false,
+  "current_VPS_state": "NON VERIFICATO; no SSH",
+  "NON_VERIFICATO_is_evidence_qualification_not_project_status": true,
+  "sources": [
+    {
+      "path": "projects/tactical-engine/docs/v5-certification-closeout-01.md",
+      "sha256": "bcd36fa01668bc6577adb8df10c2ae2c1ab9e93affb1a764aaa89c9ca368a3d3"
+    },
+    {
+      "path": "projects/tactical-engine/docs/current-status-summary-01.md",
+      "sha256": "5c8401bbf930fb8ba2ad736ba2e8ad2f08eb0a579337c99b832f852c4f7cbea3"
+    },
+    {
+      "path": "projects/tactical-engine/docs/v5-source-hybrid-rank-v4.md",
+      "sha256": "d5fa158d360607c489eca5af502f0510ce9876b9920cffc8ab9b355f3d7cd8ba"
+    },
+    {
+      "path": "projects/tactical-engine/docs/v5-named-source-context-filter-01.md",
+      "sha256": "d743331f61ffa3d6a82024fbe82a63b188ecd29d87ba6269893e7731802d4e36"
+    },
+    {
+      "path": "projects/tactical-engine/docs/v5-external-drive11-holdout-01.md",
+      "sha256": "1de9ec9709e3853c4c7dd4fd990903a148b35d6d32022fb49252ac024b25933e"
+    },
+    {
+      "path": "projects/tactical-engine/docs/figc5-candidate-integration-01.md",
+      "sha256": "6c043d8b781ab7c4bbef34ef6a78cfde8bd1f6af5f367d318e504b008f5e3a89"
+    },
+    {
+      "path": "projects/tactical-engine/docs/rag-coverciano-remediation-v10-runtime-01.md",
+      "sha256": "fc161063075f505c425f1d319f9dce4a50d659676205335fd8a2e419aea72f2b"
+    },
+    {
+      "path": "projects/tactical-engine/docs/consolidated-remediation-2026-10-28.md",
+      "sha256": "e1ced775ae7bc60b6ab7f5a467530d7951f8f2eb5bb07bf63267905f8031b95b"
+    },
+    {
+      "path": "projects/tactical-engine/docs/seventh-peer-review-relational-verification-01.md",
+      "sha256": "b9f90dbc20d5bb93b7d1d63e6601c0d745277e3a47f362bc14813b10acef4969"
+    },
+    {
+      "path": "projects/tactical-engine/docs/tactical-semantic-support-s2-rag-v5-dual-blocker-offline-remediation-01.md",
+      "sha256": "34c8e57ad0ba5b9a935ba9111c24052ba92f1fd789c95bf6aac9d167f7df12e0"
+    },
+    {
+      "path": "projects/tactical-engine/docs/rag-v5-dual-blocker-remediation-a-offline-01.md",
+      "sha256": "8ac2dedfd761946aeaa04dfa786d09453e5de50777c08d697900cbcdbaf0e132"
+    },
+    {
+      "path": "projects/tactical-engine/docs/rag-v5-remediation-a-r1-numeric-literal-closeout-01.md",
+      "sha256": "52c9f83ea2a0ee725271628594ec9ff6b66334c1e787791c12b8dd092ccf5fc3"
+    },
+    {
+      "path": "projects/tactical-engine/docs/rag-v5-remediation-a-official-api-single-case-01.md",
+      "sha256": "562cf9629b874385e7ca37ae854cc51522d428c93c8e1e5ea26f55d2f690ed11"
+    },
+    {
+      "path": "projects/tactical-engine/docs/rag-v5-remediation-a-q3-04-grounding-diagnosis-01.md",
+      "sha256": "650fe0fe78e20f28ae89fbab8e42a1fc0344f96200a2f5da158ed1d54372bb7b"
+    },
+    {
+      "path": "projects/tactical-engine/docs/quality-first-paired-pilot-review-evidence-01.json",
+      "sha256": "7f9375a02f2f4509bcb6d43122655e4005dbb81e342407f3a03f9c05238752d1"
+    },
+    {
+      "path": "projects/tactical-engine/scripts/run_rag_v5_query.py",
+      "sha256": "35b06dc2d543023094838de2a34326ddc92f06dad37dc0c590413215d3213a21"
+    },
+    {
+      "path": "projects/tactical-engine/scripts/smoke_test_rag_v5_e2e.py",
+      "sha256": "575cb2454d2e2f7d7ce52518f5b6efce116e9bc67e12c869f1b27003ba344cec"
+    },
+    {
+      "path": "projects/tactical-engine/scripts/v5_tactical_query_plan_v1.py",
+      "sha256": "35c168f65cefa2f39765d6b630609c3a443ae0a573e415f9aa7aa9e81bd5c142"
+    },
+    {
+      "path": "projects/tactical-engine/api/rag_v5_api.py",
+      "sha256": "4feec1d0ae95ee5984e3c769873b7aee453457b841e0f18fad8ca27b28bfaaa8"
+    },
+    {
+      "path": "projects/tactical-engine/evaluation/runtime-archive/rag_v5_external_drive11_holdout_v1.json",
+      "sha256": "e7cbcfcaaf1e069c45551c8a9e7fcfd3deb08fa31e310acc263af3c035b6f04a"
+    }
+  ],
+  "commit_ancestry": [
+    {
+      "short": "040c6a5",
+      "full": "040c6a5b239e7894395860504c662187e9675e40",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "e2c093a",
+      "full": "e2c093a30abb9775bef462e8ee103dc33742a9e4",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "936b4c4",
+      "full": "936b4c44ba0643506b65d763da434214f955073c",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "30b04d4",
+      "full": "30b04d4aabe0312bfceb896dc241ccf93b6c65b8",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "55e01e1",
+      "full": "55e01e122da6960ca9710e4a9914f8c2d1bcd3d4",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "5b2df05",
+      "full": "5b2df052b0260139acfa12684ae1267677fd7047",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "0f9f87f",
+      "full": "0f9f87f1eb460c7784afe5fa397bbbe6a2b3a89e",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "77824c9",
+      "full": "77824c9651253cb60ebfd1c69b1bd6735c389cae",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "084cb5b",
+      "full": "084cb5b4fdf7e350b801c9a8f07e05b11453a554",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "56a7b72",
+      "full": "56a7b72135595e99a98ff2fb5b1bcc3d6a0c9ebf",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "0ea62c0",
+      "full": "0ea62c0ef1f0adfcd928c2893f069de060275381",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "5bfa489",
+      "full": "5bfa4897e93d5d8edef0bc79371aa36b1b1409ae",
+      "ancestor_of_HEAD": true
+    },
+    {
+      "short": "7c018f9",
+      "full": "7c018f93c25e957e3f558b7898c2d9f43f5ca851",
+      "ancestor_of_HEAD": true
+    }
+  ],
+  "cases": [
+    {
+      "historical_version": "V10, 2026-10-27",
+      "published_commit": "5b2df05",
+      "pre_publication_parent": "55e01e1",
+      "fixes_relevant": "55e01e1 scenario contamination audit; no conclusive later correction of the precise 2v1/2v2 or low-block source-scope issue found",
+      "latest_baseline_issue": "NON VERIFICATO",
+      "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10/case_02.json",
+      "sha256": "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135",
+      "runtime_commit_embedded_in_artifact": false,
+      "Git_parent_is_not_runtime_attestation": true,
+      "frozen_sources_remain_historical": true,
+      "inputs_modified": false,
+      "generation_gate_recorded": true,
+      "repair_reasons": []
+    },
+    {
+      "historical_version": "V10, 2026-10-27",
+      "published_commit": "5b2df05",
+      "pre_publication_parent": "55e01e1",
+      "fixes_relevant": "scenario facets/cross-defence coverage exist; no exact published later fix/rerun proving the cited posture/goalkeeper-condition issue closed",
+      "latest_baseline_issue": "NON VERIFICATO",
+      "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10/case_03.json",
+      "sha256": "f422d7e6e4a27044f45d96fc545c4f8ff48b9e20b533aad16547ee90ce693fa8",
+      "runtime_commit_embedded_in_artifact": false,
+      "Git_parent_is_not_runtime_attestation": true,
+      "frozen_sources_remain_historical": true,
+      "inputs_modified": false,
+      "generation_gate_recorded": true,
+      "repair_reasons": []
+    },
+    {
+      "historical_version": "V10.2, 2026-10-27",
+      "published_commit": "77824c9",
+      "pre_publication_parent": "0f9f87f",
+      "fixes_relevant": "5b2df05 role audit; 0f9f87f explicit transformation; 77824c9 plural audit and documentary technical 10/10 closeout",
+      "raw_gate_false_scope": "historical raw before lexical re-audit; preserved, not current failure proof",
+      "fine_grained_latest_baseline_issues": "NON VERIFICATO",
+      "path": "projects/tactical-engine/evaluation/coverciano-remediation-v10-2/case_10.json",
+      "sha256": "afb2a6c27d3ff46001d7a1b360501287858a3f583b57c947fd8250d34e6d59f9",
+      "runtime_commit_embedded_in_artifact": false,
+      "Git_parent_is_not_runtime_attestation": true,
+      "frozen_sources_remain_historical": true,
+      "inputs_modified": false,
+      "generation_gate_recorded": false,
+      "repair_reasons": [
+        "copertura incompleta: live_communication",
+        "generazione selezionata: repair"
+      ]
+    }
+  ],
+  "static_comparisons": {
+    "chat_source_identical_to_5b2df05": true,
+    "chat_identity_does_not_prove_whole_pipeline_or_output_equivalence": true,
+    "application_diff_after_5bfa489_empty": true
+  },
+  "verified_raw_archive": {
+    "path": "projects/tactical-engine/evaluation/runtime-archive/rag_v5_external_drive11_holdout_v1.json",
+    "sha256": "e7cbcfcaaf1e069c45551c8a9e7fcfd3deb08fa31e310acc263af3c035b6f04a",
+    "report_sha256_matches": true,
+    "no_new_adjudication_or_test": true
+  },
+  "decision": {
+    "preserve_RAG": true,
+    "justified_RAG_patch_from_this_reconciliation": false,
+    "pilot_inputs": "unchanged historical question/evidence, not live retrieval benchmark",
+    "protocol_rewritten": false,
+    "next_step": "authorize preparation/freeze of existing pilot driver and its minimum preflight; model calls remain separately gated",
+    "ABI_or_new_RAG_validation_prerequisite": false
+  },
+  "documentary_integrity": {
+    "all_source_case_hashes_verified": true,
+    "ancestry_verified": true,
+    "prior_pilot_protocol_bytes_preserved": true,
+    "historical_TODO_register_bytes_preserved": true,
+    "application_tests_or_generations_executed": 0
+  }
+}

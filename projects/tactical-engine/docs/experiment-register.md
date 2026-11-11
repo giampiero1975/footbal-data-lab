@@ -2,6 +2,38 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Riconciliazione RAG e avanzamento del pilot esistente
+
+Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, fase documentale.
+Metodo/script: lettura Git/report/JSON/codice, cronologia e ancestry dei commit,
+hash e confronto statico della funzione chat; nessun modulo applicativo
+eseguito, nessun test. HEAD iniziale locale/GitHub 93fcbd173b2d41a1e5210c2d4658dec78cde2616,
+branch corretto e working tree pulito; TODO/registro/report pertinente
+confrontati byte-per-byte con GitHub. Commit documentale contestuale con
+addendum al report `docs/rag-v5-quality-first-paired-pilot-protocol-review-01.md`,
+inventario `docs/quality-first-pilot-rag-state-reconciliation-01.json`,
+TODO e registro. Differenza sostanziale: ricostruzione per-versione delle
+correzioni e validazioni RAG contro l'uso improprio dei tre testi storici come
+prova di difetti attuali; nessuna ripetizione di shortlist, protocollo o test.
+Risultati preservati: locked CERTIFICATO (040c6a5/e2c093a), Drive11 VALIDATO6/6
+con raw hash uguale al report, FIGC5 VALIDATO e INTEGRATO (936b4c4), set finale
+V10.1/V10.2 VALIDATO tecnicamente10/10 (77824c9), audit relazionale50/50 e
+contratti/extraction nel solo perimetro offline. Caso10 trasformazione affrontata
+con 0f9f87f e audit plurali77824c9; raw precedente immutato. Mancano prove degli
+esatti rilievi fini02/03 e della loro persistenza sulla baseline più recente:
+NON VERIFICATO è qualifica dell'evidenza, non stato operativo. Codice applicativo
+recente5bfa489, nuova prova A/R1 su q3_04 distinta dai tre casi, rifiuto corretto
+del locator e nessun successo semantico. Stato VPS attuale non rilevato.
+Decisione: conservare tutti gli asset RAG; nessuna patch giustificata da questa
+riconciliazione. Input storici invariati per confronto a contesto fisso, non
+prova del retrieval live. Singolo prossimo passo: autorizzare driver/freeze e
+preflight minimo del pilot esistente, senza nuovi gate RAG o dipendenza ABI;
+nessun invio generativo implicito. Stato riconciliazione **ESEGUITO**, pilot
+**DA FARE** non autorizzato; target28/30 e Gate generativi non superati
+**BLOCCATO**, certificazione locked e integrazioni storiche non revocate.
+Nessuna SSH, pesi, inferenza, benchmark, modifica applicativa/RAG/panel/VPS,
+costo, merge o deploy. STOP dopo pubblicazione e verifica GitHub/working tree.
+
 ### 2026-11-11 — Revisione finale del pilot già registrato
 
 Attività invariata: `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Fase: revisione

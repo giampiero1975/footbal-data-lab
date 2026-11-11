@@ -334,3 +334,140 @@ integrazione e certificazione generale restano **BLOCCATO**. Nessuna SSH,
 installazione, modello, inferenza, benchmark o modifica a RAG/applicazione/
 panel/VPS/runtime, merge, deploy o costo aggiuntivo. Pubblicazione contestuale
 con TODO/registro e verifica GitHub/working tree, poi STOP.
+
+
+## Addendum — riconciliazione definitiva RAG e decisione sul pilot
+
+Data: 2026-11-11. Base documentale di questa riconciliazione:
+`93fcbd173b2d41a1e5210c2d4658dec78cde2616`. Attività e pilot restano
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, **DA FARE**, non autorizzato.
+Questo addendum qualifica le evidenze storiche; **non riscrive il protocollo**.
+
+### Evidenze e baseline distinte
+
+TODO, registro e versione precedente di questo report confrontati con GitHub
+allo SHA iniziale; branch corretto, working tree pulito. Confrontati commit,
+report e artefatti V5/V10, chiusure relazionali, extraction A/R1, caller, runner
+e API; solo letture statiche e hash. Nessun test, re-audit applicativo o runtime.
+Fatti riproducibili, versioni e SHA-256 in
+[`quality-first-pilot-rag-state-reconciliation-01.json`](quality-first-pilot-rag-state-reconciliation-01.json).
+
+La certificazione storica locked riguarda il runtime/manifest congelato a cui
+si riferisce, non ogni file del checkout attuale. L'ultimo commit applicativo
+nel perimetro scripts/API è `5bfa4897e93d5d8edef0bc79371aa36b1b1409ae` (R1);
+le modifiche successive pertinenti sono documentali/operative. La singola
+prova A/R1 pubblicata in `4c4682f` ha usato quei file applicativi invariati,
+ma su **q3_04**, non sui tre casi del pilot. Il checkout Git più recente non è
+una misura del deployment attualmente attivo: **VPS attuale NON VERIFICATO**,
+nessuna SSH. NON VERIFICATO è qualifica dell'evidenza, non nuovo stato progetto.
+
+### Che cosa è stato completato e resta valido
+
+| Ambito e difetto originario | Correzione / commit | Evidenza verificata e stato nel perimetro | Limite e decisione attuale |
+|---|---|---|---|
+| V5 locked: copertura fonti, heading, filtri e guida | `040c6a5`, closeout `e2c093a` | `v5-certification-closeout-01.md`: regressione integrata 10/10, freeze e rollback; **CERTIFICATO** per manifest/runtime/CLI locked | Non riaprire il benchmark; certificazione non estesa al coach universale o alla collection 6410 |
+| Retrieval: scelta fonte semanticamente vicina ma incompleta | `30b04d4` ranking rilevanza/copertura; filtro autore `33749bf`, guida `9a1a903` | `v5-source-hybrid-rank-v4.md`: 5/5 offline, fresh03 retrieval+generazione validati; `v5-named-source-context-filter-01.md`: V2 con fonte corretta. Integrazione successiva del profilo attestata dal closeout locked | Vecchie voci «non integrato» dei singoli shadow non annullano l'integrazione successiva. Nessuna nuova patch motivata qui |
+| Estensione corpus Drive11/FIGC5 | Implementazione holdout `21eaada`, riconciliazione `936b4c4` | Drive11 **VALIDATO 6/6**, raw Git SHA corrispondente al report; FIGC5 **VALIDATO e INTEGRATO**, 214 chunk aggiunti, regressione composita 10/10 e rollback 6196 | Non sono risultati delle tre domande V10 né certificazione di tutte le fonti. Conservare corpus/indici |
+| Coverciano V6–V10: omissioni, fase, ruoli e falsi gate | Query/anchor `8a9a7ce`, gate `55e01e1`, residui `5b2df05`, trasformazione `0f9f87f`, closeout `77824c9` | `rag-coverciano-remediation-v10-runtime-01.md`: V10 incompleto, poi rerun solo 5/6/8/10 e re-audit lessicale; set finale 10/10 **VALIDATO** tecnicamente | Non cancellare il lavoro chiamandolo ancora V10 fallito; non attribuirgli un voto esterno28/30 mai documentato |
+| Relazioni attore/compito/fase/spazio/trigger/obiettivo | `0d69be6`, `b4a5f64`, fino a `084cb5b` | Consolidata105/105 nei rispettivi moduli; settima verifica planner/audit 50/50, **VALIDATO** offline | Audit relazionale non bloccante; `complete` legacy non diventa certificatore semantico. Nessuna prova di correzione generativa di tutti i casi |
+| Grounding strutturato e incoerenze extraction | Dual-blocker `56a7b72`, A `0ea62c0`, R1 `5bfa489` | 37/37, nuovi 16/16 e 5/5 nei report dedicati, **VALIDATO** offline. Singola API A/R1: risposta strutturale accettata, locator respinge frammenti fuori lato; fail-closed documentato | Errore generativo q3_04 ancora osservato, witness/validation assenti; non è bug dimostrato del locator. Nessuna correzione automatica giustificata dalla diagnosi `4f8c9f6` |
+| API e panel: blocco da gate Coverciano nel default | `7c018f9`, regressione dedicata `4532eb6`; API `9472564` e successive integrazioni | Registro27/10: rimozione tactical-plan dal default, ripristino panel **VALIDATO e INTEGRATO**; runner attuale conserva profili opt-in separati | Non riattivare il gate Coverciano su tutte le domande; nessun nuovo intervento API/panel richiesto |
+
+Le quantità sono **risultati storici letti**, non test appena eseguiti. Il raw
+Drive11 versionato ha SHA-256
+`e7cbcfcaaf1e069c45551c8a9e7fcfd3deb08fa31e310acc263af3c035b6f04a`,
+uguale al report. Per il locked si preservano attestazioni e hash del closeout:
+non tutti i raw storici citati sono presenti come file versionati in questo
+checkout. Non ricostruisco o ripeto quei test per colmare una copia mancante.
+
+Il Gate TSC V2 successivo e il percorso Spatial hanno esiti propri: ad esempio
+`docs/tactical-state-contract-v2-runtime-gate-01.md` documenta un arresto
+fail-closed, non una promozione. Il successivo stato A/R1 non autorizza a
+considerare risolti tutti quei gate. Viceversa il loro blocco **non revoca** la
+certificazione locked o le validazioni di retrieval/FIGC5 già raggiunte.
+
+### Riconciliazione puntuale dei tre input contestati
+
+| Input | Versione e problema storico | Correzione successiva effettivamente documentata | Cosa è dimostrato oggi / riuso |
+|---|---|---|---|
+| V10 case02 | Campagna27/10; pubblicato in `5b2df05`, preparazione V10 nel parent `55e01e1`. Contaminazione cross della V9 già affrontata, ma nel testo V10 restano rilievi sul 2v1/2v2 e sullo scope blocco basso/pressing alto | `55e01e1` introduce il test di contaminazione costruzione/cross; nessun successivo rerun02 pubblicato qui dimostra la chiusura degli esatti rilievi fini di scope | Limite osservato del testo storico. Presenza dello stesso difetto sulla baseline più recente: **NON VERIFICATO**. Fonti riusabili per confronto a input fisso, con limite di copertura già dichiarato |
+| V10 case03 | Stessa campagna/pubblicazione. Rilievi su postura offensiva citata per difesa cross e condizioni del portiere | Copertura scenario cross-defence e test planner esistono; non è individuata una prova successiva che chiuda specificamente questi due rilievi per quel caso | Non dichiararlo risolto solo perché il gate è PASS; non dichiararlo ancora presente oggi senza prova. **NON VERIFICATO** sulla baseline recente; input storico riusabile |
+| V10.2 case10 | Artefatto pubblicato con `77824c9`, parent Git `0f9f87f`. Succede al V10 con trasformazione di ruoli respinta | `5b2df05` rafforza audit ruoli, `0f9f87f` esplicita geometria, `77824c9` corregge comando/comandi e segnale/segnali; report chiude il set tecnico 10/10 con re-audit | Il difetto noto fu **affrontato e validato tecnicamente nel suo perimetro**. Il raw gate=false è precedente al re-audit e non va sostituito. I rilievi più fini del testo non sono una nuova bocciatura del closeout né prova di difetto attuale: **NON VERIFICATO** |
+
+I JSON non incorporano un'attestazione completa del commit runtime: commit di
+pubblicazione e parent ricostruiscono la cronologia Git, non sono una firma del
+codice effettivamente eseguito. La raccolta non inventa tale identità.
+
+Le patch posteriori a V10 introducono contratti/audit e handoff dedicati; non
+ho trovato una nuova esecuzione delle tre domande che ne misuri il risultato
+sulla baseline A/R1. La funzione `chat()` di prosa naturale è inoltre identica
+come sorgente fra `5b2df05` e HEAD; questo confronto statico **non dimostra**
+identità dell'intera pipeline, degli input o degli output del modello.
+
+Le fonti congelate hanno ancora esattamente i byte del loro artefatto storico;
+nessuna correzione successiva del codice aggiorna retroattivamente un F1–F6
+già salvato. Le osservazioni sulle loro lacune descrivono **quei pacchetti**,
+non un nuovo retrieval della produzione. Non impongono una ricostruzione RAG.
+
+### Componenti riutilizzabili e accoppiamenti reali
+
+| Componente preservato | Indipendenza documentabile dal generatore | Adattamento eventualmente necessario, non eseguito |
+|---|---|---|
+| Corpus, chunk e database vettoriale | Dati/documenti non sono pesi del generatore; nessun motivo per reindicizzare cambiando soltanto la generazione | Integrità e formato restano contratti distinti; non si certifica oggi lo stato live |
+| Embedding | `smoke_test_rag_v5_e2e.py:525` usa `qwen3-embedding:0.6b`, distinto da `--model` generativo | Nessun cambio embedding necessario; condivide Ollama/RAM con gli altri processi |
+| Retrieval/reranking | Fasi precedenti a chat, dense24→reranker→contesto; possono essere escluse dal pilot usando il contesto congelato | Il runner coordina risorse/caricamenti: non è un servizio completamente separato. Non cambiarlo per il pilot |
+| Generazione | `--model` del runner e `RAG_API_MODEL` dell'API rendono configurabile l'identità | Transport, template, thinking, tokenizer, stop token e post-processing richiedono verifica del modello esatto; non basta cambiare una stringa |
+| Contratti/validatori | Controlli deterministici sul contenuto strutturato, distinti dai pesi | Handoff/schema e capacità di produrre quel contratto sono dipendenti dal modello; natural-language pilot non valida TSC/Spatial |
+| API/panel | Worker passa il modello configurato al runner; la UI può conservare il contratto risposta/fonti | Parametri, tempi, errori, compatibilità del worker e contatori andranno verificati per una futura integrazione autorizzata, non durante questa selezione |
+| Rubriche, raw e benchmark | Evidenze e criteri riutilizzabili e immutabili, non da riscrivere per un candidato | Separare giudizio umano, gate tecnico e target 28/30; niente re-rating retroattivo qui |
+
+Quindi il generatore è sostituibile **come componente**, ma l'integrazione
+non è già dimostrata come plug-and-play. Questa distinzione protegge gli asset
+senza attribuire alla sola sostituzione del modello la soluzione di ogni errore.
+
+### Decisione operativa unica
+
+**Procedere verso il pilot esistente senza ricominciare lo sviluppo del RAG.**
+Gli input restano quelli storici, identici per entrambi; nessuna correzione
+di fonti o nuova estrazione è necessaria nel mandato corrente. Il significato
+resta confronto preliminare di generatori a evidenza fissa, non benchmark del
+retrieval attuale. Modificare oggi gli input aprirebbe una variabile ulteriore
+e richiederebbe un congelamento distinto, senza prova che sia indispensabile.
+La qualifica storica è la correzione minima della lettura dei dati, non dei dati.
+
+**Singolo prossimo passo:** autorizzare la preparazione/congelamento del driver
+e il preflight minimo del medesimo pilot. Nessun nuovo esperimento RAG o
+protocollo da inventare. Restano indispensabili, già previsti:
+
+- Identità e supporto effettivo dei due artefatti/build/template/thinking,
+  rendering e budget nel contesto senza tagli; niente ABI C++ o harness vecchi.
+- Input/parametri e ledger congelati, assenza di un tentativo preesistente,
+  host key, lock/concorrenza e raccolta/supervisione single-shot affidabili.
+- Memoria/servizi/spazio compatibili senza swap o costi extra; nessuna
+  installazione o modifica a runtime/RAG/panel implicitamente permessa.
+- Revisore cieco, rubriche e tolleranza operativa concordati prima dei sei
+  output; qualità valutata separatamente da prestazioni, senza promessa 28/30.
+
+Il consenso per le generazioni/download/caricamenti resta distinto e deve
+rispettare i gate del protocollo già pubblicato. Non vengono avviati ora
+né driver né preflight remoto. Nessun nuovo benchmark o controllo RAG è un
+prerequisito aggiunto per accedere a questa fase.
+
+### Risposte definitive nel perimetro delle prove
+
+1. **Sì, il lavoro RAG resta valido e riutilizzabile**, con certificazione
+   locked e validazioni Drive11/FIGC5, chiusura tecnica V10.1/V10.2 e contratti
+   offline nei rispettivi perimetri. Non va ricostruito.
+2. **I tre casi sono storici, non una misura attuale**: il difetto noto del
+   caso10 è stato affrontato; gli esatti rilievi fini 02/03 e l'eventuale loro
+   persistenza sul codice più recente restano NON VERIFICATI. La prova A/R1
+   q3_04 osserva un altro problema generativo, correttamente respinto.
+3. **Sì, possiamo avanzare al confronto Gemma26/Qwen27** con input invariati e
+   stesso identificativo, dopo autorizzazione e soli prerequisiti tecnici già
+   previsti. Non emerge una ragione documentata per una nuova patch RAG.
+
+Riconciliazione **ESEGUITO**; risultati precedenti preservati; pilot **DA FARE**.
+Target28/30, Gate generativi non superati e certificazione generale restano
+**BLOCCATO**, senza revocare il **CERTIFICATO** locked storico. Pubblicazione
+contestuale di questo addendum, inventario, TODO e registro; verifica GitHub e
+working tree, poi STOP. Nessuna attività esecutiva, costo, merge o deploy.
