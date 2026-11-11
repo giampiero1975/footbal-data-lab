@@ -1,0 +1,202 @@
+{
+  "activity": "RD-RAG-V5-BACKEND-HARNESS-H1-H3-DOCUMENTARY-CLOSEOUT-01",
+  "date": "2026-11-11",
+  "initial_head": "c99a456ad637de6ef1d995bbe9b869a7d7378acf",
+  "justification_recorded_before_checks": "README sezione Precisazioni H1–H3: nuovi gate, categorie H2 e ledger composto; sola completezza documentale/preservazione, non audit storico.",
+  "method": "17 nuovi controlli di presenza/struttura/riferimenti e preservazione; ispezione documentale manuale. Non prova del comportamento di codice o ABI.",
+  "checks": [
+    {
+      "id": "D01",
+      "description": "H1 sei gate completi in matrice",
+      "pass": true,
+      "evidence": [
+        "H1-G1",
+        "H1-G2",
+        "H1-G3",
+        "H1-G4",
+        "H1-G5",
+        "H1-G6"
+      ]
+    },
+    {
+      "id": "D02",
+      "description": "H1 confini pre-toolchain, linking e loading",
+      "pass": true,
+      "evidence": "H1_PRETOOLCHAIN_GATES.md"
+    },
+    {
+      "id": "D03",
+      "description": "H1 include/flag/ambiente/plugin e closure",
+      "pass": true,
+      "evidence": "H1_PRETOOLCHAIN_GATES.md"
+    },
+    {
+      "id": "D04",
+      "description": "H1 custodia e arresto su prova mancante",
+      "pass": true,
+      "evidence": "H1_PRETOOLCHAIN_GATES.md"
+    },
+    {
+      "id": "D05",
+      "description": "H2 soglie non definite e da approvare",
+      "pass": true,
+      "evidence": [
+        "deadline_wall_clock",
+        "cpu_budget",
+        "memory_budget",
+        "output_budget",
+        "stop_grace",
+        "finalization_budget"
+      ]
+    },
+    {
+      "id": "D06",
+      "description": "H2 deadline monotono indipendente da CPU",
+      "pass": true,
+      "evidence": "H2_SUPERVISOR_CONTRACT.md"
+    },
+    {
+      "id": "D07",
+      "description": "H2 intero gruppo e supervisore esterno",
+      "pass": true,
+      "evidence": "H2_SUPERVISOR_CONTRACT.md"
+    },
+    {
+      "id": "D08",
+      "description": "H2 dodici categorie con prove e limiti",
+      "pass": true,
+      "evidence": [
+        "E_H2_EXCEPTION",
+        "E_H2_LOADER",
+        "E_H2_CRASH",
+        "E_H2_OOM",
+        "E_H2_WALL_TIMEOUT",
+        "E_H2_CPU_LIMIT",
+        "E_H2_MEMORY_LIMIT",
+        "E_H2_OUTPUT_LIMIT",
+        "E_H2_WORKER_PROTOCOL",
+        "E_H2_SIGNAL_UNKNOWN",
+        "E_H2_CONTAINMENT",
+        "E_H2_FINALIZATION"
+      ]
+    },
+    {
+      "id": "D09",
+      "description": "H2 evidenze parziali e finalizzazione senza JSON",
+      "pass": true,
+      "evidence": "H2_SUPERVISOR_CONTRACT.md"
+    },
+    {
+      "id": "D10",
+      "description": "H3 cinque classificazioni distinte",
+      "pass": true,
+      "evidence": [
+        "H3-C1",
+        "H3-C2",
+        "H3-C3",
+        "H3-C4",
+        "H3-C5"
+      ]
+    },
+    {
+      "id": "D11",
+      "description": "H3 quattro JSON Pointer concreti",
+      "pass": true,
+      "evidence": [
+        "/$defs/relation/properties/subject/anyOf/0/properties/entity_id/maxLength",
+        "/$defs/relation/properties/subject/anyOf/1/properties/entity_id/maxLength",
+        "/$defs/relation/properties/reference/anyOf/0/properties/entity_id/maxLength",
+        "/$defs/relation/properties/reference/anyOf/1/properties/entity_id/maxLength"
+      ]
+    },
+    {
+      "id": "D12",
+      "description": "H3 congiunzione ed ambito fonte/VPS",
+      "pass": true,
+      "evidence": "H3_CONSTRAINT_LEDGER.md"
+    },
+    {
+      "id": "D13",
+      "description": "H3 distinzione esterno/annotazione/perdita",
+      "pass": true,
+      "evidence": "H3_CONSTRAINT_LEDGER.md"
+    },
+    {
+      "id": "D14",
+      "description": "Riferimenti locali nuovi risolvibili",
+      "pass": true,
+      "evidence": {
+        "README_links": [
+          true,
+          true,
+          true
+        ],
+        "review_evidence_exists": true
+      }
+    },
+    {
+      "id": "D15",
+      "description": "Manifest di provenienza/identità byte-identici",
+      "pass": true,
+      "evidence": {
+        "sources-lock.json": {
+          "byte_identical": true,
+          "baseline_sha256": "614d5795a1cd2f7e5ba7138848764b3a98cc51f4bdde60b2c969589fec71ff43",
+          "current_sha256": "614d5795a1cd2f7e5ba7138848764b3a98cc51f4bdde60b2c969589fec71ff43"
+        },
+        "target-contract.json": {
+          "byte_identical": true,
+          "baseline_sha256": "4ff99ac9c995a8bb8ad4dbc26eed5f58a34b84d89fbdec95ccf4960b40d1ae1f",
+          "current_sha256": "4ff99ac9c995a8bb8ad4dbc26eed5f58a34b84d89fbdec95ccf4960b40d1ae1f"
+        }
+      }
+    },
+    {
+      "id": "D16",
+      "description": "Nessuno sblocco esecutivo o attestazione ABI",
+      "pass": true,
+      "evidence": {
+        "execution_authorized": false,
+        "source_binary_attestation": null
+      }
+    },
+    {
+      "id": "D17",
+      "description": "Perimetro applicativo e storico invariato",
+      "pass": true,
+      "evidence": []
+    }
+  ],
+  "checks_total": 17,
+  "checks_passed": 17,
+  "checks_failed": 0,
+  "updated_document_hashes": {
+    "README.md": "00bc3bbb677451c2e44921f51c51c9d5a74b872bd9f99c7aa175c7bf49bbf700",
+    "H1_PRETOOLCHAIN_GATES.md": "c13251ec589117986e8d5c531d95399d7bcfffcda352279ecaf8c450443ffe82",
+    "H2_SUPERVISOR_CONTRACT.md": "a08c1d73c9f0ee48546184527acff0a11114283d31b1d67b5323f026280487f6",
+    "H3_CONSTRAINT_LEDGER.md": "45ea8502c26f634d7be183675c27c4f42f6aac9dbb43e8efb89aa5f0b21d09f1"
+  },
+  "frozen_manifest_preservation": {
+    "sources-lock.json": {
+      "byte_identical": true,
+      "baseline_sha256": "614d5795a1cd2f7e5ba7138848764b3a98cc51f4bdde60b2c969589fec71ff43",
+      "current_sha256": "614d5795a1cd2f7e5ba7138848764b3a98cc51f4bdde60b2c969589fec71ff43"
+    },
+    "target-contract.json": {
+      "byte_identical": true,
+      "baseline_sha256": "4ff99ac9c995a8bb8ad4dbc26eed5f58a34b84d89fbdec95ccf4960b40d1ae1f",
+      "current_sha256": "4ff99ac9c995a8bb8ad4dbc26eed5f58a34b84d89fbdec95ccf4960b40d1ae1f"
+    }
+  },
+  "historical_25_source_audit_repeated": false,
+  "application_tests": 0,
+  "ssh_connections": 0,
+  "compiler_runs": 0,
+  "link_steps": 0,
+  "dynamic_loads": 0,
+  "model_calls": 0,
+  "documentary_status": "VALIDATO",
+  "ABI_attestation_status": "DA FARE",
+  "implementation_status": "BLOCCATO",
+  "backend_compatibility_status": "BLOCCATO"
+}

@@ -8,6 +8,22 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** per proprietà documentali coperte
+  RD-RAG-V5-BACKEND-HARNESS-H1-H3-DOCUMENTARY-CLOSEOUT-01 (2026-11-11).
+  Precisazioni **IMPLEMENTATO** nel README e tre nuove specifiche H1/H2/H3:
+  gate prima della toolchain/link/loading, supervisore con deadline monotono
+  e finalizzazione esterna, ledger di congiunzioni con cinque categorie.
+  Sei gate, dodici categorie H2, quattro pointer concreti del caso
+  pattern/maxLength pubblico; nessuna prova sulla VPS. Diciassette controlli
+  documentali nuovi 17/17, non test del backend. Manifest sources-lock e
+  target-contract byte-identici, nessuna soglia definitiva o autorizzazione
+  esecutiva nuova. Idoneo a successiva attestazione ABI separata: ABI **DA FARE**;
+  implementazione, compatibilità backend, accuratezza generativa, Gate,
+  integrazione e certificazione **BLOCCATO**. Report
+  `docs/rag-v5-backend-harness-h1-h3-documentary-closeout-01.md` e nuova evidenza
+  pubblicati con TODO/registro. Nessun audit 25/25 o suite ripetuti,
+  codice eseguibile, VPS, compiler/link/loading, inferenza o deploy. STOP.
+
 - [x] **VALIDATO** come revisione indipendente documentale
   RD-RAG-V5-BACKEND-HARNESS-DESIGN-INDEPENDENT-REVIEW-01 (2026-11-11).
   Decisione **A**: progetto adeguato per affrontare il prerequisito ABI in

@@ -43,6 +43,25 @@ bersaglio non dimostrata.** Applicato il fallback del mandato: solo progetto
 documentale. Né ctypes, cast ABI, header sintetici, dlsym con firme inventate,
 né una ricompilazione upstream sostitutiva possono colmare la prova mancante.
 
+## Precisazioni H1–H3 — contratto documentale integrativo
+
+Le tre specifiche seguenti precisano i prerequisiti, senza modificarne le
+identità, introdurre soglie definitive o autorizzare implementazione/esecuzione:
+
+- [H1 — gate pre-toolchain, linking e loading](H1_PRETOOLCHAIN_GATES.md).
+- [H2 — supervisore, limiti e finalizzazione esterna](H2_SUPERVISOR_CONTRACT.md).
+- [H3 — ledger e congiunzioni di keyword](H3_CONSTRAINT_LEDGER.md).
+
+Dettagliano in modo cumulativo i requisiti sotto riportati. Un vuoto o conflitto
+non apre una deroga: richiede arresto e decisione separata. sources-lock.json e
+target-contract.json restano invariati; execution_authorized rimane false.
+Attestazione ABI DA FARE, implementazione eseguibile e backend BLOCCATO.
+
+Giustificazione dei controlli documentali nuovi, registrata prima di eseguirli:
+H1–H3 introducono gate, categorie H2 e ledger composto assenti nella precedente
+specifica. Si controlleranno solo completezza/riferimenti di questi nuovi
+contenuti e integrità dei manifest congelati, senza audit 25/25, suite o prove.
+
 ## Componenti previsti, non implementati
 
 | Componente | Responsabilità | Limite |
@@ -59,7 +78,7 @@ prima del suo avvio; non basta un controllo hash nel main.
 Un ambiente di esecuzione futuro deve essere isolato dalla rete e dai servizi,
 con directory librerie immutable/revisionate, LD_PRELOAD/LD_LIBRARY_PATH non
 incontrollati e assenza di TOCTOU fra hash e loading. Si devono fissare prima
-dell'esecuzione limiti revisionati di CPU/RSS e output, senza importare i timeout
+dell'esecuzione limiti revisionati di CPU/RSS, durata wall-clock e output (H2), senza importare i timeout
 del runtime Qwen. Nessun ambiente del genere è creato in questa attività.
 
 ## Ordine fail-closed previsto

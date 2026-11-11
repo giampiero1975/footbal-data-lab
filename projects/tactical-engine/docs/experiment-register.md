@@ -2,6 +2,35 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Precisazioni architetturali documentali H1–H3
+
+Attività: `RD-RAG-V5-BACKEND-HARNESS-H1-H3-DOCUMENTARY-CLOSEOUT-01`.
+Script: letture Git/JSON e controlli Python inline documentali, senza script
+eseguibile del progetto. Commit: documentale con progetto aggiornato, report,
+evidenza, TODO e registro contestuali. Report:
+`docs/rag-v5-backend-harness-h1-h3-documentary-closeout-01.md`; evidenza:
+`docs/backend-harness-h1-h3-documentary-checks-01.json`. HEAD iniziale
+locale/GitHub c99a456, tree pulito; report e audit precedente riconciliati,
+H1–H3 ancora da integrare. Risultato: README integrato e tre specifiche nuove
+in status-correlated-01-design: H1_PRETOOLCHAIN_GATES, H2_SUPERVISOR_CONTRACT,
+H3_CONSTRAINT_LEDGER. Sei gate con prove/arresti/proprietà non dimostrate;
+sei policy risorse con soglie non definite/non approvate, deadline wall-clock
+monotono, gruppo intero, dodici cause tecniche e finalizzazione esterna;
+cinque classi ledger con congiunzioni e quattro pointer entity_id, fonte GBNF
+pubblica distinta dalla VPS, residui Python invariati. Giustificazione dei
+controlli nuovi registrata nel README prima del run. Diciassette controlli
+documentali 17/17; manifest sources-lock/target-contract byte-identici,
+execution_authorized=false e attestazione null preservati. Nessun audit 25/25,
+suite applicativa, schema/compiler o prova remota ripetuti. Decisione: idoneo
+a successiva attestazione ABI separata, non eseguita. Stato: precisazioni
+**IMPLEMENTATO** documentale, controlli **ESEGUITO**, proprietà coperte
+**VALIDATO** documentale; ABI **DA FARE**. Implementazione eseguibile,
+compatibilità backend, accuratezza generativa, Gate, integrazione e
+certificazione **BLOCCATO**. Nessuna modifica a manifest, codice, schema,
+validatore, dataset/Gold, wrapper o report precedenti; nessun C++/CMake/script
+operativo, VPS, compile/link/loading, modello, runtime-05, staging, merge/deploy.
+STOP dopo pubblicazione e verifica del repository.
+
 ### 2026-11-11 — Revisione indipendente progetto harness non generativo
 
 Attività: `RD-RAG-V5-BACKEND-HARNESS-DESIGN-INDEPENDENT-REVIEW-01`. Script:
