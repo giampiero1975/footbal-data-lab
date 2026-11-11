@@ -8,6 +8,24 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** nel solo perimetro documentale
+  RD-RAG-V5-REMEDIATION-A-Q3-04-GROUNDING-DIAGNOSIS-01 (2026-11-11).
+  Analisi **ESEGUITO** del raw già pubblicato: sette campi evidence, cinque
+  stringhe distinte, ciascuna presente una volta nel claim e zero nell'evidence.
+  Le due relation sono identiche come oggetti JSON: duplicazione fuori lato
+  nell'output accertata, meccanismo interno di copia non dimostrato. Payload
+  fedele, regola di grounding già esplicita; locator correttamente fail-closed.
+  Matrice per campo e corrispondenze in
+  `docs/remediation-a-q3-04-grounding-diagnosis-facts-01.json`; report
+  `docs/rag-v5-remediation-a-q3-04-grounding-diagnosis-01.md`, pubblicati con
+  TODO/registro. Decisione: evidenze insufficienti per una correzione minima
+  giustificata; nessuna patch proposta o implementata. Diagnosi verificabile
+  interamente offline; nessuna nuova generazione giustificata senza un futuro
+  delta tecnico specifico e motivato. Nessun test/replay locator o suite,
+  SSH/inferenza, codice/prompt/schema/Gold modificati, merge o deploy.
+  Accuratezza generativa, compatibilità backend completa, ABI, Gate,
+  integrazione e certificazione **BLOCCATO**. STOP dopo diagnosi pubblicata.
+
 - [x] **ESEGUITO** RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01
   (2026-11-11). Tentativo consumato: **1 POST, 1 generazione completata**,
   nessun retry/repair/fallback. Driver tecnico 9fcc212; caller e applicazione

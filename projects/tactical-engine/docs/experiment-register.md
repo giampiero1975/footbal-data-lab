@@ -2,6 +2,40 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Diagnosi mirata grounding q3_04
+
+Attività: `RD-RAG-V5-REMEDIATION-A-Q3-04-GROUNDING-DIAGNOSIS-01`.
+Script/metodo: analisi documentale inline JSON/stringhe/hash del raw pubblicato,
+input, schema e payload; lettura statica caller/locator. Nessun import o replay
+applicativo, test o modello. Commit documentale con report, fatti, TODO e
+registro contestuali. Report:
+`docs/rag-v5-remediation-a-q3-04-grounding-diagnosis-01.md`; evidenza:
+`docs/remediation-a-q3-04-grounding-diagnosis-facts-01.json`. HEAD iniziale
+locale/GitHub 4c4682f8c40f5850d1f5f571846bf19e20a81b53, branch atteso e tree
+pulito; fonte ufficiale e raw consultati anche su GitHub. Riconciliati report
+del tentativo, precedenti locator/revisione, runtime-03 e forense runtime-04;
+nessuna matrice equivalente già conclusa. Differenza documentale: per ognuno
+dei sette campi, testo esatto, lato, presenza claim/evidence, altre corrispondenze
+e responsabilità, rispetto al conteggio missing del report di esecuzione.
+Risultato: cinque stringhe distinte in sette campi evidence, tutte una volta
+nel claim e zero nell'evidence; claim_relation ed evidence_relation uguali
+come oggetti già nel raw. Origine testuale fuori lato dimostrata; processo
+interno di copia non provato, possibile parafrasi isolata non spiega l'intero
+output e resta vietata per grounding letterale explicit. Payload FONTE/claim
+fedele, grounding esplicito nelle istruzioni e descrizioni schema; assenza
+correttamente respinta dal locator, validatore finale non raggiunto. Referente
+comune ai due testi è controesempio a un divieto generalizzato di uguaglianza
+fra lati. Decisione unica: evidenze insufficienti per selezionare una correzione
+minima giustificata, nessuna patch proposta. Verifica della diagnosi tutta
+offline, non richiede nuovo output; efficacia generativa futura richiederebbe
+un nuovo output dopo delta motivato/autorizzato che qui non è definibile.
+Nessuna nuova generazione attualmente giustificata. Stato: analisi **ESEGUITO**,
+diagnosi **VALIDATO** documentale, non causalità cognitiva o miglioramento
+modello. Accuratezza generativa, compatibilità completa, ABI, Gate, integrazione
+e certificazione **BLOCCATO**. Nessun originale, codice, schema, prompt,
+validatore o Gold modificato; zero suite/replay, SSH, inferenza, compilazione,
+merge o deploy. STOP dopo pubblicazione e verifica GitHub/working tree.
+
 ### 2026-11-11 — Singolo caso Qwen ufficiale remediation A/R1
 
 Attività: `RD-RAG-V5-REMEDIATION-A-OFFICIAL-API-SINGLE-CASE-01`. Script:

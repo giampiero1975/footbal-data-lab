@@ -1,0 +1,167 @@
+{
+  "activity": "RD-RAG-V5-REMEDIATION-A-Q3-04-GROUNDING-DIAGNOSIS-01",
+  "baseline": "4c4682f8c40f5850d1f5f571846bf19e20a81b53",
+  "analysis_method": "New documentary cross-side and cross-field comparison of published raw only; no application imports, locator replay, tests or model execution. Technical difference from collection: exact seven-row origin/alias matrix and responsibility assessment, not just missing-count inventory.",
+  "input": {
+    "case_id": "q3_04",
+    "claim": "La difesa bassa lascia molto spazio tra la linea difensiva e la porta.",
+    "evidence": "La ricerca della verticalizzazione e della profondità del gioco è, per contro, di difficile attuazione quando si affrontano squadre che difendono basse e che lasciano avanzare gli avversari togliendo però spazio tra la linea difensiva e la porta."
+  },
+  "payload_preserves_claim": true,
+  "payload_preserves_evidence": true,
+  "payload_schema_matches_snapshot": true,
+  "grounding_instruction": "Grounding separato: claim_relation usa soltanto l'AFFERMAZIONE; evidence_relation soltanto la FONTE. subject e l'attore, reference il referente spaziale nello stesso lato. Ogni selected_fragment e letterale, non vuoto e non parafrasato; non spostarlo fra lati. Non produrre offset, start/end o source: il locator side-bound resta letterale e non ripara frammenti mancanti o ripetuti.",
+  "schema_side_descriptions": {
+    "claim_relation": "Relation extracted only from the claim (AFFERMAZIONE).",
+    "evidence_relation": "Relation extracted only from the evidence (FONTE)."
+  },
+  "relations_equal_as_json_objects": true,
+  "fragment_field_count": 16,
+  "missing_evidence_fields": 7,
+  "distinct_missing_strings": 5,
+  "fragment_matrix": [
+    {
+      "path": "evidence_relation.subject.selected_fragments[0]",
+      "text": "La difesa bassa",
+      "assigned_side": "evidence",
+      "positions_claim": [
+        0
+      ],
+      "positions_evidence": [],
+      "same_text_fields": [
+        "claim_relation.subject.selected_fragments[0]"
+      ],
+      "same_slot_claim": "claim_relation.subject.selected_fragments[0]",
+      "origin_observed": "Exact string present in claim and duplicated in matching claim slot of raw; absent from evidence. No cognitive cause inferred."
+    },
+    {
+      "path": "evidence_relation.semantic_axis.selected_fragments[0]",
+      "text": "lascia molto spazio",
+      "assigned_side": "evidence",
+      "positions_claim": [
+        16
+      ],
+      "positions_evidence": [],
+      "same_text_fields": [
+        "claim_relation.semantic_axis.selected_fragments[0]",
+        "claim_relation.phase.selected_fragments[0]",
+        "claim_relation.polarity.selected_fragments[0]",
+        "evidence_relation.phase.selected_fragments[0]",
+        "evidence_relation.polarity.selected_fragments[0]"
+      ],
+      "same_slot_claim": "claim_relation.semantic_axis.selected_fragments[0]",
+      "origin_observed": "Exact string present in claim and duplicated in matching claim slot of raw; absent from evidence. No cognitive cause inferred."
+    },
+    {
+      "path": "evidence_relation.value.selected_fragments[0]",
+      "text": "molto spazio",
+      "assigned_side": "evidence",
+      "positions_claim": [
+        23
+      ],
+      "positions_evidence": [],
+      "same_text_fields": [
+        "claim_relation.value.selected_fragments[0]"
+      ],
+      "same_slot_claim": "claim_relation.value.selected_fragments[0]",
+      "origin_observed": "Exact string present in claim and duplicated in matching claim slot of raw; absent from evidence. No cognitive cause inferred."
+    },
+    {
+      "path": "evidence_relation.conditions.items[0].selected_fragments[0]",
+      "text": "molto spazio tra la linea difensiva e la porta",
+      "assigned_side": "evidence",
+      "positions_claim": [
+        23
+      ],
+      "positions_evidence": [],
+      "same_text_fields": [
+        "claim_relation.conditions.items[0].selected_fragments[0]"
+      ],
+      "same_slot_claim": "claim_relation.conditions.items[0].selected_fragments[0]",
+      "origin_observed": "Exact string present in claim and duplicated in matching claim slot of raw; absent from evidence. No cognitive cause inferred."
+    },
+    {
+      "path": "evidence_relation.phase.selected_fragments[0]",
+      "text": "lascia molto spazio",
+      "assigned_side": "evidence",
+      "positions_claim": [
+        16
+      ],
+      "positions_evidence": [],
+      "same_text_fields": [
+        "claim_relation.semantic_axis.selected_fragments[0]",
+        "claim_relation.phase.selected_fragments[0]",
+        "claim_relation.polarity.selected_fragments[0]",
+        "evidence_relation.semantic_axis.selected_fragments[0]",
+        "evidence_relation.polarity.selected_fragments[0]"
+      ],
+      "same_slot_claim": "claim_relation.phase.selected_fragments[0]",
+      "origin_observed": "Exact string present in claim and duplicated in matching claim slot of raw; absent from evidence. No cognitive cause inferred."
+    },
+    {
+      "path": "evidence_relation.quantifier.selected_fragments[0]",
+      "text": "molto",
+      "assigned_side": "evidence",
+      "positions_claim": [
+        23
+      ],
+      "positions_evidence": [],
+      "same_text_fields": [
+        "claim_relation.quantifier.selected_fragments[0]"
+      ],
+      "same_slot_claim": "claim_relation.quantifier.selected_fragments[0]",
+      "origin_observed": "Exact string present in claim and duplicated in matching claim slot of raw; absent from evidence. No cognitive cause inferred."
+    },
+    {
+      "path": "evidence_relation.polarity.selected_fragments[0]",
+      "text": "lascia molto spazio",
+      "assigned_side": "evidence",
+      "positions_claim": [
+        16
+      ],
+      "positions_evidence": [],
+      "same_text_fields": [
+        "claim_relation.semantic_axis.selected_fragments[0]",
+        "claim_relation.phase.selected_fragments[0]",
+        "claim_relation.polarity.selected_fragments[0]",
+        "evidence_relation.semantic_axis.selected_fragments[0]",
+        "evidence_relation.phase.selected_fragments[0]"
+      ],
+      "same_slot_claim": "claim_relation.polarity.selected_fragments[0]",
+      "origin_observed": "Exact string present in claim and duplicated in matching claim slot of raw; absent from evidence. No cognitive cause inferred."
+    }
+  ],
+  "common_reference": {
+    "text": "tra la linea difensiva e la porta",
+    "explanation": "Present on both sides; identical fragments across sides are not inherently invalid."
+  },
+  "artifact_identities": {
+    "evaluation/remediation_a_official_api_single_case_01/raw_response.json": {
+      "bytes": 3957,
+      "sha256": "dab16c58e6df124355630743b898926ce49d83e5336796ca3081f88155b24147"
+    },
+    "evaluation/remediation_a_official_api_single_case_01/input.json": {
+      "bytes": 783,
+      "sha256": "70520cd3dd77fb96406bb3fa4ba120b5767228592a3c38373bb7a4a20abe4bed"
+    },
+    "evaluation/remediation_a_official_api_single_case_01/schema.json": {
+      "bytes": 41356,
+      "sha256": "c536d8fc247d338f39a3ddd9e42b4745fc9dba08d37d81dc1fbcea374bf60f83"
+    },
+    "evaluation/remediation_a_official_api_single_case_01/request_payload.json": {
+      "bytes": 24574,
+      "sha256": "0852b5ad08557195c76a784b632d5b30e44657802b40b712b4de507629d8d16d"
+    },
+    "scripts/v5_tactical_semantic_support_s2_spatial_v2_extraction.py": {
+      "bytes": 32525,
+      "sha256": "377f50e542df55a88d7c72fa54e004f0a46a44ff271ef7bd105121452edb8f34"
+    },
+    "scripts/shadow_nli_spatial_relations_v2_inference.py": {
+      "bytes": 7938,
+      "sha256": "c8051325bda35e71fd4a6000f3062cd62eedb3bb344492e93e14195eed301bea"
+    }
+  },
+  "decision": "Insufficient evidence to select a justified minimal corrective patch. Do not change the already explicit side-bound rule or repair the raw.",
+  "status": "VALIDATO",
+  "validation_scope": "Documentary diagnosis of the published output, not causal cognitive attribution or generative improvement."
+}
