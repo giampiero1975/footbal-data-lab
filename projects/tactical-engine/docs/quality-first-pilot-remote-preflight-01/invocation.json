@@ -1,0 +1,49 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "phase": "read-only diagnostic",
+  "argv": [
+    "ssh",
+    "-F",
+    "C:\\Users\\giamp\\.ssh\\config",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "KexAlgorithms=curve25519-sha256",
+    "-o",
+    "HostKeyAlgorithms=ssh-ed25519",
+    "football-vps",
+    "/usr/bin/python3 -B -I -"
+  ],
+  "config": {
+    "user": [
+      "football"
+    ],
+    "hostname": [
+      "163.5.26.155"
+    ],
+    "port": [
+      "22"
+    ],
+    "identitiesonly": [
+      "yes"
+    ],
+    "stricthostkeychecking": [
+      "true"
+    ],
+    "identityfile": [
+      "~/.ssh/codex-football-vps-ed25519-v3"
+    ]
+  },
+  "verified_host_key": "SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks",
+  "program_sha256": "fc57a58e6dc8ebab8633a3e87413165a34abd184cabadc367b3ebc3eb0fa3c1d",
+  "script_sha256": "76973528f09c4e7eec9b48f46f9359127ab73519ca69057091ba5f9f2a6df08c",
+  "local_execution_ledger_exists": false,
+  "utc": "2026-11-11T20:34:16.636624+00:00"
+}

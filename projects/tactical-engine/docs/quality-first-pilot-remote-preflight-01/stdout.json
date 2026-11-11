@@ -1,0 +1,544 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "phase": "diagnostic read-only preflight",
+  "utc": "2026-11-11T20:34:17.801053+00:00",
+  "uid": 1000,
+  "user": "football",
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/api/version",
+      "body": null,
+      "status": 200,
+      "headers": [
+        [
+          "Content-Type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "Date",
+          "Wed, 11 Nov 2026 20:34:17 GMT"
+        ],
+        [
+          "Content-Length",
+          "20"
+        ]
+      ],
+      "raw_base64": "eyJ2ZXJzaW9uIjoiMC40MC41In0=",
+      "bytes": 20,
+      "json": {
+        "version": "0.40.5"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/tags",
+      "body": null,
+      "status": 200,
+      "headers": [
+        [
+          "Content-Type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "Date",
+          "Wed, 11 Nov 2026 20:34:17 GMT"
+        ],
+        [
+          "Content-Length",
+          "1490"
+        ]
+      ],
+      "raw_base64": "eyJtb2RlbHMiOlt7Im5hbWUiOiJxd2VuMy1lbWJlZGRpbmc6MC42YiIsIm1vZGVsIjoicXdlbjMtZW1iZWRkaW5nOjAuNmIiLCJtb2RpZmllZF9hdCI6IjIwMjYtMTAtMTdUMTU6MDM6MTQuMzY2MTU1NjE3KzAyOjAwIiwic2l6ZSI6NjM5MTUwODU4LCJkaWdlc3QiOiJhYzZkYTBkZmJhODRhODFmZGJmYmFmMzMwMTk4YzMzY2Q3N2M0Y2RmYzUzZThiYzUwZWI1ODE5MTRhMTU2MjFkIiwiZGV0YWlscyI6eyJwYXJlbnRfbW9kZWwiOiIvVXNlcnMvb2xsYW1hLy5vbGxhbWEvbW9kZWxzL2Jsb2JzL3NoYTI1Ni0wNjUwN2M3YjQyNjg4NDY5YzRlNzI5OGIwYTFlMTZkZWZmMDZjYWYyOTFjZjBhNWIyNzhjMzA4MjQ5YzNlNDM5IiwiZm9ybWF0IjoiZ2d1ZiIsImZhbWlseSI6InF3ZW4zIiwiZmFtaWxpZXMiOlsicXdlbjMiXSwicGFyYW1ldGVyX3NpemUiOiI1OTUuNzhNIiwicXVhbnRpemF0aW9uX2xldmVsIjoiUThfMCIsImNvbnRleHRfbGVuZ3RoIjozMjc2OCwiZW1iZWRkaW5nX2xlbmd0aCI6MTAyNCwicnVubmVyIjoiZ2dtbCJ9LCJjYXBhYmlsaXRpZXMiOlsidG9vbHMiLCJ0aGlua2luZyIsImVtYmVkZGluZyJdfSx7Im5hbWUiOiJxd2VuMy41OjliIiwibW9kZWwiOiJxd2VuMy41OjliIiwibW9kaWZpZWRfYXQiOiIyMDI2LTEwLTE3VDEyOjUwOjI0LjY0NjU5NDIzOSswMjowMCIsInNpemUiOjY1NTA4MjU1NTAsImRpZ2VzdCI6IjU2NjcxYzJhYjkzODVmOWNmY2I0MDQ2MzhlMzJjZDYyZDg4ZTM1MDFkNDQ4MjIyMDgzNjNjMDEwMTc5YTNjOTAiLCJkZXRhaWxzIjp7InBhcmVudF9tb2RlbCI6Im1vZGVsLmdndWYiLCJmb3JtYXQiOiJnZ3VmIiwiZmFtaWx5IjoicXdlbjM1IiwiZmFtaWxpZXMiOlsicXdlbjM1Il0sInBhcmFtZXRlcl9zaXplIjoiOS4wQiIsInF1YW50aXphdGlvbl9sZXZlbCI6IlE0X0tfTSIsImNvbnRleHRfbGVuZ3RoIjoyNjIxNDQsImVtYmVkZGluZ19sZW5ndGgiOjQwOTYsInJ1bm5lciI6ImxsYW1hY3BwIn0sImNhcGFiaWxpdGllcyI6WyJjb21wbGV0aW9uIiwidmlzaW9uIiwidG9vbHMiLCJ0aGlua2luZyJdfSx7Im5hbWUiOiJub21pYy1lbWJlZC10ZXh0OmxhdGVzdCIsIm1vZGVsIjoibm9taWMtZW1iZWQtdGV4dDpsYXRlc3QiLCJtb2RpZmllZF9hdCI6IjIwMjYtMTAtMTZUMjE6Mzc6NDQuMjEwNDgyMzMxKzAyOjAwIiwic2l6ZSI6Mjc0MzAyNDUwLCJkaWdlc3QiOiIwYTEwOWY0MjJiNDdlM2EzMGJhMmIxMGVjYTE4NTQ4ZTk0NGU4YTIzMDczZWUzZjNlOTQ3ZWZjZjNjNDVlNTlmIiwiZGV0YWlscyI6eyJwYXJlbnRfbW9kZWwiOiIiLCJmb3JtYXQiOiJnZ3VmIiwiZmFtaWx5Ijoibm9taWMtYmVydCIsImZhbWlsaWVzIjpbIm5vbWljLWJlcnQiXSwicGFyYW1ldGVyX3NpemUiOiIxMzdNIiwicXVhbnRpemF0aW9uX2xldmVsIjoiRjE2IiwiY29udGV4dF9sZW5ndGgiOjIwNDgsImVtYmVkZGluZ19sZW5ndGgiOjc2OCwicnVubmVyIjoiZ2dtbCJ9LCJjYXBhYmlsaXRpZXMiOlsiZW1iZWRkaW5nIl19XX0=",
+      "bytes": 1490,
+      "json": {
+        "models": [
+          {
+            "name": "qwen3-embedding:0.6b",
+            "model": "qwen3-embedding:0.6b",
+            "modified_at": "2026-10-17T15:03:14.366155617+02:00",
+            "size": 639150858,
+            "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+            "details": {
+              "parent_model": "/Users/ollama/.ollama/models/blobs/sha256-06507c7b42688469c4e7298b0a1e16deff06caf291cf0a5b278c308249c3e439",
+              "format": "gguf",
+              "family": "qwen3",
+              "families": [
+                "qwen3"
+              ],
+              "parameter_size": "595.78M",
+              "quantization_level": "Q8_0",
+              "context_length": 32768,
+              "embedding_length": 1024,
+              "runner": "ggml"
+            },
+            "capabilities": [
+              "tools",
+              "thinking",
+              "embedding"
+            ]
+          },
+          {
+            "name": "qwen3.5:9b",
+            "model": "qwen3.5:9b",
+            "modified_at": "2026-10-17T12:50:24.646594239+02:00",
+            "size": 6550825550,
+            "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+            "details": {
+              "parent_model": "model.gguf",
+              "format": "gguf",
+              "family": "qwen35",
+              "families": [
+                "qwen35"
+              ],
+              "parameter_size": "9.0B",
+              "quantization_level": "Q4_K_M",
+              "context_length": 262144,
+              "embedding_length": 4096,
+              "runner": "llamacpp"
+            },
+            "capabilities": [
+              "completion",
+              "vision",
+              "tools",
+              "thinking"
+            ]
+          },
+          {
+            "name": "nomic-embed-text:latest",
+            "model": "nomic-embed-text:latest",
+            "modified_at": "2026-10-16T21:37:44.210482331+02:00",
+            "size": 274302450,
+            "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f",
+            "details": {
+              "parent_model": "",
+              "format": "gguf",
+              "family": "nomic-bert",
+              "families": [
+                "nomic-bert"
+              ],
+              "parameter_size": "137M",
+              "quantization_level": "F16",
+              "context_length": 2048,
+              "embedding_length": 768,
+              "runner": "ggml"
+            },
+            "capabilities": [
+              "embedding"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/ps",
+      "body": null,
+      "status": 200,
+      "headers": [
+        [
+          "Content-Type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "Date",
+          "Wed, 11 Nov 2026 20:34:17 GMT"
+        ],
+        [
+          "Content-Length",
+          "13"
+        ]
+      ],
+      "raw_base64": "eyJtb2RlbHMiOltdfQ==",
+      "bytes": 13,
+      "json": {
+        "models": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/ps",
+      "body": null,
+      "status": 200,
+      "headers": [
+        [
+          "Content-Type",
+          "application/json; charset=utf-8"
+        ],
+        [
+          "Date",
+          "Wed, 11 Nov 2026 20:34:17 GMT"
+        ],
+        [
+          "Content-Length",
+          "13"
+        ]
+      ],
+      "raw_base64": "eyJtb2RlbHMiOltdfQ==",
+      "bytes": 13,
+      "json": {
+        "models": []
+      }
+    }
+  ],
+  "generative_posts": 0,
+  "lock_acquired": false,
+  "version": {
+    "version": "0.40.5"
+  },
+  "tags": {
+    "models": [
+      {
+        "name": "qwen3-embedding:0.6b",
+        "model": "qwen3-embedding:0.6b",
+        "modified_at": "2026-10-17T15:03:14.366155617+02:00",
+        "size": 639150858,
+        "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+        "details": {
+          "parent_model": "/Users/ollama/.ollama/models/blobs/sha256-06507c7b42688469c4e7298b0a1e16deff06caf291cf0a5b278c308249c3e439",
+          "format": "gguf",
+          "family": "qwen3",
+          "families": [
+            "qwen3"
+          ],
+          "parameter_size": "595.78M",
+          "quantization_level": "Q8_0",
+          "context_length": 32768,
+          "embedding_length": 1024,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "tools",
+          "thinking",
+          "embedding"
+        ]
+      },
+      {
+        "name": "qwen3.5:9b",
+        "model": "qwen3.5:9b",
+        "modified_at": "2026-10-17T12:50:24.646594239+02:00",
+        "size": 6550825550,
+        "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+        "details": {
+          "parent_model": "model.gguf",
+          "format": "gguf",
+          "family": "qwen35",
+          "families": [
+            "qwen35"
+          ],
+          "parameter_size": "9.0B",
+          "quantization_level": "Q4_K_M",
+          "context_length": 262144,
+          "embedding_length": 4096,
+          "runner": "llamacpp"
+        },
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ]
+      },
+      {
+        "name": "nomic-embed-text:latest",
+        "model": "nomic-embed-text:latest",
+        "modified_at": "2026-10-16T21:37:44.210482331+02:00",
+        "size": 274302450,
+        "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f",
+        "details": {
+          "parent_model": "",
+          "format": "gguf",
+          "family": "nomic-bert",
+          "families": [
+            "nomic-bert"
+          ],
+          "parameter_size": "137M",
+          "quantization_level": "F16",
+          "context_length": 2048,
+          "embedding_length": 768,
+          "runner": "ggml"
+        },
+        "capabilities": [
+          "embedding"
+        ]
+      }
+    ]
+  },
+  "loaded_before": {
+    "models": []
+  },
+  "selected": {
+    "gemma4:26b": {
+      "installed_exact_tag": false
+    },
+    "qwen3.8:27b": {
+      "installed_exact_tag": false
+    }
+  },
+  "ollama_executable": "/usr/local/bin/ollama",
+  "official_cli_help": {
+    "argv": [
+      "/usr/local/bin/ollama",
+      "--help"
+    ],
+    "returncode": 0,
+    "stdout": "Large language model runner\n\nUsage:\n  ollama [flags]\n  ollama [command]\n\nAvailable Commands:\n  serve        Start Ollama\n  create       Create a model\n  show         Show information for a model\n  run          Run a model\n  stop         Stop a running model\n  pull         Pull a model from a registry\n  push         Push a model to a registry\n  signin       Sign in to ollama.com\n  signout      Sign out from ollama.com\n  list         List models\n  ps           List running models\n  cp           Copy a model\n  rm           Remove a model\n  launch       Launch the Ollama menu or an integration\n  help         Help about any command\n\nFlags:\n  -h, --help         help for ollama\n      --nowordwrap   Don't wrap words to the next line automatically\n      --verbose      Show timings for response\n  -v, --version      Show version information\n\nUse \"ollama [command] --help\" for more information about a command.\n",
+    "stderr": ""
+  },
+  "official_show_help": {
+    "argv": [
+      "/usr/local/bin/ollama",
+      "show",
+      "--help"
+    ],
+    "returncode": 0,
+    "stdout": "Show information for a model\n\nUsage:\n  ollama show MODEL [flags]\n\nFlags:\n  -h, --help         help for show\n      --license      Show license of a model\n      --modelfile    Show Modelfile of a model\n      --parameters   Show parameters of a model\n      --system       Show system message of a model\n      --template     Show template of a model\n  -v, --verbose      Show detailed model information\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+    "stderr": ""
+  },
+  "tokenizer_commands_on_PATH": {
+    "llama-tokenize": null,
+    "llama-cli": null,
+    "llama-server": null,
+    "ollama-tokenize": null
+  },
+  "installed_interface_roots": {
+    "/usr/local/lib/ollama": [
+      "CPP_HTTPLIB_LICENSE",
+      "DLPACK_LICENSE",
+      "FMT_LICENSE",
+      "GO_LICENSE",
+      "LLAMA_CPP_LICENSE",
+      "LLAMA_CPP_VENDORS_LICENSE",
+      "MLX_C_LICENSE",
+      "MLX_LICENSE",
+      "PICOJSON_LICENSE",
+      "XGRAMMAR_LICENSE",
+      "XGRAMMAR_NOTICE",
+      "cuda_v12",
+      "cuda_v13",
+      "libggml-base.so",
+      "libggml-base.so.0",
+      "libggml-base.so.0.27.0",
+      "libggml-cpu-alderlake.so",
+      "libggml-cpu-cannonlake.so",
+      "libggml-cpu-cascadelake.so",
+      "libggml-cpu-cooperlake.so",
+      "libggml-cpu-haswell.so",
+      "libggml-cpu-icelake.so",
+      "libggml-cpu-ivybridge.so",
+      "libggml-cpu-piledriver.so",
+      "libggml-cpu-sandybridge.so",
+      "libggml-cpu-sapphirerapids.so",
+      "libggml-cpu-skylakex.so",
+      "libggml-cpu-sse42.so",
+      "libggml-cpu-x64.so",
+      "libggml-cpu-zen4.so",
+      "libggml.so",
+      "libggml.so.0",
+      "libggml.so.0.27.0",
+      "libgomp.so.1",
+      "libgomp.so.1.0.0",
+      "libllama-common.so",
+      "libllama-common.so.0",
+      "libllama-common.so.0.7.0",
+      "libllama-quantize-impl.so",
+      "libllama-server-impl.so",
+      "libllama.so",
+      "libllama.so.0",
+      "libllama.so.0.7.0",
+      "libmtmd.so",
+      "libmtmd.so.0",
+      "libmtmd.so.0.7.0",
+      "llama-quantize",
+      "llama-server",
+      "vulkan"
+    ],
+    "/usr/lib/ollama": null,
+    "/usr/share/doc/ollama": null
+  },
+  "meminfo": "MemTotal:       16328788 kB\nMemFree:         7183572 kB\nMemAvailable:   15425816 kB\nBuffers:           97096 kB\nCached:          8335972 kB\nSwapCached:        16996 kB\nActive:           519344 kB\nInactive:        8004104 kB\nActive(anon):      96016 kB\nInactive(anon):     4104 kB\nActive(file):     423328 kB\nInactive(file):  8000000 kB\nUnevictable:       27456 kB\nMlocked:           27456 kB\nSwapTotal:       1572860 kB\nSwapFree:        1321188 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               380 kB\nWriteback:             0 kB\nAnonPages:        115996 kB\nMapped:           148836 kB\nShmem:               976 kB\nKReclaimable:     144124 kB\nSlab:             247632 kB\nSReclaimable:     144124 kB\nSUnreclaim:       103508 kB\nKernelStack:        6384 kB\nPageTables:         4616 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:     9737252 kB\nCommitted_AS:    1353968 kB\nVmallocTotal:   34359738367 kB\nVmallocUsed:       30428 kB\nVmallocChunk:          0 kB\nPercpu:           268800 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:         0 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:         0 kB\nFilePmdMapped:         0 kB\nUnaccepted:            0 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB\nDirectMap4k:      155492 kB\nDirectMap2M:     4038656 kB\nDirectMap1G:    14680064 kB\n",
+  "swap_counters": [
+    "pswpin 27006",
+    "pswpout 164826"
+  ],
+  "services": [
+    {
+      "argv": [
+        "systemctl",
+        "--user",
+        "is-active",
+        "football-rag-api.service"
+      ],
+      "returncode": 0,
+      "stdout": "active\n",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "systemctl",
+        "is-active",
+        "ollama.service"
+      ],
+      "returncode": 0,
+      "stdout": "active\n",
+      "stderr": ""
+    }
+  ],
+  "disk": {
+    "/home/football": {
+      "total": 61285326848,
+      "used": 19879919616,
+      "free": 41388630016
+    },
+    "/opt/football-data-lab": {
+      "total": 61285326848,
+      "used": 19879919616,
+      "free": 41388630016
+    }
+  },
+  "lock_before": {
+    "path": "/home/football/.local/share/football-data-lab/runtime-locks/spatial-v2-extraction-locator.lock",
+    "exists": true,
+    "uid": 1000,
+    "gid": 1000,
+    "mode": "0o600",
+    "regular": true,
+    "directory": false,
+    "symlink": false,
+    "size": 0,
+    "inode": 842518,
+    "dev": 64769,
+    "mtime_ns": 1794129043128804407
+  },
+  "lock_path_components": [
+    {
+      "path": "/home",
+      "exists": true,
+      "uid": 0,
+      "gid": 0,
+      "mode": "0o755",
+      "regular": false,
+      "directory": true,
+      "symlink": false,
+      "size": 4096,
+      "inode": 1732,
+      "dev": 64769,
+      "mtime_ns": 1792151777684751244
+    },
+    {
+      "path": "/home/football",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o750",
+      "regular": false,
+      "directory": true,
+      "symlink": false,
+      "size": 4096,
+      "inode": 790052,
+      "dev": 64769,
+      "mtime_ns": 1794311465657838929
+    },
+    {
+      "path": "/home/football/.local",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o775",
+      "regular": false,
+      "directory": true,
+      "symlink": false,
+      "size": 4096,
+      "inode": 861530,
+      "dev": 64769,
+      "mtime_ns": 1792420946261259190
+    },
+    {
+      "path": "/home/football/.local/share",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o775",
+      "regular": false,
+      "directory": true,
+      "symlink": false,
+      "size": 4096,
+      "inode": 861621,
+      "dev": 64769,
+      "mtime_ns": 1793006746144810394
+    },
+    {
+      "path": "/home/football/.local/share/football-data-lab",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o775",
+      "regular": false,
+      "directory": true,
+      "symlink": false,
+      "size": 4096,
+      "inode": 837444,
+      "dev": 64769,
+      "mtime_ns": 1794237669296499064
+    },
+    {
+      "path": "/home/football/.local/share/football-data-lab/runtime-locks",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o700",
+      "regular": false,
+      "directory": true,
+      "symlink": false,
+      "size": 4096,
+      "inode": 842515,
+      "dev": 64769,
+      "mtime_ns": 1794129043128804407
+    },
+    {
+      "path": "/home/football/.local/share/football-data-lab/runtime-locks/spatial-v2-extraction-locator.lock",
+      "exists": true,
+      "uid": 1000,
+      "gid": 1000,
+      "mode": "0o600",
+      "regular": true,
+      "directory": false,
+      "symlink": false,
+      "size": 0,
+      "inode": 842518,
+      "dev": 64769,
+      "mtime_ns": 1794129043128804407
+    }
+  ],
+  "kernel_lock_records": [],
+  "known_remote_pilot_path": {
+    "path": "/opt/football-data-lab/projects/tactical-engine/evaluation/quality_first_paired_pilot_01",
+    "exists": false
+  },
+  "observable_processes": [
+    {
+      "pid": 812,
+      "comm": "ollama",
+      "script_basenames": []
+    }
+  ],
+  "loaded_after": {
+    "models": []
+  },
+  "lock_after": {
+    "path": "/home/football/.local/share/football-data-lab/runtime-locks/spatial-v2-extraction-locator.lock",
+    "exists": true,
+    "uid": 1000,
+    "gid": 1000,
+    "mode": "0o600",
+    "regular": true,
+    "directory": false,
+    "symlink": false,
+    "size": 0,
+    "inode": 842518,
+    "dev": 64769,
+    "mtime_ns": 1794129043128804407
+  },
+  "lock_metadata_preserved": true,
+  "utc_end": "2026-11-11T20:34:17.874187+00:00"
+}

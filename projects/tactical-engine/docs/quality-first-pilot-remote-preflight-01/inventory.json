@@ -1,0 +1,36 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "files": [
+    {
+      "path": "exit-code.json",
+      "bytes": 17,
+      "sha256": "8cf489757889ba322a5edae1dab5711c01f9a30ee61bb8f3b3dbb78815f4964e"
+    },
+    {
+      "path": "invocation.json",
+      "bytes": 1162,
+      "sha256": "91d046d93169857305aa47acbf628ab6a98607d79b0d44c25fa9ba8c9f6a6417"
+    },
+    {
+      "path": "stderr.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "stdout.json",
+      "bytes": 18505,
+      "sha256": "e295da8903fa462ccdbd111e6b456e950dc722aa4aed2f7b183174969124c55c"
+    },
+    {
+      "path": "summary.json",
+      "bytes": 4411,
+      "sha256": "08fe35f64f58108725210999eeb3287e85bbc2f695d6fb7b3c88ea4f3370aacb"
+    }
+  ],
+  "collector": {
+    "path": "operations/quality-first-pilot/remote_preflight_diagnostic_01.py",
+    "sha256": "76973528f09c4e7eec9b48f46f9359127ab73519ca69057091ba5f9f2a6df08c"
+  },
+  "decision": "BLOCCATO",
+  "generations": 0
+}

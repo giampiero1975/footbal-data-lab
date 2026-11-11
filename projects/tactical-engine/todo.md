@@ -8,6 +8,23 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** preflight remoto diagnostico del pilot esistente
+  RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11), esito **BLOCCATO**.
+  SSH alias/host key autorizzati, quattro GET Ollama200, zero POST/show,
+  nessuna inferenza o acquisizione lock. Ollama0.40.5; tag Gemma26/Qwen27
+  assenti, Qwen9/embedding conservati; /api/ps vuoto prima/dopo. Nessuna
+  interfaccia supportata di rendering/conteggio esatto pre-POST attestata:
+  help/CLI osservati non bastano; llama-server fuori PATH non avviato.
+  Non è prova d'impossibilità assoluta della build, nessun percorso ABI.
+  RAM esposta15,572 GiB e filesystem visibile57,076 GiB divergono dai24/480 GB
+  dichiarati; nessuna deduzione sul piano commerciale o RAM dei modelli.
+  Servizi active, lock0600 e metadata invariati, nessun tentativo noto.
+  Evidenze `docs/quality-first-pilot-remote-preflight-01/`, addendum nel
+  report del protocollo. Driver/package invariati, 32 controlli non ripetuti.
+  Pilot **DA FARE**; nessuna generazione autorizzata. Nessun download,
+  installazione, loading, modifica RAG/API/panel/VPS o costo. STOP senza
+  proposte automatiche di infrastrutture, reverse engineering o esperimenti.
+
 - [x] **IMPLEMENTATO** preparazione tecnica locale del pilot esistente
   RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11). Commit tecnico
   `3449db8f1d1c68d07fb76b5ff753b6676270bfef`: controller/worker separati dal RAG, sei slot e tre input

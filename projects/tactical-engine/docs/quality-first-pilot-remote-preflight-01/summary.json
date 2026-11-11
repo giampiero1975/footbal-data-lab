@@ -1,0 +1,127 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "phase": "remote diagnostic preflight",
+  "baseline": "7eb32bb403c8d5a7f8b32123e681779e5bbbe499",
+  "decision": "BLOCCATO",
+  "pilot_status": "DA FARE",
+  "ssh_exit": 0,
+  "observed_utc_start": "2026-11-11T20:34:17.801053+00:00",
+  "observed_utc_end": "2026-11-11T20:34:17.874187+00:00",
+  "observed": {
+    "version": "0.40.5",
+    "selected_tags_installed": {
+      "gemma4:26b": {
+        "installed_exact_tag": false
+      },
+      "qwen3.8:27b": {
+        "installed_exact_tag": false
+      }
+    },
+    "tags_present": [
+      {
+        "tag": "qwen3-embedding:0.6b",
+        "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+        "quantization": "Q8_0"
+      },
+      {
+        "tag": "qwen3.5:9b",
+        "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+        "quantization": "Q4_K_M"
+      },
+      {
+        "tag": "nomic-embed-text:latest",
+        "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f",
+        "quantization": "F16"
+      }
+    ],
+    "loaded_before_after_empty": true,
+    "memory_bytes": {
+      "MemTotal": 16720678912,
+      "MemAvailable": 15796035584,
+      "SwapTotal": 1610608640,
+      "SwapFree": 1352896512
+    },
+    "memory_total_GiB": 15.572345733642578,
+    "memory_available_GiB": 14.711204528808594,
+    "swap_used_bytes": 257712128,
+    "swap_cumulative_counters_not_activity_rate": true,
+    "filesystem_visible": {
+      "/home/football": {
+        "total": 61285326848,
+        "used": 19879919616,
+        "free": 41388630016
+      },
+      "/opt/football-data-lab": {
+        "total": 61285326848,
+        "used": 19879919616,
+        "free": 41388630016
+      }
+    },
+    "services": [
+      {
+        "argv": [
+          "systemctl",
+          "--user",
+          "is-active",
+          "football-rag-api.service"
+        ],
+        "returncode": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      },
+      {
+        "argv": [
+          "systemctl",
+          "is-active",
+          "ollama.service"
+        ],
+        "returncode": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      }
+    ],
+    "kernel_lock_records": [],
+    "lock_metadata_preserved": true,
+    "local_execution_ledger_exists": false,
+    "known_remote_pilot_path": {
+      "path": "/opt/football-data-lab/projects/tactical-engine/evaluation/quality_first_paired_pilot_01",
+      "exists": false
+    }
+  },
+  "blocked_requirements": [
+    {
+      "requirement": "Two selected models and exact identities",
+      "classification": "observed missing exact Ollama tags",
+      "detail": "gemma4:26b and qwen3.8:27b absent from /api/tags; no download or show of absent models"
+    },
+    {
+      "requirement": "Supported exact rendering/token count before POST",
+      "classification": "not verifiable through observed permitted interfaces; not proof of absolute build impossibility",
+      "detail": "Ollama help/show help do not advertise a token-count interface; named tokenizer commands absent on PATH. Bundled llama-server exists but no new server, loading, hidden endpoint probe or ABI path attempted. No counts obtained."
+    },
+    {
+      "requirement": "Actual runtime/model thinking mapping and template identity",
+      "classification": "unverified because candidate tags absent",
+      "detail": "No /api/show called; cannot verify think=true to xhigh mapping or tokenizer/template equality."
+    },
+    {
+      "requirement": "Resource assumptions reconciled",
+      "classification": "observed discrepancy",
+      "detail": "Visible MemTotal about15.57 GiB vs declared24 GB; filesystem view about57.08 GiB vs declared480 GB. Does not identify commercial plan or all disks/host memory; does not derive model RAM from file size."
+    }
+  ],
+  "limits": {
+    "build_commit_or_backend_capability_attested": false,
+    "no_global_search_or_absolute_tool_absence_claim": true,
+    "host_key_verified": "SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks",
+    "no_old_32_checks_repeated": true,
+    "generation_posts": 0,
+    "show_posts": 0,
+    "diagnostic_GET_requests": 4,
+    "worker_executions": 0,
+    "lock_acquisitions": 0,
+    "no_install_download_or_configuration_change": true,
+    "no_exact_token_count_available_for_this_pilot": true,
+    "no_new_experiment_or_infrastructure_proposed": true
+  }
+}

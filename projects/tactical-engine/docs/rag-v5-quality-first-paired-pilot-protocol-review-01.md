@@ -596,3 +596,101 @@ controlli **ESEGUITO** e **VALIDATO** soltanto nel perimetro statico/manifest;
 esecuzione non autorizzata e prerequisiti non attestati **BLOCCATO**, pilot
 **DA FARE**. RAG, API/panel, corpus, indici e risultati storici preservati.
 **Generazioni effettuate 0; POST generative 0; SSH 0.** STOP dopo pubblicazione.
+
+
+## Addendum — preflight remoto diagnostico, esito BLOCCATO
+
+Data: 2026-11-11. Attività invariata
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Baseline iniziale locale/GitHub
+`7eb32bb403c8d5a7f8b32123e681779e5bbbe499`, branch corretto, tree pulito.
+TODO/registro/report e i due sorgenti del driver confrontati con GitHub;
+commit tecnico `3449db8f1d1c68d07fb76b5ff753b6676270bfef` riconciliato.
+I 32 controlli statici non sono stati ripetuti. Nessuna modifica al driver,
+al package pending, al protocollo o al RAG per aggirare un gate.
+
+### Attività → Script → Commit → Report → Risultato → Decisione → Stato
+
+Script diagnostico separato:
+`operations/quality-first-pilot/remote_preflight_diagnostic_01.py`.
+Autorizzato solo questo preflight read-only/non generativo, non il worker.
+Script e corpo stdin controllati soltanto per sintassi prima dell'accesso;
+nessuna importazione/esecuzione del worker. Commit di pubblicazione: quello
+che introduce questo script, inventario e addendum con TODO/registro contestuali,
+identificabile dalla storia Git e restituito nella consegna.
+
+Evidenze riproducibili in
+[`quality-first-pilot-remote-preflight-01/inventory.json`](quality-first-pilot-remote-preflight-01/inventory.json):
+invocazione, hash del corpo diagnostico/sorgente, stdout JSON con risposte HTTP
+anche in byte base64, stderr, exit code e summary. La sessione remota osservata
+va da `2026-11-11T20:34:17.801053+00:00` a `20:34:17.874187+00:00` secondo
+l'orologio remoto; non si assume sincronizzazione con il PC.
+
+### Accesso e operazioni effettive
+
+SSH alias `football-vps`, configurazione esplicita del profilo giamp, destinazione
+163.5.26.155:22, utente football, IdentitiesOnly e sola identità v3 configurata;
+BatchMode, StrictHostKeyChecking=yes, UpdateHostKeys=no, host key ED25519
+`SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks` confrontata con known_hosts.
+Nessuna nuova chiave accettata o privata stampata. Il profilo separato sandbox
+non risolveva l'alias: è stato verificato in lettura il profilo già autorizzato,
+non creata/modificata una configurazione. Exit SSH 0, stderr vuoto.
+
+Una sola sessione diagnostica: GET `/api/version`, `/api/tags`, `/api/ps` prima
+e dopo (quattro GET 200); help di Ollama e show, letture /proc, stato dei due
+servizi, spazio disco, metadata lock e percorso noto del pilot. Nessuna POST:
+`/api/show` non necessario per tag assenti. Nessun endpoint tokenize ipotetico
+provato, nessuna scansione ricorsiva di sorgenti/binari, compilazione, ABI,
+nuovo server o strumento scaricato. Le directory d'installazione note sono
+state enumerate solo al primo livello per identificare interfacce esistenti.
+
+### Matrice capacità documentate / osservate / mancanti
+
+| Proprietà | Evidenza osservata | Cosa dimostra e limite |
+|---|---|---|
+| Ollama | GET version 0.40.5, CLI `/usr/local/bin/ollama` | Versione dichiarata osservata; commit/build completa e capacità dei candidati non attestati dal solo numero |
+| Gemma26 / Qwen27 | Tag `gemma4:26b` e `qwen3.8:27b` assenti in /api/tags | Modelli selezionati non disponibili come tag del servizio; nessun digest completo/template/thinking dei candidati osservabile. Non è una ricerca di eventuali blob orfani su tutto il disco |
+| Baseline conservata | Presenti qwen3.5:9b Q4_K_M con digest 56671c2a…3c90, qwen3-embedding:0.6b e nomic-embed-text | Identità e quantizzazioni nel raw; nessun modello modificato, cancellato o sostituito |
+| Modelli caricati | /api/ps restituisce models=[] prima e dopo | Nessun modello residente osservato nei due istanti, nessun caricamento effettuato |
+| Rendering/tokenizer pre-POST | Help Ollama/show senza comando di conteggio; llama-tokenize/llama-cli/llama-server/ollama-tokenize non risolti sul PATH | Nessuna interfaccia supportata che produca i sei conteggi esatti è stata attestata; non è prova di impossibilità assoluta della build |
+| Componenti installati | `/usr/local/lib/ollama/llama-server` presente come file fuori PATH | Non equivale a un endpoint tokenizzazione disponibile nel servizio attivo. Non è stato avviato un server né eseguito quel binario o fatto loading per esplorarne capacità |
+| RAM visibile | MemTotal 16720678912 byte = 15,572 GiB; MemAvailable circa 14,711 GiB | Diverge dai 24 GB dichiarati. È la memoria esposta al sistema osservato, non un'attestazione del piano commerciale o dell'host fisico |
+| Disco visibile | Disk usage dei due percorsi: totale 61285326848 byte = 57,076 GiB, libero 41388630016 byte | Non conferma i 480 GB dichiarati; è la vista filesystem di /home/football e /opt, non inventario completo dei dispositivi |
+| Swap | Occupati 257712128 byte; contatori cumulativi pswpin 27006, pswpout 164826 | Esiste uso storico/occupazione; un solo campione dei contatori non dimostra paging attivo durante la sessione |
+| Servizi | football-rag-api.service utente e ollama.service entrambi active | Stato osservato, nessun riavvio o modifica; non collaudo di convivenza sotto carico |
+| Lock | Regolare, uid 1000, 0600, percorso senza symlink, nessun record corrispondente osservato in /proc/locks; metadata prima/dopo uguali | Nessuna acquisizione. L'assenza di record non certifica futura acquisibilità, che qui era vietato provare |
+| Tentativi e concorrenza | Ledger canonico locale assente; percorso speculare noto remoto assente; nessun processo pilot noto osservato | Nessun tentativo in questi riferimenti; non prova globale su percorsi sconosciuti o richieste future |
+
+Le capacità nominali di Gemma thinking e Qwen xhigh restano **documentate** nelle
+fonti del protocollo, ma **non osservate** per questi modelli sulla VPS: sono
+assenti i tag necessari per interrogare i rispettivi metadata. Il dossier
+pending non è stato trasformato in verified=true e nessun numero token è stato
+inserito. Nessuna estrapolazione da byte o dal Qwen9 storico.
+
+### Decisione e arresto
+
+**Preflight BLOCCATO.** Mancano due prerequisiti concreti:
+
+1. I due modelli selezionati non sono installati come tag utilizzabili del
+   servizio. Download/installazione non autorizzati e non eseguiti.
+2. **Conteggio esatto pre-POST non disponibile come capacità attestata nel
+   perimetro consentito.** Non è stato identificato un ingresso supportato che
+   renda e tokenizzi i messaggi dei due artefatti senza generazione/caricamento.
+   `/api/show` da solo non fornirebbe tale conteggio; un eseguibile server
+   presente non basta. Questo è un prerequisito non verificabile con le
+   interfacce osservate, non una dimostrazione che ogni possibile componente
+   interno della build sia incapace di tokenizzare. Nessun percorso alternativo
+   viene aperto per trasformare l'assenza di evidenza in un PASS.
+
+Si aggiunge la divergenza delle risorse rispetto alla baseline dichiarata,
+che impedisce di assumere sostenibilità sui 24 GB. Non si deduce la RAM dei
+modelli dal peso del file né si dichiara impossibilità universale di eseguirli.
+La sessione si arresta senza ulteriori ricerche, infrastrutture, installazioni,
+reverse engineering o esperimenti. Nessuna proposta automatica alternativa.
+
+Diagnostica **ESEGUITO**, prerequisiti preflight **BLOCCATO**, pilot **DA FARE**:
+nessuna delle sei generazioni autorizzata. Quattro GET, zero POST generative,
+zero POST show, zero caricamenti, zero acquisizioni lock, zero worker.
+Nessuna modifica a modelli, servizi, RAG, API/panel, staging o configurazioni.
+Protocollo/driver e risultati precedenti preservati; target 28/30 e Gate restano
+**BLOCCATO**. Pubblicazione delle sole evidenze locali, TODO/registro e verifica
+GitHub/working tree, poi STOP.

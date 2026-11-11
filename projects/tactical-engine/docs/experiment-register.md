@@ -2,6 +2,39 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Preflight remoto diagnostico del pilot esistente
+
+Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Script separato
+`operations/quality-first-pilot/remote_preflight_diagnostic_01.py`; sola
+sintassi controllata prima della singola sessione SSH, nessun worker/import
+applicativo. Baseline iniziale locale/GitHub7eb32bb, branch corretto, tree
+pulito; cinque file ufficiali incluso driver verificati byte-per-byte con
+GitHub, commit tecnico3449db8 riconciliato. I32 controlli non ripetuti.
+Commit contestuale con script, evidenze/inventario in
+`docs/quality-first-pilot-remote-preflight-01/`, addendum nel report pertinente,
+TODO/registro. Differenza: prima diagnostica dei prerequisiti reali del pilot,
+non nuova campagna, ricognizione ABI o prova generativa. SSH alias football-vps
+con config giamp/host key ED25519 autorizzata verificata, BatchMode e strict
+checking, nessuna configurazione modificata. Exit0, stderr vuoto.
+Risultato: quattro GET200 version/tags/ps prima/dopo; Ollama0.40.5, modelli
+selezionati assenti, Qwen9 digest storico conservato e modelli residenti assenti.
+Nessuna POST show perché candidati non installati. Help e interfacce esistenti
+osservati: nessun ingresso supportato di rendering/conteggio esatto pre-POST
+attestato; binario llama-server fuori PATH presente ma non avviato. Capacità
+non verificabile nel perimetro, non impossibilità assoluta della build;
+nessun endpoint inventato, reverse engineering o vecchio ABI. Risorse visibili
+MemTotal16720678912 byte e filesystem61285326848 byte, divergenti da24/480 GB
+utente; vista guest/filesystem non prova del piano commerciale. Swap occupata,
+contatori cumulativi non interpretati come paging attivo. Servizi active,
+lock regolare0600 senza symlink/record kernel osservato, metadata invariati;
+nessun lock acquisito o tentativo nei riferimenti noti, non garanzia globale.
+Decisione unica **BLOCCATO** per tag mancanti/conteggio non attestato, con
+ulteriore discrepanza risorse. Pilot **DA FARE**, nessuna delle sei generazioni
+autorizzata. Zero inferenze, POST generative, download, installazioni, loading,
+worker, lock o modifiche RAG/API/panel/servizi/VPS. Driver/protocollo/package
+pending invariati, nessuna nuova infrastruttura o esperimento proposto.
+STOP diagnostico, pubblicazione evidenze locali e verifica GitHub/working tree.
+
 ### 2026-11-11 — Preparazione tecnica locale del pilot esistente
 
 Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Script/controller:
