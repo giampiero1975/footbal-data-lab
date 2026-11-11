@@ -694,3 +694,84 @@ Nessuna modifica a modelli, servizi, RAG, API/panel, staging o configurazioni.
 Protocollo/driver e risultati precedenti preservati; target 28/30 e Gate restano
 **BLOCCATO**. Pubblicazione delle sole evidenze locali, TODO/registro e verifica
 GitHub/working tree, poi STOP.
+
+
+## Addendum — autorizzazione operativa, download completati, arresto ai gate
+
+Data: 2026-11-11. Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`.
+La successiva autorizzazione esplicita dell'utente comprende download dei due
+modelli e massimo sei generazioni, subordinate ai gate del protocollo. L'utente
+ha inoltre confermato **163.5.26.155** come destinazione effettiva: 6 vCPU,
+15,572 GiB RAM esposta, disco virtuale 60 GiB. La discrepanza con l'hardware
+inizialmente dichiarato non lascia più ambiguo il bersaglio. Le precedenti
+frasi «generazioni/download non autorizzati» descrivono la sessione storica,
+non il consenso attuale. Non occorre chiedere nuovamente la stessa autorizzazione.
+
+### Attività → Script → Commit → Report → Risultato → Decisione → Stato
+
+Baseline pubblicata riconciliata `ab467b3d581ab1852a87eb688cf6943a28569ad5`;
+branch invariato. Script separato `operations/quality-first-pilot/authorized_model_downloads_01.py`,
+congelato prima dell'esecuzione nel commit tecnico **b358976a8aea1c2a43c71b86011abaea0efa44c8**.
+Nuova differenza tecnica: installazione dei due artefatti già selezionati,
+prima assenti e ora autorizzati, con verifica dei digest completi; nessuna nuova
+selezione, campagna o ripetizione dei 32 controlli statici. Prima dell'esecuzione
+sono state controllate la sintassi del nuovo script/corpo stdin, le identità dei
+manifest pubblici e le risorse per conservare i download. Il solo `--help` del
+llama-server già presente è stato letto, senza avvio server, modello o converter.
+Non è stato adottato il vecchio percorso ABI.
+
+Evidenze e inventario: `docs/quality-first-pilot-authorized-readiness-01/`.
+I manifest ufficiali congelati provengono da
+`https://registry.ollama.ai/v2/library/gemma4/manifests/26b` e
+`https://registry.ollama.ai/v2/library/qwen3.8/manifests/27b`;
+sono fonti mutabili, qui identificate anche dagli hash locali, non dal solo tag.
+Raw JSONL dei download, metadata show, risorse prima/dopo, stderr ed exit code
+sono conservati senza riscrittura. Il commit di pubblicazione documentale è
+quello che introduce questo addendum, summary e inventario con TODO/registro;
+il suo identificativo viene restituito nella consegna e risolto dalla storia Git.
+
+| Artefatto | Dimensione registrata, byte | Digest manifest completo | Esito |
+|---|---:|---|---|
+| gemma4:26b | 18731025629 | 001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c | Q4_K_M, download **VALIDATO** |
+| qwen3.8:27b | 17741872154 | aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813 | Q4_K_M, download **VALIDATO** |
+
+SSH con configurazione/host key autorizzate e verifica rigorosa; nessuna nuova
+chiave accettata. Due richieste `/api/pull` sequenziali, nessun retry applicativo;
+GET diagnostiche e due POST `/api/show` non generative. Exit SSH 0, stderr vuoto.
+Il servizio ha completato/verificato i download; i digest restituiti da tags
+corrispondono agli esatti manifest congelati. Questo non è un hash indipendente
+in lettura integrale di tutti i blob remoti. Originali Qwen9/embedding ancora
+elencati, nessuna cancellazione o sostituzione richiesta. `/api/ps` vuoto prima
+e dopo; nessun caricamento effettuato dal driver. Disco libero finale
+4915421184 byte; MemAvailable finale 15867867136 byte. La riserva operativa
+locale di 4 miliardi di byte su disco/memoria ha protetto il download: non
+costituisce validazione del fabbisogno RAM dei modelli. Il peso dei file non
+è stato usato come stima della RAM. Nessuna misura di qualità o convivenza
+sotto carico è stata prodotta.
+
+### Gate ancora aperti e decisione
+
+1. Nessuna interfaccia supportata osservata fornisce il conteggio esatto
+   pre-POST dei sei messaggi renderizzati con tokenizer/template effettivi.
+   Metadata `/api/show`, template `{{ .Prompt }}` e help non lo dimostrano.
+   Non sono stati inventati conteggi, rapporti byte/token o endpoint tokenizzazione;
+   non è stata dichiarata impossibilità assoluta della build.
+2. Gemma dichiara thinking `false/true`, default true. Qwen dichiara
+   `false/low/medium/xhigh`, default medium. Il mapping del `think=true`
+   congelato nel driver verso il profilo Qwen xhigh previsto non è attestato.
+   I metadata non sono una prova di applicazione effettiva del profilo.
+
+**Decisione: esecuzione BLOCCATO ai gate tecnici, pilot DA FARE.** Download
+**ESEGUITO/VALIDATO** nel perimetro sopra descritto. L'autorizzazione dell'utente
+resta acquisita; non risolve automaticamente i prerequisiti e non autorizza
+ad alterare il protocollo o dichiarare verifiche mai effettuate. Nessun binding
+verified=true o conteggio sintetico, nessuna riscrittura del driver congelato.
+Un'eventuale decisione successiva deve affrontare precisamente questi gate,
+non riaprire selezione modelli, ABI o riconciliazione RAG già completate.
+
+**POST generative 0; generazioni 0; worker eseguiti 0; lock acquisiti 0.**
+Nessuna modifica applicativa/RAG/retrieval/corpus/API/panel, servizi,
+configurazioni, staging o wrapper. Unico cambiamento remoto autorizzato:
+i due modelli aggiunti tramite pull. Nessuna compilazione, inferenza, merge,
+deploy o infrastruttura aggiuntiva. Target 28/30 e proprietà generative non
+sono dimostrati; risultati RAG storici preservati. STOP dopo pubblicazione.

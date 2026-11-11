@@ -1,0 +1,71 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "technical_commit": "b358976a8aea1c2a43c71b86011abaea0efa44c8",
+  "authorization": "User authorized downloads and maximum six generations subject to existing gates; explicitly confirmed 163.5.26.155. No renewed consent required for the same scope.",
+  "target": "football-vps / 163.5.26.155",
+  "download_exit": {
+    "ssh_exit": 0,
+    "generative_posts": 0
+  },
+  "models": [
+    {
+      "name": "qwen3.8:27b",
+      "size": 17741872154,
+      "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+      "details": {
+        "parent_model": "qwen3.8:27b-q4_K_M",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120,
+        "runner": "llamacpp"
+      }
+    },
+    {
+      "name": "gemma4:26b",
+      "size": 18731025629,
+      "digest": "001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c",
+      "details": {
+        "parent_model": "c4-targeted-20260929-26b/model-q4_K_M.gguf",
+        "format": "gguf",
+        "family": "gemma4",
+        "families": [
+          "gemma4"
+        ],
+        "parameter_size": "25.2B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2816,
+        "runner": "llamacpp"
+      }
+    }
+  ],
+  "free_disk_bytes": 4915421184,
+  "available_memory_bytes": 15867867136,
+  "loaded_before": {
+    "models": []
+  },
+  "loaded_after": {
+    "models": []
+  },
+  "generative_posts": 0,
+  "generations": 0,
+  "download_status": "VALIDATO",
+  "pilot_status": "DA FARE",
+  "execution_status": "BLOCCATO",
+  "blockers": [
+    "Exact pre-POST rendered token counts and native template/tokenizer equivalence not attested through observed supported interfaces.",
+    "Qwen native thinking metadata lists false/low/medium/xhigh; mapping of frozen driver think=true to intended xhigh not demonstrated."
+  ],
+  "not_demonstrated": [
+    "Peak model RAM and coexistence under load",
+    "Actual generation quality",
+    "Effective native runtime options, context truncation and supervision under generation"
+  ],
+  "no_gate_overrides": true
+}

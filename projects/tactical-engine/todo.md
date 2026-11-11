@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO / VALIDATO** download autorizzati Gemma4 26B e Qwen3.8 27B
+  nell'attività esistente RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11).
+  Consenso acquisito per download e massimo sei generazioni ai gate; VPS
+  163.5.26.155 confermata dall'utente con risorse effettive 6 vCPU/15,572 GiB.
+  Entrambi Q4_K_M, digest completi conformi ai manifest congelati; originali
+  Qwen9/embedding conservati. Liberi 4915421184 byte, /api/ps vuoto prima/dopo.
+  Commit tecnico b358976a8aea1c2a43c71b86011abaea0efa44c8; raw/inventario in
+  `docs/quality-first-pilot-authorized-readiness-01/`, addendum nel report protocollo.
+  Esecuzione **BLOCCATO**: conteggio token renderizzati esatto pre-POST e mapping
+  think=true→Qwen xhigh non attestati. Nessun bypass o nuova richiesta dello
+  stesso consenso; pilot **DA FARE**, generazioni e POST generative **0**.
+  Nessuna modifica al RAG/servizi/driver, lock non acquisito. STOP ai gate.
+
 - [x] **ESEGUITO** preflight remoto diagnostico del pilot esistente
   RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 (2026-11-11), esito **BLOCCATO**.
   SSH alias/host key autorizzati, quattro GET Ollama200, zero POST/show,

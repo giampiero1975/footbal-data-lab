@@ -2,6 +2,31 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-11 — Download autorizzati sul bersaglio confermato, STOP ai gate
+
+Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`.
+Script `operations/quality-first-pilot/authorized_model_downloads_01.py`,
+commit tecnico b358976a8aea1c2a43c71b86011abaea0efa44c8, congelato prima dell'esecuzione.
+Report: addendum in `rag-v5-quality-first-paired-pilot-protocol-review-01.md`;
+evidenze raw/summary/inventario in `quality-first-pilot-authorized-readiness-01/`.
+Consenso successivo esplicito per download e massimo sei generazioni ai gate;
+163.5.26.155 confermata come VPS da usare (6 vCPU/15,572 GiB, disco60GiB).
+Differenza dai controlli precedenti: modelli prima assenti, ora download
+sequenziali autorizzati e identità complete confrontate con manifest congelati.
+Nuovo script/corpo stdin controllati sintatticamente prima dell'esecuzione;
+nessuna suite storica ripetuta. Due pull, due show diagnostici, exit0,
+stderr vuoto, entrambi Q4_K_M con digest attesi; /api/ps vuoto prima/dopo,
+originali conservati, spazio libero finale4915421184 byte. Download
+**ESEGUITO/VALIDATO**, non prova RAM o compatibilità generativa.
+Decisione: esecuzione **BLOCCATO** per conteggio esatto pre-POST non attestato
+e mapping think=true→Qwen xhigh non dimostrato (show enum false/low/medium/xhigh).
+Pilot **DA FARE**; consenso già acquisito, nessun nuovo consenso identico richiesto.
+Nessun gate dichiarato soddisfatto per supposizione, driver/package immutati.
+Generazioni0, POST generative0, nessun lock/worker/loading, modifica RAG,
+servizi o configurazioni; solo aggiunta autorizzata dei modelli. Nessuna ABI,
+nuova infrastruttura o campagna. Pubblicazione contestuale report/TODO/registro,
+verifica GitHub/working tree, STOP senza ulteriori esperimenti.
+
 ### 2026-11-11 — Preflight remoto diagnostico del pilot esistente
 
 Attività invariata `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Script separato
