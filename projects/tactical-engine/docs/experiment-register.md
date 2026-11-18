@@ -2,6 +2,27 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-18 — Closeout Qwen27 isolato: stesso limite di riserva RAM
+
+RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, consenso esplicito max1 POST.
+Differenza dichiarata: primo Qwen isolato, non ripetizione test storico.
+Script qwen27_single_case_01.py, commit 4ff3ca16ea6ced07dc3e15804e798bf5c86da4e5 pubblicato prima
+invio; controller/worker03 e payload invariati, cinque controlli minimi PASS.
+Identità/digest/lock/supervisore/host key/servizi/concorrenza verificati,
+ledger esclusivo e fsync-before-GO. Una POST Qwen/V10-02, zero retry;
+Gemma non residente. Dopo32.352s RAM disponibile=3149516800 byte<4GB,
+E_MEMORY_RESERVE. Nessuna risposta HTTP/chunk/finale; RemoteDisconnected
+con chiusura socket, generazioni interne non attestabili. Tentativo ESEGUITO,
+completamento BLOCCATO. Post-stop diagnostico read-only: ps vuoto, nessun
+runner, servizi active e RAM ripristinata. Raw/STOP/summary/inventario in
+quality_first_qwen27_single_case_01; storici01/03 immutati/hash verificati.
+Report protocollo closeout Qwen, TODO/registro pubblicati contestualmente.
+Conclusione C solo operativa: anche Qwen supera la riserva, come Gemma;
+nessun vincitore o qualità tattica valutabili, non prova impossibilità assoluta.
+Decisione STOP senza ripetere stesso assetto; eventuale risorsa/configurazione
+più adatta richiede scelta esplicita, nessuna modifica RAG/servizi/costi/hardware.
+Pubblicazione/verifica GitHub/working tree, nessuna ulteriore generazione.
+
 ### 2026-11-18 — Preparazione prova isolata Qwen27, max1 richiesta
 
 Attività esistente RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Baseline9c66c59,

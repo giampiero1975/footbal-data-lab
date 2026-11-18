@@ -1,0 +1,115 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "scope": "authorized isolated Qwen27 V10-02, one request",
+  "date": "2026-11-18",
+  "technical_commit": "4ff3ca16ea6ced07dc3e15804e798bf5c86da4e5",
+  "status": "ESEGUITO",
+  "completion_status": "BLOCCATO",
+  "post_attempts": 1,
+  "retry_count": 0,
+  "http_responses_observed": 0,
+  "answers_completed": 0,
+  "actual_generations": "not established; no output received",
+  "stop": "E_MEMORY_RESERVE",
+  "elapsed_to_abort_seconds": 32.352194951847196,
+  "baseline": {
+    "available_bytes": 15963971584,
+    "swap_used_bytes": 269647872,
+    "swap_in": 27545,
+    "swap_out": 170117,
+    "processes": [
+      {
+        "pid": 188530,
+        "comm": "ollama",
+        "rss_bytes": 22396928,
+        "hwm_bytes": 38281216
+      }
+    ]
+  },
+  "last_sample": {
+    "event": "sample",
+    "monotonic": 2092645.354082535,
+    "available_bytes": 3149516800,
+    "swap_used_bytes": 295075840,
+    "swap_in": 27557,
+    "swap_out": 177407,
+    "processes": [
+      {
+        "pid": 188530,
+        "comm": "ollama",
+        "rss_bytes": 23859200,
+        "hwm_bytes": 38281216
+      },
+      {
+        "pid": 224614,
+        "comm": "llama-server",
+        "rss_bytes": 12878049280,
+        "hwm_bytes": 12878049280
+      }
+    ],
+    "paging_bytes_per_second": 0.0,
+    "paging_persistent_seconds": 0.0,
+    "page_bytes": 4096
+  },
+  "min_available_bytes": 3149516800,
+  "max_runner_rss_sampled_bytes": 12878049280,
+  "sample_count": 33,
+  "model": {
+    "name": "qwen3.8:27b",
+    "model": "qwen3.8:27b",
+    "modified_at": "2026-11-11T22:31:02.605530608+01:00",
+    "size": 17741872154,
+    "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+    "details": {
+      "parent_model": "qwen3.8:27b-q4_K_M",
+      "format": "gguf",
+      "family": "qwen35",
+      "families": [
+        "qwen35"
+      ],
+      "parameter_size": "27.3B",
+      "quantization_level": "Q4_K_M",
+      "context_length": 262144,
+      "embedding_length": 5120,
+      "runner": "llamacpp"
+    },
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ]
+  },
+  "model_tested_alone": true,
+  "post_stop": {
+    "loaded": {
+      "models": []
+    },
+    "processes": [
+      " 188530       1 ollama          23324  472483"
+    ],
+    "services": {
+      "ollama.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      },
+      "football-rag-api.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      }
+    },
+    "available_memory_bytes": 15976243200
+  },
+  "operational_decision": "C: neither current model configuration maintained the required 4GB reserve on this VPS in observed separate runs",
+  "quality_decision": "not evaluable; no answer from either model",
+  "previous_gemma_min_available_bytes": 3763400704,
+  "limitations": [
+    "This is failure to retain the configured safety reserve, not proof that all physical RAM was exhausted.",
+    "No tactical output or token counts; no tactical winner or 28/30 claim.",
+    "Not a universal impossibility result for models under other resources/settings.",
+    "Post-stop quiescence is observed, exact cancellation time and internal generation count are not established."
+  ],
+  "promotion_authorized": false
+}

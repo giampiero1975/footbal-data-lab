@@ -1035,3 +1035,58 @@ fsync-before-GO, nessun resume/reset; collega STOP03 storico preservato.
 Conteggio token pre-POST non inventato; contatori/qualità solo se risposta.
 Nessun Gemma caricato, modifica RAG/app/servizi/modelli/config o installazione.
 Il solo wrapper è nuovo, con hash controller/worker/payload/consenso congelati.
+
+
+## Closeout Qwen27 isolato — 2026-11-18
+
+Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata. Autorizzazione
+«ok prova Qwen27»: esattamente una richiesta, nessun retry. Baseline9c66c59,
+GitHub/branch/tree riconciliati; Qwen prima mai inviato. Differenza tecnica
+registrata prima dei controlli: isolamento dal precedente arresto Gemma.
+Script qwen27_single_case_01.py delega a controller/worker03 immutati;
+commit tecnico **4ff3ca16ea6ced07dc3e15804e798bf5c86da4e5** congelato/pubblicato prima dell'invio.
+Cinque controlli nuovi minimi PASS, nessuna suite storica. Payload Qwen V10-02
+ordinal2 invariato, xhigh/8192/4096/seed/campionamento/fonti originali; timeout900s,
+riserva4GB e paging persistente invariati. Nuovo ledger esclusivo, nessun resume.
+
+| Evidenza | Risultato |
+|---|---|
+| Identità | qwen3.8:27b Q4_K_M, digest aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813 |
+| Preflight immediato | Host key/utente, supervisor/process group, lock non bloccante, Ollama0.40.5/digest, ps/runner vuoti, servizi active e memoria verificati |
+| Invio | 1 POST avviata, zero retry, Gemma non caricato |
+| RAM disponibile iniziale | 15963971584 byte |
+| Arresto | E_MEMORY_RESERVE dopo32.352s |
+| RAM disponibile minima campionata | 3149516800 byte, circa3,15GB, sotto4GB obbligatori |
+| RSS runner massimo campionato | 12878049280 byte; non picco continuo o stima RAM totale |
+| Risposta | Nessuno status HTTP, chunk, testo o token ricevuto; RemoteDisconnected dopo monitor abort |
+| Post-stop | /api/ps vuoto, nessun runner, servizi RAG/Ollama active, RAM disponibile15976243200 byte |
+
+Lo STOP è scattato sulla riserva RAM, non sulla vecchia regola di due pagine
+swap, né sul paging persistente o timeout. Nessuna risposta valutabile o nuova
+generazione per recuperare l'esito. POST avviata1, completamenti osservati0;
+conteggio interno sampling e istante esatto cancellazione non attestati.
+La diagnostica read-only documenta lo stato quieto successivo. Nessuna modifica
+servizi/configurazioni, codice applicativo/RAG/corpus/retrieval/embedding/panel,
+modelli o hardware; nessun merge/deploy. Nessun Gemma concorrente.
+
+**Conclusione operativa C nel perimetro provato:** entrambi gli assetti
+Gemma26 e Qwen27, provati separatamente, hanno oltrepassato la riserva RAM di4GB
+sulla VPS confermata. Gemma scendeva a3763400704 byte; Qwen a3149516800.
+Questa configurazione di modelli/contesto/margine non è risultata sostenibile
+nelle esecuzioni osservate. Non prova esaurimento totale della RAM, impossibilità
+universale dei modelli, inferiorità tattica o una qualità comparata. Nessuna
+risposta, vincitore, voto o target28/30 dimostrati; nessun pacchetto cieco possibile.
+
+Decisione: non ripetere questi caricamenti nello stesso assetto. Una prosecuzione
+richiede una scelta esplicita di risorse maggiori per preservare il margine,
+oppure un modello/configurazione più leggero da valutare separatamente. Non
+abbassare automaticamente la protezione RAG, cambiare quantizzazione o attivare
+nuovi costi. Nessuna ulteriore prova o indagine ABI viene avviata.
+
+Tentativo **ESEGUITO**, completamento/sostenibilità entro i vincoli **BLOCCATO**.
+Raw, payload/invocation, ledger fsync-before-GO, STOP, campioni, diagnostica,
+summary e inventario SHA256/dimensioni in
+`evaluation/quality_first_qwen27_single_case_01/`. I ledger storici01/03 sono
+preservati e gli inventari verificati dopo la prova. Report/TODO/registro
+contestuali; commit documentale che introduce questo closeout restituito nella
+consegna, con verifica GitHub e working tree finale. STOP.

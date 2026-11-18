@@ -8,6 +8,17 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** Qwen27 isolato/V10-02 (2026-11-18), max1 POST autorizzata,
+  zero retry; commit tecnico 4ff3ca16ea6ced07dc3e15804e798bf5c86da4e5. Dopo32.352s
+  RAM disponibile=3149516800 byte<4GB: STOP E_MEMORY_RESERVE, nessuna risposta.
+  Gemma non caricato. Post-stop ps vuoto, nessun runner, servizi active,
+  RAM ripristinata. Ledger quality_first_qwen27_single_case_01 inventariato;
+  storici01/03 preservati. **Conclusione operativa C**: entrambi gli assetti
+  hanno violato separatamente il margine RAM sulla VPS attuale; nessuna
+  qualità tattica o impossibilità universale dimostrata. Completamento **BLOCCATO**.
+  Nessun altro invio uguale; serve scelta esplicita risorse/configurazione,
+  nessuna modifica automatica RAG, servizi, hardware o costi. Report aggiornato.
+
 - [x] **IMPLEMENTATO** wrapper prova isolata Qwen27/V10-02 (2026-11-18),
   autorizzata dal titolare: max1 POST, zero retry. Nessun Qwen era stato inviato
   nei precedenti tentativi; differenza è isolamento dal caricamento Gemma.

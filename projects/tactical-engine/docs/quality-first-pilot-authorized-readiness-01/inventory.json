@@ -71,6 +71,16 @@
       "sha256": "233264acb7bfc88e6a37ebf703190fae6fb6a68dc79f6b99046d25ada1bfb7d3"
     },
     {
+      "path": "qwen27_single_case_authorization_01.json",
+      "bytes": 871,
+      "sha256": "98ab984fbbef78c038b531b2460ecc7dac38334d996f5c36d25425300ff509ae"
+    },
+    {
+      "path": "qwen27_single_case_scope_01.md",
+      "bytes": 825,
+      "sha256": "9d7efd293d79ab116102e237926057cfe27f9276d85427bcef512be24313944d"
+    },
+    {
       "path": "qwen3.8-registry-manifest.json",
       "bytes": 986,
       "sha256": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813"
