@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-18 — Preparazione prova isolata Qwen27, max1 richiesta
+
+Attività esistente RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Baseline9c66c59,
+GitHub/branch/tree riconciliati. Qwen mai inviato: prova isolata autorizzata
+«ok prova Qwen27», differenza tecnica già registrata prima dei controlli.
+Script qwen27_single_case_01.py delega una sola volta al controller/worker03
+immutati. Cinque controlli nuovi locali PASS, nessuna suite storica. Consenso/
+hash/payload congelati in docs/readiness, report protocollo addendum contestuale.
+Nuovo ledger esclusivo quality_first_qwen27_single_case_01, storici preservati,
+max1 POST/no retry; xhigh, contesto8192/output4096, riserva4GB, timeout900s e
+sicurezza invariati. Preparazione IMPLEMENTATO; controlli ESEGUITO/VALIDATO
+nel loro perimetro. Commit tecnico prima invio, esito nella stessa sessione.
+Nessuna modifica RAG/app/servizi/modelli/VPS o campagna aggiuntiva.
+
 ### 2026-11-18 — Closeout03: STOP riserva RAM durante caricamento Gemma
 
 Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Script paired_pilot_01 e

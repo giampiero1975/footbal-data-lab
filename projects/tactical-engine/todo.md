@@ -8,6 +8,14 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO** wrapper prova isolata Qwen27/V10-02 (2026-11-18),
+  autorizzata dal titolare: max1 POST, zero retry. Nessun Qwen era stato inviato
+  nei precedenti tentativi; differenza è isolamento dal caricamento Gemma.
+  Cinque nuovi controlli minimi PASS; riusa controller/worker03 immutati,
+  payload ordinal2 congelato, RAM4GB/lock/timeout invariati. Ledger esclusivo
+  quality_first_qwen27_single_case_01, storici preservati. Commit tecnico prima
+  dell'invio; risultato aggiornato nella stessa sessione. Nessuna modifica RAG.
+
 - [x] **ESEGUITO** tentativo03 del pilot (2026-11-18), completamento **BLOCCATO**.
   Commit tecnico cea3e804d45ecbb9aea844e01ea3127cf752bfe9; monitor corretto,
   17 controlli differenziali PASS. Gemma/V10-02:1 POST, nessuna risposta;

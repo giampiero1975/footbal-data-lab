@@ -1011,3 +1011,27 @@ configurazioni preservati, nessun deploy/merge/promozione.
 Commit documentale finale: quello che introduce questo closeout con raw,
 inventari, TODO ed Experiment Register contestuali, riportato nella consegna.
 Pubblicazione GitHub e working tree verificati, poi STOP.
+
+
+## Autorizzazione prova isolata Qwen27 — 2026-11-18, prima dell'invio
+
+Attività invariata RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, baseline/GitHub
+9c66c59, branch corretto e tree pulito. Consenso esplicito «ok prova Qwen27»:
+massimo1 POST e nessun retry, non riapertura dei sei slot. Qwen non era stato
+inviato nei precedenti tentativi, interrotti da Gemma; nuova differenza è
+l'isolamento del modello da quel caricamento, non test equivalente.
+
+Attività → qwen27_single_case_scope_01.md prima dei controlli → wrapper
+operations/quality-first-pilot/qwen27_single_case_01.py → commit tecnico prima
+invio → questo addendum, consenso/hash in docs/readiness → cinque controlli
+nuovi PASS solo sintassi/delega singola/ledger/payload → preparazione IMPLEMENTATO,
+controlli ESEGUITO/VALIDATO localmente; esito nella stessa sessione.
+
+Riusa senza modifiche one_remote e worker03: payload Qwen V10-02 ordinal2,
+fonti/domande/parametri immutati, think=xhigh, contesto8192/output4096, timeout900s,
+riserva4GB, monitor paging persistente, lock condiviso e host key rigorosa.
+Ledger nuovo evaluation/quality_first_qwen27_single_case_01, mkdir esclusivo,
+fsync-before-GO, nessun resume/reset; collega STOP03 storico preservato.
+Conteggio token pre-POST non inventato; contatori/qualità solo se risposta.
+Nessun Gemma caricato, modifica RAG/app/servizi/modelli/config o installazione.
+Il solo wrapper è nuovo, con hash controller/worker/payload/consenso congelati.
