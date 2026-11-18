@@ -2,6 +2,28 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-18 — Closeout03: STOP riserva RAM durante caricamento Gemma
+
+Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Script paired_pilot_01 e
+worker, commit tecnico cea3e804d45ecbb9aea844e01ea3127cf752bfe9 pubblicato prima invio.
+Delta dichiarato: monitor pressione persistente, 17 nuovi controlli PASS.
+Ledger03 esclusivo, storico01 invariato/hash verificati; nessun test duplicato
+senza differenza tecnica. Una POST Gemma/V10-02, nessuna risposta HTTP/testo.
+Dopo28.308s MemAvailable da15705608192 a3763400704 byte:
+E_MEMORY_RESERVE, sotto4GB obbligatori; non E_PERSISTENT_PAGING né timeout.
+RSS runner massimo campionato12204212224 byte, non picco continuo.
+STOP globale, zero retry, Qwen0 invii; cinque slot non inviati. Completamenti
+osservati0, generazioni interne non attestabili. Diagnostica read-only post-stop:
+ps vuoto, nessun runner, servizi active, memoria disponibile ripristinata.
+Raw/STOP/summary/inventory in evaluation/quality_first_paired_pilot_03, report
+protocollo addendum closeout03; TODO/registro/evidenze pubblicati contestualmente.
+Tentativo ESEGUITO, completamento/confronto BLOCCATO. Decisione D: unica causa
+mancato confronto è violazione del margine RAM Gemma in questa esecuzione;
+non prova impossibilità assoluta o inferiorità tattica, Qwen non valutato.
+Nessun export cieco/voto in assenza risposte, target28/30 non dimostrato.
+Nessuna modifica RAG/servizi/configurazioni/modelli/hardware o nuovo tentativo.
+STOP dopo pubblicazione e verifica; nessuna campagna/ABI/merge/deploy.
+
 ### 2026-11-18 — Revisione03 e nuovo tentativo autorizzato del pilot esistente
 
 RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata. Baseline/GitHub81143cd,

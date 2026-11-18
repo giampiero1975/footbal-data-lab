@@ -1,0 +1,102 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "revision": 3,
+  "date": "2026-11-18",
+  "technical_commit": "cea3e804d45ecbb9aea844e01ea3127cf752bfe9",
+  "previous_ledger": "quality_first_paired_pilot_01 (unchanged)",
+  "pilot_status": "ESEGUITO",
+  "completion_status": "BLOCCATO",
+  "decision": "D",
+  "decision_reason": "Gemma load crossed mandatory 4,000,000,000-byte available-memory reserve; safety stop prevented further slots. Qwen untested; quality comparison unavailable.",
+  "models": {
+    "gemma": {
+      "post_attempts": 1,
+      "http_responses_observed": 0,
+      "complete_answers": 0,
+      "case": "V10-02",
+      "stop": "E_MEMORY_RESERVE"
+    },
+    "qwen": {
+      "post_attempts": 0,
+      "complete_answers": 0,
+      "status": "not sent due to whole-pilot safety stop"
+    }
+  },
+  "post_attempts": 1,
+  "actual_model_generation_count": "not established; no generated text observed",
+  "elapsed_to_abort_seconds": 28.30819130805321,
+  "baseline": {
+    "available_bytes": 15705608192,
+    "swap_used_bytes": 253779968,
+    "swap_in": 27237,
+    "swap_out": 164852,
+    "processes": [
+      {
+        "pid": 188530,
+        "comm": "ollama",
+        "rss_bytes": 34533376,
+        "hwm_bytes": 34533376
+      }
+    ]
+  },
+  "last_sample": {
+    "event": "sample",
+    "monotonic": 2092105.281293738,
+    "available_bytes": 3763400704,
+    "swap_used_bytes": 270434304,
+    "swap_in": 27237,
+    "swap_out": 169783,
+    "processes": [
+      {
+        "pid": 188530,
+        "comm": "ollama",
+        "rss_bytes": 18092032,
+        "hwm_bytes": 38281216
+      },
+      {
+        "pid": 224378,
+        "comm": "llama-server",
+        "rss_bytes": 12204212224,
+        "hwm_bytes": 12204212224
+      }
+    ],
+    "paging_bytes_per_second": 0.0,
+    "paging_persistent_seconds": 0.0,
+    "page_bytes": 4096
+  },
+  "sample_count": 29,
+  "min_available_bytes": 3763400704,
+  "max_runner_rss_sampled_bytes": 12204212224,
+  "paging_stop_observed": false,
+  "retry_count": 0,
+  "remaining_slots_sent": 0,
+  "raw_wire_chunks": 0,
+  "post_stop": {
+    "loaded": {
+      "models": []
+    },
+    "processes": [
+      " 188530       1 ollama          22268  471949"
+    ],
+    "services": {
+      "ollama.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      },
+      "football-rag-api.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      }
+    },
+    "memory_available_bytes": 15946547200
+  },
+  "limitations": [
+    "This demonstrates violation of the agreed reserve in this run, not model impossibility with all RAM, a numerical peak forecast, or tactical inferiority.",
+    "No Qwen runtime evidence; cannot classify both models operationally inadequate.",
+    "No HTTP completion; cancellation timing and actual sampling count not established.",
+    "No token counts or tactical output available."
+  ],
+  "promotion_authorized": false
+}

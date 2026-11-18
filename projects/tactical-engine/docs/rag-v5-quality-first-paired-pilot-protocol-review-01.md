@@ -936,3 +936,78 @@ Risposte cieche esportabili solo con6 risposte valide, altrimenti nessuna
 valutazione umana simulata. Nessuna modifica RAG/applicativa/VPS/servizi/modelli.
 Il commit tecnico è quello che introduce revisione03, riportato nel ledger;
 nessuna inferenza effettuata nei controlli. Il nuovo tentativo parte dopo commit.
+
+
+## Closeout revisione03 — 2026-11-18: limite di riserva RAM osservato
+
+Attività invariata RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01.
+Attività → script paired_pilot_01/controller e worker, delta review03 → commit
+tecnico **cea3e804d45ecbb9aea844e01ea3127cf752bfe9**, pubblicato prima del primo invio →
+questo closeout e ledger03 inventariato → risultato sotto → decisione D →
+tentativo ESEGUITO, completamento/confronto BLOCCATO. Nessuna nuova attività.
+I17 controlli differenziali sono le evidenze del nuovo monitor, non prove di
+qualità o riesecuzioni delle suite storiche. Hash/manifest/binding03 congelati;
+branch/GitHub riconciliati prima della prova, host key ED25519 autorizzata
+verificata e strict checking attivo. Storico ledger01 integralmente preservato,
+inventario verificato prima e dopo; nuovo ledger03 creato una sola volta.
+
+### Esito operativo
+
+| Proprietà | Evidenza osservata |
+|---|---|
+| Primo slot | Gemma4:26b, V10-02, digest e Q4_K_M attesi |
+| Invii | Una POST avviata; zero retry; cinque slot non inviati |
+| Prerequisiti volatili | Utente/host key, GNU supervisor/process group, lock non bloccante, versione0.40.5/digest, servizi active, assenza modelli/runner e concorrenza verificati |
+| Memoria iniziale disponibile | 15705608192 byte |
+| Arresto | E_MEMORY_RESERVE dopo 28.308 secondi dal post_started |
+| MemAvailable ultimo/minimo campionato | 3763400704 byte = circa3,76GB decimali, sotto4GB obbligatori |
+| Runner RSS massimo campionato | 12204212224 byte; campione, non picco continuo o fabbisogno totale stimato |
+| Paging | Nessun E_PERSISTENT_PAGING; piccoli movimenti tollerati dal monitor corretto |
+| Risposta | Nessuno status HTTP, chunk, testo o contatore token ricevuto; RemoteDisconnected dopo socket chiuso |
+| Qwen | Zero invii: STOP di sicurezza del pilot intero, non bocciatura di Qwen |
+
+Il nuovo monitor ha superato il falso arresto dell'11 novembre e ha osservato
+un diverso limite reale del protocollo durante il caricamento. Non è stato
+abbassato il margine RAM, cambiato contesto/quantizzazione/profilo o ritentato
+il caricamento. Un rifiuto HTTP esplicito avrebbe consentito la prosecuzione
+solo a servizio quieto; qui non c'è rifiuto concluso, ma un monitor abort:
+la prosecuzione non è autorizzata. Non si trasforma quindi questo STOP in una
+scusa per un secondo invio o per provare Qwen nello stesso tentativo.
+
+### Stato residuo, evidenze e decisione unica
+
+Una diagnostica read-only successiva: /api/ps vuoto, nessun llama-server/runner
+residuo, solo daemon Ollama; servizi football-rag-api e Ollama active.
+MemAvailable tornata a15946547200 byte.
+Questo prova lo stato quieto osservato dopo, non l'istante esatto di cancellazione
+né un conteggio certo di sampling interno. Una POST avviata non equivale a una
+risposta completata: completamenti osservati0, numero reale generazioni non
+attestato. Non esistono risposte da votare o pacchetti ciechi da produrre.
+
+Raw append-only, request/payload, invocation, reserved-before-GO fsync, ready/
+sample/abort/error, stdout/stderr, STOP.json, diagnostica post-stop, summary e
+inventario SHA256/dimensioni in `evaluation/quality_first_paired_pilot_03/`.
+Non modificare o resettare questo ledger. Non esiste complete.json o export
+anonimo; nessun voto umano simulato. Binding, consenso e risultati dei17 nuovi
+controlli in docs/quality-first-pilot-authorized-readiness-01, inventario aggiornato.
+
+**Decisione D: evidenze insufficienti per scegliere. Unica causa operativa del
+mancato confronto: Gemma ha violato la riserva RAM obbligatoria sulla VPS
+confermata, imponendo lo STOP totale prima di qualsiasi risposta.**
+La configurazione Gemma26/Q4_K_M/8192 non ha rispettato il margine concordato
+in questa esecuzione. Non è una prova universale di impossibilità del modello,
+non equivale a RAM fisica totalmente esaurita e non consente di bocciare Qwen
+o entrambi (decisione C non giustificata). Qualità tattica, citazioni, target28/30
+e assenza troncamento non valutabili, nessun vincitore.
+
+Raccomandazione, senza eseguirla: non ripetere Gemma nello stesso assetto con
+lo stesso margine. Per un ulteriore confronto serve una decisione esplicita
+sulla disponibilità di risorse che preservino quel margine oppure sul perimetro
+di una verifica autonoma Qwen; nessun acquisto, migrazione, abbassamento soglia,
+nuovo test o modifica infrastrutturale è stato avviato. Non riaprire ABI,
+selezione o audit RAG. RAG/corpus/retrieval/embedding/API/panel/modelli/servizi/
+configurazioni preservati, nessun deploy/merge/promozione.
+
+Commit documentale finale: quello che introduce questo closeout con raw,
+inventari, TODO ed Experiment Register contestuali, riportato nella consegna.
+Pubblicazione GitHub e working tree verificati, poi STOP.

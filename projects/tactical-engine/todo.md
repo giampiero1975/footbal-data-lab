@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** tentativo03 del pilot (2026-11-18), completamento **BLOCCATO**.
+  Commit tecnico cea3e804d45ecbb9aea844e01ea3127cf752bfe9; monitor corretto,
+  17 controlli differenziali PASS. Gemma/V10-02:1 POST, nessuna risposta;
+  dopo28.308s MemAvailable=3763400704 byte<4GB: STOP E_MEMORY_RESERVE.
+  Non arresto per poche pagine swap. Qwen0 invii, cinque slot non inviati,
+  zero retry. **Decisione D**, confronto non valutabile: non boccia Qwen né
+  prova impossibilità universale di Gemma; Gemma non rispetta la riserva in
+  questa esecuzione. Ledger03 con raw/summary/inventario; storico01 immutato.
+  Post-stop /api/ps vuoto, nessun runner, servizi active, memoria ripristinata.
+  RAG e configurazioni preservati, nessuna promozione o modifica hardware.
+  Nessun ulteriore tentativo automatico; closeout nel report protocollo.
+
 - [x] **IMPLEMENTATO** revisione03 del pilot esistente (2026-11-18), prosecuzione
   autorizzata dal titolare. STOP RAM<4GB; paging globale>=64MiB/s per5s con
   RAM<6GB, non più qualsiasi pagina isolata. 17 nuovi controlli del delta
