@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO** revisione03 del pilot esistente (2026-11-18), prosecuzione
+  autorizzata dal titolare. STOP RAM<4GB; paging globale>=64MiB/s per5s con
+  RAM<6GB, non più qualsiasi pagina isolata. 17 nuovi controlli del delta
+  **ESEGUITO/VALIDATO** statici/sintetici; suite storiche non ripetute.
+  Nuovo ledger03 esclusivo, storico01 preservato. Payload invariati, max6,
+  zero retry; rifiuto HTTP concluso può proseguire solo a servizio quieto.
+  Report protocollo addendum03, scope/binding/consenso in docs/readiness;
+  commit tecnico prima dell'invio, esito aggiornato nella stessa sessione.
+  Nessuna modifica RAG/servizi/modelli; pilot **DA FARE** prima dell'invio.
+
 - [x] **ESEGUITO** un tentativo del pilot (2026-11-11), completamento **BLOCCATO**.
   Revisione02 commit 078b8f16b8c41e02af3efe1dce6b5ef6a00f11dc. Primo slot Gemma26/V10-02:
   una POST avviata, nessuna risposta; dopo1,034s STOP al monitor perché pswpin

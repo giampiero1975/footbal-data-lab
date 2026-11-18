@@ -25,8 +25,9 @@ HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 PROJECT = ROOT / "projects/tactical-engine"
 PACKAGE = HERE / "prepared"
-# One activity-wide location, not a CLI-selectable output for a second attempt.
-LEDGER = PROJECT / "evaluation/quality_first_paired_pilot_01"
+# Fixed authorized revision03 attempt; never overwrite/resume the historical01 ledger.
+LEDGER = PROJECT / "evaluation/quality_first_paired_pilot_03"
+PREVIOUS_LEDGER = PROJECT / "evaluation/quality_first_paired_pilot_01"
 CASES = (
     ("V10-02", "evaluation/coverciano-remediation-v10/case_02.json",
      "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135"),
@@ -178,7 +179,7 @@ def bind(plan, path, authorization_path):
     """Bind observed identities and explicit revised policy, not inferred compatibility."""
     binding, authorization = read(path), read(authorization_path)
     if (binding.get("activity") != ACTIVITY
-            or binding.get("policy_revision") != "observed-token-budget-02"
+            or binding.get("policy_revision") != "persistent-paging-03"
             or binding.get("plan_sha256") != sha(encoded(plan))):
         raise ValueError("E_POLICY_BINDING")
     if (authorization.get("authorized") is not True or authorization.get("activity") != ACTIVITY
@@ -240,6 +241,7 @@ def one_remote(call, binding, directory, overall_deadline):
     process.stdin.flush()
     sent = False
     completed = False
+    result_event = None
     try:
         while True:
             remaining = deadline - time.monotonic()
@@ -268,8 +270,11 @@ def one_remote(call, binding, directory, overall_deadline):
                 if completed or not sent:
                     raise RuntimeError("E_FINALIZATION")
                 save(directory / "result.json", event)
-                if event.get("ok") is not True:
+                if (event.get("ok") is not True
+                        and not (event.get("outcome") == "http_rejection"
+                                 and event.get("safe_to_continue") is True)):
                     raise RuntimeError("E_FINALIZATION")
+                result_event = event
                 completed = True
             elif event["event"] in ("blocked", "abort", "error"):
                 raise RuntimeError("E_REMOTE_STOP: " + str(event))
@@ -288,6 +293,7 @@ def one_remote(call, binding, directory, overall_deadline):
         stderr.flush()
         os.fsync(stderr.fileno())
         stderr.close()
+    return result_event
 
 
 def execute(binding_path, authorization_path):
@@ -299,22 +305,33 @@ def execute(binding_path, authorization_path):
     git("merge-base", "--is-ancestor", BASE, "HEAD")
     plan = read(PACKAGE / "pilot_manifest_01.json")
     binding = bind(plan, binding_path, authorization_path)
-    # mkdir is the activity-wide atomic duplicate guard. No resume command.
+    if not (PREVIOUS_LEDGER / "STOP.json").is_file():
+        raise ValueError("E_PREVIOUS_ATTEMPT_IDENTITY")
+    # Revision03 fixed atomic duplicate guard. No reset or resume command.
     LEDGER.mkdir(exist_ok=False)
     save(LEDGER / "activity-created.json", {
         "activity": ACTIVITY, "plan_sha256": sha(encoded(plan)),
         "binding_sha256": sha(encoded(binding)), "HEAD": git("rev-parse", "HEAD").decode().strip(),
-        "max_generations": 6, "utc_ns": time.time_ns(), "no_resume": True})
+        "max_generations": 6, "utc_ns": time.time_ns(), "no_resume": True,
+        "previous_ledger": str(PREVIOUS_LEDGER.relative_to(PROJECT)),
+        "previous_stop_sha256": sha((PREVIOUS_LEDGER / "STOP.json").read_bytes())})
     deadline = time.monotonic() + 5400
+    outcomes = []
     try:
         for call in plan["calls"]:  # Exactly six unique slots; never retries a slot.
             directory = LEDGER / ("call-%02d" % call["ordinal"])
             directory.mkdir(exist_ok=False)
             save(directory / "request.json", call)
-            one_remote(call, binding, directory, deadline)
+            print("Starting slot %d: %s %s" % (call["ordinal"], call["candidate"], call["case"]), flush=True)
+            result = one_remote(call, binding, directory, deadline)
+            outcomes.append({"ordinal":call["ordinal"], "ok":result["ok"],
+                             "outcome":result.get("outcome", "response")})
+            print("Finished slot %d: %s" % (call["ordinal"], outcomes[-1]), flush=True)
         inventory = {f.relative_to(LEDGER).as_posix(): sha(f.read_bytes())
                      for f in sorted(LEDGER.rglob("*")) if f.is_file()}
-        save(LEDGER / "complete.json", {"completed_slots": 6, "promotion_authorized": False,
+        save(LEDGER / "complete.json", {"completed_slots": 6,
+                                      "valid_answers": sum(x["ok"] is True for x in outcomes),
+                                      "outcomes": outcomes, "promotion_authorized": False,
                                       "plan_sha256": sha(encoded(plan)), "inventory": inventory})
     except BaseException as error:
         save(LEDGER / "STOP.json", {"error": repr(error), "ambiguous": True,
@@ -328,6 +345,8 @@ def anonymize():
         raise ValueError("E_PILOT_NOT_COMPLETE")
     plan = read(PACKAGE / "pilot_manifest_01.json")
     complete = read(LEDGER / "complete.json")
+    if complete.get("valid_answers") != 6:
+        raise ValueError("E_SIX_VALID_ANSWERS_REQUIRED")
     if complete["plan_sha256"] != sha(encoded(plan)):
         raise ValueError("E_REVIEW_PLAN_CHANGED")
     for relative, expected in complete["inventory"].items():

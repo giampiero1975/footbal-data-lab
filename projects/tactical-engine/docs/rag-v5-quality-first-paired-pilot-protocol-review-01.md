@@ -890,3 +890,49 @@ installati preservati; nessuna modifica applicativa. Target28/30 non valutabile,
 nessuna promozione, merge o deploy. Commit di pubblicazione closeout è quello
 che introduce queste evidenze e l'aggiornamento contestuale TODO/registro,
 restituito nella consegna. STOP dopo verifica GitHub/working tree.
+
+
+## Revisione03 autorizzata — 2026-11-18, prima del nuovo tentativo
+
+Attività invariata RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Riconciliazione
+GitHub/local81143cd7840e58f92c87e4037d6e340773fe623d, branch corretto e tree pulito.
+TODO/registro, codice e ultimo esito riconciliati: nessun tentativo03 presente.
+L'utente autorizza a procedere al prompt operativo conclusivo: nuovo tentativo,
+max6 POST, ledger distinto; precedente01 preservato e inventario verificato.
+Non è ripetizione equivalente: viene rimosso il veto di qualsiasi singola
+pagina swap che aveva interrotto l'unico tentativo senza risposta.
+
+Attività → scope revision03_scope.md registrato prima dei controlli → controller/
+worker paired_pilot_01 e revision03_delta_review.py → commit tecnico congelato
+prima invio → questo addendum/evidenze in docs/quality-first-pilot-authorized-readiness-01/
+→ 17 controlli nuovi PASS, solo delta statico/sintetico → esecuzione autorizzata
+con protezioni → preparazione IMPLEMENTATO, controlli ESEGUITO/VALIDATO nel loro
+perimetro, pilot ancora DA FARE prima dell'invio. Esito nella stessa sessione.
+
+Regole congelate: STOP immediato MemAvailable<4000000000 byte; STOP paging
+in+out globale>=64MiB/s per almeno5 secondi consecutivi se MemAvailable<6GB.
+Campioni nominali1s con dt monotonic reale, dimensione pagina dal kernel;
+contatori decrescenti sono incoerenti e arrestano. Nessuna attribuzione automatica
+al modello. Un incremento isolato di2 pagine non arresta; fine-risposta non
+ripristina il veto zero-paging. Soglie sono protezioni operative, non prova di
+thrashing o adeguatezza RAM. Servizi, lock, concorrenza, timeout900s/5400s e
+zero retry conservati. Nuovo ledger fisso evaluation/quality_first_paired_pilot_03,
+creazione esclusiva e nessun resume/reset, collegato allo STOP storico01.
+
+Rifiuto HTTP>=400 esplicito con body interamente letto entro1MiB: conservare
+raw e risultato. Si può proseguire allo slot successivo solo se monitor non
+abortito, RAM>=4GB, servizi attivi, /api/ps vuoto, nessun runner/concorrenza,
+lock invariato. EOF, stato ambiguo, errore stream, timeout o monitor abort
+fermano tutto. Questa distinzione evita che un rifiuto concluso di un modello
+impedisca di osservare l'altro; nessun retry della richiesta rifiutata.
+
+Le sei coppie caso/modello e tutti i payload sono identici alla revisione02:
+Gemma think=true, Qwen xhigh, contesto8192/output4096, seed/campionamento,
+fonti/domande/ordine preservati. Nessun Gold o risposta storica aggiunti.
+Conteggi API osservati dopo risposta: nessuna falsa prova pre-POST o di assenza
+troncamento, equivalenza tokenizer, profili effettivi o ABI. Manifest ricongelato
+per hash dei soli sorgenti cambiati; binding/consenso03 legati agli hash.
+Risposte cieche esportabili solo con6 risposte valide, altrimenti nessuna
+valutazione umana simulata. Nessuna modifica RAG/applicativa/VPS/servizi/modelli.
+Il commit tecnico è quello che introduce revisione03, riportato nel ledger;
+nessuna inferenza effettuata nei controlli. Il nuovo tentativo parte dopo commit.

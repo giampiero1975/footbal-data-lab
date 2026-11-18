@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-18 — Revisione03 e nuovo tentativo autorizzato del pilot esistente
+
+RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata. Baseline/GitHub81143cd,
+branch corretto, tree pulito, nessun03 eseguito. Delta registrato prima dei
+controlli in revision03_scope.md: paging persistente distinto da2 pagine isolate;
+RAM4GB invariata, soglia64MiB/s per5s con RAM<6GB, dt reale/page size kernel.
+Controller/worker paired_pilot_01, nuovi17 controlli statici/sintetici PASS,
+nessuna suite storica, payload tutti identici a02. Ledger03 esclusivo, storico01
+immutabile e hash verificati. HTTP rifiuto concluso consente prossimo slot solo
+con ps/runner vuoti, servizi attivi, memoria e lock conformi. Sicurezza/ambiguità
+arrestano tutto. Massimo6, nessun retry o cambio parametri. Consenso user
+«ok andiamo avanti allora» sul prompt conclusivo; binding/consenso03 in docs/readiness.
+Commit tecnico prima invio → addendum report protocollo → preparazione IMPLEMENTATO,
+controlli ESEGUITO/VALIDATO limitati al delta → pilot DA FARE prima invio.
+Esito e TODO/registro saranno aggiornati nella medesima sessione. Nessuna modifica
+RAG/app/servizi/modelli, nuova campagna o percorso ABI; nessuna qualità certificata.
+
 ### 2026-11-11 — Pilot revisione02: un invio, STOP su due pagine swap-in
 
 Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, invariata. Script controller/

@@ -1,0 +1,74 @@
+{
+  "scope": "revision03 delta; justification revision03_scope.md predates checks",
+  "checks": [
+    {
+      "check": "isolated_two_pages_allowed",
+      "result": "PASS"
+    },
+    {
+      "check": "sustained_64MiB_second_1",
+      "result": "PASS"
+    },
+    {
+      "check": "sustained_64MiB_second_2",
+      "result": "PASS"
+    },
+    {
+      "check": "sustained_64MiB_second_3",
+      "result": "PASS"
+    },
+    {
+      "check": "sustained_64MiB_second_4",
+      "result": "PASS"
+    },
+    {
+      "check": "sustained_64MiB_second_5",
+      "result": "PASS"
+    },
+    {
+      "check": "pressure_reset",
+      "result": "PASS"
+    },
+    {
+      "check": "ram_floor_immediate",
+      "result": "PASS"
+    },
+    {
+      "check": "high_memory_paging_diagnostic",
+      "result": "PASS"
+    },
+    {
+      "check": "actual_elapsed_and_page_size",
+      "result": "PASS"
+    },
+    {
+      "check": "counter_decrease_stops",
+      "result": "PASS"
+    },
+    {
+      "check": "no_end_zero_paging_veto",
+      "result": "PASS"
+    },
+    {
+      "check": "explicit_http_error_requires_quiescence",
+      "result": "PASS"
+    },
+    {
+      "check": "no_retry_single_post_site",
+      "result": "PASS"
+    },
+    {
+      "check": "revision_duplicate_guard",
+      "result": "PASS"
+    },
+    {
+      "check": "six_payloads_byte_identical_to_revision02",
+      "result": "PASS"
+    },
+    {
+      "check": "previous_ledger_inventory_unchanged",
+      "result": "PASS"
+    }
+  ],
+  "generative_posts": 0
+}

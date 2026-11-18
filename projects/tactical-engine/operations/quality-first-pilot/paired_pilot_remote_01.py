@@ -103,6 +103,30 @@ def concurrent_processes():
     return active
 
 
+def pressure_step(previous, current, elapsed, persistent_seconds, page_bytes):
+    """Global paging samples; not attribution to the current model."""
+    if current["available_bytes"] < 4000000000:
+        return persistent_seconds, "E_MEMORY_RESERVE", 0.0
+    if elapsed <= 0 or page_bytes <= 0:
+        return persistent_seconds, "E_RESOURCE_COUNTER", 0.0
+    pages = (current["swap_in"] - previous["swap_in"],
+             current["swap_out"] - previous["swap_out"])
+    if min(pages) < 0:
+        return persistent_seconds, "E_RESOURCE_COUNTER", 0.0
+    rate = sum(pages) * page_bytes / elapsed
+    stressed = rate >= 64 * 1024 * 1024 and current["available_bytes"] < 6000000000
+    persistent_seconds = persistent_seconds + elapsed if stressed else 0.0
+    reason = "E_PERSISTENT_PAGING" if persistent_seconds >= 5 else None
+    return persistent_seconds, reason, rate
+
+
+def runner_processes():
+    result = subprocess.run(["ps", "-eo", "pid=,comm="], capture_output=True,
+                            text=True, check=True, timeout=5)
+    return [line for line in result.stdout.splitlines()
+            if any(name in line for name in ("llama-server", "runner"))]
+
+
 def main():
     fd = None
     connection = None
@@ -145,7 +169,7 @@ def main():
         if (version.get("version") != binding["version"] or len(matches) != 1
                 or matches[0].get("digest", "").removeprefix("sha256:") != model["digest"]
                 or matches[0].get("details", {}).get("quantization_level") != "Q4_K_M"
-                or loaded.get("models") != []):
+                or loaded.get("models") != [] or runner_processes()):
             raise RuntimeError("E_VERSION_MODEL_OR_CONCURRENCY")
         baseline = resources()
         services = service_states(binding["services"])
@@ -165,14 +189,18 @@ def main():
         def sample():
             try:
                 tick = 0
+                previous, sampled_at, persistent = baseline, began, 0.0
+                page_bytes = os.sysconf("SC_PAGE_SIZE")
                 while not stop.is_set():
                     value = resources()
-                    emit("sample", **value)
-                    if (value["available_bytes"] < 4000000000
-                            or value["swap_in"] != baseline["swap_in"]
-                            or value["swap_out"] != baseline["swap_out"]
-                            or time.monotonic() - began >= 900):
-                        raise RuntimeError("E_RESOURCE_OR_DEADLINE")
+                    now = time.monotonic()
+                    persistent, reason, rate = pressure_step(
+                        previous, value, now - sampled_at, persistent, page_bytes)
+                    emit("sample", **value, paging_bytes_per_second=rate,
+                         paging_persistent_seconds=persistent, page_bytes=page_bytes)
+                    previous, sampled_at = value, now
+                    if reason or now - began >= 900:
+                        raise RuntimeError(reason or "E_DEADLINE")
                     if tick % 5 == 0:
                         service_states(binding["services"])
                         if concurrent_processes():
@@ -197,6 +225,26 @@ def main():
         connection.request("POST", "/api/chat", body=body, headers={"Content-Type": "application/json"})
         response = connection.getresponse()
         emit("http", status=response.status, headers=response.getheaders())
+        if response.status >= 400:
+            raw = response.read(1048577)
+            emit("http_error_body", bytes_base64=base64.b64encode(raw).decode())
+            if len(raw) > 1048576:
+                raise RuntimeError("E_ERROR_BODY_LIMIT")
+            stop.set()
+            monitor.join(timeout=6)
+            end = resources()
+            services = service_states(binding["services"])
+            safe = (not aborted.is_set() and not monitor.is_alive()
+                    and end["available_bytes"] >= 4000000000
+                    and get("/api/ps").get("models") == []
+                    and not runner_processes() and not concurrent_processes()
+                    and os.fstat(fd) == info)
+            emit("finished", ok=False, safe_to_continue=safe, outcome="http_rejection",
+                 http_status=response.status, error_body_base64=base64.b64encode(raw).decode(),
+                 content="", thinking="", final_metadata=None, resources_after=end,
+                 services_after=services, elapsed_seconds=time.monotonic()-began,
+                 promotion_authorized=False)
+            return 0 if safe else 41
         content = []
         thinking = []
         final = None
@@ -224,11 +272,10 @@ def main():
               and type(final.get("prompt_eval_count")) is int
               and 0 < final["prompt_eval_count"] <= 4096
               and end["available_bytes"] >= 4000000000
-              and (end["swap_in"], end["swap_out"]) == (baseline["swap_in"], baseline["swap_out"])
               and not aborted.is_set() and not monitor.is_alive())
         services = service_states(binding["services"])
         # One diagnostic read; no polling/reload if unload remains ambiguous.
-        if get("/api/ps").get("models") != []:
+        if get("/api/ps").get("models") != [] or runner_processes():
             ok = False
         if os.fstat(fd) != info:
             ok = False
