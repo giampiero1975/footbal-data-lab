@@ -1,0 +1,34 @@
+{
+  "baseline": "6937df63f240a7a9a6949c29cc309bee95d5137c",
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "code": {
+    "remote_supervision_gate_01.py": {
+      "sha256": "0145b36e57933588d0579a9bab96e2926926c99163d87fd3943aaf43b74536fa",
+      "bytes": 10285
+    },
+    "remote_gate_synthetic_01.py": {
+      "sha256": "46a567d0098e95821b920985bd5a4cf0dc43179223054183793937b2062d8ee0",
+      "bytes": 1259
+    },
+    "controller_remote_gate_01.py": {
+      "sha256": "f3115736fd0af4ce7d97a7cb2fdceb396cb8e12b68e8659ba4018843e9ce56d6",
+      "bytes": 10987
+    },
+    "pilot_supervision_01.py": {
+      "sha256": "0553498d3dea4ec32cff2a5f0a612f286ed26907d1cb22c66e2912d7942514a2",
+      "bytes": 28517
+    }
+  },
+  "syntax": "PASS",
+  "core_byte_identical_to_d4d2ee6": true,
+  "synthetic_imports": [
+    "hashlib",
+    "json",
+    "os",
+    "signal",
+    "sys",
+    "time"
+  ],
+  "fixtures_reexecuted": 0,
+  "remote_session_started": false
+}
