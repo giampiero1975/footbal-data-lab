@@ -2,6 +2,28 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Audit hardware e ottimizzazioni VPS senza upgrade
+
+Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata. Baseline/GitHub185a7f3,
+branch/tree corretti, TODO/registro/protocollo/ledger e9B riconciliati.
+Delta: contabilità hardware/cgroup e opzioni supportate ricostruite insieme,
+non benchmark o nuova attestazione ABI. Script hardware_feasibility_audit_01.py
+→ commit evidenze 594159f24b158f046fda2046b6604811c4eb8b74 → report
+rag-v5-hardware-feasibility-no-upgrade-audit-01.md → hardware/fonti/hash/scenari
+→ Qwen9 corrente per sviluppo zero costo, unica ipotesi mmap Gemma da autorizzare
+separatamente → audit ESEGUITO/VALIDATO solo documentale/read-only.
+6vCPU EPYC7702P/AVX2,KVM,15,572GiB,swap file1,5GiB,disco60GiB; nessuna GPU calcolo.
+Budget idle16,002GB meno4GB=12,002GB; RAG RSS idle non fabbisogno attivo, cache
+reclaimable distinta da anon. Cause STOP confermate come guardia, non errore
+Ollama. Quattro issue richieste esistono, versioni/ambienti non equivalenti.
+Codice releaseCPU sceglie mmap=false se non esplicito: unico delta nativo
+proposto use_mmap=true, non applicato né sostenibilità garantita. API distinta
+CLI, fonti esatte/hash, stime RAM condizionali, nessuna stima token/benchmark.
+Due SSH diagnostiche,4 GET e4 file cgroup: zero POST/inferenze/loading/lock,
+modelli scaricati/servizi modificati/costi. Qualità28/30 e nuova fattibilità
+non dimostrate, stati storici preservati. Report/TODO/registro contestuali,
+verifica GitHub/working tree e STOP; futura fase proposta DA FARE/non autorizzata.
+
 ### 2026-11-18 — Closeout Qwen27 isolato: stesso limite di riserva RAM
 
 RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, consenso esplicito max1 POST.

@@ -8,6 +8,19 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO / VALIDATO** audit hardware/documentale senza upgrade (2026-11-19),
+  nella stessa attività pilot. Commit evidenze 594159f24b158f046fda2046b6604811c4eb8b74.
+  6vCPU EPYC/AVX2,15,572GiB guest,KVM,nessuna GPU calcolo; swap file1,5GiB,
+  disco60GiB,liberi4,772GB. Available idle16,002GB; budget sopra riserva4GB
+  circa12,002GB. Cache reclaimable distinta da heap/RAG in swap.
+  Decisione: sviluppo zero costo con Qwen3.5 9B esistente e RAG preservato;
+  qualità28/30 non dimostrata. Unica ipotesi nativa da testare SOLO con nuova
+  autorizzazione: Gemma use_mmap=true; default CPU nel sorgente senza mmap,
+  working set/latency non validati. Non promette sostenibilità dei grandi.
+  Report `docs/rag-v5-hardware-feasibility-no-upgrade-audit-01.md`, fonti/hash,
+  parametri/scenari e4 issue verificati; nessun test equivalente ripetuto.
+  Zero inferenze/caricamenti/download modelli/modifiche VPS/costi. STOP.
+
 - [x] **ESEGUITO** Qwen27 isolato/V10-02 (2026-11-18), max1 POST autorizzata,
   zero retry; commit tecnico 4ff3ca16ea6ced07dc3e15804e798bf5c86da4e5. Dopo32.352s
   RAM disponibile=3149516800 byte<4GB: STOP E_MEMORY_RESERVE, nessuna risposta.

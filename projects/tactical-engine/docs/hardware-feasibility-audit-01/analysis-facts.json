@@ -274,7 +274,18 @@
   "generative_posts_by_audit": 0,
   "changes_to_VPS": false,
   "new_model_downloads": 0,
-  "recommendation": "Keep installed Qwen3.5 9B as operational development generator; no proven tactical winner or universal 28/30. Do not repeat 26/27B Q4 within unchanged constraints.",
-  "new_test_proposed": false,
-  "source_scope": "Pinned release source analysis, installed help previously captured, four requested issue bodies, current official author cards/catalogue; no ABI investigation/compilation"
+  "recommendation": "Use installed Qwen3.5 9B now, no additional cost or claim of tactical certification. One optional native mmap-on Gemma experiment could examine a real untested lever; no runtime authorized by this audit.",
+  "new_test_proposed": true,
+  "source_scope": "Pinned release source analysis, installed help previously captured, four requested issue bodies, current official author cards/catalogue; no ABI investigation/compilation",
+  "proposed_test": {
+    "phase_label_not_new_activity": "gemma-mmap-on-01",
+    "status": "DA FARE",
+    "authorized_to_execute": false,
+    "single_delta": "options.use_mmap=true versus previously unspecified CPU loading mode",
+    "model": "installed Gemma26 Q4_K_M same digest",
+    "max_posts": 1,
+    "other_parameters": "same V10-02 payload and draft defaults,8192/4096,monitor03,900s",
+    "hypothesis": "file-backed mappings may reduce non-reclaimable footprint enough to preserve4GB; working set/repacking/latency unverified"
+  },
+  "planning_limitation": "Full-residency arithmetic is not proof of impossibility for demand-paged mmap. File proxy and1-3GB extra are explicit planning assumptions, not measured RAM."
 }
