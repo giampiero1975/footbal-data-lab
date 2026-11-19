@@ -1,0 +1,61 @@
+{
+  "scope": "PROPOSED ONLY, not implemented or run; local fake processes/HTTP fixtures, no SSH or models",
+  "unchanged_limits": {
+    "memory_floor_bytes": 4000000000,
+    "paging_threshold_bytes_per_second": 67108864,
+    "paging_persistent_seconds": 5,
+    "paging_available_below_bytes": 6000000000,
+    "generation_timeout_seconds": 900,
+    "remote_kill_after_seconds": 15,
+    "post_limit": 1,
+    "retries": 0
+  },
+  "cases": [
+    {
+      "name": "normal fragmented NDJSON and terminal",
+      "fixture": "fake worker emits partial bytes then a complete terminal envelope",
+      "accept": "raw byte hash exact, all sequences accounted for, phase/exit/durable terminal complete"
+    },
+    {
+      "name": "continuous output beyond deadline",
+      "fixture": "fake clock/deadline and fake worker continuing lines",
+      "accept": "absolute budget enforced despite ongoing output; no model-error classification or retry"
+    },
+    {
+      "name": "stdout backpressure at safety threshold",
+      "fixture": "fake transport writer blocked while fake resources cross the unchanged4GB floor",
+      "accept": "guard/cancellation occurs before logging completes; no dependency on stdout lock"
+    },
+    {
+      "name": "local writer fsync stall or exception",
+      "fixture": "controlled I/O failure in fake writer; no real disk stall",
+      "accept": "watchdog/collector fault persisted, bounded cleanup, remote fixture spool retains raw"
+    },
+    {
+      "name": "terminal or EOF queued as local clock advances",
+      "fixture": "inject deadline jump and queued terminal/exit, including done but over-budget response",
+      "accept": "durable raw retained and classified separately; no retroactive PASS without timing proof"
+    },
+    {
+      "name": "transport loss or simulated local scheduling pause",
+      "fixture": "stop fake local consumption while independent fake remote journal continues to fixed deadline",
+      "accept": "recover journal read-only with one attempt ID; no second request, gap identified, actual cancel status not fabricated"
+    },
+    {
+      "name": "TERM ignored and timeout exit",
+      "fixture": "local fake child ignores TERM then watchdog escalates within cleanup grace",
+      "accept": "exit/signal/forced_kill/wait outcome recorded; no assertion daemon stopped solely because SSH exited"
+    },
+    {
+      "name": "observer wall adjustment and optional failure",
+      "fixture": "fake wall-clock step while monotonic constant, observer EOF/exception/forced kill",
+      "accept": "shared monotonic budget unchanged; optional diagnostic status durable and does not overwrite primary stop"
+    },
+    {
+      "name": "counter safety regression focused only on decoupling",
+      "fixture": "same monitor03 fixtures with blocked event sink; no historical suite replay",
+      "accept": "thresholds unchanged and guard still independent; no inferential claims"
+    }
+  ],
+  "exit_gate": "No new Gemma/Qwen generation until authorized patch and these non-generative validations pass; then separate authorization for a single case."
+}

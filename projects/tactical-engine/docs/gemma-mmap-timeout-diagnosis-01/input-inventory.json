@@ -1,0 +1,154 @@
+{
+  "files": [
+    {
+      "path": "evaluation/gemma_mmap_on_01/.gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/.gitignore",
+      "bytes": 97,
+      "sha256": "92ab1f667d44f7236d70ebb26162603cc4a0df0178e66a18e0ed501080891411"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/activity-created.json",
+      "bytes": 385,
+      "sha256": "1268ff8507fae1eece213f22398ed4049a723f314348a6ff0d3196260865f17c"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/answer.partial.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/call-01/invocation.json",
+      "bytes": 18390,
+      "sha256": "2e9a07f67e721f79a237bfa69fc13d12fd403dd3b4f4d451525fc26ac55499d4"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/call-01/request.json",
+      "bytes": 6356,
+      "sha256": "d7034474e0fb7dbeb6a2de1991ae96d65a6e3a3d773c247a4d930163e514481f"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/call-01/reserved-before-GO.json",
+      "bytes": 205,
+      "sha256": "34a92e82979885895f8ee871ab526678df0519809f861873398665ad2644c825"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/call-01/stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/call-01/stdout.raw",
+      "bytes": 370606,
+      "sha256": "14af12468f544f57447a36390706c8e6e735e7ed3218dcd3dacacc00febaf1c6"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/collection-verification.json",
+      "bytes": 357,
+      "sha256": "cedbffc889ce4c6527aadb602f38b3c65999ea623ef0a828431337e814648f6d"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/observer-exit.json",
+      "bytes": 58,
+      "sha256": "63ec411883079cd4ebbd03209cbe9b9453f9c5d097eb6cc702f33019fac83454"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/observer-invocation.json",
+      "bytes": 3872,
+      "sha256": "f907941b6ab0be236ecd5ed487ec22eea75d23b46d59c79df890af83082325ff"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/observer.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/observer.stdout.jsonl",
+      "bytes": 590536,
+      "sha256": "4d35d1fa6d85b1c54a446a452cea60b320e58f6df1edb16527f337002a6d2293"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/post-stop-diagnostic-invocation.json",
+      "bytes": 3068,
+      "sha256": "b6e03aade3f8637b812f68e2ebf341fdd2b9018194d4d7e4c5ce189055381968"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/post-stop-diagnostic.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/post-stop-diagnostic.stdout.json",
+      "bytes": 3157,
+      "sha256": "5f6eab0cdbff35a69aff69c6ed917c42c71755ed1055c2e36cbf6ebc580cbe7c"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/response-body.partial.ndjson",
+      "bytes": 101966,
+      "sha256": "e956a22c701651771ee8678e9d3145261fbf4cce7d3bd79ba29fb8a86566cd2e"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/STOP.json",
+      "bytes": 119,
+      "sha256": "f8babcb73408b3004f5937b4173cdb285b22bd95945de103b477cb25803223ca"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/summary.json",
+      "bytes": 4699,
+      "sha256": "be1b2e710a88fea7f5d6c703c47cceba1da68d8c0d4825b4036996e7da087106"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/thinking.partial.txt",
+      "bytes": 3006,
+      "sha256": "32243d4d7dc4ab9c640dc36c2221a1d02d0bc79578532040c471f58bfbac1f20"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/wire-inventory.json",
+      "bytes": 111105,
+      "sha256": "54d3280d0d82dac83ef35c19e0064a8380d6272667a5bd1f38b93bcff0a252e0"
+    },
+    {
+      "path": "evaluation/gemma_mmap_on_01/wire-originals.zip",
+      "bytes": 173833,
+      "sha256": "518962f2d2ea7a5dc82e2588791b71b877f3a956a379f8dc0d0a1082d3472cca"
+    },
+    {
+      "path": "operations/quality-first-pilot/paired_pilot_01.py",
+      "bytes": 19344,
+      "sha256": "e8c0a16962a904e85fff0ecece7b22408bab7c1d2846c433a847b40b038647d7"
+    },
+    {
+      "path": "operations/quality-first-pilot/paired_pilot_remote_01.py",
+      "bytes": 13441,
+      "sha256": "1eca716c432ef5d3189a46b6f6d7058bfa7d5f0581a7828283e159f597458753"
+    },
+    {
+      "path": "operations/quality-first-pilot/gemma_mmap_on_01.py",
+      "bytes": 4199,
+      "sha256": "9f69ae7608ca92c703da8ead8f23adfea116d6bb9c16c366eabae7a255a3eaaa"
+    },
+    {
+      "path": "operations/quality-first-pilot/gemma_mmap_observation_01.py",
+      "bytes": 4037,
+      "sha256": "c8e604ec6851a32d3cda388e1e6d3d717afb1acaede225a2620d1666d9a9e8ca"
+    },
+    {
+      "path": "todo.md",
+      "bytes": 260321,
+      "sha256": "b6d2ad662fbe316d46fbcedeb9ecbc426f33436a5d60e4422a673aaa75ed2a84"
+    },
+    {
+      "path": "docs/experiment-register.md",
+      "bytes": 396172,
+      "sha256": "24053915e84e69d4dfd09e21920cde9169b2b3883d66d7bdb3dc24626538922a"
+    },
+    {
+      "path": "docs/rag-v5-gemma-mmap-on-01.md",
+      "bytes": 9489,
+      "sha256": "56defb9fa6ae4e645dfb9951f6ab4a0316a427abbd4dc768ef03c5664597500f"
+    }
+  ]
+}

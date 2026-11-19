@@ -1,0 +1,24 @@
+{
+  "files": [
+    {
+      "path": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "path": "facts.json",
+      "bytes": 10664,
+      "sha256": "e6056b3156241fe35373aa4a2fdd849702b4591460a666575df2f18ea2a00662"
+    },
+    {
+      "path": "input-inventory.json",
+      "bytes": 5475,
+      "sha256": "df9b4f494e36f4976c33a379b5b87927d7b91d25d94a9555b9980fb812dbf53b"
+    },
+    {
+      "path": "proposed-validation-plan.json",
+      "bytes": 3090,
+      "sha256": "edd3dac4b9e71868939a4684abd44bdd1392e1130c1f281531023d10b7a43bfd"
+    }
+  ]
+}

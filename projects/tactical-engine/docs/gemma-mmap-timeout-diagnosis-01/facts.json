@@ -1,0 +1,423 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "baseline": "aa15ed26d9c29ddb05eb950010e36cc065b9837e",
+  "scope": "offline static analysis and original artifact parsing only; no runtime simulations executed",
+  "timeline": {
+    "local_activity_created": {
+      "utc_ns": 1795085444602592800,
+      "utc": "2026-11-19T10:50:44.602593+00:00"
+    },
+    "local_GO_reserved": {
+      "utc_ns": 1795085445587758400,
+      "utc": "2026-11-19T10:50:45.587758+00:00"
+    },
+    "local_STOP_persisted": {
+      "utc_ns": 1795087657118428400,
+      "utc": "2026-11-19T11:27:37.118428+00:00"
+    },
+    "local_wall_GO_to_STOP_seconds": 2211.53067,
+    "local_monotonic_start_deadline_detection_cleanup_timestamps": "not recorded",
+    "remote_HTTP_headers": {
+      "event": "http",
+      "monotonic": 2157026.698759227,
+      "status": 200,
+      "headers": [
+        [
+          "Content-Type",
+          "application/x-ndjson"
+        ],
+        [
+          "Date",
+          "Thu, 19 Nov 2026 10:52:32 GMT"
+        ],
+        [
+          "Transfer-Encoding",
+          "chunked"
+        ]
+      ]
+    },
+    "remote_sequences": {
+      "all_events": {
+        "count": 1103,
+        "first_monotonic": 2156920.998914255,
+        "last_monotonic": 2157318.37886077,
+        "first_relative_to_post": -0.04183437395840883,
+        "last_relative_to_post": 397.3381121410057,
+        "prefix_duration": 397.3799465149641,
+        "max_internal_gap": 1.0726064634509385,
+        "median_internal_gap": 0.24021015036851168
+      },
+      "samples": {
+        "count": 393,
+        "first_monotonic": 2156921.045489321,
+        "last_monotonic": 2157318.228825752,
+        "first_relative_to_post": 0.004740692209452391,
+        "last_relative_to_post": 397.18807712337,
+        "prefix_duration": 397.18333643116057,
+        "max_internal_gap": 1.0726064634509385,
+        "median_internal_gap": 1.0057373689487576
+      },
+      "wire": {
+        "count": 707,
+        "first_monotonic": 2157026.700110038,
+        "last_monotonic": 2157318.37886077,
+        "first_relative_to_post": 105.6593614090234,
+        "last_relative_to_post": 397.3381121410057,
+        "prefix_duration": 291.6787507319823,
+        "max_internal_gap": 1.760190678294748,
+        "median_internal_gap": 0.0006475718691945076
+      },
+      "observer": {
+        "count": 199,
+        "first_monotonic": 2156920.909713426,
+        "last_monotonic": 2157316.536529273,
+        "first_relative_to_post": -0.13103520264849067,
+        "last_relative_to_post": 395.495780644007,
+        "prefix_duration": 395.6268158466555,
+        "max_internal_gap": 2.0160976760089397,
+        "median_internal_gap": 2.0076137569267303
+      }
+    },
+    "remote_post_started_monotonic": 2156921.040748629,
+    "ZIP_original_write_dates": {
+      "first": [
+        2026,
+        11,
+        19,
+        11,
+        52,
+        32
+      ],
+      "last": [
+        2026,
+        11,
+        19,
+        11,
+        57,
+        22
+      ],
+      "timezone_recorded": false,
+      "precision_seconds": 2
+    },
+    "post_diagnostic": {
+      "remote_utc": "2026-11-19T11:29:59.746408+00:00",
+      "remote_monotonic": 2159273.913784134,
+      "local_start_utc": "2026-11-19T11:29:57.279740+00:00",
+      "local_end_utc": "2026-11-19T11:29:58.543614+00:00",
+      "remote_wall_stamp_minus_local_end_seconds": 1.202794291,
+      "last_raw_to_post_diagnostic_remote_seconds": 1955.5349233644083
+    },
+    "event_counts": {
+      "ready": 1,
+      "post_started": 1,
+      "sample": 393,
+      "http": 1,
+      "wire": 707
+    },
+    "observer_counts": {
+      "observer_started": 1,
+      "observation": 198
+    },
+    "observer_exit": {
+      "exit": 1,
+      "generator_not_controlled_by_observer": true
+    },
+    "generator_SSH_exit_code": "not persisted",
+    "terminal_remote_event": "absent; neither finished nor error/abort/EOF envelope",
+    "interpretation": "Remote intervals and local wall intervals must not be treated as a common monotonic clock; STOP is saved after one_remote finally cleanup."
+  },
+  "source_anchors": [
+    {
+      "file": "operations/quality-first-pilot/paired_pilot_01.py",
+      "sha256": "e8c0a16962a904e85fff0ecece7b22408bab7c1d2846c433a847b40b038647d7",
+      "anchors": [
+        {
+          "text": "process = subprocess.Popen",
+          "lines": [
+            225
+          ]
+        },
+        {
+          "text": "def collect():",
+          "lines": [
+            227
+          ]
+        },
+        {
+          "text": "os.fsync(stdout.fileno())",
+          "lines": [
+            232
+          ]
+        },
+        {
+          "text": "events.put(line)",
+          "lines": [
+            233
+          ]
+        },
+        {
+          "text": "deadline = min(",
+          "lines": [
+            239
+          ]
+        },
+        {
+          "text": "process.stdin.write(encoded(request)",
+          "lines": [
+            240
+          ]
+        },
+        {
+          "text": "remaining = deadline - time.monotonic()",
+          "lines": [
+            247
+          ]
+        },
+        {
+          "text": "E_DEADLINE_AMBIGUOUS",
+          "lines": [
+            249
+          ]
+        },
+        {
+          "text": "line = events.get(",
+          "lines": [
+            251
+          ]
+        },
+        {
+          "text": "write_new(directory / (",
+          "lines": [
+            267
+          ]
+        },
+        {
+          "text": "process.kill()",
+          "lines": [
+            288
+          ]
+        },
+        {
+          "text": "thread.join(timeout=2)",
+          "lines": [
+            290
+          ]
+        },
+        {
+          "text": "os.fsync(stderr.fileno())",
+          "lines": [
+            294
+          ]
+        }
+      ]
+    },
+    {
+      "file": "operations/quality-first-pilot/paired_pilot_remote_01.py",
+      "sha256": "1eca716c432ef5d3189a46b6f6d7058bfa7d5f0581a7828283e159f597458753",
+      "anchors": [
+        {
+          "text": "def emit(",
+          "lines": [
+            25
+          ]
+        },
+        {
+          "text": "with output_lock:",
+          "lines": [
+            26
+          ]
+        },
+        {
+          "text": "print(json.dumps(",
+          "lines": [
+            27
+          ]
+        },
+        {
+          "text": "E_REMOTE_SUPERVISOR",
+          "lines": [
+            155
+          ]
+        },
+        {
+          "text": "if sys.stdin.buffer.readline()",
+          "lines": [
+            184
+          ]
+        },
+        {
+          "text": "HTTPConnection(",
+          "lines": [
+            35,
+            186
+          ]
+        },
+        {
+          "text": "def sample():",
+          "lines": [
+            189
+          ]
+        },
+        {
+          "text": "emit(\"sample\"",
+          "lines": [
+            199
+          ]
+        },
+        {
+          "text": "if reason or now - began >= 900:",
+          "lines": [
+            202
+          ]
+        },
+        {
+          "text": "emit(\"abort\"",
+          "lines": [
+            212
+          ]
+        },
+        {
+          "text": "connection.sock.shutdown",
+          "lines": [
+            215
+          ]
+        },
+        {
+          "text": "line = response.readline()",
+          "lines": [
+            253
+          ]
+        },
+        {
+          "text": "finally:",
+          "lines": [
+            42,
+            291
+          ]
+        }
+      ]
+    },
+    {
+      "file": "operations/quality-first-pilot/gemma_mmap_on_01.py",
+      "sha256": "9f69ae7608ca92c703da8ead8f23adfea116d6bb9c16c366eabae7a255a3eaaa",
+      "anchors": [
+        {
+          "text": "watch=observation.start",
+          "lines": [
+            65
+          ]
+        },
+        {
+          "text": "pilot.one_remote(",
+          "lines": [
+            67
+          ]
+        },
+        {
+          "text": "except BaseException as error:",
+          "lines": [
+            71
+          ]
+        },
+        {
+          "text": "pilot.save(LEDGER/\"STOP.json\"",
+          "lines": [
+            72
+          ]
+        },
+        {
+          "text": "if watch is not None:observation.finish",
+          "lines": [
+            76
+          ]
+        }
+      ]
+    },
+    {
+      "file": "operations/quality-first-pilot/gemma_mmap_observation_01.py",
+      "sha256": "c8e604ec6851a32d3cda388e1e6d3d717afb1acaede225a2620d1666d9a9e8ca",
+      "anchors": [
+        {
+          "text": "while not stop.is_set() and time.time()-start<900:",
+          "lines": [
+            21
+          ]
+        },
+        {
+          "text": "seen.add(pid)",
+          "lines": [
+            32
+          ]
+        },
+        {
+          "text": "item[\"smaps_rollup\"]",
+          "lines": [
+            37
+          ]
+        },
+        {
+          "text": "emit(\"observation\"",
+          "lines": [
+            42
+          ]
+        },
+        {
+          "text": "journalctl",
+          "lines": [
+            45
+          ]
+        },
+        {
+          "text": "observer_finished",
+          "lines": [
+            56
+          ]
+        },
+        {
+          "text": "def finish(",
+          "lines": [
+            67
+          ]
+        },
+        {
+          "text": "process.wait(timeout=8)",
+          "lines": [
+            72
+          ]
+        },
+        {
+          "text": "process.kill();process.wait()",
+          "lines": [
+            74
+          ]
+        },
+        {
+          "text": "observer-exit.json",
+          "lines": [
+            76
+          ]
+        }
+      ]
+    }
+  ],
+  "proven_trigger": "The sole E_DEADLINE_AMBIGUOUS branch tests remaining<=0 in the local controller.",
+  "unresolved_root_cause": "No arrival timestamps, local monotonic detection/cleanup phases or remote durable terminal exist to select a causal mechanism for the unobserved interval.",
+  "structural_defects": [
+    "local deadline polled only between potentially unbounded I/O/cleanup operations",
+    "remote safety monitor emits through shared blocking stdout before guard/cancellation",
+    "no remote durable evidence or terminal independent from SSH stdout",
+    "reader exceptions/SSH exit/signal/forced kill and cleanup timing not durably distinguished",
+    "observer wall clock and transport share failure modes; final-only journal/maps sampled once per PID"
+  ],
+  "new_model_calls": 0,
+  "new_SSH_connections": 0,
+  "controller_changes": false,
+  "hypotheses_not_demonstrated": [
+    "PC suspend/resume",
+    "transport interruption",
+    "local filesystem stall",
+    "CPU scheduling or process pause",
+    "wall-clock adjustment",
+    "model completion or failure after final received event"
+  ]
+}
