@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO / VALIDATO** diagnosi documentale timeout/observability Gemma mmap
+  (2026-11-19), stessa attività pilot. Commit analisi d67df947224fbcf9f49cda99ab69f69b81043ce2.
+  Trigger dimostrato: deadline monotonic locale scaduta, non errore Gemma/Ollama.
+  Cause del gap non determinabili: mancano clock locali di ricezione/scadenza/
+  cleanup e terminale remoto. 2211,531s è wall-clock prima-GO→recordSTOP dopo
+  cleanup; non misura il timer900s. Prefissi sample393/wire707 e observer198
+  regolari fino circa397s, nessuna prova successiva. Difetti di codice concreti:
+  I/O/cleanup non limitati, guardia remota dopo stdout bloccante, nessun journal
+  remoto/exit strutturato. Controller non idoneo ora a nuovo test; correzione
+  **DA FARE** solo con autorizzazione, piano9 fixture non generative non eseguite.
+  Report docs/rag-v5-gemma-mmap-timeout-observability-diagnosis-01.md; dati/hash
+  in docs/gemma-mmap-timeout-diagnosis-01. Zero SSH/POST/loading/patch/VPS/RAG.
+  Nuovo Gemma o Qwen27 mmap **BLOCCATO** prima della correzione verificata. STOP.
+
 - [x] **ESEGUITO** unico gemma-mmap-on-01 (2026-11-19), completamento **BLOCCATO**.
   Commit tecnico 72ef28eed796c5267711da06e10474f66c6a778c, solo use_mmap=true, monitor invariato.
  1 POST, HTTP200/stream parziale;707 chunk thinking,0 caratteri finale, token ND.

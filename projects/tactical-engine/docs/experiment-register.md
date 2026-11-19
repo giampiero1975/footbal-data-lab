@@ -2,6 +2,31 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Diagnosi offline timeout e osservabilità gemma-mmap-on-01
+
+Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata; baseline/GitHubaa15ed2,
+branch/tree corretti, TODO/registro/report/script/ledger riconciliati. Nessuna
+diagnosi equivalente: nuovo percorso statico di controllo e ricostruzione dei
+clock, non altro test. Analizzatore diagnose_gemma_mmap_timeout_01.py, commit
+d67df947224fbcf9f49cda99ab69f69b81043ce2 → report rag-v5-gemma-mmap-timeout-observability-diagnosis-01.md →
+facts/input-inventory/piano in docs/gemma-mmap-timeout-diagnosis-01 → controller
+non affidabile per nuovi test → diagnosi ESEGUITO/VALIDATO solo documentale.
+Trigger certo: remaining<=0 locale; non errore modello. Gap causale non
+identificabile con i dati attuali. Wall2211,531s include cleanup precedente
+STOP; nessun timestamp locale monotonic/ricezione/kill/exit, terminale remoto
+assente. Prefissi regolari fino397,338s ultimo wire; sample397,188s, observer
+395,496s. Difetti accertati: I/O/cleanup non limitati, emit bloccante prima della
+guardia/shutdown, raccolta solo SSH, errori/exit/kill non distinti, observer
+wall-clock/journal finale/mappe una volta. Nessuna prova che siano la causa
+specifica del gap, nessuna attribuzione a PC/rete/Ollama/Gemma. Proposta minima:
+disaccoppiare controllo/log, journal remoto bounded, watchdog/cleanup e clock/
+exit espliciti, observer sullo stesso budget. Correzione DA FARE/non applicata;
+piano9 fixture solo locali non generative, non eseguite. Soglie/parametri
+invariati. Nuovo Gemma e Qwen27 mmap BLOCCATO fino a correzione autorizzata e
+verificata, poi eventuale consenso distinto. Originali/hash preservati, zero
+SSH/POST/inferenza/loading/nuovi modelli/patch/VPS/RAG. Report/TODO/registro
+contestuali, verifica GitHub/working tree e STOP in attesa del titolare.
+
 ### 2026-11-19 — gemma-mmap-on-01: stream ricevuto, raccolta interrotta senza finale
 
 Stessa attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Script gemma_mmap_on_01
