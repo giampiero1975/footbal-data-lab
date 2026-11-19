@@ -1,0 +1,159 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "test": "gemma-mmap-on-01",
+  "date": "2026-11-19",
+  "technical_commit": "72ef28eed796c5267711da06e10474f66c6a778c",
+  "status": "ESEGUITO",
+  "completion_status": "BLOCCATO",
+  "operational_PASS": false,
+  "post_attempts": 1,
+  "retry_count": 0,
+  "http_status": 200,
+  "complete_http_body": false,
+  "done_seen": false,
+  "final_content_characters": 0,
+  "thinking_characters": 3006,
+  "wire_chunks_not_tokens": 707,
+  "generated_tokens": null,
+  "generated_tokens_unavailable_reason": "No terminal Ollama metadata/eval_count; chunk count is not token count.",
+  "stop": "E_DEADLINE_AMBIGUOUS in local controller",
+  "configured_generation_timeout_seconds": 900,
+  "remote_last_sample_elapsed_seconds": 397.18807712337,
+  "remote_http_headers_elapsed_seconds": 105.65801059827209,
+  "local_reserved_to_STOP_wall_seconds": 2211.53067,
+  "timing_conclusion": "Unobserved interval between last received remote events and local deadline detection. No proof of cause (sleep, network, scheduling or other); do not attribute to model or claim900s of continuous remote evidence.",
+  "baseline": {
+    "available_bytes": 15935758336,
+    "swap_used_bytes": 292192256,
+    "swap_in": 29438,
+    "swap_out": 177407,
+    "processes": [
+      {
+        "pid": 188530,
+        "comm": "ollama",
+        "rss_bytes": 24195072,
+        "hwm_bytes": 38281216
+      }
+    ]
+  },
+  "minimum_available_bytes_sampled": 6156517376,
+  "last_sample": {
+    "event": "sample",
+    "monotonic": 2157318.228825752,
+    "available_bytes": 6696554496,
+    "swap_used_bytes": 1610592256,
+    "swap_in": 658806,
+    "swap_out": 1110191,
+    "processes": [
+      {
+        "pid": 188530,
+        "comm": "ollama",
+        "rss_bytes": 11100160,
+        "hwm_bytes": 38281216
+      },
+      {
+        "pid": 230003,
+        "comm": "llama-server",
+        "rss_bytes": 15975727104,
+        "hwm_bytes": 15994957824
+      }
+    ],
+    "paging_bytes_per_second": 24411.317169942413,
+    "paging_persistent_seconds": 0.0,
+    "page_bytes": 4096
+  },
+  "sample_count": 393,
+  "max_runner_rss_sampled_bytes": 15990546432,
+  "max_runner_RssAnon_bytes": 9792454656,
+  "max_runner_RssFile_bytes": 15696969728,
+  "max_runner_VmSwap_bytes": 1295654912,
+  "max_cgroup_file_mapped_bytes": 15703814144,
+  "observed_memory_or_paging_abort": false,
+  "observed_paging_persistent_max_seconds": 0.0,
+  "loading_duration_seconds": null,
+  "generation_duration_seconds": null,
+  "mmap_evidence": {
+    "requested_option": true,
+    "selected_launch_options": [
+      [
+        {
+          "flag": "--model",
+          "value": "/usr/share/ollama/.ollama/models/blobs/sha256-a8bdd07a49b895083bb1420bb895ad9ab3e3b8f7d5cc42c7582ca0fa765eede2"
+        },
+        {
+          "flag": "-c",
+          "value": "8192"
+        },
+        {
+          "flag": "-np",
+          "value": "1"
+        },
+        {
+          "flag": "--spec-type",
+          "value": "draft-mtp"
+        },
+        {
+          "flag": "--spec-draft-n-max",
+          "value": "3"
+        },
+        {
+          "flag": "--flash-attn",
+          "value": "auto"
+        },
+        {
+          "flag": "-b",
+          "value": "1024"
+        },
+        {
+          "flag": "-ub",
+          "value": "1024"
+        }
+      ]
+    ],
+    "maps_observation": [
+      {
+        "error": "PermissionError(13, 'Permission denied')"
+      }
+    ],
+    "smaps_observation": [
+      {
+        "error": "PermissionError(13, 'Permission denied')"
+      }
+    ],
+    "explicit_load_mode_flag_present": false,
+    "post_stop_journal": {
+      "exit": 0,
+      "stderr": "",
+      "lines": []
+    },
+    "conclusion": "Large file-backed RSS and cgroup file_mapped observed; no accessible direct GGUF maps or explicit mmap log. Supports file-backed activity, not proof of exact per-tensor mode or sole causal attribution."
+  },
+  "observer_exit": {
+    "exit": 1,
+    "generator_not_controlled_by_observer": true
+  },
+  "post_stop": {
+    "loaded": {
+      "models": []
+    },
+    "processes": [
+      " 188530       1 ollama          17520  539080"
+    ],
+    "services": {
+      "ollama.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      },
+      "football-rag-api.service": {
+        "exit": 0,
+        "stdout": "active\n",
+        "stderr": ""
+      }
+    },
+    "available_memory_bytes": 16037191680
+  },
+  "promotion_authorized": false,
+  "owner_Qwen9_quality_judgment": "insufficient tactical quality; execution reference only",
+  "answer_to_completion_question": "No completed answer demonstrated; observed memory behavior improved but capture/deadline interruption prevents validation."
+}

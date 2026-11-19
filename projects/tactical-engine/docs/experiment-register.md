@@ -2,6 +2,27 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — gemma-mmap-on-01: stream ricevuto, raccolta interrotta senza finale
+
+Stessa attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Script gemma_mmap_on_01
++observer read-only, commit 72ef28eed796c5267711da06e10474f66c6a778c prima invio;8 controlli
+nuovi PASS. Unico delta options.use_mmap=true, payload original03 altrimenti
+identico, worker/monitor/900s immutati. Un nuovo ledger esclusivo,1 POST,
+zero retry. HTTP200,707 chunk/3006 caratteri thinking,0 finale e nessun done;
+token/durate Ollama non disponibili. RAM minima campionata6156517376 byte
+nei397,188s ricevuti, nessun abort riserva/paging; RSS/file-backed osservati,
+mode effettivo non esplicitamente provato (maps/smaps negati, log non disponibile).
+Controller E_DEADLINE_AMBIGUOUS; GO→STOP locale2211,531s con gap non osservato.
+Non attribuire causa a modello, PC o rete né attestare900s continui. Diagnostica
+post-stop: ps vuoto, nessun runner, servizi active, RAM ripristinata. Storici
+immutati/hash verificati; raw/ZIP/inventari in evaluation/gemma_mmap_on_01,
+report comparativo rag-v5-gemma-mmap-on-01.md e TODO contestuali. Tentativo
+ESEGUITO, completamento/validazione operativa BLOCCATO; beneficio RAM nel tratto
+osservato non successo generativo. Nessun giudizio tattico o pacchetto finale
+per revisione in assenza risposta. Qwen9 giudicato qualitativamente insufficiente
+dal titolare. Nessun nuovo test/config/app/RAG/costo, nessuna promozione.
+Verifica pubblicazione GitHub/working tree, STOP dopo questo unico tentativo.
+
 ### 2026-11-19 — Preparazione autorizzata gemma-mmap-on-01
 
 Attività esistente RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Baseline44843c9

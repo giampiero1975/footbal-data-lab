@@ -1,0 +1,9 @@
+{
+  "original_payload_preserved_except_mmap": true,
+  "wire_archive_and_local_chunks_byte_identical": true,
+  "historical_ledgers_unchanged": true,
+  "single_post_started": true,
+  "no_done_in_partial_response": true,
+  "partial_thinking_not_final_answer": true,
+  "validation_scope": "custody and protocol delta only; not operational/generative success"
+}

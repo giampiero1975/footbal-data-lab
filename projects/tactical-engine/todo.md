@@ -8,6 +8,18 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** unico gemma-mmap-on-01 (2026-11-19), completamento **BLOCCATO**.
+  Commit tecnico 72ef28eed796c5267711da06e10474f66c6a778c, solo use_mmap=true, monitor invariato.
+ 1 POST, HTTP200/stream parziale;707 chunk thinking,0 caratteri finale, token ND.
+  Minimo RAM campionato6156517376 byte, nessun abort RAM/paging nei397,188s
+  osservati. Controller E_DEADLINE_AMBIGUOUS; GO→STOP locale2211,531s, intervallo
+  non osservato: non attribuire a modello/sleep/rete senza prove né chiamarlo
+  completamento entro900s. File-backed multiGB osservato, maps/smaps negati,
+  mode mmap non esplicitamente attestato. Post-stop ps vuoto, servizi active.
+  Ledger/zip/raw/hash in evaluation/gemma_mmap_on_01; report comparativo
+  docs/rag-v5-gemma-mmap-on-01.md. Nessun retry/test successivo o promozione.
+  Qualità Qwen9 giudicata insufficiente dal titolare, non soluzione adeguata.
+
 - [x] **IMPLEMENTATO** preparazione gemma-mmap-on-01 (2026-11-19), max1 POST
   esplicitamente autorizzata. Solo use_mmap=true differisce dal Gemma/V10-02
   revisione03; controller/worker/protezioni immutati,8 nuovi controlli PASS.

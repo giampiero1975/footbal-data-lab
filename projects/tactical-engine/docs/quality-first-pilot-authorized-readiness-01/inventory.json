@@ -66,6 +66,16 @@
       "sha256": "001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c"
     },
     {
+      "path": "gemma_mmap_on_authorization_01.json",
+      "bytes": 1445,
+      "sha256": "766ebb35de2a640ef079eff1e51d7f4bfc02703c3dd7e357d2c1286a1c5ae263"
+    },
+    {
+      "path": "gemma_mmap_on_scope_01.md",
+      "bytes": 875,
+      "sha256": "2a6816c69789e3d90757a95f5053d2ee403505b1bcb4e7784b9c5ba72946dc1c"
+    },
+    {
       "path": "invocation.json",
       "bytes": 439,
       "sha256": "233264acb7bfc88e6a37ebf703190fae6fb6a68dc79f6b99046d25ada1bfb7d3"
@@ -115,5 +125,6 @@
       "bytes": 2375,
       "sha256": "c82ac05c5f2c7007488c8843d900178ab2ae00bf58e114518ecd7a4e3829c27d"
     }
-  ]
+  ],
+  "wire_originals_in_archive": false
 }

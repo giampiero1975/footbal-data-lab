@@ -1,0 +1,29 @@
+Build-up from the bottom against high, intense, man-to-man pressing (full field).
+Collective tactical strategies, movement codes (rotations, space emptying, third man), risk management, and the strategic role of the goalkeeper.
+Technical Italian.
+Max 350 words.
+Distinguish roles, sides, positions, and phases. Motivate conditions/sequences. Use provided sources with citations [F1] etc. Declare source insufficiencies. Distinguish inferences from documented content.
+
+    *   [F1]: Discusses low block (not high press), mentions rotations to move references, 2v1/2v2, third man (mezzala), importance of protecting the center to avoid transitions.
+    *   [F2]: Role of GK. Starts action, technique in distribution, avoid "leaning" on nearby defenders, fast/lateral/long distribution. Support/high position for defense.
+    *   [F3]: Drill-based (ball driving, crosses, 2v2, 3v2). Not directly about high press tactical principles but shows movement/scenarios.
+    *   [F4]: Mentions GK in low build-up, principle of "exit on the third man" (Nagelsmann context).
+    *   [F5]: Low block and third man. Not high press.
+    *   [F6]: Pressure of two. GK as third man of the first line, or a pivot dropping deep. Alternative: ball over the two attackers, attacking the "second ball."
+
+    *   *The Challenge:* Man-to-man high press means every player is occupied.
+    *   *GK Role:* Needs to be the "third man" [F6] or a pivot [F6]. Must avoid playing too close to defenders to reduce risk [F2]. Distribution must be precise/fast/lateral [F2] or target the third man [F4].
+    *   *Movement/Tactics:*
+        *   Since everyone is marked, standard possession is risky.
+        *   Strategy 1: Use the GK to create numerical superiority (3v2) in the first line [F6].
+        *   Strategy 2: Skip the first line (direct/long ball) to attack the second ball [F6].
+        *   Strategy 3: Rotations and third man. While [F1] focuses on low blocks, the principle of using a "third man" (like a mezzala) to break lines is a logical inference for high press to create passing lanes.
+        *   Strategy 4: Space emptying. If players are man-marked, moving *away* from the ball can drag defenders, creating space for a pivot or the third man.
+    *   *Risk Management:* Protecting the center to avoid counter-attacks/transitions [F1].
+
+    *   *Introduction:* Define the scenario (man-to-man high press).
+    *   *GK Role:* Centrality. GK as the third man in the first line [F6] to create numerical advantage. Must avoid being too close to defenders [F2] and use precise/fast distribution [F2].
+    *   *Collective Strategy:* To bypass the first line, two main paths emerge:
+        1.  *Numerical/Rotational:* Using the GK or a dropping pivot to create a 3v2 [F6] and employing "third man" sequences [F4] to bypass pressure.
+        2.  *Direct/Vertical:* Playing the ball over the pressing line to attack the second ball [F6].
+    *   *Movement/Space:* Rotations to move the opponent's reference [F1] (applied here
