@@ -2,6 +2,22 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Preparazione autorizzata gemma-mmap-on-01
+
+Attività esistente RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Baseline44843c9
+GitHub/branch/tree riconciliati, audit/protocollo/ledger letti, tentativo assente.
+Delta registrato prima dei controlli: solo use_mmap=true nel payload originale
+Gemma/V10-02; controller/worker03 invariati.8 nuovi controlli PASS non generativi.
+Wrapper gemma_mmap_on_01.py e observer read-only opzionale per cmdline/maps/
+smaps/cgroup/logs senza privilegi; solo strumentazione, non modifica parametri.
+Scope/consenso/hash in docs/readiness. Ledger esclusivo gemma_mmap_on_01,
+max1 POST, zero retry, RAM4GB/monitor/900s/8192/4096 immutati. Commit tecnico
+prima dell'invocazione, report protocollo addendum contestuale, esito nella
+sessione. Preparazione IMPLEMENTATO, controlli ESEGUITO/VALIDATO nel perimetro.
+Giudizio vincolante titolare: qualità tattica Qwen9 insufficiente, pur essendo
+eseguibile; non soluzione qualitativamente adeguata. Nessun nuovo modello,
+upgrade, configurazione/servizio/RAG/app modificati o altro test autorizzato.
+
 ### 2026-11-19 — Audit hardware e ottimizzazioni VPS senza upgrade
 
 Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata. Baseline/GitHub185a7f3,

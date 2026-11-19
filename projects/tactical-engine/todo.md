@@ -8,6 +8,14 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO** preparazione gemma-mmap-on-01 (2026-11-19), max1 POST
+  esplicitamente autorizzata. Solo use_mmap=true differisce dal Gemma/V10-02
+  revisione03; controller/worker/protezioni immutati,8 nuovi controlli PASS.
+  Nuovo ledger esclusivo, observer opzionale read-only per mode/anon/file;
+  nessun retry/altro modello/config/RAG modificati. Commit tecnico prima invio.
+  Correzione titolare: Qwen9 genera ma qualità tattica giudicata insufficiente;
+  non presentarlo come soluzione qualitativamente adeguata. Esito nella sessione.
+
 - [x] **ESEGUITO / VALIDATO** audit hardware/documentale senza upgrade (2026-11-19),
   nella stessa attività pilot. Commit evidenze 594159f24b158f046fda2046b6604811c4eb8b74.
   6vCPU EPYC/AVX2,15,572GiB guest,KVM,nessuna GPU calcolo; swap file1,5GiB,

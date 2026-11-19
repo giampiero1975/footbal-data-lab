@@ -1090,3 +1090,36 @@ summary e inventario SHA256/dimensioni in
 preservati e gli inventari verificati dopo la prova. Report/TODO/registro
 contestuali; commit documentale che introduce questo closeout restituito nella
 consegna, con verifica GitHub e working tree finale. STOP.
+
+
+## gemma-mmap-on-01 — preparazione autorizzata, 2026-11-19
+
+Stessa attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Baseline/GitHub44843c9,
+branch corretto, tree pulito, TODO/registro/audit e ledger precedenti riconciliati.
+Nessun gemma-mmap-on-01 già presente. Consenso esplicito allegato: max1 POST.
+Correzione vincolante: Qwen3.5 9B è riferimento di eseguibilità, ma il titolare
+ne giudica insufficiente la qualità tattica. Non è soluzione qualitativamente
+adeguata o ritorno operativo approvato: le raccomandazioni dell'audit su9B erano
+limitate all'eseguibilità, ora qualificate da questo giudizio del titolare.
+
+Scope registrato prima dei controlli in gemma_mmap_on_scope_01.md; wrapper
+operations/quality-first-pilot/gemma_mmap_on_01.py riusa controller/worker03
+byte-per-byte invariati. Unico delta del payload è options.use_mmap=true
+rispetto a Gemma/V10-02/ordinal1 del ledger03; modello/digest/Q4_K_M,
+8192/4096,900s,seed/thinking/draft/keep_alive0 e monitor paging/RAM4GB invariati.
+Otto controlli nuovi del delta, nessuna suite storica o inferenza nei controlli.
+Autorizzazione/hash in docs/readiness, ledger nuovo esclusivo
+ evaluation/gemma_mmap_on_01, fsync-before-GO; nessun reset/resume/retry.
+
+Osservatore aggiuntivo gemma_mmap_observation_01.py: sole letture proc/cgroup
+ogni2s, cmdline su allowlist, maps/smaps e log se accessibili senza nuovi
+privilegi. Non chiama API né carica modelli/acquisisce lock; supervisione
+read-only900s, non cambia il timeout generativo. Impatto di misura non nullo,
+ma nessun parametro sperimentale alterato. Permission negate conservate;
+richiesta mmap non equivale a prova del mode effettivo.
+
+Attività → scope/script → commit tecnico pubblicato prima dell'invocazione →
+questo addendum e dati congelati → preparazione IMPLEMENTATO, controlli
+ESEGUITO/VALIDATO limitati al delta → esecuzione autorizzata una sola volta;
+esito e report comparativo seguiranno nella stessa sessione. Nessun upgrade,
+config/servizio/app/RAG modificato, Qwen caricato o nuovo modello scaricato.
