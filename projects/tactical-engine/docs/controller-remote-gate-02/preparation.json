@@ -1,0 +1,27 @@
+{
+  "baseline": "e8cf22c2391e64deb9d5e228a91221f4cee64ba4",
+  "core_identical_to_40590ee": true,
+  "new_attempt_absent_locally": true,
+  "synthetic_timeout": 12,
+  "grace": 15,
+  "fixtures_replayed": 0,
+  "remote_started": false,
+  "code": {
+    "controller_remote_gate_01.py": {
+      "sha256": "6aec510459cd75857ac0ec0611cca9603d1d6a39e3f58c66f3798e29c1b193c8",
+      "bytes": 12650
+    },
+    "remote_supervision_gate_01.py": {
+      "sha256": "ed594822a51221dbf024db00065681096bb7cf281eab2bc002fd80835619090f",
+      "bytes": 10844
+    },
+    "remote_gate_synthetic_01.py": {
+      "sha256": "46a567d0098e95821b920985bd5a4cf0dc43179223054183793937b2062d8ee0",
+      "bytes": 1259
+    },
+    "pilot_supervision_01.py": {
+      "sha256": "bf53dd27695a0d743add0835cc7252128cfff24568b87f89d8a48e83fa20ffe3",
+      "bytes": 30916
+    }
+  }
+}

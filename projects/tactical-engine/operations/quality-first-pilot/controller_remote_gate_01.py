@@ -20,8 +20,8 @@ import pilot_supervision_01 as core
 HERE=Path(__file__).resolve().parent
 REPO=HERE.parents[3]
 PROJECT=REPO/'projects/tactical-engine'
-OUT=PROJECT/'evaluation/controller_remote_gate_01'
-ATTEMPT='controller-remote-gate-20261119-01'
+OUT=PROJECT/'evaluation/controller_remote_gate_02'
+ATTEMPT='controller-remote-gate-20261119-02'
 REMOTE='/home/football/.local/share/football-data-lab/'+ATTEMPT
 FILES=('remote_supervision_gate_01.py','remote_gate_synthetic_01.py','pilot_supervision_01.py')
 HOST_KEY='SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks'
@@ -100,6 +100,8 @@ def cut_transport():
             event=json.loads(line)
             if event.get('event')=='ready':
                 if go:raise RuntimeError('E_DUPLICATE_READY')
+                if event.get('payload_sha256')!=sha((HERE/'remote_gate_synthetic_01.py').read_bytes()):
+                    raise RuntimeError('E_READY_IDENTITY')
                 # Persist reservation before authorizing the one synthetic child.
                 save('GO-reserved.json',{'event':event,'received':received,'max_go':1})
                 child.stdin.write(b'GO\n');child.stdin.flush();go=True
@@ -142,7 +144,24 @@ def analyze(exported):
     eof=[x for x in external if x.get('event')=='transport_EOF']
     samples=[x for x in events if x.get('event')=='sample']
     actions=result['actions'];state=exported['state_after']
+    bootstrap=[x for x in external if x.get('event')=='custody_ack_before_threads']
+    threads=[x for x in external if x.get('event')=='reader_relay_started']
+    ready=[x for x in records if x['kind']=='event' and x['data'].get('event')=='ready']
+    reserved=[x for x in records if x['kind']=='reserve_before_GO']
+    gos=[x for x in records if x['kind']=='GO_sent']
+    cut=json.loads((OUT/'transport-cut.json').read_bytes())['event']
+    cut_sample=[x for x in records if x['kind']=='event' and x['data'].get('event')=='sample'
+                and x['data'].get('synthetic_sequence')==cut.get('durable_sample_sequence')
+                and x['data'].get('monotonic')==cut.get('sample_monotonic')]
     checks={
+        'writer_initialized':records[0]['kind']=='custody_ready' and records[0]['sequence']==0,
+        'custody_before_reader_relay':bool(len(bootstrap)==len(threads)==1
+            and bootstrap[0]['ack']['sha256']==records[0]['sha256']
+            and records[0]['monotonic']<=bootstrap[0]['monotonic']<=threads[0]['monotonic']
+            and bootstrap[0]['relay_initialized'] is False),
+        'durable_READY_reservation_GO':bool(len(ready)==len(reserved)==len(gos)==1
+            and ready[0]['sequence']<reserved[0]['sequence']<gos[0]['sequence']),
+        'cut_barrier_links_durable_sample':len(cut_sample)==1,
         'single_GO':sum(x['kind']=='GO_sent' for x in records)==1,
         'real_transport_EOF':len(eof)==1,
         'samples_contiguous':[x['synthetic_sequence'] for x in samples]==list(range(len(samples))),
@@ -163,6 +182,8 @@ def analyze(exported):
     }
     return {'checks':checks,'all_pass':all(checks.values()),'sample_count':len(samples),
             'journal_records':len(records),'chain_sha256':recovered['terminal']['journal_chain_sha256'],
+            'custody_bootstrap_evidence':bootstrap,'thread_start_evidence':threads,
+            'cut_barrier_journal_sequence':cut_sample[0]['sequence'] if cut_sample else None,
             'supervisor':result,'post_state':state,'post_calls':0,'models_loaded':0}
 
 

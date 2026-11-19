@@ -16,7 +16,7 @@ import sys
 import threading
 import time
 
-ATTEMPT = "controller-remote-gate-20261119-01"
+ATTEMPT = "controller-remote-gate-20261119-02"
 PARENT = Path("/home/football/.local/share/football-data-lab")
 ROOT = PARENT / ATTEMPT
 DEADLINE = 12
@@ -65,7 +65,8 @@ def processes():
             if any(any(key in arg for key in (
                 "run_rag_v5_query.py", "smoke_test_rag_v5_e2e.py",
                 "spatial-v2-extraction-locator", "official_api_single_case_01.py",
-                "paired_pilot_01.py", "gemma_mmap_on_01.py", "qwen27_single_case_01.py"))
+                "paired_pilot_01.py", "gemma_mmap_on_01.py", "qwen27_single_case_01.py",
+                "controller-remote-gate-"))
                    for arg in argv):
                 concurrency.append(item)
             if "llama-server" in comm or "runner" in comm or (
@@ -101,7 +102,7 @@ def snapshot():
         if key in ("MemTotal","MemAvailable","SwapTotal","SwapFree"):
             memory[key+"_bytes"] = int(rest.split()[0])*1024
     vfs = os.statvfs(PARENT)
-    return dict(stamps(), user="football", hostname=os.uname().nodename,
+    return dict(stamps(), user="football", hostname=os.uname().nodename, python_version=sys.version,
                 memory=memory, disk_available_bytes=vfs.f_bavail*vfs.f_frsize,
                 services=services, api_ps=resident, **processes())
 
@@ -198,7 +199,9 @@ def run():
             sample_count+=1
         if sample_count==3:
             # Deliberately blocked optional relay: journal/control must continue.
-            os.write(1,core.encoded({"event":"transport_cut_ready",**stamps()})+b"\n")
+            os.write(1,core.encoded({"event":"transport_cut_ready",**stamps(),
+                "durable_sample_sequence":event["synthetic_sequence"],
+                "sample_monotonic":event["monotonic"]})+b"\n")
             blocked.set()
             holder["supervisor"].note({"event":"relay_blocked",**stamps()})
             never_release.wait()
@@ -226,9 +229,12 @@ def run():
                 supervisor.cancel("E_CONTROL_PROTOCOL")
     def custody_started(instance,ack):
         nonlocal relay
+        instance.note({"event":"custody_ack_before_threads","ack":ack,
+                       "relay_initialized":relay is not None,**stamps()})
         relay=core.NonBlockingEmitter(sink,lambda _:None)
         instance.relay=relay
         threading.Thread(target=control,daemon=True).start()
+        instance.note({"event":"reader_relay_started",**stamps()})
     supervisor.on_custody_ready=custody_started
     result=supervisor.run()
     # Result includes post-cleanup receipt, unlike the pre-cleanup journal terminal.
