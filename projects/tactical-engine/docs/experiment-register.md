@@ -2,6 +2,32 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Valutazione tattica Gemma26 e confronto storico Qwen9B
+
+Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01; baseline3b68f98 riconciliata con
+GitHub/branch/tree, nessuna valutazione equivalente già completata. Attività →
+collect_gemma_qwen9_tactical_review_01.py, solo letture JSON/Git → commit
+c05712a90ea02eb92f74f8e4abecedaa44afc6a2 → report
+rag-v5-gemma26-qwen9-tactical-assessment-01.md → CasoA testuale, voto non inventato
+→ stop Gemma invariato, candidato Qwen27 condizionato → ESEGUITO/VALIDATO solo
+analisi documentale. Recuperate cinque risposte autentiche9B V6–V10 alla stessa
+domanda; V7–V10 stesse sei fonti e messaggio user ricostruito identico aGemma,
+non stessi system/scaffold/thinking/parametri. Tag9B attestato, digest/payload
+wire singoli non disponibili, postprocessing/repair storici esplicitati; non
+confondere con27B o col18/30 della prima baseline. Pesi RD-THINK35/25/20/15/5,
+ma griglia completa /30 mancante: nessun sottovoto/totale o conversione0–2.
+Sette rilievi con quote esatte: errore portiere/pivot,3v2 non condizionato,
+terzo uomo e tempi/preventive insufficienti. Gemma migliore su disciplina scope
+e alcune contaminazioni V10, non superiorità generale/causale del modello dimostrata;
+V6 già più concreto nel terzo uomo con fonti diverse. Latenza830.6s separata da
+qualità:14 minuti non giustificati dal vantaggio osservato. Qwen27 solo candidato
+successivo condizionato al precedente STOP RAM3149516800 byte, nessun nuovo
+invio/upgrade autorizzato. Matrice, fonte completa, inventario hash e caller
+storico marcato source-only in gemma26-qwen9-tactical-review-01. Nessuna modifica
+a risposte/voti/RAG/pipeline/modelli; zero SSH/POST/inferenze/benchmark/test.
+Voto numerico e qualità target/Gate/integrazione/certificazione BLOCCATO;
+report/TODO/registro contestuali, verifica GitHub e working tree, STOP.
+
 ### 2026-11-19 — Gemma mmap02: completo sul server, errore deadline locale
 
 Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, baseline98211a3 riconciliata,

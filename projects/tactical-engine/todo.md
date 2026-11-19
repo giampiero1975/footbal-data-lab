@@ -9,6 +9,22 @@
 **Sintesi autorevole per il revisore:**
 
 
+- [x] **ESEGUITO / VALIDATO documentale** valutazione tattica Gemma26 mmap02 e
+  confronto Qwen9B (2026-11-19), evidenze c05712a90ea02eb92f74f8e4abecedaa44afc6a2.
+  CasoA: cinque risposte Qwen3.5:9b allo stesso quesito, V7–V10 con stesse fonti;
+  system/config diversi, digest individuale e wire Qwen non attestati. Voto/30
+  **BLOCCATO**: disponibili pesi35/25/20/15/5 ma non griglia completa/ancore;
+  nessuna conversione inventata. Gemma più disciplinato del V10 su scope/fonti,
+  ma ripete portiere→pivot e3v2 non condizionato; piano operativo incompleto.
+  Superiorità generale su Qwen9B/target28 non dimostrati;14 minuti non giustificati
+  dal miglioramento osservato. Non ripetere Gemma invariato. Qwen27 soltanto
+  prossimo candidato condizionato al precedente STOP RAM3.15GB, non prova
+  autorizzata o passaggio operativo. Report
+  docs/rag-v5-gemma26-qwen9-tactical-assessment-01.md, matrice/fonti/rilievi in
+  docs/gemma26-qwen9-tactical-review-01. Storici/voti intatti, zero SSH/POST/
+  inferenze/test o modifiche RAG. Gate/integrazione/certificazione **BLOCCATO**.
+
+
 - [x] **ESEGUITO** unico gemma-mmap-on-02 (2026-11-19), commit tecnico
   ea6779f97d79b49b677b036852670cfa7735aeb9 prima POST. **VALIDATO** completamento
   tecnico remoto del caso:1 POST, HTTP200, done/stop,2036 token generati/1609
