@@ -1,0 +1,121 @@
+{
+  "status": "BLOCCATO",
+  "remote_executions": 1,
+  "retries": 0,
+  "POST": 0,
+  "model_loads": 0,
+  "SSH_connections": 5,
+  "custody_directory_empty": true,
+  "GO_sent": false,
+  "timing": {
+    "deadline_lateness_seconds": 0.0015205200761556625,
+    "TERM_to_KILL_seconds": 15.000246668234468,
+    "cleanup_after_deadline_seconds": 16.211916035041213,
+    "supervisor_elapsed_seconds": 28.211916035041213
+  },
+  "checks": [
+    {
+      "property": "Preflight, servizi, risorse e assenza concorrenza",
+      "status": "VALIDATO",
+      "observed": true
+    },
+    {
+      "property": "Trasferimento dei tre sorgenti con hash identici",
+      "status": "VALIDATO",
+      "observed": true
+    },
+    {
+      "property": "Deadline monotonic sintetica12s",
+      "status": "VALIDATO",
+      "observed": true
+    },
+    {
+      "property": "TERM/KILL process group Linux e child exit -9",
+      "status": "VALIDATO",
+      "observed": true
+    },
+    {
+      "property": "Grace15s e cleanup limitato",
+      "status": "VALIDATO",
+      "observed": true
+    },
+    {
+      "property": "Quiete finale e servizi attivi senza residenti",
+      "status": "VALIDATO",
+      "observed": true
+    },
+    {
+      "property": "GO e stream sintetico osservabile",
+      "status": "BLOCCATO",
+      "observed": false
+    },
+    {
+      "property": "Barriera di interruzione SSH prevista",
+      "status": "BLOCCATO",
+      "observed": false
+    },
+    {
+      "property": "Journal/checkpoint/terminale integri",
+      "status": "BLOCCATO",
+      "observed": false
+    },
+    {
+      "property": "Controllo indipendente dal relay deliberatamente bloccato",
+      "status": "BLOCCATO",
+      "observed": false
+    },
+    {
+      "property": "Continuita journal dopo perdita SSH",
+      "status": "BLOCCATO",
+      "observed": false
+    },
+    {
+      "property": "Recupero completo con verifica sequenze/hash",
+      "status": "BLOCCATO",
+      "observed": false
+    },
+    {
+      "property": "Cancellazione reale inferenza Ollama",
+      "status": "BLOCCATO",
+      "observed": false
+    }
+  ],
+  "partial_files_hash_verified": 6,
+  "final_state": {
+    "monotonic": 2168218.632372791,
+    "utc_ns": 1795096744464998100,
+    "user": "football",
+    "hostname": "football-data-lab.localdomain",
+    "memory": {
+      "MemTotal_bytes": 16720678912,
+      "MemAvailable_bytes": 16038567936,
+      "SwapTotal_bytes": 1610608640,
+      "SwapFree_bytes": 1311555584
+    },
+    "disk_available_bytes": 4770717696,
+    "services": [
+      {
+        "unit": "football-rag-api.service",
+        "scope": "user",
+        "returncode": 0,
+        "state": "active",
+        "stderr": ""
+      },
+      {
+        "unit": "ollama.service",
+        "scope": "system",
+        "returncode": 0,
+        "state": "active",
+        "stderr": ""
+      }
+    ],
+    "api_ps": {
+      "models": []
+    },
+    "synthetic_processes": [],
+    "concurrent_tests": [],
+    "runner_processes": []
+  },
+  "cause_observed": "custody writer did not create journal; no durable READY/GO; local E_NO_CUT_BARRIER",
+  "cause_hypothesis": "Linux fork of custody writer after buffered stdin reader starts; child bootstrap _close_stdin before target can encounter inherited IO lock. No live stack collected; exact deadlock site not established."
+}

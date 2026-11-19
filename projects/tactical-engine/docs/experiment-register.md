@@ -2,6 +2,32 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Unico gate remoto di supervisione/custodia non generativo
+
+Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata; baseline6937df6
+riconciliata GitHub/tree/branch, nessuna prova equivalente o fixture ripetuta.
+Attività → controller_remote_gate_01.py / remote_supervision_gate_01.py /
+remote_gate_synthetic_01.py + core d4d2ee6 byte-identico → commit tecnico
+7a7bc6d34e58144ecc3e2001e1bfef084fe54f3a pubblicato prima di SSH → report
+rag-v5-controller-remote-supervision-custody-gate-01.md → unica invocazione,
+nessun GO e journal assente → arresto senza retry → ESEGUITO, gate BLOCCATO.
+Preflight conforme, hash trasferiti/recuperati concordi, RAM16GB disponibile,
+servizi attivi e nessun resident/runner. Timeout sintetico12s e grace15s,
+produzione900s invariata: TERM +0.001521s, KILL dopo15.000247s, child -9,
+writer -15, cleanup a16.211916s dalla deadline. Nessun processo residuo finale.
+E_NO_CUT_BARRIER locale, stdout/stderr vuoti; custody dir vuota, terminale
+non verificato, relay bloccato/taglio previsto non raggiunti. Raccolta solo
+read-only parziale con sorgenti/manifest/ricevuta e bootstrap stdlib Python3.12.3.
+Rischio fork dopo reader stdin buffered anche nell'entry preparato del pilot:
+bootstrap chiude stdin prima del target, possibile lock ereditato; stack reale
+non acquisito, causa precisa non dichiarata provata. Nessuna patch automatica,
+nuovo tentativo o inferenza. Copie originali33 file/hash, assessment e STOP
+immutato in evaluation/controller_remote_gate_01. Servono autorizzazione distinta
+alla correzione d'avvio e successiva verifica delimitata, non altre indagini ABI.
+Nessun accesso applicativo, RAG lock, POST, modello/caricamento/download, servizio
+modificato o generazione futura predisposta. Accuratezza/Gate/integrazione/
+certificazione BLOCCATO. Report/TODO/registro contestuali; verifica GitHub e STOP.
+
 ### 2026-11-19 — Correzione controller e nove fixture locali non generative
 
 Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01; baseline3f5b4f3 riconciliata

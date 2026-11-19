@@ -9,6 +9,21 @@
 **Sintesi autorevole per il revisore:**
 
 
+- [x] **ESEGUITO** unico gate remoto sintetico controller/custodia (2026-11-19),
+  esito complessivo **BLOCCATO**. Commit tecnico7a7bc6d34e58144ecc3e2001e1bfef084fe54f3a
+  pubblicato prima dell'accesso; preflight e hash trasferimento conformi.
+  Deadline sintetica12s/grace15s: TERM/KILL reali, child -9, cleanup e quiete
+  verificati. Nessun GO: writer senza journal/terminale, E_NO_CUT_BARRIER;
+  taglio SSH previsto e recupero completo non raggiunti. Rischio fork Linux
+  dopo reader stdin buffered documentato, stack preciso non dimostrato;
+  nessuna patch/retry applicati. Servizi attivi, ps vuoto, nessun residuo.
+  Zero POST/modelli/inferenze. Report
+  docs/rag-v5-controller-remote-supervision-custody-gate-01.md;33 file/hash
+  e assessment in evaluation/controller_remote_gate_01. Serve correzione
+  separatamente autorizzata dell'avvio custodia prima di ulteriori prove;
+  nessuna generazione Gemma/Qwen predisposta. Gate e accuratezza **BLOCCATO**.
+
+
 - [x] **IMPLEMENTATO** correzione controller/custodia pilot (2026-11-19),
   commit tecnico d4d2ee6752c74278fe718a73163ee1e4370246a9. Sicurezza separata
   da stdout/fsync, writer limitato, deadline900s/grace15s, custodia per attempt
