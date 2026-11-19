@@ -8,6 +8,20 @@
 
 **Sintesi autorevole per il revisore:**
 
+
+- [x] **IMPLEMENTATO** correzione controller/custodia pilot (2026-11-19),
+  commit tecnico d4d2ee6752c74278fe718a73163ee1e4370246a9. Sicurezza separata
+  da stdout/fsync, writer limitato, deadline900s/grace15s, custodia per attempt
+  e recupero verificabile predisposti; observer monotonic separato. **ESEGUITO /
+  VALIDATO** nove fixture solo locali (12 run conservate: clock fixture4 corretto,
+  recupero fixture6 esteso). Soglie/payload/RAG e ledger storici invariati.
+  Idoneità VPS e nuove inferenze **BLOCCATO**: segnali Linux, disconnessione SSH,
+  custodia remota e cancellazione reale non verificati. Prossimo passo soltanto
+  con consenso separato: verifica remota non generativa con child sintetico;
+  nessun nuovo Gemma/Qwen automatico. Report
+  docs/rag-v5-controller-correction-local-validation-01.md; matrice/raw/hash in
+  docs/controller-correction-local-01. Zero SSH/POST/modelli/VPS. STOP.
+
 - [x] **ESEGUITO / VALIDATO** diagnosi documentale timeout/observability Gemma mmap
   (2026-11-19), stessa attività pilot. Commit analisi d67df947224fbcf9f49cda99ab69f69b81043ce2.
   Trigger dimostrato: deadline monotonic locale scaduta, non errore Gemma/Ollama.

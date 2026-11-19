@@ -2,6 +2,31 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Correzione controller e nove fixture locali non generative
+
+Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01; baseline3f5b4f3 riconciliata
+con GitHub, branch/tree iniziali puliti, diagnosi e originali preservati.
+Attività → controller/worker/observer esistenti + pilot_supervision_01.py /
+controller_local_fixtures_01.py → commit d4d2ee6752c74278fe718a73163ee1e4370246a9
+→ rag-v5-controller-correction-local-validation-01.md → nove fixture PASS
+→ pronta localmente, idoneità VPS BLOCCATO → correzione IMPLEMENTATO,
+fixture ESEGUITO/VALIDATO solo simulato. Nuovo delta registrato prima dei test:
+controllo indipendente da I/O, custodia bounded, deadline assoluta900s/grace15s,
+exit/clock espliciti, observer monotonic. Nessuna ripetizione suite storiche.
+Dodici run conservate:4-run01 clock sintetico fermo durante grace, cleanup
+manuale dei soli processi fixture e raw conservati;4-run02 PASS.6 estesa solo
+per export/import e terminale legato al journal, ultimo run03 PASS. Matrice,
+149 file inventariati SHA-256,14 terminali integri riverificati in
+controller-correction-local-01. Sintassi, AST monitor e payload/limiti invariati;
+manifest aggiornato solo hash, pending autorizzazione falsa. Nessun SSH/POST/
+modello/loading/VPS/servizio/config/RAG. Linux process group, perdita SSH,
+custodia filesystem VPS e cancellazione daemon restano non verificati;
+fixture TERM iniettata non prova segnali Linux. Eventuale passo successivo
+richiede autorizzazione distinta a prova remota sintetica non generativa;
+nuovo Gemma/Qwen non autorizzato, nessun reset dei vecchi ledger. Gate,
+accuratezza generativa, integrazione/certificazione BLOCCATO. Report/TODO/
+registro contestuali, verifica pubblicazione GitHub e STOP.
+
 ### 2026-11-19 — Diagnosi offline timeout e osservabilità gemma-mmap-on-01
 
 Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata; baseline/GitHubaa15ed2,
