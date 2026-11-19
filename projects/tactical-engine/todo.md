@@ -9,6 +9,20 @@
 **Sintesi autorevole per il revisore:**
 
 
+- [x] **IMPLEMENTATO** correzione ordine writer Linux (2026-11-19), commit
+  40590ee72e40af49d0277f5fb1f861ef5295bc1c. Writer/journal/checkpoint fsynced e
+  ack0 prima di reader/relay/child; entry reale pilot e gate allineati, GO
+  solo dopo custodia e prenotazione durevoli. Fork rifiutato con thread Python
+  preesistenti; helper di scrittura finale usa spawn. Payload, soglie e cleanup
+  invariati. Una verifica differenziale mirata **ESEGUITO / VALIDATO su Windows**,
+  incluse custodia non pronta e thread attivi; Linux nativo non disponibile
+  (nessuna distro WSL), non dichiarato equivalente. Report
+  docs/rag-v5-writer-linux-bootstrap-order-fix-01.md;29 file/hash in
+  docs/writer-bootstrap-order-local-01. Storici immutati, zero SSH/POST/modelli.
+  Futuro gate sintetico richiede autorizzazione e attempt ID nuovo;
+  validazione remota e inferenze **BLOCCATO**. STOP dopo pubblicazione.
+
+
 - [x] **ESEGUITO** unico gate remoto sintetico controller/custodia (2026-11-19),
   esito complessivo **BLOCCATO**. Commit tecnico7a7bc6d34e58144ecc3e2001e1bfef084fe54f3a
   pubblicato prima dell'accesso; preflight e hash trasferimento conformi.

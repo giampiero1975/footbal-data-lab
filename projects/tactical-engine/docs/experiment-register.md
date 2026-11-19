@@ -2,6 +2,30 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Correzione bootstrap writer prima dei reader Linux
+
+Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Baselinee6f1fbf e GitHub/tree
+riconciliati, gate fallito e originali preservati. Attività → core Supervisor /
+remote_entry, bootstrap gate e writer_bootstrap_order_check_01.py → commit
+40590ee72e40af49d0277f5fb1f861ef5295bc1c → report
+rag-v5-writer-linux-bootstrap-order-fix-01.md → PASS locale mirato → predisposto
+a futuro gate sintetico separato → correzione IMPLEMENTATO, verifica
+ESEGUITO/VALIDATO solo Windows, Linux/remoto BLOCCATO. Delta registrato prima
+controllo: writer e checkpoint0 fsynced/ack prima di thread/child/READY;
+prenotazione prima di GO invariata. Fork main-only senza altri thread Python,
+altrimenti rifiuto; scritture successive spawn anche da modulo iniettato.
+Due run del solo controllo, prima conservata e ripetizione dedicata al target
+spawn condiviso/ricevuta con reader attivo; nessuna delle nove fixture o suite
+storiche ripetuta. Negativo writer non pronto: nessun callback/child/GO. Nessun
+processo locale residuo. WSL senza distro, Docker non disponibile: Linux non
+simulato come prova reale. AST loop/cleanup/writer/recovery e payload invariati;
+manifest pending solo hash. Evidenze29 file inventariati in
+writer-bootstrap-order-local-01. Limite native thread invisibili/host embedded
+esplicito, nessuna architettura alternativa applicata. Zero SSH/POST/inferenze,
+modelli, servizi o VPS; ledger vecchio non resettato. Eventuale nuovo gate
+richiede autorizzazione distinta e ID nuovo. Gate RAG/accuratezza/integrazione/
+certificazione BLOCCATO. Report/TODO/registro contestuali, verifica GitHub e STOP.
+
 ### 2026-11-19 — Unico gate remoto di supervisione/custodia non generativo
 
 Attività RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01 invariata; baseline6937df6
