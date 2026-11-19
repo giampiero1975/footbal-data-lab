@@ -1,0 +1,9 @@
+{
+  "syntax": "PASS",
+  "one_remote_callsites": 1,
+  "controller_core_worker_byte_unchanged": true,
+  "payload_sha256": "7bc057b52a120ebbc5415ebd22da236f66fd1240421f4b114fcde629a6de97ce",
+  "legacy_ledgers_untouched": true,
+  "SSH": 0,
+  "POST": 0
+}
