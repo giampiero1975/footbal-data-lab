@@ -2,6 +2,33 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Readiness documentale Gemma26 mmap dopo Gate02
+
+Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, baseline12a6c11 GitHub/branch/tree
+riconciliati, Gate02/Gemma mmap01/codice/manifest/ledger confrontati. Attività →
+inspect_gemma_mmap_readiness_01.py (sola lettura file, nessun import pilot o rete)
+→ b8008a2368c5f6c48f0321124dffd1dc7bfc5fc0 → report
+rag-v5-gemma26-mmap-post-gate02-readiness-01.md → payload storico identico e
+protocollo arresto/quiete definito → proposta max1 Gemma/V10-02 subordinata
+ad autorizzazione → ESEGUITO/VALIDATO solo documentale; runtime BLOCCATO.
+Core bf53dd27 identico Gate02, catena one_remote/remote_entry/Supervisor/timeout/
+worker ispezionata,900s/15s e RAM4GB/paging invariati. Payload6211 byte SHA
+7bc057b52a120ebbc5415ebd22da236f66fd1240421f4b114fcde629a6de97ce identico allo
+storico; mmaptrue, ctx8192, predict4096, thinking/seed/sampling invariati, draft
+non impostato nel payload (default storico da riconciliare). Readiness distingue
+HTTP, finale done, terminale custodia, evidenza quiete/cancellazione, protezioni.
+EOF/SSH exit non provano cancellazione; eventuale STOP richiede diagnostica
+read-only o resta BLOCCATO, mai retry. Giustificazione nuova eventuale prova:
+vecchio finale assente, nuovo controller/custodia; nessun benchmark/gate equivalente
+ripetuto. Vecchi launcher/hash/ledger restano protetti, non riabilitati; futura
+proposta gemma-mmap-on-02 richiede consenso e binding/launcher singolo nuovi.
+Nessuna directory esecutiva creata. Nuovo difetto concreto non individuato nel
+perimetro esaminato; rischio cancellazione reale rimane non verificato. Facts,
+payload e inventario input in gemma26-mmap-post-gate02-readiness-01. Zero SSH,
+POST/modelli/loading/inferenze/test o modifiche VPS/RAG/servizi/hardware.
+Accuratezza/Gate/integrazione/certificazione BLOCCATO. Report/TODO/registro
+contestuali; verifica GitHub e working tree, STOP senza generazione autorizzata.
+
 ### 2026-11-19 — Gate remoto differenziale02 del bootstrap writer
 
 Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01; baselinee8cf22c riconciliata,

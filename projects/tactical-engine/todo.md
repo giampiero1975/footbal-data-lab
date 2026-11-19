@@ -9,6 +9,22 @@
 **Sintesi autorevole per il revisore:**
 
 
+- [x] **ESEGUITO / VALIDATO documentale** readiness Gemma26 mmap dopo Gate02
+  (2026-11-19), evidenze b8008a2368c5f6c48f0321124dffd1dc7bfc5fc0. Catena reale
+  one_remote→remote_entry→Supervisor→timeout900s/15s→worker verificata staticamente;
+  core identico Gate02, guardie4GB/paging e payload invariati. Payload6211 byte,
+  SHA7bc057b52a120ebbc5415ebd22da236f66fd1240421f4b114fcde629a6de97ce,
+  Gemma/V10-02 mmaptrue ctx8192/predict4096/thinktrue seed42, draft non sovrascritto.
+  Protocollo distingue HTTP, done Ollama, custodia, cancellazione/quiete e risorse;
+  parziali/tardivi o quiete non attestata **BLOCCATO**. Vecchio launcher/consenso/
+  ledger non riutilizzabili: futura singola POST richiede consenso, binding e
+  launcher esclusivo nuovi; proposta gemma-mmap-on-02, non creata né autorizzata.
+  Report docs/rag-v5-gemma26-mmap-post-gate02-readiness-01.md, facts/payload/hash
+  in docs/gemma26-mmap-post-gate02-readiness-01. Zero SSH/POST/test/inferenze/VPS.
+  Nessun nuovo difetto bloccante emerso nel perimetro statico; cancellazione
+  Ollama, qualità/Gate RAG restano **BLOCCATO**. STOP dopo pubblicazione.
+
+
 - [x] **ESEGUITO / VALIDATO nel perimetro sintetico Linux** gate differenziale
   bootstrap/custodia02 (2026-11-19), commit tecnico
   ed770b7c4ec711eb38b5b4f2789aee6e8cd290cc pubblicato prima di SSH; core40590ee
