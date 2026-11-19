@@ -2,6 +2,32 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Gate remoto differenziale02 del bootstrap writer
+
+Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01; baselinee8cf22c riconciliata,
+branch/tree iniziali corretti, nessun precedente equivalente col core corretto.
+Delta registrato prima dell'esecuzione:40590ee byte-identico, writer/journal/
+checkpoint fsynced e ack0 prima dei thread. Attività → controller remoto/gate/
+child sintetico → commit ed770b7c4ec711eb38b5b4f2789aee6e8cd290cc pubblicato prima
+SSH → rag-v5-controller-remote-bootstrap-differential-gate-02.md → tutti21 criteri
+veri → superato blocco specifico bootstrap/custodia → ESEGUITO/VALIDATO sintetico.
+Attempt02 esclusivo,01 immutato/BLOCCATO; preflight conforme, hash/versioni
+verificati,12s/grace15s e criteri invariati. Ack0 precede reader/relay, READY5,
+reserve6 e sola GO8; cut collegato al sample durevole14 realmente eseguito.
+EOF16, stream continua fino sample107/record227, terminale230;231 record e108
+sample senza buchi, export/import read-only con hash/checkpoint/terminale integri.
+Ricevuta post-cleanup Linux spawn presente. Child -9, writer0, nessun residuo;
+RAG/Ollama active, ps vuoto, RAM disponibile finale16042024960 byte. Evidenze
+precedenti deadline/TERM/KILL riusate, loro bounds solo consistenza nello stesso
+scenario, nessun test separato o suite storica ripetuta.40 file inventariati
+SHA-256 in evaluation/controller_remote_gate_02, timeline/result/raw conservati.
+Quattro connessioni SSH, un run, zero retry/POST/caricamenti/modelli/inferenze,
+lock o modifica servizi/RAG/config. Nessun ulteriore gate equivalente richiesto
+per queste proprietà. Cancellazione Ollama e idoneità generativa completa non
+verificate; accuratezza/Gate RAG/integrazione/certificazione BLOCCATO. Eventuale
+generazione solo con autorizzazione distinta, non predisposta. Report/TODO/
+registro contestuali, verifica GitHub e working tree, STOP.
+
 ### 2026-11-19 — Correzione bootstrap writer prima dei reader Linux
 
 Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01. Baselinee6f1fbf e GitHub/tree

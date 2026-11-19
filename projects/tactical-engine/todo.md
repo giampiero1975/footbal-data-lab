@@ -9,6 +9,22 @@
 **Sintesi autorevole per il revisore:**
 
 
+- [x] **ESEGUITO / VALIDATO nel perimetro sintetico Linux** gate differenziale
+  bootstrap/custodia02 (2026-11-19), commit tecnico
+  ed770b7c4ec711eb38b5b4f2789aee6e8cd290cc pubblicato prima di SSH; core40590ee
+  byte-identico. Writer/ack0 prima dei thread, READY e prenotazione prima
+  dell'unica GO; cut SSH realmente raggiunto dopo sample durevole, journal
+  continuo dopo EOF, recupero integro231 record/108 sample e terminale verificato.
+  Nessun residuo, RAG/Ollama active e ps vuoto. Timeout12s/grace15s invariati,
+  evidenze deadline/TERM/KILL01 riusate; nessuna suite storica ripetuta.
+  Report docs/rag-v5-controller-remote-bootstrap-differential-gate-02.md;
+  raw/hash/inventario40 file in evaluation/controller_remote_gate_02.
+  Attempt01 resta immutato/BLOCCATO. Zero POST/inferenze/modelli. Superato il
+  solo blocco bootstrap/custodia; cancellazione Ollama, qualità e Gate RAG
+  **BLOCCATO**. Nessuna ripetizione equivalente necessaria; generazioni future
+  solo con autorizzazione distinta. STOP dopo pubblicazione.
+
+
 - [x] **IMPLEMENTATO** correzione ordine writer Linux (2026-11-19), commit
   40590ee72e40af49d0277f5fb1f861ef5295bc1c. Writer/journal/checkpoint fsynced e
   ack0 prima di reader/relay/child; entry reale pilot e gate allineati, GO

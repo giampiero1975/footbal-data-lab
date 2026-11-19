@@ -1,0 +1,1 @@
+{"event":{"durable_sample_sequence":2,"event":"transport_cut_ready","monotonic":2169768.957317843,"sample_monotonic":2169768.948769121,"utc_ns":1795098294789942901},"local":{"monotonic":23295.156,"utc_ns":1795098293345886200},"received":{"monotonic":23295.156,"utc_ns":1795098293345886200}}

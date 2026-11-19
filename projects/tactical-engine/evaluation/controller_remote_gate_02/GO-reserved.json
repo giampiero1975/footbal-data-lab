@@ -1,0 +1,1 @@
+{"event":{"attempt_id":"controller-remote-gate-20261119-02","event":"ready","monotonic":2169768.361098704,"network_denied":true,"payload_sha256":"46a567d0098e95821b920985bd5a4cf0dc43179223054183793937b2062d8ee0","pgid":243563,"pid":243563,"term_policy":"SIG_IGN","utc_ns":1795098294193723743},"max_go":1,"received":{"monotonic":23294.578,"utc_ns":1795098292770134200}}

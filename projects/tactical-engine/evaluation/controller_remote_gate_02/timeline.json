@@ -1,0 +1,269 @@
+{
+  "timeline": [
+    {
+      "sequence": 0,
+      "kind": "custody_ready",
+      "monotonic": 2169768.328756011,
+      "utc_ns": 1795098294161381070,
+      "sha256": "2470033a1191b4f625168ce172f5b92cde4daa124ffbaa72b17c916e47cb27d3",
+      "data": {
+        "writer_pid": 243558
+      }
+    },
+    {
+      "sequence": 1,
+      "kind": "launch",
+      "monotonic": 2169768.334247173,
+      "utc_ns": 1795098294166872052,
+      "sha256": "09f89aa4e59701df8bea4597fc1aefd784b7b78ee9f05bb18998ee815713eaf4",
+      "data": {
+        "clock_info": {
+          "adjustable": false,
+          "implementation": "clock_gettime(CLOCK_MONOTONIC)",
+          "monotonic": true,
+          "resolution": 1e-09
+        },
+        "deadline_monotonic": 2169780.328688323,
+        "pgid": 243563,
+        "pid": 243563,
+        "process_group_semantics": "POSIX_session"
+      }
+    },
+    {
+      "sequence": 2,
+      "kind": "external",
+      "monotonic": 2169768.334872294,
+      "utc_ns": 1795098294167497142,
+      "sha256": "f917ebcaa948754f8a5b199c8a994e75a3b581b51f507a933c206e67bc9558ce",
+      "data": {
+        "ack": {
+          "kind": "custody_ready",
+          "sequence": 0,
+          "sha256": "2470033a1191b4f625168ce172f5b92cde4daa124ffbaa72b17c916e47cb27d3"
+        },
+        "event": "custody_ack_before_threads",
+        "monotonic": 2169768.332804848,
+        "relay_initialized": false,
+        "utc_ns": 1795098294165429827
+      }
+    },
+    {
+      "sequence": 3,
+      "kind": "external",
+      "monotonic": 2169768.334878636,
+      "utc_ns": 1795098294167503384,
+      "sha256": "e1d596f4896bb3b4be6009a688beff8a1ada0365ed3b47a6511c1e601e7c5e8d",
+      "data": {
+        "event": "reader_relay_started",
+        "monotonic": 2169768.333400973,
+        "utc_ns": 1795098294166025852
+      }
+    },
+    {
+      "sequence": 5,
+      "kind": "event",
+      "monotonic": 2169768.365844127,
+      "utc_ns": 1795098294198468915,
+      "sha256": "ab6341db85c24289486884d13c75d50df4c970e37f1d4ee3ee512ff3737a089b",
+      "data": {
+        "attempt_id": "controller-remote-gate-20261119-02",
+        "event": "ready",
+        "monotonic": 2169768.361098704,
+        "network_denied": true,
+        "payload_sha256": "46a567d0098e95821b920985bd5a4cf0dc43179223054183793937b2062d8ee0",
+        "pgid": 243563,
+        "pid": 243563,
+        "term_policy": "SIG_IGN",
+        "utc_ns": 1795098294193723743
+      }
+    },
+    {
+      "sequence": 6,
+      "kind": "reserve_before_GO",
+      "monotonic": 2169768.371083921,
+      "utc_ns": 1795098294203708749,
+      "sha256": "7dd2fd8c1543e3fb145638d38cf8c72ac6e4ddf13c568a2a9767c5d2af8a5f19",
+      "data": {
+        "max_posts": 1,
+        "payload_sha256": "46a567d0098e95821b920985bd5a4cf0dc43179223054183793937b2062d8ee0"
+      }
+    },
+    {
+      "sequence": 7,
+      "kind": "external",
+      "monotonic": 2169768.448081029,
+      "utc_ns": 1795098294280706268,
+      "sha256": "0261825b852f7637bfbd53aaedc16fa5479074107091e15fb828dbff081de7d1",
+      "data": {
+        "event": "client_GO_received",
+        "monotonic": 2169768.447652593,
+        "utc_ns": 1795098294280278564
+      }
+    },
+    {
+      "sequence": 8,
+      "kind": "GO_sent",
+      "monotonic": 2169768.448148347,
+      "utc_ns": 1795098294280773165,
+      "sha256": "0d032d5787a6f2820bf98b4cae8d009a078158501177c0fe43b9f2ac4bdf0513",
+      "data": {
+        "reservation_sequence": 6
+      }
+    },
+    {
+      "sequence": 10,
+      "kind": "event",
+      "monotonic": 2169768.453464064,
+      "utc_ns": 1795098294286088954,
+      "sha256": "25cef9dbae0655a17c8f74ff6bd7b427ff8f2d7d058379212f38ad4153d06bf4",
+      "data": {
+        "event": "sample",
+        "monotonic": 2169768.448306127,
+        "synthetic_sequence": 0,
+        "text": "synthetic; no model output",
+        "utc_ns": 1795098294280932498
+      }
+    },
+    {
+      "sequence": 14,
+      "kind": "event",
+      "monotonic": 2169768.951980524,
+      "utc_ns": 1795098294784605372,
+      "sha256": "0fca7c4d66c7ec1b625623fe78d424031028c9c89d5840c9f964f1d7387e320e",
+      "data": {
+        "event": "sample",
+        "monotonic": 2169768.948769121,
+        "synthetic_sequence": 2,
+        "text": "synthetic; no model output",
+        "utc_ns": 1795098294781395953
+      }
+    },
+    {
+      "sequence": 15,
+      "kind": "external",
+      "monotonic": 2169768.962371001,
+      "utc_ns": 1795098294794995880,
+      "sha256": "db749b59262e2b596935d91a1446eb1abb3caab28bc2d82858f5ce95232d4c9c",
+      "data": {
+        "event": "relay_blocked",
+        "monotonic": 2169768.957373138,
+        "utc_ns": 1795098294789997946
+      }
+    },
+    {
+      "sequence": 16,
+      "kind": "external",
+      "monotonic": 2169769.003608314,
+      "utc_ns": 1795098294836233733,
+      "sha256": "25250afff57d5c0754dee49944d39129285ac469e1f66e2b9c1c7d1752f3ccce",
+      "data": {
+        "event": "transport_EOF",
+        "monotonic": 2169769.001098716,
+        "utc_ns": 1795098294833724506
+      }
+    },
+    {
+      "sequence": 107,
+      "kind": "control",
+      "monotonic": 2169780.329634529,
+      "utc_ns": 1795098306162259267,
+      "sha256": "61415bb5f3cb3c37871c26a99cc13b2621cda2b21c02b6bc3032de6ee08b7073",
+      "data": {
+        "action": "TERM",
+        "cause": "E_CONTROLLER_DEADLINE",
+        "delivery": "POSIX_process_group",
+        "monotonic": 2169780.329587379,
+        "utc_ns": 1795098306162212288
+      }
+    },
+    {
+      "sequence": 227,
+      "kind": "event",
+      "monotonic": 2169795.224717622,
+      "utc_ns": 1795098321057342460,
+      "sha256": "a1f87cfc90952ed7c2371a3cbc7650cb04fe0b7c4b5940c56cb6977c7480bef1",
+      "data": {
+        "event": "sample",
+        "monotonic": 2169795.223813981,
+        "synthetic_sequence": 107,
+        "text": "synthetic; no model output",
+        "utc_ns": 1795098321056439140
+      }
+    },
+    {
+      "sequence": 230,
+      "kind": "terminal",
+      "monotonic": 2169795.337184543,
+      "utc_ns": 1795098321169809322,
+      "sha256": "7be97a2f82f777b8ac5654230078299049021317592a60d28a515afbbebe43b7",
+      "data": {
+        "GO_sent": true,
+        "actions": [
+          {
+            "action": "TERM",
+            "cause": "E_CONTROLLER_DEADLINE",
+            "delivery": "POSIX_process_group",
+            "monotonic": 2169780.329587379,
+            "utc_ns": 1795098306162212288
+          },
+          {
+            "action": "KILL",
+            "monotonic": 2169795.331892961,
+            "utc_ns": 1795098321164518200
+          }
+        ],
+        "attempt_id": "controller-remote-gate-20261119-02",
+        "custody_ready": {
+          "sequence": 0,
+          "writer_pid": 243558
+        },
+        "deadline_monotonic": 2169780.328688323,
+        "ended_monotonic": 2169795.337106355,
+        "forced_kill": true,
+        "monotonic": 2169795.337116073,
+        "ok": false,
+        "pgid": 243563,
+        "pid": 243563,
+        "promotion_authorized": false,
+        "reader_threads_alive_at_terminal": [
+          false,
+          false
+        ],
+        "reason": "E_CONTROLLER_DEADLINE",
+        "remote_cancellation_verified": false,
+        "returncode": -9,
+        "started_monotonic": 2169768.328688323,
+        "terminal_event": null,
+        "utc_ns": 1795098321169740851,
+        "writer_error": null
+      }
+    }
+  ],
+  "timing": {
+    "deadline_lateness_seconds": 0.0008990559726953506,
+    "TERM_to_KILL_seconds": 15.002305582165718,
+    "cleanup_after_deadline_seconds": 15.023953643161803
+  },
+  "single_remote_execution": true,
+  "single_GO": true,
+  "models_loaded": 0,
+  "POST": 0,
+  "ssh_cut": {
+    "event": {
+      "durable_sample_sequence": 2,
+      "event": "transport_cut_ready",
+      "monotonic": 2169768.957317843,
+      "sample_monotonic": 2169768.948769121,
+      "utc_ns": 1795098294789942901
+    },
+    "local": {
+      "monotonic": 23295.156,
+      "utc_ns": 1795098293345886200
+    },
+    "received": {
+      "monotonic": 23295.156,
+      "utc_ns": 1795098293345886200
+    }
+  },
+  "original01_unchanged": true
+}
