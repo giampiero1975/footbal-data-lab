@@ -1,0 +1,138 @@
+{
+  "status": "BLOCCATO",
+  "remote_completion_status": "VALIDATO",
+  "scope": "single-case technical evidence only; local end-to-end closure blocked",
+  "POST": 1,
+  "HTTP": 200,
+  "done": true,
+  "done_reason": "stop",
+  "answer_chars": 2173,
+  "answer_words": 318,
+  "thinking_chars": 5765,
+  "wire_chunks": 1897,
+  "tokens": {
+    "eval_count": 2036,
+    "prompt_eval_count": 1609,
+    "prompt_eval_cached_count": 0
+  },
+  "timing_remote_seconds": {
+    "POST_to_HTTP": 104.88388264505193,
+    "POST_to_first_thinking": 104.88713891385123,
+    "POST_to_first_content": 661.3232433856465,
+    "POST_to_done_wire": 830.6177887660451,
+    "worker_elapsed": 832.2871433869004,
+    "supervisor_elapsed": 832.9012354710139,
+    "Ollama_total": 830.615764553,
+    "load": 37.027750111,
+    "prompt_eval": 64.488451,
+    "eval": 727.648379
+  },
+  "RAM": {
+    "minimum_sampled_bytes": 6178926592,
+    "first": 16012808192,
+    "last": 6689107968,
+    "final_readonly_available": 16041213952
+  },
+  "samples": 820,
+  "sample_span_seconds": 829.8296562810428,
+  "max_sample_gap_seconds": 1.0942323403432965,
+  "paging": {
+    "max_global_bytes_per_second": 434046280.6825554,
+    "max_persistent_seconds": 0.0,
+    "swap_used_max": 1610608640,
+    "swap_in_delta_pages": 1049001,
+    "swap_out_delta_pages": 1317589,
+    "page_bytes": 4096,
+    "global_attribution_to_model": "not established"
+  },
+  "errors": [],
+  "remote_custody": {
+    "records": 5137,
+    "terminal_sha256": "db88fd25b241d316e0640bda473257b8cd99ead7132dfccb452fa07dac75f8cc",
+    "chain_sha256": "332c0bd926353a4e69c8d86e0da93df75e5469b0890617d90e7643e7cb559d80",
+    "ok": true,
+    "returncode": 0,
+    "actions": []
+  },
+  "local_custody": {
+    "records": 4405,
+    "hash_chain_valid": true,
+    "result": {
+      "GO_sent": true,
+      "actions": [
+        {
+          "action": "TERM",
+          "cause": "E_CONTROLLER_DEADLINE",
+          "delivery": "Windows_TerminateProcess_child",
+          "monotonic": 26743.312,
+          "utc_ns": 1795101741500000000
+        }
+      ],
+      "attempt_id": "gemma-mmap-on-02-call-01",
+      "cleanup": {
+        "child_alive": false,
+        "child_returncode": 1,
+        "monotonic": 26745.953,
+        "utc_ns": 1795101744141148800,
+        "writer_alive": false,
+        "writer_exitcode": -15,
+        "writer_pid": 23992
+      },
+      "custody_ready": {
+        "sequence": 0,
+        "writer_pid": 23992
+      },
+      "custody_terminal_verified": true,
+      "deadline_monotonic": 25798.936999999998,
+      "ended_monotonic": 26744.875,
+      "forced_kill": false,
+      "monotonic": 26744.875,
+      "ok": false,
+      "pgid": null,
+      "pid": 2836,
+      "promotion_authorized": false,
+      "reader_threads_alive_at_terminal": [
+        false,
+        false
+      ],
+      "reason": "E_CONTROLLER_DEADLINE",
+      "remote_cancellation_verified": false,
+      "returncode": 1,
+      "started_monotonic": 24899.359,
+      "terminal_event": null,
+      "utc_ns": 1795101743062171900,
+      "writer_error": null
+    },
+    "deadline_lateness_seconds": 944.3750000000036,
+    "elapsed_until_action_seconds": 1843.9530000000013
+  },
+  "quiet_final": true,
+  "services_final": [
+    {
+      "scope": "user",
+      "state": "active",
+      "unit": "football-rag-api.service"
+    },
+    {
+      "scope": "system",
+      "state": "active",
+      "unit": "ollama.service"
+    }
+  ],
+  "lock_identity_preserved": true,
+  "cancellation": {
+    "state": "BLOCCATO",
+    "inference_cancel_tested": false,
+    "natural_completion_verified": true,
+    "worker_legacy_flag": true,
+    "interpretation": "legacy flag follows worker ok; not evidence of cancelling a running inference"
+  },
+  "quality_tactical_status": "DA FARE",
+  "promotion_authorized": false,
+  "new_POST_allowed": false,
+  "local_observed_events": {
+    "wire_chunks": 1635,
+    "finished": 0,
+    "remote_supervisor_terminal": 0
+  }
+}

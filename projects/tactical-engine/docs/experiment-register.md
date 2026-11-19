@@ -2,6 +2,34 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Gemma mmap02: completo sul server, errore deadline locale
+
+Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, baseline98211a3 riconciliata,
+branch/tree/assenza02 verificati. Attività → gemma_mmap_on_02.py, delega unica
+one_remote/core/worker invariati → ea6779f97d79b49b677b036852670cfa7735aeb9
+pubblicato prima della POST → rag-v5-gemma-mmap-on-02.md → remoto completo,
+client in errore → preservare entrambe le evidenze e fermarsi → ESEGUITO,
+componente remoto VALIDATO tecnico, intero flusso BLOCCATO. Delta annotato:
+payload storico identico7bc057b5, nuovo controller/custodia dopo Gate02; nessuna
+suite o gate ripetuti, nuovo launcher/binding/ledger esclusivi. Preflight conforme,
+lock acquisito nel worker, READY e reserve prima dell'unica GO/POST. HTTP200,
+1897 chunk, done=true/stop,2036 token e1609 prompt,2173 caratteri/318 parole.
+Ollama830.615765s, worker832.287143s, entro900s. RAM minima6178926592 byte,
+820 sample, gap massimo1.094s; paging globale max434MB/s, swap fino1610608640,
+nessuna persistenza qualificata/abort (available sempre>6GB), non attribuzione
+esclusiva al modello. Locale E_CONTROLLER_DEADLINE: TERM944.375s dopo deadline,
+causa ignota, nessun PASS complessivo. Recovery read-only salva5137 record/remoto
+completo con hash/checkpoint/terminale; client live aveva1635 chunk senza finale.
+Quiete finale e servizi active, nessun runner/modello residente, lock identico.
+Flag legacy remote_cancellation_verified da ok non prova cancellazione: naturale
+completamento, cancellazione reale BLOCCATO.190 file inventariati/answer/thinking/
+raw/summary/timeline in evaluation/gemma_mmap_on_02. Nessuna seconda POST,
+Qwen27, patch automatica, riavvio/config/modello/RAG cambiati; vecchi ledger
+immutati. Risposta ora disponibile per valutazione qualità DA FARE, non28/30
+validato; Gate/integrazione/certificazione BLOCCATO. Eventuale anomalia locale
+richiede analisi separata senza inferenza. Report/TODO/registro contestuali,
+verifica GitHub/working tree e STOP dopo questo unico tentativo.
+
 ### 2026-11-19 — Readiness documentale Gemma26 mmap dopo Gate02
 
 Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01, baseline12a6c11 GitHub/branch/tree

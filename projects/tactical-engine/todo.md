@@ -9,6 +9,23 @@
 **Sintesi autorevole per il revisore:**
 
 
+- [x] **ESEGUITO** unico gemma-mmap-on-02 (2026-11-19), commit tecnico
+  ea6779f97d79b49b677b036852670cfa7735aeb9 prima POST. **VALIDATO** completamento
+  tecnico remoto del caso:1 POST, HTTP200, done/stop,2036 token generati/1609
+  prompt, risposta318 parole,830.616s Ollama/832.287s worker. RAM minima
+  6178926592 byte,820 sample, nessun abort guardie; paging globale consistente
+  e swap fino1.61GB, non assenza pressione. Custodia remota5137 record integra,
+  risposta recuperata dopo errore locale. Flusso complessivo **BLOCCATO**:
+  E_CONTROLLER_DEADLINE, azione944.375s oltre la deadline locale, causa non
+  dimostrata. Non promuovere il timeout a PASS. Stato finale quieto, servizi
+  attivi, ps vuoto/nessun runner e lock invariato; cancellazione reale non
+  verificata (completamento naturale). Report docs/rag-v5-gemma-mmap-on-02.md;
+  answer/raw/summary/timeline/inventario190 file in evaluation/gemma_mmap_on_02.
+  Qualità tattica **DA FARE**, Gate/integrazione/certificazione **BLOCCATO**.
+  Nessun retry/Qwen/altro invio; risposta disponibile senza nuova generazione.
+  Eventuale analisi locale distinta, non eseguita automaticamente. STOP.
+
+
 - [x] **ESEGUITO / VALIDATO documentale** readiness Gemma26 mmap dopo Gate02
   (2026-11-19), evidenze b8008a2368c5f6c48f0321124dffd1dc7bfc5fc0. Catena reale
   one_remote→remote_entry→Supervisor→timeout900s/15s→worker verificata staticamente;

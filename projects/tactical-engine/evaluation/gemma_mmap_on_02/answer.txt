@@ -1,0 +1,16 @@
+Per superare un pressing uomo su uomo a tutto campo, la costruzione deve mirare a rompere la sincronia della marcatura individuale o a saltare la linea di pressione.
+
+**Ruolo del Portiere e Gestione del Rischio**
+Il portiere è l'elemento chiave per generare superiorità numerica: può agire come terzo uomo della prima linea [F6] o come pivot che si abbassa [F6]. Per gestire il rischio, deve evitare di "appoggiarsi" troppo ai difensori vicini [F2], preferendo distribuzioni precise, veloci o laterali per cambiare rapidamente il fronte d'azione [F2]. Una strategia alternativa consiste nel superare la pressione con una palla diretta oltre i due attaccanti, puntando all'attacco della "seconda palla" [F6].
+
+**Strategie Collettive e Codici di Movimento**
+*Inferenza tattica:* Poiché ogni giocatore è marcato, la creazione di linee di passaggio richiede la manipolazione dei riferimenti avversari tramite movimenti non lineari.
+1. **Superiorità Numerica:** L'impiego del portiere o di un pivot permette di trasformare una situazione di parità in un 3 contro 2 nella prima fase di costruzione [F6].
+2. **Principio del Terzo Uomo:** L'utilizzo del "terzo uomo" [F4] è essenziale per aggirare la pressione tramite una sequenza di passaggi che scavalchi il giocatore sotto marcatura.
+3. **Rotazioni e Spazi:** Sebbene le fonti [F1] si riferiscano a blocchi bassi, il principio di utilizzare rotazioni per spostare il riferimento dell'avversario è applicabile per disorientare la marcatura uomo, creando spazi attraverso lo svuotamento di zone occupate.
+
+**Gestione delle Transizioni**
+Durante queste manovre, è fondamentale controllare la protezione centrale per non esporsi a transizioni avversarie rapide [F1].
+
+**Limiti delle Fonti**
+Le fonti fornite trattano principalmente di catene contro blocchi bassi [F1, F5] o esercitazioni tecniche [F3]. Non esiste una descrizione documentata specifica per il pressing uomo su uomo a tutto campo; pertanto, l'applicazione delle rotazioni per disorientare la marcatura e l'uso del terzo uomo per rompere la linea sono inferenze tattiche derivate dall'estensione dei principi di movimento [F1] e dei modelli di distribuzione [F4, F6].

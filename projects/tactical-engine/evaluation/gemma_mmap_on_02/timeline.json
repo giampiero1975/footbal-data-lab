@@ -1,0 +1,130 @@
+{
+  "remote": [
+    {
+      "sequence": 0,
+      "kind": "custody_ready",
+      "monotonic": 2171374.596227943,
+      "utc_ns": 1795099900428853062,
+      "sha256": "7f08f8dd3955bbdf129bd0c7f1b21ecaf457fdbbe66b89f69ce1782a9a787ec1"
+    },
+    {
+      "sequence": 1,
+      "kind": "launch",
+      "monotonic": 2171374.602940533,
+      "utc_ns": 1795099900435565421,
+      "sha256": "b91b1a4ce31d4d424efeeeb0b4b4afd1b2800ecece12e568a185ff2209e80fff"
+    },
+    {
+      "sequence": 3,
+      "kind": "event",
+      "monotonic": 2171374.726570524,
+      "utc_ns": 1795099900559195372,
+      "sha256": "705f8a7805c24d2ecca0b5c5c7d7762f27ada131c29048e44774f605d3332115",
+      "event": "ready",
+      "original_monotonic": 2171374.722184713,
+      "status": null,
+      "ok": null
+    },
+    {
+      "sequence": 4,
+      "kind": "reserve_before_GO",
+      "monotonic": 2171374.731771466,
+      "utc_ns": 1795099900564396264,
+      "sha256": "3ed12cc5cb9c327737599cf97ee9d609d21ca1fa688a1acbbee4ff6d582dba93"
+    },
+    {
+      "sequence": 5,
+      "kind": "GO_sent",
+      "monotonic": 2171375.017383034,
+      "utc_ns": 1795099900850008042,
+      "sha256": "b60786b042d53a0664c388d386f5e12c46acf6098901ac10bff6e579866e0161"
+    },
+    {
+      "sequence": 7,
+      "kind": "event",
+      "monotonic": 2171375.02259146,
+      "utc_ns": 1795099900855216248,
+      "sha256": "b19900f4d5424d6a75dfae25a0f9043670b52370fe0e0d0e10a836980beeaaf1",
+      "event": "post_started",
+      "original_monotonic": 2171375.017929945,
+      "status": null,
+      "ok": null
+    },
+    {
+      "sequence": 217,
+      "kind": "event",
+      "monotonic": 2171479.911981951,
+      "utc_ns": 1795100005744606719,
+      "sha256": "14be671b3d31609e37f323b168238621665e87d0e4e1d392c217cd3e8e67f4ae",
+      "event": "http",
+      "original_monotonic": 2171479.90181259,
+      "status": 200,
+      "ok": null
+    },
+    {
+      "sequence": 5133,
+      "kind": "event",
+      "monotonic": 2172207.314518774,
+      "utc_ns": 1795100733147143613,
+      "sha256": "33c52c1faf2552abafd67ee5222e0fd9802c965e40e92f0ac9ad2959832ad723",
+      "event": "finished",
+      "original_monotonic": 2172207.305549497,
+      "status": null,
+      "ok": true
+    },
+    {
+      "sequence": 5136,
+      "kind": "terminal",
+      "monotonic": 2172207.502674501,
+      "utc_ns": 1795100733335299299,
+      "sha256": "332c0bd926353a4e69c8d86e0da93df75e5469b0890617d90e7643e7cb559d80"
+    }
+  ],
+  "local": {
+    "GO_sent": true,
+    "actions": [
+      {
+        "action": "TERM",
+        "cause": "E_CONTROLLER_DEADLINE",
+        "delivery": "Windows_TerminateProcess_child",
+        "monotonic": 26743.312,
+        "utc_ns": 1795101741500000000
+      }
+    ],
+    "attempt_id": "gemma-mmap-on-02-call-01",
+    "cleanup": {
+      "child_alive": false,
+      "child_returncode": 1,
+      "monotonic": 26745.953,
+      "utc_ns": 1795101744141148800,
+      "writer_alive": false,
+      "writer_exitcode": -15,
+      "writer_pid": 23992
+    },
+    "custody_ready": {
+      "sequence": 0,
+      "writer_pid": 23992
+    },
+    "custody_terminal_verified": true,
+    "deadline_monotonic": 25798.936999999998,
+    "ended_monotonic": 26744.875,
+    "forced_kill": false,
+    "monotonic": 26744.875,
+    "ok": false,
+    "pgid": null,
+    "pid": 2836,
+    "promotion_authorized": false,
+    "reader_threads_alive_at_terminal": [
+      false,
+      false
+    ],
+    "reason": "E_CONTROLLER_DEADLINE",
+    "remote_cancellation_verified": false,
+    "returncode": 1,
+    "started_monotonic": 24899.359,
+    "terminal_event": null,
+    "utc_ns": 1795101743062171900,
+    "writer_error": null
+  },
+  "interpretation": "same-clock differences only; local late deadline and remote on-time completion are separate observations"
+}
