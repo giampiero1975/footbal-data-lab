@@ -2,6 +2,20 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — STOP autonomo Ollama per Qwen27 mmap
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → ispezione statica con `git`, `rg`,
+sorgenti Ollama archiviate, `pilot_supervision_01.py`, `paired_pilot_01.py` e
+`paired_pilot_remote_01.py` → baseline GitHub `b01d4f4`, commit storici Gate02,
+Gemma02 e Qwen riconciliati → [report STOP](rag-v5-qwen27-ollama-stop-design-01.md)
+→ cancellazione HTTP cooperativa e unload per riferimento, runner potenzialmente
+condiviso. `timeout` del worker fuori dal gruppo del runner avviato da Ollama
+→ proporre istanza isolata per attempt, cgroup e rete privati, supervisione
+VPS 900 s/15 s con guardie immutate e interdizione persistente fino alla quiete
+→ progetto **ESEGUITO**, isolamento **DA FARE**, Qwen27 mmap **BLOCCATO**.
+Commit solo documentale. Zero nuovi test, SSH sulla VPS, POST, inferenze o
+modifiche alla VPS. Gate02 riutilizzato nel suo perimetro sintetico. STOP.
+
 ### 2026-11-19 — Qwen27 mmap / V10-02: fattibilità e condizioni di arresto
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → ispezione statica dei driver

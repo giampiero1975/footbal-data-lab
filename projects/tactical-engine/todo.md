@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** progetto STOP autonomo Ollama per Qwen27 mmap (2026-11-19),
+  stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, baseline GitHub `b01d4f4`.
+  Ollama 0.40.5 può riusare il runner per richieste compatibili. Lock del pilot,
+  PID e `/api/ps` non garantiscono esclusività o cancellazione entro il budget.
+  [Report STOP](docs/rag-v5-qwen27-ollama-stop-design-01.md). Isolamento dedicato
+  **DA FARE** con cgroup esclusivo, endpoint privato, deadline VPS 900 s e grace
+  15 s, guardie RAM/paging e interdizione persistente fino alla quiete attestata.
+  Qwen27 mmap **BLOCCATO**. Solo verifica statica, zero test, SSH VPS o POST.
+
 - [x] **ESEGUITO** riesame documentale Qwen27 mmap / V10-02 (2026-11-19),
   nella stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Baseline GitHub
   `4f2f422`, payload e ledger riconciliati. Unica POST Qwen storica senza
