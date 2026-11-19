@@ -1,0 +1,63 @@
+{
+  "reviewer": "Codex; internal documentary review, non-blind, not a human/external certification",
+  "numeric_score": null,
+  "findings": [
+    {
+      "id": "G1",
+      "category": "errore di attribuzione del ruolo",
+      "severity": "grave per il quesito",
+      "quote": "può agire come terzo uomo della prima linea [F6] o come pivot che si abbassa [F6]",
+      "source": "F6 distingue portiere come terzo uomo e alternativa del pivot che si abbassa; input ellittico, soggetto sbagliato nella risoluzione.",
+      "finding": "Il testo assegna anche il ruolo di pivot che si abbassa al portiere, senza descrivere una rotazione che lo giustifichi.",
+      "cause_scope": "interazione fra ellissi della fonte e attribuzione generata; nessuna causa interna del modello inferita"
+    },
+    {
+      "id": "G2",
+      "category": "generalizzazione tattica non condizionata",
+      "severity": "rilevante, potenzialmente grave sul campo",
+      "quote": "L'impiego del portiere o di un pivot permette di trasformare una situazione di parità in un 3 contro 2 nella prima fase di costruzione [F6].",
+      "source": "F6: Pressione a due. Quesito: pressing uomo su uomo a tutto campo, senza numero fisso di pressanti.",
+      "finding": "Non specifica quando il pivot sia seguito e quando si crei realmente un uomo libero; ingresso del pivot non garantisce da solo superiorità numerica."
+    },
+    {
+      "id": "G3",
+      "category": "omissione e ambiguità operativa",
+      "severity": "rilevante",
+      "quote": "una sequenza di passaggi che scavalchi il giocatore sotto marcatura",
+      "source": "F4 è una didascalia sul principio, non una sequenza completa.",
+      "finding": "Non identifica portatore, appoggio, destinatario e innesco; scavalcare il compagno non spiega come renderlo raggiungibile indirettamente."
+    },
+    {
+      "id": "G4",
+      "category": "generalizzazione / limite di fonte",
+      "severity": "rilevante",
+      "quote": "deve evitare di \"appoggiarsi\" troppo ai difensori vicini [F2]",
+      "source": "F2 sostiene la prescrizione in via generale, non offre criteri completi per questo pressing.",
+      "finding": "Mancano condizioni per usare il corto come attrazione o scegliere il lungo. Non è accusato di vietare ogni passaggio corto: il testo dice troppo."
+    },
+    {
+      "id": "G5",
+      "category": "omissione di posizioni e sincronizzazioni",
+      "severity": "rilevante",
+      "quote": "creando spazi attraverso lo svuotamento di zone occupate",
+      "source": "F1 fornisce principi contro blocco basso; fonte riconosciuta come inferenza.",
+      "finding": "Non dice chi svuota, chi entra nello spazio, su quale comportamento del marcatore e quando; nessuna sequenza allenabile."
+    },
+    {
+      "id": "G6",
+      "category": "omissione delle coperture preventive",
+      "severity": "rilevante",
+      "quote": "è fondamentale controllare la protezione centrale per non esporsi a transizioni avversarie rapide [F1]",
+      "source": "F1 supporta il principio, non ne definisce una distribuzione concreta per il quesito.",
+      "finding": "Non assegna chi resta a protezione, chi raccoglie la seconda palla, o le condizioni per rischiare il passaggio centrale."
+    },
+    {
+      "id": "G7",
+      "category": "forza prescrittiva superiore al supporto",
+      "severity": "secondaria",
+      "quote": "L'utilizzo del \"terzo uomo\" [F4] è essenziale",
+      "source": "F4 nomina il principio; non dimostra necessità generale contro ogni pressione.",
+      "finding": "Citazione pertinente al concetto ma più debole della prescrizione essenziale; non equivale a fonte inventata."
+    }
+  ]
+}

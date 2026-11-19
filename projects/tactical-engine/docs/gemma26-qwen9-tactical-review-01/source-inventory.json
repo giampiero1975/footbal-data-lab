@@ -1,0 +1,87 @@
+[
+  {
+    "path": "evaluation/coverciano-remediation-v6/case_02.json",
+    "bytes": 13518,
+    "sha256": "4de8db0d6a8902fd4b01aeb3d48ad3837c0072d542e31ce5acd10d3cbd9a06c8"
+  },
+  {
+    "path": "evaluation/coverciano-remediation-v7/case_02.json",
+    "bytes": 18073,
+    "sha256": "2e83ba1899e24aad1ca11381e757e4a087070133169e666326bb71798227ab95"
+  },
+  {
+    "path": "evaluation/coverciano-remediation-v8/case_02.json",
+    "bytes": 18182,
+    "sha256": "ab2356415d53f6f3c751fabf021fd27fe3fe03f7d9eff98c69ed605af798a02d"
+  },
+  {
+    "path": "evaluation/coverciano-remediation-v9/case_02.json",
+    "bytes": 18583,
+    "sha256": "75373d37eef04748dfb6e7f9afc619eaef31872e282f87a52e11dd80a32bf1ea"
+  },
+  {
+    "path": "evaluation/coverciano-remediation-v10/case_02.json",
+    "bytes": 18833,
+    "sha256": "3e087f98795d69a3435e0a180b036c2494dcf4c6a05d788ad7d2cda445613135"
+  },
+  {
+    "path": "docs/rag-v5-gemma-mmap-on-02.md",
+    "bytes": 10524,
+    "sha256": "1be2e582e997b27520976bde0c5eea509718605cd5b96e65324ab4ec740ab94c"
+  },
+  {
+    "path": "evaluation/gemma_mmap_on_02/answer.txt",
+    "bytes": 2183,
+    "sha256": "05b29de2d5dbf932bfce8befc1c5ab936cd8b31b913aa21866bfee30819166cc"
+  },
+  {
+    "path": "evaluation/gemma_mmap_on_02/call-01/request.json",
+    "bytes": 6356,
+    "sha256": "d7034474e0fb7dbeb6a2de1991ae96d65a6e3a3d773c247a4d930163e514481f"
+  },
+  {
+    "path": "evaluation/gemma_mmap_on_02/summary.json",
+    "bytes": 3916,
+    "sha256": "c3166512714578be061b3e7ad8b70ae83171a5fe1c2c0e738fdbbb2e218972f1"
+  },
+  {
+    "path": "evaluation/rd-think-01-result.json",
+    "bytes": 53230,
+    "sha256": "d2981232c486d7fb474c0bc664799dd0e94c28d9041c73777476a793e67ca0ed"
+  },
+  {
+    "path": "scripts/compare_frozen_thinking_rd01.py",
+    "bytes": 6230,
+    "sha256": "951eac9aaee52fe8b5bd2698260a18b74b9362e2b2e5ec7740eb9535ab8f6fb3"
+  },
+  {
+    "path": "docs/rd-think-01-runtime-01.md",
+    "bytes": 5208,
+    "sha256": "2b6a789e624d65a4f62528a603781ab7e72e1fe012da73462c0992b81e3afb16"
+  },
+  {
+    "path": "docs/rag-v5-quality-first-paired-pilot-protocol-review-01.md",
+    "bytes": 79703,
+    "sha256": "b470d771f763bfada275508179b9dc12f763dfae186a3531dfc73296379a2916"
+  },
+  {
+    "path": "docs/rag-v5-quality-first-local-coach-selection-01.md",
+    "bytes": 25872,
+    "sha256": "fa89a0f5e83e3adae8eb8e859c3ea74201818dbeb71e7fe17ef5645ac7a4c17a"
+  },
+  {
+    "path": "docs/coverciano-rag-only-100-protocol-01.md",
+    "bytes": 2743,
+    "sha256": "77031c7263fb71df89f3cdbd53272244bafb6810f7b1a985225aac1a2f939f7e"
+  },
+  {
+    "path": "docs/coverciano-rag-only-100-report-01.md",
+    "bytes": 5393,
+    "sha256": "6d9897d390b5ff6d51ca1fc69a5341ecfdc8b88607a14285b8e1b1a3cc734250"
+  },
+  {
+    "path": "docs/rag-coverciano-remediation-v10-runtime-01.md",
+    "bytes": 2213,
+    "sha256": "fc161063075f505c425f1d319f9dce4a50d659676205335fd8a2e419aea72f2b"
+  }
+]
