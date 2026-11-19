@@ -1,0 +1,47 @@
+[
+  {
+    "path": "evaluation/gemma_mmap_on_01/call-01/request.json",
+    "sha256": "d7034474e0fb7dbeb6a2de1991ae96d65a6e3a3d773c247a4d930163e514481f",
+    "bytes": 6356
+  },
+  {
+    "path": "operations/quality-first-pilot/prepared/pilot_manifest_01.json",
+    "sha256": "f8268823cccae5997d5e928bd6b9153233d59c846bc5e0b2ea87c99af8579260",
+    "bytes": 75085
+  },
+  {
+    "path": "docs/quality-first-pilot-authorized-readiness-01/execution_binding_03.json",
+    "sha256": "bedd25f1db13666c065c8000dbfc977a9486b721ba9cd3a2ef555a89b7bec41e",
+    "bytes": 1708
+  },
+  {
+    "path": "evaluation/controller_remote_gate_02/remote-code-manifest.json",
+    "sha256": "a457413f3f42d15b028acfcc5d33c1952102f40a22639c56268b82288c0ad917",
+    "bytes": 546
+  },
+  {
+    "path": "operations/quality-first-pilot/paired_pilot_01.py",
+    "sha256": "3658c9dc9d70dbdcb7f0afbfd8bd90db505b2a06cd78e28a0d90021fb4cee364",
+    "bytes": 19446
+  },
+  {
+    "path": "operations/quality-first-pilot/pilot_supervision_01.py",
+    "sha256": "bf53dd27695a0d743add0835cc7252128cfff24568b87f89d8a48e83fa20ffe3",
+    "bytes": 30916
+  },
+  {
+    "path": "operations/quality-first-pilot/paired_pilot_remote_01.py",
+    "sha256": "b24eeebfdc7a3d849c10fcc9f2a2e558d8acbf8f24862a7bb355659843b7ab9d",
+    "bytes": 14338
+  },
+  {
+    "path": "operations/quality-first-pilot/gemma_mmap_on_01.py",
+    "sha256": "61fa34d91c779bb1c7d5497f561538f2785759f0ef20d90d52c5a102a7b3106f",
+    "bytes": 4267
+  },
+  {
+    "path": "operations/quality-first-pilot/gemma_mmap_observation_01.py",
+    "sha256": "37276c7c97882ff09d17a6bd33c26da5ef0712dd3213653e462f9ffcbeb6b955",
+    "bytes": 4604
+  }
+]

@@ -1,0 +1,61 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "baseline": "12a6c113757bbe5531b28f1516fee5d1bad332e0",
+  "scope": "offline documentary inspection only; no application test",
+  "payload_sha256": "7bc057b52a120ebbc5415ebd22da236f66fd1240421f4b114fcde629a6de97ce",
+  "payload_bytes": 6211,
+  "source": "evaluation/gemma_mmap_on_01/call-01/request.json",
+  "case": "V10-02",
+  "ordinal": 1,
+  "payload_identical_to_historical": true,
+  "model": {
+    "digest": "001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c",
+    "native_profile": "thinking-enabled",
+    "quantization": "Q4_K_M",
+    "tag": "gemma4:26b",
+    "template_sha256": "b507b9c2f6ca642bffcd06665ea7c91f235fd32daeefdf875a0f938db05fb315",
+    "thinking_values_observed": [
+      false,
+      true
+    ]
+  },
+  "parameters": {
+    "keep_alive": 0,
+    "model": "gemma4:26b",
+    "options": {
+      "num_ctx": 8192,
+      "num_predict": 4096,
+      "seed": 42,
+      "temperature": 1.0,
+      "top_k": 64,
+      "top_p": 0.95,
+      "use_mmap": true
+    },
+    "stream": true,
+    "think": true
+  },
+  "draft_in_payload": {},
+  "core_identical_to_Gate02": true,
+  "code_sha256": {
+    "paired_pilot_01.py": "3658c9dc9d70dbdcb7f0afbfd8bd90db505b2a06cd78e28a0d90021fb4cee364",
+    "pilot_supervision_01.py": "bf53dd27695a0d743add0835cc7252128cfff24568b87f89d8a48e83fa20ffe3",
+    "paired_pilot_remote_01.py": "b24eeebfdc7a3d849c10fcc9f2a2e558d8acbf8f24862a7bb355659843b7ab9d",
+    "gemma_mmap_on_01.py": "61fa34d91c779bb1c7d5497f561538f2785759f0ef20d90d52c5a102a7b3106f",
+    "gemma_mmap_observation_01.py": "37276c7c97882ff09d17a6bd33c26da5ef0712dd3213653e462f9ffcbeb6b955"
+  },
+  "proposed_attempt_id": "gemma-mmap-on-02",
+  "proposed_local_ledger": "evaluation/gemma_mmap_on_02",
+  "proposed_remote_attempt_id": "gemma-mmap-on-02-call-01",
+  "authorization": false,
+  "launchable_now": false,
+  "pending": [
+    "new explicitly authorized single-case launcher and frozen binding",
+    "exclusive new ledger and remote custody authorization",
+    "immediate volatile preflight before any POST",
+    "real Ollama terminal and post-STOP quiescence not demonstrated by synthetic Gate02"
+  ],
+  "SSH": 0,
+  "POST": 0,
+  "models_loaded": 0,
+  "tests_replayed": 0
+}
