@@ -1,0 +1,63 @@
+{
+  "scope": "nine local synthetic fixtures only",
+  "cases": [
+    {
+      "case": 1,
+      "latest_evidence": "case-01-run-01/result.json",
+      "result": "PASS",
+      "runs_preserved": 1
+    },
+    {
+      "case": 2,
+      "latest_evidence": "case-02-run-01/result.json",
+      "result": "PASS",
+      "runs_preserved": 1
+    },
+    {
+      "case": 3,
+      "latest_evidence": "case-03-run-01/result.json",
+      "result": "PASS",
+      "runs_preserved": 1
+    },
+    {
+      "case": 4,
+      "latest_evidence": "case-04-run-02/result.json",
+      "result": "PASS",
+      "runs_preserved": 2
+    },
+    {
+      "case": 5,
+      "latest_evidence": "case-05-run-01/result.json",
+      "result": "PASS",
+      "runs_preserved": 1
+    },
+    {
+      "case": 6,
+      "latest_evidence": "case-06-run-03/result.json",
+      "result": "PASS",
+      "runs_preserved": 3
+    },
+    {
+      "case": 7,
+      "latest_evidence": "case-07-run-01/result.json",
+      "result": "PASS",
+      "runs_preserved": 1
+    },
+    {
+      "case": 8,
+      "latest_evidence": "case-08-run-01/result.json",
+      "result": "PASS",
+      "runs_preserved": 1
+    },
+    {
+      "case": 9,
+      "latest_evidence": "case-09-run-01/result.json",
+      "result": "PASS",
+      "runs_preserved": 1
+    }
+  ],
+  "latest_pass": 9,
+  "post_calls": 0,
+  "SSH": 0,
+  "models_loaded": 0
+}

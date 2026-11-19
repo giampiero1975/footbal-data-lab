@@ -19,12 +19,14 @@ import threading
 import time
 
 LOCK = "/home/football/.local/share/football-data-lab/runtime-locks/spatial-v2-extraction-locator.lock"
-output_lock = threading.Lock()
+import pilot_supervision_01 as supervision
+output_events = None
 
 
 def emit(kind, **fields):
-    with output_lock:
-        print(json.dumps(dict(event=kind, monotonic=time.monotonic(), **fields)), flush=True)
+    if output_events is None or not output_events.emit(dict(
+            event=kind, monotonic=time.monotonic(), utc_ns=time.time_ns(), **fields)):
+        raise RuntimeError("E_EVENT_CUSTODY")
 
 
 def encode(obj):
@@ -133,6 +135,16 @@ def main():
     stop = threading.Event()
     aborted = threading.Event()
     monitor = None
+    global output_events
+    def cancel_without_logging(reason):
+        aborted.set()
+        if connection is not None and connection.sock:
+            try:
+                connection.sock.shutdown(socket.SHUT_RDWR)
+            except OSError:
+                pass
+    output_events = supervision.NonBlockingEmitter(
+        lambda value: os.write(1, encode(value)+b"\n"), cancel_without_logging)
     try:
         request = json.loads(sys.stdin.buffer.readline())
         call, binding = request["call"], request["binding"]
@@ -196,11 +208,14 @@ def main():
                     now = time.monotonic()
                     persistent, reason, rate = pressure_step(
                         previous, value, now - sampled_at, persistent, page_bytes)
-                    emit("sample", **value, paging_bytes_per_second=rate,
-                         paging_persistent_seconds=persistent, page_bytes=page_bytes)
+                    reason = reason or ("E_DEADLINE" if now-began >= 900 else None)
+                    supervision.guard_then_emit(reason, cancel_without_logging,
+                        lambda value: emit(value.pop("event"), **value),
+                        dict(event="sample", **value, paging_bytes_per_second=rate,
+                             paging_persistent_seconds=persistent, page_bytes=page_bytes))
                     previous, sampled_at = value, now
-                    if reason or now - began >= 900:
-                        raise RuntimeError(reason or "E_DEADLINE")
+                    if reason:
+                        raise RuntimeError(reason)
                     if tick % 5 == 0:
                         service_states(binding["services"])
                         if concurrent_processes():
@@ -208,13 +223,12 @@ def main():
                     tick += 1
                     stop.wait(1)
             except Exception as error:
-                aborted.set()
-                emit("abort", error=repr(error), remote_cancellation_verified=False)
-                if connection.sock:
-                    try:
-                        connection.sock.shutdown(socket.SHUT_RDWR)
-                    except OSError:
-                        pass
+                cancel_without_logging(repr(error))
+                try:
+                    emit("abort", error=repr(error), remote_cancellation_verified=False)
+                except RuntimeError:
+                    pass
+
 
         monitor = threading.Thread(target=sample, daemon=True)
         monitor.start()
@@ -239,7 +253,7 @@ def main():
                     and get("/api/ps").get("models") == []
                     and not runner_processes() and not concurrent_processes()
                     and os.fstat(fd) == info)
-            emit("finished", ok=False, safe_to_continue=safe, outcome="http_rejection",
+            emit("finished", ok=False, safe_to_continue=safe, remote_cancellation_verified=safe, outcome="http_rejection",
                  http_status=response.status, error_body_base64=base64.b64encode(raw).decode(),
                  content="", thinking="", final_metadata=None, resources_after=end,
                  services_after=services, elapsed_seconds=time.monotonic()-began,
@@ -279,14 +293,18 @@ def main():
             ok = False
         if os.fstat(fd) != info:
             ok = False
-        emit("finished", ok=ok, content="".join(content), thinking="".join(thinking),
+        emit("finished", ok=ok, remote_cancellation_verified=ok, content="".join(content), thinking="".join(thinking),
              final_metadata=final, resources_after=end, services_after=services,
              lock_after=list(os.fstat(fd)),
              elapsed_seconds=time.monotonic() - began,
              final_words=len("".join(content).split()), promotion_authorized=False)
         return 0 if ok else 41
     except Exception as error:
-        emit("error", error=repr(error), remote_cancellation_verified=False)
+        cancel_without_logging(repr(error))
+        try:
+            emit("error", error=repr(error), remote_cancellation_verified=False)
+        except RuntimeError:
+            pass
         return 40
     finally:
         stop.set()
@@ -294,6 +312,8 @@ def main():
             connection.close()
         if fd is not None:
             os.close(fd)
+        if output_events is not None:
+            output_events.close(timeout=1)
 
 
 if __name__ == "__main__":

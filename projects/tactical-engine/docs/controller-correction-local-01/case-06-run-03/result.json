@@ -1,0 +1,93 @@
+{
+  "case": 6,
+  "name": "transport loss or simulated local scheduling pause",
+  "scope": "local synthetic only",
+  "code_sha256": {
+    "pilot_supervision_01.py": "0553498d3dea4ec32cff2a5f0a612f286ed26907d1cb22c66e2912d7942514a2",
+    "controller_local_fixtures_01.py": "5f86e479c7378c3dab10d1764d8889bc8d3e1df366d60e5afb03bd279ab426d0",
+    "controller_fixture_worker_01.py": "2da5f4b23450b782646ad659e45693f232707581f5e35ac132c08c3566278231",
+    "paired_pilot_remote_01.py": "b24eeebfdc7a3d849c10fcc9f2a2e558d8acbf8f24862a7bb355659843b7ab9d"
+  },
+  "post_calls": 0,
+  "SSH": 0,
+  "models_loaded": 0,
+  "evidence": {
+    "recovered": {
+      "attempt_id": "fixture-6",
+      "reason": null,
+      "ok": true,
+      "pid": 2104,
+      "pgid": null,
+      "returncode": 0,
+      "actions": [],
+      "forced_kill": false,
+      "started_monotonic": 20823.093,
+      "deadline_monotonic": 21723.093,
+      "ended_monotonic": 20823.5,
+      "GO_sent": true,
+      "terminal_event": {
+        "content": "synthetic answer",
+        "event": "finished",
+        "ok": true,
+        "received": {
+          "monotonic": 20823.437,
+          "utc_ns": 1795095821627983100
+        }
+      },
+      "remote_cancellation_verified": false,
+      "promotion_authorized": false,
+      "writer_error": null,
+      "monotonic": 20823.5,
+      "utc_ns": 1795095821691020600,
+      "reader_threads_alive_at_terminal": [
+        false,
+        false
+      ],
+      "custody_terminal_verified": true,
+      "cleanup": {
+        "child_alive": false,
+        "child_returncode": 0,
+        "writer_pid": 23624,
+        "writer_exitcode": 0,
+        "writer_alive": false,
+        "monotonic": 20823.531,
+        "utc_ns": 1795095821724649800
+      }
+    },
+    "transport_EOF": {
+      "attempt_id": "fixture-6",
+      "reason": "E_TRANSPORT_EOF",
+      "ok": false,
+      "pid": 5944,
+      "pgid": null,
+      "returncode": 0,
+      "actions": [],
+      "forced_kill": false,
+      "started_monotonic": 20828.859,
+      "deadline_monotonic": 21728.859,
+      "ended_monotonic": 20829.437,
+      "GO_sent": true,
+      "terminal_event": null,
+      "remote_cancellation_verified": false,
+      "promotion_authorized": false,
+      "writer_error": null,
+      "monotonic": 20829.437,
+      "utc_ns": 1795095827624219900,
+      "reader_threads_alive_at_terminal": [
+        false,
+        false
+      ],
+      "custody_terminal_verified": true,
+      "cleanup": {
+        "child_alive": false,
+        "child_returncode": 0,
+        "writer_pid": 20296,
+        "writer_exitcode": 0,
+        "writer_alive": false,
+        "monotonic": 20829.531,
+        "utc_ns": 1795095827712491100
+      }
+    }
+  },
+  "result": "PASS"
+}

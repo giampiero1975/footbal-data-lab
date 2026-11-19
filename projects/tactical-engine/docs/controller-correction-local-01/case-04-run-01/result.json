@@ -1,0 +1,12 @@
+{
+  "case": 4,
+  "result": "FAIL",
+  "error": "Fixture clock stopped at 901 during cleanup grace; synthetic runner externally stopped. No production deadline changed.",
+  "cleanup_pids": [
+    4044,
+    2096
+  ],
+  "post_calls": 0,
+  "SSH": 0,
+  "models_loaded": 0
+}

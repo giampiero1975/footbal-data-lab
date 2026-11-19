@@ -1,0 +1,4 @@
+{"event":"ready","payload_sha256":"fixture"}
+{"event":"sample","ordinal":0,"synthetic":true}
+{"event":"sample","ordinal":1,"synthetic":true}
+{"event":"sample","ordinal":2,"synthetic":true}

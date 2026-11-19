@@ -69,11 +69,9 @@ def read(path):
 
 
 def write_new(path, data):
-    """Exclusive durable file; no overwrite/resume/reset operation."""
-    with Path(path).open("xb") as handle:
-        handle.write(data)
-        handle.flush()
-        os.fsync(handle.fileno())
+    """Exclusive bounded persistence; retains fsync-before-GO semantics."""
+    import pilot_supervision_01 as supervision
+    supervision.durable_file(path, data)
 
 
 def save(path, obj):
@@ -132,7 +130,8 @@ def make_plan():
                        "min_available_bytes": 4000000000, "sample_seconds": 1,
                        "context": 8192, "generation_tokens": 4096, "final_words": 350},
             "code": {p.name: sha(p.read_bytes()) for p in
-                     (HERE / "paired_pilot_01.py", HERE / "paired_pilot_remote_01.py")},
+                     (HERE / "paired_pilot_01.py", HERE / "paired_pilot_remote_01.py",
+                      HERE / "pilot_supervision_01.py")},
             "execution_authorized": False, "runtime_verified": False}
 
 
@@ -211,89 +210,66 @@ def bind(plan, path, authorization_path):
 
 
 def one_remote(call, binding, directory, overall_deadline):
+    """Existing transport, corrected custody/control; stale remote bindings fail closed."""
+    import pilot_supervision_01 as supervision
+    custody = binding.get("custody", {})
+    if (custody.get("remote_write_authorized") is not True
+            or not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,80}", custody.get("attempt_id", ""))):
+        raise ValueError("E_REMOTE_CUSTODY_AUTHORIZATION_REQUIRED")
+    core = (HERE / "pilot_supervision_01.py").read_bytes()
     worker = (HERE / "paired_pilot_remote_01.py").read_bytes()
-    program = "import base64;exec(base64.b64decode('%s'))" % base64.b64encode(worker).decode()
-    command = "timeout --signal=TERM --kill-after=15s 900s /usr/bin/python3 -B -I -c " + shlex.quote(program)
-    argv = ["ssh", "-F", r"C:\Users\giamp\.ssh\config", "-T",
-            "-o", "HostKeyAlgorithms=ssh-ed25519", "-o", "KexAlgorithms=curve25519-sha256", "-o", "BatchMode=yes", "-o", "ConnectTimeout=10",
-            "-o", "StrictHostKeyChecking=yes", "-o", "UpdateHostKeys=no", "football-vps", command]
-    request = {"call": call, "binding": binding}
-    save(directory / "invocation.json", {"argv": argv, "request_sha256": sha(encoded(request))})
-    events = queue.Queue()
-    stderr = (directory / "stderr.raw").open("xb")
-    stdout = (directory / "stdout.raw").open("xb")
-    process = subprocess.Popen(argv, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=stderr)
+    package = {"core":base64.b64encode(core).decode(),
+               "worker":base64.b64encode(worker).decode(),
+               "request":{"call":call,"binding":binding},
+               "custody":dict(custody,attempt_id=custody["attempt_id"]+"-call-%02d"%call["ordinal"])}
+    # Send code/package on stdin: no Windows oversized command line.
+    bootstrap = ("import sys,json,base64,types; p=json.loads(sys.stdin.buffer.readline()); "
+                 "m=types.ModuleType('pilot_supervision_01');sys.modules[m.__name__]=m;"
+                 "c=base64.b64decode(p['core']);exec(c,m.__dict__);"
+                 "sys.exit(m.remote_entry(p,c,base64.b64decode(p['worker'])))")
+    command = "/usr/bin/python3 -B -I -c " + shlex.quote(bootstrap)
+    argv = ["ssh","-F",r"C:\Users\giamp\.ssh\config","-T","-o","BatchMode=yes",
+            "-o","ConnectTimeout=10","-o","StrictHostKeyChecking=yes","-o","UpdateHostKeys=no",
+            "-o","HostKeyAlgorithms=ssh-ed25519","-o","KexAlgorithms=curve25519-sha256",
+            "football-vps",command]
+    save(directory/"invocation.json",{"argv":argv,"package_sha256":sha(encoded(package)),
+         "remote_attempt_id":package["custody"]["attempt_id"]})
+    budget = min(900, overall_deadline-time.monotonic())
+    if budget <= 0:
+        raise RuntimeError("E_CONTROLLER_DEADLINE_BEFORE_START")
+    result = supervision.Supervisor(directory/"custody",argv,
+        attempt_id=package["custody"]["attempt_id"],expected_payload=call["payload_sha256"],
+        initial=encoded(package)+b"\n",timeout=budget).run()
+    save(directory/"supervision-result.json",result)
+    if not result["ok"] or not result["custody_terminal_verified"]:
+        raise RuntimeError(result["reason"] or "E_CUSTODY_INCOMPLETE")
+    recovered = supervision.recover(directory/"custody")
+    remote_terminal = [x["data"] for x in recovered["records"]
+        if x["kind"]=="event" and x["data"].get("event")=="supervisor_terminal"]
+    if (len(remote_terminal)!=1 or remote_terminal[0]["result"].get("ok") is not True
+            or remote_terminal[0]["result"].get("custody_terminal_verified") is not True):
+        raise RuntimeError("E_REMOTE_CUSTODY_TERMINAL_MISSING")
+    final = result["terminal_event"]
+    save(directory/"result.json",final)
+    return final
 
-    def collect():
-        try:
-            for line in iter(process.stdout.readline, b""):
-                stdout.write(line)
-                stdout.flush()
-                os.fsync(stdout.fileno())
-                events.put(line)
-        finally:
-            events.put(None)
 
-    thread = threading.Thread(target=collect, daemon=True)
-    thread.start()
-    deadline = min(time.monotonic() + 900, overall_deadline)
-    process.stdin.write(encoded(request) + b"\n")
-    process.stdin.flush()
-    sent = False
-    completed = False
-    result_event = None
-    try:
-        while True:
-            remaining = deadline - time.monotonic()
-            if remaining <= 0:
-                raise RuntimeError("E_DEADLINE_AMBIGUOUS")
-            try:
-                line = events.get(timeout=min(remaining, 1))
-            except queue.Empty:
-                continue
-            if line is None:
-                break
-            event = json.loads(line)
-            if event["event"] == "ready":
-                if sent or event["payload_sha256"] != call["payload_sha256"]:
-                    raise RuntimeError("E_HANDSHAKE")
-                save(directory / "reserved-before-GO.json", {
-                    "activity": ACTIVITY, "ordinal": call["ordinal"], "utc_ns": time.time_ns(),
-                    "possible_generations": 1, "payload_sha256": call["payload_sha256"]})
-                sent = True  # Irreversible reservation even if the pipe write fails.
-                process.stdin.write(b"GO\n")
-                process.stdin.flush()
-            elif event["event"] == "wire":
-                write_new(directory / ("wire-%06d.raw" % event["index"]),
-                          base64.b64decode(event["bytes_base64"], validate=True))
-            elif event["event"] == "finished":
-                if completed or not sent:
-                    raise RuntimeError("E_FINALIZATION")
-                save(directory / "result.json", event)
-                if (event.get("ok") is not True
-                        and not (event.get("outcome") == "http_rejection"
-                                 and event.get("safe_to_continue") is True)):
-                    raise RuntimeError("E_FINALIZATION")
-                result_event = event
-                completed = True
-            elif event["event"] in ("blocked", "abort", "error"):
-                raise RuntimeError("E_REMOTE_STOP: " + str(event))
-        if process.wait(timeout=max(0.1, deadline - time.monotonic())) != 0 or not completed:
-            raise RuntimeError("E_INCOMPLETE_OR_AMBIGUOUS")
-        thread.join(timeout=1)
-        if thread.is_alive():
-            raise RuntimeError("E_CAPTURE_INCOMPLETE")
-    finally:
-        if process.poll() is None:
-            process.kill()  # Does NOT establish that remote Ollama stopped.
-        process.wait()
-        thread.join(timeout=2)
-        if not thread.is_alive():
-            stdout.close()
-        stderr.flush()
-        os.fsync(stderr.fileno())
-        stderr.close()
-    return result_event
+def remote_recovery_command(attempt_id):
+    """Prepare read-only recovery; this function does not connect or execute."""
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,100}", attempt_id):
+        raise ValueError("E_ATTEMPT_ID")
+    source = base64.b64encode((HERE / "pilot_supervision_01.py").read_bytes()).decode()
+    path = "/home/football/.local/share/football-data-lab/runtime-evidence/" + attempt_id
+    script = ("import sys,json,base64,types; p=json.loads(sys.stdin.buffer.readline());"
+              "m=types.ModuleType('pilot_supervision_01');sys.modules[m.__name__]=m;"
+              "exec(base64.b64decode(p['source']),m.__dict__);"
+              "sys.stdout.buffer.write(m.encoded(m.export_custody(p['path']))+b'\\n')")
+    argv = ["ssh", "-F", r"C:\Users\giamp\.ssh\config", "-T", "-o", "BatchMode=yes",
+            "-o", "StrictHostKeyChecking=yes", "-o", "UpdateHostKeys=no",
+            "-o", "HostKeyAlgorithms=ssh-ed25519", "-o", "KexAlgorithms=curve25519-sha256",
+            "football-vps", "/usr/bin/python3 -B -I -c " + shlex.quote(script)]
+    return {"argv": argv, "stdin": encoded({"source": source, "path": path})+b"\n",
+            "executed": False, "local_import": "pilot_supervision_01.import_custody"}
 
 
 def execute(binding_path, authorization_path):

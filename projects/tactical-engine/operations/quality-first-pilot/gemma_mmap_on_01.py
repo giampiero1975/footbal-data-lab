@@ -62,9 +62,10 @@ def main():
     import gemma_mmap_observation_01 as observation
     watch=None
     try:
-        watch=observation.start(LEDGER)
+        attempt_deadline=time.monotonic()+900
+        watch=observation.start(LEDGER,deadline=attempt_deadline)
         print("Starting gemma-mmap-on-01: only use_mmap=true changed; one POST",flush=True)
-        result=pilot.one_remote(call,binding,directory,time.monotonic()+900)
+        result=pilot.one_remote(call,binding,directory,attempt_deadline)
         pilot.save(LEDGER/"complete.json",{"post_slots":1,"valid_answer":result["ok"],
             "outcome":result.get("outcome","response"),"promotion_authorized":False})
         print(json.dumps({"finished":True,"valid_answer":result["ok"]}),flush=True)

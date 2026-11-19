@@ -1,0 +1,64 @@
+{
+  "case": 5,
+  "name": "terminal or EOF queued as local clock advances",
+  "scope": "local synthetic only",
+  "code_sha256": {
+    "pilot_supervision_01.py": "817614814c96d4ff0ffcd307bc234ce1d2566f08e00c99b0ea3f15901ba0e1b2",
+    "controller_local_fixtures_01.py": "d7641c2c94485ce38cbab8315655b8ca15a37496777b5ad1bd6827326f07844d",
+    "controller_fixture_worker_01.py": "2da5f4b23450b782646ad659e45693f232707581f5e35ac132c08c3566278231",
+    "paired_pilot_remote_01.py": "b24eeebfdc7a3d849c10fcc9f2a2e558d8acbf8f24862a7bb355659843b7ab9d"
+  },
+  "post_calls": 0,
+  "SSH": 0,
+  "models_loaded": 0,
+  "evidence": {
+    "attempt_id": "fixture-5",
+    "reason": "E_CONTROLLER_DEADLINE",
+    "ok": false,
+    "pid": 24308,
+    "pgid": null,
+    "returncode": 0,
+    "actions": [
+      {
+        "action": "TERM",
+        "cause": "E_CONTROLLER_DEADLINE",
+        "monotonic": 901,
+        "utc_ns": 1000000000000
+      }
+    ],
+    "forced_kill": false,
+    "started_monotonic": 0.0,
+    "deadline_monotonic": 900.0,
+    "ended_monotonic": 901,
+    "GO_sent": true,
+    "terminal_event": {
+      "content": "synthetic answer",
+      "event": "finished",
+      "ok": true,
+      "received": {
+        "monotonic": 0.0,
+        "utc_ns": 1000000000000
+      }
+    },
+    "remote_cancellation_verified": false,
+    "promotion_authorized": false,
+    "writer_error": null,
+    "monotonic": 901,
+    "utc_ns": 1000000000000,
+    "reader_threads_alive_at_terminal": [
+      false,
+      false
+    ],
+    "custody_terminal_verified": true,
+    "cleanup": {
+      "child_alive": false,
+      "child_returncode": 0,
+      "writer_pid": 23500,
+      "writer_exitcode": 0,
+      "writer_alive": false,
+      "monotonic": 901,
+      "utc_ns": 1000000000000
+    }
+  },
+  "result": "PASS"
+}

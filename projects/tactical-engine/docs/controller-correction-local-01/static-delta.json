@@ -1,0 +1,23 @@
+{
+  "syntax_files": [
+    "paired_pilot_01.py",
+    "paired_pilot_remote_01.py",
+    "pilot_supervision_01.py",
+    "gemma_mmap_on_01.py",
+    "gemma_mmap_observation_01.py",
+    "controller_local_fixtures_01.py",
+    "controller_fixture_worker_01.py"
+  ],
+  "embedded_observer_syntax": "PASS",
+  "payloads_inputs_limits_identical": true,
+  "pressure_step_AST_identical": true,
+  "manifest_code_hashes": {
+    "paired_pilot_01.py": "3658c9dc9d70dbdcb7f0afbfd8bd90db505b2a06cd78e28a0d90021fb4cee364",
+    "paired_pilot_remote_01.py": "b24eeebfdc7a3d849c10fcc9f2a2e558d8acbf8f24862a7bb355659843b7ab9d",
+    "pilot_supervision_01.py": "0553498d3dea4ec32cff2a5f0a612f286ed26907d1cb22c66e2912d7942514a2"
+  },
+  "pending_authorizations_remain_false": true,
+  "remote_executed": false,
+  "verified_existing_terminal_artifacts": 14,
+  "historic_evaluation_changed": false
+}
