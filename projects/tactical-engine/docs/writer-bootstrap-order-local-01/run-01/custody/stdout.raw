@@ -1,0 +1,2 @@
+{"event": "ready", "payload_sha256": "bootstrap-check-01"}
+{"event": "finished", "ok": true, "synthetic": true}

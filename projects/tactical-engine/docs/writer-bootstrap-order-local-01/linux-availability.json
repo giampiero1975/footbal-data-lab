@@ -1,0 +1,8 @@
+{
+  "command": "wsl.exe --list --verbose",
+  "returncode": 4294967295,
+  "stdout": "sottosistema Windows per Linux non ha distribuzioni installate.\r\nPer risolvere il problema, installare una distribuzione con le istruzioni seguenti:\r\n\r\nUsare 'wsl.exe --list --online' per elencare le distribuzioni disponibili\r\ne 'wsl.exe --install <Distro>' per l'installazione.\r\n",
+  "stderr": "",
+  "Linux_distribution_available": false,
+  "installation_performed": false
+}

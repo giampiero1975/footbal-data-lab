@@ -48,8 +48,15 @@ def _write_once(path, data, gate):
 
 def durable_file(path, data, timeout=GRACE, fixture_gate=None):
     """Bounded exclusive mirrors/GO files; a hung fsync cannot hang its caller."""
-    ctx = mp.get_context("spawn" if os.name == "nt" else "fork")
-    child = ctx.Process(target=_write_once, args=(str(path), data, fixture_gate))
+    # This helper is also called after relay/control threads have started.
+    # Spawn an independent interpreter, including for stdin-injected modules
+    # that cannot be imported by name in a spawned Linux child.
+    ctx = mp.get_context("spawn")
+    code = ("import os\nif gate is not None: gate.wait()\n"
+            "with open(path, 'xb') as f:\n"
+            " f.write(data)\n f.flush()\n os.fsync(f.fileno())\n")
+    child = ctx.Process(target=exec, args=(code, {
+        "path": str(path), "data": data, "gate": fixture_gate}))
     child.start()
     child.join(timeout)
     if child.is_alive():
@@ -247,6 +254,13 @@ def guard_then_emit(reason, cancel, emit, value):
     return emit(value)
 
 
+def require_single_threaded_fork():
+    """Reject known unsafe bootstrap rather than fork a threaded interpreter."""
+    if (threading.current_thread() is not threading.main_thread()
+            or len(threading.enumerate()) != 1):
+        raise RuntimeError("E_CUSTODY_FORK_THREADS")
+
+
 class Supervisor:
     """Deadline loop does no filesystem/stream write or fsync while a child runs.
 
@@ -257,7 +271,7 @@ class Supervisor:
                  initial=b"", timeout=TIMEOUT, grace=GRACE, clock=time.monotonic,
                  wall=time.time_ns, authorize=None, relay=None, resource_reason=None,
                  writer_gate=None, writer_stall_at=None, writer_fail_at=None,
-                 term_sender=None):
+                 term_sender=None, on_custody_ready=None):
         self.root = Path(directory)
         self.command = command
         self.attempt_id = attempt_id
@@ -269,6 +283,7 @@ class Supervisor:
         self.relay = relay
         self.resource_reason = resource_reason
         self.term_sender = term_sender
+        self.on_custody_ready = on_custody_ready
         self.ctx = mp.get_context("spawn" if os.name == "nt" else "fork")
         self.writer_gate = writer_gate or self.ctx.Event()
         if writer_gate is None:
@@ -290,6 +305,8 @@ class Supervisor:
             self.cancel("E_CONTROL_BACKPRESSURE")
 
     def run(self):
+        if self.ctx.get_start_method() == "fork":
+            require_single_threaded_fork()
         self.root.mkdir(mode=0o700, exist_ok=False)
         if self.root.is_symlink():
             raise ValueError("E_CUSTODY_SYMLINK")
@@ -387,6 +404,28 @@ class Supervisor:
             record("control", data=action)
 
         try:
+            # No child, relay or stdin thread before sequence0 and its
+            # checkpoint have been fsynced by the writer and acknowledged.
+            bootstrap_sequence = record("custody_ready", data={"writer_pid": writer.pid})
+            bootstrap_until = time.monotonic() + min(self.grace, self.timeout)
+            while True:
+                if self.clock() >= deadline or time.monotonic() >= bootstrap_until:
+                    raise RuntimeError("E_CUSTODY_BOOTSTRAP_TIMEOUT")
+                try:
+                    ack = acks.get(timeout=0.005)
+                except queue.Empty:
+                    if writer.exitcode is not None:
+                        raise RuntimeError("E_CUSTODY_BOOTSTRAP_EXIT")
+                    continue
+                if "writer_error" in ack:
+                    raise RuntimeError("E_CUSTODY_BOOTSTRAP_IO: " + ack["writer_error"])
+                if (ack.get("kind") != "custody_ready" or ack.get("sequence") != bootstrap_sequence
+                        or not isinstance(ack.get("sha256"), str) or len(ack["sha256"]) != 64):
+                    raise RuntimeError("E_CUSTODY_BOOTSTRAP_ACK")
+                committed = ack["sequence"]
+                break
+            if self.on_custody_ready:
+                self.on_custody_ready(self, dict(ack))
             flags = {"start_new_session": True} if os.name == "posix" else {
                 "creationflags": subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP}
             child = subprocess.Popen(self.command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
@@ -538,6 +577,7 @@ class Supervisor:
                       "remote_cancellation_verified": bool(terminal_event and
                           terminal_event.get("remote_cancellation_verified") is True),
                       "promotion_authorized": False, "writer_error": writer_error,
+                      "custody_ready": dict(sequence=bootstrap_sequence, writer_pid=writer.pid),
                       **stamp(self.clock, self.wall)}
             if child.poll() is not None:
                 for thread in readers:
@@ -624,7 +664,7 @@ def remote_entry(package, core_source, worker_source):
     parent.mkdir(mode=0o700, exist_ok=True)
     signal.signal(signal.SIGHUP, signal.SIG_IGN)
     authorized = threading.Event()
-    relay = NonBlockingEmitter(lambda e: os.write(1, encoded(e) + b"\n"), lambda _: None)
+    relay = None
     injected = ("import sys,types,base64; m=types.ModuleType('pilot_supervision_01');"
                 "sys.modules[m.__name__]=m;exec(base64.b64decode(%r),m.__dict__);"
                 "exec(base64.b64decode(%r),{'__name__':'__main__'})" % (
@@ -635,7 +675,7 @@ def remote_entry(package, core_source, worker_source):
     request = package["request"]
     supervisor = Supervisor(parent / attempt, command, attempt_id=attempt,
         expected_payload=request["call"]["payload_sha256"],
-        initial=encoded(request) + b"\n", authorize=authorized.is_set, relay=relay)
+        initial=encoded(request) + b"\n", authorize=authorized.is_set)
 
     def input_control():
         while True:
@@ -654,7 +694,12 @@ def remote_entry(package, core_source, worker_source):
                 return
             else:
                 supervisor.cancel("E_CONTROL_PROTOCOL")
-    threading.Thread(target=input_control, daemon=True).start()
+    def custody_started(instance, ack):
+        nonlocal relay
+        relay = NonBlockingEmitter(lambda e: os.write(1, encoded(e) + b"\n"), lambda _: None)
+        instance.relay = relay
+        threading.Thread(target=input_control, daemon=True).start()
+    supervisor.on_custody_ready = custody_started
     result = supervisor.run()
     relay.emit({"event": "supervisor_terminal", "result": result})
     relay.close(timeout=0.2)

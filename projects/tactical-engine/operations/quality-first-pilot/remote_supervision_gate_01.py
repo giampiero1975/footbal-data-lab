@@ -205,11 +205,11 @@ def run():
         while raw:
             raw=raw[os.write(1,raw):]
 
-    relay=core.NonBlockingEmitter(sink,lambda _:None)
+    relay=None
     supervisor=core.Supervisor(ROOT/"custody",
         [sys.executable,"-B","-I",str(ROOT/"remote_gate_synthetic_01.py"),ATTEMPT],
         attempt_id=ATTEMPT,expected_payload=manifest["files"]["remote_gate_synthetic_01.py"]["sha256"],
-        timeout=DEADLINE,grace=GRACE,authorize=authorized.is_set,relay=relay)
+        timeout=DEADLINE,grace=GRACE,authorize=authorized.is_set)
     holder["supervisor"]=supervisor
 
     def control():
@@ -224,7 +224,12 @@ def run():
                 return
             else:
                 supervisor.cancel("E_CONTROL_PROTOCOL")
-    threading.Thread(target=control,daemon=True).start()
+    def custody_started(instance,ack):
+        nonlocal relay
+        relay=core.NonBlockingEmitter(sink,lambda _:None)
+        instance.relay=relay
+        threading.Thread(target=control,daemon=True).start()
+    supervisor.on_custody_ready=custody_started
     result=supervisor.run()
     # Result includes post-cleanup receipt, unlike the pre-cleanup journal terminal.
     result["relay_deliberately_blocked"]=blocked.is_set()

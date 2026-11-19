@@ -1,0 +1,16 @@
+{
+  "syntax": "PASS",
+  "payloads_inputs_limits_identical": true,
+  "control_loop_AST_identical": true,
+  "cleanup_AST_identical": true,
+  "writer_and_recovery_AST_identical": true,
+  "code_hashes": {
+    "paired_pilot_01.py": "3658c9dc9d70dbdcb7f0afbfd8bd90db505b2a06cd78e28a0d90021fb4cee364",
+    "paired_pilot_remote_01.py": "b24eeebfdc7a3d849c10fcc9f2a2e558d8acbf8f24862a7bb355659843b7ab9d",
+    "pilot_supervision_01.py": "bf53dd27695a0d743add0835cc7252128cfff24568b87f89d8a48e83fa20ffe3"
+  },
+  "historical_gate_files_unchanged": true,
+  "Linux_native_tested": false,
+  "SSH": 0,
+  "POST": 0
+}
