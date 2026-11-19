@@ -1,0 +1,46 @@
+[
+  {
+    "path": "projects/tactical-engine/todo.md",
+    "sha256": "1cfc9153730648b733d3432fd89648087f5025916469414207548ac1d42bc065"
+  },
+  {
+    "path": "projects/tactical-engine/docs/experiment-register.md",
+    "sha256": "729cd6b3232757c9f3bd7180f5d2521591c669ee0efbb3b21adb5db8899d0f6f"
+  },
+  {
+    "path": "projects/tactical-engine/docs/rag-v5-quality-first-paired-pilot-protocol-review-01.md",
+    "sha256": "b4c404c0022bc2f1bb04a49e0d8f18c9513f52ac2d3101c856de4193ada8d938"
+  },
+  {
+    "path": "projects/tactical-engine/docs/rag-v5-remediation-a-official-api-single-case-01.md",
+    "sha256": "562cf9629b874385e7ca37ae854cc51522d428c93c8e1e5ea26f55d2f690ed11"
+  },
+  {
+    "path": "projects/tactical-engine/docs/rag-v5-remediation-a-q3-04-grounding-diagnosis-01.md",
+    "sha256": "650fe0fe78e20f28ae89fbab8e42a1fc0344f96200a2f5da158ed1d54372bb7b"
+  },
+  {
+    "path": "projects/tactical-engine/docs/quality-first-pilot-rag-state-reconciliation-01.json",
+    "sha256": "fd2091b3092b33ed74d6dc9ce340acca33ba1b730c7db7a0a4b77460301d36d9"
+  },
+  {
+    "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/Qwen__Qwen3.8-27B-config.json",
+    "sha256": "191e0af232104ed8b65258cf3fb2b842e288008baca7633c11b82a1ac7203aab"
+  },
+  {
+    "path": "projects/tactical-engine/docs/local-coach-quality-first-sources-01/google__gemma-4-26B-A4B-it-config.json",
+    "sha256": "ed0c1eb3633de771906e9ba004a44cc5635bcc06ee2062077c3d2e88a50707d3"
+  },
+  {
+    "path": "projects/tactical-engine/docs/quality-first-pilot-authorized-readiness-01/stdout.json",
+    "sha256": "2b77c06f19bf6f64ea4a87c550ff616d254fc4881b072ace7da9c95470cdbdd0"
+  },
+  {
+    "path": "projects/tactical-engine/docs/quality-first-pilot-authorized-readiness-01/gemma4-registry-manifest.json",
+    "sha256": "001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c"
+  },
+  {
+    "path": "projects/tactical-engine/docs/quality-first-pilot-authorized-readiness-01/qwen3.8-registry-manifest.json",
+    "sha256": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813"
+  }
+]

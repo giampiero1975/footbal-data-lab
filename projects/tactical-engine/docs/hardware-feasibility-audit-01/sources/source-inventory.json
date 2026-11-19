@@ -1,0 +1,177 @@
+[
+  {
+    "file": "ollama_api__types.go",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/api/types.go",
+    "bytes": 44473,
+    "sha256": "e19aafa5065afa3ed058df9135d200527391e012349ed5955dd0cc09c0b33f7a",
+    "utc": "2026-11-19T10:07:16.864067+00:00"
+  },
+  {
+    "file": "ollama_envconfig__config.go",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/envconfig/config.go",
+    "bytes": 16343,
+    "sha256": "0b0ea669b31cfe2b54313427257326a2b7a909bbc7bf8a671035efc446fb1895",
+    "utc": "2026-11-19T10:07:16.833283+00:00"
+  },
+  {
+    "file": "ollama_llm__server.go",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llm/server.go",
+    "bytes": 8561,
+    "sha256": "5d6f9c808fa16900e5302f4de7084dc11a556f2480ef397de81efe3a94c9576d",
+    "utc": "2026-11-19T10:07:16.714749+00:00"
+  },
+  {
+    "file": "ollama_llm__llama_server.go",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llm/llama_server.go",
+    "bytes": 91649,
+    "sha256": "be96301d662bf18527fe0d481c15a4631ff47055c6db7ce1400feb264315c6bf",
+    "utc": "2026-11-19T10:07:16.918225+00:00"
+  },
+  {
+    "file": "ollama_llm__llama_server_systemone.go",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/llm/llama_server_systemone.go",
+    "bytes": 2374,
+    "sha256": "4970fa390758537c04ae0cdced4eee3e76bccf163c11884a35458ed58c7062b5",
+    "utc": "2026-11-19T10:07:16.748506+00:00"
+  },
+  {
+    "file": "ollama_server__sched.go",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/server/sched.go",
+    "bytes": 60875,
+    "sha256": "3383fad80c474ae352da2289ed6ecc5a22763be722433eda4ac9816775ff382d",
+    "utc": "2026-11-19T10:07:16.890574+00:00"
+  },
+  {
+    "file": "ollama_server__routes.go",
+    "url": "https://raw.githubusercontent.com/ollama/ollama/d919272e53593d1d55d40e1180eaa06dfbede3ac/server/routes.go",
+    "bytes": 107175,
+    "sha256": "47c0bce03da44ba50c65e436f61538c67457282b9504a1ecc11d090461120855",
+    "utc": "2026-11-19T10:07:17.275954+00:00"
+  },
+  {
+    "file": "llama_include__llama.h",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/include/llama.h",
+    "bytes": 90731,
+    "sha256": "961430f89e2553dbcd99e3e6c59826af9ec143f05911520c74f804d986ff3cd2",
+    "utc": "2026-11-19T10:07:17.354923+00:00"
+  },
+  {
+    "file": "llama_common__arg.cpp",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/common/arg.cpp",
+    "bytes": 223600,
+    "sha256": "a10b6e6af910366c5c1abb89e47a7c6711fc1f10708b5fbfd8b59ba1a11d0f4a",
+    "utc": "2026-11-19T10:07:17.572006+00:00"
+  },
+  {
+    "file": "llama_src__llama-mmap.cpp",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/src/llama-mmap.cpp",
+    "bytes": 30403,
+    "sha256": "130601ff8c2b6e16668b70a1dca07cc09ae84328d91bbd5bd259aea5658103e7",
+    "utc": "2026-11-19T10:07:17.393582+00:00"
+  },
+  {
+    "file": "llama_src__llama-model-loader.cpp",
+    "url": "https://raw.githubusercontent.com/ggml-org/llama.cpp/620d2225cc436ab0b001e3200e590e3b286ef9ab/src/llama-model-loader.cpp",
+    "bytes": 80776,
+    "sha256": "7975d83406627e405d36876472495c6111696e70db66c65a629d6213ec54fc04",
+    "utc": "2026-11-19T10:07:17.320645+00:00"
+  },
+  {
+    "file": "ollama_faq_current.html",
+    "url": "https://docs.ollama.com/faq",
+    "bytes": 300626,
+    "sha256": "32531e6c4317554a5f01a0e5c550dd8df80b4b9587bdb0d8888ddebee724b523",
+    "utc": "2026-11-19T10:07:17.747812+00:00"
+  },
+  {
+    "file": "gemma4_tags.html",
+    "url": "https://ollama.com/library/gemma4/tags",
+    "bytes": 198110,
+    "sha256": "18868cb689f82dbfa77f33847e5b1db9821dcc169b73ef5ed586dc6c4b961776",
+    "utc": "2026-11-19T10:07:18.152391+00:00"
+  },
+  {
+    "file": "qwen38_tags.html",
+    "url": "https://ollama.com/library/qwen3.8/tags",
+    "bytes": 65881,
+    "sha256": "662a2f9c7421cf8f438b54742f0481a31807caf11c58296d8c3bc1ec189d2f7f",
+    "utc": "2026-11-19T10:07:17.927253+00:00"
+  },
+  {
+    "file": "qwen35_tags.html",
+    "url": "https://ollama.com/library/qwen3.5/tags",
+    "bytes": 269217,
+    "sha256": "eee3f141ef4e29789e86a93a188ff623f1b48e2d45d288498cb2d60622af369d",
+    "utc": "2026-11-19T10:07:18.226870+00:00"
+  },
+  {
+    "file": "google__gemma-4-26B-A4B-it__README.md",
+    "url": "https://huggingface.co/google/gemma-4-26B-A4B-it/raw/main/README.md",
+    "bytes": 27979,
+    "sha256": "4f463225c4fe49ec120115b0f9bb6713ff1556293a909903ffdae3df7bf974da",
+    "utc": "2026-11-19T10:09:19.014249+00:00"
+  },
+  {
+    "file": "Qwen__Qwen3.8-27B__README.md",
+    "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/README.md",
+    "bytes": 65056,
+    "sha256": "7c24f46af1e0024e6ce9b799df6f4865f9200acf3b6f92b6530c37248cc9e821",
+    "utc": "2026-11-19T10:09:18.985213+00:00"
+  },
+  {
+    "file": "Qwen__Qwen3.5-9B__README.md",
+    "url": "https://huggingface.co/Qwen/Qwen3.5-9B/raw/main/README.md",
+    "bytes": 77643,
+    "sha256": "c5f5a8c2dddab69cfbf05279235aa5fddb137939a06539c4c7637aa900fef6d0",
+    "utc": "2026-11-19T10:09:18.671046+00:00"
+  },
+  {
+    "file": "google__gemma-4-12B-it__README.md",
+    "url": "https://huggingface.co/google/gemma-4-12B-it/raw/main/README.md",
+    "bytes": 28484,
+    "sha256": "04a06469e3d83b941eaa776a3647b8690b5a7cc5c833af2381e5345bb1bb45c0",
+    "utc": "2026-11-19T10:09:18.953010+00:00"
+  },
+  {
+    "file": "gemma12_q4_manifest.json",
+    "url": "https://registry.ollama.ai/v2/library/gemma4/manifests/12b-it-q4_K_M",
+    "bytes": 1299,
+    "sha256": "6114515d63c17436a7c0417d82820ac65ad643e2806c5a3c89cb62846436ed0b",
+    "utc": "2026-11-19T10:09:19.133600+00:00"
+  },
+  {
+    "file": "gemma26_qat_manifest.json",
+    "url": "https://registry.ollama.ai/v2/library/gemma4/manifests/26b-a4b-it-qat",
+    "bytes": 902,
+    "sha256": "2dd70431afed94dd3688d790443768c1487ed086b57147ff083851116ae4c4e4",
+    "utc": "2026-11-19T10:09:19.133600+00:00"
+  },
+  {
+    "file": "issue_15704.json",
+    "url": "https://api.github.com/repos/ollama/ollama/issues/15704",
+    "bytes": 6806,
+    "sha256": "48f10032aca1212db6a93b1b284dd05f2958a12d11ae902258b0e412918f505c",
+    "utc": "2026-11-19T10:09:19.252755+00:00"
+  },
+  {
+    "file": "issue_6918.json",
+    "url": "https://api.github.com/repos/ollama/ollama/issues/6918",
+    "bytes": 6245,
+    "sha256": "15f4af3199914bc846d140c1974bbb9eea31187eab19fb72465815cac9aa4fde",
+    "utc": "2026-11-19T10:09:19.388081+00:00"
+  },
+  {
+    "file": "issue_15650.json",
+    "url": "https://api.github.com/repos/ollama/ollama/issues/15650",
+    "bytes": 5179,
+    "sha256": "3b04547e1b96bb62c3ced006ad020bfe6eacd2daa9fa6354060fafb2d8131faf",
+    "utc": "2026-11-19T10:09:19.388081+00:00"
+  },
+  {
+    "file": "issue_14501.json",
+    "url": "https://api.github.com/repos/ollama/ollama/issues/14501",
+    "bytes": 31442,
+    "sha256": "9cd674b520cdde18c97edd5962a42ec1dadb8258a4a36e188ea28b944a8a5dfb",
+    "utc": "2026-11-19T10:09:19.430684+00:00"
+  }
+]

@@ -1,0 +1,280 @@
+{
+  "activity": "RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01",
+  "date": "2026-11-19",
+  "baseline_HEAD": "185a7f33dfa3dd523156a427aecfbe62c7c5d04c",
+  "memory": {
+    "MemTotal": 16720678912,
+    "MemFree": 12809711616,
+    "MemAvailable": 16002220032,
+    "Buffers": 34480128,
+    "Cached": 3327115264,
+    "SwapCached": 9285632,
+    "Active": 294965248,
+    "Inactive": 3115798528,
+    "Active(anon)": 39727104,
+    "Inactive(anon)": 18784256,
+    "Active(file)": 255238144,
+    "Inactive(file)": 3097014272,
+    "Unevictable": 27979776,
+    "Mlocked": 27979776,
+    "SwapTotal": 1610608640,
+    "SwapFree": 1318416384,
+    "Zswap": 0,
+    "Zswapped": 0,
+    "Dirty": 335872,
+    "Writeback": 0,
+    "AnonPages": 74625024,
+    "Mapped": 95412224,
+    "Shmem": 147456,
+    "KReclaimable": 186101760,
+    "Slab": 291753984,
+    "SReclaimable": 186101760,
+    "SUnreclaim": 105652224,
+    "KernelStack": 6209536,
+    "PageTables": 4509696,
+    "SecPageTables": 0,
+    "NFS_Unstable": 0,
+    "Bounce": 0,
+    "WritebackTmp": 0,
+    "CommitLimit": 9970946048,
+    "Committed_AS": 1271189504,
+    "VmallocTotal": 35184372087808,
+    "VmallocUsed": 31965184,
+    "VmallocChunk": 0,
+    "Percpu": 127401984,
+    "HardwareCorrupted": 0,
+    "AnonHugePages": 0,
+    "ShmemHugePages": 0,
+    "ShmemPmdMapped": 0,
+    "FileHugePages": 0,
+    "FilePmdMapped": 0,
+    "Unaccepted": 0,
+    "Hugepagesize": 2097152,
+    "Hugetlb": 0,
+    "DirectMap4k": 159223808,
+    "DirectMap2M": 4135583744,
+    "DirectMap1G": 15032385536
+  },
+  "allocation_budget_before_reserve_bytes": 12002220032,
+  "model_catalog_records_observed": {
+    "qwen3.8:27b": {
+      "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+      "size": 17741872154,
+      "details": {
+        "parent_model": "qwen3.8:27b-q4_K_M",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "27.3B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 5120,
+        "runner": "llamacpp"
+      }
+    },
+    "gemma4:26b": {
+      "digest": "001e5dafc3c77684c2307ebc6ab8e336e10c9b18eca52acf547d72fc83c3ca8c",
+      "size": 18731025629,
+      "details": {
+        "parent_model": "c4-targeted-20260929-26b/model-q4_K_M.gguf",
+        "format": "gguf",
+        "family": "gemma4",
+        "families": [
+          "gemma4"
+        ],
+        "parameter_size": "25.2B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 2816,
+        "runner": "llamacpp"
+      }
+    },
+    "qwen3-embedding:0.6b": {
+      "digest": "ac6da0dfba84a81fdbfbaf330198c33cd77c4cdfc53e8bc50eb581914a15621d",
+      "size": 639150858,
+      "details": {
+        "parent_model": "/Users/ollama/.ollama/models/blobs/sha256-06507c7b42688469c4e7298b0a1e16deff06caf291cf0a5b278c308249c3e439",
+        "format": "gguf",
+        "family": "qwen3",
+        "families": [
+          "qwen3"
+        ],
+        "parameter_size": "595.78M",
+        "quantization_level": "Q8_0",
+        "context_length": 32768,
+        "embedding_length": 1024,
+        "runner": "ggml"
+      }
+    },
+    "qwen3.5:9b": {
+      "digest": "56671c2ab9385f9cfcb404638e32cd62d88e3501d44822208363c010179a3c90",
+      "size": 6550825550,
+      "details": {
+        "parent_model": "model.gguf",
+        "format": "gguf",
+        "family": "qwen35",
+        "families": [
+          "qwen35"
+        ],
+        "parameter_size": "9.0B",
+        "quantization_level": "Q4_K_M",
+        "context_length": 262144,
+        "embedding_length": 4096,
+        "runner": "llamacpp"
+      }
+    },
+    "nomic-embed-text:latest": {
+      "digest": "0a109f422b47e3a30ba2b10eca18548e944e8a23073ee3f3e947efcf3c45e59f",
+      "size": 274302450,
+      "details": {
+        "parent_model": "",
+        "format": "gguf",
+        "family": "nomic-bert",
+        "families": [
+          "nomic-bert"
+        ],
+        "parameter_size": "137M",
+        "quantization_level": "F16",
+        "context_length": 2048,
+        "embedding_length": 768,
+        "runner": "ggml"
+      }
+    }
+  },
+  "weights_file_bytes_not_RAM": {
+    "Gemma26_Q4": 17074419072,
+    "Qwen27_Q4": 16810714464,
+    "Qwen9_Q4": 5629109120,
+    "Gemma26_QAT": 14439361440,
+    "Gemma12_Q4": 7381383680
+  },
+  "planning_assumptions": {
+    "Gemma26_Q4": {
+      "gguf_file_bytes_proxy_only": 17074419072,
+      "assumed_extra_allocation_bytes": [
+        1000000000,
+        3000000000
+      ],
+      "conditional_runner_footprint_bytes": [
+        18074419072,
+        20074419072
+      ],
+      "conditional_available_bytes": [
+        -4072199040,
+        -2072199040
+      ],
+      "conditional_reserve_margin_bytes": [
+        -8072199040,
+        -6072199040
+      ],
+      "reliability": "low; scenario assumption, not measured RSS; file is not RAM; negative available denotes infeasible full-residency arithmetic, not actual negative RAM"
+    },
+    "Qwen27_Q4": {
+      "gguf_file_bytes_proxy_only": 16810714464,
+      "assumed_extra_allocation_bytes": [
+        1000000000,
+        3000000000
+      ],
+      "conditional_runner_footprint_bytes": [
+        17810714464,
+        19810714464
+      ],
+      "conditional_available_bytes": [
+        -3808494432,
+        -1808494432
+      ],
+      "conditional_reserve_margin_bytes": [
+        -7808494432,
+        -5808494432
+      ],
+      "reliability": "low; scenario assumption, not measured RSS; file is not RAM; negative available denotes infeasible full-residency arithmetic, not actual negative RAM"
+    },
+    "Qwen9_Q4": {
+      "gguf_file_bytes_proxy_only": 5629109120,
+      "assumed_extra_allocation_bytes": [
+        1000000000,
+        3000000000
+      ],
+      "conditional_runner_footprint_bytes": [
+        6629109120,
+        8629109120
+      ],
+      "conditional_available_bytes": [
+        7373110912,
+        9373110912
+      ],
+      "conditional_reserve_margin_bytes": [
+        3373110912,
+        5373110912
+      ],
+      "reliability": "low; scenario assumption, not measured RSS; file is not RAM; negative available denotes infeasible full-residency arithmetic, not actual negative RAM"
+    },
+    "Gemma26_QAT": {
+      "gguf_file_bytes_proxy_only": 14439361440,
+      "assumed_extra_allocation_bytes": [
+        1000000000,
+        3000000000
+      ],
+      "conditional_runner_footprint_bytes": [
+        15439361440,
+        17439361440
+      ],
+      "conditional_available_bytes": [
+        -1437141408,
+        562858592
+      ],
+      "conditional_reserve_margin_bytes": [
+        -5437141408,
+        -3437141408
+      ],
+      "reliability": "low; scenario assumption, not measured RSS; file is not RAM; negative available denotes infeasible full-residency arithmetic, not actual negative RAM"
+    },
+    "Gemma12_Q4": {
+      "gguf_file_bytes_proxy_only": 7381383680,
+      "assumed_extra_allocation_bytes": [
+        1000000000,
+        3000000000
+      ],
+      "conditional_runner_footprint_bytes": [
+        8381383680,
+        10381383680
+      ],
+      "conditional_available_bytes": [
+        5620836352,
+        7620836352
+      ],
+      "conditional_reserve_margin_bytes": [
+        1620836352,
+        3620836352
+      ],
+      "reliability": "low; scenario assumption, not measured RSS; file is not RAM; negative available denotes infeasible full-residency arithmetic, not actual negative RAM"
+    }
+  },
+  "qwen27_standard_full_attention_component_only_f16_8192_bytes": 536870912,
+  "qwen27_full_attention_component_saving_8192_to_4096_bytes": 268435456,
+  "kv_formula_limitations": "Illustrates standard full-attention layers only from frozen text_config; excludes recurrent/GDN states, speculative decoder, implementation layout/sharing/alignment/projector/buffers; not measured total cache.",
+  "history": {
+    "quality_first_paired_pilot_03": {
+      "technical_commit": "cea3e804d45ecbb9aea844e01ea3127cf752bfe9",
+      "elapsed_to_abort_seconds": 28.30819130805321,
+      "min_available_bytes": 3763400704,
+      "max_runner_rss_sampled_bytes": 12204212224,
+      "post_attempts": 1
+    },
+    "quality_first_qwen27_single_case_01": {
+      "technical_commit": "4ff3ca16ea6ced07dc3e15804e798bf5c86da4e5",
+      "elapsed_to_abort_seconds": 32.352194951847196,
+      "min_available_bytes": 3149516800,
+      "max_runner_rss_sampled_bytes": 12878049280,
+      "post_attempts": 1
+    }
+  },
+  "generative_posts_by_audit": 0,
+  "changes_to_VPS": false,
+  "new_model_downloads": 0,
+  "recommendation": "Keep installed Qwen3.5 9B as operational development generator; no proven tactical winner or universal 28/30. Do not repeat 26/27B Q4 within unchanged constraints.",
+  "new_test_proposed": false,
+  "source_scope": "Pinned release source analysis, installed help previously captured, four requested issue bodies, current official author cards/catalogue; no ABI investigation/compilation"
+}

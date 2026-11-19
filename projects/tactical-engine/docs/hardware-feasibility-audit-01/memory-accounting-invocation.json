@@ -1,0 +1,22 @@
+{
+  "argv": [
+    "ssh",
+    "-F",
+    "C:\\Users\\giamp\\.ssh\\config",
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "HostKeyAlgorithms=ssh-ed25519",
+    "-o",
+    "KexAlgorithms=curve25519-sha256",
+    "football-vps",
+    "/usr/bin/python3 -B -I -c 'import base64;exec(base64.b64decode('\"'\"'aW1wb3J0IGpzb24scGF0aGxpYgpyPXt9CmZvciBwYXRoIGluICgiL3N5cy9mcy9jZ3JvdXAvc3lzdGVtLnNsaWNlL29sbGFtYS5zZXJ2aWNlL21lbW9yeS5zdGF0IiwiL3N5cy9mcy9jZ3JvdXAvc3lzdGVtLnNsaWNlL29sbGFtYS5zZXJ2aWNlL21lbW9yeS5zd2FwLmN1cnJlbnQiLCIvc3lzL2ZzL2Nncm91cC91c2VyLnNsaWNlL3VzZXItMTAwMC5zbGljZS91c2VyQDEwMDAuc2VydmljZS9hcHAuc2xpY2UvZm9vdGJhbGwtcmFnLWFwaS5zZXJ2aWNlL21lbW9yeS5zdGF0IiwiL3N5cy9mcy9jZ3JvdXAvdXNlci5zbGljZS91c2VyLTEwMDAuc2xpY2UvdXNlckAxMDAwLnNlcnZpY2UvYXBwLnNsaWNlL2Zvb3RiYWxsLXJhZy1hcGkuc2VydmljZS9tZW1vcnkuc3dhcC5jdXJyZW50Iik6CiB0cnk6cltwYXRoXT1wYXRobGliLlBhdGgocGF0aCkucmVhZF90ZXh0KCkKIGV4Y2VwdCBFeGNlcHRpb24gYXMgZTpyW3BhdGhdPXsiZXJyb3IiOnJlcHIoZSl9CnByaW50KGpzb24uZHVtcHMocikpCg=='\"'\"'))'"
+  ],
+  "exit": 0,
+  "scope": "four selected memory-accounting files; no model loading"
+}
