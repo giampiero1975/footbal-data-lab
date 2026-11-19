@@ -2,6 +2,23 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-19 — Qwen27 mmap / V10-02: fattibilità e condizioni di arresto
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → ispezione statica dei driver
+`qwen27_single_case_01.py`, `paired_pilot_01.py`, `paired_pilot_remote_01.py`,
+`pilot_supervision_01.py`, `gemma_mmap_on_02.py` → baseline GitHub `4f2f422`,
+commit tecnici storici `4ff3ca1`, `ed770b7` e `ea6779f` riconciliati →
+[report](rag-v5-qwen27-mmap-feasibility-01.md) → una sola POST Qwen storica con
+opzione mmap omessa, STOP RAM sotto riserva4GB, nessuna risposta. Il delta
+`use_mmap=true` è compatibile staticamente con Ollama 0.40.5. System e user
+identici a Gemma02, con profili native distinti → prima serve uno STOP
+verificabile del carico reale e una chiusura con deadline e quiete attestabili.
+Gate02 copre il child sintetico. Gemma02 completa sul server con deadline
+locale in ritardo di 944,375 s → verifica documentale **ESEGUITO**, futuro
+tentativo **BLOCCATO**. Piano condizionale da una POST con soglie immutate,
+zero retry/repair/fallback. Nessun binding o ledger esecutivo e nessuna SSH
+sulla VPS, POST, inferenza, caricamento, download o modifica della VPS.
+
 ### 2026-11-19 — Valutazione tattica Gemma26 e confronto storico Qwen9B
 
 Stessa RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01; baseline3b68f98 riconciliata con

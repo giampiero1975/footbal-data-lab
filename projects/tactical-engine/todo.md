@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** riesame documentale Qwen27 mmap / V10-02 (2026-11-19),
+  nella stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Baseline GitHub
+  `4f2f422`, payload e ledger riconciliati. Unica POST Qwen storica senza
+  opzione mmap esplicita, STOP RAM a 3.149.516.800 byte. Delta `use_mmap=true`
+  compatibile staticamente con Ollama 0.40.5. Messaggi identici a Gemma02.
+  Report [fattibilità Qwen27 mmap](docs/rag-v5-qwen27-mmap-feasibility-01.md),
+  protocollo condizionale da una sola POST e guardie immutate. Tentativo
+  **BLOCCATO** finché STOP e quiete del runner non sono verificabili lato VPS
+  e la deadline locale resta una condizione di chiusura non risolta.
+  Zero SSH sulla VPS, POST, inferenze, download o nuovi test.
 
 - [x] **ESEGUITO / VALIDATO documentale** valutazione tattica Gemma26 mmap02 e
   confronto Qwen9B (2026-11-19), evidenze c05712a90ea02eb92f74f8e4abecedaa44afc6a2.
