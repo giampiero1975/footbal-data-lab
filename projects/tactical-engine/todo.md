@@ -8,6 +8,16 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO / VALIDATO** predisposizione dei due prerequisiti
+  Qwen27 (2026-11-20), stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`.
+  Esecuzione autenticata esplicitamente autorizzata, runner `458061a`.
+  `football-qwen27` UID 997/GID 987, password bloccata, `nologin` e nessun
+  gruppo supplementare. Store `root:root` `0755`, vuoto, nessun marker o ACL.
+  Ollama/RAG attivi, PID, invocazioni e hash unità identici prima e dopo.
+  [Report](docs/rag-v5-qwen27-ollama-isolation-prerequisites-authenticated-01.md).
+  Gate Linux e Qwen27 mmap **BLOCCATO**. Zero Gate, unità transitorie,
+  caricamenti, POST, inferenze o riavvii.
+
 - [x] **ESEGUITO** controllo predisposizione Qwen27 (2026-11-20), stessa
   `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Baseline `75f3795`, script tecnico
   `205c46c`. Unico sudo non interattivo rifiutato perché richiede la password.

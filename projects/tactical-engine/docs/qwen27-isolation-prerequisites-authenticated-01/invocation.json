@@ -1,0 +1,8 @@
+{
+  "technical_commit": "458061adfac0da75accdef5e35e175b6fb7689ba",
+  "runner_sha256": "63a75c3ee6ceb18463f057a350b9062eb0534c2d1b0812609a25ed51973c07d7",
+  "provision_sha256": "ee6dfcf2878da5f908877ae1917be39ed23d9da131cbe403ef09f7854048af69",
+  "host_fingerprint": "SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks",
+  "remote_command_sha256": "f4154daba05c8f353b97a357bd6eee6e2bf7677cee2b402d944420f1d196a6f4",
+  "max_ssh_invocations": 1
+}

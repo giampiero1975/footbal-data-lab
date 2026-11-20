@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-20 — Predisposizione autenticata dei due prerequisiti Qwen27
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →
+`qwen27_prerequisites_authenticated_01.py` con script di predisposizione
+invariato `205c46c` → commit tecnico `458061adfac0da75accdef5e35e175b6fb7689ba`
+pubblicato prima dell'SSH → [report](rag-v5-qwen27-ollama-isolation-prerequisites-authenticated-01.md)
+→ `football-qwen27` UID 997/GID 987, nologin, password account bloccata,
+solo gruppo primario. Directory `root:root` `0755`, vuota, nessun marker o ACL.
+RAG/Ollama attivi con PID, invocazioni e hash unità identici → fermarsi dopo
+la predisposizione autorizzata → due prerequisiti **IMPLEMENTATO / VALIDATO**,
+Gate Linux e Qwen27 mmap **BLOCCATO**. Zero Gate, unità transitorie, riavvii,
+modelli caricati, POST o inferenze. STOP.
+
 ### 2026-11-20 — Predisposizione prerequisiti isolamento Qwen27
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →

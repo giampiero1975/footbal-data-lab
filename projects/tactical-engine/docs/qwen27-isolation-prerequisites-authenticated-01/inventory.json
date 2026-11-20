@@ -1,0 +1,27 @@
+{
+  "technical_commit": "458061adfac0da75accdef5e35e175b6fb7689ba",
+  "runner_sha256": "63a75c3ee6ceb18463f057a350b9062eb0534c2d1b0812609a25ed51973c07d7",
+  "provision_sha256": "ee6dfcf2878da5f908877ae1917be39ed23d9da131cbe403ef09f7854048af69",
+  "artifacts": [
+    {
+      "file": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "file": "exit.json",
+      "bytes": 49,
+      "sha256": "da95515e65a10bd5a4c36a8e3569966570c07161fe13cc569af1d0c358cea963"
+    },
+    {
+      "file": "invocation.json",
+      "bytes": 445,
+      "sha256": "6ec60c2120227a63b64532aec473827739bc725fb589bcf9f83d349f77b24524"
+    },
+    {
+      "file": "stdout.json",
+      "bytes": 3394,
+      "sha256": "353322bf7f10227a4c90f526d046ef223bc905ef836d817ed0c4878ac1299515"
+    }
+  ]
+}
