@@ -8,6 +8,31 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **VALIDATO** Gate Linux sintetico dell’isolamento Qwen27 (2026-11-20),
+  commit `9cd3af0`. Namespace isolato, TERM/KILL selettivi, cgroup rimosso,
+  sentinella esterna sopravvissuta e barriera persistente senza supervisore.
+  Nessuna unità residua. Qwen27 mmap V10-02 **DA FARE** previa autorizzazione.
+  [Report](docs/rag-v5-qwen27-ollama-isolation-linux-gate-02.md).
+
+- [x] **IMPLEMENTATO / VALIDATO** deposito Qwen27 dedicato (2026-11-20),
+  commit `67fa532`. UID 997 legge il manifest storico e i cinque blob senza
+  scrittura o accesso allo store di produzione. Ollama e RAG attivi con
+  invocazioni invariate. Qwen27 mmap **BLOCCATO**.
+  [Report](docs/rag-v5-qwen27-isolated-store-01.md).
+
+- [x] **ESEGUITO** confronto manifest Qwen27 (2026-11-20), commit
+  `f013cd9`. Cinque riferimenti storici coincidenti per digest e dimensione.
+  Il manifest locale aggiunge due riferimenti di catalogo. UID 997 privo
+  di accesso in lettura. Gate Linux e Qwen27 mmap **BLOCCATO**.
+  [Report](docs/rag-v5-qwen27-manifest-reconciliation-01.md).
+
+- [x] **ESEGUITO** controllo di ammissione del modello Qwen27 (2026-11-20),
+  stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, commit `c04b2e6`.
+  UID 997 presente. `E_MODEL_MANIFEST_DIGEST` ha fermato il controllo prima
+  delle verifiche di leggibilità dei blob e prima delle unità sintetiche.
+  Ollama e RAG attivi, PID e invocazioni invariati. Gate Linux e Qwen27 mmap
+  **BLOCCATO**. [Report](docs/rag-v5-qwen27-isolation-model-access-01.md).
+
 - [x] **IMPLEMENTATO / VALIDATO** predisposizione dei due prerequisiti
   Qwen27 (2026-11-20), stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`.
   Esecuzione autenticata esplicitamente autorizzata, runner `458061a`.

@@ -1,0 +1,8 @@
+{
+  "commit": "c04b2e6c33de4d47961eb2b776701047634d1b87",
+  "source_sha256": "8c4e380cbd82ffb786d475df796c9a7b1c505eb780e2193e8d82554a0cd21344",
+  "isolation_sha256": "360dbe51c69f9bf3a6a3579fa611153d5c2ee166a43e120e84c9584e32204461",
+  "host_fingerprint": "SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks",
+  "started_utc_ns": 1795187679779355500,
+  "max_ssh_invocations": 1
+}

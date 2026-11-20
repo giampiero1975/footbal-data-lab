@@ -1,0 +1,37 @@
+{
+  "catalog_digest": "b45285c1cc1fafaf0272e840a7b799cb11e1b4597c2dc47a2dc58a61942f408c",
+  "commit": "67fa53293b27756ad38dc7bc002e59e63427f359",
+  "digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+  "gid": 987,
+  "model_loaded": false,
+  "original_store_access": false,
+  "read_only_components": 5,
+  "root_mode": "0750",
+  "services_after": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "services_before": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "source_sha256": "4489239dbccc66582545fc0eff981c32108bf53348c3180ee03411ea5854f2de",
+  "store": "/var/lib/football-qwen27-isolation/models-qwen27",
+  "uid": 997
+}

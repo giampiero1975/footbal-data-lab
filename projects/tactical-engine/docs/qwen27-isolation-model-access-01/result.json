@@ -1,0 +1,36 @@
+{
+  "account_uid": 997,
+  "attempt": "qwen27-isolation-model-access-01",
+  "failure": "E_MODEL_MANIFEST_DIGEST",
+  "isolation_sha256": "360dbe51c69f9bf3a6a3579fa611153d5c2ee166a43e120e84c9584e32204461",
+  "model_access": false,
+  "posts": 0,
+  "services_after": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "services_before": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "services_unchanged": true,
+  "source_sha256": "8c4e380cbd82ffb786d475df796c9a7b1c505eb780e2193e8d82554a0cd21344",
+  "ssh_exit": 41,
+  "units_started": 0
+}

@@ -2,6 +2,45 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-20 — Gate Linux sintetico dell’isolamento Qwen27
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →
+`qwen27_isolation_linux_gate_02.py` → `9cd3af077b0a27d35e39b42f83a58f97d40b4b92` →
+[report](rag-v5-qwen27-ollama-isolation-linux-gate-02.md) → TERM/KILL a
+scadenze sintetiche, cgroup rimosso, sentinella esterna intatta, interdizione
+persistente dopo la perdita del supervisore e rimossa dopo quiete → consentire
+la futura ammissione di una sola prova V10-02 con autorizzazione esplicita →
+Gate **VALIDATO**, Qwen27 mmap **DA FARE**. Zero inferenze.
+
+### 2026-11-20 — Deposito Qwen27 isolato su LIGA
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → `qwen27_isolated_store_01.py` →
+`67fa53293b27756ad38dc7bc002e59e63427f359` →
+[report](rag-v5-qwen27-isolated-store-01.md) → UID 997 legge il manifest
+storico e i cinque blob dal deposito dedicato e non può scriverli, processi
+di produzione invariati → usare il deposito dedicato con il digest storico →
+predisposizione **IMPLEMENTATO**, accesso **VALIDATO**, Qwen27 mmap **BLOCCATO**.
+
+### 2026-11-20 — Riconciliazione manifest Qwen27 su LIGA
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →
+`qwen27_manifest_reconcile_01.py` → `f013cd955b6542bfb58dbed6dda6d37e38515950`
+→ [report](rag-v5-qwen27-manifest-reconciliation-01.md) → cinque componenti
+storici coincidenti per riferimenti e dimensioni, due layer di catalogo
+aggiuntivi, lettura negata specificamente a UID 997 → fermare l’avvio e
+richiedere autorizzazione per accesso selettivo e adeguamento del controllo
+d’identità → confronto **ESEGUITO**, Gate Linux e Qwen27 mmap **BLOCCATO**.
+
+### 2026-11-20 — Ammissione del modello Qwen27 al Gate Linux
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →
+`qwen27_isolation_model_access_01.py` → `c04b2e6c33de4d47961eb2b776701047634d1b87`
+→ [report](rag-v5-qwen27-isolation-model-access-01.md) → una SSH in sola
+lettura, UID 997, `E_MODEL_MANIFEST_DIGEST`, accesso ai blob indeterminato,
+Ollama e RAG attivi con PID e invocazioni invariati → arresto prima delle
+unità, preservare il binding e riconciliare il manifest prima di procedere →
+controllo **ESEGUITO**, Gate sintetico Linux e Qwen27 mmap **BLOCCATO**.
+
 ### 2026-11-20 — Predisposizione autenticata dei due prerequisiti Qwen27
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →

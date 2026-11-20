@@ -1,0 +1,131 @@
+{
+  "attempt": "qwen27-mmap-on-26112002",
+  "barrier_blocked_with_supervisor_gone": true,
+  "barrier_cleared_after_quiet": true,
+  "binding": {
+    "attempt_id": "qwen27-mmap-on-26112002",
+    "boot_id": "cef7c880-2fed-4643-9220-5c3a12563227",
+    "deadline_ns": 2260333448873649,
+    "target_cgroup": "/sys/fs/cgroup/system.slice/football-qwen27-mmap-on-26112002-ollama.service",
+    "target_cgroup_inode": [
+      28,
+      268560
+    ],
+    "target_invocation": "cbc699e973f145a099785de6838722b1",
+    "target_main": {
+      "cgroup": "0::/system.slice/football-qwen27-mmap-on-26112002-ollama.service",
+      "parent_pid": 1,
+      "pid": 263272,
+      "start_ticks": 226032538
+    },
+    "target_unit": "football-qwen27-mmap-on-26112002-ollama.service"
+  },
+  "deadline_seconds": 8,
+  "events": {
+    "kill_watchdog": {
+      "action": "KILL",
+      "attempt_id": "qwen27-mmap-on-26112002",
+      "limit_ns": 2260335448873649,
+      "monotonic_ns": 2260335506435053,
+      "written": true
+    },
+    "quiet_at_ns": 2260335523053758,
+    "supervisor_interrupted_at_ns": 2260333513956972,
+    "term_at_ns": 2260333509966293,
+    "term_watchdog": {
+      "action": "TERM",
+      "attempt_id": "qwen27-mmap-on-26112002",
+      "limit_ns": 2260333448873649,
+      "monotonic_ns": 2260333505712493,
+      "queued": true
+    }
+  },
+  "exit_code": 0,
+  "gate_source_sha256": "5c5c41bab4e6693d9033b50aa53085e5f964215fbfab86637be0a1a5c8b0cf04",
+  "git_commit": "9cd3af077b0a27d35e39b42f83a58f97d40b4b92",
+  "grace_seconds": 2,
+  "kernel": "6.8.0-147-generic",
+  "models_loaded": 0,
+  "namespace": [
+    4,
+    4026532623
+  ],
+  "operational_deadline_seconds": 900,
+  "operational_grace_seconds": 15,
+  "posts": 0,
+  "quiet": {
+    "anchored_inode": [
+      28,
+      268560
+    ],
+    "cgroup_removed": true,
+    "unit": {
+      "ActiveState": "failed",
+      "BindsTo": "football-qwen27-mmap-on-26112002-supervisor.service",
+      "ControlGroup": "",
+      "Id": "football-qwen27-mmap-on-26112002-ollama.service",
+      "InvocationID": "cbc699e973f145a099785de6838722b1",
+      "KillMode": "control-group",
+      "LoadState": "loaded",
+      "MainPID": "0",
+      "PrivateNetwork": "no",
+      "Restart": "no"
+    }
+  },
+  "remote_inventory": {
+    "qwen27-mmap-on-26112002/binding.json": "045c6e353ab6c97c4eff43683a20caa290b2a53beb7b51beac08c00ae186d8af",
+    "qwen27-mmap-on-26112002/deadline-kill.json": "6526b75f35a3bbf7e8216ad0ecab317fee6e165f92f5532eea513df6268c67a2",
+    "qwen27-mmap-on-26112002/deadline-term.json": "63733c89e530f56093968e7eddc4715499fc93afc7fdcb89e74bea88aa15b835",
+    "qwen27-mmap-on-26112002/stop-receipt.json": "7eac54576b24a6f4905505f1c19a05127d1e20ed39f244608f8dcb612ab4930f"
+  },
+  "scratch_removed": true,
+  "sentinel_before": {
+    "cgroup": "0::/user.slice/user-1000.slice/session-5042.scope",
+    "parent_pid": 263243,
+    "pid": 263266,
+    "start_ticks": 226032533
+  },
+  "sentinel_namespace": [
+    4,
+    4026531840
+  ],
+  "sentinel_survived": true,
+  "services_after": {
+    "football-rag-api.service": {
+      "exit": 0,
+      "state": "active"
+    },
+    "ollama.service": {
+      "exit": 0,
+      "state": "active"
+    }
+  },
+  "services_before": {
+    "football-rag-api.service": {
+      "exit": 0,
+      "state": "active"
+    },
+    "ollama.service": {
+      "exit": 0,
+      "state": "active"
+    }
+  },
+  "services_unchanged": true,
+  "source_sha256": "360dbe51c69f9bf3a6a3579fa611153d5c2ee166a43e120e84c9584e32204461",
+  "supervisor": {
+    "ActiveState": "active",
+    "BindsTo": "",
+    "ControlGroup": "/system.slice/football-qwen27-mmap-on-26112002-supervisor.service",
+    "Id": "football-qwen27-mmap-on-26112002-supervisor.service",
+    "InvocationID": "5938fb614d644e0fb822199dfbfdb254",
+    "KillMode": "control-group",
+    "LoadState": "loaded",
+    "MainPID": "263268",
+    "PrivateNetwork": "yes",
+    "Restart": "no"
+  },
+  "systemd": "systemd 255 (255.4-1ubuntu8.18)",
+  "units_remaining": [],
+  "validated": true,
+  "watchdog_fixture_sha256": "22f5d6ad0a3d2f35e4d900abfd0d37712eae39751d0e9b4ba3a64301be82c3cb"
+}
