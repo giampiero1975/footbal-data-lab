@@ -8,6 +8,12 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** tentativo Qwen27 mmap V10-02 (2026-11-20), commit
+  `56bbe0a`. Ollama isolato risponde a `/api/version`, ma
+  `/api/tags` dà 500 dopo errore su `manifests-v2` nello store protetto.
+  Custodia verificata, GO assente, zero POST, quiete attestata. Qwen27
+  mmap **BLOCCATO**. [Report](docs/rag-v5-qwen27-mmap-attempt-01.md).
+
 - [x] **VALIDATO** Gate Linux sintetico dell’isolamento Qwen27 (2026-11-20),
   commit `9cd3af0`. Namespace isolato, TERM/KILL selettivi, cgroup rimosso,
   sentinella esterna sopravvissuta e barriera persistente senza supervisore.

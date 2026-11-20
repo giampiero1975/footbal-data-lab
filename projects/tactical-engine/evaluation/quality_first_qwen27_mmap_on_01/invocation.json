@@ -1,0 +1,9 @@
+{
+  "commit": "56bbe0ad41e064195ef31c219dfe50a6bf28db6a",
+  "max_ssh_invocations": 1,
+  "sha256": {
+    "paired_pilot_remote_01.py": "1f045315aae4c5a20df865b933d14a5e38eeb9df15af50a2e81d278ce2c4f130",
+    "pilot_supervision_01.py": "523e2c597b93886d0265a85d89b5245a1b17504f48e08dfe46b51cdf07a7576f",
+    "qwen27_isolation_01.py": "88ed3e20589725042012500f15ef95cec525df67df6dd551194227c5d894d48e"
+  }
+}

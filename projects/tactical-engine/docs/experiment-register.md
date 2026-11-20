@@ -2,6 +2,16 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-20 — Qwen27 mmap V10-02 su LIGA
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →
+`qwen27_mmap_attempt_01.py` + verifica del listener isolato → `56bbe0a` →
+[report](rag-v5-qwen27-mmap-attempt-01.md) → daemon isolato 0.40.5,
+`/api/tags` HTTP 500, errore catalogo `manifests-v2`, zero GO e POST,
+quiete attestata e produzione con processi invariati → arresto senza retry,
+riconciliare il catalogo e la chiusura ordinaria del cgroup → tentativo
+**ESEGUITO**, Qwen27 mmap **BLOCCATO**, memoria in inferenza e qualità ignote.
+
 ### 2026-11-20 — Gate Linux sintetico dell’isolamento Qwen27
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →

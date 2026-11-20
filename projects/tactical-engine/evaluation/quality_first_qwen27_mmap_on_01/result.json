@@ -1,0 +1,171 @@
+{
+  "attempt_id": "qwen27-mmap-on-26112004",
+  "authorized_posts": 1,
+  "available_before_bytes": 15992438784,
+  "custody": {
+    "GO_sent": false,
+    "journal_chain_sha256": "f4d05aadc131094a8dab65a4c236d5c7eaa36cbabb9d77455558f4c7dce67759",
+    "journal_sha256": "5e078292962c3978f84ef6bc4e3f2c08cd9534772ab16e86e20e4233b0f9d3bf",
+    "post_started_events": 0,
+    "reason": "E_REMOTE_CONTROL: RuntimeError('E_DIAGNOSTIC_HTTP')",
+    "terminal_event": {},
+    "verified": true
+  },
+  "diagnostic_tail": "Starting football-qwen27-mmap-on-26112004-supervisor.service - /usr/bin/python3 -I -B /var/lib/football-qwen27-isolation/launcher-qwen27-mmap-on-26112004/qwen27_isolation_01.py /var/lib/football-qwen27-isolation/launcher-qwen27-mmap-on-26112004/authorization.json...\nStarted football-qwen27-mmap-on-26112004-supervisor.service - /usr/bin/python3 -I -B /var/lib/football-qwen27-isolation/launcher-qwen27-mmap-on-26112004/qwen27_isolation_01.py /var/lib/football-qwen27-isolation/launcher-qwen27-mmap-on-26112004/authorization.json.\nStarting football-qwen27-mmap-on-26112004-ollama.service - /usr/local/bin/ollama serve...\nStarted football-qwen27-mmap-on-26112004-ollama.service - /usr/local/bin/ollama serve.\nCouldn't find '/run/football-qwen27-mmap-on-26112004-ollama/.ollama/id_ed25519'. Generating new private key.\nYour new public key is:\nssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJtJkpJykOkjbbe8ZJl7pdRkpJj4F91z0GxfSJAr8foU\ntime=2026-11-20T16:46:19.456+01:00 level=INFO source=routes.go:2439 msg=\"server config\" env=\"map[CUDA_VISIBLE_DEVICES: GGML_VK_VISIBLE_DEVICES: GPU_DEVICE_ORDINAL: HIP_VISIBLE_DEVICES: HSA_OVERRIDE_GFX_VERSION: HTTPS_PROXY: HTTP_PROXY: LLAMA_ARG_FIT: LLAMA_ARG_FIT_TARGET: NO_PROXY: OLLAMA_CONTEXT_LENGTH:0 OLLAMA_CREATE_REMOTE:false OLLAMA_DEBUG:INFO OLLAMA_DEBUG_LOG_REQUESTS:false OLLAMA_EDITOR: OLLAMA_FLASH_ATTENTION:false OLLAMA_GO_TEMPLATE:true OLLAMA_GPU_OVERHEAD:0 OLLAMA_HOST:http://127.0.0.1:11434 OLLAMA_IGPU_ENABLE: OLLAMA_KEEP_ALIVE:5m0s OLLAMA_KV_CACHE_TYPE: OLLAMA_LLM_LIBRARY: OLLAMA_LOAD_TIMEOUT:5m0s OLLAMA_MAX_LOADED_MODELS:0 OLLAMA_MAX_QUEUE:512 OLLAMA_MAX_TRANSFER_STREAMS:4 OLLAMA_MODELS:/var/lib/football-qwen27-isolation/models-qwen27 OLLAMA_NOHISTORY:false OLLAMA_NOPRUNE:false OLLAMA_NO_CLOUD:true OLLAMA_NUM_PARALLEL:1 OLLAMA_ORIGINS:[http://localhost https://localhost http://localhost:* https://localhost:* http://127.0.0.1 https://127.0.0.1 http://127.0.0.1:* https://127.0.0.1:* http://0.0.0.0 https://0.0.0.0 http://0.0.0.0:* https://0.0.0.0:* app://* file://* tauri://* vscode-webview://* vscode-file://*] OLLAMA_REMOTES:[ollama.com] OLLAMA_SCHED_SPREAD:false OLLAMA_VULKAN:true ROCR_VISIBLE_DEVICES: http_proxy: https_proxy: no_proxy:]\"\ntime=2026-11-20T16:46:19.456+01:00 level=INFO source=routes.go:2441 msg=\"Ollama cloud disabled: true\"\ntime=2026-11-20T16:46:19.456+01:00 level=WARN source=routes.go:2456 msg=\"corrupt manifests detected, skipping prune operation.  Re-pull or delete to clear\" error=\"mkdir /var/lib/football-qwen27-isolation/models-qwen27/manifests-v2: read-only file system: ensure path elements are traversable\"\ntime=2026-11-20T16:46:19.456+01:00 level=INFO source=routes.go:2501 msg=\"Listening on 127.0.0.1:11434 (version 0.40.5)\"\ntime=2026-11-20T16:46:19.456+01:00 level=INFO source=model_recommendations.go:177 msg=\"model recommendations cache sleep scheduled\" wait=3h23m1.11279993s consecutive_failures=0\ntime=2026-11-20T16:46:19.458+01:00 level=INFO source=runner.go:60 msg=\"discovering available GPUs...\"\ntime=2026-11-20T16:46:19.656+01:00 level=INFO source=types.go:50 msg=\"inference compute\" id=cpu library=cpu compute=\"\" name=cpu description=cpu libdirs=ollama driver=\"\" pci_id=\"\" type=\"\" total=\"15.6 GiB\" available=\"14.8 GiB\"\ntime=2026-11-20T16:46:19.656+01:00 level=INFO source=routes.go:2551 msg=\"vram-based default context\" total_vram=\"0 B\" default_num_ctx=4096\n[GIN] 2026/11/20 - 16:46:19 | 200 |      80.223µs |       127.0.0.1 | GET      \"/api/version\"\n[GIN] 2026/11/20 - 16:46:19 | 500 |      73.399µs |       127.0.0.1 | GET      \"/api/tags\"\nStopping football-qwen27-mmap-on-26112004-ollama.service - /usr/local/bin/ollama serve...\nfootball-qwen27-mmap-on-26112004-ollama.service: Deactivated successfully.\nStopped football-qwen27-mmap-on-26112004-ollama.service - /usr/local/bin/ollama serve.\nfootball-qwen27-mmap-on-26112004-supervisor.service: Main process exited, code=exited, status=41/n/a\nfootball-qwen27-mmap-on-26112004-supervisor.service: Failed with result 'exit-code'.\n",
+  "eligible": false,
+  "invoked": true,
+  "marker_open": false,
+  "min_available_bytes": 15915474944,
+  "ollama_binary": "/usr/local/bin/ollama",
+  "ollama_sha256": "505c0068464497f69932d1ae5d8b6c9ad6fdcf07342c683d78dfb1ced60558e6",
+  "payload_sha256": "331530c85dac2e0030e5c8d3489cee9c4ea0ee5e53486667e95b00096304451e",
+  "receipt": {
+    "actions": [
+      {
+        "action": "TERM",
+        "dispatched_monotonic_ns": 2261053855380636,
+        "exit": 0,
+        "monotonic_ns": 2261053847713186
+      },
+      {
+        "action": "KILL",
+        "error": "OSError(19, 'No such device')",
+        "limit_ns": 2261068828080423,
+        "monotonic_ns": 2261068828156779
+      }
+    ],
+    "attempt_id": "qwen27-mmap-on-26112004",
+    "binding": {
+      "attempt_id": "qwen27-mmap-on-26112004",
+      "boot_id": "cef7c880-2fed-4643-9220-5c3a12563227",
+      "deadline_ns": 2261953510112508,
+      "lock": [
+        64769,
+        842518
+      ],
+      "model_digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+      "network_namespace": [
+        4,
+        4026532623
+      ],
+      "payload_sha256": "331530c85dac2e0030e5c8d3489cee9c4ea0ee5e53486667e95b00096304451e",
+      "services_before": {
+        "football-rag-api.service": {
+          "exit": 0,
+          "state": "active"
+        },
+        "ollama.service": {
+          "exit": 0,
+          "state": "active"
+        }
+      },
+      "source_sha256": {
+        "paired_pilot_remote_01.py": "1f045315aae4c5a20df865b933d14a5e38eeb9df15af50a2e81d278ce2c4f130",
+        "pilot_supervision_01.py": "523e2c597b93886d0265a85d89b5245a1b17504f48e08dfe46b51cdf07a7576f",
+        "qwen27_isolation_01.py": "88ed3e20589725042012500f15ef95cec525df67df6dd551194227c5d894d48e"
+      },
+      "started_ns": 2261053510112508,
+      "supervisor": {
+        "cgroup": "0::/system.slice/football-qwen27-mmap-on-26112004-supervisor.service",
+        "parent_pid": 1,
+        "pid": 263425,
+        "start_ticks": 226105328
+      },
+      "supervisor_invocation": "a104b6f9d67948bf973e1f21162cc667",
+      "supervisor_unit": "football-qwen27-mmap-on-26112004-supervisor.service",
+      "target_unit": "football-qwen27-mmap-on-26112004-ollama.service"
+    },
+    "cgroup_proof": {
+      "anchored_inode": [
+        28,
+        269134
+      ],
+      "cgroup_removed": true,
+      "unit": {
+        "ActiveState": "inactive",
+        "BindsTo": "",
+        "ControlGroup": "",
+        "Id": "football-qwen27-mmap-on-26112004-ollama.service",
+        "InvocationID": "",
+        "KillMode": "control-group",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "PrivateNetwork": "no",
+        "Restart": "no"
+      }
+    },
+    "custody_terminal_verified": true,
+    "diagnostics": {
+      "memory": {
+        "available_bytes": 15957352448,
+        "swap_in": 1773171,
+        "swap_out": 2473287,
+        "swap_used_bytes": 294645760
+      },
+      "services": {
+        "football-rag-api.service": {
+          "exit": 0,
+          "state": "active"
+        },
+        "ollama.service": {
+          "exit": 0,
+          "state": "active"
+        }
+      }
+    },
+    "empty_monotonic_ns": null,
+    "failure": null,
+    "last_sample": {
+      "available_bytes": 15957409792,
+      "members": null,
+      "monotonic_ns": 2261068729416876,
+      "paging_bytes_per_second": 0.0,
+      "paging_persistent_seconds": 0.0,
+      "swap_in": 1773171,
+      "swap_out": 2473287,
+      "swap_used_bytes": 294645760
+    },
+    "quiet": true,
+    "recorded_monotonic_ns": 2261068880294805,
+    "remote_cancellation_verified": false,
+    "status": "BLOCCATO",
+    "trigger": {
+      "monotonic_ns": 2261053828080423,
+      "reason": "E_REMOTE_CONTROL: RuntimeError('E_DIAGNOSTIC_HTTP')"
+    },
+    "worker_finished_naturally": false
+  },
+  "services_after": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "services_before": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "services_unchanged": true,
+  "sha256": {
+    "paired_pilot_remote_01.py": "1f045315aae4c5a20df865b933d14a5e38eeb9df15af50a2e81d278ce2c4f130",
+    "pilot_supervision_01.py": "523e2c597b93886d0265a85d89b5245a1b17504f48e08dfe46b51cdf07a7576f",
+    "qwen27_isolation_01.py": "88ed3e20589725042012500f15ef95cec525df67df6dd551194227c5d894d48e"
+  },
+  "ssh_exit": 41,
+  "supervisor_exit": 41,
+  "transport_message": ""
+}

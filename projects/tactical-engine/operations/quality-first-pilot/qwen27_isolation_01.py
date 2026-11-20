@@ -551,6 +551,19 @@ def run(path):
             write_record(directory / 'binding.json', binding)
             instance.note({'event': 'isolated_binding', **binding})
 
+            # Type=exec confirms execve, which can precede Ollama binding its socket.
+            listener_deadline = min(deadline, time.monotonic_ns() + 10 * NS)
+            while True:
+                require(control.trigger is None and time.monotonic_ns() < listener_deadline,
+                        'E_ISOLATED_LISTENER')
+                try:
+                    with socket.create_connection(('127.0.0.1', 11434), timeout=0.2):
+                        break
+                except ConnectionRefusedError:
+                    time.sleep(0.05)
+            require(namespace(int(unit_info(target_unit)['MainPID'])) == net,
+                    'E_ISOLATED_LISTENER_NAMESPACE')
+
             def probe_services():
                 while not probe_done.wait(5):
                     try:
