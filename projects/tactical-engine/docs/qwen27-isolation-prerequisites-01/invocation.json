@@ -1,0 +1,12 @@
+{
+  "technical_commit": "205c46ce7d1d3e4f7c73c4d4c0e0243c91ab3b21",
+  "source_sha256": "ee6dfcf2878da5f908877ae1917be39ed23d9da131cbe403ef09f7854048af69",
+  "host_key": "SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks",
+  "remote_command": "/usr/bin/python3 -I -B -c 'import sys; src=sys.stdin.buffer.read(); scope={'\"'\"'__name__'\"'\"':'\"'\"'prerequisites'\"'\"'}; exec(compile(src,'\"'\"'<prerequisites>'\"'\"','\"'\"'exec'\"'\"'),scope); sys.exit(scope['\"'\"'main'\"'\"'](src))'",
+  "started_utc_ns": 1795169137477995900,
+  "scope": [
+    "football-qwen27 account and primary group",
+    "/var/lib/football-qwen27-isolation"
+  ],
+  "max_invocations": 1
+}

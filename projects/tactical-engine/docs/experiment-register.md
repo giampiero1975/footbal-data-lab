@@ -2,6 +2,18 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-20 — Predisposizione prerequisiti isolamento Qwen27
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →
+`qwen27_isolation_prerequisites_01.py` → baseline `75f3795`, commit tecnico
+`205c46ce7d1d3e4f7c73c4d4c0e0243c91ab3b21` pubblicato prima dell'SSH →
+[report](rag-v5-qwen27-ollama-isolation-prerequisites-01.md) → sudo non
+interattivo exit 1, password richiesta, account e directory assenti prima e
+dopo. Ollama e RAG attivi con PID, invocazioni e hash file unità identici →
+fermare l'attività senza retry o predisposizione alternativa → controllo
+**ESEGUITO**, predisposizione, Gate Linux e Qwen27 mmap **BLOCCATO**. Nessuna
+modifica VPS, unità, Gate, caricamento, POST o inferenza. STOP.
+
 ### 2026-11-20 — Gate Linux differenziale isolamento Ollama, arresto al preflight
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → script stdin read-only

@@ -8,6 +8,14 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** controllo predisposizione Qwen27 (2026-11-20), stessa
+  `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`. Baseline `75f3795`, script tecnico
+  `205c46c`. Unico sudo non interattivo rifiutato perché richiede la password.
+  Account e store ancora assenti. Ollama/RAG attivi, PID, invocation ID e hash
+  unità identici prima e dopo. [Report](docs/rag-v5-qwen27-ollama-isolation-prerequisites-01.md).
+  Predisposizione, Gate Linux e Qwen27 mmap **BLOCCATO**. Nessun retry o
+  modifica VPS, nessuna unità transitoria, POST o inferenza.
+
 - [x] **ESEGUITO** preflight VPS read-only del Gate Linux isolamento Qwen27
   mmap (2026-11-20), stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`.
   Baseline GitHub `0259ce9`, script e commit `1f7a72a` pubblicati prima dell'SSH.
