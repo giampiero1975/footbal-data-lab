@@ -2,6 +2,21 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-20 — Implementazione locale isolamento Ollama Qwen27 mmap
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → `qwen27_isolation_01.py`,
+`pilot_supervision_01.py`, `paired_pilot_remote_01.py` e fixture mirata →
+baseline GitHub `d39ac92`, commit tecnico pubblicato
+`ca653e695c054619c3db7ad00dba3d3827d9c571` →
+[report](rag-v5-qwen27-ollama-isolation-local-01.md) → sintassi 4/4, 11/11
+fixture Windows su marker, identità, budget e canale STOP. Riusati guardie,
+custodia READY/GO e unico worker HTTP. Supervisore distaccato, namespace e
+cgroup dedicati, interdizione persistente fino a prova di quiete → conservare
+il codice per una futura verifica sintetica Linux autorizzata → isolamento
+**IMPLEMENTATO** in locale, verifiche **ESEGUITO**, Linux e Qwen27 mmap
+**BLOCCATO**. Nessuna ripetizione Gate02 o suite storiche. Zero SSH, attivazioni
+systemd, modifiche alla VPS, POST, caricamenti e inferenze. STOP.
+
 ### 2026-11-19 — STOP autonomo Ollama per Qwen27 mmap
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → ispezione statica con `git`, `rg`,

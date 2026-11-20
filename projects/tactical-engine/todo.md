@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **IMPLEMENTATO** isolamento Ollama Qwen27 mmap in locale (2026-11-20),
+  stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, baseline GitHub `d39ac92`,
+  commit tecnico `ca653e6`. Supervisore distaccato, unità Ollama transitoria e
+  cgroup esclusivi, endpoint in namespace privato, lock con marker persistente,
+  STOP autonomo 900 s/15 s e guardie RAM/paging immutate. Riusati custodia e
+  singolo punto POST esistente. Sintassi 4/4 e 11 fixture Windows **ESEGUITO**.
+  [Report](docs/rag-v5-qwen27-ollama-isolation-local-01.md). Verifica sintetica
+  Linux e Qwen27 mmap **BLOCCATO**. Zero SSH, attivazioni systemd, POST o inferenze.
+
 - [x] **ESEGUITO** progetto STOP autonomo Ollama per Qwen27 mmap (2026-11-19),
   stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, baseline GitHub `b01d4f4`.
   Ollama 0.40.5 può riusare il runner per richieste compatibili. Lock del pilot,
