@@ -70,11 +70,13 @@ def durable_file(path, data, timeout=GRACE, fixture_gate=None):
         raise OSError("E_CUSTODY_WRITE_EXIT: " + str(child.exitcode))
 
 
-def _journal_writer(directory, inbox, acks, gate, stall_at, fail_at):
+def _journal_writer(directory, inbox, acks, gate, stall_at, fail_at, close_fds=()):
     """Only this killable process can block in write/fsync. Fault args are fixtures."""
     root = Path(directory)
     files = []
     try:
+        for fd in close_fds:
+            os.close(fd)
         journal = (root / "journal.ndjson").open("xb")
         out = (root / "stdout.raw").open("xb")
         err = (root / "stderr.raw").open("xb")
@@ -271,7 +273,8 @@ class Supervisor:
                  initial=b"", timeout=TIMEOUT, grace=GRACE, clock=time.monotonic,
                  wall=time.time_ns, authorize=None, relay=None, resource_reason=None,
                  writer_gate=None, writer_stall_at=None, writer_fail_at=None,
-                 term_sender=None, on_custody_ready=None):
+                 term_sender=None, on_custody_ready=None, pass_fds=(),
+                 absolute_deadline=None, on_stop=None, writer_close_fds=()):
         self.root = Path(directory)
         self.command = command
         self.attempt_id = attempt_id
@@ -284,6 +287,10 @@ class Supervisor:
         self.resource_reason = resource_reason
         self.term_sender = term_sender
         self.on_custody_ready = on_custody_ready
+        self.pass_fds = pass_fds
+        self.absolute_deadline = absolute_deadline
+        self.on_stop = on_stop
+        self.writer_close_fds = writer_close_fds
         self.ctx = mp.get_context("spawn" if os.name == "nt" else "fork")
         self.writer_gate = writer_gate or self.ctx.Event()
         if writer_gate is None:
@@ -315,10 +322,13 @@ class Supervisor:
         failure = queue.Queue(1)
         inbox, acks = self.ctx.Queue(CAPACITY), self.ctx.Queue(CAPACITY * 2)
         writer = self.ctx.Process(target=_journal_writer, args=(str(self.root), inbox, acks,
-                                  self.writer_gate, self.stall_at, self.fail_at), daemon=True)
+                                  self.writer_gate, self.stall_at, self.fail_at,
+                                  self.writer_close_fds), daemon=True)
         writer.start()
         started = self.clock()
         deadline = started + self.timeout
+        if self.absolute_deadline is not None:
+            deadline = min(deadline, self.absolute_deadline)
         actions = []
         reason = None
         child = None
@@ -386,6 +396,8 @@ class Supervisor:
                 return
             reason = value
             kill_at = self.clock() + self.grace
+            if self.on_stop:
+                self.on_stop(value)
             action = dict(action="TERM", cause=value, **stamp(self.clock, self.wall))
             if child is not None and child.poll() is None:
                 try:
@@ -428,6 +440,8 @@ class Supervisor:
                 self.on_custody_ready(self, dict(ack))
             flags = {"start_new_session": True} if os.name == "posix" else {
                 "creationflags": subprocess.CREATE_NO_WINDOW | subprocess.CREATE_NEW_PROCESS_GROUP}
+            if self.pass_fds:
+                flags["pass_fds"] = self.pass_fds
             child = subprocess.Popen(self.command, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE, bufsize=0, **flags)
             record("launch", data={"pid": child.pid,
