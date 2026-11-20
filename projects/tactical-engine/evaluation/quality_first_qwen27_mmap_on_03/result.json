@@ -1,0 +1,172 @@
+{
+  "attempt_id": "qwen27-mmap-on-26112006",
+  "authorized_posts": 1,
+  "available_before_bytes": 15999533056,
+  "catalog_v2": {
+    "gguf_manifest_sha256": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+    "path": "/var/lib/football-qwen27-isolation/models-qwen27/manifests-v2/ollama.com/library/qwen3.8/27b",
+    "sha256": "e118e4d12a705129abfcd3076c3a420108987e7150c037a92515d3e0091e0eb1"
+  },
+  "custody": {
+    "GO_sent": true,
+    "journal_chain_sha256": "dd68207523ec5bf584462450412be8201ea76b9d902dcba11e905ee592a35365",
+    "journal_sha256": "120c1f72851306a9a98f659331c28ecfcb2893f9d68fac87bf91885f04cdb010",
+    "post_started_events": 1,
+    "reason": "E_REMOTE_CONTROL: RemoteDisconnected('Remote end closed connection without response')",
+    "terminal_event": {},
+    "verified": true
+  },
+  "diagnostic_tail": "llama_kv_cache: n_rot_v = 0, n_embd_head_k_all = 256\nllama_memory_recurrent:        CPU RS buffer size =   748.12 MiB\nllama_memory_recurrent: size =  748.12 MiB (     1 cells,  64 layers,  1 seqs  4 rs_seq), R (f32):   28.12 MiB, S (f32):  720.00 MiB, P (f32):    0.00 MiB\nsched_reserve: reserving ...\nresolve_fused_ops: Flash Attention enabled\nresolve_fused_ops: resolving fused DeepSeek V4 HC support:\nresolve_fused_ops: fused DeepSeek V4 HC pre enabled\nresolve_fused_ops: fused DeepSeek V4 HC comb enabled\nresolve_fused_ops: fused DeepSeek V4 HC post enabled\nsched_reserve:        CPU compute buffer size =   320.05 MiB\nsched_reserve: graph: nodes = 4425, splits = 1, input objects = 4, input tensors = 10\nsched_reserve: reserve took 42.58 ms, sched copies = 1\ncmn          init: llama threadpool init, n_threads = 6\ncmn  common_init_: KV cache shifting is not supported for this context, disabling KV cache shifting\ncmn  common_init_: warming up the model with an empty run - please wait ... (--no-warmup to disable)\ntime=2026-11-20T17:09:26.527+01:00 level=WARN source=llama_server.go:1336 msg=\"client connection closed before llama-server finished loading, aborting load\"\nStopping football-qwen27-mmap-on-26112006-ollama.service - /usr/local/bin/ollama serve...\ntime=2026-11-20T17:09:26.545+01:00 level=INFO source=sched.go:692 msg=\"Load failed\" model=/var/lib/football-qwen27-isolation/models-qwen27/blobs/sha256-f5f1dd8920d417aac2718b0bda3403da274301efdd6760b4f0f4b864ff2ad57d error=\"timed out waiting for llama-server to start: context canceled\"\nfootball-qwen27-mmap-on-26112006-ollama.service: Deactivated successfully.\nStopped football-qwen27-mmap-on-26112006-ollama.service - /usr/local/bin/ollama serve.\nfootball-qwen27-mmap-on-26112006-ollama.service: Consumed 48.474s CPU time, 15.0G memory peak, 1.1G memory swap peak.\nfootball-qwen27-mmap-on-26112006-supervisor.service: Main process exited, code=exited, status=41/n/a\nfootball-qwen27-mmap-on-26112006-supervisor.service: Failed with result 'exit-code'.\nfootball-qwen27-mmap-on-26112006-supervisor.service: Consumed 1.429s CPU time, 41.2M memory peak, 0B memory swap peak.\n",
+  "eligible": false,
+  "invoked": true,
+  "marker_open": false,
+  "min_available_bytes": 3847450624,
+  "ollama_binary": "/usr/local/bin/ollama",
+  "ollama_sha256": "505c0068464497f69932d1ae5d8b6c9ad6fdcf07342c683d78dfb1ced60558e6",
+  "payload_sha256": "331530c85dac2e0030e5c8d3489cee9c4ea0ee5e53486667e95b00096304451e",
+  "receipt": {
+    "actions": [
+      {
+        "action": "TERM",
+        "dispatched_monotonic_ns": 2262440698101785,
+        "exit": 0,
+        "monotonic_ns": 2262440670753081
+      }
+    ],
+    "attempt_id": "qwen27-mmap-on-26112006",
+    "binding": {
+      "attempt_id": "qwen27-mmap-on-26112006",
+      "boot_id": "cef7c880-2fed-4643-9220-5c3a12563227",
+      "deadline_ns": 2263297249171149,
+      "lock": [
+        64769,
+        842518
+      ],
+      "model_digest": "aaee06c39dcf2437cde036998d960e1fc1494b8191be7cc9657d01e509097813",
+      "network_namespace": [
+        4,
+        4026532623
+      ],
+      "payload_sha256": "331530c85dac2e0030e5c8d3489cee9c4ea0ee5e53486667e95b00096304451e",
+      "services_before": {
+        "football-rag-api.service": {
+          "exit": 0,
+          "state": "active"
+        },
+        "ollama.service": {
+          "exit": 0,
+          "state": "active"
+        }
+      },
+      "source_sha256": {
+        "paired_pilot_remote_01.py": "1f045315aae4c5a20df865b933d14a5e38eeb9df15af50a2e81d278ce2c4f130",
+        "pilot_supervision_01.py": "523e2c597b93886d0265a85d89b5245a1b17504f48e08dfe46b51cdf07a7576f",
+        "qwen27_isolation_01.py": "c993829a77a028f6de81ebfce92d6c99a7b6efb6004bccfdedd79c62185f1743"
+      },
+      "started_ns": 2262397249171149,
+      "supervisor": {
+        "cgroup": "0::/system.slice/football-qwen27-mmap-on-26112006-supervisor.service",
+        "parent_pid": 1,
+        "pid": 263960,
+        "start_ticks": 226239701
+      },
+      "supervisor_invocation": "c74820b6bbf345f29b36d390fe69c405",
+      "supervisor_unit": "football-qwen27-mmap-on-26112006-supervisor.service",
+      "target_unit": "football-qwen27-mmap-on-26112006-ollama.service"
+    },
+    "cgroup_proof": {
+      "anchored_inode": [
+        28,
+        270275
+      ],
+      "cgroup_removed": true,
+      "unit": {
+        "ActiveState": "inactive",
+        "BindsTo": "",
+        "ControlGroup": "",
+        "Id": "football-qwen27-mmap-on-26112006-ollama.service",
+        "InvocationID": "",
+        "KillMode": "control-group",
+        "LoadState": "not-found",
+        "MainPID": "0",
+        "PrivateNetwork": "no",
+        "Restart": "no"
+      }
+    },
+    "custody_terminal_verified": true,
+    "diagnostics": {
+      "memory": {
+        "available_bytes": 16043102208,
+        "swap_in": 1954384,
+        "swap_out": 2879107,
+        "swap_used_bytes": 367022080
+      },
+      "services": {
+        "football-rag-api.service": {
+          "exit": 0,
+          "state": "active"
+        },
+        "ollama.service": {
+          "exit": 0,
+          "state": "active"
+        }
+      }
+    },
+    "empty_monotonic_ns": 2262442444887928,
+    "failure": null,
+    "last_sample": {
+      "available_bytes": 11148890112,
+      "members": [
+        263985
+      ],
+      "monotonic_ns": 2262441650015236,
+      "paging_bytes_per_second": 3649920.5695739067,
+      "paging_persistent_seconds": 0.0,
+      "swap_in": 1954346,
+      "swap_out": 2879107,
+      "swap_used_bytes": 373051392
+    },
+    "quiet": true,
+    "recorded_monotonic_ns": 2262442519524953,
+    "remote_cancellation_verified": false,
+    "status": "BLOCCATO",
+    "trigger": {
+      "monotonic_ns": 2262440642196828,
+      "reason": "E_MEMORY_RESERVE"
+    },
+    "worker_finished_naturally": false
+  },
+  "services_after": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "services_before": {
+    "football-rag-api.service": {
+      "ActiveState": "active",
+      "InvocationID": "8cae34b75b154283ae5c4448147c8515",
+      "MainPID": "76562"
+    },
+    "ollama.service": {
+      "ActiveState": "active",
+      "InvocationID": "9e4beee09f4445c4bd11703fe1ea62e2",
+      "MainPID": "188530"
+    }
+  },
+  "services_unchanged": true,
+  "sha256": {
+    "paired_pilot_remote_01.py": "1f045315aae4c5a20df865b933d14a5e38eeb9df15af50a2e81d278ce2c4f130",
+    "pilot_supervision_01.py": "523e2c597b93886d0265a85d89b5245a1b17504f48e08dfe46b51cdf07a7576f",
+    "qwen27_isolation_01.py": "c993829a77a028f6de81ebfce92d6c99a7b6efb6004bccfdedd79c62185f1743"
+  },
+  "ssh_exit": 41,
+  "supervisor_exit": 41,
+  "transport_message": ""
+}

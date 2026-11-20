@@ -1,6 +1,7 @@
 """Linux entry point for a separately authorized, detached Qwen27 attempt."""
 
 import hashlib
+import errno
 import json
 import os
 from pathlib import Path
@@ -272,8 +273,17 @@ class StopControl:
                     if not target.populated():
                         self.empty_ns = time.monotonic_ns()
                         break
-                except (OSError, RuntimeError):
-                    pass  # Disappearance is corroborated during final classification.
+                except OSError as error:
+                    if error.errno in (errno.ENODEV, errno.ENOENT):
+                        try:
+                            proof = target.proof()
+                        except (OSError, RuntimeError, subprocess.SubprocessError):
+                            proof = None
+                        if proof is not None:
+                            self.empty_ns = time.monotonic_ns()
+                            break
+                except RuntimeError:
+                    pass
                 if now >= limit:
                     action = {'action': 'KILL', 'monotonic_ns': time.monotonic_ns(), 'limit_ns': limit}
                     try:

@@ -26,8 +26,74 @@ import os
 from pathlib import Path
 import pwd
 import re
+import shutil
+import stat
 import subprocess
 import sys
+import tempfile
+
+def provision_catalog(store, scope):
+    require = scope['require']
+    production = Path('/usr/share/ollama/.ollama/models')
+    v2 = Path('manifests-v2/ollama.com/library/qwen3.8/27b')
+    variant = scope['DIGEST']
+    catalog = 'e118e4d12a705129abfcd3076c3a420108987e7150c037a92515d3e0091e0eb1'
+    root = store / 'manifests-v2'
+    scope['trusted_path'](store)
+    scope['trusted_path'](store / 'blobs')
+    require(not os.path.lexists(root), 'E_V2_CATALOG_ALREADY_PRESENT')
+
+    def verified(path, digest):
+        info = path.lstat()
+        require(stat.S_ISREG(info.st_mode) and info.st_size <= 65536, 'E_V2_CATALOG_FILE')
+        raw = path.read_bytes()
+        require(hashlib.sha256(raw).hexdigest() == digest, 'E_V2_CATALOG_DIGEST')
+        return raw
+
+    source_index = production / v2
+    catalog_blob = 'sha256-' + catalog
+    require(source_index.is_symlink()
+            and source_index.resolve(strict=True) == production / 'blobs' / catalog_blob,
+            'E_V2_CATALOG_LINK')
+    index = verified(production / 'blobs' / catalog_blob, catalog)
+    require([item.get('digest') for item in json.loads(index)['manifests']
+             if item.get('runner') == 'llamacpp' and item.get('format') == 'gguf']
+            == ['sha256:' + variant], 'E_V2_GGUF_VARIANT')
+    objects = {}
+    for digest in (variant, catalog):
+        name = 'sha256-' + digest
+        objects[name] = verified(production / 'blobs' / name, digest)
+        require(not os.path.lexists(store / 'blobs' / name), 'E_V2_METADATA_ALREADY_PRESENT')
+
+    staged = Path(tempfile.mkdtemp(prefix='.manifests-v2-', dir=store))
+    written = []
+    try:
+        leaf = staged.joinpath(*v2.parts[1:])
+        leaf.parent.mkdir(parents=True)
+        for directory in staged.rglob('*'):
+            if directory.is_dir():
+                directory.chmod(0o755)
+        for name, raw in objects.items():
+            path = store / 'blobs' / name
+            with path.open('xb') as handle:
+                written.append(path)
+                handle.write(raw)
+                handle.flush()
+                os.fsync(handle.fileno())
+            path.chmod(0o644)
+        leaf.symlink_to(os.path.relpath(store / 'blobs' / catalog_blob, leaf.parent))
+        require(leaf.resolve(strict=True) == store / 'blobs' / catalog_blob,
+                'E_V2_ISOLATED_LINK')
+        staged.chmod(0o755)
+        staged.rename(root)
+    except Exception:
+        for path in written:
+            path.unlink()
+        shutil.rmtree(staged)
+        raise
+    scope['sync_dir'](store / 'blobs')
+    scope['sync_dir'](store)
+    return {'path': str(store / v2), 'sha256': catalog, 'gguf_manifest_sha256': variant}
 
 def collect(plan, code):
     scope = {'__name__': 'preflight'}
@@ -75,7 +141,12 @@ def collect(plan, code):
         require(data['available_before_bytes'] >= 4000000000, 'E_MEMORY_BEFORE_START')
         daemon = pwd.getpwnam(scope['DAEMON_USER'])
         require(daemon.pw_uid == 997 and daemon.pw_gid == 987, 'E_DAEMON_IDENTITY')
-        scope['check_model_access'](Path(plan['model_store']), daemon)
+        model_store = Path(plan['model_store'])
+        scope['check_model_access'](model_store, daemon)
+        if plan.get('provision_catalog_v2') is True:
+            require(attempt == 'qwen27-mmap-on-26112006'
+                    and model_store == state / 'models-qwen27', 'E_CATALOG_SCOPE')
+            data['catalog_v2'] = provision_catalog(model_store, scope)
         pid = int(data['services_before']['ollama.service']['MainPID'])
         binary = Path(f'/proc/{pid}/exe').resolve(strict=True)
         scope['trusted_path'](binary)
@@ -164,7 +235,7 @@ def main(encoded):
 """
 
 
-def plan():
+def plan(attempt=ATTEMPT, *, provision_catalog_v2=False):
     manifest = json.loads((HERE / 'prepared/pilot_manifest_01.json').read_bytes())
     frozen = next(c for c in manifest['calls'] if c['candidate'] == 'qwen' and c['case'] == 'V10-02')
     historical = PROJECT / 'evaluation/quality_first_qwen27_single_case_01/call-02/request.json'
@@ -176,8 +247,10 @@ def plan():
     binding = json.loads(REFERENCE.read_bytes())
     binding['models'] = {'qwen': binding['models']['qwen']}
     request = {'call': call, 'binding': binding}
-    value = {'attempt_id': ATTEMPT, 'request': request, 'authorized': True, 'max_posts': 1,
+    value = {'attempt_id': attempt, 'request': request, 'authorized': True, 'max_posts': 1,
              'kill_authorized': True, 'model_store': '/var/lib/football-qwen27-isolation/models-qwen27'}
+    if provision_catalog_v2:
+        value['provision_catalog_v2'] = True
     isolation.validate_request(value)
     return value
 
@@ -207,8 +280,8 @@ def write(path, data):
         stream.write('\n')
 
 
-def main():
-    value = plan()
+def main(attempt=ATTEMPT, ledger=LEDGER, *, provision_catalog_v2=False):
+    value = plan(attempt, provision_catalog_v2=provision_catalog_v2)
     remote, body, hashes = command(value)
     home = Path.home() / '.ssh'
     known = subprocess.check_output(['ssh-keygen', '-F', '163.5.26.155', '-f', str(home / 'known_hosts')])
@@ -218,9 +291,9 @@ def main():
     password = sys.stdin.buffer.readline(1024).rstrip(bytes([13, 10]))
     if not password or len(password) >= 1023:
         raise RuntimeError('E_CREDENTIAL_INPUT')
-    LEDGER.mkdir()
-    write(LEDGER / 'authorization.json', value)
-    write(LEDGER / 'invocation.json', {'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'],
+    ledger.mkdir()
+    write(ledger / 'authorization.json', value)
+    write(ledger / 'invocation.json', {'commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'],
                                                                        text=True).strip(),
                                       'sha256': hashes, 'max_ssh_invocations': 1})
     args = ['ssh', '-F', str(home / 'config'), '-T', '-o', 'BatchMode=yes',
@@ -238,10 +311,10 @@ def main():
         evidence = {'error': f'{type(error).__name__}: {error}', 'attempt_status_ambiguous': True}
     finally:
         del password
-    write(LEDGER / 'result.json', evidence)
+    write(ledger / 'result.json', evidence)
     answer = evidence.get('custody', {}).get('terminal_event', {}).get('content', '')
     if evidence.get('eligible') and answer.strip():
-        with (LEDGER / 'response.md').open('x', encoding='utf-8', newline='\n') as output:
+        with (ledger / 'response.md').open('x', encoding='utf-8', newline='\n') as output:
             output.write(answer.rstrip() + '\n')
     summary = {k: evidence.get(k) for k in ('eligible', 'invoked', 'marker_open', 'error',
                                           'supervisor_exit', 'ssh_exit', 'min_available_bytes')}

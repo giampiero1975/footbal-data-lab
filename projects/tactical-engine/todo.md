@@ -8,6 +8,12 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** verdetto Qwen27 mmap V10-02 (2026-11-20), commit
+  `bd49f6c`. Ollama ha riconosciuto il modello, una sola POST, caricamento
+  mmap attestato. STOP `E_MEMORY_RESERVE` a 3.847.450.624 byte disponibili
+  contro 4.000.000.000, zero risposta, quiete attestata. Qwen27 su LIGA
+  **BLOCCATO**. [Report](docs/rag-v5-qwen27-mmap-final-02.md).
+
 - [x] **ESEGUITO** tentativo Qwen27 mmap V10-02 (2026-11-20), commit
   `56bbe0a`. Ollama isolato risponde a `/api/version`, ma
   `/api/tags` dà 500 dopo errore su `manifests-v2` nello store protetto.

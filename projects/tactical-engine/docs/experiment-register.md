@@ -2,6 +2,16 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-20 — Verdetto Qwen27 mmap V10-02 su LIGA
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →
+`qwen27_mmap_attempt_03.py` → `e0ba8e6`, `bd49f6c` →
+[report](rag-v5-qwen27-mmap-final-02.md) → catalogo v2 riconosciuto, una POST,
+caricamento mmap attestato, STOP a 3.847.450.624 byte e zero risposte,
+quiete attestata e produzione invariata → chiudere la strada Qwen27 27B
+sulla VPS con il protocollo corrente → prova **ESEGUITO**, Qwen27
+**BLOCCATO**. Nessun retry.
+
 ### 2026-11-20 — Qwen27 mmap V10-02 su LIGA
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` →

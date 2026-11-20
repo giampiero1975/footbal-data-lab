@@ -1,0 +1,63 @@
+{
+  "after": {
+    "football-qwen27-mmap-on-26112006-deadline-kill.timer": {
+      "ActiveState": "inactive",
+      "FragmentPath": "",
+      "Id": "football-qwen27-mmap-on-26112006-deadline-kill.timer",
+      "LoadState": "not-found"
+    },
+    "football-qwen27-mmap-on-26112006-deadline-term.timer": {
+      "ActiveState": "inactive",
+      "FragmentPath": "",
+      "Id": "football-qwen27-mmap-on-26112006-deadline-term.timer",
+      "LoadState": "not-found"
+    },
+    "football-qwen27-mmap-on-26112006-ollama.service": {
+      "ActiveState": "inactive",
+      "FragmentPath": "",
+      "Id": "football-qwen27-mmap-on-26112006-ollama.service",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    },
+    "football-qwen27-mmap-on-26112006-supervisor.service": {
+      "ActiveState": "inactive",
+      "FragmentPath": "",
+      "Id": "football-qwen27-mmap-on-26112006-supervisor.service",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    }
+  },
+  "attempt": "qwen27-mmap-on-26112006",
+  "before": {
+    "football-qwen27-mmap-on-26112006-deadline-kill.timer": {
+      "ActiveState": "active",
+      "FragmentPath": "/run/systemd/transient/football-qwen27-mmap-on-26112006-deadline-kill.timer",
+      "Id": "football-qwen27-mmap-on-26112006-deadline-kill.timer",
+      "LoadState": "loaded"
+    },
+    "football-qwen27-mmap-on-26112006-deadline-term.timer": {
+      "ActiveState": "active",
+      "FragmentPath": "/run/systemd/transient/football-qwen27-mmap-on-26112006-deadline-term.timer",
+      "Id": "football-qwen27-mmap-on-26112006-deadline-term.timer",
+      "LoadState": "loaded"
+    },
+    "football-qwen27-mmap-on-26112006-ollama.service": {
+      "ActiveState": "inactive",
+      "FragmentPath": "",
+      "Id": "football-qwen27-mmap-on-26112006-ollama.service",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    },
+    "football-qwen27-mmap-on-26112006-supervisor.service": {
+      "ActiveState": "inactive",
+      "FragmentPath": "",
+      "Id": "football-qwen27-mmap-on-26112006-supervisor.service",
+      "LoadState": "not-found",
+      "MainPID": "0"
+    }
+  },
+  "disarmed": [
+    "football-qwen27-mmap-on-26112006-deadline-term.timer",
+    "football-qwen27-mmap-on-26112006-deadline-kill.timer"
+  ]
+}
