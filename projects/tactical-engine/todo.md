@@ -8,6 +8,15 @@
 
 **Sintesi autorevole per il revisore:**
 
+- [x] **ESEGUITO** preflight VPS read-only del Gate Linux isolamento Qwen27
+  mmap (2026-11-20), stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`.
+  Baseline GitHub `0259ce9`, script e commit `1f7a72a` pubblicati prima dell'SSH.
+  systemd 255, cgroup v2 e `cgroup.kill` presenti. Mancano l'account dedicato
+  `football-qwen27` e lo store di stato root-owned. Gate e Qwen27 mmap
+  **BLOCCATO**. Ollama/RAG attivi, identità invariate nelle due istantanee.
+  [Report](docs/rag-v5-qwen27-ollama-isolation-linux-gate-01.md). Zero unità
+  sintetiche avviate, modifiche persistenti, POST, caricamenti o inferenze.
+
 - [x] **IMPLEMENTATO** isolamento Ollama Qwen27 mmap in locale (2026-11-20),
   stessa `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01`, baseline GitHub `d39ac92`,
   commit tecnico `ca653e6`. Supervisore distaccato, unità Ollama transitoria e

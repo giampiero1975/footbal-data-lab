@@ -1,0 +1,26 @@
+{
+  "head": "1f7a72afdbd45b240e883ae2f8f38fee7ae50157",
+  "ref": "refs/heads/codex/tactical-state-contract-v1",
+  "ssh_arguments": [
+    "-T",
+    "-o",
+    "BatchMode=yes",
+    "-o",
+    "ConnectTimeout=10",
+    "-o",
+    "StrictHostKeyChecking=yes",
+    "-o",
+    "UpdateHostKeys=no",
+    "-o",
+    "HostKeyAlgorithms=ssh-ed25519",
+    "-o",
+    "KexAlgorithms=curve25519-sha256",
+    "football-vps",
+    "/usr/bin/python3 -I -B -c 'import sys; src=sys.stdin.buffer.read(); scope={'\"'\"'__name__'\"'\"':'\"'\"'gate_preflight'\"'\"'}; exec(compile(src,'\"'\"'<gate-preflight>'\"'\"','\"'\"'exec'\"'\"'),scope); scope['\"'\"'main'\"'\"'](src)'"
+  ],
+  "expected_fingerprint": "SHA256:4KTDWZD9P2eq8vug3ZSUErbRkQdwTUnnlcSP2AzYFks",
+  "source_sha256": "48751814730a6d3737efb94f751885b395bed075fe8709615e5c596f44779370",
+  "started_utc_ns": 1795167703160940200,
+  "remote_writes_authorized": false,
+  "post_authorized": false
+}

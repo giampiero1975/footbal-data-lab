@@ -2,6 +2,19 @@
 
 Ultimo aggiornamento: 2026-10-27. GitHub è la fonte autorevole dello **stato**; i report runtime sulla VPS sono evidenze da collegare, non automaticamente versionate. Questo registro è obbligatorio per ogni nuova attività.
 
+### 2026-11-20 — Gate Linux differenziale isolamento Ollama, arresto al preflight
+
+`RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → script stdin read-only
+`qwen27_isolation_linux_preflight_01.py` → baseline GitHub `0259ce9`, commit
+tecnico `1f7a72afdbd45b240e883ae2f8f38fee7ae50157` pubblicato prima dell'SSH →
+[report](rag-v5-qwen27-ollama-isolation-linux-gate-01.md) → systemd 255, cgroup v2
+e `cgroup.kill` presenti. Account `football-qwen27` e store di stato assenti.
+Ollama/RAG prima e dopo con stesso PID, invocation ID e cgroup → fermarsi prima
+di prenotare o avviare l'unico caso sintetico → preflight **ESEGUITO**, Gate
+e Qwen27 mmap **BLOCCATO**. Un SSH read-only, inventario hash e raw locali.
+Zero unità, modifiche persistenti, pressione indotta, POST o inferenze. Gate02
+e fixture Windows riusati come evidenza storica. STOP.
+
 ### 2026-11-20 — Implementazione locale isolamento Ollama Qwen27 mmap
 
 `RD-RAG-V5-QUALITY-FIRST-PAIRED-PILOT-01` → `qwen27_isolation_01.py`,

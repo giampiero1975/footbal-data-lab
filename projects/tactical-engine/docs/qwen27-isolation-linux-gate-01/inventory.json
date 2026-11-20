@@ -1,0 +1,34 @@
+{
+  "attempt_id_proposed": "qwen27-isolation-linux-gate-20261120-01",
+  "attempt_created": false,
+  "source_path": "projects/tactical-engine/operations/quality-first-pilot/qwen27_isolation_linux_preflight_01.py",
+  "source_sha256": "48751814730a6d3737efb94f751885b395bed075fe8709615e5c596f44779370",
+  "technical_commit": "1f7a72afdbd45b240e883ae2f8f38fee7ae50157",
+  "artifacts": [
+    {
+      "file": ".gitattributes",
+      "bytes": 8,
+      "sha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da"
+    },
+    {
+      "file": "exit.json",
+      "bytes": 49,
+      "sha256": "c10fd6ac8aa05b8e991381703e9226a3e43f89d64195f3ab0235decff918c71f"
+    },
+    {
+      "file": "invocation.json",
+      "bytes": 925,
+      "sha256": "d9f42ac526ff7c3d6f93b738c937b6b217ff1ad34d9e286dd2c3d2d930409ef2"
+    },
+    {
+      "file": "preflight.stderr.raw",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "preflight.stdout.json",
+      "bytes": 7182,
+      "sha256": "3e25fb93c5ecc190c59fc4498417b5b1bb09df2ba04bfe284d11436a75b9689b"
+    }
+  ]
+}
